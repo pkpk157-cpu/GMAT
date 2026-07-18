@@ -752,13 +752,27 @@
 </script>
 
 <script>
-/* PWA: install prompt + offline service worker */
+/* PWA: install prompt + offline service worker with auto-update */
 (function () {
   "use strict";
   if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
-    window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function(){}); });
+    // When a new service worker takes control, reload once so the newest
+    // app version is shown without the user having to reinstall.
+    var reloaded = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (reloaded) return; reloaded = true; window.location.reload();
+    });
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").then(function (reg) {
+        reg.update();
+        // Check for updates whenever the app is reopened / refocused.
+        document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "visible") reg.update();
+        });
+      }).catch(function () {});
+    });
   }
-  // capture install prompt so it can be offered from the profile later if desired
+  // capture install prompt in case we surface an install button later
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); window.__gmatInstall = e; });
 })();
 </script>

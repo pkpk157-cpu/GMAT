@@ -319,6 +319,10 @@
   .rs-side { margin-left: auto; text-align: right; }
   .rs-pct { font-family: var(--serif); font-size: 26px; font-weight: 600; }
   .rs-log { font-size: 12px; color: var(--good); font-weight: 700; margin-top: 2px; }
+  .rs-time { font-size: 12px; color: var(--ink-soft); font-weight: 700; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .qtimer { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 20px; }
+  .qtimer.done { color: var(--accent); background: var(--accent-wash); }
+  .rev-time { font-size: 11px; color: var(--ink-faint); font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 8px; }
   .revitem { border-top: 1px solid var(--line-soft); padding: 9px 0; }
   .revitem:first-child { border-top: none; }
   .revitem .qrow { border-top: none; padding: 0; }
@@ -509,8 +513,10 @@
   const topicId = (s, subj, t) => `${s}::${subj}::${t}`;
 
   // record helpers ({ d: done, c: correct }); tolerates legacy number values
-  function getRec(id) { const r = state.counts[id]; if (!r) return { d:0, c:0 }; if (typeof r === "number") return { d:r, c:0 }; return { d:r.d||0, c:r.c||0 }; }
-  function setRec(id, r) { if ((r.d||0) <= 0 && (r.c||0) <= 0) delete state.counts[id]; else state.counts[id] = { d:r.d, c:r.c }; }
+  function getRec(id) { const r = state.counts[id]; if (!r) return { d:0, c:0, ms:0 }; if (typeof r === "number") return { d:r, c:0, ms:0 }; return { d:r.d||0, c:r.c||0, ms:r.ms||0 }; }
+  function setRec(id, r) { if ((r.d||0) <= 0 && (r.c||0) <= 0) delete state.counts[id]; else state.counts[id] = { d:r.d, c:r.c, ms:r.ms||0 }; }
+  function fmtDur(ms) { if (!ms || ms <= 0) return "—"; const s = Math.round(ms/1000); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+  function fmtClock(ms) { const s = Math.floor((ms||0)/1000); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
   const done = (id) => getRec(id).d;
   const accPct = (c, d) => d > 0 ? Math.round(c / d * 100) : null;
   const accClass = (p) => p === null ? "" : p >= 80 ? "acc-hi" : p >= 65 ? "acc-mid" : "acc-lo";
@@ -525,9 +531,9 @@
   }
 
   // aggregates -> { d, c }
-  function subjectAgg(secId, su) { let d=0,c=0; su.topics.forEach(t=>{ const r=getRec(topicId(secId,su.name,t)); d+=r.d; c+=r.c; }); return { d, c }; }
-  function sectionAgg(sec) { let d=0,c=0; if (sec.subjects) sec.subjects.forEach(su=>{ const a=subjectAgg(sec.id,su); d+=a.d; c+=a.c; }); return { d, c }; }
-  function grandAgg() { let d=0,c=0; bySub.forEach(s=>{ const a=sectionAgg(s); d+=a.d; c+=a.c; }); return { d, c }; }
+  function subjectAgg(secId, su) { let d=0,c=0,ms=0; su.topics.forEach(t=>{ const r=getRec(topicId(secId,su.name,t)); d+=r.d; c+=r.c; ms+=r.ms; }); return { d, c, ms }; }
+  function sectionAgg(sec) { let d=0,c=0,ms=0; if (sec.subjects) sec.subjects.forEach(su=>{ const a=subjectAgg(sec.id,su); d+=a.d; c+=a.c; ms+=a.ms; }); return { d, c, ms }; }
+  function grandAgg() { let d=0,c=0,ms=0; bySub.forEach(s=>{ const a=sectionAgg(s); d+=a.d; c+=a.c; ms+=a.ms; }); return { d, c, ms }; }
   const topicCountTotal = () => bySub.reduce((a,s)=>a+s.subjects.reduce((b,su)=>b+su.topics.length,0),0);
   const topicsTouched = () => { let n=0; bySub.forEach(s=>s.subjects.forEach(su=>su.topics.forEach(t=>{ if(done(topicId(s.id,su.name,t))>0) n++; }))); return n; };
 
@@ -581,7 +587,7 @@
     let h = `<div class="sec-head" style="--secc:${sec.color}">
       <h2><span class="bar"></span>${esc(sec.title)}</h2>
       <p>${esc(sec.blurb)}</p>
-      <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
+      <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}${ag.ms>0?`<span>Avg <b>${fmtDur(ag.ms/ag.d)}</b>/q</span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
     </div><div class="subjects">`;
     sec.subjects.forEach(su => {
       const ckey = sec.id+"::"+su.name, collapsed = state.collapsed[ckey] ? " collapsed" : "";
@@ -638,6 +644,7 @@
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
       <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
       <div class="stat"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
+      <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice sets"}</div></div>
       <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
 
@@ -851,22 +858,23 @@
     for (const su of sec.subjects) for (const t of su.topics) { const tl = t.toLowerCase(); if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return topicId(secId, su.name, t); }
     return null;
   }
-  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {} }; }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {}, times: r.times || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {}, times: {} }; }
   function setRun(id, run) { state.runs[id] = run; save(); }
-  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; state.runs[id] = r; return r; }
+  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
   // Topic count and daily count move together — never bump one without the other.
-  function logOne(set, q, correct) {
+  function logOne(set, q, correct, ms) {
     const run = ensureRun(set.id);
     if (run.logged[q.n]) return;
+    ms = Math.max(0, ms || 0);
     const id = resolveTopic(set.section, q.topic);
     if (id) {
-      const rec = getRec(id); rec.d += 1; if (correct) rec.c += 1; setRec(id, rec);
+      const rec = getRec(id); rec.d += 1; if (correct) rec.c += 1; rec.ms += ms; setRec(id, rec);
       const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
-      run.logged[q.n] = { day, topic: id, correct: !!correct };
+      run.logged[q.n] = { day, topic: id, correct: !!correct, ms };
     } else {
       console.warn("GMAT: no topic match for", set.section, "/", q.topic);
-      run.logged[q.n] = { day: null, topic: null, correct: !!correct };
+      run.logged[q.n] = { day: null, topic: null, correct: !!correct, ms };
     }
     save();
   }
@@ -878,10 +886,10 @@
       const run = state.runs[sid]; if (!run || !run.logged) return;
       const set = SETS.find(s => s.id === sid);
       Object.keys(run.logged).forEach(n => {
-        const meta = run.logged[n]; let topic, day, correct;
-        if (meta && typeof meta === "object") { topic = meta.topic; day = meta.day; correct = meta.correct; }
-        else if (set) { const q = set.questions.find(x => String(x.n) === String(n)); topic = q ? resolveTopic(set.section, q.topic) : null; day = dkey(); correct = q ? (run.ans[n] === q.correct) : false; }
-        if (topic) { counts[topic] = counts[topic] || { d:0, c:0 }; counts[topic].d += 1; if (correct) counts[topic].c += 1; if (day) daily[day] = (daily[day] || 0) + 1; }
+        const meta = run.logged[n]; let topic, day, correct, ms;
+        if (meta && typeof meta === "object") { topic = meta.topic; day = meta.day; correct = meta.correct; ms = meta.ms || 0; }
+        else if (set) { const q = set.questions.find(x => String(x.n) === String(n)); topic = q ? resolveTopic(set.section, q.topic) : null; day = dkey(); correct = q ? (run.ans[n] === q.correct) : false; ms = (run.times && run.times[n]) || 0; }
+        if (topic) { counts[topic] = counts[topic] || { d:0, c:0, ms:0 }; counts[topic].d += 1; if (correct) counts[topic].c += 1; counts[topic].ms += (ms || 0); if (day) daily[day] = (daily[day] || 0) + 1; }
       });
     });
     state.counts = counts; state.daily = daily; save();
@@ -889,17 +897,17 @@
   // Reverse a logged question (used when resetting a question or a set).
   function unlogOne(set, run, n) {
     const meta = run.logged[n]; if (!meta) return;
-    let day, id, correct;
-    if (typeof meta === "object") { day = meta.day; id = meta.topic; correct = meta.correct; }
-    else { const q = set.questions.find(x => String(x.n) === String(n)); day = dkey(); id = q ? resolveTopic(set.section, q.topic) : null; correct = false; }
-    if (id) { const rec = getRec(id); rec.d = Math.max(0, rec.d - 1); if (correct) rec.c = Math.max(0, rec.c - 1); setRec(id, rec); }
+    let day, id, correct, ms;
+    if (typeof meta === "object") { day = meta.day; id = meta.topic; correct = meta.correct; ms = meta.ms || 0; }
+    else { const q = set.questions.find(x => String(x.n) === String(n)); day = dkey(); id = q ? resolveTopic(set.section, q.topic) : null; correct = false; ms = 0; }
+    if (id) { const rec = getRec(id); rec.d = Math.max(0, rec.d - 1); if (correct) rec.c = Math.max(0, rec.c - 1); rec.ms = Math.max(0, rec.ms - ms); setRec(id, rec); }
     if (day) state.daily[day] = Math.max(0, (state.daily[day] || 0) - 1);
     delete run.logged[n];
   }
   function resetQuestion(set, n) {
     const run = ensureRun(set.id);
     unlogOne(set, run, n);
-    delete run.ans[n]; delete run.ans[String(n)];
+    delete run.ans[n]; delete run.ans[String(n)]; delete run.times[n]; delete run.times[String(n)];
     if (run.submitted) { run.submitted = false; delete run.score; delete run.total; }
     save();
   }
@@ -907,7 +915,7 @@
     const run = ensureRun(set.id);
     Object.keys(run.logged || {}).forEach(n => unlogOne(set, run, n));
     const mode = keepMode ? run.mode : null;
-    state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode: mode, logged:{} };
+    state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode: mode, logged:{}, times:{} };
     runIndex = 0; save();
   }
   function scoreRun(set, run) {
@@ -940,9 +948,10 @@
     return h + `</div></div>`;
   }
 
-  let runSetId = null, runIndex = 0;
+  let runSetId = null, runIndex = 0, qStart = 0, qTimer = null;
+  function stopTimer() { if (qTimer) { clearInterval(qTimer); qTimer = null; } }
   function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
-  function closeRunner() { document.getElementById("runner").hidden = true; runSetId = null; document.body.style.overflow = ""; render(); }
+  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
@@ -958,9 +967,10 @@
     if (runIndex > total-1) runIndex = total-1; if (runIndex < 0) runIndex = 0;
     const q = qs[runIndex], sel = run.ans[q.n], nOpt = q.options || 5;
     const answered = Object.keys(run.ans).length, last = runIndex === total-1;
-    const practice = run.mode === "practice", revealed = practice && !!sel;
+    const practice = run.mode === "practice", revealed = practice && !!sel, thisAnswered = !!sel;
+    const timerHTML = thisAnswered ? `<span class="qtimer done" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>` : `<span class="qtimer" id="qtimer" data-live="1">0:00</span>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
+    h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
@@ -992,13 +1002,15 @@
   function resultsHTML(set, run, sec, qs) {
     const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
     const byN = {}; qs.forEach(q => byN[q.n] = q);
-    let h = `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div></div></div>`;
+    const tvals = qs.map(q => run.times[q.n]).filter(v => v != null && v > 0);
+    const avgMs = tvals.length ? tvals.reduce((a,b)=>a+b,0)/tvals.length : 0;
+    let h = `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div>${avgMs?`<div class="rs-time">⏱ ${fmtClock(avgMs)} avg / question</div>`:""}</div></div>`;
     h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green; tap a question for the full explanation.</p><div class="qlist">`;
     res.per.forEach(p => {
-      const n = p.options, q = byN[p.n];
+      const n = p.options, q = byN[p.n], tm = run.times[p.n];
       h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
-        `</div><span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
+        `</div>${tm?`<span class="rev-time">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
         (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(p.topic)}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
@@ -1009,11 +1021,18 @@
   }
 
   function renderRunner() {
+    stopTimer();
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
     const h = run.submitted ? resultsHTML(set, run, sec, qs) : (!run.mode ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
     document.getElementById("rn-title").textContent = set.title;
     document.getElementById("rn-body").innerHTML = h;
+    const tEl = document.getElementById("qtimer");
+    if (tEl && tEl.getAttribute("data-live") === "1") {
+      qStart = Date.now();
+      const tick = () => { const el = document.getElementById("qtimer"); if (!el) { stopTimer(); return; } el.textContent = fmtClock(Date.now() - qStart); };
+      tick(); qTimer = setInterval(tick, 500);
+    }
     const card = document.getElementById("qcard");
     if (card && run.mode && !run.submitted) {
       let sx = null;
@@ -1028,13 +1047,18 @@
     const a = e.target.closest("[data-ans]"); if (a) {
       const run = ensureRun(set.id); if (run.submitted) return;
       const q = set.questions[runIndex];
+      const elapsed = qStart ? (Date.now() - qStart) : 0;
       if (run.mode === "practice") {
         if (run.ans[q.n]) return; // locked once answered
+        run.times[String(q.n)] = elapsed;
         run.ans[String(q.n)] = a.getAttribute("data-l"); save();
-        logOne(set, q, run.ans[q.n] === q.correct);
+        logOne(set, q, run.ans[q.n] === q.correct, elapsed);
         renderRunner(); window.scrollTo({ top:0 }); return;
       }
-      run.ans[String(q.n)] = a.getAttribute("data-l"); save();
+      const firstTime = !run.ans[q.n];
+      run.ans[String(q.n)] = a.getAttribute("data-l");
+      if (firstTime) run.times[String(q.n)] = elapsed;
+      save();
       if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // auto-advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
@@ -1044,7 +1068,7 @@
     if (e.target.closest("[data-finish]")) {
       const run = ensureRun(set.id), answered = Object.keys(run.ans).length;
       if (run.mode !== "practice" && answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
-      set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct); });
+      set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct, run.times[q.n] || 0); });
       const res = scoreRun(set, run); run.submitted = true; run.score = res.score; run.total = res.total; save();
       renderRunner(); window.scrollTo({ top:0 }); return;
     }

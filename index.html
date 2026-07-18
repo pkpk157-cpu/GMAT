@@ -320,9 +320,13 @@
   .rs-pct { font-family: var(--serif); font-size: 26px; font-weight: 600; }
   .rs-log { font-size: 12px; color: var(--good); font-weight: 700; margin-top: 2px; }
   .rs-time { font-size: 12px; color: var(--ink-soft); font-weight: 700; margin-top: 3px; font-variant-numeric: tabular-nums; }
-  .qtimer { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 20px; }
+  .qtimer { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 20px; transition: color .2s, background .2s; }
   .qtimer.done { color: var(--accent); background: var(--accent-wash); }
+  .qtimer.warn { color: var(--warn); background: var(--gold-wash); }
+  .qtimer.over { color: #fff; background: var(--bad); }
   .rev-time { font-size: 11px; color: var(--ink-faint); font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 8px; }
+  .rev-time.slow { color: var(--bad); }
+  .tstat .ttime { font-size: 10px; font-weight: 700; color: var(--ink-faint); font-variant-numeric: tabular-nums; line-height: 1.2; }
   .revitem { border-top: 1px solid var(--line-soft); padding: 9px 0; }
   .revitem:first-child { border-top: none; }
   .revitem .qrow { border-top: none; padding: 0; }
@@ -491,6 +495,9 @@
   ];
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
+  // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
+  const PACE = { quant: 130, data: 135, rc: 120, cr: 120 };
+  const paceMs = (secId) => (PACE[secId] || 120) * 1000;
 
   /* State */
   const KEY = "gmat_tracker_v2";
@@ -606,6 +613,7 @@
           <button class="tstat" data-edit="${esc(id)}" title="Log a set or edit">
             <span class="td ${r.d===0?"zero":""}">${r.d}</span>
             ${p2!==null?`<span class="tacc ${accClass(p2)}">${p2}%</span>`:`<span class="tacc" style="color:var(--ink-faint)">—</span>`}
+            ${r.ms>0&&r.d>0?`<span class="ttime">⏱ ${fmtDur(r.ms/r.d)}</span>`:""}
           </button>
         </div>`;
       });
@@ -968,7 +976,9 @@
     const q = qs[runIndex], sel = run.ans[q.n], nOpt = q.options || 5;
     const answered = Object.keys(run.ans).length, last = runIndex === total-1;
     const practice = run.mode === "practice", revealed = practice && !!sel, thisAnswered = !!sel;
-    const timerHTML = thisAnswered ? `<span class="qtimer done" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>` : `<span class="qtimer" id="qtimer" data-live="1">0:00</span>`;
+    const tgt = paceMs(set.section);
+    const paceCls = (ms) => ms > tgt ? "over" : (ms > tgt*0.75 ? "warn" : "done");
+    const timerHTML = thisAnswered ? `<span class="qtimer ${paceCls(run.times[q.n] || 0)}" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>` : `<span class="qtimer" id="qtimer" data-live="1" data-target="${tgt}">0:00</span>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
     h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
@@ -1002,15 +1012,17 @@
   function resultsHTML(set, run, sec, qs) {
     const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
     const byN = {}; qs.forEach(q => byN[q.n] = q);
+    const tgt = paceMs(set.section);
     const tvals = qs.map(q => run.times[q.n]).filter(v => v != null && v > 0);
     const avgMs = tvals.length ? tvals.reduce((a,b)=>a+b,0)/tvals.length : 0;
+    const slowCount = tvals.filter(v => v > tgt).length;
     let h = `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div>${avgMs?`<div class="rs-time">⏱ ${fmtClock(avgMs)} avg / question</div>`:""}</div></div>`;
-    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green; tap a question for the full explanation.</p><div class="qlist">`;
+    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green. Times over your ~${fmtDur(tgt)} pace target are red${slowCount?` — <b>${slowCount}</b> over pace`:""}. Tap a question for the explanation.</p><div class="qlist">`;
     res.per.forEach(p => {
-      const n = p.options, q = byN[p.n], tm = run.times[p.n];
+      const n = p.options, q = byN[p.n], tm = run.times[p.n], slow = tm && tm > tgt;
       h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
-        `</div>${tm?`<span class="rev-time">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
+        `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
         (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(p.topic)}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
@@ -1030,7 +1042,8 @@
     const tEl = document.getElementById("qtimer");
     if (tEl && tEl.getAttribute("data-live") === "1") {
       qStart = Date.now();
-      const tick = () => { const el = document.getElementById("qtimer"); if (!el) { stopTimer(); return; } el.textContent = fmtClock(Date.now() - qStart); };
+      const tgt = parseInt(tEl.getAttribute("data-target"), 10) || 120000;
+      const tick = () => { const el = document.getElementById("qtimer"); if (!el) { stopTimer(); return; } const e = Date.now() - qStart; el.textContent = fmtClock(e); el.className = "qtimer" + (e > tgt ? " over" : (e > tgt*0.75 ? " warn" : "")); };
       tick(); qTimer = setInterval(tick, 500);
     }
     const card = document.getElementById("qcard");

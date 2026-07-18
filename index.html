@@ -1,5 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>GMAT Prep Tracker</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Track your GMAT Focus Edition preparation — exam countdown, per-topic question logging, and an overall progress dashboard." />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#F6F4EE" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14181F" media="(prefers-color-scheme: dark)" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="GMAT Prep" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
 <style>
   /* ---------- Design tokens ---------- */
   :root {
@@ -290,7 +304,17 @@
     .sec-head h2 { font-size: 22px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  .install-btn {
+    border: 1px solid var(--accent); background: var(--accent); color: #fff;
+    height: 38px; padding: 0 14px; border-radius: 10px; font-size: 13.5px;
+    font-weight: 700; display: inline-flex; align-items: center; gap: 7px; transition: .15s;
+  }
+  .install-btn:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  .install-btn[hidden] { display: none; }
 </style>
+</head>
+<body>
 
 <div class="banner">
   <div class="banner-inner">
@@ -302,6 +326,7 @@
       <span class="num tnum" id="cd-num">—</span>
       <span class="lbl"><span class="t">days to go</span><span class="d" id="cd-date">set your date</span></span>
     </div>
+    <button class="install-btn" id="btn-install" title="Install to your home screen" hidden>⬇ Install app</button>
     <button class="icon-btn" id="btn-theme" title="Toggle light / dark">◐</button>
     <button class="icon-btn" id="btn-settings" title="Edit name & exam date">⚙</button>
   </div>
@@ -695,3 +720,43 @@
 
 })();
 </script>
+
+<script>
+/* ---- PWA: install prompt + offline service worker ---- */
+(function () {
+  "use strict";
+  var installBtn = document.getElementById("btn-install");
+  var deferred = null;
+
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    deferred = e;
+    if (installBtn) installBtn.hidden = false;
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener("click", function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.finally(function () {
+        deferred = null;
+        installBtn.hidden = true;
+      });
+    });
+  }
+
+  window.addEventListener("appinstalled", function () {
+    deferred = null;
+    if (installBtn) installBtn.hidden = true;
+  });
+
+  // Register the service worker (only works over http/https, not file://).
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>GMAT Prep Tracker</title>
-<meta name="description" content="Track your GMAT Focus Edition preparation — exam countdown, daily & weekly targets, per-topic logging, and an activity calendar." />
+<meta name="description" content="Track your GMAT Focus Edition prep — exam countdown, daily & weekly targets, per-topic accuracy, weak-spot focus areas, and an activity calendar." />
 <link rel="manifest" href="manifest.json" />
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1B212B" media="(prefers-color-scheme: dark)" />
@@ -21,6 +21,7 @@
     --ink-soft:#545B6B; --ink-faint:#8A8F9C; --line:#E4E0D6; --line-soft:#EDEAE2;
     --accent:#2E6E67; --accent-ink:#21534E; --accent-wash:#E4EEEC;
     --gold:#B0791E; --gold-wash:#F3EBD8;
+    --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B;
     --c-quant:#2E6E67; --c-data:#3F4E9E; --c-overall:#B0791E; --c-verbal:#A6543C; --c-cr:#8E5572;
     --radius:14px; --radius-s:9px;
     --shadow:0 1px 2px rgba(20,25,40,.05),0 8px 24px -14px rgba(20,25,40,.18);
@@ -33,6 +34,7 @@
       --ink-soft:#A6ADBB; --ink-faint:#6E7686; --line:#2B333F; --line-soft:#232B36;
       --accent:#5FB3A8; --accent-ink:#8FCDC4; --accent-wash:#1E2F2D;
       --gold:#D8A64A; --gold-wash:#2C2718;
+      --good:#5FC79E; --warn:#D8A64A; --bad:#E08869;
       --c-quant:#5FB3A8; --c-data:#8A96D9; --c-overall:#D8A64A; --c-verbal:#D0846A; --c-cr:#C58AA8;
       --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -16px rgba(0,0,0,.6);
     }
@@ -42,6 +44,7 @@
     --ink-soft:#545B6B; --ink-faint:#8A8F9C; --line:#E4E0D6; --line-soft:#EDEAE2;
     --accent:#2E6E67; --accent-ink:#21534E; --accent-wash:#E4EEEC;
     --gold:#B0791E; --gold-wash:#F3EBD8;
+    --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B;
     --c-quant:#2E6E67; --c-data:#3F4E9E; --c-overall:#B0791E; --c-verbal:#A6543C; --c-cr:#8E5572;
     --shadow:0 1px 2px rgba(20,25,40,.05),0 8px 24px -14px rgba(20,25,40,.18);
   }
@@ -50,6 +53,7 @@
     --ink-soft:#A6ADBB; --ink-faint:#6E7686; --line:#2B333F; --line-soft:#232B36;
     --accent:#5FB3A8; --accent-ink:#8FCDC4; --accent-wash:#1E2F2D;
     --gold:#D8A64A; --gold-wash:#2C2718;
+    --good:#5FC79E; --warn:#D8A64A; --bad:#E08869;
     --c-quant:#5FB3A8; --c-data:#8A96D9; --c-overall:#D8A64A; --c-verbal:#D0846A; --c-cr:#C58AA8;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -16px rgba(0,0,0,.6);
   }
@@ -65,7 +69,7 @@
   button { font-family: inherit; cursor: pointer; }
   svg { display: block; }
 
-  /* ---------- Top bar ---------- */
+  /* Top bar */
   .topbar { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--line); }
   .tb-inner { max-width: 940px; margin: 0 auto; padding: 11px 18px; display: flex; align-items: center; gap: 14px; }
   .tb-count { display: flex; align-items: center; gap: 11px; margin-right: auto; background: none; border: none; padding: 4px 6px; border-radius: 12px; text-align: left; }
@@ -75,86 +79,60 @@
   .tb-meta { display: flex; flex-direction: column; gap: 1px; }
   .tb-meta .l { font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; }
   .tb-meta .d { font-size: 12.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-  .avatar {
-    width: 40px; height: 40px; border-radius: 50%; flex: none;
-    background: var(--accent-wash); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-    font-weight: 700; font-size: 16px; font-family: var(--serif);
-    display: grid; place-items: center; transition: .15s;
-  }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--accent-wash); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); font-weight: 700; font-size: 16px; font-family: var(--serif); display: grid; place-items: center; transition: .15s; }
   .avatar:hover { filter: brightness(.97); }
   .avatar svg { width: 20px; height: 20px; }
 
-  /* ---------- Layout ---------- */
   .wrap { max-width: 940px; margin: 0 auto; padding: 20px 18px 40px; }
 
-  /* ---------- Bottom nav ---------- */
-  .botnav {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-    background: var(--surface); border-top: 1px solid var(--line);
-    padding-bottom: env(safe-area-inset-bottom); display: flex; justify-content: center;
-  }
+  /* Bottom nav */
+  .botnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); display: flex; justify-content: center; }
   .botnav-inner { width: 100%; max-width: 500px; display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; }
-  .bn {
-    border: none; background: none; padding: 8px 2px 9px; display: flex; flex-direction: column;
-    align-items: center; gap: 4px; color: var(--ink-faint); font-size: 10.5px; font-weight: 700;
-    letter-spacing: .01em; transition: color .15s;
-  }
+  .bn { border: none; background: none; padding: 8px 2px 9px; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-faint); font-size: 10.5px; font-weight: 700; transition: color .15s; }
   .bn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
   .bn.active { color: var(--tabc); }
-  .bn .lab { line-height: 1; }
-  /* center hub */
   .bn.center { position: relative; }
-  .bn.center .hub {
-    width: 54px; height: 54px; border-radius: 50%; margin-top: -24px; margin-bottom: 2px;
-    background: var(--c-overall); color: #fff; display: grid; place-items: center;
-    border: 4px solid var(--paper); box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--c-overall) 70%, transparent);
-    transition: transform .15s;
-  }
+  .bn.center .hub { width: 54px; height: 54px; border-radius: 50%; margin-top: -24px; margin-bottom: 2px; background: var(--c-overall); color: #fff; display: grid; place-items: center; border: 4px solid var(--paper); box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--c-overall) 70%, transparent); transition: transform .15s; }
   .bn.center .hub svg { width: 26px; height: 26px; stroke-width: 2; }
   .bn.center.active { color: var(--c-overall); }
   .bn.center.active .hub { transform: translateY(-2px); }
-  .bn.center .lab { margin-top: 1px; }
 
-  /* ---------- Section head ---------- */
+  /* Section head */
   .sec-head { margin: 4px 0 6px; }
-  .sec-head h2 {
-    font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0; letter-spacing: -.01em;
-    text-wrap: balance; display: flex; align-items: center; gap: 11px;
-  }
+  .sec-head h2 { font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0; letter-spacing: -.01em; text-wrap: balance; display: flex; align-items: center; gap: 11px; }
   .sec-head h2 .bar { width: 6px; height: 24px; border-radius: 3px; background: var(--secc); flex: none; }
   .sec-head p { margin: 8px 0 0; color: var(--ink-soft); max-width: 62ch; font-size: 14.5px; }
-  .sec-stat { display: inline-flex; align-items: baseline; gap: 6px; margin-top: 13px; font-size: 13px; color: var(--ink-soft); }
+  .sec-stat { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 13px; font-size: 13px; color: var(--ink-soft); }
   .sec-stat b { font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .sec-stat .acc { color: var(--good); }
 
-  /* ---------- Subject cards ---------- */
+  /* Subject cards */
   .subjects { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
   .subject { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-  .subj-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; }
+  .subj-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
   .subj-head:hover { background: var(--surface-2); }
   .subj-head .chev { color: var(--ink-faint); transition: transform .2s; font-size: 12px; }
   .subject.collapsed .chev { transform: rotate(-90deg); }
   .subj-head .title { font-weight: 650; font-size: 15.5px; margin-right: auto; letter-spacing: -.01em; }
-  .subj-head .count {
-    font-size: 12.5px; font-weight: 600; color: var(--secc);
-    background: color-mix(in srgb, var(--secc) 12%, transparent); padding: 3px 10px; border-radius: 20px;
-    font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
+  .subj-head .count { font-size: 12.5px; font-weight: 600; color: var(--secc); background: color-mix(in srgb, var(--secc) 12%, transparent); padding: 3px 10px; border-radius: 20px; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .subject.collapsed .topics { display: none; }
-  .topic { display: flex; align-items: center; gap: 12px; padding: 11px 18px; border-top: 1px solid var(--line-soft); }
-  .topic .tname { font-size: 14px; margin-right: auto; }
-  .topic .tval { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px; min-width: 40px; text-align: right; }
-  .topic .tval.zero { color: var(--ink-faint); font-weight: 600; }
-  .stepper { display: flex; align-items: center; gap: 4px; }
-  .step {
-    border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft);
-    height: 30px; min-width: 34px; padding: 0 8px; border-radius: 8px; font-size: 13px; font-weight: 700;
-    transition: .12s; line-height: 1;
-  }
-  .step:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
-  .step.minus { min-width: 30px; }
-  .step:disabled { opacity: .35; cursor: not-allowed; background: var(--surface); color: var(--ink-faint); border-color: var(--line); }
 
-  /* ---------- Goals (rings) ---------- */
+  .topic { display: flex; align-items: center; gap: 9px; padding: 10px 16px; border-top: 1px solid var(--line-soft); }
+  .topic .tname { font-size: 14px; margin-right: auto; line-height: 1.3; }
+  .acts { display: flex; gap: 5px; flex: none; }
+  .mk { width: 34px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; font-weight: 800; line-height: 1; display: grid; place-items: center; transition: .12s; }
+  .mk.right { color: var(--good); }
+  .mk.right:hover { background: color-mix(in srgb, var(--good) 14%, var(--surface)); border-color: var(--good); }
+  .mk.wrong { color: var(--bad); }
+  .mk.wrong:hover { background: color-mix(in srgb, var(--bad) 14%, var(--surface)); border-color: var(--bad); }
+  .tstat { display: flex; flex-direction: column; align-items: flex-end; gap: 0; min-width: 50px; border: none; background: none; padding: 3px 3px; border-radius: 8px; flex: none; }
+  .tstat:hover { background: var(--surface-2); }
+  .tstat .td { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .tstat .td.zero { color: var(--ink-faint); font-weight: 600; }
+  .tstat .tacc { font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .acc-hi { color: var(--good); } .acc-mid { color: var(--warn); } .acc-lo { color: var(--bad); }
+
+  /* Goals rings */
   .goals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
   .goal { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 15px; display: flex; align-items: center; gap: 14px; }
   .ring-wrap { position: relative; width: 66px; height: 66px; flex: none; }
@@ -162,14 +140,13 @@
   .ring-bg { fill: none; stroke: var(--surface-2); stroke-width: 7; }
   .ring-fg { fill: none; stroke-width: 7; stroke-linecap: round; transition: stroke-dashoffset .6s ease; }
   .ring-pct { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: 13.5px; font-variant-numeric: tabular-nums; }
-  .goal .gt { min-width: 0; }
   .goal .gk { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); font-weight: 700; }
   .goal .gv { font-family: var(--serif); font-size: 21px; font-weight: 600; line-height: 1.15; margin-top: 2px; font-variant-numeric: tabular-nums; }
   .goal .gs { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
-  .goal-empty { grid-column: 1 / -1; text-align: left; }
-  .goal-empty .link { color: var(--accent); font-weight: 700; background: none; border: none; padding: 0; text-decoration: underline; }
+  .goal-empty { grid-column: 1 / -1; }
+  .link { color: var(--accent); font-weight: 700; background: none; border: none; padding: 0; text-decoration: underline; font-size: inherit; cursor: pointer; }
 
-  /* ---------- Stats / panels ---------- */
+  /* Stats / panels */
   .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-top: 14px; }
   .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 15px 16px; box-shadow: var(--shadow); }
   .stat .k { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; }
@@ -181,12 +158,22 @@
   .panel .sub { color: var(--ink-soft); font-size: 13px; margin: 0 0 14px; }
 
   .breakdown { display: flex; flex-direction: column; gap: 13px; }
-  .bd-row { display: grid; grid-template-columns: 130px 1fr auto; gap: 12px; align-items: center; }
+  .bd-row { display: grid; grid-template-columns: 128px 1fr auto; gap: 12px; align-items: center; }
   .bd-row .bl { font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
   .bd-row .bl .d { width: 9px; height: 9px; border-radius: 50%; background: var(--rc); flex: none; }
   .track { height: 9px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
   .track > i { display: block; height: 100%; background: var(--rc); border-radius: 6px; transition: width .5s ease; }
-  .bd-row .bv { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; min-width: 40px; text-align: right; }
+  .bd-row .bv { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; min-width: 74px; text-align: right; }
+  .bd-row .bv .ac { font-weight: 700; font-size: 12px; }
+
+  /* Focus areas */
+  .focus { display: flex; flex-direction: column; }
+  .focus-row { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid var(--line-soft); }
+  .focus-row:first-child { border-top: none; }
+  .focus-row .fn { font-size: 13.5px; margin-right: auto; min-width: 0; }
+  .focus-row .fn .fq { display: block; font-size: 11px; color: var(--ink-faint); margin-top: 1px; }
+  .fchip { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; background: color-mix(in srgb, var(--fc) 14%, transparent); color: var(--fc); white-space: nowrap; text-transform: uppercase; letter-spacing: .03em; }
+  .focus-row .facc { font-weight: 800; font-size: 15px; font-variant-numeric: tabular-nums; min-width: 42px; text-align: right; }
 
   .spark { display: flex; align-items: flex-end; gap: 8px; height: 96px; margin-top: 4px; }
   .spark .bcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; height: 100%; justify-content: flex-end; }
@@ -196,7 +183,7 @@
   .spark .bcol .bd { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .03em; }
   .spark .bcol.today .bd { color: var(--accent); font-weight: 700; }
 
-  /* ---------- Profile page ---------- */
+  /* Profile */
   .profile { position: fixed; inset: 0; z-index: 70; background: var(--paper); overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .profile[hidden] { display: none; }
   .pf-head { position: sticky; top: 0; z-index: 2; background: var(--surface); border-bottom: 1px solid var(--line); }
@@ -205,13 +192,9 @@
   .pf-close { margin-left: auto; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 18px; }
   .pf-close:hover { color: var(--ink); border-color: var(--ink-faint); }
   .pf-body { max-width: 640px; margin: 0 auto; padding: 18px 18px 60px; display: flex; flex-direction: column; gap: 14px; }
-
   .pf-id { display: flex; align-items: center; gap: 15px; }
-  .pf-id .big {
-    width: 58px; height: 58px; border-radius: 50%; flex: none; background: var(--accent-wash);
-    color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-    font-family: var(--serif); font-size: 24px; font-weight: 600; display: grid; place-items: center;
-  }
+  .pf-id .big { width: 58px; height: 58px; border-radius: 50%; flex: none; background: var(--accent-wash); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); font-family: var(--serif); font-size: 24px; font-weight: 600; display: grid; place-items: center; }
+  .pf-id .big svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.8; }
   .pf-id .nm { font-family: var(--serif); font-size: 21px; font-weight: 600; }
   .pf-id .meta { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
   .pf-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
@@ -221,10 +204,7 @@
   .field { margin-bottom: 14px; }
   .field:last-child { margin-bottom: 0; }
   .field label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px; }
-  .field input {
-    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px;
-    font-size: 15px; font-family: inherit; background: var(--paper); color: var(--ink);
-  }
+  .field input { width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; font-size: 15px; font-family: inherit; background: var(--paper); color: var(--ink); }
   .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 
   .tgt-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line-soft); }
@@ -238,7 +218,6 @@
   .tgt-bar > i { display: block; height: 100%; background: var(--accent); border-radius: 5px; transition: width .5s ease; }
   .tgt-cap { font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: flex; justify-content: space-between; }
 
-  /* calendar */
   .cal-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
   .cal-title { font-weight: 700; margin-right: auto; font-size: 14.5px; }
   .cal-nav { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; }
@@ -261,28 +240,54 @@
   .seg button { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); padding: 9px; border-radius: 10px; font-size: 13.5px; font-weight: 600; transition: .12s; }
   .seg button.on { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
 
+  .pf-actions { display: flex; gap: 10px; }
+  .btn-soft { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 11px; border-radius: 11px; font-weight: 650; font-size: 13.5px; transition: .12s; }
+  .btn-soft:hover { border-color: var(--accent); color: var(--accent); }
   .btn-primary { width: 100%; padding: 12px; border: none; border-radius: 11px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; transition: .15s; }
   .btn-primary:hover { background: var(--accent-ink); }
   .btn-danger { width: 100%; padding: 11px; border: 1px solid var(--line); border-radius: 11px; background: none; color: var(--ink-soft); font-size: 13.5px; font-weight: 600; }
-  .btn-danger:hover { color: var(--c-verbal); border-color: var(--c-verbal); }
+  .btn-danger:hover { color: var(--bad); border-color: var(--bad); }
 
-  /* ---------- Onboarding modal ---------- */
+  /* Modals */
   .scrim { position: fixed; inset: 0; background: rgba(15,18,26,.55); display: grid; place-items: center; z-index: 80; padding: 20px; backdrop-filter: blur(3px); }
   .scrim[hidden] { display: none; }
-  .modal { background: var(--surface); border-radius: 18px; border: 1px solid var(--line); width: 100%; max-width: 420px; padding: 26px; box-shadow: 0 30px 70px -20px rgba(0,0,0,.5); }
+  .modal { background: var(--surface); border-radius: 18px; border: 1px solid var(--line); width: 100%; max-width: 420px; padding: 24px; box-shadow: 0 30px 70px -20px rgba(0,0,0,.5); }
   .modal .kick { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
   .modal h2 { font-family: var(--serif); font-size: 24px; margin: 6px 0 4px; font-weight: 600; letter-spacing: -.01em; }
   .modal p.lead { color: var(--ink-soft); font-size: 14px; margin: 0 0 20px; }
   .modal .btn-primary { margin-top: 4px; }
   .hint { font-size: 12px; color: var(--ink-faint); margin-top: 6px; }
 
+  /* Log sheet */
+  .ls-eyebrow { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ls-c, var(--accent)); font-weight: 700; }
+  .ls-title { font-family: var(--serif); font-size: 21px; font-weight: 600; margin: 5px 0 2px; letter-spacing: -.01em; text-wrap: balance; }
+  .ls-crumb { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 18px; }
+  .ls-row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-top: 1px solid var(--line-soft); }
+  .ls-row .li { margin-right: auto; }
+  .ls-row .lk { font-weight: 650; font-size: 14.5px; }
+  .ls-row .ls { font-size: 12px; color: var(--ink-soft); }
+  .ls-big { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 19px; min-width: 40px; text-align: center; }
+  .ls-presets { display: flex; gap: 7px; margin: 14px 0 4px; }
+  .ls-presets button { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); padding: 8px; border-radius: 9px; font-size: 13px; font-weight: 700; }
+  .ls-presets button:hover { border-color: var(--accent); color: var(--accent); }
+  .ls-now { font-size: 12.5px; color: var(--ink-soft); text-align: center; margin: 16px 0 4px; }
+  .ls-now b { color: var(--ink); }
+  .ls-reset { display: block; margin: 12px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 12.5px; text-decoration: underline; }
+  .ls-reset:hover { color: var(--bad); }
+  .step { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); height: 34px; min-width: 36px; padding: 0 9px; border-radius: 9px; font-size: 16px; font-weight: 700; transition: .12s; line-height: 1; }
+  .step:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
+  .step.minus { min-width: 34px; }
+  .step:disabled { opacity: .35; cursor: not-allowed; background: var(--surface); color: var(--ink-faint); border-color: var(--line); }
+  .stepper { display: flex; align-items: center; gap: 6px; }
+
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
   @media (max-width: 430px) {
     .tb-days { font-size: 26px; }
     .sec-head h2 { font-size: 22px; }
-    .bd-row { grid-template-columns: 92px 1fr auto; }
+    .bd-row { grid-template-columns: 84px 1fr auto; }
     .goal { padding: 13px; gap: 11px; }
+    .topic { gap: 7px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -293,12 +298,9 @@
   <div class="tb-inner">
     <button class="tb-count" id="tb-count" title="Exam countdown — tap to edit">
       <span class="tb-days tnum" id="tb-days">—</span>
-      <span class="tb-meta">
-        <span class="l" id="tb-label">days to exam</span>
-        <span class="d" id="tb-date">set your date</span>
-      </span>
+      <span class="tb-meta"><span class="l" id="tb-label">days to exam</span><span class="d" id="tb-date">set your date</span></span>
     </button>
-    <button class="avatar" id="btn-profile" title="Your profile, targets & activity">P</button>
+    <button class="avatar" id="btn-profile" title="Profile, targets, accuracy & activity">P</button>
   </div>
 </header>
 
@@ -312,33 +314,26 @@
     <span class="kick">Welcome</span>
     <h2>Let's set up your prep</h2>
     <p class="lead">Two quick things and you're in. You can change everything later from your profile.</p>
-    <div class="field">
-      <label for="ob-name">Your name</label>
-      <input id="ob-name" type="text" placeholder="e.g. Pranav" autocomplete="off" />
-    </div>
-    <div class="field">
-      <label for="ob-date">Exam date</label>
-      <input id="ob-date" type="date" />
-      <div class="hint">The banner counts down the days for you.</div>
-    </div>
+    <div class="field"><label for="ob-name">Your name</label><input id="ob-name" type="text" placeholder="e.g. Pranav" autocomplete="off" /></div>
+    <div class="field"><label for="ob-date">Exam date</label><input id="ob-date" type="date" /><div class="hint">The banner counts down the days for you.</div></div>
     <button class="btn-primary" id="ob-save">Start tracking</button>
   </div>
 </div>
 
+<!-- Log sheet -->
+<div class="scrim" id="logsheet" hidden><div class="modal" id="ls-card"></div></div>
+
 <!-- Profile page -->
 <div class="profile" id="profile" hidden>
-  <div class="pf-head"><div class="pf-head-in">
-    <h2 class="pf-title">Profile</h2>
-    <button class="pf-close" id="pf-close" title="Close">✕</button>
-  </div></div>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Profile</h2><button class="pf-close" id="pf-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="pf-body"></div>
 </div>
+<input type="file" id="restore-input" accept="application/json,.json" hidden />
 
 <script>
 (function () {
   "use strict";
 
-  /* ===================== Course content ===================== */
   const ICON = {
     quant: '<svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="7.5" cy="7.5" r="2.4"/><circle cx="16.5" cy="16.5" r="2.4"/></svg>',
     data:  '<svg viewBox="0 0 24 24"><path d="M5 20V13"/><path d="M12 20V5"/><path d="M19 20V10"/><line x1="3" y1="20" x2="21" y2="20"/></svg>',
@@ -351,193 +346,159 @@
   const SECTIONS = [
     { id:"quant", nav:"Quant", color:"var(--c-quant)", icon:ICON.quant,
       title:"Quantitative Reasoning",
-      blurb:"Part of the score alongside Verbal and Data Insights. 45 min · 21 Problem-Solving questions — arithmetic and algebra only (no geometry, no calculator).",
+      blurb:"Scored with Verbal and Data Insights. 45 min · 21 Problem-Solving questions — arithmetic and algebra only (no geometry, no calculator).",
       subjects:[
-        { name:"Arithmetic & Number Properties", topics:[
-          "Integers, factors & multiples","Prime numbers & factorization","LCM & GCD",
-          "Divisibility & remainders","Odd / even & sign rules","Fractions & decimals","Absolute value"] },
-        { name:"Percentages, Ratios & Proportions", topics:[
-          "Percentages & percent change","Ratios & proportions","Profit, loss & discount","Simple & compound interest"] },
-        { name:"Powers, Roots & Exponents", topics:[
-          "Exponent rules","Roots & radicals","Scientific notation & estimation"] },
-        { name:"Algebra", topics:[
-          "Linear equations","Systems of equations","Quadratic equations",
-          "Inequalities & absolute value","Functions & custom symbols","Expressions & factoring","Sequences & series"] },
-        { name:"Word Problems", topics:[
-          "Speed, distance & time","Work & rate","Mixtures & solutions","Overlapping sets (Venn)","Age & number problems"] },
-        { name:"Statistics, Counting & Probability", topics:[
-          "Mean, median & mode","Range & standard deviation","Weighted averages","Permutations & combinations","Probability"] }
+        { name:"Arithmetic & Number Properties", topics:["Integers, factors & multiples","Prime numbers & factorization","LCM & GCD","Divisibility & remainders","Odd / even & sign rules","Fractions & decimals","Absolute value"] },
+        { name:"Percentages, Ratios & Proportions", topics:["Percentages & percent change","Ratios & proportions","Profit, loss & discount","Simple & compound interest"] },
+        { name:"Powers, Roots & Exponents", topics:["Exponent rules","Roots & radicals","Scientific notation & estimation"] },
+        { name:"Algebra", topics:["Linear equations","Systems of equations","Quadratic equations","Inequalities & absolute value","Functions & custom symbols","Expressions & factoring","Sequences & series"] },
+        { name:"Word Problems", topics:["Speed, distance & time","Work & rate","Mixtures & solutions","Overlapping sets (Venn)","Age & number problems"] },
+        { name:"Statistics, Counting & Probability", topics:["Mean, median & mode","Range & standard deviation","Weighted averages","Permutations & combinations","Probability"] }
       ]},
-
     { id:"data", nav:"Data", color:"var(--c-data)", icon:ICON.data,
       title:"Data Insights",
       blurb:"45 min · 20 questions. The signature Focus-Edition section — data literacy across five formats, including Data Sufficiency (moved here from Quant).",
       subjects:[
-        { name:"Data Sufficiency", topics:[
-          "Value questions","Yes / No questions","Statement-combination strategy","Common traps & C-trap"] },
-        { name:"Multi-Source Reasoning", topics:[
-          "Reading across tabs","Synthesizing multiple sources","Inference from combined data","True / False judgment sets"] },
-        { name:"Table Analysis", topics:[
-          "Sorting & filtering","Statistics from a table","Ratios & proportions in tables"] },
-        { name:"Graphics Interpretation", topics:[
-          "Scatter plots & correlation","Bar & line graphs","Interpreting relationships","Dropdown completion"] },
-        { name:"Two-Part Analysis", topics:[
-          "Quantitative two-part","Verbal / logical two-part","Trade-off & optimization"] }
+        { name:"Data Sufficiency", topics:["Value questions","Yes / No questions","Statement-combination strategy","Common traps & C-trap"] },
+        { name:"Multi-Source Reasoning", topics:["Reading across tabs","Synthesizing multiple sources","Inference from combined data","True / False judgment sets"] },
+        { name:"Table Analysis", topics:["Sorting & filtering","Statistics from a table","Ratios & proportions in tables"] },
+        { name:"Graphics Interpretation", topics:["Scatter plots & correlation","Bar & line graphs","Interpreting relationships","Dropdown completion"] },
+        { name:"Two-Part Analysis", topics:["Quantitative two-part","Verbal / logical two-part","Trade-off & optimization"] }
       ]},
-
     { id:"overall", nav:"Overall", color:"var(--c-overall)", icon:ICON.overall, dashboard:true,
       title:"Overall Progress",
-      blurb:"Your whole preparation at a glance — targets, total questions practiced, how effort is spread across the four practice areas, and recent activity." },
-
+      blurb:"Your whole preparation at a glance — targets, accuracy, weak-spot focus areas, effort across the four practice areas, and recent activity." },
     { id:"rc", nav:"RC", color:"var(--c-verbal)", icon:ICON.rc,
       title:"Reading Comprehension",
       blurb:"One of the two Verbal question types (Verbal is 45 min · 23 questions). Passages with question sets testing main idea, detail, inference, and structure.",
       subjects:[
-        { name:"Question Types", topics:[
-          "Main idea / primary purpose","Supporting detail","Inference",
-          "Function of a detail or paragraph","Author's tone & attitude","Passage structure","Application / extension"] },
-        { name:"Passage Practice by Domain", topics:[
-          "Science & technology passages","Business & economics passages","Social science & humanities passages","Long, dense passages"] }
+        { name:"Question Types", topics:["Main idea / primary purpose","Supporting detail","Inference","Function of a detail or paragraph","Author's tone & attitude","Passage structure","Application / extension"] },
+        { name:"Passage Practice by Domain", topics:["Science & technology passages","Business & economics passages","Social science & humanities passages","Long, dense passages"] }
       ]},
-
     { id:"cr", nav:"CR", color:"var(--c-cr)", icon:ICON.cr,
       title:"Critical Reasoning",
       blurb:"The other Verbal question type. Short arguments testing your reasoning — assumptions, strengthen / weaken, flaws, paradoxes, and structure.",
       subjects:[
-        { name:"Foundations", topics:[
-          "Deconstructing arguments","Finding the conclusion","Spotting assumptions"] },
-        { name:"Question Types", topics:[
-          "Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true",
-          "Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
+        { name:"Foundations", topics:["Deconstructing arguments","Finding the conclusion","Spotting assumptions"] },
+        { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
   const bySub = SECTIONS.filter(s => s.subjects);
+  const secById = (id) => SECTIONS.find(s => s.id === id);
 
-  /* ===================== State ===================== */
+  /* State */
   const KEY = "gmat_tracker_v2";
   const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 } };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
+  let sheet = null; // { id, a, c }
 
   function load() {
-    try { const raw = localStorage.getItem(KEY); if (raw) {
-      const p = JSON.parse(raw);
-      return Object.assign({}, defaults, p, { targets: Object.assign({}, defaults.targets, p.targets || {}) });
-    } } catch (e) {}
-    // migrate v1 if present
+    try { const raw = localStorage.getItem(KEY); if (raw) { const p = JSON.parse(raw);
+      return Object.assign({}, defaults, p, { targets: Object.assign({}, defaults.targets, p.targets || {}) }); } } catch (e) {}
     try { const old = JSON.parse(localStorage.getItem("gmat_tracker_v1") || "null");
-      if (old) return Object.assign({}, defaults, { name: old.name || "", examDate: old.examDate || "", daily: old.daily || {} });
-    } catch (e) {}
+      if (old) return Object.assign({}, defaults, { name: old.name || "", examDate: old.examDate || "", daily: old.daily || {} }); } catch (e) {}
     return JSON.parse(JSON.stringify(defaults));
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
   const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
-  const dkey = (d) => { const x = d || new Date(); const y = x.getFullYear(), m = String(x.getMonth()+1).padStart(2,"0"), da = String(x.getDate()).padStart(2,"0"); return `${y}-${m}-${da}`; };
+  const dkey = (d) => { const x = d || new Date(); return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); };
   const topicId = (s, subj, t) => `${s}::${subj}::${t}`;
-  const getCount = (id) => state.counts[id] || 0;
 
-  function log(id, delta) {
-    const cur = getCount(id), next = Math.max(0, cur + delta), applied = next - cur;
-    if (!applied) return;
-    state.counts[id] = next;
-    const k = dkey();
-    state.daily[k] = Math.max(0, (state.daily[k] || 0) + applied);
+  // record helpers ({ d: done, c: correct }); tolerates legacy number values
+  function getRec(id) { const r = state.counts[id]; if (!r) return { d:0, c:0 }; if (typeof r === "number") return { d:r, c:0 }; return { d:r.d||0, c:r.c||0 }; }
+  function setRec(id, r) { if ((r.d||0) <= 0 && (r.c||0) <= 0) delete state.counts[id]; else state.counts[id] = { d:r.d, c:r.c }; }
+  const done = (id) => getRec(id).d;
+  const accPct = (c, d) => d > 0 ? Math.round(c / d * 100) : null;
+  const accClass = (p) => p === null ? "" : p >= 80 ? "acc-hi" : p >= 65 ? "acc-mid" : "acc-lo";
+
+  function logQ(id, attempted, correct) {
+    attempted = Math.max(0, attempted | 0);
+    correct = Math.max(0, Math.min(attempted, correct | 0));
+    if (attempted <= 0) return;
+    const r = getRec(id); r.d += attempted; r.c += correct; setRec(id, r);
+    const k = dkey(); state.daily[k] = Math.max(0, (state.daily[k] || 0) + attempted);
     save(); renderView(); renderBotnav();
   }
 
-  const sectionTotal = (sec) => sec.subjects ? sec.subjects.reduce((a,su)=>a+su.topics.reduce((b,t)=>b+getCount(topicId(sec.id,su.name,t)),0),0) : 0;
-  const subjectTotal = (secId, su) => su.topics.reduce((a,t)=>a+getCount(topicId(secId,su.name,t)),0);
-  const grandTotal = () => bySub.reduce((a,s)=>a+sectionTotal(s),0);
+  // aggregates -> { d, c }
+  function subjectAgg(secId, su) { let d=0,c=0; su.topics.forEach(t=>{ const r=getRec(topicId(secId,su.name,t)); d+=r.d; c+=r.c; }); return { d, c }; }
+  function sectionAgg(sec) { let d=0,c=0; if (sec.subjects) sec.subjects.forEach(su=>{ const a=subjectAgg(sec.id,su); d+=a.d; c+=a.c; }); return { d, c }; }
+  function grandAgg() { let d=0,c=0; bySub.forEach(s=>{ const a=sectionAgg(s); d+=a.d; c+=a.c; }); return { d, c }; }
   const topicCountTotal = () => bySub.reduce((a,s)=>a+s.subjects.reduce((b,su)=>b+su.topics.length,0),0);
-  const topicsTouched = () => { let n=0; bySub.forEach(s=>s.subjects.forEach(su=>su.topics.forEach(t=>{ if(getCount(topicId(s.id,su.name,t))>0) n++; }))); return n; };
+  const topicsTouched = () => { let n=0; bySub.forEach(s=>s.subjects.forEach(su=>su.topics.forEach(t=>{ if(done(topicId(s.id,su.name,t))>0) n++; }))); return n; };
 
-  function daysLeft() {
-    if (!state.examDate) return null;
-    const now = new Date(); now.setHours(0,0,0,0);
-    return Math.round((new Date(state.examDate+"T00:00:00") - now) / 86400000);
-  }
-  function startOfWeek(d) { const x = new Date(d); x.setHours(0,0,0,0); const wd = (x.getDay()+6)%7; x.setDate(x.getDate()-wd); return x; }
-  function weekTotal() { const s = startOfWeek(new Date()); let n=0; for (let i=0;i<7;i++){ const dd=new Date(s); dd.setDate(s.getDate()+i); n+=state.daily[dkey(dd)]||0; } return n; }
-  function todayTotal() { return state.daily[dkey()] || 0; }
-  function streak() {
-    let n = 0, cur = new Date();
-    if (!(state.daily[dkey(cur)] > 0)) cur.setDate(cur.getDate()-1);
-    while (state.daily[dkey(cur)] > 0) { n++; cur.setDate(cur.getDate()-1); }
-    return n;
-  }
-  function heatLevel(count) {
-    if (count <= 0) return 0;
-    const t = state.targets.daily || 20, r = count / t;
-    if (r < 0.34) return 1; if (r < 0.67) return 2; if (r < 1) return 3; return 4;
-  }
+  function daysLeft() { if (!state.examDate) return null; const now=new Date(); now.setHours(0,0,0,0); return Math.round((new Date(state.examDate+"T00:00:00")-now)/86400000); }
+  function startOfWeek(d){ const x=new Date(d); x.setHours(0,0,0,0); const wd=(x.getDay()+6)%7; x.setDate(x.getDate()-wd); return x; }
+  function weekTotal(){ const s=startOfWeek(new Date()); let n=0; for(let i=0;i<7;i++){ const dd=new Date(s); dd.setDate(s.getDate()+i); n+=state.daily[dkey(dd)]||0; } return n; }
+  function todayTotal(){ return state.daily[dkey()]||0; }
+  function streak(){ let n=0,cur=new Date(); if(!(state.daily[dkey(cur)]>0)) cur.setDate(cur.getDate()-1); while(state.daily[dkey(cur)]>0){ n++; cur.setDate(cur.getDate()-1); } return n; }
+  function heatLevel(count){ if(count<=0) return 0; const t=state.targets.daily||20, r=count/t; if(r<0.34) return 1; if(r<0.67) return 2; if(r<1) return 3; return 4; }
 
-  /* ===================== Top bar ===================== */
+  /* Top bar */
   function renderTop() {
     const d = daysLeft();
-    const days = document.getElementById("tb-days");
-    const lbl = document.getElementById("tb-label");
-    const dt = document.getElementById("tb-date");
+    const days=document.getElementById("tb-days"), lbl=document.getElementById("tb-label"), dt=document.getElementById("tb-date");
     days.classList.remove("past");
-    const av = document.getElementById("btn-profile");
-    av.innerHTML = state.name ? esc(state.name.trim()[0].toUpperCase()) : ICON.person;
-    if (d === null) { days.textContent = "—"; lbl.textContent = "days to exam"; dt.textContent = "set your date"; return; }
-    const nice = new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined, { month:"short", day:"numeric", year:"numeric" });
-    if (d > 0) { days.textContent = d; lbl.textContent = "days to exam"; dt.textContent = nice; }
-    else if (d === 0) { days.textContent = "0"; lbl.textContent = "exam day"; dt.textContent = nice; }
-    else { days.textContent = Math.abs(d); days.classList.add("past"); lbl.textContent = "days since exam"; dt.textContent = nice; }
+    document.getElementById("btn-profile").innerHTML = state.name ? esc(state.name.trim()[0].toUpperCase()) : ICON.person;
+    if (d === null) { days.textContent="—"; lbl.textContent="days to exam"; dt.textContent="set your date"; return; }
+    const nice = new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined,{ month:"short", day:"numeric", year:"numeric" });
+    if (d>0){ days.textContent=d; lbl.textContent="days to exam"; dt.textContent=nice; }
+    else if (d===0){ days.textContent="0"; lbl.textContent="exam day"; dt.textContent=nice; }
+    else { days.textContent=Math.abs(d); days.classList.add("past"); lbl.textContent="days since exam"; dt.textContent=nice; }
   }
 
-  /* ===================== Bottom nav ===================== */
+  /* Bottom nav */
   function renderBotnav() {
-    const nav = document.getElementById("botnav");
-    nav.innerHTML = "";
+    const nav = document.getElementById("botnav"); nav.innerHTML = "";
     SECTIONS.forEach(sec => {
       const b = document.createElement("button");
       b.className = "bn" + (sec.dashboard ? " center" : "") + (state.active === sec.id ? " active" : "");
       b.style.setProperty("--tabc", sec.color);
-      b.innerHTML = sec.dashboard
-        ? `<span class="hub">${sec.icon}</span><span class="lab">${sec.nav}</span>`
-        : `${sec.icon}<span class="lab">${sec.nav}</span>`;
+      b.innerHTML = sec.dashboard ? `<span class="hub">${sec.icon}</span><span class="lab">${sec.nav}</span>` : `${sec.icon}<span class="lab">${sec.nav}</span>`;
       b.onclick = () => { state.active = sec.id; save(); render(); window.scrollTo({ top:0 }); };
       nav.appendChild(b);
     });
   }
 
-  /* ===================== Views ===================== */
+  /* Views */
   function renderView() {
     const view = document.getElementById("view");
-    const sec = SECTIONS.find(s => s.id === state.active) || SECTIONS.find(s => s.dashboard);
+    const sec = secById(state.active) || SECTIONS.find(s=>s.dashboard);
     view.innerHTML = sec.dashboard ? overallHTML() : sectionHTML(sec);
   }
 
+  function accBadge(c, d, extra) {
+    const p = accPct(c, d);
+    return p === null ? "" : `<span class="${accClass(p)} ${extra||""}">${p}%</span>`;
+  }
+
   function sectionHTML(sec) {
-    const total = sectionTotal(sec);
+    const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
     let h = `<div class="sec-head" style="--secc:${sec.color}">
       <h2><span class="bar"></span>${esc(sec.title)}</h2>
       <p>${esc(sec.blurb)}</p>
-      <span class="sec-stat"><b>${total}</b> questions logged across <b>${sec.subjects.length}</b> areas</span>
+      <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
     </div><div class="subjects">`;
     sec.subjects.forEach(su => {
-      const ckey = sec.id + "::" + su.name;
-      const collapsed = state.collapsed[ckey] ? " collapsed" : "";
-      const st = subjectTotal(sec.id, su);
+      const ckey = sec.id+"::"+su.name, collapsed = state.collapsed[ckey] ? " collapsed" : "";
+      const a = subjectAgg(sec.id, su), sp = accPct(a.c, a.d);
       h += `<section class="subject${collapsed}" style="--secc:${sec.color}">
-        <div class="subj-head" data-collapse="${esc(ckey)}">
-          <span class="chev">▼</span><span class="title">${esc(su.name)}</span>
-          <span class="count">${st} done · ${su.topics.length} topics</span>
-        </div><div class="topics">`;
+        <div class="subj-head" data-collapse="${esc(ckey)}"><span class="chev">▼</span><span class="title">${esc(su.name)}</span>
+        <span class="count">${a.d} done${sp!==null?` · ${sp}%`:""}</span></div><div class="topics">`;
       su.topics.forEach(t => {
-        const id = topicId(sec.id, su.name, t), v = getCount(id);
+        const id = topicId(sec.id, su.name, t), r = getRec(id), p2 = accPct(r.c, r.d);
         h += `<div class="topic">
           <span class="tname">${esc(t)}</span>
-          <div class="stepper">
-            <button class="step minus" data-log="${esc(id)}" data-d="-1" ${v===0?"disabled":""}>−</button>
-            <button class="step" data-log="${esc(id)}" data-d="1">+1</button>
-            <button class="step" data-log="${esc(id)}" data-d="5">+5</button>
-            <button class="step" data-log="${esc(id)}" data-d="10">+10</button>
+          <div class="acts">
+            <button class="mk right" data-mk="${esc(id)}" data-c="1" aria-label="Log one correct">✓</button>
+            <button class="mk wrong" data-mk="${esc(id)}" data-c="0" aria-label="Log one wrong">✗</button>
           </div>
-          <span class="tval ${v===0?"zero":""}">${v}</span>
+          <button class="tstat" data-edit="${esc(id)}" title="Log a set or edit">
+            <span class="td ${r.d===0?"zero":""}">${r.d}</span>
+            ${p2!==null?`<span class="tacc ${accClass(p2)}">${p2}%</span>`:`<span class="tacc" style="color:var(--ink-faint)">—</span>`}
+          </button>
         </div>`;
       });
       h += `</div></section>`;
@@ -546,206 +507,229 @@
   }
 
   function ring(pct, color) {
-    const r = 26, c = 2*Math.PI*r, off = c * (1 - Math.max(0, Math.min(1, pct)));
-    return `<svg viewBox="0 0 64 64" class="ring">
-      <circle class="ring-bg" cx="32" cy="32" r="${r}"/>
-      <circle class="ring-fg" cx="32" cy="32" r="${r}" style="stroke:${color};stroke-dasharray:${c.toFixed(1)};stroke-dashoffset:${off.toFixed(1)}"/>
-    </svg>`;
+    const r=26, c=2*Math.PI*r, off=c*(1-Math.max(0,Math.min(1,pct)));
+    return `<svg viewBox="0 0 64 64" class="ring"><circle class="ring-bg" cx="32" cy="32" r="${r}"/><circle class="ring-fg" cx="32" cy="32" r="${r}" style="stroke:${color};stroke-dasharray:${c.toFixed(1)};stroke-dashoffset:${off.toFixed(1)}"/></svg>`;
   }
 
   function overallHTML() {
-    const gt = grandTotal(), touched = topicsTouched(), totalTopics = topicCountTotal();
+    const g = grandAgg(), gt = g.d, gAcc = accPct(g.c, g.d);
+    const touched = topicsTouched(), totalTopics = topicCountTotal();
     const dl = daysLeft(), today = todayTotal(), week = weekTotal(), st = streak();
-    const dT = state.targets.daily || 0, wT = state.targets.weekly || 0;
+    const dT = state.targets.daily||0, wT = state.targets.weekly||0;
 
-    let h = `<div class="sec-head" style="--secc:var(--c-overall)">
-      <h2><span class="bar"></span>Overall Progress</h2>
-      <p>${esc(SECTIONS.find(s=>s.dashboard).blurb)}</p></div>`;
+    let h = `<div class="sec-head" style="--secc:var(--c-overall)"><h2><span class="bar"></span>Overall Progress</h2><p>${esc(SECTIONS.find(s=>s.dashboard).blurb)}</p></div>`;
 
     // goals
-    if (dT > 0 || wT > 0) {
+    if (dT>0 || wT>0) {
       h += `<div class="goals">`;
-      if (dT > 0) {
-        const p = today / dT;
-        h += `<div class="goal"><div class="ring-wrap">${ring(p, "var(--accent)")}<span class="ring-pct">${Math.round(p*100)}%</span></div>
-          <div class="gt"><div class="gk">Today</div><div class="gv">${today} / ${dT}</div>
-          <div class="gs">${today>=dT?"target hit 🎯":(dT-today)+" to go"}</div></div></div>`;
-      }
-      if (wT > 0) {
-        const p = week / wT;
-        h += `<div class="goal"><div class="ring-wrap">${ring(p, "var(--gold)")}<span class="ring-pct">${Math.round(p*100)}%</span></div>
-          <div class="gt"><div class="gk">This week</div><div class="gv">${week} / ${wT}</div>
-          <div class="gs">${week>=wT?"weekly goal met ✨":(wT-week)+" to go"}</div></div></div>`;
-      }
+      if (dT>0){ const p=today/dT; h += `<div class="goal"><div class="ring-wrap">${ring(p,"var(--accent)")}<span class="ring-pct">${Math.round(p*100)}%</span></div><div class="gt"><div class="gk">Today</div><div class="gv">${today} / ${dT}</div><div class="gs">${today>=dT?"target hit 🎯":(dT-today)+" to go"}</div></div></div>`; }
+      if (wT>0){ const p=week/wT; h += `<div class="goal"><div class="ring-wrap">${ring(p,"var(--gold)")}<span class="ring-pct">${Math.round(p*100)}%</span></div><div class="gt"><div class="gk">This week</div><div class="gv">${week} / ${wT}</div><div class="gs">${week>=wT?"weekly goal met ✨":(wT-week)+" to go"}</div></div></div>`; }
       h += `</div>`;
     } else {
-      h += `<div class="goals"><div class="goal goal-empty">Set a <button class="link" data-open-profile="1">daily & weekly target</button> to track your pace here.</div></div>`;
+      h += `<div class="goals"><div class="goal goal-empty"><span class="gs">Set a <button class="link" data-open-profile="1">daily & weekly target</button> to track your pace.</span></div></div>`;
     }
 
-    // stat tiles
+    // tiles
     h += `<div class="grid-stats">
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
+      <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
       <div class="stat"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
-      <div class="stat"><div class="k">Syllabus covered</div><div class="v">${Math.round(touched/totalTopics*100)}<span style="font-size:18px">%</span></div><div class="s">${touched} / ${totalTopics} topics touched</div></div>
-      <div class="stat"><div class="k">${dl===null?"Exam":dl>0?"Countdown":"Exam"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
+      <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
 
+    // focus areas (weak spots)
+    const cand = [];
+    bySub.forEach(s => s.subjects.forEach(su => su.topics.forEach(t => {
+      const id = topicId(s.id, su.name, t), r = getRec(id);
+      if (r.d >= 5) cand.push({ sec:s, name:t, d:r.d, c:r.c, p:accPct(r.c,r.d) });
+    })));
+    cand.sort((a,b)=> a.p - b.p || b.d - a.d);
+    h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
+    if (cand.length === 0) {
+      h += `<p class="footnote" style="margin:2px 0 0;text-align:left">Log at least <b>5 questions</b> in a topic (with ✓ / ✗) and your weak spots will surface here automatically.</p>`;
+    } else {
+      h += `<div class="focus">`;
+      cand.slice(0,5).forEach(f => {
+        h += `<div class="focus-row"><div class="fn">${esc(f.name)}<span class="fq">${f.c} / ${f.d} correct</span></div>
+          <span class="fchip" style="--fc:${f.sec.color}">${esc(f.sec.nav)}</span>
+          <span class="facc ${accClass(f.p)}">${f.p}%</span></div>`;
+      });
+      h += `</div>`;
+    }
+    h += `</div>`;
+
     // breakdown
-    const secs = bySub.map(s => ({ s, n: sectionTotal(s) }));
-    const max = Math.max(1, ...secs.map(x => x.n));
-    h += `<div class="panel"><h3>Effort by area</h3><p class="sub">Where your practice has gone. Keep all four areas moving.</p><div class="breakdown">`;
-    secs.forEach(({ s, n }) => {
-      const pct = n===0 ? 2 : Math.round(n/max*100), share = gt>0 ? Math.round(n/gt*100) : 0;
-      h += `<div class="bd-row" style="--rc:${s.color}">
-        <span class="bl"><span class="d"></span>${esc(s.title)}</span>
+    const secs = bySub.map(s => ({ s, a: sectionAgg(s) }));
+    const max = Math.max(1, ...secs.map(x => x.a.d));
+    h += `<div class="panel"><h3>Effort by area</h3><p class="sub">Questions practised · accuracy. Keep all four areas moving. Syllabus covered: ${Math.round(touched/totalTopics*100)}% (${touched}/${totalTopics} topics).</p><div class="breakdown">`;
+    secs.forEach(({ s, a }) => {
+      const pct = a.d===0 ? 2 : Math.round(a.d/max*100), ap = accPct(a.c, a.d);
+      h += `<div class="bd-row" style="--rc:${s.color}"><span class="bl"><span class="d"></span>${esc(s.title)}</span>
         <span class="track"><i style="width:${pct}%"></i></span>
-        <span class="bv">${n} <span style="color:var(--ink-faint);font-weight:600">· ${share}%</span></span></div>`;
+        <span class="bv">${a.d} ${ap!==null?`<span class="ac ${accClass(ap)}">· ${ap}%</span>`:`<span class="ac" style="color:var(--ink-faint)">· —</span>`}</span></div>`;
     });
     h += `</div></div>`;
 
     // 7-day
     h += `<div class="panel"><h3>Last 7 days</h3><p class="sub">Questions logged each day.</p><div class="spark">`;
     const now = new Date(); now.setHours(0,0,0,0);
-    const wd = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-    const arr = [];
+    const wd = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], arr = [];
     for (let i=6;i>=0;i--){ const dd=new Date(now); dd.setDate(now.getDate()-i); arr.push({ label:i===0?"Today":wd[dd.getDay()], n:state.daily[dkey(dd)]||0, today:i===0 }); }
     const dmax = Math.max(1, ...arr.map(a=>a.n));
-    arr.forEach(a => {
-      const hp = a.n===0 ? 3 : Math.max(8, Math.round(a.n/dmax*100));
-      h += `<div class="bcol ${a.n>0?"has":""} ${a.today?"today":""}"><span class="bn">${a.n||""}</span><div class="b" style="height:${hp}%"></div><span class="bd">${a.label}</span></div>`;
-    });
+    arr.forEach(a => { const hp = a.n===0?3:Math.max(8,Math.round(a.n/dmax*100)); h += `<div class="bcol ${a.n>0?"has":""} ${a.today?"today":""}"><span class="bn">${a.n||""}</span><div class="b" style="height:${hp}%"></div><span class="bd">${a.label}</span></div>`; });
     h += `</div></div>`;
 
-    if (dl !== null && dl > 0) {
-      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go.
-        ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions so far` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
+    if (dl!==null && dl>0) {
+      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go. ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions${gAcc!==null?` at <b style="color:var(--ink)">${gAcc}%</b> accuracy`:""}` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
     }
     h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition</p>`;
     return h;
   }
 
-  /* ===================== Profile ===================== */
+  /* Log sheet */
+  function openSheet(id) { const p = id.split("::"); sheet = { id, a:5, c:0, secId:p[0], subj:p[1], topic:p[2] }; renderSheet(); document.getElementById("logsheet").hidden = false; }
+  function closeSheet() { document.getElementById("logsheet").hidden = true; sheet = null; }
+  function renderSheet() {
+    if (!sheet) return;
+    const sec = secById(sheet.secId), r = getRec(sheet.id), p = accPct(r.c, r.d);
+    document.getElementById("ls-card").innerHTML = `
+      <div class="ls-eyebrow" style="--ls-c:${sec.color}">${esc(sec.nav)} · ${esc(sheet.subj)}</div>
+      <div class="ls-title">${esc(sheet.topic)}</div>
+      <div class="ls-crumb">Add a practice set — how many you did and how many you got right.</div>
+      <div class="ls-row"><div class="li"><div class="lk">Attempted</div><div class="ls">questions in this set</div></div>
+        <div class="stepper"><button class="step minus" data-sa="-1" ${sheet.a<=1?"disabled":""}>−</button><span class="ls-big">${sheet.a}</span><button class="step" data-sa="1">+</button></div></div>
+      <div class="ls-row"><div class="li"><div class="lk">Correct</div><div class="ls">of those, how many right</div></div>
+        <div class="stepper"><button class="step minus" data-sc="-1" ${sheet.c<=0?"disabled":""}>−</button><span class="ls-big">${sheet.c}</span><button class="step" data-sc="1" ${sheet.c>=sheet.a?"disabled":""}>+</button></div></div>
+      <div class="ls-presets"><button data-sap="5">Set 5</button><button data-sap="10">Set 10</button><button data-sap="20">Set 20</button></div>
+      <div class="ls-now">Now: <b>${r.d}</b> done${p!==null?` · <b>${p}%</b> accuracy`:""}</div>
+      <button class="btn-primary" data-ssave="1" style="margin-top:14px">Add ${sheet.a} question${sheet.a===1?"":"s"}${sheet.c>0?` · ${sheet.c} correct`:""}</button>
+      <button class="ls-reset" data-sreset="1">Reset this topic to zero</button>`;
+  }
+
+  /* Profile */
   function profileHTML() {
-    const st = streak(), gt = grandTotal(), today = todayTotal(), week = weekTotal();
-    const dT = state.targets.daily || 0, wT = state.targets.weekly || 0, dl = daysLeft();
+    const g = grandAgg(), gAcc = accPct(g.c, g.d), st = streak(), today = todayTotal(), week = weekTotal();
+    const dT = state.targets.daily||0, wT = state.targets.weekly||0, dl = daysLeft();
     const themePref = localStorage.getItem("gmat_theme") || "system";
+    const installable = !!window.__gmatInstall;
 
     let h = `<section class="panel"><div class="pf-id">
       <div class="big">${state.name ? esc(state.name.trim()[0].toUpperCase()) : ICON.person}</div>
       <div><div class="nm">${state.name ? esc(state.name) : "Your Study Log"}</div>
-      <div class="meta">${dl===null ? "No exam date set" : dl>0 ? `Exam in ${dl} days · ${esc(new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}))}` : "Exam date passed"}</div>
-      <div class="pf-chips"><span class="chip hot">🔥 ${st}-day streak</span><span class="chip">${gt} logged</span></div></div>
-    </div></section>`;
+      <div class="meta">${dl===null?"No exam date set":dl>0?`Exam in ${dl} days · ${esc(new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}))}`:"Exam date passed"}</div>
+      <div class="pf-chips"><span class="chip hot">🔥 ${st}-day streak</span><span class="chip">${g.d} logged</span>${gAcc!==null?`<span class="chip">${gAcc}% accuracy</span>`:""}</div></div></div></section>`;
 
-    // details
     h += `<section class="panel"><h3>Details</h3><p class="sub">Your name and target exam date.</p>
       <div class="field"><label for="pf-name">Name</label><input id="pf-name" type="text" value="${esc(state.name)}" placeholder="Your name" autocomplete="off"/></div>
       <div class="field"><label for="pf-date">Exam date</label><input id="pf-date" type="date" value="${esc(state.examDate)}"/></div>
       <button class="btn-primary" data-save-details="1">Save details</button></section>`;
 
-    // targets
     h += `<section class="panel"><h3>Daily & weekly targets</h3><p class="sub">How many questions you aim to practise. These drive the rings and the calendar colours.</p>
       <div class="tgt-row"><div class="tgt-info"><div class="tgt-k">Daily target</div><div class="tgt-s">questions per day</div></div>
         <div class="stepper"><button class="step minus" data-tgt="daily" data-d="-5">−</button><span class="tgt-val">${dT}</span><button class="step" data-tgt="daily" data-d="5">+</button></div></div>
-      <div class="tgt-prog"><div class="tgt-bar"><i style="width:${dT?Math.min(100,Math.round(today/dT*100)):0}%"></i></div>
-        <div class="tgt-cap"><span>Today</span><span>${today} / ${dT||"—"}</span></div></div>
+      <div class="tgt-prog"><div class="tgt-bar"><i style="width:${dT?Math.min(100,Math.round(today/dT*100)):0}%"></i></div><div class="tgt-cap"><span>Today</span><span>${today} / ${dT||"—"}</span></div></div>
       <div class="tgt-row"><div class="tgt-info"><div class="tgt-k">Weekly target</div><div class="tgt-s">questions this week (Mon–Sun)</div></div>
         <div class="stepper"><button class="step minus" data-tgt="weekly" data-d="-10">−</button><span class="tgt-val">${wT}</span><button class="step" data-tgt="weekly" data-d="10">+</button></div></div>
-      <div class="tgt-prog"><div class="tgt-bar"><i style="width:${wT?Math.min(100,Math.round(week/wT*100)):0}%;background:var(--gold)"></i></div>
-        <div class="tgt-cap"><span>This week</span><span>${week} / ${wT||"—"}</span></div></div></section>`;
+      <div class="tgt-prog"><div class="tgt-bar"><i style="width:${wT?Math.min(100,Math.round(week/wT*100)):0}%;background:var(--gold)"></i></div><div class="tgt-cap"><span>This week</span><span>${week} / ${wT||"—"}</span></div></div></section>`;
 
-    // calendar
     h += `<section class="panel"><h3>Activity calendar</h3><p class="sub">Every day you log questions, coloured by how close you got to your daily target.</p>${calendarHTML()}</section>`;
 
-    // appearance
+    h += `<section class="panel"><h3>Backup & restore</h3><p class="sub">Your data lives on this device only. Download a backup so you never lose it — then restore it on a new phone or after reinstalling.</p>
+      <div class="pf-actions"><button class="btn-soft" data-backup="1">⬇ Back up data</button><button class="btn-soft" data-restore="1">⬆ Restore</button></div>
+      ${installable?`<button class="btn-primary" style="margin-top:12px" data-install="1">Install app on this device</button>`:""}</section>`;
+
     h += `<section class="panel"><h3>Appearance</h3><p class="sub">Choose how the app looks.</p>
-      <div class="seg">
-        <button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button>
-        <button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button>
-        <button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button>
-      </div></section>`;
+      <div class="seg"><button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button><button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button><button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button></div></section>`;
 
-    // danger
-    h += `<section class="panel"><h3>Reset</h3><p class="sub">Clear every logged question. Your name, exam date and targets stay.</p>
-      <button class="btn-danger" data-reset="1">Reset all logged questions</button></section>`;
-
+    h += `<section class="panel"><h3>Reset</h3><p class="sub">Clear every logged question. Your name, exam date and targets stay.</p><button class="btn-danger" data-reset="1">Reset all logged questions</button></section>`;
     return h;
   }
 
   function calendarHTML() {
     const y = calCursor.getFullYear(), m = calCursor.getMonth();
-    const first = new Date(y, m, 1), lead = first.getDay(), days = new Date(y, m+1, 0).getDate();
-    const title = calCursor.toLocaleDateString(undefined, { month:"long", year:"numeric" });
-    const tk = dkey();
-    const nextDisabled = (y > new Date().getFullYear() || (y === new Date().getFullYear() && m >= new Date().getMonth())) ? "disabled" : "";
-    let h = `<div class="cal-head"><span class="cal-title">${esc(title)}</span>
-      <button class="cal-nav" data-cal="-1" title="Previous month">‹</button>
-      <button class="cal-nav" data-cal="1" ${nextDisabled} title="Next month">›</button></div><div class="cal-grid">`;
-    ["S","M","T","W","T","F","S"].forEach(d => h += `<div class="cal-dow">${d}</div>`);
+    const lead = new Date(y,m,1).getDay(), days = new Date(y,m+1,0).getDate();
+    const title = calCursor.toLocaleDateString(undefined,{ month:"long", year:"numeric" }), tk = dkey();
+    const nowY = new Date().getFullYear(), nowM = new Date().getMonth();
+    const nextDisabled = (y>nowY || (y===nowY && m>=nowM)) ? "disabled" : "";
+    let h = `<div class="cal-head"><span class="cal-title">${esc(title)}</span><button class="cal-nav" data-cal="-1" title="Previous month">‹</button><button class="cal-nav" data-cal="1" ${nextDisabled} title="Next month">›</button></div><div class="cal-grid">`;
+    ["S","M","T","W","T","F","S"].forEach(d=> h += `<div class="cal-dow">${d}</div>`);
     for (let i=0;i<lead;i++) h += `<div class="cal-cell blank"></div>`;
-    for (let d=1;d<=days;d++){
-      const key = dkey(new Date(y, m, d)), c = state.daily[key] || 0, lvl = heatLevel(c);
-      const isToday = key === tk ? " today" : "";
-      h += `<div class="cal-cell hl${lvl}${isToday}" title="${c} question${c===1?"":"s"} on ${esc(new Date(y,m,d).toLocaleDateString(undefined,{month:"short",day:"numeric"}))}">${d}</div>`;
-    }
+    for (let d=1;d<=days;d++){ const key=dkey(new Date(y,m,d)), c=state.daily[key]||0, lvl=heatLevel(c), isT=key===tk?" today":"";
+      h += `<div class="cal-cell hl${lvl}${isT}" title="${c} question${c===1?"":"s"} on ${esc(new Date(y,m,d).toLocaleDateString(undefined,{month:"short",day:"numeric"}))}">${d}</div>`; }
     h += `</div><div class="cal-legend">Less <i class="hl0"></i><i class="hl1"></i><i class="hl2"></i><i class="hl3"></i><i class="hl4"></i> More</div>`;
     return h;
   }
 
   function renderProfile() { document.getElementById("pf-body").innerHTML = profileHTML(); }
-
   function openProfile() { calCursor = new Date(); calCursor.setDate(1); renderProfile(); document.getElementById("profile").hidden = false; document.body.style.overflow = "hidden"; }
   function closeProfile() { document.getElementById("profile").hidden = true; document.body.style.overflow = ""; render(); }
 
-  /* ===================== Events ===================== */
-  // view delegation
+  /* Backup / restore */
+  function backup() {
+    try {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type:"application/json" });
+      const url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = "gmat-prep-backup-" + dkey() + ".json"; document.body.appendChild(a); a.click();
+      a.remove(); setTimeout(()=>URL.revokeObjectURL(url), 1500);
+    } catch (e) { alert("Couldn't create the backup on this device."); }
+  }
+  function restoreFrom(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const p = JSON.parse(reader.result);
+        if (!p || typeof p !== "object" || !("counts" in p) || !("daily" in p)) throw new Error("shape");
+        if (!confirm("Restore this backup? It replaces your current data on this device.")) return;
+        state = Object.assign({}, defaults, p, { targets: Object.assign({}, defaults.targets, p.targets||{}) });
+        save(); renderProfile(); renderTop(); renderBotnav();
+      } catch (e) { alert("That doesn't look like a GMAT Prep backup file."); }
+    };
+    reader.readAsText(file);
+  }
+
+  /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
-    const l = e.target.closest("[data-log]"); if (l) { log(l.getAttribute("data-log"), parseInt(l.getAttribute("data-d"),10)); return; }
-    const c = e.target.closest("[data-collapse]"); if (c) { const k=c.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
-    const p = e.target.closest("[data-open-profile]"); if (p) { openProfile(); }
+    const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
+    const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
+    const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
+    if (e.target.closest("[data-open-profile]")) openProfile();
   });
 
-  // profile delegation
+  /* Events — log sheet */
+  document.getElementById("logsheet").addEventListener("click", (e) => {
+    if (e.target.id === "logsheet") { closeSheet(); return; }
+    if (!sheet) return;
+    const sa = e.target.closest("[data-sa]"); if (sa) { sheet.a = Math.max(1, sheet.a + parseInt(sa.getAttribute("data-sa"),10)); if (sheet.c > sheet.a) sheet.c = sheet.a; renderSheet(); return; }
+    const sc = e.target.closest("[data-sc]"); if (sc) { sheet.c = Math.max(0, Math.min(sheet.a, sheet.c + parseInt(sc.getAttribute("data-sc"),10))); renderSheet(); return; }
+    const sap = e.target.closest("[data-sap]"); if (sap) { sheet.a = parseInt(sap.getAttribute("data-sap"),10); if (sheet.c > sheet.a) sheet.c = sheet.a; renderSheet(); return; }
+    if (e.target.closest("[data-ssave]")) { logQ(sheet.id, sheet.a, sheet.c); closeSheet(); return; }
+    if (e.target.closest("[data-sreset]")) { if (confirm("Reset this topic's counts to zero?")) { setRec(sheet.id, {d:0,c:0}); save(); renderView(); renderBotnav(); closeSheet(); } }
+  });
+
+  /* Events — profile */
   document.getElementById("profile").addEventListener("click", (e) => {
-    const tgt = e.target.closest("[data-tgt]");
-    if (tgt) { const key=tgt.getAttribute("data-tgt"), d=parseInt(tgt.getAttribute("data-d"),10);
-      state.targets[key] = Math.max(0, (state.targets[key]||0)+d); save(); renderProfile(); return; }
-    if (e.target.closest("[data-save-details]")) {
-      state.name = document.getElementById("pf-name").value.trim();
-      state.examDate = document.getElementById("pf-date").value || "";
-      save(); renderTop(); renderProfile(); return;
-    }
-    const th = e.target.closest("[data-theme-set]");
-    if (th) { const v=th.getAttribute("data-theme-set"); setTheme(v); renderProfile(); return; }
-    const cal = e.target.closest("[data-cal]");
-    if (cal) { calCursor.setMonth(calCursor.getMonth() + parseInt(cal.getAttribute("data-cal"),10)); renderProfile(); return; }
-    if (e.target.closest("[data-reset]")) {
-      if (confirm("Reset every logged question to zero? Name, exam date and targets stay. This cannot be undone.")) {
-        state.counts = {}; state.daily = {}; save(); renderProfile();
-      }
-    }
+    const tgt = e.target.closest("[data-tgt]"); if (tgt) { const k=tgt.getAttribute("data-tgt"); state.targets[k]=Math.max(0,(state.targets[k]||0)+parseInt(tgt.getAttribute("data-d"),10)); save(); renderProfile(); return; }
+    if (e.target.closest("[data-save-details]")) { state.name=document.getElementById("pf-name").value.trim(); state.examDate=document.getElementById("pf-date").value||""; save(); renderTop(); renderProfile(); return; }
+    const th = e.target.closest("[data-theme-set]"); if (th) { setTheme(th.getAttribute("data-theme-set")); renderProfile(); return; }
+    const cal = e.target.closest("[data-cal]"); if (cal) { calCursor.setMonth(calCursor.getMonth()+parseInt(cal.getAttribute("data-cal"),10)); renderProfile(); return; }
+    if (e.target.closest("[data-backup]")) { backup(); return; }
+    if (e.target.closest("[data-restore]")) { document.getElementById("restore-input").click(); return; }
+    if (e.target.closest("[data-install]")) { const p=window.__gmatInstall; if (p) { p.prompt(); p.userChoice.finally(()=>{ window.__gmatInstall=null; renderProfile(); }); } return; }
+    if (e.target.closest("[data-reset]")) { if (confirm("Reset every logged question to zero? Name, exam date and targets stay. This cannot be undone.")) { state.counts={}; state.daily={}; save(); renderProfile(); } }
   });
 
+  document.getElementById("restore-input").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) restoreFrom(f); e.target.value = ""; });
   document.getElementById("btn-profile").onclick = openProfile;
   document.getElementById("tb-count").onclick = openProfile;
   document.getElementById("pf-close").onclick = closeProfile;
+  document.getElementById("ob-save").onclick = () => { state.name=document.getElementById("ob-name").value.trim(); state.examDate=document.getElementById("ob-date").value||""; save(); document.getElementById("onboard").hidden=true; render(); };
 
-  // onboarding
-  document.getElementById("ob-save").onclick = () => {
-    state.name = document.getElementById("ob-name").value.trim();
-    state.examDate = document.getElementById("ob-date").value || "";
-    save(); document.getElementById("onboard").hidden = true; render();
-  };
+  /* Theme */
+  function setTheme(v){ if (v==="system"){ document.documentElement.removeAttribute("data-theme"); try{localStorage.setItem("gmat_theme","system");}catch(e){} } else { document.documentElement.setAttribute("data-theme",v); try{localStorage.setItem("gmat_theme",v);}catch(e){} } }
+  (function(){ const t=localStorage.getItem("gmat_theme"); if (t && t!=="system") document.documentElement.setAttribute("data-theme",t); })();
 
-  /* ===================== Theme ===================== */
-  function setTheme(v) {
-    if (v === "system") { document.documentElement.removeAttribute("data-theme"); try { localStorage.setItem("gmat_theme","system"); } catch(e){} }
-    else { document.documentElement.setAttribute("data-theme", v); try { localStorage.setItem("gmat_theme", v); } catch(e){} }
-  }
-  (function initTheme(){ const t = localStorage.getItem("gmat_theme"); if (t && t !== "system") document.documentElement.setAttribute("data-theme", t); })();
-
-  /* ===================== Boot ===================== */
-  function render() { renderTop(); renderBotnav(); renderView(); }
+  /* Boot */
+  function render(){ renderTop(); renderBotnav(); renderView(); }
   render();
   if (!state.examDate && !state.name) document.getElementById("onboard").hidden = false;
 })();
@@ -756,23 +740,15 @@
 (function () {
   "use strict";
   if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
-    // When a new service worker takes control, reload once so the newest
-    // app version is shown without the user having to reinstall.
     var reloaded = false;
-    navigator.serviceWorker.addEventListener("controllerchange", function () {
-      if (reloaded) return; reloaded = true; window.location.reload();
-    });
+    navigator.serviceWorker.addEventListener("controllerchange", function () { if (reloaded) return; reloaded = true; window.location.reload(); });
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js").then(function (reg) {
         reg.update();
-        // Check for updates whenever the app is reopened / refocused.
-        document.addEventListener("visibilitychange", function () {
-          if (document.visibilityState === "visible") reg.update();
-        });
+        document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") reg.update(); });
       }).catch(function () {});
     });
   }
-  // capture install prompt in case we surface an install button later
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); window.__gmatInstall = e; });
 })();
 </script>

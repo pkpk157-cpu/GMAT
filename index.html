@@ -287,9 +287,14 @@
   .setrow .si { margin-right: auto; min-width: 0; }
   .setrow .st { font-weight: 650; font-size: 14px; }
   .setrow .sm { font-size: 12px; color: var(--ink-soft); margin-top: 3px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .setbtns { display: flex; align-items: center; gap: 7px; flex: none; }
   .setrow .go { border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 8px 15px; border-radius: 9px; font-weight: 700; font-size: 13px; white-space: nowrap; flex: none; transition: .12s; }
   .setrow .go:hover { background: var(--accent-ink); }
   .setrow .go.done { background: var(--surface); color: var(--accent); }
+  .reset-set { border: 1px solid var(--line); background: var(--surface); color: var(--ink-faint); width: 34px; height: 34px; border-radius: 9px; font-size: 15px; flex: none; transition: .12s; }
+  .reset-set:hover { color: var(--bad); border-color: var(--bad); }
+  .q-reset { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 12.5px; text-decoration: underline; }
+  .q-reset:hover { color: var(--bad); }
   .badge { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; padding: 2px 8px; border-radius: 20px; background: color-mix(in srgb, var(--sc) 15%, transparent); color: var(--sc); }
   .sstatus { font-weight: 700; }
   .sstatus.good { color: var(--good); } .sstatus.mid { color: var(--warn); } .sstatus.low { color: var(--bad); } .sstatus.muted { color: var(--ink-faint); }
@@ -793,6 +798,7 @@
     const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
     const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
     const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
+    const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this set added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
   });
@@ -851,8 +857,32 @@
     if (run.logged[q.n]) return;
     const id = resolveTopic(set.section, q.topic);
     if (id) { const rec = getRec(id); rec.d += 1; if (correct) rec.c += 1; setRec(id, rec); }
-    state.daily[dkey()] = Math.max(0, (state.daily[dkey()] || 0) + 1);
-    run.logged[q.n] = true; save();
+    const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
+    run.logged[q.n] = { day, topic: id, correct: !!correct }; save();
+  }
+  // Reverse a logged question (used when resetting a question or a set).
+  function unlogOne(set, run, n) {
+    const meta = run.logged[n]; if (!meta) return;
+    let day, id, correct;
+    if (typeof meta === "object") { day = meta.day; id = meta.topic; correct = meta.correct; }
+    else { const q = set.questions.find(x => String(x.n) === String(n)); day = dkey(); id = q ? resolveTopic(set.section, q.topic) : null; correct = false; }
+    if (id) { const rec = getRec(id); rec.d = Math.max(0, rec.d - 1); if (correct) rec.c = Math.max(0, rec.c - 1); setRec(id, rec); }
+    if (day) state.daily[day] = Math.max(0, (state.daily[day] || 0) - 1);
+    delete run.logged[n];
+  }
+  function resetQuestion(set, n) {
+    const run = ensureRun(set.id);
+    unlogOne(set, run, n);
+    delete run.ans[n]; delete run.ans[String(n)];
+    if (run.submitted) { run.submitted = false; delete run.score; delete run.total; }
+    save();
+  }
+  function resetRun(set, keepMode) {
+    const run = ensureRun(set.id);
+    Object.keys(run.logged || {}).forEach(n => unlogOne(set, run, n));
+    const mode = keepMode ? run.mode : null;
+    state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode: mode, logged:{} };
+    runIndex = 0; save();
   }
   function scoreRun(set, run) {
     let score = 0; const per = [];
@@ -876,9 +906,10 @@
       if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
       else if (answered) { status = `${answered}/${s.questions.length} answered`; cls = ""; }
       else { status = "not started"; cls = "muted"; }
+      const hasProgress = run.submitted || answered > 0;
       h += `<div class="setrow"><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
         <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
-        <button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div>`;
+        <div class="setbtns">${hasProgress?`<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this set">↺</button>`:""}<button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div></div>`;
     });
     return h + `</div></div>`;
   }
@@ -918,6 +949,7 @@
       const ok = sel === q.correct;
       h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
       if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
+      h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
     }
     h += `</div>`;
     if (practice) {
@@ -980,6 +1012,7 @@
       if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // auto-advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
+    const rq = e.target.closest("[data-resetq]"); if (rq) { resetQuestion(set, rq.getAttribute("data-resetq")); renderRunner(); return; }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
     if (e.target.closest("[data-finish]")) {
@@ -989,7 +1022,7 @@
       const res = scoreRun(set, run); run.submitted = true; run.score = res.score; run.total = res.total; save();
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
-    if (e.target.closest("[data-retake]")) { state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode:null, logged:{} }; save(); runIndex = 0; renderRunner(); return; }
+    if (e.target.closest("[data-retake]")) { resetRun(set, false); renderRunner(); return; }
     if (e.target.closest("[data-close-runner]")) closeRunner();
   });
   document.getElementById("rn-close").onclick = closeRunner;

@@ -322,6 +322,31 @@
   .rev-mark { font-weight: 800; font-size: 15px; margin-left: 8px; width: 18px; text-align: center; }
   .rev-mark.ok { color: var(--good); } .rev-mark.no { color: var(--bad); }
   .rev-tag { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; padding-left: 44px; }
+  .rev-q { font-size: 12.5px; color: var(--ink-soft); margin-top: 5px; padding-left: 44px; line-height: 1.4; }
+
+  /* Slide player */
+  .rn-prog { height: 7px; background: var(--surface-2); border-radius: 5px; overflow: hidden; }
+  .rn-prog > i { display: block; height: 100%; background: var(--accent); border-radius: 5px; transition: width .3s ease; }
+  .rn-sub { font-size: 12px; color: var(--ink-soft); margin-top: 7px; font-weight: 600; }
+  .qcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 18px; margin-top: 14px; }
+  .qtop { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; flex-wrap: wrap; }
+  .qnum { font-size: 11.5px; font-weight: 800; color: var(--ink-faint); letter-spacing: .05em; text-transform: uppercase; margin-right: auto; }
+  .qtext { font-size: 17px; line-height: 1.5; font-weight: 500; text-wrap: pretty; }
+  .qnote { font-size: 12px; color: var(--warn); margin-top: 10px; font-weight: 600; }
+  .choices { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+  .choice { display: flex; align-items: center; gap: 12px; text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 11px; padding: 13px 14px; transition: .12s; width: 100%; }
+  .choice:hover { border-color: var(--accent); }
+  .choice .cl { width: 28px; height: 28px; border-radius: 7px; background: var(--surface-2); color: var(--ink-soft); font-weight: 800; display: grid; place-items: center; flex: none; font-size: 13px; }
+  .choice .ct { font-size: 15px; line-height: 1.4; }
+  .choice.sel { border-color: var(--accent); background: var(--accent-wash); }
+  .choice.sel .cl { background: var(--accent); color: #fff; }
+  .rn-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; }
+  .navbtn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 11px 20px; border-radius: 10px; font-weight: 700; font-size: 14px; transition: .12s; }
+  .navbtn:disabled { opacity: .4; cursor: not-allowed; }
+  .navbtn:not(:disabled):hover { border-color: var(--accent); color: var(--accent); }
+  .navbtn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .navbtn.primary:hover { background: var(--accent-ink); color: #fff; }
+  .navpos { font-size: 13px; color: var(--ink-soft); font-weight: 700; font-variant-numeric: tabular-nums; }
 
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
@@ -795,7 +820,7 @@
     for (const su of sec.subjects) for (const t of su.topics) { const tl = t.toLowerCase(); if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return topicId(secId, su.name, t); }
     return null;
   }
-  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total } : { ans: {}, submitted: false }; }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0 } : { ans: {}, submitted: false, idx: 0 }; }
   function setRun(id, run) { state.runs[id] = run; save(); }
   function scoreRun(set, run) {
     let score = 0; const per = [];
@@ -826,54 +851,73 @@
     return h + `</div></div>`;
   }
 
-  let runSetId = null;
-  function openRunner(id) { runSetId = id; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  let runSetId = null, runIndex = 0;
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
   function closeRunner() { document.getElementById("runner").hidden = true; runSetId = null; document.body.style.overflow = ""; render(); }
+  function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
+  function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
+
   function renderRunner() {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const sec = secById(set.section), run = getRun(set.id);
+    const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
     let h = "";
     if (!run.submitted) {
-      const answered = Object.keys(run.ans).length;
-      h += `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${set.questions.length} questions · answer each from your document, then submit.</div>`;
-      h += `<div class="panel" style="margin-top:14px"><div class="qlist">`;
-      set.questions.forEach(q => {
-        const sel = run.ans[q.n], n = q.options || 5;
-        h += `<div class="qrow"><span class="qn">Q${q.n}</span><div class="opts">` +
-          LET.slice(0, n).map(L => `<button class="opt ${sel===L?"sel":""}" data-ans="${q.n}" data-l="${L}">${L}</button>`).join("") + `</div></div>`;
-      });
+      if (runIndex > total-1) runIndex = total-1; if (runIndex < 0) runIndex = 0;
+      const q = qs[runIndex], sel = run.ans[q.n], nOpt = q.options || 5;
+      const answered = Object.keys(run.ans).length, last = runIndex === total-1;
+      h += `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered</div>`;
+      h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
+        <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
+        <div class="choices">`;
+      LET.slice(0, nOpt).forEach((L, i) => { const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
+        h += `<button class="choice ${sel===L?"sel":""}" data-ans="${q.n}" data-l="${L}"><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`; });
       h += `</div></div>`;
-      h += `<div class="rn-foot"><span class="rn-count">${answered} / ${set.questions.length} answered</span><button class="btn-primary" style="width:auto;padding:12px 22px" data-submit="1">Submit &amp; score</button></div>`;
+      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button><span class="navpos">${runIndex+1} / ${total}</span>${last?`<button class="navbtn primary" data-submit>Submit</button>`:`<button class="navbtn primary" data-next>Next ›</button>`}</div>`;
+      if (!last && answered===total) h += `<button class="btn-primary" style="margin-top:12px" data-submit>Submit &amp; score all ${total}</button>`;
     } else {
       const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
+      const byN = {}; qs.forEach(q => byN[q.n] = q);
       h += `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div></div></div>`;
       h += `<div class="panel" style="margin-top:14px"><h3>Review</h3><p class="sub">Correct answers shown. Missed questions are logged so they surface in Focus areas.</p><div class="qlist">`;
       res.per.forEach(p => {
-        const n = p.options;
+        const n = p.options, q = byN[p.n];
         h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
           LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
           `</div><span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
-          `<div class="rev-tag">${esc(p.topic)}${p.flag?' · <span style="color:var(--warn)">unverified key</span>':""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
+          (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
+          `<div class="rev-tag">${esc(p.topic)}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
       });
       h += `</div></div>`;
       h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;
     }
     document.getElementById("rn-title").textContent = set.title;
     document.getElementById("rn-body").innerHTML = h;
+    const card = document.getElementById("qcard");
+    if (card) {
+      let sx = null;
+      card.addEventListener("touchstart", (e) => { sx = e.changedTouches[0].clientX; }, { passive:true });
+      card.addEventListener("touchend", (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (dx < -45) goto(runIndex+1, set); else if (dx > 45) goto(runIndex-1, set); });
+    }
   }
 
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const a = e.target.closest("[data-ans]"); if (a) { const run = getRun(set.id); run.ans[a.getAttribute("data-ans")] = a.getAttribute("data-l"); setRun(set.id, run); renderRunner(); return; }
+    const a = e.target.closest("[data-ans]"); if (a) {
+      const run = getRun(set.id); run.ans[a.getAttribute("data-ans")] = a.getAttribute("data-l"); setRun(set.id, run);
+      if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // auto-advance
+      renderRunner(); window.scrollTo({ top:0 }); return;
+    }
+    if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
+    if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
     if (e.target.closest("[data-submit]")) {
       const run = getRun(set.id), answered = Object.keys(run.ans).length;
       if (answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
       const res = scoreRun(set, run), entries = [];
       set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; const id = resolveTopic(set.section, q.topic); if (id) entries.push({ id, correct: your === q.correct }); });
       logBatch(entries);
-      run.submitted = true; run.score = res.score; run.total = res.total; setRun(set.id, run); renderRunner(); return;
+      run.submitted = true; run.score = res.score; run.total = res.total; setRun(set.id, run); renderRunner(); window.scrollTo({ top:0 }); return;
     }
-    if (e.target.closest("[data-retake]")) { setRun(set.id, { ans:{}, submitted:false }); renderRunner(); return; }
+    if (e.target.closest("[data-retake]")) { setRun(set.id, { ans:{}, submitted:false, idx:0 }); runIndex = 0; renderRunner(); return; }
     if (e.target.closest("[data-close-runner]")) closeRunner();
   });
   document.getElementById("rn-close").onclick = closeRunner;

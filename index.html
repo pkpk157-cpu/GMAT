@@ -747,6 +747,8 @@
     h += `<section class="panel"><h3>Appearance</h3><p class="sub">Choose how the app looks.</p>
       <div class="seg"><button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button><button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button><button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button></div></section>`;
 
+    h += `<section class="panel"><h3>Fix out-of-sync stats</h3><p class="sub">If your daily / weekly totals disagree with the subject tabs, rebuild your topic totals and daily activity from your saved practice-set attempts.</p><button class="btn-soft" style="width:100%" data-rebuild="1">Re-sync my stats</button></section>`;
+
     h += `<section class="panel"><h3>Reset</h3><p class="sub">Clear every logged question. Your name, exam date and targets stay.</p><button class="btn-danger" data-reset="1">Reset all logged questions</button></section>`;
     return h;
   }
@@ -822,6 +824,7 @@
     const cal = e.target.closest("[data-cal]"); if (cal) { calCursor.setMonth(calCursor.getMonth()+parseInt(cal.getAttribute("data-cal"),10)); renderProfile(); return; }
     if (e.target.closest("[data-backup]")) { backup(); return; }
     if (e.target.closest("[data-restore]")) { document.getElementById("restore-input").click(); return; }
+    if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from your saved practice-set attempts?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }
     if (e.target.closest("[data-install]")) { const p=window.__gmatInstall; if (p) { p.prompt(); p.userChoice.finally(()=>{ window.__gmatInstall=null; renderProfile(); }); } return; }
     if (e.target.closest("[data-reset]")) { if (confirm("Reset every logged question to zero? Name, exam date and targets stay. This cannot be undone.")) { state.counts={}; state.daily={}; save(); renderProfile(); } }
   });
@@ -852,13 +855,36 @@
   function setRun(id, run) { state.runs[id] = run; save(); }
   function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
+  // Topic count and daily count move together — never bump one without the other.
   function logOne(set, q, correct) {
     const run = ensureRun(set.id);
     if (run.logged[q.n]) return;
     const id = resolveTopic(set.section, q.topic);
-    if (id) { const rec = getRec(id); rec.d += 1; if (correct) rec.c += 1; setRec(id, rec); }
-    const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
-    run.logged[q.n] = { day, topic: id, correct: !!correct }; save();
+    if (id) {
+      const rec = getRec(id); rec.d += 1; if (correct) rec.c += 1; setRec(id, rec);
+      const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
+      run.logged[q.n] = { day, topic: id, correct: !!correct };
+    } else {
+      console.warn("GMAT: no topic match for", set.section, "/", q.topic);
+      run.logged[q.n] = { day: null, topic: null, correct: !!correct };
+    }
+    save();
+  }
+  // Rebuild topic totals + daily activity purely from recorded practice-set
+  // attempts. Fixes any drift between the dashboard and the subject tabs.
+  function rebuildStats() {
+    const counts = {}, daily = {};
+    Object.keys(state.runs || {}).forEach(sid => {
+      const run = state.runs[sid]; if (!run || !run.logged) return;
+      const set = SETS.find(s => s.id === sid);
+      Object.keys(run.logged).forEach(n => {
+        const meta = run.logged[n]; let topic, day, correct;
+        if (meta && typeof meta === "object") { topic = meta.topic; day = meta.day; correct = meta.correct; }
+        else if (set) { const q = set.questions.find(x => String(x.n) === String(n)); topic = q ? resolveTopic(set.section, q.topic) : null; day = dkey(); correct = q ? (run.ans[n] === q.correct) : false; }
+        if (topic) { counts[topic] = counts[topic] || { d:0, c:0 }; counts[topic].d += 1; if (correct) counts[topic].c += 1; if (day) daily[day] = (daily[day] || 0) + 1; }
+      });
+    });
+    state.counts = counts; state.daily = daily; save();
   }
   // Reverse a logged question (used when resetting a question or a set).
   function unlogOne(set, run, n) {

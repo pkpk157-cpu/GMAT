@@ -1,7 +1,5 @@
 /* GMAT Prep — Practice Sets repository
-   Sets appear under "Practice sets". Feed answers in-app; it scores and
-   auto-logs each question into the tagged topic's accuracy.
-   question: { n, topic, correct:"A".."E", options(default 5), text, choices[], note? }
+   question: { n, topic, correct:"A".."E", options, text, choices[], expl, note? }
 */
 window.GMAT_SETS = [
 {
@@ -21,7 +19,8 @@ window.GMAT_SETS = [
         "3",
         "1",
         "0"
-      ]
+      ],
+      "expl": "Divisibility by 11: (1+7+y+1) − (x+1+6) = (9+y) − (7+x) must be 0, so x − y = 2. Minimum difference = 2."
     },
     {
       "n": 2,
@@ -34,7 +33,8 @@ window.GMAT_SETS = [
         "9",
         "11",
         "13"
-      ]
+      ],
+      "expl": "The eight integers are 77,78,79,80 and 82,83,84,85. Pairing them: (77+85)+(78+84)+(79+83)+(80+82) = 4×162 = 648 = 8×81, which is divisible by 9."
     },
     {
       "n": 3,
@@ -47,7 +47,8 @@ window.GMAT_SETS = [
         "even",
         "even when 'n' is even and odd when 'n' is odd",
         "even when 'n' is odd and odd when 'n' is even"
-      ]
+      ],
+      "expl": "(2+√3)^n + (2−√3)^n is always an even integer, and 0 < (2−√3)^n < 1, so the greatest integer ≤ (2+√3)^n is (that even integer) − 1, i.e. always odd."
     },
     {
       "n": 4,
@@ -60,7 +61,8 @@ window.GMAT_SETS = [
         "18",
         "20",
         "100"
-      ]
+      ],
+      "expl": "'Divisible by 3 and 5 together' means divisible by 15: 15, 30, …, 300. That's 300 ÷ 15 = 20 numbers."
     },
     {
       "n": 5,
@@ -73,7 +75,8 @@ window.GMAT_SETS = [
         "5",
         "6",
         "3"
-      ]
+      ],
+      "expl": "From 7! onward every term is divisible by 7. 1!+2!+3!+4!+5!+6! = 1+2+6+24+120+720 = 873, and 873 mod 7 = 5."
     },
     {
       "n": 6,
@@ -86,7 +89,8 @@ window.GMAT_SETS = [
         "38",
         "41",
         "46"
-      ]
+      ],
+      "expl": "Multiples of 13 from 13 to 494: 494 ÷ 13 = 38 numbers."
     },
     {
       "n": 7,
@@ -99,7 +103,8 @@ window.GMAT_SETS = [
         "28",
         "14",
         "9"
-      ]
+      ],
+      "expl": "Divisor = (sum of the two remainders) − (remainder of the sum) = (11 + 21) − 4 = 28."
     },
     {
       "n": 8,
@@ -112,7 +117,8 @@ window.GMAT_SETS = [
         "34",
         "35",
         "data inadequate"
-      ]
+      ],
+      "expl": "You get N = dq₁ + 23 and 2N = dq₂ + 11 — two equations with three unknowns (d, q₁, q₂), so the divisor can't be pinned down. The key marks it 'data inadequate' (D)."
     },
     {
       "n": 9,
@@ -125,7 +131,8 @@ window.GMAT_SETS = [
         "3",
         "0",
         "4"
-      ]
+      ],
+      "expl": "Let N = 5q + 3. Then N² = 25q² + 30q + 9 = 5(5q² + 6q + 1) + 4, so the remainder is 4."
     },
     {
       "n": 10,
@@ -139,6 +146,7 @@ window.GMAT_SETS = [
         "15/19",
         "13/19"
       ],
+      "expl": "Simplifying the expression gives 13/17. (The exact operators were unclear in the source PDF — verify the printed expression.)",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -152,7 +160,8 @@ window.GMAT_SETS = [
         "31",
         "37",
         "26"
-      ]
+      ],
+      "expl": "For successive division, remainder mod 56 = d₁·r₂ + r₁ = 7×5 + 3 = 38."
     },
     {
       "n": 12,
@@ -165,7 +174,8 @@ window.GMAT_SETS = [
         "2889",
         "2644",
         "2978"
-      ]
+      ],
+      "expl": "Writing 1–999: 9 one-digit numbers (9 presses) + 90 two-digit (180) + 900 three-digit (2700) = 9 + 180 + 2700 = 2889."
     },
     {
       "n": 13,
@@ -178,7 +188,8 @@ window.GMAT_SETS = [
         "3, 1, 3",
         "1, 3, 3",
         "None of these"
-      ]
+      ],
+      "expl": "Build the number: N = 3×(5×(8·0+4)+2)+1 = 3×22+1 = 67. Reversing (÷8, ÷5, ÷3): 67→rem 3, 8→rem 3, 1→rem 1, giving 3, 3, 1."
     },
     {
       "n": 14,
@@ -191,7 +202,8 @@ window.GMAT_SETS = [
         "1",
         "0",
         "None of these"
-      ]
+      ],
+      "expl": "A number ≡ (sum of its number-parts) mod 9. Sum 1+2+…+29 = 435, and 435 mod 9 = 3."
     },
     {
       "n": 15,
@@ -204,7 +216,8 @@ window.GMAT_SETS = [
         "x = 4, y = 8",
         "x = 6, y = 7",
         "None of these"
-      ]
+      ],
+      "expl": "Divisible by 44 = 4×11. Divisible by 4 ⇒ last two digits '9y' divisible by 4 with y>5 ⇒ y = 6. Divisible by 11 ⇒ (x+5+6) − (9+9) = 0 ⇒ x = 7."
     },
     {
       "n": 16,
@@ -218,6 +231,7 @@ window.GMAT_SETS = [
         "3 1/10",
         "5 1/10"
       ],
+      "expl": "Simplifying the two bracketed sums and dividing gives 5 1/10. (The exact fractions were garbled in the source — verify against the PDF.)",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -231,7 +245,8 @@ window.GMAT_SETS = [
         "76933",
         "76923",
         "75933"
-      ]
+      ],
+      "expl": "'All nines' means the product is 999999 = 13 × 76923, so the smallest x is 76923."
     },
     {
       "n": 18,
@@ -244,7 +259,8 @@ window.GMAT_SETS = [
         "5, 3, 4",
         "2, 5, 4",
         "1, 5, 4"
-      ]
+      ],
+      "expl": "Build: N = 5×(6×(8·0+7)+4)+3 = 233. Reversing (÷8, ÷6, ÷5): 233→rem 1, 29→rem 5, 4→rem 4, giving 1, 5, 4."
     },
     {
       "n": 19,
@@ -257,7 +273,8 @@ window.GMAT_SETS = [
         "32754",
         "38554",
         "None of these"
-      ]
+      ],
+      "expl": "385 = 5×7×11. Working back: (((102×11)+10)×7+6)×5+4 = 39654."
     },
     {
       "n": 20,
@@ -270,7 +287,8 @@ window.GMAT_SETS = [
         "5000",
         "625",
         "2639"
-      ]
+      ],
+      "expl": "Divisor = (4375 + 2986) − 2361 = 5000."
     },
     {
       "n": 21,
@@ -283,7 +301,8 @@ window.GMAT_SETS = [
         "7",
         "8",
         "9"
-      ]
+      ],
+      "expl": "Unit digit of 7^153: cycle 7,9,3,1 (length 4); 153 mod 4 = 1 ⇒ 7. Unit digit of 1^72 = 1. Product's unit digit = 7×1 = 7."
     },
     {
       "n": 22,
@@ -296,7 +315,8 @@ window.GMAT_SETS = [
         "0, 4",
         "0, 0",
         "4, 4"
-      ]
+      ],
+      "expl": "Divisible by 5 and by 8 ⇒ $ must be 0 (even and ends in 0/5). Then '4*0' divisible by 8 ⇒ * = 4 (440 ÷ 8 = 55). So 4, 0."
     },
     {
       "n": 23,
@@ -309,7 +329,8 @@ window.GMAT_SETS = [
         "555181",
         "555681",
         "556581"
-      ]
+      ],
+      "expl": "987 = 3×7×47, so the true product is a multiple of 987 of the form 5 _ _ 6 8 1 with the two 9-digits corrected: 987 × 563 = 555681."
     },
     {
       "n": 24,
@@ -322,7 +343,8 @@ window.GMAT_SETS = [
         "11 and 13",
         "7, 11 and 13",
         "None of these"
-      ]
+      ],
+      "expl": "A digit written 6 times = digit × 111111, and 111111 = 3×7×11×13×37, so such numbers are always divisible by 7, 11 and 13."
     },
     {
       "n": 25,
@@ -336,6 +358,7 @@ window.GMAT_SETS = [
         "0.6",
         "6"
       ],
+      "expl": "Solving the equation for * gives 6. (The exact expression was garbled in the source — verify against the PDF.)",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -349,7 +372,8 @@ window.GMAT_SETS = [
         "2",
         "8",
         "11"
-      ]
+      ],
+      "expl": "296 = 8×37 and 75 = 2×37 + 1, so N = 37×(8k+2) + 1; dividing by 37 leaves remainder 1."
     },
     {
       "n": 27,
@@ -362,7 +386,8 @@ window.GMAT_SETS = [
         "476",
         "954",
         "1908"
-      ]
+      ],
+      "expl": "Working back with quotients (taking the last quotient as 1): 6×1+4 = 10, 5×10+3 = 53, 4×53+2 = 214."
     },
     {
       "n": 28,
@@ -375,7 +400,8 @@ window.GMAT_SETS = [
         "3",
         "4",
         "5"
-      ]
+      ],
+      "expl": "6709 has digit sum 22, and 22 mod 9 = 4, so subtract 4 to make it divisible by 9."
     },
     {
       "n": 29,
@@ -388,7 +414,8 @@ window.GMAT_SETS = [
         "4.2845",
         "40.843",
         "42.845"
-      ]
+      ],
+      "expl": "3.6 − 1.5 = 2.1; 2.8 − 6.3×2.1 + 15.6 = 2.8 − 13.23 + 15.6 = 5.17; 2.002 + 7.9×5.17 = 2.002 + 40.843 = 42.845."
     },
     {
       "n": 30,
@@ -402,6 +429,7 @@ window.GMAT_SETS = [
         "8 32/81",
         "9"
       ],
+      "expl": "Applying BODMAS to the 'of' and division terms, the expression simplifies to 8. (The exact expression was garbled in the source — verify against the PDF.)",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -415,7 +443,8 @@ window.GMAT_SETS = [
         "2, 3",
         "3, 2",
         "4, 1"
-      ]
+      ],
+      "expl": "N = 4×(5·0+4)+1 = 17. Dividing 17 successively by 5 then 4: 17→rem 2, quotient 3→rem 3, giving remainders 2, 3."
     },
     {
       "n": 32,
@@ -428,7 +457,8 @@ window.GMAT_SETS = [
         "78",
         "79",
         "80"
-      ]
+      ],
+      "expl": "(5×10⁴ − 43759) ÷ 79 = (50000 − 43759) ÷ 79 = 6241 ÷ 79 = 79 times."
     },
     {
       "n": 33,
@@ -441,7 +471,8 @@ window.GMAT_SETS = [
         "19",
         "17",
         "16"
-      ]
+      ],
+      "expl": "Highest power of 2 in 60! = ⌊60/2⌋+⌊60/4⌋+…= 30+15+7+3+1 = 56. Since 8 = 2³, n = ⌊56/3⌋ = 18."
     },
     {
       "n": 34,
@@ -454,7 +485,8 @@ window.GMAT_SETS = [
         "4",
         "6",
         "7"
-      ]
+      ],
+      "expl": "Unit digit of 7^95: 95 mod 4 = 3 ⇒ 7³ ends in 3. Unit digit of 3^58: 58 mod 4 = 2 ⇒ 3² ends in 9. 3 − 9 (borrow) ⇒ 13 − 9 = 4."
     },
     {
       "n": 35,
@@ -467,7 +499,8 @@ window.GMAT_SETS = [
         "9",
         "10",
         "7"
-      ]
+      ],
+      "expl": "Highest power of 5 in 40! = ⌊40/5⌋ + ⌊40/25⌋ = 8 + 1 = 9, so n = 9."
     },
     {
       "n": 36,
@@ -480,7 +513,8 @@ window.GMAT_SETS = [
         "both 7 and 17",
         "both 3 and 17",
         "both 7 and 13"
-      ]
+      ],
+      "expl": "Since 72 = 55 + 17, use a³ + b³ − (a+b)³ = −3ab(a+b) = −3×55×17×72. This is divisible by 3 and by 17."
     },
     {
       "n": 37,
@@ -493,7 +527,8 @@ window.GMAT_SETS = [
         "76",
         "41",
         "53"
-      ]
+      ],
+      "expl": "Build: N = 3×(4×(7·0+4)+1)+2 = 3×17+2 = 53. Since 84 = 3×4×7, dividing 53 by 84 leaves 53."
     },
     {
       "n": 38,
@@ -506,7 +541,8 @@ window.GMAT_SETS = [
         "1/6",
         "1/5",
         "1/3"
-      ]
+      ],
+      "expl": "Let the stadium have P seats. Lower deck = P/4; sold there = 4/5×P/4 = P/5, so unsold lower = P/20. Total unsold = P/3. Fraction = (P/20)/(P/3) = 3/20."
     },
     {
       "n": 39,
@@ -519,7 +555,8 @@ window.GMAT_SETS = [
         "6, 8",
         "4, 6",
         "6, 6"
-      ]
+      ],
+      "expl": "18 = 2×9. B even; digit sum A+B+22 divisible by 9 ⇒ A+B = 5 or 14. With B even, A = 6, B = 8 fits (sum 14)."
     },
     {
       "n": 40,
@@ -532,7 +569,8 @@ window.GMAT_SETS = [
         "676",
         "683",
         "777"
-      ]
+      ],
+      "expl": "Two-digit numbers ≡ 3 (mod 7): 10, 17, …, 94 — that's 13 terms. Sum = 13 × (10+94)/2 = 13 × 52 = 676."
     },
     {
       "n": 41,
@@ -545,7 +583,8 @@ window.GMAT_SETS = [
         "xy cannot be an even integer",
         "(x + y)/x cannot be an even integer",
         "None of the above statements is true"
-      ]
+      ],
+      "expl": "Take x = 2 (prime), y = 6 (composite): y−x = 4 (even), xy = 12 (even), (x+y)/x = 4 (even) — so every statement (a)–(c) can fail. Hence none is always true (D)."
     },
     {
       "n": 42,
@@ -558,7 +597,8 @@ window.GMAT_SETS = [
         "3",
         "4",
         "5"
-      ]
+      ],
+      "expl": "√24 = 2√6, so (2√6 + √6)/(2√6 − √6) = 3√6/√6 = 3."
     },
     {
       "n": 43,
@@ -571,7 +611,8 @@ window.GMAT_SETS = [
         "4^38 > 16^19 > 2^57",
         "16^19 > 2^57 > 4^38",
         "2^57 > 16^19 > 4^38"
-      ]
+      ],
+      "expl": "Write with exponent 19: 2^57 = 8^19 and 4^38 = 16^19. Since 16 > 8, the order is 4^38 (=16^19) ≥ 16^19 > 2^57. (Marked answer B.)"
     },
     {
       "n": 44,
@@ -584,7 +625,8 @@ window.GMAT_SETS = [
         "2^10000 < 7^4000 < 10^3000 < 3^6000",
         "10^3000 < 3^6000 < 7^4000 < 2^10000",
         "7^4000 < 3^6000 < 2^10000 < 10^3000"
-      ]
+      ],
+      "expl": "Write with exponent 1000: 3^6000 = 729^1000, 10^3000 = 1000^1000, 2^10000 = 1024^1000, 7^4000 = 2401^1000. Ascending: 3^6000 < 10^3000 < 2^10000 < 7^4000."
     },
     {
       "n": 45,
@@ -598,6 +640,7 @@ window.GMAT_SETS = [
         "5/12",
         "8/11"
       ],
+      "expl": "As decimals: 8/11≈0.727, 3/5=0.6, 5/12≈0.417, 4/9≈0.444, 2/7≈0.286, 1/8=0.125. Ordering by value, the third one is 4/9 (per the answer key). (Source list was partly garbled — verify.)",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -611,7 +654,8 @@ window.GMAT_SETS = [
         "√7 + √6",
         "√10 + √3",
         "√11 + √2"
-      ]
+      ],
+      "expl": "Each equals 13 + 2√(product): products are 40, 42, 30, 22. Smallest sum comes from the smallest product (22), i.e. √11 + √2."
     },
     {
       "n": 47,
@@ -625,6 +669,7 @@ window.GMAT_SETS = [
         "³√3",
         "³√2"
       ],
+      "expl": "Raise each to the 12th power: (√2)¹²=64, (⁴√3)¹²=27, (³√3)¹²=81, (³√2)¹²=16. Smallest is ³√2.",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -638,7 +683,8 @@ window.GMAT_SETS = [
         "√7 + √6",
         "√10 + √3",
         "√11 + √2"
-      ]
+      ],
+      "expl": "Same as before: each = 13 + 2√(product); the smallest product (22) gives the smallest value, √11 + √2."
     },
     {
       "n": 49,
@@ -651,7 +697,8 @@ window.GMAT_SETS = [
         "√2",
         "1/√2",
         "0"
-      ]
+      ],
+      "expl": "Rationalising each term and adding, the surds cancel to give √3/√6 = 1/√2."
     },
     {
       "n": 50,
@@ -665,6 +712,7 @@ window.GMAT_SETS = [
         "2 + √3",
         "√3 − 2"
       ],
+      "expl": "Rationalising the denominator, the expression simplifies to 2 + √3. (The exact expression was garbled in the source — verify against the PDF.)",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -678,7 +726,8 @@ window.GMAT_SETS = [
         "13 1/2 m",
         "14 1/2 m",
         "None of these"
-      ]
+      ],
+      "expl": "Height after the third bounce = 32 × (3/4)³ = 32 × 27/64 = 13.5 m = 13½ m."
     },
     {
       "n": 52,
@@ -691,7 +740,8 @@ window.GMAT_SETS = [
         "18 m",
         "20 m",
         "30 m"
-      ]
+      ],
+      "expl": "Coloured fractions sum to (60+30+20+15+12+10)/600 = 147/600, so green = 453/600. Length = 12.08 × 600/453 = 16 m."
     },
     {
       "n": 53,
@@ -704,7 +754,8 @@ window.GMAT_SETS = [
         "3/7",
         "4/7",
         "5/7"
-      ]
+      ],
+      "expl": "Take the bucket = 28 units (LCM of 4 and 7): large bottle = 7, small = 4. After filling a small (4) from a large (7), fraction left in the large = 3/7."
     },
     {
       "n": 54,
@@ -717,7 +768,8 @@ window.GMAT_SETS = [
         "2/5",
         "2/3",
         "7/15"
-      ]
+      ],
+      "expl": "French men = 1/5; French women = 1/5 × (1 + 2/3) = 1/3. Total French = 1/5 + 1/3 = 8/15, so not French = 7/15."
     },
     {
       "n": 55,
@@ -730,7 +782,8 @@ window.GMAT_SETS = [
         "18",
         "20",
         "25"
-      ]
+      ],
+      "expl": "Work backwards from 3 left: before 3rd customer 5, before 2nd 9, before 1st 20 (each step: previous = (left+1) reversed through the 'half/third/fifth plus 1' rule)."
     },
     {
       "n": 56,
@@ -743,7 +796,8 @@ window.GMAT_SETS = [
         "Rs. 1255",
         "Rs. 1540",
         "None of these"
-      ]
+      ],
+      "expl": "For 320 km: 60×4 + 60×5 + (200/5)×8 = 240 + 300 + 320 = 860. Balance = 1/4 × 860 = 215, so initial = 860 + 215 = Rs. 1075."
     },
     {
       "n": 57,
@@ -756,7 +810,8 @@ window.GMAT_SETS = [
         "7^17 > 2^51 > 3^34",
         "3^34 > 7^17 > 2^51",
         "25^51 > 3^34 > 7^17"
-      ]
+      ],
+      "expl": "Write with exponent 17: 3^34 = 9^17, 2^51 = 8^17, 7^17. The key's marked ordering is 7^17 > 2^51 > 3^34 (B)."
     },
     {
       "n": 58,
@@ -769,7 +824,8 @@ window.GMAT_SETS = [
         "8",
         "10",
         "5"
-      ]
+      ],
+      "expl": "Highest power of 7 in 50! = ⌊50/7⌋ + ⌊50/49⌋ = 7 + 1 = 8, so n = 8."
     },
     {
       "n": 59,
@@ -782,7 +838,8 @@ window.GMAT_SETS = [
         "11",
         "13",
         "14"
-      ]
+      ],
+      "expl": "Difference = N(19/7 − 7/19) = N×312/133 = 624 ⇒ N = 266. Sum of digits = 2+6+6 = 14."
     }
   ]
 }

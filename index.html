@@ -348,6 +348,28 @@
   .navbtn.primary:hover { background: var(--accent-ink); color: #fff; }
   .navpos { font-size: 13px; color: var(--ink-soft); font-weight: 700; font-variant-numeric: tabular-nums; }
 
+  /* Mode chooser + feedback + explanation */
+  .mode-h { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .modebtn { display: flex; flex-direction: column; gap: 3px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 15px; margin-top: 11px; transition: .12s; }
+  .modebtn:hover { border-color: var(--accent); background: var(--accent-wash); }
+  .modebtn b { font-size: 15.5px; }
+  .modebtn span { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+  .mode-note { font-size: 12px; color: var(--ink-faint); margin: 14px 0 0; }
+  .choice:disabled { cursor: default; }
+  .choice.correct { border-color: var(--good); background: color-mix(in srgb, var(--good) 13%, var(--surface)); }
+  .choice.correct .cl { background: var(--good); color: #fff; }
+  .choice.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 13%, var(--surface)); }
+  .choice.wrong .cl { background: var(--bad); color: #fff; }
+  .feedback { margin-top: 15px; font-weight: 700; font-size: 14.5px; }
+  .feedback.ok { color: var(--good); }
+  .feedback.no { color: var(--bad); }
+  .expl { margin-top: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); overflow: hidden; }
+  .expl summary { cursor: pointer; padding: 11px 13px; font-weight: 700; font-size: 13.5px; color: var(--accent); list-style: none; }
+  .expl summary::-webkit-details-marker { display: none; }
+  .expl summary::before { content: "▸  "; }
+  .expl[open] summary::before { content: "▾  "; }
+  .expl .ex { padding: 0 13px 13px; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
   @media (max-width: 430px) {
@@ -820,8 +842,18 @@
     for (const su of sec.subjects) for (const t of su.topics) { const tl = t.toLowerCase(); if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return topicId(secId, su.name, t); }
     return null;
   }
-  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0 } : { ans: {}, submitted: false, idx: 0 }; }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {} }; }
   function setRun(id, run) { state.runs[id] = run; save(); }
+  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; state.runs[id] = r; return r; }
+  // Log a single answered question into its topic + today's count (once per run).
+  function logOne(set, q, correct) {
+    const run = ensureRun(set.id);
+    if (run.logged[q.n]) return;
+    const id = resolveTopic(set.section, q.topic);
+    if (id) { const rec = getRec(id); rec.d += 1; if (correct) rec.c += 1; setRec(id, rec); }
+    state.daily[dkey()] = Math.max(0, (state.daily[dkey()] || 0) + 1);
+    run.logged[q.n] = true; save();
+  }
   function scoreRun(set, run) {
     let score = 0; const per = [];
     set.questions.forEach(q => { const your = run.ans[q.n] || null, ok = !!your && your === q.correct; if (ok) score++; per.push({ n:q.n, your, correct:q.correct, ok, topic:q.topic, flag:!!q.flag, options:q.options||5 }); });
@@ -857,43 +889,75 @@
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
+  function modeChooserHTML(set, sec, total) {
+    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} questions</div>
+      <div class="qcard"><div class="mode-h">How do you want to run this set?</div>
+      <button class="modebtn" data-mode="practice"><b>Practice mode</b><span>Tells you correct or incorrect right after each answer, with an explanation. Best for learning.</span></button>
+      <button class="modebtn" data-mode="test"><b>Test mode</b><span>Answer all ${total} first, then get your score and full solutions at the end.</span></button>
+      <p class="mode-note">Either way, every answer is logged into your Quant &amp; Overall progress for today.</p></div>`;
+  }
+
+  function questionHTML(set, run, sec, qs, total) {
+    if (runIndex > total-1) runIndex = total-1; if (runIndex < 0) runIndex = 0;
+    const q = qs[runIndex], sel = run.ans[q.n], nOpt = q.options || 5;
+    const answered = Object.keys(run.ans).length, last = runIndex === total-1;
+    const practice = run.mode === "practice", revealed = practice && !!sel;
+    let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
+    h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
+      <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
+      <div class="choices">`;
+    LET.slice(0, nOpt).forEach((L, i) => {
+      const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
+      let cls = "", dis = "";
+      if (revealed) { dis = "disabled"; if (L === q.correct) cls = "correct"; else if (L === sel) cls = "wrong"; }
+      else if (sel === L) cls = "sel";
+      h += `<button class="choice ${cls}" data-ans="${q.n}" data-l="${L}" ${dis}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`;
+    });
+    h += `</div>`;
+    if (revealed) {
+      const ok = sel === q.correct;
+      h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
+      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
+    }
+    h += `</div>`;
+    if (practice) {
+      const nextBtn = revealed ? (last ? `<button class="navbtn primary" data-finish>See results</button>` : `<button class="navbtn primary" data-next>Next ›</button>`) : `<button class="navbtn" disabled>Next ›</button>`;
+      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button><span class="navpos">${runIndex+1} / ${total}</span>${nextBtn}</div>`;
+      if (!revealed) h += `<p class="mode-note" style="text-align:center">Pick an answer to see if you're right.</p>`;
+    } else {
+      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button><span class="navpos">${runIndex+1} / ${total}</span>${last?`<button class="navbtn primary" data-finish>Submit</button>`:`<button class="navbtn primary" data-next>Next ›</button>`}</div>`;
+      if (!last && answered===total) h += `<button class="btn-primary" style="margin-top:12px" data-finish>Submit &amp; score all ${total}</button>`;
+    }
+    return h;
+  }
+
+  function resultsHTML(set, run, sec, qs) {
+    const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
+    const byN = {}; qs.forEach(q => byN[q.n] = q);
+    let h = `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div></div></div>`;
+    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green; tap a question for the full explanation.</p><div class="qlist">`;
+    res.per.forEach(p => {
+      const n = p.options, q = byN[p.n];
+      h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
+        LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
+        `</div><span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
+        (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
+        (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
+        `<div class="rev-tag">${esc(p.topic)}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
+    });
+    h += `</div></div>`;
+    h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;
+    return h;
+  }
+
   function renderRunner() {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
-    let h = "";
-    if (!run.submitted) {
-      if (runIndex > total-1) runIndex = total-1; if (runIndex < 0) runIndex = 0;
-      const q = qs[runIndex], sel = run.ans[q.n], nOpt = q.options || 5;
-      const answered = Object.keys(run.ans).length, last = runIndex === total-1;
-      h += `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered</div>`;
-      h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
-        <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
-        <div class="choices">`;
-      LET.slice(0, nOpt).forEach((L, i) => { const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
-        h += `<button class="choice ${sel===L?"sel":""}" data-ans="${q.n}" data-l="${L}"><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`; });
-      h += `</div></div>`;
-      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button><span class="navpos">${runIndex+1} / ${total}</span>${last?`<button class="navbtn primary" data-submit>Submit</button>`:`<button class="navbtn primary" data-next>Next ›</button>`}</div>`;
-      if (!last && answered===total) h += `<button class="btn-primary" style="margin-top:12px" data-submit>Submit &amp; score all ${total}</button>`;
-    } else {
-      const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
-      const byN = {}; qs.forEach(q => byN[q.n] = q);
-      h += `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div></div></div>`;
-      h += `<div class="panel" style="margin-top:14px"><h3>Review</h3><p class="sub">Correct answers shown. Missed questions are logged so they surface in Focus areas.</p><div class="qlist">`;
-      res.per.forEach(p => {
-        const n = p.options, q = byN[p.n];
-        h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
-          LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
-          `</div><span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
-          (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
-          `<div class="rev-tag">${esc(p.topic)}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
-      });
-      h += `</div></div>`;
-      h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;
-    }
+    const h = run.submitted ? resultsHTML(set, run, sec, qs) : (!run.mode ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
     document.getElementById("rn-title").textContent = set.title;
     document.getElementById("rn-body").innerHTML = h;
     const card = document.getElementById("qcard");
-    if (card) {
+    if (card && run.mode && !run.submitted) {
       let sx = null;
       card.addEventListener("touchstart", (e) => { sx = e.changedTouches[0].clientX; }, { passive:true });
       card.addEventListener("touchend", (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (dx < -45) goto(runIndex+1, set); else if (dx > 45) goto(runIndex-1, set); });
@@ -902,22 +966,30 @@
 
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
+    const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); run.idx = 0; runIndex = 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
     const a = e.target.closest("[data-ans]"); if (a) {
-      const run = getRun(set.id); run.ans[a.getAttribute("data-ans")] = a.getAttribute("data-l"); setRun(set.id, run);
-      if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // auto-advance
+      const run = ensureRun(set.id); if (run.submitted) return;
+      const q = set.questions[runIndex];
+      if (run.mode === "practice") {
+        if (run.ans[q.n]) return; // locked once answered
+        run.ans[String(q.n)] = a.getAttribute("data-l"); save();
+        logOne(set, q, run.ans[q.n] === q.correct);
+        renderRunner(); window.scrollTo({ top:0 }); return;
+      }
+      run.ans[String(q.n)] = a.getAttribute("data-l"); save();
+      if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // auto-advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
-    if (e.target.closest("[data-submit]")) {
-      const run = getRun(set.id), answered = Object.keys(run.ans).length;
-      if (answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
-      const res = scoreRun(set, run), entries = [];
-      set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; const id = resolveTopic(set.section, q.topic); if (id) entries.push({ id, correct: your === q.correct }); });
-      logBatch(entries);
-      run.submitted = true; run.score = res.score; run.total = res.total; setRun(set.id, run); renderRunner(); window.scrollTo({ top:0 }); return;
+    if (e.target.closest("[data-finish]")) {
+      const run = ensureRun(set.id), answered = Object.keys(run.ans).length;
+      if (run.mode !== "practice" && answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
+      set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct); });
+      const res = scoreRun(set, run); run.submitted = true; run.score = res.score; run.total = res.total; save();
+      renderRunner(); window.scrollTo({ top:0 }); return;
     }
-    if (e.target.closest("[data-retake]")) { setRun(set.id, { ans:{}, submitted:false, idx:0 }); runIndex = 0; renderRunner(); return; }
+    if (e.target.closest("[data-retake]")) { state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode:null, logged:{} }; save(); runIndex = 0; renderRunner(); return; }
     if (e.target.closest("[data-close-runner]")) closeRunner();
   });
   document.getElementById("rn-close").onclick = closeRunner;

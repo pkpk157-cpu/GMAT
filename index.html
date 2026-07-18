@@ -360,6 +360,15 @@
   .navbtn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
   .navbtn.primary:hover { background: var(--accent-ink); color: #fff; }
   .navpos { font-size: 13px; color: var(--ink-soft); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .jumpbtn { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 8px 12px; cursor: pointer; transition: .12s; }
+  .jumpbtn:hover { border-color: var(--accent); color: var(--accent); }
+  .jgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; max-height: 46vh; overflow-y: auto; padding: 2px; }
+  .jcell { aspect-ratio: 1; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; transition: .1s; }
+  .jcell:hover { border-color: var(--accent); color: var(--accent); }
+  .jcell.cur { outline: 2px solid var(--accent); outline-offset: -2px; color: var(--accent); }
+  .jcell.ans { background: var(--accent-wash); border-color: var(--accent); color: var(--accent); }
+  .jcell.ok { background: color-mix(in srgb, var(--good) 16%, var(--surface)); border-color: var(--good); color: var(--good); }
+  .jcell.no { background: color-mix(in srgb, var(--bad) 16%, var(--surface)); border-color: var(--bad); color: var(--bad); }
 
   /* Mode chooser + feedback + explanation */
   .mode-h { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
@@ -438,6 +447,9 @@
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="rn-title">Practice set</h2><button class="pf-close" id="rn-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="rn-body"></div>
 </div>
+
+<!-- Question jumper -->
+<div class="scrim" id="jumper" hidden><div class="modal" id="jumper-card"></div></div>
 
 <script src="sets.js"></script>
 <script>
@@ -956,12 +968,28 @@
     return h + `</div></div>`;
   }
 
-  let runSetId = null, runIndex = 0, qStart = 0, qTimer = null;
+  let runSetId = null, runIndex = 0, qStart = 0, qTimer = null, pendingL = null;
   function stopTimer() { if (qTimer) { clearInterval(qTimer); qTimer = null; } }
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
-  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; document.body.style.overflow = ""; render(); }
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
-  function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
+  function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
+
+  function openJumper() {
+    const set = SETS.find(s => s.id === runSetId); if (!set) return;
+    const run = getRun(set.id), practice = run.mode === "practice";
+    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:14px">${set.questions.length} questions${practice?" · green = right, red = wrong":""}</div><div class="jgrid">`;
+    set.questions.forEach((q, i) => {
+      const done = run.ans[q.n]; let cls = "";
+      if (i === runIndex) cls = "cur";
+      else if (done) cls = practice ? (done === q.correct ? "ok" : "no") : "ans";
+      h += `<button class="jcell ${cls}" data-jump="${i}">${q.n}</button>`;
+    });
+    h += `</div><button class="btn-soft" style="width:100%;margin-top:16px" data-closejump>Close</button>`;
+    document.getElementById("jumper-card").innerHTML = h;
+    document.getElementById("jumper").hidden = false;
+  }
+  function closeJumper() { document.getElementById("jumper").hidden = true; }
 
   function modeChooserHTML(set, sec, total) {
     return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} questions</div>
@@ -973,12 +1001,14 @@
 
   function questionHTML(set, run, sec, qs, total) {
     if (runIndex > total-1) runIndex = total-1; if (runIndex < 0) runIndex = 0;
-    const q = qs[runIndex], sel = run.ans[q.n], nOpt = q.options || 5;
+    const q = qs[runIndex], committed = run.ans[q.n], nOpt = q.options || 5;
     const answered = Object.keys(run.ans).length, last = runIndex === total-1;
-    const practice = run.mode === "practice", revealed = practice && !!sel, thisAnswered = !!sel;
+    const practice = run.mode === "practice";
+    const revealed = practice && !!committed;          // locked, showing result
+    const active = pendingL != null ? pendingL : (committed || null); // highlighted choice
     const tgt = paceMs(set.section);
     const paceCls = (ms) => ms > tgt ? "over" : (ms > tgt*0.75 ? "warn" : "done");
-    const timerHTML = thisAnswered ? `<span class="qtimer ${paceCls(run.times[q.n] || 0)}" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>` : `<span class="qtimer" id="qtimer" data-live="1" data-target="${tgt}">0:00</span>`;
+    const timerHTML = (committed && practice) ? `<span class="qtimer ${paceCls(run.times[q.n] || 0)}" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>` : `<span class="qtimer" id="qtimer" data-live="1" data-target="${tgt}">0:00</span>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
     h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
@@ -986,24 +1016,30 @@
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
       let cls = "", dis = "";
-      if (revealed) { dis = "disabled"; if (L === q.correct) cls = "correct"; else if (L === sel) cls = "wrong"; }
-      else if (sel === L) cls = "sel";
-      h += `<button class="choice ${cls}" data-ans="${q.n}" data-l="${L}" ${dis}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`;
+      if (revealed) { dis = "disabled"; if (L === q.correct) cls = "correct"; else if (L === committed) cls = "wrong"; }
+      else if (active === L) cls = "sel";
+      h += `<button class="choice ${cls}" data-pick="${L}" ${dis}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`;
     });
     h += `</div>`;
     if (revealed) {
-      const ok = sel === q.correct;
+      const ok = committed === q.correct;
       h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
       if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
       h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
+    } else {
+      // Two-step: pick highlights, Confirm commits (prevents misclicks).
+      const canConfirm = pendingL != null && pendingL !== committed;
+      const label = committed ? `Confirm change to ${pendingL || committed}` : (pendingL ? `Confirm answer ${pendingL}` : "Confirm answer");
+      h += `<button class="btn-primary" style="margin-top:16px" data-confirm ${canConfirm?"":"disabled"}>${esc(label)}</button>`;
+      h += `<p class="mode-note" style="text-align:center">${pendingL ? "Tap Confirm to lock it in." : (committed ? "Answered — pick another option to change it." : "Pick an option, then Confirm.")}</p>`;
     }
     h += `</div>`;
+    const jump = `<button class="navpos jumpbtn" data-openjump title="Jump to any question">${runIndex+1} / ${total} ▾</button>`;
     if (practice) {
       const nextBtn = revealed ? (last ? `<button class="navbtn primary" data-finish>See results</button>` : `<button class="navbtn primary" data-next>Next ›</button>`) : `<button class="navbtn" disabled>Next ›</button>`;
-      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button><span class="navpos">${runIndex+1} / ${total}</span>${nextBtn}</div>`;
-      if (!revealed) h += `<p class="mode-note" style="text-align:center">Pick an answer to see if you're right.</p>`;
+      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button>${jump}${nextBtn}</div>`;
     } else {
-      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button><span class="navpos">${runIndex+1} / ${total}</span>${last?`<button class="navbtn primary" data-finish>Submit</button>`:`<button class="navbtn primary" data-next>Next ›</button>`}</div>`;
+      h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button>${jump}${last?`<button class="navbtn primary" data-finish>Submit</button>`:`<button class="navbtn primary" data-next>Next ›</button>`}</div>`;
       if (!last && answered===total) h += `<button class="btn-primary" style="margin-top:12px" data-finish>Submit &amp; score all ${total}</button>`;
     }
     return h;
@@ -1057,24 +1093,33 @@
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); run.idx = 0; runIndex = 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
-    const a = e.target.closest("[data-ans]"); if (a) {
+    // Step 1: pick highlights the option (no commit) — guards against misclicks.
+    const pick = e.target.closest("[data-pick]"); if (pick) {
       const run = ensureRun(set.id); if (run.submitted) return;
       const q = set.questions[runIndex];
-      const elapsed = qStart ? (Date.now() - qStart) : 0;
-      if (run.mode === "practice") {
-        if (run.ans[q.n]) return; // locked once answered
-        run.times[String(q.n)] = elapsed;
-        run.ans[String(q.n)] = a.getAttribute("data-l"); save();
-        logOne(set, q, run.ans[q.n] === q.correct, elapsed);
-        renderRunner(); window.scrollTo({ top:0 }); return;
-      }
+      if (run.mode === "practice" && run.ans[q.n]) return; // locked once answered in practice
+      pendingL = pick.getAttribute("data-pick");
+      renderRunner(); return;
+    }
+    // Step 2: confirm commits the pending answer.
+    if (e.target.closest("[data-confirm]")) {
+      if (pendingL == null) return;
+      const run = ensureRun(set.id); if (run.submitted) return;
+      const q = set.questions[runIndex];
       const firstTime = !run.ans[q.n];
-      run.ans[String(q.n)] = a.getAttribute("data-l");
+      const elapsed = qStart ? (Date.now() - qStart) : 0;
+      const chosen = pendingL; pendingL = null;
+      run.ans[String(q.n)] = chosen;
       if (firstTime) run.times[String(q.n)] = elapsed;
       save();
-      if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // auto-advance in test mode
+      if (run.mode === "practice") {
+        logOne(set, q, chosen === q.correct, run.times[q.n] || 0);
+        renderRunner(); window.scrollTo({ top:0 }); return;
+      }
+      if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
+    if (e.target.closest("[data-openjump]")) { openJumper(); return; }
     const rq = e.target.closest("[data-resetq]"); if (rq) { resetQuestion(set, rq.getAttribute("data-resetq")); renderRunner(); return; }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
@@ -1089,6 +1134,11 @@
     if (e.target.closest("[data-close-runner]")) closeRunner();
   });
   document.getElementById("rn-close").onclick = closeRunner;
+
+  document.getElementById("jumper").addEventListener("click", (e) => {
+    if (e.target.id === "jumper" || e.target.closest("[data-closejump]")) { closeJumper(); return; }
+    const j = e.target.closest("[data-jump]"); if (j) { const set = SETS.find(s => s.id === runSetId); closeJumper(); if (set) goto(parseInt(j.getAttribute("data-jump"), 10), set); }
+  });
 
   /* Boot */
   function render(){ renderTop(); renderBotnav(); renderView(); }

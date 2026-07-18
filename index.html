@@ -280,6 +280,49 @@
   .step:disabled { opacity: .35; cursor: not-allowed; background: var(--surface); color: var(--ink-faint); border-color: var(--line); }
   .stepper { display: flex; align-items: center; gap: 6px; }
 
+  /* Practice sets list */
+  .setlist { display: flex; flex-direction: column; }
+  .setrow { display: flex; align-items: center; gap: 11px; padding: 12px 0; border-top: 1px solid var(--line-soft); }
+  .setrow:first-child { border-top: none; }
+  .setrow .si { margin-right: auto; min-width: 0; }
+  .setrow .st { font-weight: 650; font-size: 14px; }
+  .setrow .sm { font-size: 12px; color: var(--ink-soft); margin-top: 3px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .setrow .go { border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 8px 15px; border-radius: 9px; font-weight: 700; font-size: 13px; white-space: nowrap; flex: none; transition: .12s; }
+  .setrow .go:hover { background: var(--accent-ink); }
+  .setrow .go.done { background: var(--surface); color: var(--accent); }
+  .badge { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; padding: 2px 8px; border-radius: 20px; background: color-mix(in srgb, var(--sc) 15%, transparent); color: var(--sc); }
+  .sstatus { font-weight: 700; }
+  .sstatus.good { color: var(--good); } .sstatus.mid { color: var(--warn); } .sstatus.low { color: var(--bad); } .sstatus.muted { color: var(--ink-faint); }
+
+  /* Runner */
+  .rn-meta { font-size: 13.5px; color: var(--ink-soft); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .qlist { display: flex; flex-direction: column; }
+  .qrow { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line-soft); }
+  .qrow:first-child { border-top: none; }
+  .qn { font-weight: 700; font-size: 14px; min-width: 34px; font-variant-numeric: tabular-nums; }
+  .opts { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+  .opt { width: 40px; height: 38px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 14px; color: var(--ink-soft); display: grid; place-items: center; transition: .1s; }
+  button.opt:hover { border-color: var(--accent); color: var(--accent); }
+  .opt.sel { border-color: var(--accent); background: var(--accent); color: #fff; }
+  .opt.correct { border-color: var(--good); background: color-mix(in srgb, var(--good) 16%, var(--surface)); color: var(--good); }
+  .opt.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 16%, var(--surface)); color: var(--bad); }
+  .rn-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }
+  .rn-count { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+  .rn-score { display: flex; align-items: center; gap: 18px; }
+  .rs-num { font-family: var(--serif); font-size: 44px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .rs-num .rs-tot { font-size: 20px; color: var(--ink-faint); margin-left: 6px; }
+  .rs-side { margin-left: auto; text-align: right; }
+  .rs-pct { font-family: var(--serif); font-size: 26px; font-weight: 600; }
+  .rs-log { font-size: 12px; color: var(--good); font-weight: 700; margin-top: 2px; }
+  .revitem { border-top: 1px solid var(--line-soft); padding: 9px 0; }
+  .revitem:first-child { border-top: none; }
+  .revitem .qrow { border-top: none; padding: 0; }
+  .rev-opts { display: flex; gap: 5px; margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+  .rev-opts .opt { width: 30px; height: 30px; font-size: 12px; }
+  .rev-mark { font-weight: 800; font-size: 15px; margin-left: 8px; width: 18px; text-align: center; }
+  .rev-mark.ok { color: var(--good); } .rev-mark.no { color: var(--bad); }
+  .rev-tag { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; padding-left: 44px; }
+
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
   @media (max-width: 430px) {
@@ -330,6 +373,13 @@
 </div>
 <input type="file" id="restore-input" accept="application/json,.json" hidden />
 
+<!-- Practice-set runner -->
+<div class="profile" id="runner" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="rn-title">Practice set</h2><button class="pf-close" id="rn-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="rn-body"></div>
+</div>
+
+<script src="sets.js"></script>
 <script>
 (function () {
   "use strict";
@@ -388,7 +438,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 } };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -503,7 +553,9 @@
       });
       h += `</div></section>`;
     });
-    return h + `</div>`;
+    h += `</div>`;
+    h += setsPanelHTML(setsFor(sec.id));
+    return h;
   }
 
   function ring(pct, color) {
@@ -536,6 +588,8 @@
       <div class="stat"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
       <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
+
+    h += setsPanelHTML(SETS);
 
     // focus areas (weak spots)
     const cand = [];
@@ -692,6 +746,7 @@
     const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
     const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
     const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
+    const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
   });
 
@@ -727,6 +782,101 @@
   /* Theme */
   function setTheme(v){ if (v==="system"){ document.documentElement.removeAttribute("data-theme"); try{localStorage.setItem("gmat_theme","system");}catch(e){} } else { document.documentElement.setAttribute("data-theme",v); try{localStorage.setItem("gmat_theme",v);}catch(e){} } }
   (function(){ const t=localStorage.getItem("gmat_theme"); if (t && t!=="system") document.documentElement.setAttribute("data-theme",t); })();
+
+  /* ===================== Practice sets ===================== */
+  const SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
+  const LET = ["A","B","C","D","E","F","G","H"];
+  const setsFor = (secId) => SETS.filter(s => s.section === secId);
+
+  function resolveTopic(secId, name) {
+    const sec = secById(secId); if (!sec || !sec.subjects) return null;
+    for (const su of sec.subjects) for (const t of su.topics) if (t === name) return topicId(secId, su.name, t);
+    const low = String(name || "").toLowerCase();
+    for (const su of sec.subjects) for (const t of su.topics) { const tl = t.toLowerCase(); if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return topicId(secId, su.name, t); }
+    return null;
+  }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total } : { ans: {}, submitted: false }; }
+  function setRun(id, run) { state.runs[id] = run; save(); }
+  function scoreRun(set, run) {
+    let score = 0; const per = [];
+    set.questions.forEach(q => { const your = run.ans[q.n] || null, ok = !!your && your === q.correct; if (ok) score++; per.push({ n:q.n, your, correct:q.correct, ok, topic:q.topic, flag:!!q.flag, options:q.options||5 }); });
+    return { score, total: set.questions.length, per };
+  }
+  function logBatch(entries) {
+    if (!entries.length) return;
+    const k = dkey(); let add = 0;
+    entries.forEach(e => { const r = getRec(e.id); r.d += 1; if (e.correct) r.c += 1; setRec(e.id, r); add++; });
+    state.daily[k] = Math.max(0, (state.daily[k] || 0) + add); save();
+  }
+
+  function setsPanelHTML(list) {
+    let h = `<div class="panel"><h3>Practice sets</h3>`;
+    if (!list.length) return h + `<p class="sub" style="margin:0">No sets here yet. Send your question documents in the chat — I'll tag every question and they'll appear here, ready to score.</p></div>`;
+    h += `<p class="sub">Open a set, enter your answers, and it scores you and logs each question into the right topic.</p><div class="setlist">`;
+    list.forEach(s => {
+      const sec = secById(s.section), run = getRun(s.id), answered = Object.keys(run.ans).length;
+      let status, cls;
+      if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
+      else if (answered) { status = `${answered}/${s.questions.length} answered`; cls = ""; }
+      else { status = "not started"; cls = "muted"; }
+      h += `<div class="setrow"><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
+        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
+        <button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div>`;
+    });
+    return h + `</div></div>`;
+  }
+
+  let runSetId = null;
+  function openRunner(id) { runSetId = id; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function closeRunner() { document.getElementById("runner").hidden = true; runSetId = null; document.body.style.overflow = ""; render(); }
+  function renderRunner() {
+    const set = SETS.find(s => s.id === runSetId); if (!set) return;
+    const sec = secById(set.section), run = getRun(set.id);
+    let h = "";
+    if (!run.submitted) {
+      const answered = Object.keys(run.ans).length;
+      h += `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${set.questions.length} questions · answer each from your document, then submit.</div>`;
+      h += `<div class="panel" style="margin-top:14px"><div class="qlist">`;
+      set.questions.forEach(q => {
+        const sel = run.ans[q.n], n = q.options || 5;
+        h += `<div class="qrow"><span class="qn">Q${q.n}</span><div class="opts">` +
+          LET.slice(0, n).map(L => `<button class="opt ${sel===L?"sel":""}" data-ans="${q.n}" data-l="${L}">${L}</button>`).join("") + `</div></div>`;
+      });
+      h += `</div></div>`;
+      h += `<div class="rn-foot"><span class="rn-count">${answered} / ${set.questions.length} answered</span><button class="btn-primary" style="width:auto;padding:12px 22px" data-submit="1">Submit &amp; score</button></div>`;
+    } else {
+      const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
+      h += `<div class="rn-score panel"><div class="rs-num ${ac}">${res.score}<span class="rs-tot">/ ${res.total}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your accuracy</div></div></div>`;
+      h += `<div class="panel" style="margin-top:14px"><h3>Review</h3><p class="sub">Correct answers shown. Missed questions are logged so they surface in Focus areas.</p><div class="qlist">`;
+      res.per.forEach(p => {
+        const n = p.options;
+        h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
+          LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
+          `</div><span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
+          `<div class="rev-tag">${esc(p.topic)}${p.flag?' · <span style="color:var(--warn)">unverified key</span>':""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
+      });
+      h += `</div></div>`;
+      h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;
+    }
+    document.getElementById("rn-title").textContent = set.title;
+    document.getElementById("rn-body").innerHTML = h;
+  }
+
+  document.getElementById("runner").addEventListener("click", (e) => {
+    const set = SETS.find(s => s.id === runSetId); if (!set) return;
+    const a = e.target.closest("[data-ans]"); if (a) { const run = getRun(set.id); run.ans[a.getAttribute("data-ans")] = a.getAttribute("data-l"); setRun(set.id, run); renderRunner(); return; }
+    if (e.target.closest("[data-submit]")) {
+      const run = getRun(set.id), answered = Object.keys(run.ans).length;
+      if (answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
+      const res = scoreRun(set, run), entries = [];
+      set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; const id = resolveTopic(set.section, q.topic); if (id) entries.push({ id, correct: your === q.correct }); });
+      logBatch(entries);
+      run.submitted = true; run.score = res.score; run.total = res.total; setRun(set.id, run); renderRunner(); return;
+    }
+    if (e.target.closest("[data-retake]")) { setRun(set.id, { ans:{}, submitted:false }); renderRunner(); return; }
+    if (e.target.closest("[data-close-runner]")) closeRunner();
+  });
+  document.getElementById("rn-close").onclick = closeRunner;
 
   /* Boot */
   function render(){ renderTop(); renderBotnav(); renderView(); }

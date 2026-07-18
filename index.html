@@ -1,0 +1,697 @@
+<title>GMAT Prep Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* ---------- Design tokens ---------- */
+  :root {
+    color-scheme: light dark;
+
+    --paper:      #F6F4EE;   /* warm off-white ground */
+    --surface:    #FFFFFF;
+    --surface-2:  #F0EDE5;
+    --ink:        #1B2130;   /* deep blue-black text */
+    --ink-soft:   #545B6B;
+    --ink-faint:  #8A8F9C;
+    --line:       #E4E0D6;
+    --line-soft:  #EDEAE2;
+
+    --accent:     #2E6E67;   /* studious teal — interactivity */
+    --accent-ink: #21534E;
+    --accent-wash:#E4EEEC;
+
+    --gold:       #B0791E;   /* progress / achievement */
+    --gold-wash:  #F3EBD8;
+
+    /* section identities */
+    --c-overall:  #B0791E;
+    --c-quant:    #2E6E67;
+    --c-verbal:   #A6543C;
+    --c-data:     #3F4E9E;
+
+    --radius:   14px;
+    --radius-s: 9px;
+    --shadow:   0 1px 2px rgba(20,25,40,.05), 0 8px 24px -14px rgba(20,25,40,.18);
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
+    --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #14181F;
+      --surface:    #1B212B;
+      --surface-2:  #232B37;
+      --ink:        #E9EBEF;
+      --ink-soft:   #A6ADBB;
+      --ink-faint:  #6E7686;
+      --line:       #2B333F;
+      --line-soft:  #232B36;
+      --accent:     #5FB3A8;
+      --accent-ink: #8FCDC4;
+      --accent-wash:#1E2F2D;
+      --gold:       #D8A64A;
+      --gold-wash:  #2C2718;
+      --c-overall:  #D8A64A;
+      --c-quant:    #5FB3A8;
+      --c-verbal:   #D0846A;
+      --c-data:     #8A96D9;
+      --shadow:     0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6);
+    }
+  }
+  /* explicit toggle overrides */
+  :root[data-theme="light"] {
+    --paper:#F6F4EE; --surface:#FFFFFF; --surface-2:#F0EDE5; --ink:#1B2130;
+    --ink-soft:#545B6B; --ink-faint:#8A8F9C; --line:#E4E0D6; --line-soft:#EDEAE2;
+    --accent:#2E6E67; --accent-ink:#21534E; --accent-wash:#E4EEEC;
+    --gold:#B0791E; --gold-wash:#F3EBD8;
+    --c-overall:#B0791E; --c-quant:#2E6E67; --c-verbal:#A6543C; --c-data:#3F4E9E;
+    --shadow:0 1px 2px rgba(20,25,40,.05),0 8px 24px -14px rgba(20,25,40,.18);
+  }
+  :root[data-theme="dark"] {
+    --paper:#14181F; --surface:#1B212B; --surface-2:#232B37; --ink:#E9EBEF;
+    --ink-soft:#A6ADBB; --ink-faint:#6E7686; --line:#2B333F; --line-soft:#232B36;
+    --accent:#5FB3A8; --accent-ink:#8FCDC4; --accent-wash:#1E2F2D;
+    --gold:#D8A64A; --gold-wash:#2C2718;
+    --c-overall:#D8A64A; --c-quant:#5FB3A8; --c-verbal:#D0846A; --c-data:#8A96D9;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -16px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .tnum { font-variant-numeric: tabular-nums; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 20px 72px; }
+
+  /* ---------- Banner ---------- */
+  .banner {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 30;
+  }
+  .banner-inner {
+    max-width: 940px; margin: 0 auto; padding: 16px 20px;
+    display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+  }
+  .brand { display: flex; flex-direction: column; gap: 1px; margin-right: auto; }
+  .brand .kick {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 600;
+  }
+  .brand .name { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+
+  .countdown {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 8px 18px; border-radius: var(--radius);
+    background: var(--gold-wash);
+    border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  }
+  .countdown .num {
+    font-family: var(--serif); font-size: 40px; line-height: 1; font-weight: 600;
+    color: var(--gold); letter-spacing: -.02em;
+  }
+  .countdown .lbl { display: flex; flex-direction: column; }
+  .countdown .lbl .t { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .countdown .lbl .d { font-size: 12px; color: var(--ink-soft); }
+  .countdown.past .num { color: var(--c-verbal); }
+
+  .icon-btn {
+    border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink-soft); width: 38px; height: 38px; border-radius: 10px;
+    display: grid; place-items: center; font-size: 16px; transition: .15s;
+  }
+  .icon-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+  /* ---------- Tabs ---------- */
+  .tabs {
+    display: flex; gap: 4px; margin: 22px 0 8px;
+    border-bottom: 1px solid var(--line); flex-wrap: wrap;
+  }
+  .tab {
+    border: none; background: none; padding: 11px 15px 13px;
+    font-size: 14.5px; font-weight: 600; color: var(--ink-faint);
+    border-bottom: 2.5px solid transparent; margin-bottom: -1px;
+    display: flex; align-items: center; gap: 8px; transition: .15s;
+  }
+  .tab:hover { color: var(--ink-soft); }
+  .tab .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--tabc); opacity: .55; }
+  .tab.active { color: var(--ink); border-bottom-color: var(--tabc); }
+  .tab.active .dot { opacity: 1; }
+  .tab .mini { font-size: 12px; color: var(--ink-faint); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+  /* ---------- Section head ---------- */
+  .sec-head { margin: 26px 0 6px; }
+  .sec-head h2 {
+    font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0;
+    letter-spacing: -.01em; text-wrap: balance;
+    display: flex; align-items: center; gap: 11px;
+  }
+  .sec-head h2 .bar { width: 6px; height: 24px; border-radius: 3px; background: var(--secc); }
+  .sec-head p { margin: 7px 0 0; color: var(--ink-soft); max-width: 62ch; font-size: 14.5px; }
+  .sec-stat {
+    display: inline-flex; align-items: baseline; gap: 6px; margin-top: 12px;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .sec-stat b { font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Subject cards ---------- */
+  .subjects { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+  .subject {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+  }
+  .subj-head {
+    display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+    cursor: pointer; user-select: none;
+  }
+  .subj-head:hover { background: var(--surface-2); }
+  .subj-head .chev { color: var(--ink-faint); transition: transform .2s; font-size: 13px; }
+  .subject.collapsed .chev { transform: rotate(-90deg); }
+  .subj-head .title { font-weight: 650; font-size: 15.5px; margin-right: auto; letter-spacing: -.01em; }
+  .subj-head .count {
+    font-size: 12.5px; font-weight: 600; color: var(--secc);
+    background: color-mix(in srgb, var(--secc) 12%, transparent);
+    padding: 3px 10px; border-radius: 20px; font-variant-numeric: tabular-nums;
+  }
+  .topics { border-top: 1px solid var(--line-soft); }
+  .subject.collapsed .topics { display: none; }
+
+  .topic {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 18px; border-top: 1px solid var(--line-soft);
+  }
+  .topic:first-child { border-top: none; }
+  .topic .tname { font-size: 14px; margin-right: auto; color: var(--ink); }
+  .topic .tval {
+    font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px;
+    min-width: 42px; text-align: right; color: var(--ink);
+  }
+  .topic .tval.zero { color: var(--ink-faint); font-weight: 600; }
+  .stepper { display: flex; align-items: center; gap: 4px; }
+  .step {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft);
+    height: 30px; min-width: 34px; padding: 0 8px; border-radius: 8px;
+    font-size: 13px; font-weight: 700; transition: .12s; line-height: 1;
+  }
+  .step:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
+  .step.minus { min-width: 30px; }
+  .step:disabled { opacity: .35; cursor: not-allowed; background: var(--surface); color: var(--ink-faint); border-color: var(--line); }
+
+  /* ---------- Overall dashboard ---------- */
+  .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-top: 18px; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 17px; box-shadow: var(--shadow);
+  }
+  .stat .k { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; }
+  .stat .v { font-family: var(--serif); font-size: 34px; font-weight: 600; margin-top: 6px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat .s { font-size: 12.5px; color: var(--ink-soft); margin-top: 5px; }
+
+  .panel {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 18px 20px; margin-top: 16px;
+  }
+  .panel h3 { margin: 0 0 4px; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+  .panel .sub { color: var(--ink-soft); font-size: 13px; margin: 0 0 14px; }
+
+  .breakdown { display: flex; flex-direction: column; gap: 13px; }
+  .bd-row { display: grid; grid-template-columns: 140px 1fr auto; gap: 12px; align-items: center; }
+  .bd-row .bl { font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .bd-row .bl .d { width: 9px; height: 9px; border-radius: 50%; background: var(--rc); }
+  .track { height: 9px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
+  .track > i { display: block; height: 100%; background: var(--rc); border-radius: 6px; transition: width .5s ease; }
+  .bd-row .bv { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; min-width: 40px; text-align: right; }
+
+  /* activity bars */
+  .spark { display: flex; align-items: flex-end; gap: 8px; height: 96px; margin-top: 6px; }
+  .spark .bcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; height: 100%; justify-content: flex-end; }
+  .spark .bcol .b {
+    width: 100%; max-width: 42px; background: var(--accent-wash);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: 6px 6px 3px 3px; min-height: 3px; transition: height .4s ease; position: relative;
+  }
+  .spark .bcol.has .b { background: var(--accent); border-color: var(--accent); }
+  .spark .bcol .bn { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--ink-soft); font-weight: 700; height: 13px; }
+  .spark .bcol .bd { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .03em; }
+  .spark .bcol.today .bd { color: var(--accent); font-weight: 700; }
+
+  .empty { color: var(--ink-faint); font-size: 13.5px; padding: 6px 0; }
+
+  /* ---------- Modal ---------- */
+  .scrim {
+    position: fixed; inset: 0; background: rgba(15,18,26,.55);
+    display: grid; place-items: center; z-index: 60; padding: 20px;
+    backdrop-filter: blur(3px);
+  }
+  .scrim[hidden] { display: none; }
+  .modal {
+    background: var(--surface); border-radius: 18px; border: 1px solid var(--line);
+    width: 100%; max-width: 420px; padding: 26px 26px 24px;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,.5);
+  }
+  .modal .kick { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .modal h2 { font-family: var(--serif); font-size: 24px; margin: 6px 0 4px; font-weight: 600; letter-spacing: -.01em; }
+  .modal p.lead { color: var(--ink-soft); font-size: 14px; margin: 0 0 20px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px; letter-spacing: .01em; }
+  .field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px;
+    font-size: 15px; font-family: inherit; background: var(--paper); color: var(--ink);
+  }
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  .field .hint { font-size: 12px; color: var(--ink-faint); margin-top: 6px; }
+  .btn-primary {
+    width: 100%; padding: 12px; border: none; border-radius: 11px;
+    background: var(--accent); color: #fff; font-size: 15px; font-weight: 700;
+    transition: .15s; margin-top: 4px;
+  }
+  .btn-primary:hover { background: var(--accent-ink); }
+  .btn-ghost {
+    width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 11px;
+    background: none; color: var(--ink-soft); font-size: 13.5px; font-weight: 600; margin-top: 10px;
+  }
+  .btn-ghost:hover { color: var(--c-verbal); border-color: var(--c-verbal); }
+
+  .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 34px; }
+
+  @media (max-width: 560px) {
+    .banner-inner { gap: 14px; }
+    .countdown { padding: 6px 14px; }
+    .countdown .num { font-size: 32px; }
+    .bd-row { grid-template-columns: 110px 1fr auto; }
+    .topic { flex-wrap: wrap; }
+    .topic .tname { flex-basis: 100%; margin-bottom: 4px; }
+    .sec-head h2 { font-size: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="banner">
+  <div class="banner-inner">
+    <div class="brand">
+      <span class="kick">GMAT Focus · Prep Tracker</span>
+      <span class="name" id="hello">Your Study Log</span>
+    </div>
+    <div class="countdown" id="countdown" title="Days remaining until your exam">
+      <span class="num tnum" id="cd-num">—</span>
+      <span class="lbl"><span class="t">days to go</span><span class="d" id="cd-date">set your date</span></span>
+    </div>
+    <button class="icon-btn" id="btn-theme" title="Toggle light / dark">◐</button>
+    <button class="icon-btn" id="btn-settings" title="Edit name & exam date">⚙</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="tabs" id="tabs"></nav>
+  <main id="view"></main>
+  <p class="footnote">Progress saves automatically on this device · GMAT Focus Edition structure</p>
+</div>
+
+<!-- Onboarding / settings modal -->
+<div class="scrim" id="scrim" hidden>
+  <div class="modal">
+    <span class="kick" id="m-kick">Welcome</span>
+    <h2 id="m-title">Let's set up your prep</h2>
+    <p class="lead" id="m-lead">A quick start. You can change these anytime from the gear icon.</p>
+    <div class="field">
+      <label for="f-name">Your name</label>
+      <input id="f-name" type="text" placeholder="e.g. Pranav" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for="f-date">Exam date</label>
+      <input id="f-date" type="date" />
+      <div class="hint" id="f-hint">The banner counts down the days for you.</div>
+    </div>
+    <button class="btn-primary" id="m-save">Start tracking</button>
+    <button class="btn-ghost" id="m-reset" hidden>Reset all logged questions</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ Course content: GMAT Focus Edition ============ */
+  const SECTIONS = [
+    {
+      id: "overall", tab: "Overall", color: "var(--c-overall)", dashboard: true,
+      title: "Overall Progress",
+      blurb: "Your whole preparation at a glance — total questions practiced, how effort is spread across the three scored sections, and your recent daily activity."
+    },
+    {
+      id: "quant", tab: "Quant", color: "var(--c-quant)",
+      title: "Quantitative Reasoning",
+      blurb: "45 minutes · 21 Problem-Solving questions. Tests arithmetic and algebra reasoning — no geometry and no on-screen calculator. Log every question you practice by topic.",
+      subjects: [
+        { name: "Arithmetic & Number Properties", topics: [
+          "Integers, factors & multiples", "Prime numbers & prime factorization", "LCM & GCD",
+          "Divisibility rules & remainders", "Odd / even & sign rules", "Fractions & decimals", "Absolute value" ] },
+        { name: "Percentages, Ratios & Proportions", topics: [
+          "Percentages & percent change", "Ratios & proportions", "Profit, loss & discount",
+          "Simple & compound interest" ] },
+        { name: "Powers, Roots & Exponents", topics: [
+          "Exponent rules", "Roots & radicals", "Scientific notation & estimation" ] },
+        { name: "Algebra", topics: [
+          "Linear equations", "Systems of equations", "Quadratic equations",
+          "Inequalities & absolute-value equations", "Functions & custom symbols",
+          "Algebraic expressions & factoring", "Sequences & series" ] },
+        { name: "Word Problems", topics: [
+          "Speed, distance & time", "Work & rate", "Mixtures & solutions",
+          "Overlapping sets (Venn)", "Age & number problems" ] },
+        { name: "Statistics, Counting & Probability", topics: [
+          "Mean, median & mode", "Range & standard deviation", "Weighted averages",
+          "Permutations & combinations", "Probability" ] }
+      ]
+    },
+    {
+      id: "verbal", tab: "Verbal", color: "var(--c-verbal)",
+      title: "Verbal Reasoning",
+      blurb: "45 minutes · 23 questions. Two question types only — Critical Reasoning and Reading Comprehension. (Sentence Correction is not part of the Focus Edition.)",
+      subjects: [
+        { name: "Critical Reasoning", topics: [
+          "Assumption", "Strengthen", "Weaken", "Evaluate the argument",
+          "Inference / Must be true", "Explain the paradox", "Identify the flaw",
+          "Boldface & method of reasoning", "Complete the argument" ] },
+        { name: "Reading Comprehension", topics: [
+          "Main idea / primary purpose", "Supporting detail", "Inference",
+          "Function of a detail or paragraph", "Author's tone & attitude",
+          "Passage structure", "Application / extension" ] }
+      ]
+    },
+    {
+      id: "data", tab: "Data Insights", color: "var(--c-data)",
+      title: "Data Insights",
+      blurb: "45 minutes · 20 questions. The signature Focus-Edition section — it blends data literacy across five formats, including Data Sufficiency (moved here from Quant).",
+      subjects: [
+        { name: "Data Sufficiency", topics: [
+          "Value questions", "Yes / No questions", "Statement-combination strategy", "Common traps & C-trap" ] },
+        { name: "Multi-Source Reasoning", topics: [
+          "Reading across tabs", "Synthesizing multiple sources", "Inference from combined data",
+          "True / False judgment sets" ] },
+        { name: "Table Analysis", topics: [
+          "Sorting & filtering", "Statistics from a table", "Ratios & proportions in tables" ] },
+        { name: "Graphics Interpretation", topics: [
+          "Scatter plots & correlation", "Bar & line graphs", "Interpreting relationships",
+          "Dropdown completion" ] },
+        { name: "Two-Part Analysis", topics: [
+          "Quantitative two-part", "Verbal / logical two-part", "Trade-off & optimization" ] }
+      ]
+    }
+  ];
+
+  /* ============ Storage ============ */
+  const KEY = "gmat_tracker_v1";
+  const defaults = { name: "", examDate: "", counts: {}, daily: {}, active: "overall", collapsed: {} };
+  let state = load();
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) return Object.assign({}, defaults, JSON.parse(raw));
+    } catch (e) {}
+    return Object.assign({}, defaults);
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  const topicId = (s, subj, t) => `${s}::${subj}::${t}`;
+  const todayKey = () => new Date().toISOString().slice(0, 10);
+  const getCount = (id) => state.counts[id] || 0;
+
+  function log(id, delta) {
+    const cur = getCount(id);
+    const next = Math.max(0, cur + delta);
+    const applied = next - cur;
+    if (applied === 0) return;
+    state.counts[id] = next;
+    const tk = todayKey();
+    state.daily[tk] = Math.max(0, (state.daily[tk] || 0) + applied);
+    save();
+    render();
+  }
+
+  /* section aggregate */
+  function sectionTotal(sec) {
+    if (!sec.subjects) return 0;
+    let n = 0;
+    sec.subjects.forEach(su => su.topics.forEach(t => { n += getCount(topicId(sec.id, su.name, t)); }));
+    return n;
+  }
+  function subjectTotal(secId, su) {
+    let n = 0; su.topics.forEach(t => { n += getCount(topicId(secId, su.name, t)); }); return n;
+  }
+  function grandTotal() { return SECTIONS.filter(s => s.subjects).reduce((a, s) => a + sectionTotal(s), 0); }
+  function topicCountTotal() {
+    return SECTIONS.filter(s => s.subjects).reduce((a, s) =>
+      a + s.subjects.reduce((b, su) => b + su.topics.length, 0), 0);
+  }
+  function topicsTouched() {
+    let n = 0;
+    SECTIONS.filter(s => s.subjects).forEach(s =>
+      s.subjects.forEach(su => su.topics.forEach(t => { if (getCount(topicId(s.id, su.name, t)) > 0) n++; })));
+    return n;
+  }
+
+  /* ============ Countdown ============ */
+  function daysLeft() {
+    if (!state.examDate) return null;
+    const now = new Date(); now.setHours(0, 0, 0, 0);
+    const ex = new Date(state.examDate + "T00:00:00");
+    return Math.round((ex - now) / 86400000);
+  }
+  function renderBanner() {
+    document.getElementById("hello").textContent =
+      state.name ? `${state.name}'s Study Log` : "Your Study Log";
+    const cd = document.getElementById("countdown");
+    const num = document.getElementById("cd-num");
+    const dt = document.getElementById("cd-date");
+    const d = daysLeft();
+    cd.classList.remove("past");
+    if (d === null) { num.textContent = "—"; dt.textContent = "set your date"; return; }
+    const opts = { weekday: "short", month: "short", day: "numeric", year: "numeric" };
+    const nice = new Date(state.examDate + "T00:00:00").toLocaleDateString(undefined, opts);
+    if (d > 0) { num.textContent = d; dt.textContent = nice; cd.querySelector(".t").textContent = "days to go"; }
+    else if (d === 0) { num.textContent = "0"; cd.querySelector(".t").textContent = "exam day"; dt.textContent = nice; }
+    else { num.textContent = Math.abs(d); cd.classList.add("past"); cd.querySelector(".t").textContent = "days since exam"; dt.textContent = nice; }
+  }
+
+  /* ============ Tabs ============ */
+  function renderTabs() {
+    const nav = document.getElementById("tabs");
+    nav.innerHTML = "";
+    SECTIONS.forEach(sec => {
+      const b = document.createElement("button");
+      b.className = "tab" + (state.active === sec.id ? " active" : "");
+      b.style.setProperty("--tabc", sec.color);
+      const total = sec.dashboard ? grandTotal() : sectionTotal(sec);
+      b.innerHTML = `<span class="dot"></span>${sec.tab}` +
+        (total > 0 ? ` <span class="mini">${total}</span>` : "");
+      b.onclick = () => { state.active = sec.id; save(); render(); };
+      nav.appendChild(b);
+    });
+  }
+
+  /* ============ Views ============ */
+  const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function renderView() {
+    const view = document.getElementById("view");
+    const sec = SECTIONS.find(s => s.id === state.active) || SECTIONS[0];
+    view.innerHTML = sec.dashboard ? overallHTML() : sectionHTML(sec);
+    wireSection(view);
+  }
+
+  function sectionHTML(sec) {
+    const total = sectionTotal(sec);
+    let h = `<div class="sec-head" style="--secc:${sec.color}">
+      <h2><span class="bar"></span>${esc(sec.title)}</h2>
+      <p>${esc(sec.blurb)}</p>
+      <span class="sec-stat"><b>${total}</b> questions logged across <b>${sec.subjects.length}</b> subjects</span>
+    </div><div class="subjects">`;
+
+    sec.subjects.forEach((su, i) => {
+      const ckey = sec.id + "::" + su.name;
+      const collapsed = state.collapsed[ckey] ? " collapsed" : "";
+      const st = subjectTotal(sec.id, su);
+      h += `<section class="subject${collapsed}" style="--secc:${sec.color}">
+        <div class="subj-head" data-collapse="${esc(ckey)}">
+          <span class="chev">▼</span>
+          <span class="title">${esc(su.name)}</span>
+          <span class="count">${st} done · ${su.topics.length} topics</span>
+        </div>
+        <div class="topics">`;
+      su.topics.forEach(t => {
+        const id = topicId(sec.id, su.name, t);
+        const v = getCount(id);
+        h += `<div class="topic">
+          <span class="tname">${esc(t)}</span>
+          <div class="stepper">
+            <button class="step minus" data-log="${esc(id)}" data-d="-1" ${v === 0 ? "disabled" : ""}>−</button>
+            <button class="step" data-log="${esc(id)}" data-d="1">+1</button>
+            <button class="step" data-log="${esc(id)}" data-d="5">+5</button>
+            <button class="step" data-log="${esc(id)}" data-d="10">+10</button>
+          </div>
+          <span class="tval ${v === 0 ? "zero" : ""}">${v}</span>
+        </div>`;
+      });
+      h += `</div></section>`;
+    });
+    h += `</div>`;
+    return h;
+  }
+
+  function overallHTML() {
+    const gt = grandTotal();
+    const touched = topicsTouched();
+    const totalTopics = topicCountTotal();
+    const dl = daysLeft();
+    const tk = todayKey();
+    const today = state.daily[tk] || 0;
+    const avg = dl && dl > 0 ? Math.ceil((gt || 0) / Math.max(1, daysSinceStart())) : null;
+
+    let h = `<div class="sec-head" style="--secc:var(--c-overall)">
+      <h2><span class="bar"></span>Overall Progress</h2>
+      <p>${esc(SECTIONS[0].blurb)}</p>
+    </div>`;
+
+    // stat tiles
+    h += `<div class="grid-stats">
+      <div class="stat"><div class="k">Questions logged</div><div class="v">${gt}</div><div class="s">across all sections</div></div>
+      <div class="stat"><div class="k">Logged today</div><div class="v" style="color:var(--accent)">${today}</div><div class="s">${today > 0 ? "keep it going" : "no questions yet today"}</div></div>
+      <div class="stat"><div class="k">Topics practiced</div><div class="v">${touched}<span style="font-size:18px;color:var(--ink-faint)"> / ${totalTopics}</span></div><div class="s">${Math.round(touched / totalTopics * 100)}% of the syllabus touched</div></div>
+      <div class="stat"><div class="k">${dl === null ? "Exam date" : dl > 0 ? "Countdown" : "Exam"}</div><div class="v">${dl === null ? "—" : dl > 0 ? dl : Math.abs(dl)}</div><div class="s">${dl === null ? "set it in settings" : dl > 0 ? "days remaining" : dl === 0 ? "today — good luck!" : "days ago"}</div></div>
+    </div>`;
+
+    // section breakdown
+    const secs = SECTIONS.filter(s => s.subjects).map(s => ({ s, n: sectionTotal(s) }));
+    const max = Math.max(1, ...secs.map(x => x.n));
+    h += `<div class="panel"><h3>Effort by section</h3><p class="sub">Where your practice has gone so far. Aim for balance across all three scored sections.</p><div class="breakdown">`;
+    secs.forEach(({ s, n }) => {
+      const pct = Math.round(n / max * 100);
+      const share = gt > 0 ? Math.round(n / gt * 100) : 0;
+      h += `<div class="bd-row" style="--rc:${s.color}">
+        <span class="bl"><span class="d"></span>${esc(s.tab)}</span>
+        <span class="track"><i style="width:${n === 0 ? 2 : pct}%"></i></span>
+        <span class="bv">${n} <span style="color:var(--ink-faint);font-weight:600">· ${share}%</span></span>
+      </div>`;
+    });
+    h += `</div></div>`;
+
+    // 7-day activity
+    h += `<div class="panel"><h3>Last 7 days</h3><p class="sub">Questions logged each day. Consistency beats cramming.</p>`;
+    const days = last7();
+    const dmax = Math.max(1, ...days.map(d => d.n));
+    h += `<div class="spark">`;
+    days.forEach(d => {
+      const hpct = d.n === 0 ? 3 : Math.max(8, Math.round(d.n / dmax * 100));
+      h += `<div class="bcol ${d.n > 0 ? "has" : ""} ${d.today ? "today" : ""}">
+        <span class="bn">${d.n || ""}</span>
+        <div class="b" style="height:${hpct}%"></div>
+        <span class="bd">${d.label}</span>
+      </div>`;
+    });
+    h += `</div></div>`;
+
+    // pacing hint
+    if (dl !== null && dl > 0) {
+      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">
+        You have <b style="color:var(--ink)">${dl} day${dl === 1 ? "" : "s"}</b> until your exam.
+        ${gt > 0 ? `At your current total of <b style="color:var(--ink)">${gt}</b> questions, that's momentum worth keeping — a steady daily target across all three sections keeps every topic warm.` : `A common benchmark is 1,500–2,000 practice questions before test day. Start logging as you go and this dashboard will track your pace.`}
+      </p></div>`;
+    }
+
+    return h;
+  }
+
+  function daysSinceStart() {
+    const ks = Object.keys(state.daily);
+    if (!ks.length) return 1;
+    ks.sort();
+    const first = new Date(ks[0] + "T00:00:00");
+    const now = new Date(); now.setHours(0, 0, 0, 0);
+    return Math.max(1, Math.round((now - first) / 86400000) + 1);
+  }
+
+  function last7() {
+    const out = [];
+    const now = new Date(); now.setHours(0, 0, 0, 0);
+    const wd = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    for (let i = 6; i >= 0; i--) {
+      const dd = new Date(now); dd.setDate(now.getDate() - i);
+      const k = dd.toISOString().slice(0, 10);
+      out.push({ label: i === 0 ? "Today" : wd[dd.getDay()], n: state.daily[k] || 0, today: i === 0 });
+    }
+    return out;
+  }
+
+  function wireSection(root) {
+    root.querySelectorAll("[data-log]").forEach(b => {
+      b.addEventListener("click", () => log(b.getAttribute("data-log"), parseInt(b.getAttribute("data-d"), 10)));
+    });
+    root.querySelectorAll("[data-collapse]").forEach(h => {
+      h.addEventListener("click", () => {
+        const k = h.getAttribute("data-collapse");
+        state.collapsed[k] = !state.collapsed[k];
+        save(); render();
+      });
+    });
+  }
+
+  /* ============ Modal ============ */
+  const scrim = document.getElementById("scrim");
+  function openModal(first) {
+    document.getElementById("f-name").value = state.name || "";
+    document.getElementById("f-date").value = state.examDate || "";
+    document.getElementById("m-kick").textContent = first ? "Welcome" : "Settings";
+    document.getElementById("m-title").textContent = first ? "Let's set up your prep" : "Edit your details";
+    document.getElementById("m-lead").textContent = first
+      ? "Two quick things and you're in. Change them anytime from the gear icon."
+      : "Update your name or exam date. Your logged questions stay put.";
+    document.getElementById("m-save").textContent = first ? "Start tracking" : "Save changes";
+    document.getElementById("m-reset").hidden = first;
+    scrim.hidden = false;
+    if (first) setTimeout(() => document.getElementById("f-name").focus(), 60);
+  }
+  function closeModal() { scrim.hidden = true; }
+
+  document.getElementById("btn-settings").onclick = () => openModal(false);
+  document.getElementById("m-save").onclick = () => {
+    state.name = document.getElementById("f-name").value.trim();
+    state.examDate = document.getElementById("f-date").value || "";
+    save(); closeModal(); render();
+  };
+  document.getElementById("m-reset").onclick = () => {
+    if (confirm("Reset every logged question to zero? Your name and exam date stay. This cannot be undone.")) {
+      state.counts = {}; state.daily = {}; save(); closeModal(); render();
+    }
+  };
+  scrim.addEventListener("click", (e) => { if (e.target === scrim && (state.name || state.examDate)) closeModal(); });
+
+  /* ============ Theme ============ */
+  const THEME_KEY = "gmat_theme";
+  function applyTheme(t) {
+    if (t) document.documentElement.setAttribute("data-theme", t);
+    else document.documentElement.removeAttribute("data-theme");
+  }
+  applyTheme(localStorage.getItem(THEME_KEY));
+  document.getElementById("btn-theme").onclick = () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const isDark = cur ? cur === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = isDark ? "light" : "dark";
+    applyTheme(next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+  };
+
+  /* ============ Render ============ */
+  function render() { renderBanner(); renderTabs(); renderView(); }
+  render();
+  if (!state.examDate && !state.name) openModal(true);
+
+})();
+</script>

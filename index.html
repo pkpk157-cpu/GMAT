@@ -102,6 +102,7 @@
   .sec-head h2 { font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0; letter-spacing: -.01em; text-wrap: balance; display: flex; align-items: center; gap: 11px; }
   .sec-head h2 .bar { width: 6px; height: 24px; border-radius: 3px; background: var(--secc); flex: none; }
   .sec-head p { margin: 8px 0 0; color: var(--ink-soft); max-width: 62ch; font-size: 14.5px; }
+  .sec-head p.sec-exam { font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-top: 7px; }
   .sec-stat { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 13px; font-size: 13px; color: var(--ink-soft); }
   .sec-stat b { font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
   .sec-stat .acc { color: var(--good); }
@@ -510,6 +511,13 @@
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
   const PACE = { quant: 130, data: 135, rc: 120, cr: 120 };
   const paceMs = (secId) => (PACE[secId] || 120) * 1000;
+  // Real-exam allocation shown at the top of each section tab (approx where not exact).
+  const EXAM = {
+    quant: "45 min · 21 questions · ~2:10 each",
+    data:  "45 min · 20 questions · ~2:15 each",
+    rc:    "Verbal · 45 min · ~13 of 23 Qs · ~2:00 each",
+    cr:    "Verbal · 45 min · ~10 of 23 Qs · ~2:00 each"
+  };
 
   /* State */
   const KEY = "gmat_tracker_v2";
@@ -605,7 +613,7 @@
     const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
     let h = `<div class="sec-head" style="--secc:${sec.color}">
       <h2><span class="bar"></span>${esc(sec.title)}</h2>
-      <p>${esc(sec.blurb)}</p>
+      <p class="sec-exam">⏱ ${esc(EXAM[sec.id] || "")}</p>
       <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}${ag.ms>0?`<span>Avg <b>${fmtDur(ag.ms/ag.d)}</b>/q</span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
     </div><div class="subjects">`;
     sec.subjects.forEach(su => {

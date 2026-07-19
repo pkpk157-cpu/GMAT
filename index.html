@@ -321,10 +321,17 @@
   .rs-pct { font-family: var(--serif); font-size: 26px; font-weight: 600; }
   .rs-log { font-size: 12px; color: var(--good); font-weight: 700; margin-top: 2px; }
   .rs-time { font-size: 12px; color: var(--ink-soft); font-weight: 700; margin-top: 3px; font-variant-numeric: tabular-nums; }
-  .qtimer { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 20px; transition: color .2s, background .2s; }
+  .qtimer { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 20px; border: 1px solid transparent; transition: color .2s, background .2s; }
   .qtimer.done { color: var(--accent); background: var(--accent-wash); }
   .qtimer.warn { color: var(--warn); background: var(--gold-wash); }
   .qtimer.over { color: #fff; background: var(--bad); }
+  .qtimer-wrap { display: inline-flex; align-items: center; gap: 5px; }
+  .qtimer.live { cursor: pointer; }
+  .qtimer.live:hover { border-color: var(--accent); }
+  .qtimer.paused { color: var(--warn); background: var(--gold-wash); }
+  .qtimer-reset { border: 1px solid var(--line); background: var(--surface); color: var(--ink-faint); width: 26px; height: 26px; border-radius: 8px; font-size: 13px; line-height: 1; }
+  .qtimer-reset:hover { color: var(--accent); border-color: var(--accent); }
+  .hint-box summary { color: var(--gold); }
   .rev-time { font-size: 11px; color: var(--ink-faint); font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 8px; }
   .rev-time.slow { color: var(--bad); }
   .tstat .ttime { font-size: 10px; font-weight: 700; color: var(--ink-faint); font-variant-numeric: tabular-nums; line-height: 1.2; }
@@ -391,7 +398,7 @@
   .expl summary::-webkit-details-marker { display: none; }
   .expl summary::before { content: "▸  "; }
   .expl[open] summary::before { content: "▾  "; }
-  .expl .ex { padding: 0 13px 13px; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+  .expl .ex { padding: 0 13px 13px; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); white-space: pre-line; }
 
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
@@ -976,8 +983,23 @@
     return h + `</div></div>`;
   }
 
-  let runSetId = null, runIndex = 0, qStart = 0, qTimer = null, pendingL = null, timedFor = null;
+  let runSetId = null, runIndex = 0, qStart = 0, qAccum = 0, qPaused = false, qTimer = null, pendingL = null, timedFor = null;
   function stopTimer() { if (qTimer) { clearInterval(qTimer); qTimer = null; } }
+  function elapsedMs() { if (timedFor == null) return 0; return qAccum + (qPaused ? 0 : Math.max(0, Date.now() - qStart)); }
+  function startQuestionTimer(key) { qAccum = 0; qPaused = false; qStart = Date.now(); timedFor = key; }
+  function updateTimerDisplay() {
+    const el = document.getElementById("qtimer"); if (!el) return;
+    const tgt = parseInt(el.getAttribute("data-target"), 10) || 120000, e = elapsedMs();
+    el.textContent = fmtClock(e) + (qPaused ? " ⏸" : "");
+    el.className = "qtimer live" + (qPaused ? " paused" : "") + (e > tgt ? " over" : (e > tgt*0.75 ? " warn" : ""));
+  }
+  function runTimerInterval() { stopTimer(); if (!qPaused) qTimer = setInterval(updateTimerDisplay, 500); }
+  function toggleTimer() {
+    if (qPaused) { qStart = Date.now(); qPaused = false; }
+    else { qAccum += Math.max(0, Date.now() - qStart); qPaused = true; }
+    updateTimerDisplay(); runTimerInterval();
+  }
+  function resetQTimer() { qAccum = 0; qStart = Date.now(); updateTimerDisplay(); runTimerInterval(); }
   function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
   function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
@@ -1016,7 +1038,9 @@
     const active = pendingL != null ? pendingL : (committed || null); // highlighted choice
     const tgt = paceMs(set.section);
     const paceCls = (ms) => ms > tgt ? "over" : (ms > tgt*0.75 ? "warn" : "done");
-    const timerHTML = (committed && practice) ? `<span class="qtimer ${paceCls(run.times[q.n] || 0)}" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>` : `<span class="qtimer" id="qtimer" data-live="1" data-target="${tgt}">0:00</span>`;
+    const timerHTML = committed
+      ? `<span class="qtimer ${paceCls(run.times[q.n] || 0)}" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>`
+      : `<span class="qtimer-wrap"><button class="qtimer live" id="qtimer" data-live="1" data-target="${tgt}" data-toggle-timer title="Tap to pause / resume">0:00</button><button class="qtimer-reset" data-reset-timer title="Reset timer">↺</button></span>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
     h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
@@ -1035,6 +1059,7 @@
       if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
       h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
     } else {
+      if (q.hint) h += `<details class="expl hint-box"><summary>💡 Hint</summary><div class="ex">${esc(q.hint)}</div></details>`;
       // Two-step: pick highlights, Confirm commits (prevents misclicks).
       const canConfirm = pendingL != null && pendingL !== committed;
       const label = committed ? `Confirm change to ${pendingL || committed}` : (pendingL ? `Confirm answer ${pendingL}` : "Confirm answer");
@@ -1086,10 +1111,8 @@
     const tEl = document.getElementById("qtimer");
     if (tEl && tEl.getAttribute("data-live") === "1") {
       const key = runSetId + ":" + runIndex;
-      if (timedFor !== key) { qStart = Date.now(); timedFor = key; } // reset only on a new question, not on re-render/pick
-      const tgt = parseInt(tEl.getAttribute("data-target"), 10) || 120000;
-      const tick = () => { const el = document.getElementById("qtimer"); if (!el) { stopTimer(); return; } const e = Date.now() - qStart; el.textContent = fmtClock(e); el.className = "qtimer" + (e > tgt ? " over" : (e > tgt*0.75 ? " warn" : "")); };
-      tick(); qTimer = setInterval(tick, 500);
+      if (timedFor !== key) startQuestionTimer(key); // fresh timer only on a new question, not on re-render/pick
+      updateTimerDisplay(); runTimerInterval();
     }
     const card = document.getElementById("qcard");
     if (card && run.mode && !run.submitted) {
@@ -1102,6 +1125,8 @@
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); run.idx = 0; runIndex = 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
+    if (e.target.closest("[data-toggle-timer]")) { toggleTimer(); return; }   // tap the timer to pause / resume
+    if (e.target.closest("[data-reset-timer]")) { resetQTimer(); return; }     // ↺ resets this question's timer
     // Step 1: pick highlights the option (no commit) — guards against misclicks.
     const pick = e.target.closest("[data-pick]"); if (pick) {
       const run = ensureRun(set.id); if (run.submitted) return;
@@ -1116,7 +1141,7 @@
       const run = ensureRun(set.id); if (run.submitted) return;
       const q = set.questions[runIndex];
       const firstTime = !run.ans[q.n];
-      const elapsed = qStart ? (Date.now() - qStart) : 0;
+      const elapsed = elapsedMs();
       const chosen = pendingL; pendingL = null;
       run.ans[String(q.n)] = chosen;
       if (firstTime) run.times[String(q.n)] = elapsed;

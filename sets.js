@@ -1,4 +1,5 @@
 /* GMAT Prep — Practice Sets repository
+   Math is written in LaTeX inside \( ... \) and rendered with KaTeX.
    question: { n, topic, correct:"A".."E", options, text, choices[], hint, expl, note? }
 */
 window.GMAT_SETS = [
@@ -13,7 +14,7 @@ window.GMAT_SETS = [
       "topic": "Divisibility & remainders",
       "correct": "A",
       "options": 4,
-      "text": "Minimum difference between x and y such that 1x71y61 is exactly divisible by 11 is:",
+      "text": "Minimum difference between \\(x\\) and \\(y\\) such that \\(1x71y61\\) is exactly divisible by 11 is:",
       "choices": [
         "2",
         "3",
@@ -21,7 +22,7 @@ window.GMAT_SETS = [
         "0"
       ],
       "hint": "Use the divisibility rule for 11: compare the sum of the odd-position digits with the sum of the even-position digits.",
-      "expl": "Step 1 — Divisibility rule for 11: a number is divisible by 11 when (sum of digits in odd positions) − (sum in even positions) is 0 or a multiple of 11.\nStep 2 — Label 1x71y61 by position from the left: odd positions hold 1, 7, y, 1; even positions hold x, 1, 6.\nStep 3 — Odd sum = 1+7+y+1 = 9+y. Even sum = x+1+6 = 7+x.\nStep 4 — Set the difference to 0 (the only achievable multiple of 11 for single digits): (9+y) − (7+x) = 0 ⇒ x − y = 2.\nStep 5 — The rule forces x − y = 2, so the minimum difference is 2.\nAnswer: 2 (A)."
+      "expl": "Step 1 — Divisibility rule for 11: (sum of digits in odd positions) − (sum in even positions) must be 0 or a multiple of 11.\nStep 2 — In \\(1x71y61\\), odd positions hold \\(1,7,y,1\\); even positions hold \\(x,1,6\\).\nStep 3 — Odd sum \\(=9+y\\); even sum \\(=7+x\\).\nStep 4 — Set the difference to 0: \\((9+y)-(7+x)=0 \\Rightarrow x-y=2\\).\nStep 5 — So the minimum difference is 2.\nAnswer: 2 (A)."
     },
     {
       "n": 2,
@@ -36,22 +37,22 @@ window.GMAT_SETS = [
         "13"
       ],
       "hint": "Don't add all eight — pair each lower number with a higher one symmetric about 81.",
-      "expl": "Step 1 — The eight numbers are 77, 78, 79, 80 (below 81) and 82, 83, 84, 85 (above 81).\nStep 2 — Instead of adding directly, pair smallest with largest: (77+85), (78+84), (79+83), (80+82).\nStep 3 — Each pair = 162, and there are 4 pairs, so the sum = 4 × 162 = 648.\nStep 4 — Since 162 = 2 × 81, the sum = 8 × 81, so every factor of 81 divides it.\nStep 5 — 81 = 3⁴, which is divisible by 9. Scan the options for a factor of 81 → 9.\nAnswer: 9 (B)."
+      "expl": "Step 1 — The eight numbers are \\(77,78,79,80\\) and \\(82,83,84,85\\).\nStep 2 — Pair smallest with largest: \\((77+85),(78+84),(79+83),(80+82)\\), each \\(=162\\).\nStep 3 — Sum \\(=4\\times162=648=8\\times81\\).\nStep 4 — Since \\(81=3^4\\), the sum is divisible by 9.\nAnswer: 9 (B)."
     },
     {
       "n": 3,
       "topic": "Odd / even & sign rules",
       "correct": "A",
       "options": 4,
-      "text": "If 'n' is a natural number, then the greatest integer less than or equal to (2 + √3)^n is:",
+      "text": "If \\(n\\) is a natural number, then the greatest integer less than or equal to \\((2+\\sqrt3)^{n}\\) is:",
       "choices": [
         "odd",
         "even",
-        "even when 'n' is even and odd when 'n' is odd",
-        "even when 'n' is odd and odd when 'n' is even"
+        "even when \\(n\\) is even and odd when \\(n\\) is odd",
+        "even when \\(n\\) is odd and odd when \\(n\\) is even"
       ],
-      "hint": "Look at (2+√3)ⁿ together with its conjugate (2−√3)ⁿ.",
-      "expl": "Step 1 — Let S = (2+√3)ⁿ + (2−√3)ⁿ. Expanding both binomials, the √3 terms cancel, leaving an integer — and it is always even.\nStep 2 — Since 2 − √3 ≈ 0.27, the term (2−√3)ⁿ is a small positive number strictly between 0 and 1.\nStep 3 — So (2+√3)ⁿ = S − (2−√3)ⁿ = (even integer) − (fraction between 0 and 1).\nStep 4 — The greatest integer ≤ (2+√3)ⁿ is that even integer minus 1 — i.e. odd.\nStep 5 — Check n = 1: 2+√3 ≈ 3.73, floor = 3 (odd). Always odd.\nAnswer: odd (A)."
+      "hint": "Look at \\((2+\\sqrt3)^{n}\\) together with its conjugate \\((2-\\sqrt3)^{n}\\).",
+      "expl": "Step 1 — Let \\(S=(2+\\sqrt3)^n+(2-\\sqrt3)^n\\); the \\(\\sqrt3\\) terms cancel, leaving an even integer.\nStep 2 — Since \\(0<(2-\\sqrt3)^n<1\\), we get \\((2+\\sqrt3)^n=S-(\\text{small fraction})\\).\nStep 3 — So the floor \\(=S-1=\\) an odd number.\nStep 4 — Check \\(n=1\\): \\(2+\\sqrt3\\approx3.73\\), floor \\(=3\\) (odd).\nAnswer: odd (A)."
     },
     {
       "n": 4,
@@ -66,14 +67,14 @@ window.GMAT_SETS = [
         "100"
       ],
       "hint": "'Divisible by 3 and 5' means divisible by their LCM.",
-      "expl": "Step 1 — 'Divisible by 3 and 5 together' means divisible by both, i.e. by their LCM. As 3 and 5 are coprime, LCM = 15. (Don't add 3+5 — a classic trap.)\nStep 2 — Count multiples of 15 up to 300: 15, 30, 45, …, 300.\nStep 3 — Number of terms = 300 ÷ 15 = 20.\nAnswer: 20 (C)."
+      "expl": "Step 1 — 'Divisible by 3 and 5' means divisible by \\(\\operatorname{lcm}(3,5)=15\\) (don't add \\(3+5\\)).\nStep 2 — Multiples of 15 up to 300: \\(15,30,\\dots,300\\).\nStep 3 — Count \\(=300\\div15=20\\).\nAnswer: 20 (C)."
     },
     {
       "n": 5,
       "topic": "Divisibility & remainders",
       "correct": "B",
       "options": 4,
-      "text": "What is the remainder when 1! + 2! + 3! + ... + 100! is divided by 7?",
+      "text": "What is the remainder when \\(1!+2!+3!+\\dots+100!\\) is divided by 7?",
       "choices": [
         "0",
         "5",
@@ -81,7 +82,7 @@ window.GMAT_SETS = [
         "3"
       ],
       "hint": "Which factorials are already multiples of 7? Ignore those.",
-      "expl": "Step 1 — For every k ≥ 7, k! contains a factor of 7, so k! is divisible by 7 and adds remainder 0.\nStep 2 — Only 1! through 6! affect the remainder: 1 + 2 + 6 + 24 + 120 + 720 = 873.\nStep 3 — Divide: 873 = 7 × 124 + 5 (since 7 × 124 = 868).\nAnswer: 5 (B)."
+      "expl": "Step 1 — For \\(k\\ge7\\), \\(k!\\) is a multiple of 7, contributing remainder 0.\nStep 2 — Only \\(1!\\) to \\(6!\\) matter: \\(1+2+6+24+120+720=873\\).\nStep 3 — \\(873=7\\times124+5\\).\nAnswer: 5 (B)."
     },
     {
       "n": 6,
@@ -96,7 +97,7 @@ window.GMAT_SETS = [
         "46"
       ],
       "hint": "Find the largest multiple of 13 that is still under 500.",
-      "expl": "Step 1 — The multiples of 13 up to 500 are 13, 26, …, up to the largest one ≤ 500.\nStep 2 — 500 ÷ 13 ≈ 38.46, so the largest multiple is 13 × 38 = 494.\nStep 3 — Therefore there are 38 such numbers.\nAnswer: 38 (B)."
+      "expl": "Step 1 — Largest multiple of 13 under 500: \\(500\\div13\\approx38.4\\), so \\(13\\times38=494\\).\nStep 2 — Hence 38 numbers.\nAnswer: 38 (B)."
     },
     {
       "n": 7,
@@ -111,7 +112,7 @@ window.GMAT_SETS = [
         "9"
       ],
       "hint": "There's a shortcut: divisor relates to the remainders and the remainder of the sum.",
-      "expl": "Step 1 — Let the divisor be d. The two numbers are d·a + 11 and d·b + 21.\nStep 2 — Their sum = d(a+b) + 32; dividing by d removes the d(a+b) part, leaving remainder = 32 mod d.\nStep 3 — This remainder is 4, so 32 − 4 = 28 is a multiple of d, and d must exceed the larger remainder (21).\nStep 4 — Hence d = 28 (28 > 21 ✓). Shortcut: d = (11 + 21) − 4 = 28.\nAnswer: 28 (B)."
+      "expl": "Step 1 — The numbers are \\(da+11\\) and \\(db+21\\); their sum \\(=d(a+b)+32\\).\nStep 2 — Remainder of the sum \\(=32\\bmod d=4\\), so \\(d\\mid(32-4)=28\\), with \\(d>21\\).\nStep 3 — Thus \\(d=28\\). Shortcut: \\((11+21)-4=28\\).\nAnswer: 28 (B)."
     },
     {
       "n": 8,
@@ -126,7 +127,7 @@ window.GMAT_SETS = [
         "data inadequate"
       ],
       "hint": "Write both conditions as equations and count unknowns vs equations.",
-      "expl": "Step 1 — Write the two conditions: N = d·q₁ + 23 and 2N = d·q₂ + 11.\nStep 2 — From the first, 2N = 2d·q₁ + 46, so 2N leaves remainder 46 mod d. Setting that to 11 means d divides 46 − 11 = 35, with d > 23 ⇒ d = 35.\nStep 3 — But we have two equations and three unknowns (d, q₁, q₂), so the information doesn't uniquely fix the divisor.\nStep 4 — The answer key therefore marks it 'data inadequate'. (If your course expects a value, it is 35.)\nAnswer: data inadequate (D)."
+      "expl": "Step 1 — \\(N=dq_1+23\\) and \\(2N=dq_2+11\\).\nStep 2 — \\(2N=2dq_1+46\\), so remainder \\(46\\bmod d=11 \\Rightarrow d\\mid35,\\ d>23 \\Rightarrow d=35\\).\nStep 3 — But two equations, three unknowns \\((d,q_1,q_2)\\) — not uniquely fixed.\nStep 4 — Key marks it 'data inadequate'. (If a value is required, \\(d=35\\).)\nAnswer: data inadequate (D)."
     },
     {
       "n": 9,
@@ -140,23 +141,23 @@ window.GMAT_SETS = [
         "0",
         "4"
       ],
-      "hint": "The remainder of N² mod 5 depends only on N mod 5 — try the smallest such N.",
-      "expl": "Step 1 — Any N with remainder 3 mod 5 is N = 5q + 3. The remainder of N² depends only on N's remainder, so use the simplest: N = 3.\nStep 2 — N² = 9.\nStep 3 — 9 ÷ 5 = 1 remainder 4.\nAnswer: 4 (D)."
+      "hint": "The remainder of \\(N^2\\bmod 5\\) depends only on \\(N\\bmod 5\\) — try the smallest such \\(N\\).",
+      "expl": "Step 1 — \\(N=5q+3\\); the remainder of \\(N^2\\) depends only on \\(N\\bmod5\\), so take \\(N=3\\).\nStep 2 — \\(N^2=9\\).\nStep 3 — \\(9\\div5=1\\) remainder 4.\nAnswer: 4 (D)."
     },
     {
       "n": 10,
       "topic": "Fractions & decimals",
       "correct": "B",
       "options": 4,
-      "text": "The value of 3 ÷ (8 − 5) + (4 − 2) + 2 + 8/13 is:",
+      "text": "The value of \\(3 \\div (8-5) + (4-2) + 2 + \\frac{8}{13}\\) is:",
       "choices": [
-        "15/17",
-        "13/17",
-        "15/19",
-        "13/19"
+        "\\(\\frac{15}{17}\\)",
+        "\\(\\frac{13}{17}\\)",
+        "\\(\\frac{15}{19}\\)",
+        "\\(\\frac{13}{19}\\)"
       ],
       "hint": "Apply BODMAS: division before addition.",
-      "expl": "Step 1 — Apply BODMAS: brackets and division before addition. Here (8−5) = 3 and (4−2) = 2.\nStep 2 — Carrying the divisions and the 8/13 term through, the expression simplifies to 13/17.\nNote — The exact operators were garbled in the source PDF; confirm the printed expression. Intended value 13/17.\nAnswer: 13/17 (B).",
+      "expl": "Step 1 — Apply BODMAS: \\((8-5)=3,\\ (4-2)=2\\), division before addition.\nStep 2 — Working through, the expression simplifies to \\(\\frac{13}{17}\\).\nNote — The exact operators were garbled in the source PDF; verify. Intended value \\(\\frac{13}{17}\\).\nAnswer: \\(\\frac{13}{17}\\) (B).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -171,8 +172,8 @@ window.GMAT_SETS = [
         "37",
         "26"
       ],
-      "hint": "For two successive divisions, combine as (first divisor × second remainder) + first remainder.",
-      "expl": "Step 1 — 'Successively divided by 7 then 8' means: divide N by 7 (remainder 3), then divide that quotient by 8 (remainder 5).\nStep 2 — Rebuild the smallest N: quotient after ÷7 is (8·0 + 5) = 5, so N = 7 × 5 + 3 = 38.\nStep 3 — Since 7 × 8 = 56, dividing 38 by 56 leaves 38.\nStep 4 — Shortcut: remainder = (first divisor × second remainder) + first remainder = 7 × 5 + 3 = 38.\nAnswer: 38 (A)."
+      "hint": "For two successive divisions, combine as (first divisor \\(\\times\\) second remainder) + first remainder.",
+      "expl": "Step 1 — Rebuild the smallest \\(N\\): quotient after \\(\\div7\\) is \\(8\\cdot0+5=5\\), so \\(N=7\\times5+3=38\\).\nStep 2 — Since \\(7\\times8=56\\), \\(38\\div56\\) leaves 38.\nStep 3 — Shortcut: \\(7\\times5+3=38\\).\nAnswer: 38 (A)."
     },
     {
       "n": 12,
@@ -187,7 +188,7 @@ window.GMAT_SETS = [
         "2978"
       ],
       "hint": "Split the count by 1-digit, 2-digit and 3-digit numbers.",
-      "expl": "Step 1 — 'Smallest to greatest three-digit number' means writing every number from 1 to 999.\nStep 2 — Count key presses by digit-length:\n • 1–9: 9 numbers × 1 = 9 presses.\n • 10–99: 90 numbers × 2 = 180 presses.\n • 100–999: 900 numbers × 3 = 2700 presses.\nStep 3 — Total = 9 + 180 + 2700 = 2889.\nAnswer: 2889 (B)."
+      "expl": "Step 1 — Writing 1 to 999, count presses by digit-length:\n • 1–9: \\(9\\times1=9\\).\n • 10–99: \\(90\\times2=180\\).\n • 100–999: \\(900\\times3=2700\\).\nStep 2 — Total \\(=9+180+2700=2889\\).\nAnswer: 2889 (B)."
     },
     {
       "n": 13,
@@ -202,52 +203,52 @@ window.GMAT_SETS = [
         "None of these"
       ],
       "hint": "Build the smallest number that fits, then re-divide it in the new order.",
-      "expl": "Step 1 — Build the smallest number fitting 'divided by 3, 5, 8 with remainders 1, 2, 4', from the inside out.\nStep 2 — Last quotient 0: 8·0 + 4 = 4. Then 5·4 + 2 = 22. Then 3·22 + 1 = 67.\nStep 3 — Now reverse the divisor order (÷8, ÷5, ÷3) on 67: 67 ÷ 8 = 8 r3; 8 ÷ 5 = 1 r3; 1 ÷ 3 = 0 r1.\nStep 4 — Remainders in order: 3, 3, 1.\nAnswer: 3, 3, 1 (A)."
+      "expl": "Step 1 — Build \\(N\\): \\(8\\cdot0+4=4;\\ 5\\times4+2=22;\\ 3\\times22+1=67\\).\nStep 2 — Reverse the order \\((\\div8,\\div5,\\div3)\\) on 67: \\(67\\to r3;\\ 8\\to r3;\\ 1\\to r1\\).\nStep 3 — Remainders: 3, 3, 1.\nAnswer: 3, 3, 1 (A)."
     },
     {
       "n": 14,
       "topic": "Divisibility & remainders",
       "correct": "A",
       "options": 4,
-      "text": "The numbers 1 to 29 are written side by side as follows: 1234567891011......2829. If this number is divided by 9, what is the remainder?",
+      "text": "The numbers 1 to 29 are written side by side as follows: \\(1234567891011\\ldots2829\\). If this number is divided by 9, what is the remainder?",
       "choices": [
         "3",
         "1",
         "0",
         "None of these"
       ],
-      "hint": "A number's remainder mod 9 equals the remainder of the sum of its parts.",
-      "expl": "Step 1 — Because 10 ≡ 1 (mod 9), a number leaves the same remainder mod 9 as the sum of its 'parts'.\nStep 2 — So the big concatenated number ≡ (1 + 2 + 3 + … + 29) mod 9.\nStep 3 — Sum 1 to 29 = 29 × 30 / 2 = 435.\nStep 4 — 435 mod 9: digit sum 4 + 3 + 5 = 12 → 1 + 2 = 3.\nAnswer: 3 (A)."
+      "hint": "A number's remainder \\(\\bmod\\,9\\) equals the remainder of the sum of its parts.",
+      "expl": "Step 1 — Since \\(10\\equiv1\\ (\\bmod\\,9)\\), the number \\(\\equiv\\) sum of its parts \\((\\bmod\\,9)\\).\nStep 2 — Sum \\(1+2+\\dots+29=\\frac{29\\times30}{2}=435\\).\nStep 3 — \\(435\\bmod9\\): \\(4+3+5=12\\to3\\).\nAnswer: 3 (A)."
     },
     {
       "n": 15,
       "topic": "Divisibility & remainders",
       "correct": "A",
       "options": 4,
-      "text": "If x959y is divisible by 44 and y > 5, then what are the values of the digits x and y?",
+      "text": "If \\(x959y\\) is divisible by 44 and \\(y>5\\), then what are the values of the digits \\(x\\) and \\(y\\)?",
       "choices": [
-        "x = 7, y = 6",
-        "x = 4, y = 8",
-        "x = 6, y = 7",
+        "\\(x=7,\\ y=6\\)",
+        "\\(x=4,\\ y=8\\)",
+        "\\(x=6,\\ y=7\\)",
         "None of these"
       ],
-      "hint": "44 = 4 × 11 — apply the rules for 4 and for 11 separately.",
-      "expl": "Step 1 — 44 = 4 × 11 (coprime), so the number must pass both the ÷4 and ÷11 tests.\nStep 2 — ÷4 uses the last two digits '9y'; with y > 5, only y = 6 makes 9y (=96) divisible by 4.\nStep 3 — Now x9596. ÷11 rule: (odd-position sum) − (even-position sum) = 0 ⇒ (x + 5 + 6) − (9 + 9) = 0 ⇒ x = 7.\nStep 4 — So x = 7, y = 6.\nAnswer: x = 7, y = 6 (A)."
+      "hint": "\\(44=4\\times11\\) — apply the rules for 4 and for 11 separately.",
+      "expl": "Step 1 — \\(44=4\\times11\\); test both.\nStep 2 — \\(\\div4\\): last two digits \\(9y\\) divisible by 4 with \\(y>5 \\Rightarrow y=6\\).\nStep 3 — \\(\\div11\\): \\((x+5+6)-(9+9)=0 \\Rightarrow x=7\\).\nAnswer: \\(x=7,\\ y=6\\) (A)."
     },
     {
       "n": 16,
       "topic": "Fractions & decimals",
       "correct": "D",
       "options": 4,
-      "text": "When (1/2 − 1/4 + 1/5 − 1/6) is divided by (2/5 − 5/9 + 3/5 − 7/18), the result is:",
+      "text": "When \\(\\left(\\frac{1}{2}-\\frac{1}{4}+\\frac{1}{5}-\\frac{1}{6}\\right)\\) is divided by \\(\\left(\\frac{2}{5}-\\frac{5}{9}+\\frac{3}{5}-\\frac{7}{18}\\right)\\), the result is:",
       "choices": [
-        "2 1/3",
-        "3 1/6",
-        "3 1/10",
-        "5 1/10"
+        "\\(2\\tfrac{1}{3}\\)",
+        "\\(3\\tfrac{1}{6}\\)",
+        "\\(3\\tfrac{1}{10}\\)",
+        "\\(5\\tfrac{1}{10}\\)"
       ],
       "hint": "Simplify the numerator bracket and denominator bracket separately, then divide.",
-      "expl": "Step 1 — Simplify the numerator bracket and the denominator bracket separately, each over a common denominator.\nStep 2 — Divide the numerator result by the denominator result.\nStep 3 — The value works out to 5 1/10.\nNote — The fractions were garbled in the source PDF; verify the exact terms. Intended answer 5 1/10.\nAnswer: 5 1/10 (D).",
+      "expl": "Step 1 — Simplify the numerator and denominator brackets separately.\nStep 2 — Divide one by the other to get \\(5\\tfrac{1}{10}\\).\nNote — The fractions were garbled in the source PDF; verify. Intended \\(5\\tfrac{1}{10}\\).\nAnswer: \\(5\\tfrac{1}{10}\\) (D).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -255,15 +256,15 @@ window.GMAT_SETS = [
       "topic": "Fractions & decimals",
       "correct": "C",
       "options": 4,
-      "text": "A boy multiplied a certain number x by 13. He found that the resulting product consisted entirely of nines. Find the smallest value of x.",
+      "text": "A boy multiplied a certain number \\(x\\) by 13. He found that the resulting product consisted entirely of nines. Find the smallest value of \\(x\\).",
       "choices": [
         "76913",
         "76933",
         "76923",
         "75933"
       ],
-      "hint": "'All nines' means the product is 999999 — what is 999999 ÷ 13?",
-      "expl": "Step 1 — 'Product is entirely nines' means x × 13 is a string of 9s. The smallest all-9s multiple of 13 is 999999 (because 10⁶ − 1 is divisible by 13).\nStep 2 — Divide: 999999 ÷ 13 = 76923.\nStep 3 — So the smallest x is 76923.\nAnswer: 76923 (C)."
+      "hint": "'All nines' means the product is 999999 — what is \\(999999\\div13\\)?",
+      "expl": "Step 1 — 'All nines' means the product is \\(999999\\) (since \\(10^6-1\\) is divisible by 13).\nStep 2 — \\(999999\\div13=76923\\).\nAnswer: 76923 (C)."
     },
     {
       "n": 18,
@@ -278,7 +279,7 @@ window.GMAT_SETS = [
         "1, 5, 4"
       ],
       "hint": "Build the actual number from the remainders, then re-divide in reverse order.",
-      "expl": "Step 1 — Build the number from remainders 3, 4, 7 (divisors 5, 6, 8): 8·0 + 7 = 7; 6·7 + 4 = 46; 5·46 + 3 = 233.\nStep 2 — Reverse the divisor order (÷8, ÷6, ÷5) on 233: 233 ÷ 8 = 29 r1; 29 ÷ 6 = 4 r5; 4 ÷ 5 = 0 r4.\nStep 3 — Remainders: 1, 5, 4.\nAnswer: 1, 5, 4 (D)."
+      "expl": "Step 1 — Build \\(N\\): \\(8\\cdot0+7=7;\\ 6\\times7+4=46;\\ 5\\times46+3=233\\).\nStep 2 — Reverse \\((\\div8,\\div6,\\div5)\\) on 233: \\(233\\to r1;\\ 29\\to r5;\\ 4\\to r4\\).\nStep 3 — Remainders: 1, 5, 4.\nAnswer: 1, 5, 4 (D)."
     },
     {
       "n": 19,
@@ -293,7 +294,7 @@ window.GMAT_SETS = [
         "None of these"
       ],
       "hint": "Rebuild the number outward from the final quotient using each remainder.",
-      "expl": "Step 1 — 385 = 5 × 7 × 11. The number was divided by 5, then 7, then 11, giving quotient 102 and remainders 4, 6, 10.\nStep 2 — Rebuild outward from the top quotient: 11 × 102 + 10 = 1132.\nStep 3 — 7 × 1132 + 6 = 7930.\nStep 4 — 5 × 7930 + 4 = 39654.\nAnswer: 39654 (A)."
+      "expl": "Step 1 — \\(385=5\\times7\\times11\\). Rebuild outward: \\(11\\times102+10=1132\\).\nStep 2 — \\(7\\times1132+6=7930\\).\nStep 3 — \\(5\\times7930+4=39654\\).\nAnswer: 39654 (A)."
     },
     {
       "n": 20,
@@ -308,14 +309,14 @@ window.GMAT_SETS = [
         "2639"
       ],
       "hint": "Same divisor-from-remainders shortcut as the earlier problem.",
-      "expl": "Step 1 — Use the same shortcut: divisor = (sum of the two remainders) − (remainder of the sum).\nStep 2 — = (4375 + 2986) − 2361 = 7361 − 2361 = 5000.\nStep 3 — Check: 5000 exceeds both remainders ✓.\nAnswer: 5000 (B)."
+      "expl": "Step 1 — Divisor \\(=(\\text{sum of remainders})-(\\text{remainder of sum})\\).\nStep 2 — \\(=(4375+2986)-2361=5000\\).\nAnswer: 5000 (B)."
     },
     {
       "n": 21,
       "topic": "Exponent rules",
       "correct": "A",
       "options": 4,
-      "text": "Find the unit digit in the product (2467)^153 × (341)^72.",
+      "text": "Find the unit digit in the product \\((2467)^{153}\\times(341)^{72}\\).",
       "choices": [
         "6",
         "7",
@@ -323,22 +324,22 @@ window.GMAT_SETS = [
         "9"
       ],
       "hint": "Only the unit digit matters — use the 4-step cycle of the unit digit.",
-      "expl": "Step 1 — Only the unit digit of the product matters = (unit digit of 2467¹⁵³) × (unit digit of 341⁷²).\nStep 2 — 2467 ends in 7; powers of 7 cycle 7, 9, 3, 1 (period 4). 153 mod 4 = 1 → unit digit 7.\nStep 3 — 341 ends in 1; any power of a number ending in 1 ends in 1.\nStep 4 — Multiply unit digits: 7 × 1 = 7.\nAnswer: 7 (B)."
+      "expl": "Step 1 — Unit digit of \\(2467^{153}\\): 7 cycles \\(7,9,3,1\\); \\(153\\bmod4=1\\to7\\).\nStep 2 — Unit digit of \\(341^{72}=1\\).\nStep 3 — \\(7\\times1=7\\).\nAnswer: 7 (B)."
     },
     {
       "n": 22,
       "topic": "Divisibility & remainders",
       "correct": "A",
       "options": 4,
-      "text": "Which digits should come in place of * and $ if the number 62684*$ is divisible by both 8 and 5?",
+      "text": "Which digits should come in place of \\(*\\) and \\(\\$\\) if the number \\(62684{*}{\\$}\\) is divisible by both 8 and 5?",
       "choices": [
         "4, 0",
         "0, 4",
         "0, 0",
         "4, 4"
       ],
-      "hint": "Use the ÷5 rule to fix $ first, then the ÷8 rule for *.",
-      "expl": "Step 1 — For ÷5, the last digit $ must be 0 or 5.\nStep 2 — For ÷8 the number must be even, so $ = 0.\nStep 3 — Now the last three digits are '4*0'; for ÷8, 480 ÷ 8 = 60 works, so * = 4.\nStep 4 — Thus * = 4, $ = 0.\nAnswer: 4, 0 (A)."
+      "hint": "Use the \\(\\div5\\) rule to fix \\(\\$\\) first, then the \\(\\div8\\) rule for \\(*\\).",
+      "expl": "Step 1 — \\(\\div5 \\Rightarrow \\$=0\\) or 5; \\(\\div8\\) needs even \\(\\Rightarrow \\$=0\\).\nStep 2 — Then \\(4{*}0\\) divisible by 8: \\(480\\div8=60 \\Rightarrow *=4\\).\nAnswer: 4, 0 (A)."
     },
     {
       "n": 23,
@@ -352,8 +353,8 @@ window.GMAT_SETS = [
         "555681",
         "556581"
       ],
-      "hint": "The true product must be a multiple of 987 = 3 × 7 × 47.",
-      "expl": "Step 1 — 987 = 3 × 7 × 47, so the true product is a multiple of 987. The result looks like 55_9_81 with the two 9s wrong but 5, 5, 8, 1 correct.\nStep 2 — Test multiples of 987 keeping those fixed digits: 987 × 563 = 555681, which matches 5-5-5-6-8-1.\nStep 3 — So the correct answer is 555681.\nAnswer: 555681 (C)."
+      "hint": "The true product must be a multiple of \\(987=3\\times7\\times47\\).",
+      "expl": "Step 1 — \\(987=3\\times7\\times47\\); the true product is a multiple of 987 matching \\(5\\,5\\,\\_\\,6\\,8\\,1\\).\nStep 2 — \\(987\\times563=555681\\).\nAnswer: 555681 (C)."
     },
     {
       "n": 24,
@@ -367,23 +368,23 @@ window.GMAT_SETS = [
         "7, 11 and 13",
         "None of these"
       ],
-      "hint": "A digit repeated six times equals that digit × 111111 — factor 111111.",
-      "expl": "Step 1 — A digit d written six times equals d × 111111 (e.g. 444444 = 4 × 111111).\nStep 2 — Factor 111111 = 111 × 1001 = (3 × 37) × (7 × 11 × 13) = 3 × 7 × 11 × 13 × 37.\nStep 3 — So every such number is divisible by 7, 11 and 13.\nAnswer: 7, 11 and 13 (C)."
+      "hint": "A digit repeated six times equals that digit \\(\\times\\,111111\\) — factor 111111.",
+      "expl": "Step 1 — A digit repeated six times \\(=d\\times111111\\).\nStep 2 — \\(111111=3\\times7\\times11\\times13\\times37\\).\nStep 3 — So it's divisible by 7, 11 and 13.\nAnswer: 7, 11 and 13 (C)."
     },
     {
       "n": 25,
       "topic": "Fractions & decimals",
       "correct": "D",
       "options": 4,
-      "text": "Find the value of * in the following:  (1 2/3 + 2/7 × */7)  =  (1 1/4 × 2/3 + 1/6)",
+      "text": "Find the value of \\(*\\) in the following:  \\(\\left(1\\tfrac{2}{3}+\\frac{2}{7}\\times\\frac{*}{7}\\right)=\\left(1\\tfrac{1}{4}\\times\\frac{2}{3}+\\frac{1}{6}\\right)\\)",
       "choices": [
         "0.006",
-        "1/6",
+        "\\(\\frac{1}{6}\\)",
         "0.6",
         "6"
       ],
-      "hint": "Isolate the term with * and solve the resulting equation.",
-      "expl": "Step 1 — Move the known terms to one side and isolate the term containing *.\nStep 2 — Solve the resulting linear equation for *.\nStep 3 — The value is 6.\nNote — The source expression was garbled; verify the printed equation. Intended answer 6.\nAnswer: 6 (D).",
+      "hint": "Isolate the term with \\(*\\) and solve the resulting equation.",
+      "expl": "Step 1 — Isolate the term containing \\(*\\) and solve the linear equation.\nStep 2 — The value is 6.\nNote — Source expression garbled; verify. Intended answer 6.\nAnswer: 6 (D).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -399,7 +400,7 @@ window.GMAT_SETS = [
         "11"
       ],
       "hint": "296 is a multiple of 37 — reduce 75 against 37.",
-      "expl": "Step 1 — N = 296k + 75. Note 296 = 8 × 37, so 296k is a multiple of 37.\nStep 2 — Reduce 75 mod 37: 75 = 2 × 37 + 1.\nStep 3 — So N = 37 × (something) + 1, i.e. N ÷ 37 leaves remainder 1.\nAnswer: 1 (A)."
+      "expl": "Step 1 — \\(296=8\\times37\\) and \\(75=2\\times37+1\\).\nStep 2 — So \\(N=37k+1 \\Rightarrow N\\div37\\) leaves remainder 1.\nAnswer: 1 (A)."
     },
     {
       "n": 27,
@@ -414,7 +415,7 @@ window.GMAT_SETS = [
         "1908"
       ],
       "hint": "Reconstruct the number from the last quotient using each remainder.",
-      "expl": "Step 1 — 'Successively divided by 4, 5, 6 with remainders 2, 3, 4' — rebuild from the last quotient (take it as 1 for the intended answer).\nStep 2 — After ÷6: 6 × 1 + 4 = 10. Before ÷5: 5 × 10 + 3 = 53. Before ÷4: 4 × 53 + 2 = 214.\nStep 3 — 214 satisfies all three successive divisions.\nAnswer: 214 (A)."
+      "expl": "Step 1 — Rebuild from the last quotient \\(=1\\): \\(6\\times1+4=10;\\ 5\\times10+3=53;\\ 4\\times53+2=214\\).\nAnswer: 214 (A)."
     },
     {
       "n": 28,
@@ -428,38 +429,38 @@ window.GMAT_SETS = [
         "4",
         "5"
       ],
-      "hint": "Find 6709 mod 9 via its digit sum, then subtract that remainder.",
-      "expl": "Step 1 — For divisibility by 9, use the digit sum: 6 + 7 + 0 + 9 = 22.\nStep 2 — 22 mod 9 = 4 (since 9 × 2 = 18, 22 − 18 = 4).\nStep 3 — Subtract that remainder to reach the nearest lower multiple of 9: subtract 4.\nAnswer: 4 (C)."
+      "hint": "Find \\(6709\\bmod 9\\) via its digit sum, then subtract that remainder.",
+      "expl": "Step 1 — Digit sum of 6709 \\(=22\\); \\(22\\bmod9=4\\).\nStep 2 — Subtract 4 to reach a multiple of 9.\nAnswer: 4 (C)."
     },
     {
       "n": 29,
       "topic": "Fractions & decimals",
       "correct": "D",
       "options": 4,
-      "text": "2.002 + 7.9 × {2.8 − 6.3 × (3.6 − 1.5) + 15.6} = ?",
+      "text": "\\(2.002 + 7.9\\times\\{2.8 - 6.3\\times(3.6-1.5) + 15.6\\} = \\; ?\\)",
       "choices": [
         "2.002",
         "4.2845",
         "40.843",
         "42.845"
       ],
-      "hint": "Follow BODMAS; estimate 7.9 × (bracket) to sanity-check.",
-      "expl": "Step 1 — Innermost bracket: 3.6 − 1.5 = 2.1.\nStep 2 — Next: 2.8 − 6.3 × 2.1 + 15.6. Compute 6.3 × 2.1 = 13.23, so 2.8 − 13.23 + 15.6 = 5.17.\nStep 3 — Multiply: 7.9 × 5.17 = 40.843.\nStep 4 — Add 2.002: 2.002 + 40.843 = 42.845. (Estimate: 7.9 × 5 ≈ 40 → ~42, only 42.845 fits.)\nAnswer: 42.845 (D)."
+      "hint": "Follow BODMAS; estimate \\(7.9\\times(\\text{bracket})\\) to sanity-check.",
+      "expl": "Step 1 — Inner: \\(3.6-1.5=2.1\\).\nStep 2 — \\(2.8-6.3\\times2.1+15.6=2.8-13.23+15.6=5.17\\).\nStep 3 — \\(7.9\\times5.17=40.843\\).\nStep 4 — \\(2.002+40.843=42.845\\).\nAnswer: 42.845 (D)."
     },
     {
       "n": 30,
       "topic": "Fractions & decimals",
       "correct": "B",
       "options": 4,
-      "text": "9 − 1 2/9 of 3 3/11 + 5 1/7 of 7/9 = ?",
+      "text": "\\(9 - 1\\tfrac{2}{9}\\text{ of }3\\tfrac{3}{11} + 5\\tfrac{1}{7}\\text{ of }\\frac{7}{9} = \\; ?\\)",
       "choices": [
-        "5/4",
+        "\\(\\frac{5}{4}\\)",
         "8",
-        "8 32/81",
+        "\\(8\\tfrac{32}{81}\\)",
         "9"
       ],
-      "hint": "Convert mixed numbers to improper fractions, treat 'of' as ×, then apply BODMAS.",
-      "expl": "Step 1 — Convert mixed numbers to improper fractions and read 'of' as multiplication.\nStep 2 — Apply BODMAS: do the 'of' (×) and ÷ before the − and +.\nStep 3 — The expression simplifies to 8.\nNote — The source expression was garbled; verify the printed terms. Intended answer 8.\nAnswer: 8 (B).",
+      "hint": "Convert mixed numbers to improper fractions, treat 'of' as \\(\\times\\), then apply BODMAS.",
+      "expl": "Step 1 — Convert mixed numbers to improper fractions; treat 'of' as \\(\\times\\).\nStep 2 — Apply BODMAS to get 8.\nNote — Source expression garbled; verify. Intended answer 8.\nAnswer: 8 (B).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -475,44 +476,44 @@ window.GMAT_SETS = [
         "4, 1"
       ],
       "hint": "Build the smallest number, then divide it in the reversed order.",
-      "expl": "Step 1 — Build the number: ÷4 (r1) then ÷5 (r4); smallest case → quotient after ÷4 is (5·0 + 4) = 4, so N = 4 × 4 + 1 = 17.\nStep 2 — Now divide 17 successively by 5 then 4: 17 ÷ 5 = 3 r2; 3 ÷ 4 = 0 r3.\nStep 3 — Remainders: 2, 3.\nAnswer: 2, 3 (B)."
+      "expl": "Step 1 — Build \\(N=4\\times4+1=17\\).\nStep 2 — \\(17\\div5=3\\ r2;\\ 3\\div4=0\\ r3\\).\nStep 3 — Remainders: 2, 3.\nAnswer: 2, 3 (B)."
     },
     {
       "n": 32,
       "topic": "Integers, factors & multiples",
       "correct": "C",
       "options": 4,
-      "text": "How many times must 79 be subtracted from 5 × 10^4 so as to obtain 43759?",
+      "text": "How many times must 79 be subtracted from \\(5\\times10^{4}\\) so as to obtain 43759?",
       "choices": [
         "77",
         "78",
         "79",
         "80"
       ],
-      "hint": "It's a single division: (50000 − 43759) ÷ 79.",
-      "expl": "Step 1 — 'How many times subtract 79 from 50000 to reach 43759' = (50000 − 43759) ÷ 79.\nStep 2 — 50000 − 43759 = 6241.\nStep 3 — 6241 ÷ 79 = 79 (indeed 79² = 6241).\nAnswer: 79 (C)."
+      "hint": "It's a single division: \\((50000-43759)\\div79\\).",
+      "expl": "Step 1 — \\((50000-43759)\\div79=6241\\div79\\).\nStep 2 — \\(6241=79^2\\), so the answer is 79.\nAnswer: 79 (C)."
     },
     {
       "n": 33,
       "topic": "Prime numbers & factorization",
       "correct": "A",
       "options": 4,
-      "text": "If the product of the first sixty positive consecutive integers is divisible by 8^n, where n is an integer, then the largest possible value of n is:",
+      "text": "If the product of the first sixty positive consecutive integers is divisible by \\(8^{n}\\), where \\(n\\) is an integer, then the largest possible value of \\(n\\) is:",
       "choices": [
         "18",
         "19",
         "17",
         "16"
       ],
-      "hint": "Use Legendre's rule for the power of 2 in 60!, then divide by 3 for 8.",
-      "expl": "Step 1 — The product of the first sixty integers is 60!. Find the power of 2 in 60! by Legendre's rule: ⌊60/2⌋ + ⌊60/4⌋ + ⌊60/8⌋ + ⌊60/16⌋ + ⌊60/32⌋.\nStep 2 — = 30 + 15 + 7 + 3 + 1 = 56, so 2⁵⁶ divides 60!.\nStep 3 — Since 8 = 2³, the power of 8 is ⌊56/3⌋ = 18.\nAnswer: 18 (A)."
+      "hint": "Use Legendre's rule for the power of 2 in \\(60!\\), then divide by 3 for 8.",
+      "expl": "Step 1 — Power of 2 in \\(60!=\\lfloor60/2\\rfloor+\\lfloor60/4\\rfloor+\\lfloor60/8\\rfloor+\\lfloor60/16\\rfloor+\\lfloor60/32\\rfloor\\).\nStep 2 — \\(=30+15+7+3+1=56\\).\nStep 3 — \\(8=2^3\\), so \\(n=\\lfloor56/3\\rfloor=18\\).\nAnswer: 18 (A)."
     },
     {
       "n": 34,
       "topic": "Exponent rules",
       "correct": "B",
       "options": 4,
-      "text": "The digit in the unit's place of the number represented by (7^95 − 3^58) is:",
+      "text": "The digit in the unit's place of the number represented by \\((7^{95}-3^{58})\\) is:",
       "choices": [
         "0",
         "4",
@@ -520,37 +521,37 @@ window.GMAT_SETS = [
         "7"
       ],
       "hint": "Track unit digits only using each base's 4-cycle; mind the borrow in subtraction.",
-      "expl": "Step 1 — Only unit digits matter. 7's cycle is 7, 9, 3, 1 (period 4). 95 mod 4 = 3 → third in cycle = 3, so 7⁹⁵ ends in 3.\nStep 2 — 3's cycle is 3, 9, 7, 1. 58 mod 4 = 2 → second = 9, so 3⁵⁸ ends in 9.\nStep 3 — Unit digit of (…3) − (…9): since 3 < 9, borrow → 13 − 9 = 4.\nAnswer: 4 (B)."
+      "expl": "Step 1 — \\(7^{95}\\): \\(95\\bmod4=3\\to\\) ends in 3.\nStep 2 — \\(3^{58}\\): \\(58\\bmod4=2\\to\\) ends in 9.\nStep 3 — Unit of \\((\\dots3)-(\\dots9)\\): borrow \\(\\to13-9=4\\).\nAnswer: 4 (B)."
     },
     {
       "n": 35,
       "topic": "Prime numbers & factorization",
       "correct": "B",
       "options": 4,
-      "text": "If the product of the first forty positive consecutive integers is divisible by 5^n, where n is an integer, then the largest possible value of n is:",
+      "text": "If the product of the first forty positive consecutive integers is divisible by \\(5^{n}\\), where \\(n\\) is an integer, then the largest possible value of \\(n\\) is:",
       "choices": [
         "8",
         "9",
         "10",
         "7"
       ],
-      "hint": "Legendre's rule: power of 5 in 40! = ⌊40/5⌋ + ⌊40/25⌋.",
-      "expl": "Step 1 — The product of the first forty integers is 40!. Power of 5 by Legendre: ⌊40/5⌋ + ⌊40/25⌋.\nStep 2 — = 8 + 1 = 9.\nAnswer: 9 (B)."
+      "hint": "Legendre's rule: power of 5 in \\(40!=\\lfloor40/5\\rfloor+\\lfloor40/25\\rfloor\\).",
+      "expl": "Step 1 — Power of 5 in \\(40!=\\lfloor40/5\\rfloor+\\lfloor40/25\\rfloor=8+1=9\\).\nAnswer: 9 (B)."
     },
     {
       "n": 36,
       "topic": "Expressions & factoring",
       "correct": "C",
       "options": 4,
-      "text": "55^3 + 17^3 − 72^3 is divisible by:",
+      "text": "\\(55^{3}+17^{3}-72^{3}\\) is divisible by:",
       "choices": [
         "both 3 and 13",
         "both 7 and 17",
         "both 3 and 17",
         "both 7 and 13"
       ],
-      "hint": "Notice 72 = 55 + 17 and use the a³ + b³ − (a+b)³ identity.",
-      "expl": "Step 1 — Notice 72 = 55 + 17, so this is a³ + b³ − (a+b)³ with a = 55, b = 17.\nStep 2 — Identity: a³ + b³ − (a+b)³ = −3ab(a+b).\nStep 3 — = −3 × 55 × 17 × 72, which is divisible by 3 and by 17 (and 5, 11, …).\nStep 4 — Among the options, 'both 3 and 17' holds.\nAnswer: both 3 and 17 (C)."
+      "hint": "Notice \\(72=55+17\\) and use the \\(a^3+b^3-(a+b)^3\\) identity.",
+      "expl": "Step 1 — \\(72=55+17\\), so use \\(a^3+b^3-(a+b)^3=-3ab(a+b)\\).\nStep 2 — \\(=-3\\times55\\times17\\times72\\), divisible by 3 and 17.\nAnswer: both 3 and 17 (C)."
     },
     {
       "n": 37,
@@ -564,38 +565,38 @@ window.GMAT_SETS = [
         "41",
         "53"
       ],
-      "hint": "Build the number from the remainders; compare with 84 = 3 × 4 × 7.",
-      "expl": "Step 1 — Build N from remainders 2, 1, 4 (divisors 3, 4, 7): 7·0 + 4 = 4; 4·4 + 1 = 17; 3·17 + 2 = 53.\nStep 2 — 84 = 3 × 4 × 7 and 53 < 84, so dividing 53 by 84 leaves 53 itself.\nAnswer: 53 (D)."
+      "hint": "Build the number from the remainders; compare with \\(84=3\\times4\\times7\\).",
+      "expl": "Step 1 — Build \\(N\\): \\(7\\cdot0+4=4;\\ 4\\times4+1=17;\\ 3\\times17+2=53\\).\nStep 2 — \\(84=3\\times4\\times7\\) and \\(53<84\\), so remainder is 53.\nAnswer: 53 (D)."
     },
     {
       "n": 38,
       "topic": "Fractions & decimals",
       "correct": "A",
       "options": 4,
-      "text": "At a college football game, 4/5 of the seats in the lower deck of the stadium were sold. If 1/4 of all the seating in the stadium is located in the lower deck, and if 2/3 of all the seats in the stadium were sold, then what fraction of the unsold seats in the stadium was in the lower deck?",
+      "text": "At a college football game, \\(\\frac{4}{5}\\) of the seats in the lower deck of the stadium were sold. If \\(\\frac{1}{4}\\) of all the seating in the stadium is located in the lower deck, and if \\(\\frac{2}{3}\\) of all the seats in the stadium were sold, then what fraction of the unsold seats in the stadium was in the lower deck?",
       "choices": [
-        "3/20",
-        "1/6",
-        "1/5",
-        "1/3"
+        "\\(\\frac{3}{20}\\)",
+        "\\(\\frac{1}{6}\\)",
+        "\\(\\frac{1}{5}\\)",
+        "\\(\\frac{1}{3}\\)"
       ],
       "hint": "Pick a convenient total number of seats (e.g. 20) and count directly.",
-      "expl": "Step 1 — Pick a smart total. Let the stadium have 20 seats (divisible by 4, easy thirds).\nStep 2 — Lower deck = 1/4 × 20 = 5. Sold in lower = 4/5 × 5 = 4, so unsold in lower = 1.\nStep 3 — Total sold = 2/3 × 20; total unsold = 1/3 × 20 = 20/3.\nStep 4 — Fraction of unsold seats in the lower deck = 1 ÷ (20/3) = 3/20.\nAnswer: 3/20 (A)."
+      "expl": "Step 1 — Let total \\(=20\\). Lower deck \\(=\\frac{1}{4}\\times20=5\\); sold there \\(=\\frac{4}{5}\\times5=4\\), unsold \\(=1\\).\nStep 2 — Total unsold \\(=\\frac{1}{3}\\times20=\\frac{20}{3}\\).\nStep 3 — Fraction \\(=1\\div\\frac{20}{3}=\\frac{3}{20}\\).\nAnswer: \\(\\frac{3}{20}\\) (A)."
     },
     {
       "n": 39,
       "topic": "Divisibility & remainders",
       "correct": "B",
       "options": 4,
-      "text": "A number A4571203B is divisible by 18. Find the values of A and B.",
+      "text": "A number \\(A4571203B\\) is divisible by 18. Find the values of \\(A\\) and \\(B\\).",
       "choices": [
         "8, 4",
         "6, 8",
         "4, 6",
         "6, 6"
       ],
-      "hint": "18 = 2 × 9: use the even rule for B and the digit-sum rule for 9.",
-      "expl": "Step 1 — 18 = 2 × 9. For ÷2, B must be even.\nStep 2 — For ÷9, the digit sum must be a multiple of 9: A + 4 + 5 + 7 + 1 + 2 + 0 + 3 + B = A + B + 22.\nStep 3 — A + B + 22 divisible by 9 ⇒ A + B = 5 or 14 (single digits).\nStep 4 — With B even, A = 6, B = 8 (sum 14) fits and matches an option.\nAnswer: 6, 8 (B)."
+      "hint": "\\(18=2\\times9\\): use the even rule for \\(B\\) and the digit-sum rule for 9.",
+      "expl": "Step 1 — \\(18=2\\times9\\); \\(B\\) even for \\(\\div2\\).\nStep 2 — Digit sum \\(=A+B+22\\) divisible by 9 \\(\\Rightarrow A+B=5\\) or 14.\nStep 3 — With \\(B\\) even, \\(A=6,B=8\\) (sum 14).\nAnswer: 6, 8 (B)."
     },
     {
       "n": 40,
@@ -609,83 +610,83 @@ window.GMAT_SETS = [
         "683",
         "777"
       ],
-      "hint": "These form an arithmetic sequence — use n × (first + last) / 2.",
-      "expl": "Step 1 — Two-digit numbers leaving remainder 3 when ÷7: 10, 17, 24, …, 94 (each 7k + 3).\nStep 2 — Arithmetic sequence: first 10, last 94, common difference 7. Terms = (94 − 10)/7 + 1 = 13.\nStep 3 — Sum = n × (first + last)/2 = 13 × (10 + 94)/2 = 13 × 52 = 676.\nAnswer: 676 (B)."
+      "hint": "These form an arithmetic sequence — use \\(n\\times(\\text{first}+\\text{last})/2\\).",
+      "expl": "Step 1 — Numbers \\(10,17,24,\\dots,94\\) (each \\(7k+3\\)) — 13 terms.\nStep 2 — Sum \\(=13\\times\\frac{10+94}{2}=13\\times52=676\\).\nAnswer: 676 (B)."
     },
     {
       "n": 41,
       "topic": "Prime numbers & factorization",
       "correct": "D",
       "options": 4,
-      "text": "Let x and y be positive integers such that x is prime and y is composite. Then:",
+      "text": "Let \\(x\\) and \\(y\\) be positive integers such that \\(x\\) is prime and \\(y\\) is composite. Then:",
       "choices": [
-        "y − x cannot be an even integer",
-        "xy cannot be an even integer",
-        "(x + y)/x cannot be an even integer",
+        "\\(y-x\\) cannot be an even integer",
+        "\\(xy\\) cannot be an even integer",
+        "\\(\\frac{x+y}{x}\\) cannot be an even integer",
         "None of the above statements is true"
       ],
-      "hint": "Try a small prime x and a composite y to test each 'cannot' statement.",
-      "expl": "Step 1 — Disprove each 'cannot' with one example (a single counterexample defeats a universal claim).\nStep 2 — Take x = 2 (prime), y = 6 (composite): y − x = 4 (even) → breaks (a); xy = 12 (even) → breaks (b); (x + y)/x = 8/2 = 4 (even) → breaks (c).\nStep 3 — All three 'cannot' statements fail, so none is always true.\nAnswer: None of the above (D)."
+      "hint": "Try a small prime \\(x\\) and a composite \\(y\\) to test each 'cannot' statement.",
+      "expl": "Step 1 — Test \\(x=2\\) (prime), \\(y=6\\) (composite).\nStep 2 — \\(y-x=4\\) (even); \\(xy=12\\) (even); \\(\\frac{x+y}{x}=4\\) (even) — all break.\nStep 3 — So none of (a)–(c) is always true.\nAnswer: None of the above (D)."
     },
     {
       "n": 42,
       "topic": "Roots & radicals",
       "correct": "B",
       "options": 4,
-      "text": "Evaluate (√24 + √6) / (√24 − √6).",
+      "text": "Evaluate \\(\\dfrac{\\sqrt{24}+\\sqrt6}{\\sqrt{24}-\\sqrt6}\\).",
       "choices": [
         "2",
         "3",
         "4",
         "5"
       ],
-      "hint": "Simplify √24 to 2√6 first.",
-      "expl": "Step 1 — Simplify √24 = √(4 × 6) = 2√6.\nStep 2 — The expression becomes (2√6 + √6)/(2√6 − √6) = 3√6 / √6.\nStep 3 — Cancel √6: = 3.\nAnswer: 3 (B)."
+      "hint": "Simplify \\(\\sqrt{24}\\) to \\(2\\sqrt6\\) first.",
+      "expl": "Step 1 — \\(\\sqrt{24}=2\\sqrt6\\).\nStep 2 — \\(\\dfrac{2\\sqrt6+\\sqrt6}{2\\sqrt6-\\sqrt6}=\\dfrac{3\\sqrt6}{\\sqrt6}=3\\).\nAnswer: 3 (B)."
     },
     {
       "n": 43,
       "topic": "Exponent rules",
       "correct": "B",
       "options": 4,
-      "text": "Arranging the following in descending order: 2^57, 4^38, 16^19, we get:",
+      "text": "Arranging the following in descending order: \\(2^{57},\\ 4^{38},\\ 16^{19}\\), we get:",
       "choices": [
-        "2^57 > 4^38 > 16^19",
-        "4^38 > 16^19 > 2^57",
-        "16^19 > 2^57 > 4^38",
-        "2^57 > 16^19 > 4^38"
+        "\\(2^{57}>4^{38}>16^{19}\\)",
+        "\\(4^{38}>16^{19}>2^{57}\\)",
+        "\\(16^{19}>2^{57}>4^{38}\\)",
+        "\\(2^{57}>16^{19}>4^{38}\\)"
       ],
       "hint": "Rewrite each as a power with exponent 19, then compare bases.",
-      "expl": "Step 1 — Put all to exponent 19: 2⁵⁷ = (2³)¹⁹ = 8¹⁹; 4³⁸ = (4²)¹⁹ = 16¹⁹; 16¹⁹ stays.\nStep 2 — Compare bases at power 19: 16 ≥ 8, so 4³⁸ (= 16¹⁹) ≥ 16¹⁹ > 2⁵⁷.\nStep 3 — Descending order (per the key): 4³⁸ > 16¹⁹ > 2⁵⁷.\nAnswer: (B)."
+      "expl": "Step 1 — To exponent 19: \\(2^{57}=8^{19},\\ 4^{38}=16^{19}\\).\nStep 2 — \\(16\\ge8\\), so \\(4^{38}(=16^{19})\\ge16^{19}>2^{57}\\).\nAnswer: \\(4^{38}>16^{19}>2^{57}\\) (B)."
     },
     {
       "n": 44,
       "topic": "Exponent rules",
       "correct": "A",
       "options": 4,
-      "text": "Arranging the following in ascending order: 2^10000, 10^3000, 3^6000, 7^4000, we get:",
+      "text": "Arranging the following in ascending order: \\(2^{10000},\\ 10^{3000},\\ 3^{6000},\\ 7^{4000}\\), we get:",
       "choices": [
-        "3^6000 < 10^3000 < 2^10000 < 7^4000",
-        "2^10000 < 7^4000 < 10^3000 < 3^6000",
-        "10^3000 < 3^6000 < 7^4000 < 2^10000",
-        "7^4000 < 3^6000 < 2^10000 < 10^3000"
+        "\\(3^{6000}<10^{3000}<2^{10000}<7^{4000}\\)",
+        "\\(2^{10000}<7^{4000}<10^{3000}<3^{6000}\\)",
+        "\\(10^{3000}<3^{6000}<7^{4000}<2^{10000}\\)",
+        "\\(7^{4000}<3^{6000}<2^{10000}<10^{3000}\\)"
       ],
       "hint": "Rewrite each as a power with exponent 1000, then compare bases.",
-      "expl": "Step 1 — Common exponent 1000: 2¹⁰⁰⁰⁰ = 1024¹⁰⁰⁰; 10³⁰⁰⁰ = 1000¹⁰⁰⁰; 3⁶⁰⁰⁰ = 729¹⁰⁰⁰; 7⁴⁰⁰⁰ = 2401¹⁰⁰⁰.\nStep 2 — Compare bases: 729 < 1000 < 1024 < 2401.\nStep 3 — Ascending: 3⁶⁰⁰⁰ < 10³⁰⁰⁰ < 2¹⁰⁰⁰⁰ < 7⁴⁰⁰⁰.\nAnswer: (A)."
+      "expl": "Step 1 — To exponent 1000: \\(2^{10000}=1024^{1000},\\ 10^{3000}=1000^{1000},\\ 3^{6000}=729^{1000},\\ 7^{4000}=2401^{1000}\\).\nStep 2 — Bases: \\(729<1000<1024<2401\\).\nStep 3 — So \\(3^{6000}<10^{3000}<2^{10000}<7^{4000}\\).\nAnswer: (A)."
     },
     {
       "n": 45,
       "topic": "Fractions & decimals",
       "correct": "B",
       "options": 4,
-      "text": "If all the fractions 3/5, 1/8, 8/11, 4/9, 2/7 and 5/12 are arranged in descending order of their values, which one will be the third?",
+      "text": "If all the fractions \\(\\frac{3}{5},\\ \\frac{1}{8},\\ \\frac{8}{11},\\ \\frac{4}{9},\\ \\frac{2}{7}\\) and \\(\\frac{5}{12}\\) are arranged in descending order of their values, which one will be the third?",
       "choices": [
-        "1/8",
-        "4/9",
-        "5/12",
-        "8/11"
+        "\\(\\frac{1}{8}\\)",
+        "\\(\\frac{4}{9}\\)",
+        "\\(\\frac{5}{12}\\)",
+        "\\(\\frac{8}{11}\\)"
       ],
       "hint": "Convert the fractions to decimals to order them quickly.",
-      "expl": "Step 1 — Convert each fraction to a decimal: 3/5 = 0.60, 1/8 = 0.125, 8/11 ≈ 0.727, 4/9 ≈ 0.444, 2/7 ≈ 0.286, 5/12 ≈ 0.417.\nStep 2 — Descending order: 8/11 > 3/5 > 4/9 > 5/12 > 2/7 > 1/8.\nStep 3 — The third value is 4/9.\nNote — The source fraction list was partly garbled; verify. Intended answer 4/9.\nAnswer: 4/9 (B).",
+      "expl": "Step 1 — Decimals: \\(\\frac{3}{5}=0.60,\\ \\frac{1}{8}=0.125,\\ \\frac{8}{11}\\approx0.727,\\ \\frac{4}{9}\\approx0.444,\\ \\frac{2}{7}\\approx0.286,\\ \\frac{5}{12}\\approx0.417\\).\nStep 2 — Descending: \\(\\frac{8}{11}>\\frac{3}{5}>\\frac{4}{9}>\\frac{5}{12}>\\frac{2}{7}>\\frac{1}{8}\\).\nStep 3 — Third value \\(=\\frac{4}{9}\\).\nNote — Source list partly garbled; verify.\nAnswer: \\(\\frac{4}{9}\\) (B).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -693,30 +694,30 @@ window.GMAT_SETS = [
       "topic": "Roots & radicals",
       "correct": "D",
       "options": 4,
-      "text": "The smallest of √8 + √5, √7 + √6, √10 + √3 and √11 + √2 is:",
+      "text": "The smallest of \\(\\sqrt8+\\sqrt5,\\ \\sqrt7+\\sqrt6,\\ \\sqrt{10}+\\sqrt3\\) and \\(\\sqrt{11}+\\sqrt2\\) is:",
       "choices": [
-        "√8 + √5",
-        "√7 + √6",
-        "√10 + √3",
-        "√11 + √2"
+        "\\(\\sqrt8+\\sqrt5\\)",
+        "\\(\\sqrt7+\\sqrt6\\)",
+        "\\(\\sqrt{10}+\\sqrt3\\)",
+        "\\(\\sqrt{11}+\\sqrt2\\)"
       ],
-      "hint": "Square each expression: (√a + √b)² = a + b + 2√(ab), then compare.",
-      "expl": "Step 1 — To compare √a + √b, square them: (√a + √b)² = a + b + 2√(ab).\nStep 2 — Every pair has a + b = 13, so compare only the products ab: 8×5 = 40, 7×6 = 42, 10×3 = 30, 11×2 = 22.\nStep 3 — Smallest product 22 → smallest square → smallest value = √11 + √2.\nAnswer: √11 + √2 (D)."
+      "hint": "Square each expression: \\((\\sqrt a+\\sqrt b)^2=a+b+2\\sqrt{ab}\\), then compare.",
+      "expl": "Step 1 — \\((\\sqrt a+\\sqrt b)^2=a+b+2\\sqrt{ab}\\); each \\(a+b=13\\).\nStep 2 — Compare \\(ab\\): \\(40,42,30,22\\) — smallest is 22.\nStep 3 — Smallest value \\(=\\sqrt{11}+\\sqrt2\\).\nAnswer: \\(\\sqrt{11}+\\sqrt2\\) (D)."
     },
     {
       "n": 47,
       "topic": "Roots & radicals",
       "correct": "D",
       "options": 4,
-      "text": "Which one of the following is the least: √2, ⁴√3, ³√3, ³√2 ?",
+      "text": "Which one of the following is the least: \\(\\sqrt2,\\ \\sqrt[4]{3},\\ \\sqrt[3]{3},\\ \\sqrt[3]{2}\\)?",
       "choices": [
-        "√2",
-        "⁴√3",
-        "³√3",
-        "³√2"
+        "\\(\\sqrt2\\)",
+        "\\(\\sqrt[4]{3}\\)",
+        "\\(\\sqrt[3]{3}\\)",
+        "\\(\\sqrt[3]{2}\\)"
       ],
       "hint": "Raise all four to the 12th power to clear the roots.",
-      "expl": "Step 1 — Raise each to the LCM of the root orders (2, 4, 3 → 12) to clear the roots: (√2)¹² = 2⁶ = 64; (⁴√3)¹² = 3³ = 27; (³√3)¹² = 3⁴ = 81; (³√2)¹² = 2⁴ = 16.\nStep 2 — Smallest twelfth power = 16 → smallest value = ³√2.\nNote — The option wording was garbled in the source; verify. Intended least value ³√2.\nAnswer: ³√2 (D).",
+      "expl": "Step 1 — Raise each to the 12th power: \\((\\sqrt2)^{12}=64,\\ (\\sqrt[4]{3})^{12}=27,\\ (\\sqrt[3]{3})^{12}=81,\\ (\\sqrt[3]{2})^{12}=16\\).\nStep 2 — Smallest is 16 \\(\\Rightarrow \\sqrt[3]{2}\\).\nNote — Option wording garbled in source; verify.\nAnswer: \\(\\sqrt[3]{2}\\) (D).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -724,45 +725,45 @@ window.GMAT_SETS = [
       "topic": "Roots & radicals",
       "correct": "D",
       "options": 4,
-      "text": "The smallest of √8 + √5, √7 + √6, √10 + √3 and √11 + √2 is:",
+      "text": "The smallest of \\(\\sqrt8+\\sqrt5,\\ \\sqrt7+\\sqrt6,\\ \\sqrt{10}+\\sqrt3\\) and \\(\\sqrt{11}+\\sqrt2\\) is:",
       "choices": [
-        "√8 + √5",
-        "√7 + √6",
-        "√10 + √3",
-        "√11 + √2"
+        "\\(\\sqrt8+\\sqrt5\\)",
+        "\\(\\sqrt7+\\sqrt6\\)",
+        "\\(\\sqrt{10}+\\sqrt3\\)",
+        "\\(\\sqrt{11}+\\sqrt2\\)"
       ],
       "hint": "Same as before — compare the squares of each sum.",
-      "expl": "Step 1 — Same method: (√a + √b)² = a + b + 2√(ab), and each a + b = 13.\nStep 2 — Compare products ab: 40, 42, 30, 22 — smallest is 22.\nStep 3 — Smallest value = √11 + √2.\nAnswer: √11 + √2 (D)."
+      "expl": "Step 1 — \\((\\sqrt a+\\sqrt b)^2=a+b+2\\sqrt{ab}\\), each \\(a+b=13\\).\nStep 2 — Compare \\(ab\\): smallest is 22.\nStep 3 — Smallest \\(=\\sqrt{11}+\\sqrt2\\).\nAnswer: \\(\\sqrt{11}+\\sqrt2\\) (D)."
     },
     {
       "n": 49,
       "topic": "Roots & radicals",
       "correct": "C",
       "options": 4,
-      "text": "1/(√2 + √3 − √5) + 1/(√2 − √3 − √5), in simplified form, equals:",
+      "text": "\\(\\dfrac{1}{\\sqrt2+\\sqrt3-\\sqrt5}+\\dfrac{1}{\\sqrt2-\\sqrt3-\\sqrt5}\\), in simplified form, equals:",
       "choices": [
         "1",
-        "√2",
-        "1/√2",
+        "\\(\\sqrt2\\)",
+        "\\(\\frac{1}{\\sqrt2}\\)",
         "0"
       ],
       "hint": "Rationalize each fraction using its conjugate; watch the surds cancel.",
-      "expl": "Step 1 — Rationalize the first fraction 1/(√2 + √3 − √5) by multiplying by the conjugate to clear the surds; it becomes (√2 + √3 + √5)/(2√6).\nStep 2 — Do the same for 1/(√2 − √3 − √5); after simplification it becomes (−√2 + √3 − √5)/(2√6).\nStep 3 — Add the two: the √2 and √5 terms cancel, leaving 2√3/(2√6) = √3/√6 = 1/√2.\nAnswer: 1/√2 (C)."
+      "expl": "Step 1 — Rationalize \\(\\frac{1}{\\sqrt2+\\sqrt3-\\sqrt5}\\) to \\(\\frac{\\sqrt2+\\sqrt3+\\sqrt5}{2\\sqrt6}\\).\nStep 2 — Rationalize the second term similarly.\nStep 3 — Adding, the surds cancel to \\(\\frac{\\sqrt3}{\\sqrt6}=\\frac{1}{\\sqrt2}\\).\nAnswer: \\(\\frac{1}{\\sqrt2}\\) (C)."
     },
     {
       "n": 50,
       "topic": "Roots & radicals",
       "correct": "C",
       "options": 4,
-      "text": "The value of [√2(√3 + 1)(2 − √3)] / [(√2 − 1)(3√3 − 5)] is:",
+      "text": "The value of \\(\\dfrac{\\sqrt2(\\sqrt3+1)(2-\\sqrt3)}{(\\sqrt2-1)(3\\sqrt3-5)}\\) is:",
       "choices": [
         "1",
-        "2 − √3",
-        "2 + √3",
-        "√3 − 2"
+        "\\(2-\\sqrt3\\)",
+        "\\(2+\\sqrt3\\)",
+        "\\(\\sqrt3-2\\)"
       ],
       "hint": "Rationalize the denominator, then simplify.",
-      "expl": "Step 1 — Rationalize the denominator by multiplying by the conjugate of its surd factors.\nStep 2 — After cancellation the expression collapses to 2 + √3.\nNote — The source expression was garbled; verify. Intended value 2 + √3.\nAnswer: 2 + √3 (C).",
+      "expl": "Step 1 — Rationalize the denominator with its conjugate.\nStep 2 — The expression collapses to \\(2+\\sqrt3\\).\nNote — Source expression garbled; verify.\nAnswer: \\(2+\\sqrt3\\) (C).",
       "note": "Math from the PDF was ambiguous — verify the exact expression."
     },
     {
@@ -770,22 +771,22 @@ window.GMAT_SETS = [
       "topic": "Sequences & series",
       "correct": "B",
       "options": 4,
-      "text": "When a ball bounces, it rises to 3/4 of the height from which it fell. If the ball is dropped from a height of 32 m, how high will it rise at the third bounce?",
+      "text": "When a ball bounces, it rises to \\(\\frac{3}{4}\\) of the height from which it fell. If the ball is dropped from a height of 32 m, how high will it rise at the third bounce?",
       "choices": [
         "13 m",
-        "13 1/2 m",
-        "14 1/2 m",
+        "\\(13\\tfrac{1}{2}\\) m",
+        "\\(14\\tfrac{1}{2}\\) m",
         "None of these"
       ],
-      "hint": "Apply the 3/4 ratio three times.",
-      "expl": "Step 1 — Each bounce reaches 3/4 of the previous height, so after three bounces height = 32 × (3/4)³.\nStep 2 — (3/4)³ = 27/64, so height = 32 × 27/64.\nStep 3 — Cancel 32/64 = 1/2: height = 27/2 = 13.5 m.\nAnswer: 13½ m (B)."
+      "hint": "Apply the \\(\\frac{3}{4}\\) ratio three times.",
+      "expl": "Step 1 — After three bounces: height \\(=32\\times\\left(\\frac{3}{4}\\right)^3\\).\nStep 2 — \\(=32\\times\\frac{27}{64}=\\frac{27}{2}=13.5\\) m.\nAnswer: \\(13\\tfrac{1}{2}\\) m (B)."
     },
     {
       "n": 52,
       "topic": "Fractions & decimals",
       "correct": "A",
       "options": 4,
-      "text": "1/10 of a pole is coloured red, 1/20 white, 1/30 blue, 1/40 black, 1/50 violet, 1/60 yellow and the rest is green. If the length of the green portion of the pole is 12.08 metres, then the length of the pole is:",
+      "text": "\\(\\frac{1}{10}\\) of a pole is coloured red, \\(\\frac{1}{20}\\) white, \\(\\frac{1}{30}\\) blue, \\(\\frac{1}{40}\\) black, \\(\\frac{1}{50}\\) violet, \\(\\frac{1}{60}\\) yellow and the rest is green. If the length of the green portion of the pole is 12.08 metres, then the length of the pole is:",
       "choices": [
         "16 m",
         "18 m",
@@ -793,7 +794,7 @@ window.GMAT_SETS = [
         "30 m"
       ],
       "hint": "Add all the coloured fractions; green is the remainder of the whole.",
-      "expl": "Step 1 — Add the coloured fractions over the LCD 600: 1/10 + 1/20 + 1/30 + 1/40 + 1/50 + 1/60 = (60 + 30 + 20 + 15 + 12 + 10)/600 = 147/600.\nStep 2 — Green is the remainder: 1 − 147/600 = 453/600.\nStep 3 — Given the green portion = 12.08 m = 453/600 of the pole: length = 12.08 × 600/453 = 16 m.\nAnswer: 16 m (A)."
+      "expl": "Step 1 — Coloured \\(=\\frac{1}{10}+\\frac{1}{20}+\\frac{1}{30}+\\frac{1}{40}+\\frac{1}{50}+\\frac{1}{60}=\\frac{147}{600}\\).\nStep 2 — Green \\(=1-\\frac{147}{600}=\\frac{453}{600}\\).\nStep 3 — Length \\(=12.08\\times\\frac{600}{453}=16\\) m.\nAnswer: 16 m (A)."
     },
     {
       "n": 53,
@@ -802,35 +803,35 @@ window.GMAT_SETS = [
       "options": 4,
       "text": "The fluid contained in a bucket can fill four large bottles or seven small bottles. A full large bottle is used to fill an empty small bottle. What fraction of the fluid is left over in the large bottle when the small one is full?",
       "choices": [
-        "2/7",
-        "3/7",
-        "4/7",
-        "5/7"
+        "\\(\\frac{2}{7}\\)",
+        "\\(\\frac{3}{7}\\)",
+        "\\(\\frac{4}{7}\\)",
+        "\\(\\frac{5}{7}\\)"
       ],
       "hint": "Let the bucket equal the LCM of 4 and 7.",
-      "expl": "Step 1 — Let the bucket = 28 units (LCM of 4 and 7). Then one large bottle = 28/4 = 7 units, one small bottle = 28/7 = 4 units.\nStep 2 — A full large bottle (7) fills an empty small bottle (4), using 4 units.\nStep 3 — Left in the large bottle = 7 − 4 = 3 units, out of capacity 7 → fraction 3/7.\nAnswer: 3/7 (B)."
+      "expl": "Step 1 — Let bucket \\(=28\\) (LCM of 4, 7). Large bottle \\(=7\\), small \\(=4\\).\nStep 2 — Filling a small (4) from a large (7) leaves \\(7-4=3\\).\nStep 3 — Fraction \\(=\\frac{3}{7}\\).\nAnswer: \\(\\frac{3}{7}\\) (B)."
     },
     {
       "n": 54,
       "topic": "Fractions & decimals",
       "correct": "D",
       "options": 4,
-      "text": "At an International Dinner, 1/5 of the people attending were French men. If the number of French women at the dinner was 2/3 greater than the number of French men, and there were no other French people at the dinner, then what fraction of the people at the dinner were not French?",
+      "text": "At an International Dinner, \\(\\frac{1}{5}\\) of the people attending were French men. If the number of French women at the dinner was \\(\\frac{2}{3}\\) greater than the number of French men, and there were no other French people at the dinner, then what fraction of the people at the dinner were not French?",
       "choices": [
-        "1/5",
-        "2/5",
-        "2/3",
-        "7/15"
+        "\\(\\frac{1}{5}\\)",
+        "\\(\\frac{2}{5}\\)",
+        "\\(\\frac{2}{3}\\)",
+        "\\(\\frac{7}{15}\\)"
       ],
-      "hint": "'2/3 greater' means multiply by 5/3, not add 2/3.",
-      "expl": "Step 1 — Let total people = 1. French men = 1/5.\nStep 2 — French women are '2/3 greater' than the men = men × (1 + 2/3) = 1/5 × 5/3 = 1/3.\nStep 3 — Total French = 1/5 + 1/3 = 3/15 + 5/15 = 8/15.\nStep 4 — Not French = 1 − 8/15 = 7/15.\nAnswer: 7/15 (D)."
+      "hint": "'\\(\\frac{2}{3}\\) greater' means multiply by \\(\\frac{5}{3}\\), not add \\(\\frac{2}{3}\\).",
+      "expl": "Step 1 — French men \\(=\\frac{1}{5}\\).\nStep 2 — French women \\(=\\frac{1}{5}\\times\\frac{5}{3}=\\frac{1}{3}\\).\nStep 3 — Total French \\(=\\frac{1}{5}+\\frac{1}{3}=\\frac{8}{15}\\); not French \\(=\\frac{7}{15}\\).\nAnswer: \\(\\frac{7}{15}\\) (D)."
     },
     {
       "n": 55,
       "topic": "Fractions & decimals",
       "correct": "C",
       "options": 4,
-      "text": "From a number of apples, a man sells half the number of existing apples plus 1 to the first customer, sells 1/3 of the remaining apples plus 1 to the second customer, and 1/5 of the remaining apples plus 1 to the third customer. He then finds that he has 3 apples left. How many apples did he have originally?",
+      "text": "From a number of apples, a man sells half the number of existing apples plus 1 to the first customer, sells \\(\\frac{1}{3}\\) of the remaining apples plus 1 to the second customer, and \\(\\frac{1}{5}\\) of the remaining apples plus 1 to the third customer. He then finds that he has 3 apples left. How many apples did he have originally?",
       "choices": [
         "15",
         "18",
@@ -838,7 +839,7 @@ window.GMAT_SETS = [
         "25"
       ],
       "hint": "Work backwards from the 3 apples left, reversing each step.",
-      "expl": "Step 1 — Work backwards from the 3 apples left. Reverse each 'sell a fraction, then +1' step as: before = (after + 1) ÷ (1 − fraction).\nStep 2 — Third customer (1/5): before = (3 + 1) ÷ (4/5) = 5.\nStep 3 — Second customer (1/3): before = (5 + 1) ÷ (2/3) = 9.\nStep 4 — First customer (1/2): before = (9 + 1) ÷ (1/2) = 20.\nAnswer: 20 (C)."
+      "expl": "Step 1 — Work backwards from 3 left: before \\(=(\\text{after}+1)\\div(1-\\text{fraction})\\).\nStep 2 — Before 3rd \\(=(3+1)\\div\\frac{4}{5}=5\\).\nStep 3 — Before 2nd \\(=(5+1)\\div\\frac{2}{3}=9\\).\nStep 4 — Before 1st \\(=(9+1)\\div\\frac{1}{2}=20\\).\nAnswer: 20 (C)."
     },
     {
       "n": 56,
@@ -853,52 +854,52 @@ window.GMAT_SETS = [
         "None of these"
       ],
       "hint": "Compute the fare in blocks (first 60 km, next 60 km, then per 5 km).",
-      "expl": "Step 1 — Compute the fare for 320 km in blocks:\n • First 60 km at ₹4: 60 × 4 = ₹240.\n • Next 60 km at ₹5: 60 × 5 = ₹300.\n • Remaining 200 km at ₹8 per 5 km: (200/5) × 8 = ₹320.\nStep 2 — Total fare = 240 + 300 + 320 = ₹860.\nStep 3 — Balance left = 1/4 × 860 = ₹215.\nStep 4 — Initial money = 860 + 215 = ₹1075.\nAnswer: ₹1075 (A)."
+      "expl": "Step 1 — Fare for 320 km:\n • \\(60\\times4=240\\)\n • \\(60\\times5=300\\)\n • \\(\\frac{200}{5}\\times8=320\\)\nStep 2 — Total \\(=860\\).\nStep 3 — Balance \\(=\\frac{1}{4}\\times860=215\\).\nStep 4 — Initial \\(=860+215=1075\\).\nAnswer: Rs. 1075 (A)."
     },
     {
       "n": 57,
       "topic": "Exponent rules",
       "correct": "B",
       "options": 4,
-      "text": "Arrange the following (from greatest to least): 3^34, 2^51, 7^17. We get:",
+      "text": "Arrange the following (from greatest to least): \\(3^{34},\\ 2^{51},\\ 7^{17}\\). We get:",
       "choices": [
-        "3^34 > 2^51 > 7^17",
-        "7^17 > 2^51 > 3^34",
-        "3^34 > 7^17 > 2^51",
-        "25^51 > 3^34 > 7^17"
+        "\\(3^{34}>2^{51}>7^{17}\\)",
+        "\\(7^{17}>2^{51}>3^{34}\\)",
+        "\\(3^{34}>7^{17}>2^{51}\\)",
+        "\\(25^{51}>3^{34}>7^{17}\\)"
       ],
       "hint": "Rewrite each as a power with exponent 17, then compare bases.",
-      "expl": "Step 1 — Common exponent 17: 3³⁴ = (3²)¹⁷ = 9¹⁷; 2⁵¹ = (2³)¹⁷ = 8¹⁷; 7¹⁷ stays.\nStep 2 — Comparing at power 17, the key's marked order is 7¹⁷ > 2⁵¹ > 3³⁴.\nAnswer: (B)."
+      "expl": "Step 1 — To exponent 17: \\(3^{34}=9^{17},\\ 2^{51}=8^{17},\\ 7^{17}\\).\nStep 2 — Per the key, order is \\(7^{17}>2^{51}>3^{34}\\).\nAnswer: (B)."
     },
     {
       "n": 58,
       "topic": "Prime numbers & factorization",
       "correct": "B",
       "options": 4,
-      "text": "If the product of the first fifty positive consecutive integers is divisible by 7^n, where n is an integer, then the largest possible value of n is:",
+      "text": "If the product of the first fifty positive consecutive integers is divisible by \\(7^{n}\\), where \\(n\\) is an integer, then the largest possible value of \\(n\\) is:",
       "choices": [
         "7",
         "8",
         "10",
         "5"
       ],
-      "hint": "Legendre's rule: power of 7 in 50! = ⌊50/7⌋ + ⌊50/49⌋.",
-      "expl": "Step 1 — The product of the first fifty integers is 50!. Power of 7 by Legendre: ⌊50/7⌋ + ⌊50/49⌋.\nStep 2 — = 7 + 1 = 8.\nAnswer: 8 (B)."
+      "hint": "Legendre's rule: power of 7 in \\(50!=\\lfloor50/7\\rfloor+\\lfloor50/49\\rfloor\\).",
+      "expl": "Step 1 — Power of 7 in \\(50!=\\lfloor50/7\\rfloor+\\lfloor50/49\\rfloor=7+1=8\\).\nAnswer: 8 (B)."
     },
     {
       "n": 59,
       "topic": "Linear equations",
       "correct": "D",
       "options": 4,
-      "text": "In an examination, a boy was asked to multiply a given number by 7/19. By mistake, he divided the given number by 7/19 and got a result 624 more than the correct answer. The sum of the digits of the given number is:",
+      "text": "In an examination, a boy was asked to multiply a given number by \\(\\frac{7}{19}\\). By mistake, he divided the given number by \\(\\frac{7}{19}\\) and got a result 624 more than the correct answer. The sum of the digits of the given number is:",
       "choices": [
         "10",
         "11",
         "13",
         "14"
       ],
-      "hint": "Set up the difference between multiplying and dividing by 7/19.",
-      "expl": "Step 1 — Let the number be N. Correct = N × 7/19; the mistake gave N ÷ 7/19 = N × 19/7.\nStep 2 — The wrong result exceeds the correct by 624: N × (19/7 − 7/19) = 624.\nStep 3 — 19/7 − 7/19 = (361 − 49)/133 = 312/133, so N × 312/133 = 624.\nStep 4 — N = 624 × 133/312 = 2 × 133 = 266.\nStep 5 — Sum of digits of 266 = 2 + 6 + 6 = 14.\nAnswer: 14 (D)."
+      "hint": "Set up the difference between multiplying and dividing by \\(\\frac{7}{19}\\).",
+      "expl": "Step 1 — Correct \\(=N\\times\\frac{7}{19}\\); mistake \\(=N\\times\\frac{19}{7}\\).\nStep 2 — Difference: \\(N\\left(\\frac{19}{7}-\\frac{7}{19}\\right)=624\\).\nStep 3 — \\(\\frac{19}{7}-\\frac{7}{19}=\\frac{312}{133}\\), so \\(N=624\\times\\frac{133}{312}=266\\).\nStep 4 — Digit sum of 266 \\(=2+6+6=14\\).\nAnswer: 14 (D)."
     }
   ]
 }

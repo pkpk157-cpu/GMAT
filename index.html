@@ -14,6 +14,9 @@
 <meta name="apple-mobile-web-app-title" content="GMAT Prep" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+<link rel="stylesheet" href="katex/katex.min.css" />
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/auto-render.min.js"></script>
 <style>
   :root {
     color-scheme: light dark;
@@ -605,10 +608,18 @@
   }
 
   /* Views */
+  // Typeset LaTeX (wrapped in \( ... \)) with KaTeX once it has loaded.
+  function typeset(el) {
+    if (el && window.renderMathInElement) {
+      try { window.renderMathInElement(el, { delimiters: [{ left: "\\(", right: "\\)", display: false }, { left: "\\[", right: "\\]", display: true }], throwOnError: false }); } catch (e) {}
+    }
+  }
+
   function renderView() {
     const view = document.getElementById("view");
     const sec = secById(state.active) || SECTIONS.find(s=>s.dashboard);
     view.innerHTML = sec.dashboard ? overallHTML() : sectionHTML(sec);
+    typeset(view);
   }
 
   function accBadge(c, d, extra) {
@@ -1107,7 +1118,9 @@
     const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
     const h = run.submitted ? resultsHTML(set, run, sec, qs) : (!run.mode ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
     document.getElementById("rn-title").textContent = set.title;
-    document.getElementById("rn-body").innerHTML = h;
+    const body = document.getElementById("rn-body");
+    body.innerHTML = h;
+    typeset(body);
     const tEl = document.getElementById("qtimer");
     if (tEl && tEl.getAttribute("data-live") === "1") {
       const key = runSetId + ":" + runIndex;
@@ -1178,6 +1191,8 @@
   function render(){ renderTop(); renderBotnav(); renderView(); }
   render();
   if (!state.examDate && !state.name) document.getElementById("onboard").hidden = false;
+  // KaTeX scripts are deferred, so typeset again once they've loaded.
+  window.addEventListener("load", () => { typeset(document.getElementById("view")); typeset(document.getElementById("rn-body")); });
 })();
 </script>
 

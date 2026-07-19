@@ -1,5 +1,5 @@
 /* GMAT Prep Tracker — service worker (network-first, auto-updating) */
-const CACHE = "gmat-prep-v14";
+const CACHE = "gmat-prep-v15";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,7 +7,20 @@ const ASSETS = [
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",
-  "./apple-touch-icon.png"
+  "./apple-touch-icon.png",
+  "./katex/katex.min.css",
+  "./katex/katex.min.js",
+  "./katex/auto-render.min.js",
+  "./katex/fonts/KaTeX_Main-Regular.woff2",
+  "./katex/fonts/KaTeX_Main-Bold.woff2",
+  "./katex/fonts/KaTeX_Main-Italic.woff2",
+  "./katex/fonts/KaTeX_Math-Italic.woff2",
+  "./katex/fonts/KaTeX_Math-BoldItalic.woff2",
+  "./katex/fonts/KaTeX_Size1-Regular.woff2",
+  "./katex/fonts/KaTeX_Size2-Regular.woff2",
+  "./katex/fonts/KaTeX_Size3-Regular.woff2",
+  "./katex/fonts/KaTeX_Size4-Regular.woff2",
+  "./katex/fonts/KaTeX_AMS-Regular.woff2"
 ];
 
 self.addEventListener("install", (e) => {

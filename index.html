@@ -1127,12 +1127,7 @@
       if (timedFor !== key) startQuestionTimer(key); // fresh timer only on a new question, not on re-render/pick
       updateTimerDisplay(); runTimerInterval();
     }
-    const card = document.getElementById("qcard");
-    if (card && run.mode && !run.submitted) {
-      let sx = null;
-      card.addEventListener("touchstart", (e) => { sx = e.changedTouches[0].clientX; }, { passive:true });
-      card.addEventListener("touchend", (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (dx < -45) goto(runIndex+1, set); else if (dx > 45) goto(runIndex-1, set); });
-    }
+    // Navigation is via the Prev / Next buttons only (no swipe — avoids accidental page changes).
   }
 
   document.getElementById("runner").addEventListener("click", (e) => {

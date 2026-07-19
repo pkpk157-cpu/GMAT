@@ -334,6 +334,15 @@
   .qtimer.paused { color: var(--warn); background: var(--gold-wash); }
   .qtimer-reset { border: 1px solid var(--line); background: var(--surface); color: var(--ink-faint); width: 26px; height: 26px; border-radius: 8px; font-size: 13px; line-height: 1; }
   .qtimer-reset:hover { color: var(--accent); border-color: var(--accent); }
+  .qflag { border: 1px solid var(--line); background: var(--surface); color: var(--ink-faint); width: 28px; height: 28px; border-radius: 8px; font-size: 14px; line-height: 1; flex: none; transition: .12s; }
+  .qflag:hover { color: var(--bad); border-color: var(--bad); }
+  .qflag.on { color: #fff; background: var(--bad); border-color: var(--bad); }
+  .qflag.small { width: 24px; height: 24px; font-size: 12px; margin-right: 6px; }
+  .jfilter { border: 1px solid var(--bad); background: var(--surface); color: var(--bad); padding: 8px 14px; border-radius: 9px; font-weight: 700; font-size: 13px; }
+  .jfilter.on { background: var(--bad); color: #fff; }
+  .jcell { position: relative; }
+  .jcell.flag::after { content: "⚑"; position: absolute; top: 0; right: 3px; font-size: 9px; color: var(--bad); line-height: 1; }
+  .jcell.flag.ok::after, .jcell.flag.no::after, .jcell.flag.ans::after { color: #fff; }
   .hint-box summary { color: var(--gold); }
   .rev-time { font-size: 11px; color: var(--ink-faint); font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 8px; }
   .rev-time.slow { color: var(--bad); }
@@ -531,7 +540,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -905,6 +914,11 @@
     return null;
   }
   function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {}, times: r.times || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {}, times: {} }; }
+  // Flagged-for-review questions, kept per set (persist across resets).
+  function flagsFor(id) { if (!state.flags) state.flags = {}; if (!state.flags[id]) state.flags[id] = {}; return state.flags[id]; }
+  function isFlagged(id, n) { return !!(state.flags && state.flags[id] && state.flags[id][n]); }
+  function toggleFlag(id, n) { const f = flagsFor(id); if (f[n]) delete f[n]; else f[n] = true; save(); }
+  function flaggedCount(id) { return (state.flags && state.flags[id]) ? Object.keys(state.flags[id]).length : 0; }
   function setRun(id, run) { state.runs[id] = run; save(); }
   function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
@@ -988,7 +1002,7 @@
       else { status = "not started"; cls = "muted"; }
       const hasProgress = run.submitted || answered > 0;
       h += `<div class="setrow"><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
-        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
+        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id)?`<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>`:""}</div></div>
         <div class="setbtns">${hasProgress?`<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this set">↺</button>`:""}<button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div></div>`;
     });
     return h + `</div></div>`;
@@ -1016,17 +1030,27 @@
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
+  let jumperFlaggedOnly = false;
   function openJumper() {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const run = getRun(set.id), practice = run.mode === "practice";
-    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:14px">${set.questions.length} questions${practice?" · green = right, red = wrong":""}</div><div class="jgrid">`;
-    set.questions.forEach((q, i) => {
-      const done = run.ans[q.n]; let cls = "";
-      if (i === runIndex) cls = "cur";
-      else if (done) cls = practice ? (done === q.correct ? "ok" : "no") : "ans";
-      h += `<button class="jcell ${cls}" data-jump="${i}">${q.n}</button>`;
-    });
-    h += `</div><button class="btn-soft" style="width:100%;margin-top:16px" data-closejump>Close</button>`;
+    const run = getRun(set.id), practice = run.mode === "practice", fc = flaggedCount(set.id);
+    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${set.questions.length} questions${practice?" · green = right, red = wrong":""}</div>`;
+    if (fc > 0) h += `<button class="jfilter ${jumperFlaggedOnly?"on":""}" data-flagfilter style="margin-bottom:12px">⚑ Flagged only (${fc})</button>`;
+    let list = set.questions.map((q, i) => ({ q, i }));
+    if (jumperFlaggedOnly) list = list.filter(x => isFlagged(set.id, x.q.n));
+    if (!list.length) { h += `<p class="mode-note" style="margin:8px 0 16px">No flagged questions.</p>`; }
+    else {
+      h += `<div class="jgrid">`;
+      list.forEach(({ q, i }) => {
+        const done = run.ans[q.n]; let cls = "";
+        if (i === runIndex) cls = "cur";
+        else if (done) cls = practice ? (done === q.correct ? "ok" : "no") : "ans";
+        if (isFlagged(set.id, q.n)) cls += " flag";
+        h += `<button class="jcell ${cls}" data-jump="${i}">${q.n}</button>`;
+      });
+      h += `</div>`;
+    }
+    h += `<button class="btn-soft" style="width:100%;margin-top:16px" data-closejump>Close</button>`;
     document.getElementById("jumper-card").innerHTML = h;
     document.getElementById("jumper").hidden = false;
   }
@@ -1052,8 +1076,10 @@
     const timerHTML = committed
       ? `<span class="qtimer ${paceCls(run.times[q.n] || 0)}" title="Time taken">⏱ ${fmtClock(run.times[q.n] || 0)}</span>`
       : `<span class="qtimer-wrap"><button class="qtimer live" id="qtimer" data-live="1" data-target="${tgt}" data-toggle-timer title="Tap to pause / resume">0:00</button><button class="qtimer-reset" data-reset-timer title="Reset timer">↺</button></span>`;
+    const flagged = isFlagged(set.id, q.n);
+    const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard"><div class="qtop"><span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
+    h += `<div class="qcard" id="qcard"><div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
@@ -1100,7 +1126,7 @@
     h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green. Times over your ~${fmtDur(tgt)} pace target are red${slowCount?` — <b>${slowCount}</b> over pace`:""}. Tap a question for the explanation.</p><div class="qlist">`;
     res.per.forEach(p => {
       const n = p.options, q = byN[p.n], tm = run.times[p.n], slow = tm && tm > tgt;
-      h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${p.n}</span><div class="rev-opts">` +
+      h += `<div class="revitem"><div class="qrow rev"><button class="qflag small ${isFlagged(set.id,p.n)?"on":""}" data-flag="${p.n}" title="Flag to revisit later">⚑</button><span class="qn">Q${p.n}</span><div class="rev-opts">` +
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
@@ -1135,6 +1161,7 @@
     const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); run.idx = 0; runIndex = 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
     if (e.target.closest("[data-toggle-timer]")) { toggleTimer(); return; }   // tap the timer to pause / resume
     if (e.target.closest("[data-reset-timer]")) { resetQTimer(); return; }     // ↺ resets this question's timer
+    const fl = e.target.closest("[data-flag]"); if (fl) { toggleFlag(set.id, fl.getAttribute("data-flag")); renderRunner(); return; }
     // Step 1: pick highlights the option (no commit) — guards against misclicks.
     const pick = e.target.closest("[data-pick]"); if (pick) {
       const run = ensureRun(set.id); if (run.submitted) return;
@@ -1161,7 +1188,7 @@
       if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
-    if (e.target.closest("[data-openjump]")) { openJumper(); return; }
+    if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; openJumper(); return; }
     const rq = e.target.closest("[data-resetq]"); if (rq) { resetQuestion(set, rq.getAttribute("data-resetq")); renderRunner(); return; }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
@@ -1179,6 +1206,7 @@
 
   document.getElementById("jumper").addEventListener("click", (e) => {
     if (e.target.id === "jumper" || e.target.closest("[data-closejump]")) { closeJumper(); return; }
+    if (e.target.closest("[data-flagfilter]")) { jumperFlaggedOnly = !jumperFlaggedOnly; openJumper(); return; }
     const j = e.target.closest("[data-jump]"); if (j) { const set = SETS.find(s => s.id === runSetId); closeJumper(); if (set) goto(parseInt(j.getAttribute("data-jump"), 10), set); }
   });
 

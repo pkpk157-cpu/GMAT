@@ -976,9 +976,9 @@
     return h + `</div></div>`;
   }
 
-  let runSetId = null, runIndex = 0, qStart = 0, qTimer = null, pendingL = null;
+  let runSetId = null, runIndex = 0, qStart = 0, qTimer = null, pendingL = null, timedFor = null;
   function stopTimer() { if (qTimer) { clearInterval(qTimer); qTimer = null; } }
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
   function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
@@ -1085,7 +1085,8 @@
     document.getElementById("rn-body").innerHTML = h;
     const tEl = document.getElementById("qtimer");
     if (tEl && tEl.getAttribute("data-live") === "1") {
-      qStart = Date.now();
+      const key = runSetId + ":" + runIndex;
+      if (timedFor !== key) { qStart = Date.now(); timedFor = key; } // reset only on a new question, not on re-render/pick
       const tgt = parseInt(tEl.getAttribute("data-target"), 10) || 120000;
       const tick = () => { const el = document.getElementById("qtimer"); if (!el) { stopTimer(); return; } const e = Date.now() - qStart; el.textContent = fmtClock(e); el.className = "qtimer" + (e > tgt ? " over" : (e > tgt*0.75 ? " warn" : "")); };
       tick(); qTimer = setInterval(tick, 500);

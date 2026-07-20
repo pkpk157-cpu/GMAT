@@ -536,7 +536,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v20";
+  const APP_VERSION = "v21";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1235,6 +1235,30 @@
     if (e.target.closest("[data-flagfilter]")) { jumperFlaggedOnly = !jumperFlaggedOnly; openJumper(); return; }
     const j = e.target.closest("[data-jump]"); if (j) { const set = SETS.find(s => s.id === runSetId); closeJumper(); if (set) goto(parseInt(j.getAttribute("data-jump"), 10), set); }
   });
+
+  /* ===== Hardware / gesture Back button: step up one layer instead of closing the app ===== */
+  function backCloseTopLayer() {
+    const vis = (id) => { const el = document.getElementById(id); return el && !el.hidden; };
+    if (vis("jumper"))   { closeJumper();  return true; }
+    if (vis("logsheet")) { closeSheet();   return true; }
+    if (vis("runner")) {
+      const run = runSetId ? getRun(runSetId) : null;
+      if (run && run.mode === "test" && !run.submitted) {
+        if (confirm("Exit test mode? Your answers are saved — you can resume this set later.")) closeRunner();
+      } else closeRunner();          // practice / results → straight back to the section page
+      return true;
+    }
+    if (vis("profile"))  { closeProfile(); return true; }
+    if (vis("onboard"))  { return true; } // ignore Back during first-run setup
+    return false;                          // base tab — nothing to close
+  }
+  function armBack() { try { history.pushState({ gmat: 1 }, ""); } catch (e) {} }
+  window.addEventListener("popstate", () => {
+    if (backCloseTopLayer()) { armBack(); }                     // handled a layer — re-arm
+    else if (confirm("Close GMAT Prep?")) { history.back(); }   // base: user confirmed exit
+    else { armBack(); }                                         // base: stay in the app
+  });
+  armBack();
 
   /* Boot */
   function render(){ renderTop(); renderBotnav(); renderView(); }

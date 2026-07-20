@@ -300,6 +300,11 @@
   .q-reset { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 12.5px; text-decoration: underline; }
   .q-reset:hover { color: var(--bad); }
   .badge { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; padding: 2px 8px; border-radius: 20px; background: color-mix(in srgb, var(--sc) 15%, transparent); color: var(--sc); }
+  .lvl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+  .lvl-easy { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+  .lvl-medium { color: var(--warn); background: color-mix(in srgb, var(--warn) 16%, transparent); }
+  .lvl-hard { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+  .diff-bar { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
   .sstatus { font-weight: 700; }
   .sstatus.good { color: var(--good); } .sstatus.mid { color: var(--warn); } .sstatus.low { color: var(--bad); } .sstatus.muted { color: var(--ink-faint); }
 
@@ -1056,8 +1061,11 @@
   }
   function closeJumper() { document.getElementById("jumper").hidden = true; }
 
+  function levelCounts(set) { const c = { easy:0, medium:0, hard:0 }; set.questions.forEach(q => { if (c[q.level] != null) c[q.level]++; }); return c; }
   function modeChooserHTML(set, sec, total) {
-    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} questions</div>
+    const lc = levelCounts(set);
+    const diff = (lc.easy||lc.medium||lc.hard) ? `<div class="diff-bar"><span class="lvl lvl-easy">${lc.easy} easy</span><span class="lvl lvl-medium">${lc.medium} medium</span><span class="lvl lvl-hard">${lc.hard} hard</span></div>` : "";
+    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} questions</div>${diff}
       <div class="qcard"><div class="mode-h">How do you want to run this set?</div>
       <button class="modebtn" data-mode="practice"><b>Practice mode</b><span>Tells you correct or incorrect right after each answer, with an explanation. Best for learning.</span></button>
       <button class="modebtn" data-mode="test"><b>Test mode</b><span>Answer all ${total} first, then get your score and full solutions at the end.</span></button>
@@ -1079,7 +1087,7 @@
     const flagged = isFlagged(set.id, q.n);
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard"><div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span></div>
+    h += `<div class="qcard" id="qcard"><div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
@@ -1131,7 +1139,7 @@
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
         (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
-        `<div class="rev-tag">${esc(p.topic)}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
+        `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · <span class="lvl lvl-${q.level}">${q.level}</span>`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
     h += `</div></div>`;
     h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;

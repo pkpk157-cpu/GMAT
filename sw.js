@@ -1,5 +1,5 @@
 /* GMAT Prep Tracker — service worker (network-first, auto-updating) */
-const CACHE = "gmat-prep-v19";
+const CACHE = "gmat-prep-v20";
 const ASSETS = [
   "./",
   "./index.html",
@@ -24,8 +24,13 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", (e) => {
-  // Grab a fresh copy of the shell, then take over immediately.
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // Cache assets individually so one failed request can't abort the whole
+  // update (that would silently freeze the app on an old version).
+  e.waitUntil(
+    caches.open(CACHE)
+      .then((c) => Promise.allSettled(ASSETS.map((a) => c.add(a))))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener("activate", (e) => {

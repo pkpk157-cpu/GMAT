@@ -536,6 +536,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
+  const APP_VERSION = "v20";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -761,7 +762,7 @@
     if (dl!==null && dl>0) {
       h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go. ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions${gAcc!==null?` at <b style="color:var(--ink)">${gAcc}%</b> accuracy`:""}` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
     }
-    h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition</p>`;
+    h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
     return h;
   }
 
@@ -821,6 +822,8 @@
       <div class="seg"><button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button><button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button><button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button></div></section>`;
 
     h += `<section class="panel"><h3>Fix out-of-sync stats</h3><p class="sub">If your daily / weekly totals disagree with the subject tabs, rebuild your topic totals and daily activity from your saved practice-set attempts.</p><button class="btn-soft" style="width:100%" data-rebuild="1">Re-sync my stats</button></section>`;
+
+    h += `<section class="panel"><h3>App</h3><p class="sub">Version ${APP_VERSION}. If a new feature isn't showing, tap refresh to pull the latest.</p><button class="btn-soft" style="width:100%" data-refresh="1">🔄 Check for updates &amp; refresh</button></section>`;
 
     h += `<section class="panel"><h3>Reset</h3><p class="sub">Clear every logged question. Your name, exam date and targets stay.</p><button class="btn-danger" data-reset="1">Reset all logged questions</button></section>`;
     return h;
@@ -898,6 +901,7 @@
     if (e.target.closest("[data-backup]")) { backup(); return; }
     if (e.target.closest("[data-restore]")) { document.getElementById("restore-input").click(); return; }
     if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from your saved practice-set attempts?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }
+    if (e.target.closest("[data-refresh]")) { try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) navigator.serviceWorker.getRegistration().then(r => { if (r) r.update(); }); } catch (e) {} location.reload(); return; }
     if (e.target.closest("[data-install]")) { const p=window.__gmatInstall; if (p) { p.prompt(); p.userChoice.finally(()=>{ window.__gmatInstall=null; renderProfile(); }); } return; }
     if (e.target.closest("[data-reset]")) { if (confirm("Reset every logged question to zero? Name, exam date and targets stay. This cannot be undone.")) { state.counts={}; state.daily={}; save(); renderProfile(); } }
   });

@@ -343,8 +343,14 @@
   .qflag:hover { color: var(--bad); border-color: var(--bad); }
   .qflag.on { color: #fff; background: var(--bad); border-color: var(--bad); }
   .qflag.small { width: 24px; height: 24px; font-size: 12px; margin-right: 6px; }
-  .jfilter { border: 1px solid var(--bad); background: var(--surface); color: var(--bad); padding: 8px 14px; border-radius: 9px; font-weight: 700; font-size: 13px; }
-  .jfilter.on { background: var(--bad); color: #fff; }
+  .jfilters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .jchip { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); padding: 6px 12px; border-radius: 20px; font-weight: 700; font-size: 12.5px; transition: .12s; }
+  .jchip:hover { border-color: var(--ink-faint); }
+  .jchip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .jchip.lvl-easy.on { background: var(--good); border-color: var(--good); color: #fff; }
+  .jchip.lvl-medium.on { background: var(--warn); border-color: var(--warn); color: #fff; }
+  .jchip.lvl-hard.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+  .jchip.flag.on { background: var(--bad); border-color: var(--bad); color: #fff; }
   .jcell { position: relative; }
   .jcell.flag::after { content: "⚑"; position: absolute; top: 0; right: 3px; font-size: 9px; color: var(--bad); line-height: 1; }
   .jcell.flag.ok::after, .jcell.flag.no::after, .jcell.flag.ans::after { color: #fff; }
@@ -1035,15 +1041,22 @@
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
-  let jumperFlaggedOnly = false;
+  let jumperFlaggedOnly = false, jumperLevel = null;
   function openJumper() {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const run = getRun(set.id), practice = run.mode === "practice", fc = flaggedCount(set.id);
+    const run = getRun(set.id), practice = run.mode === "practice", fc = flaggedCount(set.id), lc = levelCounts(set);
     let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${set.questions.length} questions${practice?" · green = right, red = wrong":""}</div>`;
-    if (fc > 0) h += `<button class="jfilter ${jumperFlaggedOnly?"on":""}" data-flagfilter style="margin-bottom:12px">⚑ Flagged only (${fc})</button>`;
+    h += `<div class="jfilters">`;
+    h += `<button class="jchip ${jumperLevel===null?"on":""}" data-levelfilter="all">All</button>`;
+    if (lc.easy) h += `<button class="jchip lvl-easy ${jumperLevel==="easy"?"on":""}" data-levelfilter="easy">Easy ${lc.easy}</button>`;
+    if (lc.medium) h += `<button class="jchip lvl-medium ${jumperLevel==="medium"?"on":""}" data-levelfilter="medium">Medium ${lc.medium}</button>`;
+    if (lc.hard) h += `<button class="jchip lvl-hard ${jumperLevel==="hard"?"on":""}" data-levelfilter="hard">Hard ${lc.hard}</button>`;
+    if (fc > 0) h += `<button class="jchip flag ${jumperFlaggedOnly?"on":""}" data-flagfilter>⚑ Flagged ${fc}</button>`;
+    h += `</div>`;
     let list = set.questions.map((q, i) => ({ q, i }));
+    if (jumperLevel) list = list.filter(x => x.q.level === jumperLevel);
     if (jumperFlaggedOnly) list = list.filter(x => isFlagged(set.id, x.q.n));
-    if (!list.length) { h += `<p class="mode-note" style="margin:8px 0 16px">No flagged questions.</p>`; }
+    if (!list.length) { h += `<p class="mode-note" style="margin:8px 0 16px">No questions match this filter.</p>`; }
     else {
       h += `<div class="jgrid">`;
       list.forEach(({ q, i }) => {
@@ -1196,7 +1209,7 @@
       if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
-    if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; openJumper(); return; }
+    if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; jumperLevel = null; openJumper(); return; }
     const rq = e.target.closest("[data-resetq]"); if (rq) { resetQuestion(set, rq.getAttribute("data-resetq")); renderRunner(); return; }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
@@ -1214,6 +1227,7 @@
 
   document.getElementById("jumper").addEventListener("click", (e) => {
     if (e.target.id === "jumper" || e.target.closest("[data-closejump]")) { closeJumper(); return; }
+    const lf = e.target.closest("[data-levelfilter]"); if (lf) { const v = lf.getAttribute("data-levelfilter"); jumperLevel = v === "all" ? null : v; openJumper(); return; }
     if (e.target.closest("[data-flagfilter]")) { jumperFlaggedOnly = !jumperFlaggedOnly; openJumper(); return; }
     const j = e.target.closest("[data-jump]"); if (j) { const set = SETS.find(s => s.id === runSetId); closeJumper(); if (set) goto(parseInt(j.getAttribute("data-jump"), 10), set); }
   });

@@ -423,6 +423,50 @@
   .expl[open] summary::before { content: "▾  "; }
   .expl .ex { padding: 0 13px 13px; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); white-space: pre-line; }
 
+  /* Concept reader */
+  .cn-toc { display: flex; flex-direction: column; gap: 10px; }
+  .cn-tocrow { display: flex; align-items: center; gap: 12px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 14px 15px; transition: .12s; }
+  .cn-tocrow:hover { border-color: var(--c-cr); }
+  .cn-tocnum { width: 30px; height: 30px; border-radius: 8px; background: var(--surface-2); color: var(--c-cr); font-weight: 800; display: grid; place-items: center; flex: none; font-size: 14px; }
+  .cn-tocmeta { min-width: 0; margin-right: auto; }
+  .cn-toct { display: block; font-weight: 650; font-size: 15px; }
+  .cn-tocs { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+  .cn-chev { color: var(--ink-faint); flex: none; }
+  .cn-article { max-width: 640px; margin: 0 auto; }
+  .cn-back { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; color: var(--c-cr); font-weight: 700; font-size: 13px; padding: 4px 0; margin-bottom: 4px; }
+  .cn-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); }
+  .cn-h1 { font-size: 23px; font-weight: 750; letter-spacing: -.02em; margin: 4px 0 18px; }
+  .cn-h { font-size: 16px; font-weight: 700; margin: 22px 0 8px; color: var(--ink); }
+  .cn-p { font-size: 15.5px; line-height: 1.62; color: var(--ink-soft); margin: 10px 0; text-wrap: pretty; }
+  .cn-p b, .cn-li b { color: var(--ink); font-weight: 700; }
+  .cn-ul, .cn-ol { margin: 10px 0; padding-left: 22px; display: flex; flex-direction: column; gap: 7px; }
+  .cn-li { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+  .cn-formula { margin: 14px 0; padding: 14px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; text-align: center; }
+  .cn-call { margin: 14px 0; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.55; border-left: 3px solid; }
+  .cn-call.tip { background: color-mix(in srgb, var(--accent) 9%, var(--surface)); border-color: var(--accent); color: var(--ink-soft); }
+  .cn-call.warn { background: color-mix(in srgb, var(--bad) 9%, var(--surface)); border-color: var(--bad); color: var(--ink-soft); }
+  .cn-call.note { background: var(--surface-2); border-color: var(--line); color: var(--ink-soft); }
+  .cn-call b { color: var(--ink); }
+  .cn-table-wrap { overflow-x: auto; margin: 14px 0; }
+  .cn-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .cn-table th { text-align: left; font-weight: 700; color: var(--ink); padding: 9px 11px; border-bottom: 2px solid var(--line); background: var(--surface-2); }
+  .cn-table td { padding: 9px 11px; border-bottom: 1px solid var(--line-soft); color: var(--ink-soft); vertical-align: top; }
+  .cn-eg { margin: 16px 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .cn-eg-tag { background: var(--surface-2); padding: 8px 14px; font-size: 12px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--ink-soft); }
+  .cn-eg-body { padding: 13px 14px; }
+  .cn-eg-q { font-size: 15px; line-height: 1.5; font-weight: 500; margin-bottom: 11px; }
+  .cn-eg-ch { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .cn-eg-op { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: var(--ink-soft); padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; }
+  .cn-eg-op.right { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, var(--surface)); color: var(--ink); }
+  .cn-eg-op .cl { font-weight: 800; color: var(--ink-faint); flex: none; }
+  .cn-eg-op.right .cl { color: var(--good); }
+  .cn-eg-why { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); background: var(--paper); border-radius: 9px; padding: 11px 12px; }
+  .cn-eg-why b { color: var(--ink); }
+  .cn-nav { display: flex; gap: 10px; margin: 26px 0 8px; }
+  .cn-nav button { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 13.5px; color: var(--ink); transition: .12s; }
+  .cn-nav button:disabled { opacity: .4; }
+  .cn-nav button.next { background: var(--c-cr); border-color: var(--c-cr); color: #fff; }
+
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
   @media (max-width: 430px) {
@@ -482,7 +526,14 @@
 <!-- Question jumper -->
 <div class="scrim" id="jumper" hidden><div class="modal" id="jumper-card"></div></div>
 
+<!-- Concept reader -->
+<div class="profile" id="concept" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="cn-title">Concepts</h2><button class="pf-close" id="cn-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="cn-body"></div>
+</div>
+
 <script src="sets.js"></script>
+<script src="concepts.js"></script>
 <script>
 (function () {
   "use strict";
@@ -536,7 +587,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v21";
+  const APP_VERSION = "v22";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -679,6 +730,7 @@
       h += `</div></section>`;
     });
     h += `</div>`;
+    h += conceptsPanelHTML(conceptsFor(sec.id));
     h += setsPanelHTML(setsFor(sec.id));
     return h;
   }
@@ -878,7 +930,14 @@
     const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this set added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
+    const oc = e.target.closest("[data-openconcept]"); if (oc) { openConcept(oc.getAttribute("data-openconcept")); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
+  });
+
+  /* Events — concept reader */
+  document.getElementById("cn-close").addEventListener("click", closeConcept);
+  document.getElementById("cn-body").addEventListener("click", (e) => {
+    const p = e.target.closest("[data-cnpart]"); if (p) { gotoPart(parseInt(p.getAttribute("data-cnpart"), 10)); }
   });
 
   /* Events — log sheet */
@@ -920,6 +979,72 @@
   const SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
   const LET = ["A","B","C","D","E","F","G","H"];
   const setsFor = (secId) => SETS.filter(s => s.section === secId);
+
+  /* ===== Concept guides (theory) ===== */
+  const CONCEPTS = (window.GMAT_CONCEPTS || []).filter(g => g && Array.isArray(g.parts) && g.parts.length);
+  const conceptsFor = (secId) => CONCEPTS.filter(g => g.section === secId);
+
+  function conceptsPanelHTML(list) {
+    if (!list.length) return "";
+    let h = `<div class="panel"><h3>Concepts &amp; theory</h3><p class="sub">Study guides in a clean, readable format — tap to read, then jump into practice.</p><div class="cn-toc">`;
+    list.forEach(g => {
+      h += `<button class="cn-tocrow" data-openconcept="${esc(g.id)}">
+        <span class="cn-tocnum">${g.parts.length}</span>
+        <span class="cn-tocmeta"><span class="cn-toct">${esc(g.title)}${g.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</span><span class="cn-tocs">${g.parts.length} sections${g.source?" · "+esc(g.source):""}</span></span>
+        <span class="cn-chev">›</span></button>`;
+    });
+    return h + `</div></div>`;
+  }
+
+  let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
+  function openConcept(id) { cnGuideId = id; cnPartIdx = -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function closeConcept() { document.getElementById("concept").hidden = true; cnGuideId = null; document.body.style.overflow = ""; render(); }
+
+  function blockHTML(b) {
+    switch (b.t) {
+      case "h": return `<h3 class="cn-h">${b.x}</h3>`;
+      case "p": return `<p class="cn-p">${b.x}</p>`;
+      case "ul": return `<ul class="cn-ul">${b.items.map(i=>`<li class="cn-li">${i}</li>`).join("")}</ul>`;
+      case "ol": return `<ol class="cn-ol">${b.items.map(i=>`<li class="cn-li">${i}</li>`).join("")}</ol>`;
+      case "formula": return `<div class="cn-formula">\\[${b.x}\\]</div>`;
+      case "tip": case "warn": case "note": return `<div class="cn-call ${b.t}">${b.x}</div>`;
+      case "table": return `<div class="cn-table-wrap"><table class="cn-table"><thead><tr>${b.head.map(hh=>`<th>${hh}</th>`).join("")}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      case "eg": {
+        const ans = (b.ans||"").toUpperCase();
+        const ch = (b.choices||[]).map((c,i)=>{ const l = LET[i]; const right = l===ans; return `<div class="cn-eg-op${right?" right":""}"><span class="cl">${l}${right?" ✓":""}</span><span>${c}</span></div>`; }).join("");
+        return `<div class="cn-eg"><div class="cn-eg-tag">Worked example</div><div class="cn-eg-body"><div class="cn-eg-q">${b.q}</div><div class="cn-eg-ch">${ch}</div><div class="cn-eg-why"><b>Why ${ans}:</b> ${b.why}</div></div></div>`;
+      }
+      default: return "";
+    }
+  }
+
+  function renderConcept() {
+    const g = CONCEPTS.find(x => x.id === cnGuideId); if (!g) { closeConcept(); return; }
+    document.getElementById("cn-title").textContent = g.title;
+    const body = document.getElementById("cn-body");
+    if (cnPartIdx < 0) {
+      let h = `<div class="cn-article"><div class="cn-eyebrow">Guide</div><h1 class="cn-h1">${esc(g.title)}</h1>`;
+      if (g.source) h += `<p class="cn-p" style="margin-top:-8px">${esc(g.source)}</p>`;
+      h += `<div class="cn-toc">`;
+      g.parts.forEach((p,i) => {
+        h += `<button class="cn-tocrow" data-cnpart="${i}"><span class="cn-tocnum">${i+1}</span><span class="cn-tocmeta"><span class="cn-toct">${esc(p.title)}</span><span class="cn-tocs">${p.mins?p.mins+" min read":""}</span></span><span class="cn-chev">›</span></button>`;
+      });
+      body.innerHTML = h + `</div></div>`;
+    } else {
+      const p = g.parts[cnPartIdx];
+      let h = `<div class="cn-article"><button class="cn-back" data-cnpart="-1">‹ Contents</button>`;
+      h += `<div class="cn-eyebrow">${cnPartIdx+1} of ${g.parts.length}${p.mins?" · "+p.mins+" min":""}</div><h1 class="cn-h1">${esc(p.title)}</h1>`;
+      h += p.blocks.map(blockHTML).join("");
+      h += `<div class="cn-nav"><button class="prev" data-cnpart="${cnPartIdx-1}" ${cnPartIdx===0?"disabled":""}>‹ Previous</button><button class="next" data-cnpart="${cnPartIdx+1}" ${cnPartIdx===g.parts.length-1?"disabled":""}>Next ›</button></div>`;
+      body.innerHTML = h + `</div>`;
+    }
+    typeset(body);
+  }
+  function gotoPart(i) {
+    const g = CONCEPTS.find(x => x.id === cnGuideId); if (!g) return;
+    cnPartIdx = i < 0 ? -1 : Math.min(g.parts.length-1, i);
+    renderConcept(); window.scrollTo({ top:0 });
+  }
 
   function resolveTopic(secId, name) {
     const sec = secById(secId); if (!sec || !sec.subjects) return null;
@@ -1241,6 +1366,11 @@
     const vis = (id) => { const el = document.getElementById(id); return el && !el.hidden; };
     if (vis("jumper"))   { closeJumper();  return true; }
     if (vis("logsheet")) { closeSheet();   return true; }
+    if (vis("concept")) {
+      if (cnPartIdx >= 0) gotoPart(-1);    // article → back to contents
+      else closeConcept();                 // contents → back to the section page
+      return true;
+    }
     if (vis("runner")) {
       const run = runSetId ? getRun(runSetId) : null;
       if (run && run.mode === "test" && !run.submitted) {

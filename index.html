@@ -378,6 +378,13 @@
   .qtext { font-size: 17px; line-height: 1.5; font-weight: 500; text-wrap: pretty; }
   .qnote { font-size: 12px; color: var(--warn); margin-top: 10px; font-weight: 600; }
   .choices { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+  .choice-wrap { display: flex; align-items: stretch; gap: 7px; }
+  .choice-wrap .choice { flex: 1; min-width: 0; }
+  .choice-elim { flex: none; width: 42px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-faint); border-radius: 11px; font-size: 14px; font-weight: 800; cursor: pointer; transition: .12s; }
+  .choice-elim:hover { border-color: var(--bad); color: var(--bad); }
+  .choice-elim.on { background: color-mix(in srgb, var(--bad) 14%, var(--surface)); border-color: var(--bad); color: var(--bad); }
+  .choice.struck { opacity: .45; }
+  .choice.struck .cl, .choice.struck .ct { text-decoration: line-through; }
   .choice { display: flex; align-items: center; gap: 12px; text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 11px; padding: 13px 14px; transition: .12s; width: 100%; }
   .choice:hover { border-color: var(--accent); }
   .choice .cl { width: 28px; height: 28px; border-radius: 7px; background: var(--surface-2); color: var(--ink-soft); font-weight: 800; display: grid; place-items: center; flex: none; font-size: 13px; }
@@ -589,7 +596,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v32";
+  const APP_VERSION = "v33";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1055,14 +1062,14 @@
     for (const su of sec.subjects) for (const t of su.topics) { const tl = t.toLowerCase(); if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return topicId(secId, su.name, t); }
     return null;
   }
-  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {}, times: r.times || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {}, times: {} }; }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {}, times: r.times || {}, elim: r.elim || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {}, times: {}, elim: {} }; }
   // Flagged-for-review questions, kept per set (persist across resets).
   function flagsFor(id) { if (!state.flags) state.flags = {}; if (!state.flags[id]) state.flags[id] = {}; return state.flags[id]; }
   function isFlagged(id, n) { return !!(state.flags && state.flags[id] && state.flags[id][n]); }
   function toggleFlag(id, n) { const f = flagsFor(id); if (f[n]) delete f[n]; else f[n] = true; save(); }
   function flaggedCount(id) { return (state.flags && state.flags[id]) ? Object.keys(state.flags[id]).length : 0; }
   function setRun(id, run) { state.runs[id] = run; save(); }
-  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; state.runs[id] = r; return r; }
+  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{}, elim:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; r.elim = r.elim || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
   // Topic count and daily count move together — never bump one without the other.
   function logOne(set, q, correct, ms) {
@@ -1110,6 +1117,7 @@
     const run = ensureRun(set.id);
     unlogOne(set, run, n);
     delete run.ans[n]; delete run.ans[String(n)]; delete run.times[n]; delete run.times[String(n)];
+    if (run.elim) { delete run.elim[n]; delete run.elim[String(n)]; }
     if (run.submitted) { run.submitted = false; delete run.score; delete run.total; }
     save();
   }
@@ -1117,7 +1125,7 @@
     const run = ensureRun(set.id);
     Object.keys(run.logged || {}).forEach(n => unlogOne(set, run, n));
     const mode = keepMode ? run.mode : null;
-    state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode: mode, logged:{}, times:{} };
+    state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode: mode, logged:{}, times:{}, elim:{} };
     runIndex = 0; save();
   }
   function scoreRun(set, run) {
@@ -1234,12 +1242,17 @@
     h += `<div class="qcard" id="qcard"><div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
+    const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
       let cls = "", dis = "";
       if (revealed) { dis = "disabled"; if (L === q.correct) cls = "correct"; else if (L === committed) cls = "wrong"; }
       else if (active === L) cls = "sel";
-      h += `<button class="choice ${cls}" data-pick="${L}" ${dis}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`;
+      const struck = !revealed && elim[L];
+      if (struck) cls += " struck";
+      const pickBtn = `<button class="choice ${cls}" data-pick="${L}" ${dis}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`;
+      const elimBtn = revealed ? "" : `<button class="choice-elim ${elim[L]?"on":""}" data-elim="${L}" title="${elim[L]?"Restore this option":"Cross out this option"}" aria-label="Cross out option ${L}">✕</button>`;
+      h += `<div class="choice-wrap">${pickBtn}${elimBtn}</div>`;
     });
     h += `</div>`;
     if (revealed) {
@@ -1314,13 +1327,25 @@
     if (e.target.closest("[data-toggle-timer]")) { toggleTimer(); return; }   // tap the timer to pause / resume
     if (e.target.closest("[data-reset-timer]")) { resetQTimer(); return; }     // ↺ resets this question's timer
     const fl = e.target.closest("[data-flag]"); if (fl) { toggleFlag(set.id, fl.getAttribute("data-flag")); renderRunner(); return; }
+    // Cross out / restore an option (GMAT elimination). Kept per question.
+    const elb = e.target.closest("[data-elim]"); if (elb) {
+      const run = ensureRun(set.id); if (run.submitted) return;
+      const q = set.questions[runIndex];
+      if (run.mode === "practice" && run.ans[q.n]) return; // no changes once answered in practice
+      const key = String(q.n); run.elim[key] = run.elim[key] || {};
+      const L = elb.getAttribute("data-elim");
+      if (run.elim[key][L]) delete run.elim[key][L]; else run.elim[key][L] = 1;
+      save(); renderRunner(); return;
+    }
     // Step 1: pick highlights the option (no commit) — guards against misclicks.
     const pick = e.target.closest("[data-pick]"); if (pick) {
       const run = ensureRun(set.id); if (run.submitted) return;
       const q = set.questions[runIndex];
       if (run.mode === "practice" && run.ans[q.n]) return; // locked once answered in practice
-      pendingL = pick.getAttribute("data-pick");
-      renderRunner(); return;
+      const L = pick.getAttribute("data-pick");
+      if (run.elim[String(q.n)]) delete run.elim[String(q.n)][L]; // choosing an option un-crosses it
+      pendingL = L;
+      save(); renderRunner(); return;
     }
     // Step 2: confirm commits the pending answer.
     if (e.target.closest("[data-confirm]")) {

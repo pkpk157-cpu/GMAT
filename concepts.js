@@ -421,5 +421,151 @@ window.GMAT_CONCEPTS = [
         ]
       }
     ]
+  },
+
+  {
+    id: "data-insights",
+    section: "data",
+    title: "Data Insights — the whole section",
+    source: "Adapted from your Sandeep Gupta DS & IR guides",
+    parts: [
+      {
+        id: "di-overview",
+        title: "What Data Insights is",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "Data Insights (DI) is really <b>IR + Data Sufficiency</b> merged. It's ~20 questions in 45 minutes, split across four types:" },
+          { t: "table", head: ["Type", "Questions"], rows: [
+            ["Data Sufficiency", "8"],
+            ["Two-Part Analysis", "4"],
+            ["Graphics & Table", "5"],
+            ["Multi-Source Reasoning (MSR)", "3"]
+          ] },
+          { t: "p", x: "Roughly half are math-flavoured and half verbal-flavoured — but the <b>real skill being tested is reading</b>: pulling the few relevant facts out of a jungle of information, fast." },
+          { t: "ul", items: [
+            "It's <b>~75% reading &amp; reasoning, ~25% (very basic) math</b> — mostly percentages and mean/median. Even the “math” questions are won on reading.",
+            "A question can have <b>up to 3 sub-parts</b>, and you must get <b>all</b> of them right for any credit — there's <b>no partial credit</b>.",
+            "You get an <b>on-screen calculator</b>, sortable tables, dropdowns, and tabbed sources.",
+            "<b>MSR wastes the most time</b> — a common plan is to flag the 3 MSR questions for review and handle them last."
+          ] },
+          { t: "tip", x: "The fastest way to level up DI is to read a lot of dense LSAT-style RC/CR in long sittings — it trains the fast reading-and-analysing the section rewards." }
+        ]
+      },
+      {
+        id: "di-ds-rules",
+        title: "Data Sufficiency — the rules",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "You're given a question and two statements, (1) and (2). You <b>don't solve</b> — you decide whether the data is <b>enough</b> to answer. The five choices never change:" },
+          { t: "table", head: ["Choice", "Meaning"], rows: [
+            ["A", "(1) alone sufficient, (2) alone not"],
+            ["B", "(2) alone sufficient, (1) alone not"],
+            ["C", "Both together sufficient, neither alone"],
+            ["D", "Each alone is sufficient"],
+            ["E", "Together still not sufficient"]
+          ] },
+          { t: "p", x: "A quick way to hold this in your head: decide if (1) alone works, then if (2) alone works — <b>A, B or D</b> follows if either/both work alone; otherwise combine them for <b>C or E</b>." },
+          { t: "h", x: "Two question types" },
+          { t: "ul", items: [
+            "<b>“WHAT” (value)</b> — sufficient only if the data gives <b>exactly one</b> value. A range (y &gt; 5) or a variable answer (y = a) is <b>not</b> sufficient.",
+            "<b>“IS / DOES” (yes-no)</b> — sufficient only for a <b>definite YES</b> or a <b>definite NO</b>. A confirmed NO is just as good as a YES; “sometimes yes, sometimes no” is insufficient."
+          ] },
+          { t: "eg",
+            q: "If m and n are integers, what is the value of m + n?  (1) (x+m)(x+n) = x² + 5x + mn, and x ≠ 0.   (2) mn = 4",
+            choices: [
+              "(1) alone sufficient, (2) alone not",
+              "(2) alone sufficient, (1) alone not",
+              "Both together, neither alone",
+              "Each alone is sufficient",
+              "Together still not sufficient"
+            ],
+            ans: "A",
+            why: "(1): expanding gives x²+(m+n)x+mn = x²+5x+mn, so (m+n)x = 5x, and since x ≠ 0, m+n = 5 — a unique value, sufficient. (2): mn = 4 allows 1·4, 2·2, −1·−4… so m+n could be 5, 4, −5… not unique, insufficient."
+          }
+        ]
+      },
+      {
+        id: "di-ds-traps",
+        title: "Data Sufficiency — strategy & the C-trap",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "Every hard DS question hides a trap. The habits below defuse most of them:" },
+          { t: "ul", items: [
+            "<b>Simplify the question first.</b> Boil the stem down before touching the statements (e.g. “Is (a−1)/(a+1) = m/m?” often reduces to “Is a + b = 0?”).",
+            "<b>Assume nothing.</b> If a number isn't stated to be an integer, it might be a decimal — “Is a &gt; 5?” with “a &lt; 6” fails because a could be 5.5.",
+            "<b>Statements are independent.</b> When judging (2), don't carry over (1). And the two statements <b>never contradict</b> each other.",
+            "<b>Try to break it.</b> On yes/no questions, deliberately build both a YES case and a NO case. If you can, it's insufficient.",
+            "<b>Watch signs when dividing.</b> “ca &gt; cb” does <b>not</b> give a &gt; b unless you know the sign of c.",
+            "<b>Don't calculate</b> more than sufficiency needs."
+          ] },
+          { t: "warn", x: "The <b>C-trap</b>: the question dangles two statements that <i>look</i> like they're only useful together, tempting you to pick C — when one alone already works (or neither does). Any time C feels obvious, re-check each statement alone and re-read exactly what's asked." },
+          { t: "eg",
+            q: "If x and y are consecutive odd integers, what is the sum of x and y?  (1) The product of x and y is negative.   (2) One of the integers is −1.",
+            choices: [
+              "(1) alone sufficient, (2) alone not",
+              "(2) alone sufficient, (1) alone not",
+              "Both together, neither alone",
+              "Each alone is sufficient",
+              "Together still not sufficient"
+            ],
+            ans: "A",
+            why: "(1): two consecutive odd integers with a negative product must be −1 and +1 (the only way one is negative and one positive while consecutive) → sum = 0, sufficient. (2): −1 pairs with either +1 or −3 → sum 0 or −4, not unique. Reaching for C here is the trap; (1) alone nails it."
+          }
+        ]
+      },
+      {
+        id: "di-twopart",
+        title: "Two-Part Analysis",
+        mins: 2,
+        blocks: [
+          { t: "p", x: "You make <b>two selections</b> — one in each column of a table — to answer a question that has two linked parts. They can be math-based (pick two expressions/values) or verbal-based (e.g. pick the fact that most <b>strengthens</b> and the one that most <b>weakens</b> an argument)." },
+          { t: "ul", items: [
+            "Read what each <b>column</b> asks for before you evaluate options — the two columns often demand opposite things.",
+            "Verbal two-parts are really CR in a grid — assumption, strengthen/weaken, inference logic all apply.",
+            "Math two-parts are usually a single setup feeding two answers; solve the relationship once, then read off both."
+          ] }
+        ]
+      },
+      {
+        id: "di-graphs",
+        title: "Graphics Interpretation",
+        mins: 2,
+        blocks: [
+          { t: "p", x: "You read a chart (line, bar, scatter, etc.) and complete sentences by choosing from <b>drop-down menus</b> so each statement is accurate." },
+          { t: "ul", items: [
+            "Nail the <b>axes and units</b> first — many traps hinge on <b>percent vs. absolute number</b> (a rising percentage needn't mean a rising count).",
+            "Answer strictly from the graph — <b>don't extrapolate</b> beyond what's plotted unless the statement says to project a trend.",
+            "For “rate of growth / change” dropdowns, compare <b>slopes</b>, not single points."
+          ] }
+        ]
+      },
+      {
+        id: "di-tables",
+        title: "Table Analysis",
+        mins: 2,
+        blocks: [
+          { t: "p", x: "A sortable table with a set of statements you mark <b>Yes/No</b> or <b>True/False</b> — each judged independently against the data." },
+          { t: "ul", items: [
+            "<b>Sort</b> by the relevant column before judging a statement about order, max/min, or medians — it's faster and less error-prone.",
+            "For <b>median</b> statements, remember to count all rows and find the middle after sorting.",
+            "Each statement is its own mini true/false — a statement is True only if the data <b>must</b> make it so; one counterexample makes it False."
+          ] }
+        ]
+      },
+      {
+        id: "di-msr",
+        title: "Multi-Source Reasoning",
+        mins: 2,
+        blocks: [
+          { t: "p", x: "Information is spread across <b>2–3 tabs</b> (text, a table, a graph). Questions ask you to synthesise across tabs — including Yes/No inference sets and single-answer questions." },
+          { t: "ul", items: [
+            "<b>Skim all tabs first</b> to learn where each kind of information lives; don't try to memorise it.",
+            "Each question usually leans on <b>one or two</b> tabs — find them rather than re-reading everything.",
+            "It's the most <b>time-expensive</b> type — flag the 3 MSR questions and do them in review/edit so they don't sink your pacing."
+          ] },
+          { t: "note", x: "That completes the Data Insights concept layer. Practice sets (Data Sufficiency question banks, IR practice) can be added next from your DI question PDFs." }
+        ]
+      }
+    ]
   }
 ];

@@ -1129,5 +1129,269 @@ window.GMAT_SETS = [
         "level": "hard"
       }
     ]
+  },
+  {
+    "id": "quant-ratio-ex",
+    "title": "Ratios & Proportions — Exercise",
+    "section": "quant",
+    "source": "Ratio, Proportion & Partnership exercise (with answers & explanations)",
+    "questions": [
+      {
+        "n": 1, "topic": "Ratios & proportions", "correct": "A", "options": 4,
+        "text": "If \\(x : y = 2 : 3\\) and \\(2 : x = 4 : 8\\), what is the value of \\(y\\)?",
+        "choices": ["6", "8", "4", "12"],
+        "hint": "Use the second proportion to find x first.",
+        "expl": "Step 1 — From \\(2 : x = 4 : 8\\): \\(4x = 16\\), so \\(x = 4\\).\nStep 2 — Then \\(x : y = 2 : 3\\) gives \\(4 : y = 2 : 3\\), so \\(y = 6\\).\nAnswer: 6 (A).",
+        "level": "easy"
+      },
+      {
+        "n": 2, "topic": "Ratios & proportions", "correct": "D", "options": 4,
+        "text": "If \\(a : b = 2 : 3\\), \\(b : c = 3 : 4\\) and \\(c : d = 4 : 5\\), then \\(a : b : c : d\\) is:",
+        "choices": ["5 : 4 : 3 : 2", "30 : 20 : 15 : 12", "2 : 3 : 4 : 6", "2 : 3 : 4 : 5"],
+        "hint": "The shared terms already line up — just chain them.",
+        "expl": "Step 1 — b is 3 in both a:b and b:c, and c is 4 in both b:c and c:d, so the ratios link directly.\nStep 2 — \\(a : b : c : d = 2 : 3 : 4 : 5\\).\nAnswer: 2 : 3 : 4 : 5 (D).",
+        "level": "easy"
+      },
+      {
+        "n": 3, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "What is the least positive integer which, when added to both terms of the ratio \\(5 : 9\\), makes the ratio greater than \\(7 : 10\\)?",
+        "choices": ["6", "8", "5", "7"],
+        "hint": "Set up (5+x)/(9+x) > 7/10 and solve for x.",
+        "expl": "Step 1 — Require \\(\\frac{5+x}{9+x} > \\frac{7}{10}\\).\nStep 2 — Cross-multiply: \\(10(5+x) > 7(9+x)\\Rightarrow 50+10x > 63+7x\\).\nStep 3 — \\(3x > 13\\Rightarrow x > 4.33\\); least integer is 5.\nAnswer: 5 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 4, "topic": "Ratios & proportions", "correct": "B", "options": 4,
+        "text": "The dimensions of a rectangular room, when each is increased by 4 m, are in ratio \\(4 : 3\\); when each is decreased by 4 m, they are in ratio \\(2 : 1\\). The dimensions are:",
+        "choices": ["6 m and 4 m", "12 m and 8 m", "16 m and 12 m", "24 m and 16 m"],
+        "hint": "Write two equations from the two ratio conditions in l and b.",
+        "expl": "Step 1 — \\(\\frac{l+4}{b+4} = \\frac{4}{3}\\Rightarrow 3l - 4b = 4\\).\nStep 2 — \\(\\frac{l-4}{b-4} = \\frac{2}{1}\\Rightarrow l - 2b = -4\\).\nStep 3 — Solving: \\(l = 12,\\ b = 8\\).\nAnswer: 12 m and 8 m (B).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Ratios & proportions", "correct": "B", "options": 4,
+        "text": "The sum of three numbers is 98. If the first to the second is \\(2 : 3\\) and the second to the third is \\(5 : 8\\), the second number is:",
+        "choices": ["20", "30", "38", "48"],
+        "hint": "Make the shared term (the second) equal before combining.",
+        "expl": "Step 1 — Scale so 'second' matches: \\(A:B = 10:15\\), \\(B:C = 15:24\\), so \\(A:B:C = 10:15:24\\).\nStep 2 — \\(10x+15x+24x = 49x = 98\\Rightarrow x = 2\\).\nStep 3 — Second \\(= 15x = 30\\).\nAnswer: 30 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "The ratio of ladies to gents at a party was \\(1 : 2\\); after 2 ladies and 2 gents left, it became \\(1 : 3\\). How many people were originally present?",
+        "choices": ["6", "9", "12", "15"],
+        "hint": "Let ladies = x, gents = 2x, then apply the change.",
+        "expl": "Step 1 — \\(\\frac{x-2}{2x-2} = \\frac{1}{3}\\).\nStep 2 — \\(3x - 6 = 2x - 2\\Rightarrow x = 4\\).\nStep 3 — Total \\(= x + 2x = 4 + 8 = 12\\).\nAnswer: 12 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "The ratio of boys to girls in a college is \\(7 : 8\\). If the numbers rise by 20% and 10% respectively, what is the new ratio?",
+        "choices": ["8 : 9", "17 : 18", "21 : 22", "Cannot be determined"],
+        "hint": "Apply the growth factors to 7x and 8x.",
+        "expl": "Step 1 — New boys \\(= 1.2\\times7x = 8.4x\\); new girls \\(= 1.1\\times8x = 8.8x\\).\nStep 2 — Ratio \\(= 8.4 : 8.8 = 84 : 88 = 21 : 22\\).\nAnswer: 21 : 22 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "In 45 litres of a mixture, milk and water are in ratio \\(4 : 1\\). How much water must be added to make the ratio \\(3 : 2\\)?",
+        "choices": ["7.2 L", "24 L", "15 L", "1.5 L"],
+        "hint": "The milk amount doesn't change — only water is added.",
+        "expl": "Step 1 — Milk \\(= \\frac{4}{5}\\times45 = 36\\) L; water \\(= 9\\) L.\nStep 2 — Add x L water: \\(\\frac{36}{9+x} = \\frac{3}{2}\\).\nStep 3 — \\(72 = 27 + 3x\\Rightarrow x = 15\\).\nAnswer: 15 L (C).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "Zinc and copper are melted in ratio \\(9 : 11\\). What is the weight of the mixture if 28.8 kg of zinc is used?",
+        "choices": ["58 kg", "60 kg", "64 kg", "70 kg"],
+        "hint": "Zinc is 9 of every 20 parts of the mixture.",
+        "expl": "Step 1 — Zinc fraction \\(= \\frac{9}{9+11} = \\frac{9}{20}\\).\nStep 2 — \\(\\frac{9}{20}\\times M = 28.8\\Rightarrow M = 28.8\\times\\frac{20}{9} = 64\\).\nAnswer: 64 kg (C).",
+        "level": "easy"
+      },
+      {
+        "n": 10, "topic": "Ratios & proportions", "correct": "D", "options": 4,
+        "text": "If \\(A : B : C = 2 : 3 : 4\\), then \\(\\dfrac{A}{B} : \\dfrac{B}{C} : \\dfrac{C}{A}\\) equals:",
+        "choices": ["4 : 9 : 16", "8 : 9 : 12", "8 : 9 : 16", "8 : 9 : 24"],
+        "hint": "Substitute A = 2x, B = 3x, C = 4x and simplify each fraction.",
+        "expl": "Step 1 — \\(\\frac{A}{B} = \\frac{2}{3},\\ \\frac{B}{C} = \\frac{3}{4},\\ \\frac{C}{A} = \\frac{4}{2} = 2\\).\nStep 2 — Ratio \\(= \\frac{2}{3} : \\frac{3}{4} : 2\\); multiply through by 12.\nStep 3 — \\(= 8 : 9 : 24\\).\nAnswer: 8 : 9 : 24 (D).",
+        "level": "hard"
+      },
+      {
+        "n": 11, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "If \\(A : B = 3 : 4\\), \\(B : C = 5 : 6\\) and \\(C : D = 7 : 5\\), who gets the largest share when a sum is divided as A : B : C : D?",
+        "choices": ["A", "B", "C", "D"],
+        "hint": "Build one combined ratio, scaling shared terms to match.",
+        "expl": "Step 1 — \\(A:B:C = 15:20:24\\) (making B = 20).\nStep 2 — Extend with C:D = 7:5 scaled to C = 24: \\(A:B:C:D = 105:140:168:120\\).\nStep 3 — Largest is C (168).\nAnswer: C (C).",
+        "level": "hard"
+      },
+      {
+        "n": 12, "topic": "Ratios & proportions", "correct": "B", "options": 4,
+        "text": "The incomes of A and B are in ratio \\(3 : 2\\) and their expenses in ratio \\(5 : 3\\). If each saves $200, what is A's income?",
+        "choices": ["$1,000", "$1,200", "$1,500", "$1,800"],
+        "hint": "Saving = income − expense; write both savings and set each to 200.",
+        "expl": "Step 1 — Incomes \\(3x, 2x\\); expenses \\(5y, 3y\\).\nStep 2 — \\(3x - 5y = 200\\) and \\(2x - 3y = 200\\).\nStep 3 — Subtract: \\(x - 2y = 0\\Rightarrow x = 2y\\); then \\(2x-3y = 4y-3y = y = 200\\), so \\(x = 400\\).\nStep 4 — A's income \\(= 3x = 1200\\).\nAnswer: $1,200 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Ratios & proportions", "correct": "B", "options": 4,
+        "text": "A sum is divided among A, B, C in ratio \\(2 : 3 : 7\\). If A and B together get $1,500 less than C, what is A's share?",
+        "choices": ["$1,000", "$1,500", "$2,000", "Cannot be determined"],
+        "hint": "The gap C − (A + B) equals 1,500 in ratio units.",
+        "expl": "Step 1 — Shares \\(2x, 3x, 7x\\).\nStep 2 — \\(7x - (2x + 3x) = 2x = 1500\\Rightarrow x = 750\\).\nStep 3 — A's share \\(= 2x = 1500\\).\nAnswer: $1,500 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 14, "topic": "Ratios & proportions", "correct": "A", "options": 4,
+        "text": "An ice-cream shop sold Vanilla to Chocolate cones in ratio \\(2 : 3\\). Had it sold 4 more Vanilla cones, the ratio would have been \\(3 : 4\\). How many Vanilla cones were sold?",
+        "choices": ["32", "35", "42", "48"],
+        "hint": "Chocolate is unchanged; write both ratios with the same C.",
+        "expl": "Step 1 — \\(\\frac{V}{C} = \\frac{2}{3}\\Rightarrow C = \\frac{3V}{2}\\).\nStep 2 — \\(\\frac{V+4}{C} = \\frac{3}{4}\\Rightarrow 4(V+4) = 3C = 3\\cdot\\frac{3V}{2}\\).\nStep 3 — \\(4V + 16 = 4.5V\\Rightarrow 0.5V = 16\\Rightarrow V = 32\\).\nAnswer: 32 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 15, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "81 is divided into three parts such that \\(\\tfrac12\\) of the first, \\(\\tfrac13\\) of the second and \\(\\tfrac14\\) of the third are all equal. The three parts are:",
+        "choices": ["36, 27, 18", "27, 18, 36", "18, 27, 36", "30, 27, 24"],
+        "hint": "Set each equal expression to k, then write the parts in terms of k.",
+        "expl": "Step 1 — Let \\(\\tfrac12 x = \\tfrac13 y = \\tfrac14 z = k\\), so \\(x = 2k,\\ y = 3k,\\ z = 4k\\).\nStep 2 — \\(x+y+z = 9k = 81\\Rightarrow k = 9\\).\nStep 3 — Parts are \\(18, 27, 36\\).\nAnswer: 18, 27, 36 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 16, "topic": "Ratios & proportions", "correct": "B", "options": 4,
+        "text": "$1,800 is divided among A, B, C so that 4 times A's share = 6 times B's share = 3 times C's share. What is A's share?",
+        "choices": ["$400", "$600", "$700", "$800"],
+        "hint": "Set 4A = 6B = 3C = k and express each share via k.",
+        "expl": "Step 1 — \\(4A = 6B = 3C = k\\Rightarrow A = \\frac{k}{4},\\ B = \\frac{k}{6},\\ C = \\frac{k}{3}\\).\nStep 2 — Ratio \\(A:B:C = \\frac{1}{4}:\\frac{1}{6}:\\frac{1}{3} = 3:2:4\\).\nStep 3 — A \\(= \\frac{3}{9}\\times1800 = 600\\).\nAnswer: $600 (B).",
+        "level": "medium"
+      }
+    ]
+  },
+  {
+    "id": "quant-interest-ex",
+    "title": "Simple & Compound Interest — Exercise",
+    "section": "quant",
+    "source": "Simple & Compound Interest exercise (with answers & explanations)",
+    "questions": [
+      {
+        "n": 1, "topic": "Simple & compound interest", "correct": "A", "options": 4,
+        "text": "A sum lent at simple interest amounts to $1,008 in 2 years and $1,164 in 3½ years. Find the rate % per annum.",
+        "choices": ["13%", "14%", "12½%", "15%"],
+        "hint": "The growth between the two times is pure interest — find interest per year first.",
+        "expl": "Step 1 — SI for 1½ years \\(= 1164 - 1008 = 156\\), so SI/year \\(= 104\\).\nStep 2 — SI for 2 years \\(= 208\\); principal \\(= 1008 - 208 = 800\\).\nStep 3 — Rate \\(= \\frac{208\\times100}{800\\times2} = 13\\%\\).\nAnswer: 13% (A).",
+        "level": "medium"
+      },
+      {
+        "n": 2, "topic": "Simple & compound interest", "correct": "B", "options": 4,
+        "text": "A sum lent at simple interest amounts to $720 after 2 years and to $1,020 after a further 5 years. Find the sum and the rate.",
+        "choices": ["$500, 10%", "$600, 10%", "$500, 12%", "$600, 12%"],
+        "hint": "The $300 over 5 years is interest; scale down to find yearly interest.",
+        "expl": "Step 1 — SI for 5 years \\(= 1020 - 720 = 300\\), so SI/year \\(= 60\\).\nStep 2 — SI for 2 years \\(= 120\\); principal \\(= 720 - 120 = 600\\).\nStep 3 — Rate \\(= \\frac{120\\times100}{600\\times2} = 10\\%\\).\nAnswer: $600, 10% (B).",
+        "level": "medium"
+      },
+      {
+        "n": 3, "topic": "Simple & compound interest", "correct": "C", "options": 4,
+        "text": "A sum was put at simple interest for 4 years. Had the rate been 2% higher, it would have earned $56 more. Find the sum.",
+        "choices": ["$500", "$600", "$700", "$800"],
+        "hint": "Extra interest = P × (extra rate) × time ÷ 100.",
+        "expl": "Step 1 — Extra interest \\(= \\frac{P\\times2\\times4}{100} = 56\\).\nStep 2 — \\(\\frac{8P}{100} = 56\\Rightarrow P = 700\\).\nAnswer: $700 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 4, "topic": "Simple & compound interest", "correct": "A", "options": 4,
+        "text": "The simple interest on a sum is \\(\\tfrac{16}{25}\\) of the sum. If the rate percent and the number of years are equal, find the rate.",
+        "choices": ["8% for 8 years", "6% for 6 years", "10% for 10 years", "12% for 12 years"],
+        "hint": "With rate = time = R, SI = P·R²/100.",
+        "expl": "Step 1 — \\(\\frac{16}{25}P = \\frac{P\\cdot R\\cdot R}{100}\\).\nStep 2 — \\(R^2 = \\frac{1600}{25} = 64\\Rightarrow R = 8\\).\nStep 3 — So rate 8% and time 8 years.\nAnswer: 8% for 8 years (A).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Simple & compound interest", "correct": "B", "options": 4,
+        "text": "A person borrowed $2,500 in two parts, one at 5% p.a. and the other at 7% p.a. The total simple interest over 2 years was $275. How much was borrowed at 7%?",
+        "choices": ["$600", "$625", "$650", "$675"],
+        "hint": "Let the 5% part be x; write both interests over 2 years.",
+        "expl": "Step 1 — \\(\\frac{x\\cdot5\\cdot2}{100} + \\frac{(2500-x)\\cdot7\\cdot2}{100} = 275\\).\nStep 2 — \\(10x + 14(2500-x) = 27500\\Rightarrow -4x = -7500\\Rightarrow x = 1875\\).\nStep 3 — At 7%: \\(2500 - 1875 = 625\\).\nAnswer: $625 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Simple & compound interest", "correct": "C", "options": 4,
+        "text": "What is the ratio of the simple interest earned by a fixed sum at a fixed rate over 6 years to that over 9 years?",
+        "choices": ["1 : 3", "1 : 4", "2 : 3", "Cannot be determined"],
+        "hint": "With P and R fixed, SI is proportional to time.",
+        "expl": "Step 1 — SI \\(\\propto\\) time when P and R are constant.\nStep 2 — Ratio \\(= 6 : 9 = 2 : 3\\).\nAnswer: 2 : 3 (C).",
+        "level": "easy"
+      },
+      {
+        "n": 7, "topic": "Simple & compound interest", "correct": "D", "options": 4,
+        "text": "A lent $5,000 to B for 2 years and $3,000 to C for 4 years at the same simple interest rate, receiving $2,200 in interest in all. Find the rate per annum.",
+        "choices": ["5%", "7%", "7⅛%", "10%"],
+        "hint": "Add the two interest expressions and solve for R.",
+        "expl": "Step 1 — \\(\\frac{5000\\cdot R\\cdot2}{100} + \\frac{3000\\cdot R\\cdot4}{100} = 2200\\).\nStep 2 — \\(100R + 120R = 2200\\Rightarrow 220R = 2200\\).\nStep 3 — \\(R = 10\\%\\).\nAnswer: 10% (D).",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Simple & compound interest", "correct": "A", "options": 4,
+        "text": "$13,900 is split between scheme A (14% p.a.) and scheme B (11% p.a.) at simple interest. If the total interest over 2 years is $3,508, how much was invested in scheme B?",
+        "choices": ["$6,400", "$6,500", "$7,200", "$7,500"],
+        "hint": "Let A's amount be x; the rest is in B.",
+        "expl": "Step 1 — \\(\\frac{x\\cdot14\\cdot2}{100} + \\frac{(13900-x)\\cdot11\\cdot2}{100} = 3508\\).\nStep 2 — \\(28x + 22(13900-x) = 350800\\Rightarrow 6x = 45000\\Rightarrow x = 7500\\).\nStep 3 — Scheme B \\(= 13900 - 7500 = 6400\\).\nAnswer: $6,400 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Simple & compound interest", "correct": "D", "options": 4,
+        "text": "$2,600 is invested at 4%, 6% and 8% p.a. (simple interest) so that the interest from each is the same after one year. How much was invested at 4%?",
+        "choices": ["$200", "$600", "$800", "$1,200"],
+        "hint": "Equal interest at equal time means the amounts are inversely proportional to the rates.",
+        "expl": "Step 1 — Equal interest ⟹ amounts \\(\\propto \\frac{1}{4} : \\frac{1}{6} : \\frac{1}{8} = 6 : 4 : 3\\).\nStep 2 — Total parts \\(= 13\\); the 4% share is the largest, \\(\\frac{6}{13}\\times2600 = 1200\\).\nAnswer: $1,200 (D).",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Simple & compound interest", "correct": "A", "options": 4,
+        "text": "$12,000 is invested at 10% p.a. and another amount at 20% p.a. (simple interest). If the blended return on the whole is 14% p.a., what is the total amount invested?",
+        "choices": ["$20,000", "$22,000", "$24,000", "$25,000"],
+        "hint": "Use alligation on the rates: distances from 14% give the amount ratio.",
+        "expl": "Step 1 — Alligation: 10% and 20% around 14% give ratio \\((20-14):(14-10) = 6:4 = 3:2\\).\nStep 2 — The 10% part (3 parts) is $12,000, so 1 part \\(= 4000\\); 20% part (2 parts) \\(= 8000\\).\nStep 3 — Total \\(= 12000 + 8000 = 20000\\).\nAnswer: $20,000 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Simple & compound interest", "correct": "B", "options": 4,
+        "text": "If the difference between simple and compound interest for 2 years on a sum at 5% p.a. is $6, find the sum.",
+        "choices": ["$2,200", "$2,400", "$2,600", "$2,000"],
+        "hint": "For 2 years, CI − SI \\(= P\\left(\\frac{r}{100}\\right)^2\\).",
+        "expl": "Step 1 — \\(P\\left(\\frac{5}{100}\\right)^2 = 6\\).\nStep 2 — \\(\\frac{P}{400} = 6\\Rightarrow P = 2400\\).\nAnswer: $2,400 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Simple & compound interest", "correct": "B", "options": 4,
+        "text": "The difference between compound and simple interest on $4,000 for 2 years at 5% p.a. (compounded yearly) is:",
+        "choices": ["$20", "$10", "$50", "$60"],
+        "hint": "Same shortcut: \\(P(r/100)^2\\).",
+        "expl": "Step 1 — \\(4000\\left(\\frac{5}{100}\\right)^2 = 4000\\times0.0025\\).\nStep 2 — \\(= 10\\).\nAnswer: $10 (B).",
+        "level": "easy"
+      },
+      {
+        "n": 13, "topic": "Simple & compound interest", "correct": "A", "options": 4,
+        "text": "A sum placed at compound interest doubles itself in 5 years. In how many years will it become 8 times itself?",
+        "choices": ["15 years", "20 years", "25 years", "30 years"],
+        "hint": "8 = 2³, and each doubling takes 5 years.",
+        "expl": "Step 1 — Doubling takes 5 years, and \\(8 = 2^3\\).\nStep 2 — So three doublings \\(= 3\\times5 = 15\\) years.\nAnswer: 15 years (A).",
+        "level": "medium"
+      },
+      {
+        "n": 14, "topic": "Simple & compound interest", "correct": "B", "options": 4,
+        "text": "A sum doubles itself in 8 years under simple interest. What is the rate per annum?",
+        "choices": ["10%", "12.5%", "15%", "20%"],
+        "hint": "Doubling means the interest equals the principal.",
+        "expl": "Step 1 — Interest \\(= P\\) over 8 years: \\(P = \\frac{P\\cdot R\\cdot8}{100}\\).\nStep 2 — \\(R = \\frac{100}{8} = 12.5\\%\\).\nAnswer: 12.5% (B).",
+        "level": "easy"
+      },
+      {
+        "n": 15, "topic": "Simple & compound interest", "correct": "A", "options": 4,
+        "text": "The compound interest on a sum for the 4th year at 8% p.a. is $486. What was the compound interest for the 3rd year on the same sum?",
+        "choices": ["$450", "$475", "$456", "$500"],
+        "hint": "Each year's CI is (1 + r) times the previous year's CI.",
+        "expl": "Step 1 — Year-on-year, CI grows by the factor \\(1.08\\).\nStep 2 — 3rd-year CI \\(= \\frac{486}{1.08} = 450\\).\nAnswer: $450 (A).",
+        "level": "medium"
+      }
+    ]
   }
 ];

@@ -146,7 +146,118 @@ window.GMAT_CONCEPTS = [
             ans: "B",
             why: "B is a new fact (F3) that lets both facts stand: more viewers (bigger audience) but prices went back up (fewer sales) — no contradiction. The others either don't touch merchandise sales, are out of scope, or fail to connect the two facts."
           },
-          { t: "note", x: "This is the first of the CR concept sections. Weaken, Strengthen, Flaw, Evaluate and Assumption follow the same layout — tell me to add them and they'll drop in here." }
+          { t: "note", x: "Paradox is one of seven CR question families. The remaining five — Weaken, Strengthen, Flaw, Evaluate and Assumption — follow below." }
+        ]
+      },
+      {
+        id: "cr-weaken",
+        title: "Weaken the argument",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "Every argument is a <b>fact → conclusion</b> (or fact → reason) chain. You can <b>never</b> attack a stated fact — you weaken by attacking the <b>link</b> between the fact and the conclusion." },
+          { t: "ol", items: [
+            "Identify the <b>conclusion</b>.",
+            "Pick the choice that most directly makes that conclusion <b>less likely</b> — while accepting every fact as true."
+          ] },
+          { t: "h", x: "Cause-and-effect: the big one" },
+          { t: "p", x: "If the conclusion claims <b>A causes B</b>, the classic weakeners are:" },
+          { t: "ul", items: [
+            "<b>B caused A</b> — the causation runs the other way.",
+            "<b>C caused B</b> — some third factor is the real cause.",
+            "<b>C caused both A and B</b> — a hidden common cause."
+          ] },
+          { t: "warn", x: "<b>Correlation ≠ causation.</b> “Children of divorced parents have 50% more behavioural problems, so divorce causes them” fails: maybe hard-to-parent children strain marriages (B→A), or parental conflict drives both (C→both). Any of these breaks the causal claim." }
+        ]
+      },
+      {
+        id: "cr-strengthen",
+        title: "Strengthen the argument",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "The mirror image of weaken. Same <b>fact → conclusion</b> chain; you can't strengthen a fact, only the <b>link</b> — by adding a fact that makes the conclusion more secure." },
+          { t: "p", x: "If the conclusion claims <b>A causes B</b>, the classic strengtheners <b>rule out</b> the alternatives:" },
+          { t: "ul", items: [
+            "<b>B did not cause A</b>",
+            "<b>C did not cause B</b>",
+            "<b>no third factor C caused both</b>"
+          ] },
+          { t: "tip", x: "Test a choice by <b>negating</b> it: if the negation clearly hurts the conclusion, the choice genuinely strengthens it." },
+          { t: "eg",
+            q: "Waterfront lots in coastal cities were historically left to industry; today beachfront homes sell for huge sums, so a developer wanting a large profit should buy urban waterfront lots and build homes on them. Which most strengthens the claim?",
+            choices: [
+              "People today have more money for real estate than in past centuries.",
+              "Cities offer developers tax incentives to rehabilitate the waterfront.",
+              "Homeowners will pay large sums for residential properties in traditionally industrial/commercial districts.",
+              "Many urban waterfront lots are available to buy.",
+              "Interior residential districts are more expensive than the waterfront."
+            ],
+            ans: "C",
+            why: "The plan needs buyers for homes on formerly industrial urban waterfront. (C) supplies exactly that — negate it (buyers won't pay) and the profit vanishes. The others give cheaper costs, incentives, or supply, but none establishes that anyone will buy."
+          }
+        ]
+      },
+      {
+        id: "cr-flaw",
+        title: "Identify the flaw",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "Approached exactly like weaken — you're naming <i>why</i> the fact→conclusion link fails. The GMAT leans on just three flaw families:" },
+          { t: "ul", items: [
+            "<b>Number vs. percentage</b> — comparing percentages while ignoring the different-sized bases behind them.",
+            "<b>Cause and effect</b> — treating a correlation as causation (the reversals above).",
+            "<b>Wrong sample</b> — a biased or unrepresentative group used to conclude about a wider one."
+          ] },
+          { t: "warn", x: "Classic base-rate trap: “a scanner alerts on 100% of bombs and only 1% of clean bags, so 99% of alerts are real bombs.” Wrong — with 10 bomb-bags and 1,000 clean bags, that's 10 real alerts + 10 false alerts = only <b>50%</b> real. The flaw swaps one group's percentage for a different group's." }
+        ]
+      },
+      {
+        id: "cr-evaluate",
+        title: "Evaluate the argument",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "You're handed an <b>unsound</b> fact → conclusion argument and asked which <b>question</b>, once answered, would tell you whether the conclusion holds. The right answer is the one whose two possible answers pull in opposite directions." },
+          { t: "h", x: "The Extremes Test" },
+          { t: "ol", items: [
+            "Identify the conclusion.",
+            "Take each choice to its two extremes (a strong YES and a strong NO).",
+            "The correct choice: <b>one extreme strengthens, the other weakens</b>. If both extremes leave the argument untouched, it's wrong."
+          ] },
+          { t: "eg",
+            q: "To increase profits, MillCo plans to cut costs by laying off nonessential employees. Answering which question best helps evaluate whether the plan will work?",
+            choices: [
+              "Whether MillCo could cut costs even more by eliminating some health benefits.",
+              "Whether revenues will be hurt badly enough to threaten MillCo's profits."
+            ],
+            ans: "B",
+            why: "Apply the extremes to (B): if revenues DO drop enough, the plan fails (weakens); if they don't, it's more likely to work (strengthens) — opposite directions, so it tests the argument. (A) offers a different way to cut costs, which doesn't bear on whether THIS layoff plan raises profits — both extremes leave it untouched."
+          }
+        ]
+      },
+      {
+        id: "cr-assumption",
+        title: "Assumption (the negation test)",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "An assumption is an <b>unstated premise</b> that bridges the argument's fact and its conclusion. “Every male over 18 can vote, so Jack can vote” assumes <i>(Jack is a male over 18)</i> — drop that bridge and the conclusion collapses." },
+          { t: "h", x: "The negation test — the most powerful tool in CR" },
+          { t: "ol", items: [
+            "Identify the conclusion.",
+            "Negate each choice, one by one.",
+            "The correct assumption is the one whose <b>negation weakens (breaks) the conclusion</b>. A true assumption is load-bearing — remove it and the argument falls."
+          ] },
+          { t: "eg",
+            q: "Alusia offers a $1,000-per-worker tax credit to any company employing more than 20 manufacturing workers, expecting most Calonian manufacturers to relocate there. The plan's success relies on the assumption that:",
+            choices: [
+              "Tax credits are the most effective incentive for luring companies.",
+              "Calonia will not offer a matching tax credit to companies that stay.",
+              "Calonian companies are less likely to succeed if they relocate.",
+              "Most Calonian manufacturers expect to employ at least 20 workers within ten years.",
+              "Calonian companies pay each worker more than $1,000 per year on average."
+            ],
+            ans: "D",
+            why: "Negate (D): if most Calonian manufacturers DON'T expect to employ 20+ workers, the credit doesn't apply to them and the plan fails — so (D) is required. Negating the others doesn't break the argument (e.g. “most effective incentive” is stronger than needed)."
+          },
+          { t: "note", x: "That completes all seven CR question families. Next up (once you're happy with the concepts): CR practice sets from your session and topic-wise question banks." }
         ]
       }
     ]

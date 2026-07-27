@@ -2153,5 +2153,253 @@ window.GMAT_SETS = [
         "level": "hard"
       }
     ]
+  },
+  {
+    "id": "cr-session1-ex",
+    "title": "Critical Reasoning — Set 1",
+    "section": "cr",
+    "source": "CR practice: flaw, weaken, inference & conditional reasoning (with answer key)",
+    "questions": [
+      {
+        "n": 1, "topic": "Identify the flaw", "correct": "D", "options": 5,
+        "text": "Airline representative: The percentage of flight delays caused by airline error fell significantly this year, so airlines have clearly addressed preventable problems; the number of preventable delays is decreasing. Which most clearly points to a logical flaw in the reasoning?",
+        "choices": [
+          "Airlines may underreport the percentage of delays caused by airline error for financial reasons.",
+          "Uncontrollable delays could have increased complaints to airlines.",
+          "Complaints may not reliably measure how many errors occurred.",
+          "Delays from weather and other uncontrollable factors could have risen dramatically this year.",
+          "Customers might not believe particular delays were caused by uncontrollable factors."
+        ],
+        "ans": "D",
+        "correct": "D",
+        "hint": "A falling percentage of a whole needn't mean a falling count — the whole may have grown.",
+        "expl": "The argument treats a smaller percentage as a smaller number. If uncontrollable delays surged (D), the total grew, so the percentage from airline error could drop even while the count of preventable delays stayed the same or rose.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 2, "topic": "Weaken", "correct": "D", "options": 5,
+        "text": "Five years ago the death rate from cattle disease CXC was 5% of reported cases; today it is over 18%. Therefore the number of cows dying of CXC has increased. Which most weakens the argument?",
+        "choices": [
+          "Recent CXC deaths have been mistakenly attributed to a disease that mimics CXC.",
+          "During the first outbreak, many deaths reported as CXC were due to other causes.",
+          "An inoculation program 70% effective at preventing serious illness recently began.",
+          "Since the first outbreak, farmers treat mild cases themselves and no longer report them.",
+          "Cattle that survive CXC rarely contract it a second time."
+        ],
+        "ans": "D",
+        "correct": "D",
+        "hint": "A higher death-rate percentage can come from a shrinking denominator (reported cases).",
+        "expl": "Rate = deaths ÷ reported cases. If mild cases are no longer reported (D), the denominator shrinks, so the percentage rises even if the number of deaths did not increase.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 3, "topic": "Weaken", "correct": "D", "options": 5,
+        "text": "Waste companies report that plastics make up an ever-increasing percentage of the waste they handle, so the amount of plastic reaching landfills is increasing. Which most weakens the argument?",
+        "choices": [
+          "Plastics create pollutants when burned, so more are sent to landfills than incinerators.",
+          "Most plastics disposed of are not recyclable.",
+          "People reuse plastic containers more than glass or metal ones.",
+          "An increasing proportion of non-plastic waste is now recycled and no longer reaches disposal.",
+          "The percentage of products using plastic packaging is rising while total plastic made is unchanged."
+        ],
+        "ans": "D",
+        "correct": "D",
+        "hint": "A rising share of the total needn't mean a rising amount — the total could be shrinking.",
+        "expl": "Plastic's percentage can rise simply because non-plastic waste is being diverted to recycling (D), shrinking the total handled — so plastic's amount could be flat or falling.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 4, "topic": "Weaken", "correct": "C", "options": 5,
+        "text": "The percentage of interstate retirees who moved to Florida fell three points over ten years. Since many Florida businesses cater to retirees, this decline will hurt those businesses and Florida's economy. Which most weakens the argument?",
+        "choices": [
+          "Florida attracts more interstate retirees than any other state.",
+          "More people left Florida on retiring last year than ten years ago.",
+          "The number of people who moved to another state on retiring has risen significantly over ten years.",
+          "Such people moved a greater distance on average last year than ten years ago.",
+          "People were more likely to retire to North Carolina last year than ten years ago."
+        ],
+        "ans": "C",
+        "correct": "C",
+        "hint": "A smaller slice of a much larger pie can still be more pie.",
+        "expl": "If the total number of relocating retirees rose sharply (C), a three-point smaller percentage could still mean more retirees actually moving to Florida — no negative effect.\nAnswer: C.",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Inference / must be true", "correct": "D", "options": 5,
+        "text": "Ten years ago, taxpayers in Greenspace County slightly outnumbered registered voters. Since then taxpayers doubled (up 100%), while registered voters increased but by less than 100%. Which must be true now?",
+        "choices": [
+          "Taxpayers are now fewer than registered voters.",
+          "Every registered voter is also a taxpayer.",
+          "The ratio of registered voters to taxpayers has increased.",
+          "The ratio of taxpayers to voters has increased over the last ten years.",
+          "The ratio of voters to taxpayers is unchanged."
+        ],
+        "ans": "D",
+        "correct": "D",
+        "hint": "Taxpayers grew faster than voters from a larger starting base.",
+        "expl": "Taxpayers started higher and grew 100%; voters grew less. So taxpayers grew faster, and the taxpayer-to-voter ratio must have risen.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Inference / must be true", "correct": "B", "options": 5,
+        "text": "All adults in country X consume increasing amounts of fat as they age, yet the percentage of fat in their diet stays constant throughout adult life. Which is most strongly supported?",
+        "choices": [
+          "They consume more fat than same-age people in other countries.",
+          "They eat more (total food) when older than earlier in adulthood.",
+          "Their diets have a lower fat percentage than children's diets in X.",
+          "They eat more varied foods as they age.",
+          "They tend to lose weight as they age."
+        ],
+        "ans": "B",
+        "correct": "B",
+        "hint": "Fat amount rises but fat's share of the diet is constant — so what must the total do?",
+        "expl": "If fat grams increase while fat stays the same fraction of the diet, total food intake must be increasing.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Inference / must be true", "correct": "E", "options": 5,
+        "text": "Half of Metroburg's budget comes from a 2% tax on salaries of people who work in the city (only public- and private-sector employees). A large private employer will relocate out, taking all its employees; all other public and private employee counts stay constant. Which can be concluded?",
+        "choices": [
+          "Unless others add many jobs, the move will cut the city's operating-budget revenue by 1 percent.",
+          "The departure will not raise unemployment among city residents.",
+          "The company will pay lower taxes at its new location.",
+          "The city's tax revenue will decline by 1 percent if jobs aren't replaced.",
+          "The relocation will increase the percentage of Metroburg jobs that are public-sector."
+        ],
+        "ans": "E",
+        "correct": "E",
+        "hint": "Public jobs stay the same; total private jobs fall — what happens to the public share?",
+        "expl": "Private-sector jobs drop while public-sector jobs stay constant, so public jobs become a larger share of the remaining total. (The revenue claims overstate a precise 1% — salaries, not headcount, drive the 2% tax.)\nAnswer: E.",
+        "level": "hard"
+      },
+      {
+        "n": 8, "topic": "Inference / must be true", "correct": "C", "options": 5,
+        "text": "A library's copiers cost 10¢/copy. It will add prepaid cards allowing up to 50 copies at 9¢/copy. The number of copies made will be unchanged after the refit. Which is most supported?",
+        "choices": [
+          "No patron will increase their copier usage after the refit.",
+          "The number of people using the copiers will fall.",
+          "Revenue will increase if every purchased card is always used to less than 90% of capacity.",
+          "Patrons will buy a card only on days they need 50+ copies.",
+          "Revenue will increase if no patron prefers the remaining coin machines."
+        ],
+        "ans": "C",
+        "correct": "C",
+        "hint": "A 50-copy card costs $4.50 (50×9¢); think about the effective per-copy price if under-used.",
+        "expl": "A card is prepaid for 50 copies ($4.50). If used to under 90% of capacity (fewer than 45 copies), the effective price exceeds 10¢/copy, so revenue rises versus coins.\nAnswer: C.",
+        "level": "hard"
+      },
+      {
+        "n": 9, "topic": "Inference / must be true", "correct": "E", "options": 5,
+        "text": "Most people invest without doing their own research; some rely only on a broker, some go on hunches, and some do their own research. Nonetheless, a majority of investors make a profit. Which must be true?",
+        "choices": [
+          "Most investors either rely solely on a broker or go on hunches.",
+          "All who invest without any research make a profit.",
+          "Most who rely solely on a broker make a profit.",
+          "All who do their own research make a profit.",
+          "Some who make a profit do so without doing any research of their own."
+        ],
+        "ans": "E",
+        "correct": "E",
+        "hint": "Most do no research; a majority profit — the two big groups must overlap.",
+        "expl": "Most investors do no research and a majority profit; two majorities of the same set must overlap, so some profitable investors did no research.\nAnswer: E.",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Inference / must be true", "correct": "A", "options": 5,
+        "text": "In medieval Spain most gold coins used Senegalese gold, the purest known at 92%, minted without refining. Mints also regularly refined gold to make purer coins, but Senegalese gold was never refined. Which is most supported about coins minted there?",
+        "choices": [
+          "Some refined gold coins came from unrefined gold that was less than 92% pure.",
+          "Coins from Senegalese gold all had the same weight and proportion of gold.",
+          "Coins had the same monetary value despite differing gold percentages.",
+          "All minted gold coins had less than 92% gold.",
+          "The only unrefined gold that could be minted directly was non-Senegalese."
+        ],
+        "ans": "A",
+        "correct": "A",
+        "hint": "Refining raises purity; Senegalese (92%, purest) was never refined. So what was refined?",
+        "expl": "Refining was done to gold other than the Senegalese (which was purest and left unrefined). Since Senegalese at 92% was the purest known, the refined gold started below 92%.\nAnswer: A.",
+        "level": "hard"
+      },
+      {
+        "n": 11, "topic": "Inference / must be true", "correct": "B", "options": 5,
+        "text": "Mashika: Some segments of the electorate support Ms. Puerta. If those segments also support Mr. Quintana, then no segment supporting Quintana supports Mr. Ramirez. Salim: But the latest data shows some segments support both Quintana and Ramirez. Which is most reasonable to infer?",
+        "choices": [
+          "All segments support neither Quintana nor Ramirez.",
+          "There are segments that support Ms. Puerta but not Mr. Quintana.",
+          "Each segment strongly supports Ms. Puerta.",
+          "Each segment strongly supports Mr. Quintana.",
+          "Each segment strongly supports Mr. Ramirez."
+        ],
+        "ans": "B",
+        "correct": "B",
+        "hint": "Salim contradicts the consequent, so the antecedent (Puerta-segments also support Quintana) must fail.",
+        "expl": "Salim shows some Quintana supporters do support Ramirez, contradicting Mashika's conclusion. So Mashika's condition (Puerta-supporting segments also support Quintana) is false — i.e., some segments support Puerta but not Quintana.\nAnswer: B.",
+        "level": "hard"
+      },
+      {
+        "n": 12, "topic": "Identify the flaw", "correct": "D", "options": 5,
+        "text": "If a garden does not get plenty of water and sunlight and is not planted in rich soil, it will not be productive. Patricia's garden gets ideal water and sunlight and has rich soil. Hence it will be productive. The reasoning is flawed because it:",
+        "choices": [
+          "fails to define the term “ideal” adequately.",
+          "infers a cause from a correlation.",
+          "confuses a cause with its effect.",
+          "treats a set of necessary conditions as sufficient.",
+          "relies on an unrepresentative sample."
+        ],
+        "ans": "D",
+        "correct": "D",
+        "hint": "The premise gives what's needed to avoid failure, not what guarantees success.",
+        "expl": "Water, sunlight and rich soil are stated as necessary (their absence guarantees failure). Having them doesn't guarantee productivity — the argument treats necessary conditions as sufficient.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Inference / must be true", "correct": "B", "options": 5,
+        "text": "Unless residents band together, the rezoning proposal passes. If it passes, the city can build water/sewer systems developers need for apartments. Apartments attract residents; the higher population will congest roads so new roads get built. Neither new roads nor new schools can be built without substantial tax increases. Which can be properly concluded?",
+        "choices": [
+          "If residents band together, developers will not build apartments.",
+          "If developers build apartments, there will be substantial tax increases.",
+          "If the proposal fails, residents' taxes will not rise substantially.",
+          "If developers do not build apartments, taxes will not rise substantially.",
+          "If developers do not build apartments, roads will not be congested."
+        ],
+        "ans": "B",
+        "correct": "B",
+        "hint": "Follow the forward chain from 'apartments built'.",
+        "expl": "Apartments → more residents → congested roads → new roads; new roads require substantial tax increases. So building apartments forces substantial tax increases.\nAnswer: B.",
+        "level": "hard"
+      },
+      {
+        "n": 14, "topic": "Inference / must be true", "correct": "D", "options": 5,
+        "text": "Interior decorator: All coffeehouses and restaurants are public places. Most well-designed public places feature artwork. If a public place is uncomfortable it is not well designed, and all comfortable public places have spacious interiors. If all statements are true, which must be true?",
+        "choices": [
+          "Any restaurant with a spacious interior is comfortable.",
+          "Most public places featuring artwork are well designed.",
+          "Most well-designed coffeehouses feature artwork.",
+          "Any well-designed coffeehouse or restaurant has a spacious interior.",
+          "Any coffeehouse with a spacious interior is well designed."
+        ],
+        "ans": "D",
+        "correct": "D",
+        "hint": "Chain: well designed → comfortable → spacious.",
+        "expl": "'Uncomfortable → not well designed' contrapositive gives 'well designed → comfortable', and 'comfortable → spacious'. Coffeehouses/restaurants are public places, so any well-designed one has a spacious interior.\nAnswer: D.",
+        "level": "hard"
+      },
+      {
+        "n": 15, "topic": "Inference / must be true", "correct": "E", "options": 5,
+        "text": "None of the students taking literature are taking physics, but several taking physics are taking art. Also, none taking rhetoric are taking physics. Which follows logically?",
+        "choices": [
+          "There are students taking both art and literature.",
+          "None of the literature students are taking art.",
+          "There are students taking rhetoric but not literature.",
+          "None of the rhetoric students are taking literature.",
+          "Some students are taking art but not literature."
+        ],
+        "ans": "E",
+        "correct": "E",
+        "hint": "The physics-and-art students can't be literature students.",
+        "expl": "Several physics students take art; since no literature student takes physics, those art-takers aren't literature students — so some students take art but not literature.\nAnswer: E.",
+        "level": "medium"
+      }
+    ]
   }
 ];

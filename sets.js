@@ -2025,5 +2025,133 @@ window.GMAT_SETS = [
         "level": "hard"
       }
     ]
+  },
+  {
+    "id": "di-datasufficiency-ex",
+    "title": "Data Sufficiency — Exercise",
+    "section": "data",
+    "source": "Data Sufficiency practice (value, yes/no, and classic traps)",
+    "questions": [
+      {
+        "n": 1, "topic": "Value questions", "correct": "D", "options": 5,
+        "text": "If today the price of an item is $3,600, what was its price exactly 2 years ago?\n(1) The price increased by 10 percent per year during this 2-year period.\n(2) Today the price is 1.21 times its price exactly 2 years ago.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "For a value question, each statement is sufficient only if it pins down one number.",
+        "expl": "Step 1 — (1): \\(3600 = P(1.1)^2\\) gives a unique P — sufficient.\nStep 2 — (2): \\(3600 = 1.21P\\) gives a unique P — sufficient.\nStep 3 — Each alone works.\nAnswer: D.",
+        "level": "easy"
+      },
+      {
+        "n": 2, "topic": "Common traps & C-trap", "correct": "C", "options": 5,
+        "text": "What is the value of x?\n(1) x² = 36\n(2) x is negative.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "A squared value has two roots — watch the sign.",
+        "expl": "Step 1 — (1): \\(x = \\pm6\\) — not unique.\nStep 2 — (2): x negative — not unique.\nStep 3 — Together: \\(x = -6\\) — unique.\nAnswer: C.",
+        "level": "medium"
+      },
+      {
+        "n": 3, "topic": "Yes / No questions", "correct": "D", "options": 5,
+        "text": "Is n equal to zero?\n(1) The product of n and some nonzero number is 0.\n(2) The sum of n and 0 is 0.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Each statement forces n to a single value.",
+        "expl": "Step 1 — (1): \\(n\\times(\\text{nonzero}) = 0\\Rightarrow n = 0\\) — definite YES.\nStep 2 — (2): \\(n + 0 = 0\\Rightarrow n = 0\\) — definite YES.\nAnswer: D.",
+        "level": "easy"
+      },
+      {
+        "n": 4, "topic": "Common traps & C-trap", "correct": "C", "options": 5,
+        "text": "Is x even?\n(1) 7x is even.\n(2) 5x is even.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Don't assume x is an integer.",
+        "expl": "Step 1 — (1): 7x even is true for x = 0 (even) but also x = 2/7 (not even) — not sufficient.\nStep 2 — (2): same issue with x = 2/5 — not sufficient.\nStep 3 — Together, both 7x and 5x even forces x to be an even integer — definite YES.\nAnswer: C.",
+        "level": "hard"
+      },
+      {
+        "n": 5, "topic": "Value questions", "correct": "E", "options": 5,
+        "text": "Every object in a box is either a sphere or a cube, and either red or green. How many objects are in the box?\n(1) There are 6 cubes and 5 green objects.\n(2) There are 2 red spheres.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Try to fill a 2×2 grid (sphere/cube × red/green) — is every cell determined?",
+        "expl": "Step 1 — Even combining, we know 6 cubes, 5 green, 2 red spheres — but green spheres and red cubes stay unknown.\nStep 2 — The total can't be pinned down.\nAnswer: E.",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Yes / No questions", "correct": "C", "options": 5,
+        "text": "If a and b are 3-digit integers, is the units digit of the product a×b greater than 5?\n(1) The units digit of a is 4.\n(2) The units digit of b is 7.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "The units digit of a product depends only on the units digits.",
+        "expl": "Step 1 — (1) alone: 4 × (unknown) varies — not sufficient. (2) alone: similarly not sufficient.\nStep 2 — Together: units of 4 × 7 = 28 → 8, and 8 > 5 — definite YES.\nAnswer: C.",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Common traps & C-trap", "correct": "B", "options": 5,
+        "text": "Mary's salary is the highest of three. The difference between Mary and Jim equals twice the difference between Mary and Kate. What is the average of the three salaries?\n(1) Jim's salary is $30,000.\n(2) Kate's salary is $40,000.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Simplify the condition first — the average may equal one person's salary.",
+        "expl": "Step 1 — M − J = 2(M − K) ⟹ M + J = 2K, so the average \\(\\frac{M+J+K}{3} = \\frac{3K}{3} = K\\).\nStep 2 — The average is exactly Kate's salary, so (2) alone is sufficient; (1) isn't.\nAnswer: B.",
+        "level": "hard"
+      },
+      {
+        "n": 8, "topic": "Common traps & C-trap", "correct": "B", "options": 5,
+        "text": "What is the value of a − b?\n(1) a + 2b = 11\n(2) 4a + b = 5b + 8",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Simplify statement (2) before deciding.",
+        "expl": "Step 1 — (2): \\(4a + b = 5b + 8\\Rightarrow 4a - 4b = 8\\Rightarrow a - b = 2\\) — sufficient.\nStep 2 — (1) alone can't give a − b.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Common traps & C-trap", "correct": "B", "options": 5,
+        "text": "What is the value of a² − b²?\n(1) a + b = 16\n(2) a − b = 0",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Factor: a² − b² = (a − b)(a + b).",
+        "expl": "Step 1 — (2): \\(a - b = 0\\Rightarrow (a-b)(a+b) = 0\\) regardless of a+b — sufficient (value is 0).\nStep 2 — (1) alone gives a+b but not the product.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Yes / No questions", "correct": "D", "options": 5,
+        "text": "Is 5^(x+2) / 25 < 1 ?\n(1) 5^x < 1\n(2) x < 0",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Simplify the question stem first.",
+        "expl": "Step 1 — \\(\\frac{5^{x+2}}{25} = 5^x\\), so the question is just: is \\(5^x < 1\\)?\nStep 2 — (1) says exactly that — YES. (2): x < 0 ⟹ \\(5^x < 1\\) — YES.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Common traps & C-trap", "correct": "E", "options": 5,
+        "text": "What is the value of a?\n(1) 6a − 14b = 10\n(2) 21b = 9a − 15",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Simplify both — are they really two different equations?",
+        "expl": "Step 1 — (1): \\(6a - 14b = 10\\Rightarrow 3a - 7b = 5\\).\nStep 2 — (2): \\(21b = 9a - 15\\Rightarrow 3a - 7b = 5\\) — the same equation.\nStep 3 — One equation, two unknowns even together — not sufficient.\nAnswer: E.",
+        "level": "hard"
+      },
+      {
+        "n": 12, "topic": "Yes / No questions", "correct": "B", "options": 5,
+        "text": "Is a > 5?\n(1) a < 6\n(2) a < 4",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "a need not be an integer.",
+        "expl": "Step 1 — (1): a < 6 allows 5.5 (YES) and 4 (NO) — not sufficient.\nStep 2 — (2): a < 4 is always ≤ 5 — definite NO — sufficient.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Common traps & C-trap", "correct": "A", "options": 5,
+        "text": "Is a > b?\n(1) −4a + 2b < b − 3a\n(2) ca > cb",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Don't divide by a variable whose sign you don't know.",
+        "expl": "Step 1 — (1): \\(-4a + 2b < b - 3a\\Rightarrow b < a\\) — definite YES — sufficient.\nStep 2 — (2): dividing by c needs its sign; if c < 0 the inequality flips — not sufficient.\nAnswer: A.",
+        "level": "hard"
+      },
+      {
+        "n": 14, "topic": "Common traps & C-trap", "correct": "B", "options": 5,
+        "text": "Shank bought 3 books at an average price of $15. What was the median price?\n(1) The maths book cost $13.\n(2) The history book cost $15.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "The three prices sum to $45; what does a book priced at the mean force?",
+        "expl": "Step 1 — Sum = 45. (1): with one book $13 the median varies (e.g. 13,14,18 vs 12,13,20) — not sufficient.\nStep 2 — (2): one book = 15 (the mean); the other two sum to 30, so one is ≤15 and one ≥15 — the median is always 15 — sufficient.\nAnswer: B.",
+        "level": "hard"
+      },
+      {
+        "n": 15, "topic": "Common traps & C-trap", "correct": "A", "options": 5,
+        "text": "A jeweler first offered a bracelet at a price giving a 40% profit on cost. What was the original cost?\n(1) After cutting that asking price by 10%, the bracelet sold at a profit of $403.\n(2) The bracelet sold for $1,953.",
+        "choices": ["(1) ALONE sufficient, (2) alone not", "(2) ALONE sufficient, (1) alone not", "BOTH together sufficient, neither alone", "EACH alone sufficient", "Together still NOT sufficient"],
+        "hint": "Statement (2) alone: do we know what profit % the final sale represents?",
+        "expl": "Step 1 — (1): asking = 1.4·cost; sold at 90% of asking; profit $403 gives one equation in cost — solvable, sufficient.\nStep 2 — (2): $1,953 alone doesn't tell us the profit rate actually realized (the 40% was only the initial ask) — not sufficient.\nAnswer: A.",
+        "level": "hard"
+      }
+    ]
   }
 ];

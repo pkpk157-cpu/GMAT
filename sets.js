@@ -1,6 +1,8 @@
 /* GMAT Prep — Practice Sets repository
    Math is written in LaTeX inside \\( ... \\) and rendered with KaTeX.
    question: { n, topic, correct:"A".."E", options, text, choices[], hint, expl, note? }
+   Some sets carry a shared `passage` (Reading Comprehension, and Data
+   Insights table / graphics / multi-source context) shown above the question.
 */
 window.GMAT_SETS = [
   {
@@ -4667,6 +4669,2523 @@ window.GMAT_SETS = [
         "hint": "Which part is the claim being argued for, and which supports it?",
         "expl": "The first boldface is the evidence (suburb residents rarely use transit); the second is the critic's conclusion (the line won't reduce traffic). Evidence → conclusion.\nAnswer: B.",
         "level": "medium"
+      }
+    ]
+  },
+  {
+    "id": "rc-science-lichen",
+    "title": "Passage — Lichens & Air Quality",
+    "section": "rc",
+    "source": "Adapted from your course material",
+    "passage": {
+      "title": "Lichens as Bioindicators",
+      "paras": [
+        "For more than a century, ecologists have recognized that lichens—composite organisms formed from a fungus living in partnership with an alga or cyanobacterium—are unusually sensitive to air pollution. Because lichens lack roots and absorb water and nutrients directly from the atmosphere across their entire surface, they cannot filter out airborne contaminants the way rooted plants can. Sulfur dioxide, in particular, disrupts the photosynthetic partner within the lichen, and even modest concentrations can kill sensitive species. As a result, the presence, absence, and diversity of lichens in a given area have long served as a rough gauge of local air quality.",
+        "Early surveys exploited this sensitivity in a straightforward way: researchers mapped the “lichen deserts” that surrounded industrial cities, zones in which few or no species survived, and correlated their extent with measured sulfur dioxide levels. The method was inexpensive and required no instruments, but it was also crude. It could reveal that pollution was severe, yet it said little about which pollutants were responsible or how concentrations varied over time. Two cities with identical lichen deserts might have very different pollution profiles.",
+        "More recent work has refined the approach considerably. Rather than simply noting whether lichens are present, investigators now measure the chemical composition of lichen tissue itself, which accumulates heavy metals and nitrogen compounds in proportion to atmospheric deposition. This tissue analysis allows researchers to distinguish among pollutants and to detect contaminants, such as certain metals, that leave no visible mark on the organism. Critics counter that tissue concentrations reflect not only current air quality but also the age of the lichen and the peculiarities of the site, and that laboratory analysis sacrifices the very cheapness that made lichen surveys attractive in the first place. Even so, few dispute that lichens remain among the most cost-effective monitors available."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Main idea / primary purpose",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The primary purpose of the passage is to",
+        "choices": [
+          "argue that tissue analysis should replace all earlier methods of monitoring air quality",
+          "explain why lichens are more sensitive to pollution than rooted plants are",
+          "describe how the use of lichens to assess air quality has developed and been refined",
+          "compare the pollution profiles of two industrial cities",
+          "warn that lichen-based monitoring is too crude to be scientifically useful"
+        ],
+        "hint": "Look for the choice that captures the whole passage, not just one paragraph.",
+        "expl": "The passage traces lichen monitoring from early 'lichen desert' mapping to modern tissue analysis, noting strengths and limits at each stage — a description of how the method developed and was refined (C). (A) overstates: the passage says tissue analysis sacrifices cheapness and doesn't call for replacing all methods. (B) and (D) are details, not the main point. (E) contradicts the closing sentence, which affirms lichens are cost-effective monitors."
+      },
+      {
+        "n": 2,
+        "topic": "Supporting detail",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "According to the passage, lichens are especially vulnerable to air pollution because they",
+        "choices": [
+          "grow only in regions with heavy industrial activity",
+          "absorb water and nutrients directly from the air across their whole surface",
+          "depend on a single photosynthetic partner that cannot be replaced",
+          "accumulate heavy metals faster than rooted plants do",
+          "lack the ability to reproduce in contaminated soil"
+        ],
+        "hint": "Find the sentence that explains why lichens can't filter contaminants.",
+        "expl": "Paragraph 1 states lichens 'absorb water and nutrients directly from the atmosphere across their entire surface' and so 'cannot filter out airborne contaminants' — choice B. The other options are not given as the reason for their vulnerability."
+      },
+      {
+        "n": 3,
+        "topic": "Inference",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "The passage suggests that a limitation of the early 'lichen desert' surveys was that they",
+        "choices": [
+          "required expensive laboratory equipment",
+          "could not detect severe pollution",
+          "killed the sensitive lichen species they relied on",
+          "could not distinguish which pollutants were present",
+          "overestimated the extent of contaminated zones"
+        ],
+        "hint": "Contrast what the early method could show with what the modern method adds.",
+        "expl": "Paragraph 2 says the early method 'said little about which pollutants were responsible,' and paragraph 3 credits tissue analysis with letting researchers 'distinguish among pollutants' — so the early surveys could not identify which pollutants were present (D). (A) is wrong: the early method needed no instruments. (B) is contradicted — it revealed severe pollution. (C) and (E) are not supported."
+      },
+      {
+        "n": 4,
+        "topic": "Function of a detail or paragraph",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "The author mentions that 'two cities with identical lichen deserts might have very different pollution profiles' primarily in order to",
+        "choices": [
+          "illustrate a shortcoming of the early survey method",
+          "argue that industrial cities are the worst polluters",
+          "show that lichens are unreliable indicators of any pollution",
+          "introduce the chemical composition of lichen tissue",
+          "question whether sulfur dioxide harms lichens"
+        ],
+        "hint": "What point is that sentence supporting in its paragraph?",
+        "expl": "The sentence closes the paragraph on the early method's crudeness, giving a concrete example of what that method could not reveal — it illustrates a shortcoming (A). It is not an argument about who pollutes most (B), a claim that lichens are useless (C, contradicted later), an introduction to tissue analysis (D, next paragraph), or doubt about sulfur dioxide (E)."
+      },
+      {
+        "n": 5,
+        "topic": "Author's tone & attitude",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The author's attitude toward modern tissue-analysis methods can best be described as",
+        "choices": [
+          "unqualified enthusiasm",
+          "deep skepticism",
+          "appreciation tempered by awareness of limitations",
+          "indifference",
+          "nostalgia for older methods"
+        ],
+        "hint": "Weigh how the author balances the method's advantages against the critics' points.",
+        "expl": "The author credits tissue analysis with real refinements yet reports critics' concerns about site effects, lichen age, and lost cheapness — appreciation tempered by awareness of limitations (C). The balanced treatment rules out unqualified enthusiasm (A) and deep skepticism (B); the author is clearly engaged, not indifferent (D); and nothing expresses nostalgia (E)."
+      }
+    ]
+  },
+  {
+    "id": "rc-business-remote",
+    "title": "Passage — Remote Work Productivity",
+    "section": "rc",
+    "source": "Adapted from your course material",
+    "passage": {
+      "title": "Measuring Remote-Work Productivity",
+      "paras": [
+        "When large numbers of office employees began working from home, many executives predicted a collapse in productivity, while enthusiasts of remote work forecast the opposite. Several years of data have complicated both stories. Studies that measure output per hour—code shipped, claims processed, calls resolved—generally find modest gains for remote workers, on the order of a few percent. But studies that track career outcomes over longer periods find that fully remote employees are promoted less often and are more likely to leave their firms, suggesting that short-run output and long-run advancement can move in opposite directions.",
+        "One explanation for the divergence focuses on the nature of the tasks being measured. Routine, well-defined work—the kind most easily quantified—may indeed be done faster at home, where interruptions are fewer. The activities that drive promotion, however, are often the hardest to measure: mentoring junior colleagues, shaping a team's direction, building the informal relationships through which influence flows. These activities depend on unplanned, face-to-face contact, precisely what remote work eliminates. On this view, remote work does not make employees less capable; it makes their most valuable contributions less visible and less likely to occur.",
+        "A competing explanation puts the burden on management rather than on remote work itself. If managers reward presence over performance—favoring the employees they see in the hallway—then remote workers will be overlooked regardless of their output. Proponents of this view argue that hybrid schedules and deliberate, structured opportunities for contact can capture most of the flexibility of remote work while restoring the visibility that careers require. The debate is far from settled, but it has already shifted: the question is no longer whether remote work 'works,' but which of its effects are inherent and which are artifacts of how firms choose to manage it."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Main idea / primary purpose",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "The passage is primarily concerned with",
+        "choices": [
+          "proving that remote work reduces employee productivity",
+          "examining why short-term output and long-term careers diverge under remote work",
+          "recommending that firms abandon fully remote arrangements",
+          "describing how executives mistakenly predicted a productivity collapse",
+          "comparing the pay of remote and in-office employees"
+        ],
+        "hint": "The whole passage returns to one puzzle. What is it?",
+        "expl": "The passage sets up the puzzle that output rises modestly while promotions and retention fall, then explores two explanations — it examines why the two diverge (B). (A) and (C) overstate; the passage is careful and non-prescriptive. (D) is only the opening setup. (E) pay is never discussed."
+      },
+      {
+        "n": 2,
+        "topic": "Supporting detail",
+        "correct": "A",
+        "options": 5,
+        "level": "easy",
+        "text": "According to the passage, studies of output per hour for remote workers generally find",
+        "choices": [
+          "modest gains of a few percent",
+          "large gains of twenty percent or more",
+          "no measurable change",
+          "steep declines",
+          "results too inconsistent to summarize"
+        ],
+        "hint": "Re-read the first paragraph's description of output studies.",
+        "expl": "Paragraph 1 says output studies 'generally find modest gains... on the order of a few percent' (A)."
+      },
+      {
+        "n": 3,
+        "topic": "Inference",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "The first explanation described in the passage implies that the tasks most responsible for promotion are",
+        "choices": [
+          "the same tasks that are easiest to measure",
+          "performed better by remote employees than by in-office employees",
+          "irrelevant to a firm's overall productivity",
+          "difficult to quantify and dependent on in-person contact",
+          "valued less by managers than routine work is"
+        ],
+        "hint": "The first explanation contrasts measurable routine work with the drivers of promotion.",
+        "expl": "The second paragraph says promotion-driving activities 'are often the hardest to measure' and 'depend on unplanned, face-to-face contact' — difficult to quantify and dependent on in-person contact (D). (A) reverses the contrast; (E) belongs to the second, management-focused explanation, not the first."
+      },
+      {
+        "n": 4,
+        "topic": "Function of a detail or paragraph",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The third paragraph functions chiefly to",
+        "choices": [
+          "restate the productivity data from the first paragraph",
+          "concede that remote work has no measurable benefits",
+          "present an alternative explanation that locates the problem in management",
+          "prove that hybrid schedules always outperform remote work",
+          "dismiss the concerns raised in the second paragraph"
+        ],
+        "hint": "How does paragraph 3 relate to paragraph 2's explanation?",
+        "expl": "Paragraph 3 opens with 'A competing explanation puts the burden on management,' offering an alternative to the task-nature account of paragraph 2 (C). It doesn't restate data (A), deny benefits (B), prove a universal claim — 'always' is too strong (D), or dismiss paragraph 2 (E)."
+      },
+      {
+        "n": 5,
+        "topic": "Application / extension",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "Which of the following findings, if true, would most strengthen the second (management-focused) explanation over the first?",
+        "choices": [
+          "Remote workers doing routine tasks ship more code than in-office peers.",
+          "At firms that promote strictly by measured output, remote and in-office workers are promoted at equal rates.",
+          "Mentoring is more effective when done face-to-face than over video.",
+          "Employees who leave remote jobs cite isolation as their main reason.",
+          "Hybrid workers report higher job satisfaction than fully remote workers."
+        ],
+        "hint": "The management view says the gap comes from how firms reward presence, not from remote work itself.",
+        "expl": "If firms that reward measured output rather than presence show no promotion gap, the disadvantage tracks management practices rather than remote work itself — supporting the management-focused view (B). (C) supports the first (task-nature) explanation. (A), (D), and (E) don't isolate management practice as the cause."
+      }
+    ]
+  },
+  {
+    "id": "rc-social-commons",
+    "title": "Passage — Governing the Commons",
+    "section": "rc",
+    "source": "Adapted from your course material",
+    "passage": {
+      "title": "Rethinking the Tragedy of the Commons",
+      "paras": [
+        "A famous argument in economics holds that resources owned in common—a pasture, a fishery, a forest—are inevitably overused. Each individual, the reasoning goes, captures the full benefit of taking one more unit while bearing only a fraction of the cost, which is spread across all users; the predictable result is depletion. For decades this 'tragedy of the commons' was invoked to justify a stark choice: either privatize the resource or place it under centralized state control.",
+        "The political scientist Elinor Ostrom challenged the completeness of this dichotomy. Studying communities that had managed shared resources for generations—Swiss alpine pastures, Japanese forests, Spanish irrigation networks—she found many that had avoided depletion without either privatization or top-down regulation. These communities had instead devised their own rules: who could harvest, how much, and when; how the rules would be monitored; and how violations would be penalized, typically through graduated sanctions that began with small fines and escalated only for repeat offenders.",
+        "Ostrom did not claim that communities always succeed; many do collapse. Her point was narrower and, for that reason, more powerful. The tragedy is not a law of nature that follows automatically from common ownership. Whether a shared resource is depleted depends on whether its users can communicate, build trust, and enforce agreements among themselves—capacities that vary from one community to the next. By identifying the conditions under which self-governance tends to work, she reframed a supposedly inevitable outcome as a contingent one, and redirected attention from ownership toward the institutions that ownership does or does not supply."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Main idea / primary purpose",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The main point of the passage is that",
+        "choices": [
+          "common ownership of resources always leads to depletion",
+          "privatization is the only reliable way to protect shared resources",
+          "the depletion of shared resources is a contingent outcome, not an inevitable one",
+          "state control of resources is superior to community management",
+          "Elinor Ostrom proved that shared resources are never overused"
+        ],
+        "hint": "The passage builds to Ostrom's reframing in the last paragraph.",
+        "expl": "The passage presents the classic 'tragedy' and then Ostrom's finding that depletion depends on whether users can self-govern — reframing an 'inevitable' outcome as contingent (C). (A) and (B) state the very view Ostrom challenges. (D) reverses her point. (E) overstates — she acknowledged many communities collapse."
+      },
+      {
+        "n": 2,
+        "topic": "Supporting detail",
+        "correct": "E",
+        "options": 5,
+        "level": "easy",
+        "text": "The passage indicates that the communities Ostrom studied enforced their rules through",
+        "choices": [
+          "privatization of the shared resource",
+          "centralized government inspectors",
+          "a single large penalty for any violation",
+          "prohibiting all harvesting of the resource",
+          "graduated sanctions that escalated for repeat offenders"
+        ],
+        "hint": "Find the sentence describing how violations were penalized.",
+        "expl": "Paragraph 2 says penalties came 'through graduated sanctions that began with small fines and escalated only for repeat offenders' (E)."
+      },
+      {
+        "n": 3,
+        "topic": "Inference",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "It can be inferred that the traditional 'tragedy of the commons' argument assumes that users of a shared resource",
+        "choices": [
+          "will always devise rules to protect it",
+          "act on individual incentives without coordinating with one another",
+          "bear the full cost of their own overuse",
+          "are prevented by the state from communicating",
+          "prefer state control to privatization"
+        ],
+        "hint": "Why, on the traditional view, does each person overuse the resource?",
+        "expl": "The traditional argument has each individual pursue private benefit while cost is 'spread across all users,' with no mention of coordination — it assumes users act on individual incentives without coordinating (B). Ostrom's contribution was precisely to add coordination. (C) is the opposite of the model's premise — users bear only a fraction of the cost."
+      },
+      {
+        "n": 4,
+        "topic": "Function of a detail or paragraph",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "The examples of Swiss pastures, Japanese forests, and Spanish irrigation networks serve to",
+        "choices": [
+          "provide evidence that self-governance of commons can succeed",
+          "show that only European communities manage resources well",
+          "prove that privatization is unnecessary anywhere",
+          "illustrate resources that have already collapsed",
+          "explain why centralized control usually fails"
+        ],
+        "hint": "What claim are these real cases marshaled to support?",
+        "expl": "They are cases Ostrom studied that 'had avoided depletion without either privatization or top-down regulation' — evidence that self-governance can succeed (A). They are not about geography (B), a universal claim (C), collapses (D — the opposite), or the failure of central control (E)."
+      },
+      {
+        "n": 5,
+        "topic": "Author's tone & attitude",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "The author's attitude toward Ostrom's argument is best described as",
+        "choices": [
+          "dismissive",
+          "openly hostile",
+          "skeptical but curious",
+          "approving of its measured scope",
+          "indifferent to its conclusions"
+        ],
+        "hint": "Note how the author frames the narrowness of her claim.",
+        "expl": "The author calls her point 'narrower and, for that reason, more powerful,' endorsing its careful, limited scope — approving of its measured scope (D). The passage is clearly favorable, ruling out dismissive (A), hostile (B), skeptical (C), or indifferent (E)."
+      }
+    ]
+  },
+  {
+    "id": "rc-humanities-jazz",
+    "title": "Passage — Improvisation in Jazz",
+    "section": "rc",
+    "source": "Adapted from your course material",
+    "passage": {
+      "title": "The Myth of Pure Spontaneity",
+      "paras": [
+        "Popular accounts of jazz often celebrate improvisation as pure spontaneity—music invented in the moment, unburdened by score or plan. This image is romantic and largely misleading. A soloist stepping forward to improvise is not creating from nothing; she is drawing on a deep reservoir of learned material: scales and their variations, characteristic phrases, rhythmic figures, and the harmonic conventions of the tune being played. What sounds like invention is more accurately described as the rapid, fluent recombination of elements the musician has practiced for years.",
+        "This does not diminish the achievement. Language offers a useful analogy. A speaker composing a sentence has never uttered before is nonetheless constrained by vocabulary and grammar; her fluency lies not in escaping those constraints but in deploying them so quickly and appropriately that the result feels effortless. The jazz soloist's freedom is of the same kind. Indeed, the constraints are what make the freedom legible: a listener recognizes a daring substitution or an unexpected rhythmic displacement only against the background of the conventions being bent.",
+        "Some critics resist the analogy, arguing that it understates the emotional and physical immediacy of performance—the way a phrase can be shaped by the feel of a room or the response of a fellow musician. The objection has force, but it does not overturn the central point. Even the most responsive improvisation works by selecting, in real time, from possibilities the musician already commands. Spontaneity in jazz is not the absence of preparation; it is preparation made so thorough that it can be redirected instantly."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Main idea / primary purpose",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "The primary purpose of the passage is to",
+        "choices": [
+          "trace the historical origins of jazz improvisation",
+          "correct a common misconception about what improvisation involves",
+          "argue that jazz is inferior to composed music",
+          "explain how to learn to improvise",
+          "compare jazz with classical performance traditions"
+        ],
+        "hint": "The first sentence names a popular view; what does the author do with it?",
+        "expl": "The passage rejects the 'pure spontaneity' image and reframes improvisation as fluent recombination of learned material — correcting a misconception (B). It is not a history (A), a value judgment against jazz (C), an instructional guide (D), or a genre comparison (E)."
+      },
+      {
+        "n": 2,
+        "topic": "Function of a detail or paragraph",
+        "correct": "C",
+        "options": 5,
+        "level": "hard",
+        "text": "The analogy to language in the second paragraph is used mainly to",
+        "choices": [
+          "prove that music and language share a common origin",
+          "suggest that improvisation is easier than speaking",
+          "clarify how fluency can operate within constraints without being diminished",
+          "argue that jazz should be studied like a foreign language",
+          "show that grammar rules are as rigid as musical scales"
+        ],
+        "hint": "What does the speaker-and-sentence comparison help the reader understand?",
+        "expl": "The analogy shows that a speaker, though bound by vocabulary and grammar, achieves fluency by deploying those constraints — clarifying that constrained improvisation is no less an achievement (C). It's not about shared origins (A), relative ease (B), pedagogy (D), or the rigidity of grammar (E)."
+      },
+      {
+        "n": 3,
+        "topic": "Inference",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "The passage implies that a listener's ability to appreciate a bold improvised choice depends on",
+        "choices": [
+          "familiarity with the conventions the soloist is bending",
+          "having studied the specific tune in advance",
+          "the physical layout of the performance room",
+          "the soloist's years of practice",
+          "the absence of any harmonic plan"
+        ],
+        "hint": "Re-read the sentence about what makes freedom 'legible.'",
+        "expl": "Paragraph 2 says a listener recognizes a daring move 'only against the background of the conventions being bent' — appreciation depends on familiarity with those conventions (A). The other options are not what the passage ties recognition to."
+      },
+      {
+        "n": 4,
+        "topic": "Author's tone & attitude",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "In the third paragraph, the author's response to the critics' objection is to",
+        "choices": [
+          "reject it as entirely without merit",
+          "accept it and abandon the language analogy",
+          "ignore it in favor of new evidence",
+          "grant that it has force while maintaining the central claim",
+          "concede that spontaneity requires no preparation"
+        ],
+        "hint": "Note the phrase 'The objection has force, but...'",
+        "expl": "The author writes 'The objection has force, but it does not overturn the central point' — granting the objection while maintaining the claim (D). This rules out outright rejection (A), abandonment (B), ignoring (C), and (E), which contradicts the passage's thesis."
+      },
+      {
+        "n": 5,
+        "topic": "Supporting detail",
+        "correct": "E",
+        "options": 5,
+        "level": "easy",
+        "text": "According to the passage, a jazz soloist beginning to improvise draws on all of the following EXCEPT",
+        "choices": [
+          "scales and their variations",
+          "characteristic phrases",
+          "rhythmic figures",
+          "the harmonic conventions of the tune",
+          "a fully written-out score of the solo"
+        ],
+        "hint": "Four items are listed in paragraph 1; one contradicts the passage's whole point.",
+        "expl": "Paragraph 1 lists scales, phrases, rhythmic figures, and harmonic conventions as the soloist's reservoir. A 'fully written-out score of the solo' (E) is exactly what improvisation lacks — the EXCEPT answer."
+      }
+    ]
+  },
+  {
+    "id": "rc-science-dwarf",
+    "title": "Passage — Island Dwarfism",
+    "section": "rc",
+    "source": "Adapted from your course material",
+    "passage": {
+      "title": "Why Island Animals Shrink",
+      "paras": [
+        "Paleontologists have long noted a striking pattern: large mammals stranded on islands tend, over many generations, to evolve smaller body sizes than their mainland relatives. Dwarf elephants no taller than a large dog once roamed several Mediterranean islands; miniature hippos and deer appear in island fossil records around the world. The pattern is consistent enough to have earned a name, the 'island rule,' yet its causes remain debated.",
+        "The most widely cited explanation is resource limitation. Islands support smaller populations of prey and less total vegetation than continents, and a smaller body requires less food to sustain. Under chronic scarcity, natural selection should favor individuals that can survive and reproduce on less—and, all else equal, those are the smaller ones. A complementary factor is the absence of large predators. On the mainland, big body size offers protection against being eaten; remove the predators, as isolation on an island often does, and that pressure toward large size relaxes, allowing the food-driven pressure toward small size to prevail.",
+        "Not every case fits neatly. Some island species grow larger, not smaller—giant tortoises and oversized rodents are familiar examples—and the direction of change seems to depend on the animal's starting size: very large mainland species tend to shrink, while very small ones tend to grow. This has led some researchers to argue that the 'island rule' is less a single rule than a convergence toward an optimal intermediate size, one at which the trade-offs between finding enough food and avoiding starvation are best balanced for a given environment. On this account, islands do not so much shrink animals as strip away the mainland pressures that had pushed them away from that optimum in the first place."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Main idea / primary purpose",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The passage is primarily concerned with",
+        "choices": [
+          "proving that all island mammals eventually become smaller",
+          "describing the discovery of dwarf elephant fossils",
+          "presenting and refining explanations for size changes in island animals",
+          "arguing that predators are the sole cause of body-size evolution",
+          "comparing Mediterranean islands with tropical ones"
+        ],
+        "hint": "The passage offers explanations and then complicates them.",
+        "expl": "The passage lays out the 'island rule,' its leading explanations, and then a refinement (the convergence-to-optimum view) — presenting and refining explanations (C). (A) is contradicted by paragraph 3; (B), (D), and (E) are details or overstatements."
+      },
+      {
+        "n": 2,
+        "topic": "Supporting detail",
+        "correct": "A",
+        "options": 5,
+        "level": "easy",
+        "text": "According to the passage, one reason smaller body size may be favored on islands is that",
+        "choices": [
+          "a smaller body requires less food to sustain",
+          "smaller animals reproduce more slowly",
+          "islands have colder climates than continents",
+          "small animals are better swimmers",
+          "predators prefer to hunt larger prey"
+        ],
+        "hint": "Look at the resource-limitation explanation.",
+        "expl": "Paragraph 2 states 'a smaller body requires less food to sustain,' which under scarcity favors smaller individuals (A)."
+      },
+      {
+        "n": 3,
+        "topic": "Inference",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "The passage suggests that the loss of large predators on an island contributes to dwarfism because it",
+        "choices": [
+          "directly kills off the largest individuals",
+          "reduces the amount of vegetation available",
+          "makes islands colder over time",
+          "removes an advantage that had favored large body size",
+          "causes prey populations to grow without limit"
+        ],
+        "hint": "Big body size does what against predators? What happens when predators vanish?",
+        "expl": "Paragraph 2 says big size 'offers protection against being eaten'; removing predators 'relaxes' that pressure so the food-driven push toward smallness can win — it removes an advantage that had favored large size (D)."
+      },
+      {
+        "n": 4,
+        "topic": "Function of a detail or paragraph",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "The examples of giant tortoises and oversized rodents in the third paragraph are introduced primarily to",
+        "choices": [
+          "confirm the resource-limitation explanation",
+          "show that the island rule does not apply uniformly",
+          "prove that predators never affect body size",
+          "explain why elephants shrank on islands",
+          "demonstrate that islands lack vegetation"
+        ],
+        "hint": "These are cases that don't fit the shrinking pattern. Why raise them?",
+        "expl": "The paragraph opens 'Not every case fits neatly' and cites species that grew larger — showing the rule doesn't apply uniformly (B) and motivating the refined 'optimal size' view."
+      },
+      {
+        "n": 5,
+        "topic": "Application / extension",
+        "correct": "E",
+        "options": 5,
+        "level": "hard",
+        "text": "Which finding would most support the 'convergence toward an optimal intermediate size' view described in the last paragraph?",
+        "choices": [
+          "A large island species that continued to grow larger for millions of years",
+          "A mainland species larger than any island species",
+          "An island with no vegetation at all",
+          "A predator that migrated from an island to the mainland",
+          "Two island species—one starting large, one starting small—that both evolved toward the same middling size"
+        ],
+        "hint": "The optimum view predicts both giants and dwarfs move toward one middle size.",
+        "expl": "The convergence view predicts that very large and very small colonizers both move toward a shared intermediate size. Two species converging on the same middling size from opposite starting points is exactly that prediction (E). (A) contradicts the view; the others are irrelevant to convergence."
+      }
+    ]
+  },
+  {
+    "id": "di-twopart-ex",
+    "title": "Two-Part Analysis — Exercise",
+    "section": "data",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Quantitative two-part",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "A company sells pens at $3 each and notebooks at $5 each. In one order the total number of items was 20 and the total cost was $76. Which pair gives (number of pens, number of notebooks)?",
+        "choices": [
+          "(8, 12)",
+          "(10, 10)",
+          "(12, 8)",
+          "(14, 6)",
+          "(16, 4)"
+        ],
+        "hint": "Set up 3p + 5n = 76 with p + n = 20, then test.",
+        "expl": "With p + n = 20, cost = 3p + 5(20 − p) = 100 − 2p = 76, so 2p = 24, p = 12 and n = 8 → (12, 8), choice C."
+      },
+      {
+        "n": 2,
+        "topic": "Quantitative two-part",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Two numbers have a sum of 30 and a difference of 8. Which pair is (larger number, smaller number)?",
+        "choices": [
+          "(20, 10)",
+          "(19, 11)",
+          "(18, 12)",
+          "(22, 8)",
+          "(21, 9)"
+        ],
+        "hint": "Larger = (sum + difference)/2.",
+        "expl": "Larger = (30 + 8)/2 = 19; smaller = (30 − 8)/2 = 11 → (19, 11), choice B."
+      },
+      {
+        "n": 3,
+        "topic": "Trade-off & optimization",
+        "correct": "A",
+        "options": 5,
+        "level": "hard",
+        "text": "A traveler has a $300 budget and wants to maximize nights away. Hotel A costs $80/night with no fee; Hotel B costs $50/night but requires a one-time $40 booking fee. Which pair gives (max nights with A only, max nights with B including the fee)?",
+        "choices": [
+          "(3, 5)",
+          "(4, 4)",
+          "(3, 4)",
+          "(4, 5)",
+          "(3, 3)"
+        ],
+        "hint": "A: floor(300/80). B: floor((300−40)/50).",
+        "expl": "Hotel A: 300/80 = 3.75 → 3 nights. Hotel B: (300 − 40)/50 = 260/50 = 5.2 → 5 nights. So the pair is (3, 5), choice A."
+      },
+      {
+        "n": 4,
+        "topic": "Quantitative two-part",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "A recipe uses flour and sugar in the ratio 5 : 2 by weight. To make 2,100 g of the mixture, which pair gives (grams of flour, grams of sugar)?",
+        "choices": [
+          "(1500, 600)",
+          "(1400, 700)",
+          "(1200, 900)",
+          "(1600, 500)",
+          "(1050, 1050)"
+        ],
+        "hint": "Total parts = 7; each part = 2100/7.",
+        "expl": "7 parts = 2,100 g, so 1 part = 300 g. Flour = 5×300 = 1,500 g; sugar = 2×300 = 600 g → (1500, 600), choice A."
+      },
+      {
+        "n": 5,
+        "topic": "Verbal / logical two-part",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "A committee claims: 'Our program reduced costs and improved service.' Which pair of findings would, respectively, (support the cost claim) and (support the service claim)?",
+        "choices": [
+          "Costs rose 5%; complaints fell 20%",
+          "Costs fell 10%; complaints rose 15%",
+          "Costs fell 10%; complaints fell 20%",
+          "Staffing rose; costs rose",
+          "Complaints fell; costs rose"
+        ],
+        "hint": "Each half of the claim needs its own supporting finding.",
+        "expl": "The cost claim is supported by falling costs; the service claim by falling complaints. Only 'Costs fell 10%; complaints fell 20%' supports both parts (C). Every other option fails at least one half."
+      },
+      {
+        "n": 6,
+        "topic": "Quantitative two-part",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "A tank is filled by pipe X in 6 hours and by pipe Y in 12 hours. Which pair gives (fraction filled in 1 hour by X and Y together, hours to fill the tank together)?",
+        "choices": [
+          "(1/6, 6)",
+          "(1/4, 4)",
+          "(1/3, 3)",
+          "(1/8, 8)",
+          "(1/12, 12)"
+        ],
+        "hint": "Add the rates 1/6 + 1/12.",
+        "expl": "Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 per hour, so the tank fills in 4 hours → (1/4, 4), choice B."
+      },
+      {
+        "n": 7,
+        "topic": "Trade-off & optimization",
+        "correct": "E",
+        "options": 5,
+        "level": "hard",
+        "text": "A factory can run Line 1 (200 units/day at $500/day) or Line 2 (150 units/day at $300/day). It must produce 600 units. Which pair gives (days & cost using only Line 1, days & cost using only Line 2)?",
+        "choices": [
+          "(3 days/$1500, 3 days/$900)",
+          "(4 days/$2000, 4 days/$1200)",
+          "(3 days/$1500, 5 days/$1200)",
+          "(2 days/$1000, 4 days/$1200)",
+          "(3 days/$1500, 4 days/$1200)"
+        ],
+        "hint": "Days = ceil(600/rate); cost = days × daily cost.",
+        "expl": "Line 1: 600/200 = 3 days, cost 3×$500 = $1,500. Line 2: 600/150 = 4 days, cost 4×$300 = $1,200 → (3 days/$1500, 4 days/$1200), choice E."
+      },
+      {
+        "n": 8,
+        "topic": "Quantitative two-part",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "After a 20% discount, a jacket sells for $96. Sales tax of 10% is then added to the discounted price. Which pair gives (original price, final price paid)?",
+        "choices": [
+          "(120, 105.60)",
+          "(115, 105.60)",
+          "(120, 96.00)",
+          "(116, 105.60)",
+          "(120, 96.60)"
+        ],
+        "hint": "Original = 96 / 0.8; final = 96 × 1.1.",
+        "expl": "Original price = 96 / 0.80 = $120. Final price = 96 × 1.10 = $105.60 → (120, 105.60), choice A."
+      }
+    ]
+  },
+  {
+    "id": "di-table-sales",
+    "title": "Table Analysis — Regional Sales",
+    "section": "data",
+    "source": "Adapted from your course material",
+    "passage": {
+      "label": "📊 Data",
+      "title": "Quarterly sales by region ($ thousands)",
+      "paras": [
+        "The table below lists one company's sales, in thousands of dollars, for four regions across four quarters.",
+        "North — Q1: 120, Q2: 150, Q3: 130, Q4: 200. Annual total: 600.",
+        "South — Q1: 90, Q2: 90, Q3: 110, Q4: 110. Annual total: 400.",
+        "East — Q1: 200, Q2: 180, Q3: 220, Q4: 200. Annual total: 800.",
+        "West — Q1: 50, Q2: 70, Q3: 80, Q4: 100. Annual total: 300.",
+        "Company total for the year: 2,100 (thousand dollars)."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Statistics from a table",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "Which region had the highest total sales for the year?",
+        "choices": [
+          "North",
+          "South",
+          "East",
+          "West",
+          "North and East tied"
+        ],
+        "hint": "Compare the four annual totals.",
+        "expl": "Annual totals: North 600, South 400, East 800, West 300. East is highest (C)."
+      },
+      {
+        "n": 2,
+        "topic": "Statistics from a table",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "What was the company's average (arithmetic mean) sales per region for the year, in thousands of dollars?",
+        "choices": [
+          "500",
+          "525",
+          "600",
+          "540",
+          "480"
+        ],
+        "hint": "Divide the company total by the number of regions.",
+        "expl": "Company total 2,100 across 4 regions → 2,100 / 4 = 525 (B)."
+      },
+      {
+        "n": 3,
+        "topic": "Sorting & filtering",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "How many of the four regions had Q4 sales of at least 150 (thousand dollars)?",
+        "choices": [
+          "0",
+          "1",
+          "3",
+          "2",
+          "4"
+        ],
+        "hint": "List each region's Q4 figure and count those ≥ 150.",
+        "expl": "Q4 sales: North 200, South 110, East 200, West 100. Those ≥ 150 are North and East → 2 regions (D)."
+      },
+      {
+        "n": 4,
+        "topic": "Ratios & proportions in tables",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "East's annual sales were what percent of the company's total annual sales?",
+        "choices": [
+          "About 38%",
+          "About 30%",
+          "About 42%",
+          "About 25%",
+          "About 50%"
+        ],
+        "hint": "East total ÷ company total × 100.",
+        "expl": "800 / 2,100 ≈ 0.381 = about 38% (A)."
+      },
+      {
+        "n": 5,
+        "topic": "Statistics from a table",
+        "correct": "A",
+        "options": 5,
+        "level": "hard",
+        "text": "Which region showed the largest increase from its Q1 sales to its Q4 sales?",
+        "choices": [
+          "North",
+          "South",
+          "East",
+          "West",
+          "South and West tied"
+        ],
+        "hint": "Compute Q4 − Q1 for each region.",
+        "expl": "Increases Q1→Q4: North 200−120 = 80; South 110−90 = 20; East 200−200 = 0; West 100−50 = 50. North's 80 is the largest → North, choice A."
+      }
+    ]
+  },
+  {
+    "id": "di-graphics-temp",
+    "title": "Graphics Interpretation — Trends",
+    "section": "data",
+    "source": "Adapted from your course material",
+    "passage": {
+      "label": "📈 Graph description",
+      "title": "Two described graphs",
+      "paras": [
+        "Graph 1 (line graph): A city's average monthly high temperature (°C) rises steadily from 5 in January to a peak of 30 in July, then falls steadily back to 6 in December. The curve is roughly symmetric, highest in mid-summer and lowest in mid-winter.",
+        "Graph 2 (scatter plot): Each point is one ice-cream shop; the horizontal axis is the day's high temperature (°C) and the vertical axis is that day's sales ($). The points rise from lower-left to upper-right in a fairly tight band: hotter days show higher sales. A best-fit line would slope upward, and no points appear in the upper-left or lower-right corners."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Bar & line graphs",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "According to Graph 1, in which month is the average high temperature greatest?",
+        "choices": [
+          "January",
+          "July",
+          "December",
+          "April",
+          "October"
+        ],
+        "hint": "The peak of the curve.",
+        "expl": "Graph 1 peaks at 30°C in July (B)."
+      },
+      {
+        "n": 2,
+        "topic": "Scatter plots & correlation",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "The scatter plot in Graph 2 best illustrates",
+        "choices": [
+          "a positive correlation between temperature and sales",
+          "a negative correlation between temperature and sales",
+          "no relationship between the two variables",
+          "a perfectly horizontal trend",
+          "sales that decrease as temperature rises"
+        ],
+        "hint": "Which way does the band of points slope?",
+        "expl": "Points rise from lower-left to upper-right, so higher temperature goes with higher sales — a positive correlation (A)."
+      },
+      {
+        "n": 3,
+        "topic": "Interpreting relationships",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "Based on Graph 2, which statement is best supported?",
+        "choices": [
+          "Higher temperatures cause higher ice-cream sales.",
+          "Higher sales cause higher temperatures.",
+          "Days with higher temperatures tend to have higher sales.",
+          "Temperature and sales are unrelated.",
+          "Sales are highest on the coldest days."
+        ],
+        "hint": "A scatter plot shows association, not necessarily causation.",
+        "expl": "A scatter plot supports an association claim, not a causal one: days with higher temperatures tend to have higher sales (C). (A) and (B) assert causation the plot alone can't establish; (D) and (E) contradict the upward band."
+      },
+      {
+        "n": 4,
+        "topic": "Bar & line graphs",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "According to Graph 1, between which pair of consecutive listed months (Jan, Apr, Jul, Oct, Dec) is the temperature change closest to zero?",
+        "choices": [
+          "Jan to Apr",
+          "Apr to Jul",
+          "Jul to Oct",
+          "Oct to Dec",
+          "Jan to Dec"
+        ],
+        "hint": "Estimate roughly: Jan 5, Apr about 17–18, Jul 30, Oct about 17–18, Dec 6.",
+        "expl": "With Jan≈5, Apr≈17, Jul=30, Oct≈17, Dec≈6: Jan→Apr ≈ +12, Apr→Jul ≈ +13, Jul→Oct ≈ −13, Oct→Dec ≈ −11, and Jan→Dec ≈ +1. The Jan-to-Dec change is closest to zero (D)."
+      },
+      {
+        "n": 5,
+        "topic": "Interpreting relationships",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "The absence of points in the upper-left corner of Graph 2 indicates that",
+        "choices": [
+          "cold days sometimes produced very high sales",
+          "very high sales did not occur on cold days",
+          "hot days produced no sales",
+          "the axes were mislabeled",
+          "sales were unrelated to temperature"
+        ],
+        "hint": "Upper-left = low temperature (left) with high sales (up).",
+        "expl": "The upper-left corner is low temperature with high sales; its emptiness means very high sales did not occur on cold days (B)."
+      }
+    ]
+  },
+  {
+    "id": "di-msr-startup",
+    "title": "Multi-Source Reasoning — Project Bids",
+    "section": "data",
+    "source": "Adapted from your course material",
+    "passage": {
+      "label": "🗂 Sources",
+      "title": "Three sources on a contracting decision",
+      "paras": [
+        "Source 1 — Requirements: The client needs the project finished within 10 weeks, at a cost of no more than $80,000, and requires the vendor to hold a Tier-2 safety certification.",
+        "Source 2 — Bids: Vendor A: 8 weeks, $85,000, Tier-2 certified. Vendor B: 9 weeks, $78,000, Tier-1 certified. Vendor C: 10 weeks, $75,000, Tier-2 certified. Vendor D: 12 weeks, $70,000, Tier-2 certified.",
+        "Source 3 — Note: A Tier-2 certification also counts as satisfying any Tier-1 requirement, but not the reverse. The client will not waive any of its three requirements."
+      ]
+    },
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Reading across tabs",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "Which single vendor meets all three of the client's requirements?",
+        "choices": [
+          "Vendor A",
+          "Vendor B",
+          "Vendor C",
+          "Vendor D",
+          "None of them"
+        ],
+        "hint": "Check each vendor against time ≤ 10 wk, cost ≤ $80k, and Tier-2.",
+        "expl": "A fails on cost ($85k > $80k); B fails on certification (Tier-1, not Tier-2); D fails on time (12 wk > 10). Vendor C (10 weeks, $75,000, Tier-2) meets all three (C)."
+      },
+      {
+        "n": 2,
+        "topic": "Inference from combined data",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "Vendor A fails to meet the requirements solely because of its",
+        "choices": [
+          "cost",
+          "completion time",
+          "certification level",
+          "cost and time both",
+          "certification and cost both"
+        ],
+        "hint": "Check A's three figures against the three requirements.",
+        "expl": "Vendor A: 8 weeks (≤10 ✓), $85,000 (>$80,000 ✗), Tier-2 (✓). Only cost fails (A)."
+      },
+      {
+        "n": 3,
+        "topic": "True / False judgment sets",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "Consider the statement: 'If the client raised its cost ceiling to $86,000 but kept all other requirements, exactly two vendors would qualify.' This statement is",
+        "choices": [
+          "false, because only one vendor would qualify",
+          "false, because three vendors would qualify",
+          "false, because no vendor would qualify",
+          "true",
+          "impossible to determine from the sources"
+        ],
+        "hint": "Re-test each vendor with cost ≤ $86,000, time ≤ 10 wk, Tier-2.",
+        "expl": "With cost ≤ $86,000: A now passes cost (8 wk, Tier-2) → qualifies; B still fails certification; C still qualifies; D still fails time. That is exactly two vendors (A and C), so the statement is true (D)."
+      },
+      {
+        "n": 4,
+        "topic": "Synthesizing multiple sources",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Vendor B holds a Tier-1 certification. Based on Source 3, Vendor B",
+        "choices": [
+          "satisfies the Tier-2 requirement",
+          "does not satisfy the Tier-2 requirement",
+          "exceeds the Tier-2 requirement",
+          "is exempt from the certification requirement",
+          "can substitute a lower cost for the certification"
+        ],
+        "hint": "Tier-2 covers Tier-1, but not the reverse.",
+        "expl": "Source 3 says Tier-2 satisfies a Tier-1 requirement but 'not the reverse,' so a Tier-1 vendor does not satisfy a Tier-2 requirement (B)."
+      },
+      {
+        "n": 5,
+        "topic": "Inference from combined data",
+        "correct": "E",
+        "options": 5,
+        "level": "hard",
+        "text": "If the client's top priority were the lowest cost among vendors that meet the time and certification requirements (ignoring the cost ceiling), which vendor would it choose?",
+        "choices": [
+          "Vendor A",
+          "Vendor B",
+          "Vendor C",
+          "Vendor A or C",
+          "Vendor C"
+        ],
+        "hint": "First keep only vendors with time ≤ 10 wk and Tier-2, then pick the cheapest.",
+        "expl": "Vendors meeting time ≤ 10 weeks and Tier-2: A ($85k, 8 wk), C ($75k, 10 wk). (B is Tier-1; D is 12 weeks.) The cheaper of A and C is C at $75,000 → Vendor C, choice E."
+      }
+    ]
+  },
+  {
+    "id": "quant-exponents-ex",
+    "title": "Exponents & Roots — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Exponent rules",
+        "correct": "D",
+        "options": 5,
+        "level": "easy",
+        "text": "Simplify \\(2^3 \\cdot 2^4\\).",
+        "choices": [
+          "\\(2^{12}\\)",
+          "64",
+          "32",
+          "128",
+          "256"
+        ],
+        "hint": "When multiplying like bases, add the exponents.",
+        "expl": "\\(2^3 \\cdot 2^4 = 2^{3+4} = 2^7 = 128\\) (D)."
+      },
+      {
+        "n": 2,
+        "topic": "Exponent rules",
+        "correct": "A",
+        "options": 5,
+        "level": "easy",
+        "text": "Evaluate \\(\\dfrac{5^6}{5^4}\\).",
+        "choices": [
+          "25",
+          "5",
+          "125",
+          "1",
+          "5^{10}"
+        ],
+        "hint": "When dividing like bases, subtract the exponents.",
+        "expl": "\\(5^{6-4} = 5^2 = 25\\) (A)."
+      },
+      {
+        "n": 3,
+        "topic": "Exponent rules",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "Evaluate \\((3^2)^3\\).",
+        "choices": [
+          "3^5",
+          "243",
+          "729",
+          "81",
+          "3^{18}"
+        ],
+        "hint": "A power raised to a power: multiply the exponents.",
+        "expl": "\\((3^2)^3 = 3^{2 \\cdot 3} = 3^6 = 729\\) (C)."
+      },
+      {
+        "n": 4,
+        "topic": "Exponent rules",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(2^{x+1} = 16\\), what is \\(x\\)?",
+        "choices": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "8"
+        ],
+        "hint": "Write 16 as a power of 2.",
+        "expl": "\\(16 = 2^4\\), so \\(x+1 = 4\\) and \\(x = 3\\) (B)."
+      },
+      {
+        "n": 5,
+        "topic": "Exponent rules",
+        "correct": "E",
+        "options": 5,
+        "level": "medium",
+        "text": "Evaluate \\(3^{-2}\\).",
+        "choices": [
+          "-9",
+          "-6",
+          "6",
+          "9",
+          "1/9"
+        ],
+        "hint": "A negative exponent means the reciprocal.",
+        "expl": "\\(3^{-2} = \\dfrac{1}{3^2} = \\dfrac{1}{9}\\) (E)."
+      },
+      {
+        "n": 6,
+        "topic": "Roots & radicals",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "What is \\(\\sqrt{144}\\)?",
+        "choices": [
+          "10",
+          "11",
+          "12",
+          "14",
+          "16"
+        ],
+        "hint": "Find the number whose square is 144.",
+        "expl": "\\(12^2 = 144\\), so \\(\\sqrt{144} = 12\\) (C)."
+      },
+      {
+        "n": 7,
+        "topic": "Roots & radicals",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Simplify \\(\\sqrt{50}\\).",
+        "choices": [
+          "\\(2\\sqrt{5}\\)",
+          "\\(5\\sqrt{2}\\)",
+          "\\(10\\sqrt{5}\\)",
+          "\\(25\\sqrt{2}\\)",
+          "\\(5\\sqrt{10}\\)"
+        ],
+        "hint": "Factor out the largest perfect square.",
+        "expl": "\\(\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}\\) (B)."
+      },
+      {
+        "n": 8,
+        "topic": "Roots & radicals",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "Evaluate \\(\\sqrt{\\dfrac{9}{16}}\\).",
+        "choices": [
+          "3/4",
+          "4/3",
+          "9/16",
+          "1/2",
+          "3/16"
+        ],
+        "hint": "The square root of a fraction is the root of top over root of bottom.",
+        "expl": "\\(\\sqrt{9}/\\sqrt{16} = 3/4\\) (A)."
+      },
+      {
+        "n": 9,
+        "topic": "Roots & radicals",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "Evaluate \\(27^{2/3}\\).",
+        "choices": [
+          "3",
+          "6",
+          "18",
+          "9",
+          "12"
+        ],
+        "hint": "Take the cube root first, then square.",
+        "expl": "\\(27^{1/3} = 3\\), then \\(3^2 = 9\\) (D)."
+      },
+      {
+        "n": 10,
+        "topic": "Exponent rules",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "Evaluate \\(\\dfrac{3^5 \\cdot 3^2}{3^4}\\).",
+        "choices": [
+          "3",
+          "9",
+          "27",
+          "81",
+          "243"
+        ],
+        "hint": "Add exponents on top, then subtract the bottom exponent.",
+        "expl": "Numerator \\(3^{5+2} = 3^7\\); \\(3^{7-4} = 3^3 = 27\\) (C)."
+      },
+      {
+        "n": 11,
+        "topic": "Exponent rules",
+        "correct": "A",
+        "options": 5,
+        "level": "hard",
+        "text": "Which of the following is the greatest?",
+        "choices": [
+          "\\(2^{10}\\)",
+          "\\(3^6\\)",
+          "\\(10^3\\)",
+          "\\(5^4\\)",
+          "\\(4^4\\)"
+        ],
+        "hint": "Compute each: powers can be deceiving.",
+        "expl": "\\(2^{10}=1024\\), \\(3^6=729\\), \\(10^3=1000\\), \\(5^4=625\\), \\(4^4=256\\). The greatest is \\(2^{10}=1024\\) (A)."
+      },
+      {
+        "n": 12,
+        "topic": "Scientific notation & estimation",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Express 4,500,000 in scientific notation.",
+        "choices": [
+          "\\(45 \\times 10^5\\)",
+          "\\(4.5 \\times 10^6\\)",
+          "\\(4.5 \\times 10^5\\)",
+          "\\(0.45 \\times 10^7\\)",
+          "\\(4.5 \\times 10^7\\)"
+        ],
+        "hint": "One nonzero digit before the decimal point; count the places moved.",
+        "expl": "4,500,000 = \\(4.5 \\times 10^6\\) (the point moves 6 places), choice B. (A) and (D) aren't in standard form."
+      }
+    ]
+  },
+  {
+    "id": "quant-linear-ex",
+    "title": "Linear Equations & Systems — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Linear equations",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "Solve for \\(x\\): \\(3x + 5 = 20\\).",
+        "choices": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "hint": "Subtract 5, then divide by 3.",
+        "expl": "\\(3x = 15\\), so \\(x = 5\\) (C)."
+      },
+      {
+        "n": 2,
+        "topic": "Linear equations",
+        "correct": "D",
+        "options": 5,
+        "level": "easy",
+        "text": "Solve for \\(x\\): \\(2(x - 3) = 10\\).",
+        "choices": [
+          "2",
+          "5",
+          "7",
+          "8",
+          "11"
+        ],
+        "hint": "Divide by 2 first, or distribute.",
+        "expl": "\\(x - 3 = 5\\), so \\(x = 8\\) (D)."
+      },
+      {
+        "n": 3,
+        "topic": "Linear equations",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "Solve for \\(x\\): \\(5x - 2 = 3x + 8\\).",
+        "choices": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "10"
+        ],
+        "hint": "Gather the x-terms on one side.",
+        "expl": "\\(5x - 3x = 8 + 2 \\Rightarrow 2x = 10 \\Rightarrow x = 5\\) (C)."
+      },
+      {
+        "n": 4,
+        "topic": "Linear equations",
+        "correct": "E",
+        "options": 5,
+        "level": "medium",
+        "text": "Solve for \\(x\\): \\(\\dfrac{x}{4} + 3 = 7\\).",
+        "choices": [
+          "4",
+          "8",
+          "12",
+          "14",
+          "16"
+        ],
+        "hint": "Subtract 3, then multiply by 4.",
+        "expl": "\\(\\dfrac{x}{4} = 4 \\Rightarrow x = 16\\) (E)."
+      },
+      {
+        "n": 5,
+        "topic": "Linear equations",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Solve for \\(x\\): \\(3(x + 2) - 2(x - 1) = 15\\).",
+        "choices": [
+          "5",
+          "7",
+          "9",
+          "11",
+          "13"
+        ],
+        "hint": "Distribute both products, then combine.",
+        "expl": "\\(3x + 6 - 2x + 2 = 15 \\Rightarrow x + 8 = 15 \\Rightarrow x = 7\\) (B)."
+      },
+      {
+        "n": 6,
+        "topic": "Linear equations",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "Solve for \\(x\\): \\(\\dfrac{x}{3} - \\dfrac{x}{4} = 2\\).",
+        "choices": [
+          "6",
+          "12",
+          "18",
+          "24",
+          "30"
+        ],
+        "hint": "Use a common denominator of 12.",
+        "expl": "\\(\\dfrac{4x - 3x}{12} = \\dfrac{x}{12} = 2 \\Rightarrow x = 24\\) (D)."
+      },
+      {
+        "n": 7,
+        "topic": "Systems of equations",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(x + y = 10\\) and \\(x - y = 4\\), what is \\(xy\\)?",
+        "choices": [
+          "12",
+          "18",
+          "21",
+          "24",
+          "30"
+        ],
+        "hint": "Add the equations to find x, subtract to find y.",
+        "expl": "Adding: \\(2x = 14 \\Rightarrow x = 7\\); then \\(y = 3\\). \\(xy = 21\\) (C)."
+      },
+      {
+        "n": 8,
+        "topic": "Systems of equations",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(3x + 2y = 16\\) and \\(x + y = 6\\), what is \\(x\\)?",
+        "choices": [
+          "2",
+          "4",
+          "6",
+          "8",
+          "10"
+        ],
+        "hint": "From the second equation, y = 6 − x; substitute.",
+        "expl": "\\(3x + 2(6 - x) = 16 \\Rightarrow x + 12 = 16 \\Rightarrow x = 4\\) (B)."
+      },
+      {
+        "n": 9,
+        "topic": "Systems of equations",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "If \\(2a = 3b\\) and \\(a + b = 15\\), what is \\(a\\)?",
+        "choices": [
+          "5",
+          "6",
+          "7.5",
+          "9",
+          "10"
+        ],
+        "hint": "Express a in terms of b, then substitute.",
+        "expl": "\\(a = 1.5b\\); \\(1.5b + b = 2.5b = 15 \\Rightarrow b = 6\\), so \\(a = 9\\) (D)."
+      },
+      {
+        "n": 10,
+        "topic": "Linear equations",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The sum of two consecutive integers is 47. What is the larger integer?",
+        "choices": [
+          "22",
+          "23",
+          "24",
+          "25",
+          "26"
+        ],
+        "hint": "Let the integers be n and n+1.",
+        "expl": "\\(n + (n+1) = 47 \\Rightarrow 2n + 1 = 47 \\Rightarrow n = 23\\); the larger is 24 (C)."
+      },
+      {
+        "n": 11,
+        "topic": "Linear equations",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "A number increased by 12 equals three times the number. What is the number?",
+        "choices": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "4"
+        ],
+        "hint": "Translate to n + 12 = 3n.",
+        "expl": "\\(n + 12 = 3n \\Rightarrow 12 = 2n \\Rightarrow n = 6\\) (A)."
+      },
+      {
+        "n": 12,
+        "topic": "Systems of equations",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "Two tickets and three programs cost $23; four tickets and one program cost $31. What is the price of one ticket?",
+        "choices": [
+          "$6.50",
+          "$7.00",
+          "$7.50",
+          "$8.00",
+          "$5.00"
+        ],
+        "hint": "Set up 2t + 3p = 23 and 4t + p = 31.",
+        "expl": "From the second, p = 31 − 4t. Substitute: 2t + 3(31 − 4t) = 23 → 2t + 93 − 12t = 23 → −10t = −70 → t = 7. One ticket costs $7.00 (B)."
+      }
+    ]
+  },
+  {
+    "id": "quant-quadratic-ex",
+    "title": "Quadratics & Factoring — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Quadratic equations",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the larger root of \\(x^2 - 5x + 6 = 0\\)?",
+        "choices": [
+          "2",
+          "3",
+          "5",
+          "6",
+          "-2"
+        ],
+        "hint": "Factor into two binomials that multiply to 6 and add to 5.",
+        "expl": "\\((x-2)(x-3) = 0\\), so \\(x = 2\\) or \\(x = 3\\); the larger is 3 (B)."
+      },
+      {
+        "n": 2,
+        "topic": "Quadratic equations",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "What is the sum of the solutions of \\(x^2 + 7x + 12 = 0\\)?",
+        "choices": [
+          "7",
+          "12",
+          "-7",
+          "-12",
+          "5"
+        ],
+        "hint": "For \\(x^2 + bx + c\\), the sum of roots is −b.",
+        "expl": "\\((x+3)(x+4)=0\\) gives roots −3 and −4; their sum is −7 (C)."
+      },
+      {
+        "n": 3,
+        "topic": "Quadratic equations",
+        "correct": "D",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the nonzero solution of \\(x^2 - 4x = 0\\)?",
+        "choices": [
+          "-4",
+          "-2",
+          "2",
+          "4",
+          "0"
+        ],
+        "hint": "Factor out x.",
+        "expl": "\\(x(x - 4) = 0\\) gives \\(x = 0\\) or \\(x = 4\\); the nonzero solution is 4 (D)."
+      },
+      {
+        "n": 4,
+        "topic": "Expressions & factoring",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "Expand \\((x + 3)(x - 5)\\).",
+        "choices": [
+          "\\(x^2 - 2x - 15\\)",
+          "\\(x^2 + 2x - 15\\)",
+          "\\(x^2 - 2x + 15\\)",
+          "\\(x^2 - 8x - 15\\)",
+          "\\(x^2 + 8x + 15\\)"
+        ],
+        "hint": "Use FOIL: first, outer, inner, last.",
+        "expl": "\\(x^2 - 5x + 3x - 15 = x^2 - 2x - 15\\) (A)."
+      },
+      {
+        "n": 5,
+        "topic": "Quadratic equations",
+        "correct": "E",
+        "options": 5,
+        "level": "medium",
+        "text": "Which value is a solution of \\(x^2 - 9 = 0\\)?",
+        "choices": [
+          "9",
+          "6",
+          "4.5",
+          "1",
+          "3"
+        ],
+        "hint": "This is a difference of squares.",
+        "expl": "\\((x-3)(x+3) = 0\\) gives \\(x = 3\\) or \\(x = -3\\); of the choices, 3 works (E)."
+      },
+      {
+        "n": 6,
+        "topic": "Quadratic equations",
+        "correct": "C",
+        "options": 5,
+        "level": "hard",
+        "text": "If \\(x^2 + bx + 12 = 0\\) has roots 2 and 6, what is \\(b\\)?",
+        "choices": [
+          "8",
+          "12",
+          "-8",
+          "-12",
+          "6"
+        ],
+        "hint": "Sum of roots = −b; product = 12.",
+        "expl": "Roots 2 and 6 multiply to 12 (checks) and sum to 8, and the sum equals −b, so \\(b = -8\\) (C)."
+      },
+      {
+        "n": 7,
+        "topic": "Quadratic equations",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "The product of a positive number and 3 less than itself is 40. What is the number?",
+        "choices": [
+          "5",
+          "6",
+          "7",
+          "8",
+          "10"
+        ],
+        "hint": "Set up n(n − 3) = 40 and factor.",
+        "expl": "\\(n^2 - 3n - 40 = 0 \\Rightarrow (n-8)(n+5)=0\\); the positive solution is 8 (D)."
+      },
+      {
+        "n": 8,
+        "topic": "Expressions & factoring",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Factor completely: \\(x^2 - x - 6\\).",
+        "choices": [
+          "\\((x-2)(x+3)\\)",
+          "\\((x-3)(x+2)\\)",
+          "\\((x-6)(x+1)\\)",
+          "\\((x-1)(x+6)\\)",
+          "\\((x-3)(x-2)\\)"
+        ],
+        "hint": "Find two numbers that multiply to −6 and add to −1.",
+        "expl": "−3 and +2 multiply to −6 and add to −1: \\((x-3)(x+2)\\) (B)."
+      },
+      {
+        "n": 9,
+        "topic": "Quadratic equations",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "A rectangle's length is 2 more than its width, and its area is 24. What is the width?",
+        "choices": [
+          "4",
+          "6",
+          "8",
+          "3",
+          "5"
+        ],
+        "hint": "Let width = w; then w(w + 2) = 24.",
+        "expl": "\\(w^2 + 2w - 24 = 0 \\Rightarrow (w+6)(w-4) = 0\\); width = 4 (B is the length). Width is 4 (A)."
+      },
+      {
+        "n": 10,
+        "topic": "Expressions & factoring",
+        "correct": "C",
+        "options": 5,
+        "level": "hard",
+        "text": "If \\(x + \\dfrac{1}{x} = 3\\), what is \\(x^2 + \\dfrac{1}{x^2}\\)?",
+        "choices": [
+          "6",
+          "8",
+          "7",
+          "9",
+          "11"
+        ],
+        "hint": "Square both sides; \\((x + 1/x)^2 = x^2 + 2 + 1/x^2\\).",
+        "expl": "\\((x + 1/x)^2 = 9 = x^2 + 2 + 1/x^2\\), so \\(x^2 + 1/x^2 = 9 - 2 = 7\\) (C)."
+      }
+    ]
+  },
+  {
+    "id": "quant-inequalities-ex",
+    "title": "Inequalities & Absolute Value — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Inequalities & absolute value",
+        "correct": "D",
+        "options": 5,
+        "level": "easy",
+        "text": "Which value satisfies \\(3x - 5 > 7\\)?",
+        "choices": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "-1"
+        ],
+        "hint": "Solve for x first.",
+        "expl": "\\(3x > 12 \\Rightarrow x > 4\\); only 5 is greater than 4 (D)."
+      },
+      {
+        "n": 2,
+        "topic": "Inequalities & absolute value",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(-2x < 6\\), which of the following must be true?",
+        "choices": [
+          "\\(x < -3\\)",
+          "\\(x < 3\\)",
+          "\\(x > -3\\)",
+          "\\(x > 3\\)",
+          "\\(x = -3\\)"
+        ],
+        "hint": "Dividing by a negative flips the inequality sign.",
+        "expl": "Divide by −2 and flip: \\(x > -3\\) (C)."
+      },
+      {
+        "n": 3,
+        "topic": "Absolute value",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "If \\(|x - 3| = 4\\), what are the possible values of \\(x\\)?",
+        "choices": [
+          "7 only",
+          "7 or -1",
+          "-1 only",
+          "4 or -4",
+          "1 or 7"
+        ],
+        "hint": "The expression inside can be +4 or −4.",
+        "expl": "\\(x - 3 = 4 \\Rightarrow x = 7\\), or \\(x - 3 = -4 \\Rightarrow x = -1\\). So 7 or −1 (B)."
+      },
+      {
+        "n": 4,
+        "topic": "Absolute value",
+        "correct": "E",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(|x| < 3\\), which value is NOT possible for \\(x\\)?",
+        "choices": [
+          "-2",
+          "0",
+          "2",
+          "2.5",
+          "3"
+        ],
+        "hint": "|x| < 3 means −3 < x < 3, strictly.",
+        "expl": "\\(|x| < 3\\) means \\(-3 < x < 3\\); 3 is excluded (E)."
+      },
+      {
+        "n": 5,
+        "topic": "Inequalities & absolute value",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "What is the largest integer \\(x\\) satisfying \\(2x + 1 \\le 9\\)?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "hint": "Solve, then take the greatest integer that fits.",
+        "expl": "\\(2x \\le 8 \\Rightarrow x \\le 4\\); the largest integer is 4 (D)."
+      },
+      {
+        "n": 6,
+        "topic": "Inequalities & absolute value",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Solve for \\(x\\): \\(4 - x > 1\\).",
+        "choices": [
+          "\\(x > 3\\)",
+          "\\(x < 3\\)",
+          "\\(x > -3\\)",
+          "\\(x < -3\\)",
+          "\\(x = 3\\)"
+        ],
+        "hint": "Isolate x, remembering to flip when needed.",
+        "expl": "\\(-x > -3\\); multiply by −1 and flip: \\(x < 3\\) (B)."
+      },
+      {
+        "n": 7,
+        "topic": "Inequalities & absolute value",
+        "correct": "C",
+        "options": 5,
+        "level": "hard",
+        "text": "If \\(x > 2\\) and \\(y < -1\\), which expression is always negative?",
+        "choices": [
+          "\\(x + y\\)",
+          "\\(x - y\\)",
+          "\\(xy\\)",
+          "\\(x^2 + y\\)",
+          "\\(y^2\\)"
+        ],
+        "hint": "A positive times a negative is always negative.",
+        "expl": "\\(x > 2\\) is positive and \\(y < -1\\) is negative, so \\(xy\\) is always negative (C). The others can be positive (e.g., \\(x + y\\) with x large)."
+      },
+      {
+        "n": 8,
+        "topic": "Absolute value",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(|2x| = 10\\), what are the possible values of \\(x\\)?",
+        "choices": [
+          "5 or -5",
+          "10 or -10",
+          "5 only",
+          "-5 only",
+          "2 or 5"
+        ],
+        "hint": "|2x| = 10 means 2x = ±10.",
+        "expl": "\\(2x = 10\\) or \\(2x = -10\\), so \\(x = 5\\) or \\(x = -5\\) (A)."
+      },
+      {
+        "n": 9,
+        "topic": "Absolute value",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(-3 \\le x \\le 5\\), what is the maximum possible value of \\(|x|\\)?",
+        "choices": [
+          "3",
+          "4",
+          "5",
+          "8",
+          "2"
+        ],
+        "hint": "Check both endpoints.",
+        "expl": "\\(|{-3}| = 3\\) and \\(|5| = 5\\); the maximum is 5 (C)."
+      },
+      {
+        "n": 10,
+        "topic": "Inequalities & absolute value",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "How many integers satisfy \\(5 < x < 12\\) and are multiples of 3?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "0"
+        ],
+        "hint": "List the multiples of 3 strictly between 5 and 12.",
+        "expl": "Between 5 and 12 the multiples of 3 are 6 and 9 — 2 integers (B)."
+      }
+    ]
+  },
+  {
+    "id": "quant-functions-ex",
+    "title": "Functions & Sequences — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Functions & custom symbols",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "If \\(f(x) = 2x + 3\\), what is \\(f(4)\\)?",
+        "choices": [
+          "7",
+          "9",
+          "11",
+          "14",
+          "8"
+        ],
+        "hint": "Substitute 4 for x.",
+        "expl": "\\(f(4) = 2(4) + 3 = 11\\) (C)."
+      },
+      {
+        "n": 2,
+        "topic": "Functions & custom symbols",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "If \\(f(x) = x^2 - 1\\), what is \\(f(3)\\)?",
+        "choices": [
+          "6",
+          "8",
+          "9",
+          "10",
+          "5"
+        ],
+        "hint": "Square first, then subtract 1.",
+        "expl": "\\(f(3) = 9 - 1 = 8\\) (B)."
+      },
+      {
+        "n": 3,
+        "topic": "Functions & custom symbols",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "If \\(f(x) = 3x - 1\\) and \\(f(a) = 14\\), what is \\(a\\)?",
+        "choices": [
+          "3",
+          "4",
+          "4.5",
+          "5",
+          "6"
+        ],
+        "hint": "Set 3a − 1 = 14 and solve.",
+        "expl": "\\(3a - 1 = 14 \\Rightarrow 3a = 15 \\Rightarrow a = 5\\) (D)."
+      },
+      {
+        "n": 4,
+        "topic": "Functions & custom symbols",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "Define \\(x \\diamond y = x^2 - y\\). What is \\(3 \\diamond 2\\)?",
+        "choices": [
+          "7",
+          "5",
+          "11",
+          "1",
+          "9"
+        ],
+        "hint": "Replace x with 3 and y with 2.",
+        "expl": "\\(3^2 - 2 = 9 - 2 = 7\\) (A)."
+      },
+      {
+        "n": 5,
+        "topic": "Functions & custom symbols",
+        "correct": "C",
+        "options": 5,
+        "level": "hard",
+        "text": "If \\(f(x) = 2x + 1\\), what is \\(f(f(1))\\)?",
+        "choices": [
+          "3",
+          "5",
+          "7",
+          "9",
+          "4"
+        ],
+        "hint": "Work from the inside out.",
+        "expl": "\\(f(1) = 3\\); then \\(f(3) = 2(3) + 1 = 7\\) (C)."
+      },
+      {
+        "n": 6,
+        "topic": "Functions & custom symbols",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "If \\(f(x) = x^2\\), what is \\(f(a + 1) - f(a)\\) when \\(a = 3\\)?",
+        "choices": [
+          "5",
+          "7",
+          "9",
+          "16",
+          "1"
+        ],
+        "hint": "Compute f(4) − f(3).",
+        "expl": "\\(f(4) - f(3) = 16 - 9 = 7\\) (B)."
+      },
+      {
+        "n": 7,
+        "topic": "Sequences & series",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "In the arithmetic sequence 3, 7, 11, 15, …, what is the 10th term?",
+        "choices": [
+          "36",
+          "37",
+          "38",
+          "39",
+          "40"
+        ],
+        "hint": "Term = first + (n − 1)·(common difference).",
+        "expl": "Common difference 4: \\(3 + (10-1)\\cdot 4 = 3 + 36 = 39\\) (D)."
+      },
+      {
+        "n": 8,
+        "topic": "Sequences & series",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "In the geometric sequence 2, 4, 8, 16, …, what is the 6th term?",
+        "choices": [
+          "32",
+          "48",
+          "64",
+          "96",
+          "128"
+        ],
+        "hint": "Each term doubles; term = 2·2^{n−1}.",
+        "expl": "\\(2 \\cdot 2^{5} = 2 \\cdot 32 = 64\\) (C)."
+      },
+      {
+        "n": 9,
+        "topic": "Sequences & series",
+        "correct": "A",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the sum of the first five terms of 1, 4, 7, 10, 13?",
+        "choices": [
+          "35",
+          "30",
+          "40",
+          "25",
+          "45"
+        ],
+        "hint": "Add them, or use (first + last)/2 × count.",
+        "expl": "\\((1 + 13)/2 \\times 5 = 7 \\times 5 = 35\\) (A)."
+      },
+      {
+        "n": 10,
+        "topic": "Sequences & series",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "The nth term of a sequence is \\(2n + 1\\). What is the 20th term?",
+        "choices": [
+          "39",
+          "41",
+          "43",
+          "40",
+          "42"
+        ],
+        "hint": "Substitute n = 20.",
+        "expl": "\\(2(20) + 1 = 41\\) (B)."
+      }
+    ]
+  },
+  {
+    "id": "quant-statistics-ex",
+    "title": "Statistics — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Mean, median & mode",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the mean of 4, 8, 10, 6, and 12?",
+        "choices": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "hint": "Add them and divide by 5.",
+        "expl": "Sum = 40; 40 / 5 = 8 (C)."
+      },
+      {
+        "n": 2,
+        "topic": "Mean, median & mode",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the median of 3, 7, 2, 9, and 5?",
+        "choices": [
+          "3",
+          "5",
+          "7",
+          "6",
+          "9"
+        ],
+        "hint": "Sort the numbers first.",
+        "expl": "Sorted: 2, 3, 5, 7, 9; the middle value is 5 (B)."
+      },
+      {
+        "n": 3,
+        "topic": "Mean, median & mode",
+        "correct": "A",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the mode of 2, 3, 3, 5, 7, and 3?",
+        "choices": [
+          "3",
+          "5",
+          "2",
+          "7",
+          "4"
+        ],
+        "hint": "The mode is the most frequent value.",
+        "expl": "3 appears three times — the mode is 3 (A)."
+      },
+      {
+        "n": 4,
+        "topic": "Mean, median & mode",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "The mean of 5 numbers is 12. What is their sum?",
+        "choices": [
+          "12",
+          "17",
+          "24",
+          "60",
+          "72"
+        ],
+        "hint": "Sum = mean × count.",
+        "expl": "Sum = 12 × 5 = 60 (D)."
+      },
+      {
+        "n": 5,
+        "topic": "Mean, median & mode",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "Four numbers have a mean of 10. If one of the numbers is 16, what is the mean of the other three?",
+        "choices": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "hint": "Find the total, remove 16, divide by 3.",
+        "expl": "Total = 40; remove 16 → 24; 24 / 3 = 8 (C)."
+      },
+      {
+        "n": 6,
+        "topic": "Range & standard deviation",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "What is the range of 4, 15, 8, 23, and 16?",
+        "choices": [
+          "16",
+          "19",
+          "23",
+          "15",
+          "11"
+        ],
+        "hint": "Range = greatest − least.",
+        "expl": "23 − 4 = 19 (B)."
+      },
+      {
+        "n": 7,
+        "topic": "Weighted averages",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "In a class, 30 students average 80 on a test and 20 students average 90. What is the class's overall average?",
+        "choices": [
+          "82",
+          "83",
+          "83.5",
+          "84",
+          "85"
+        ],
+        "hint": "Total points ÷ total students, not the simple average of 80 and 90.",
+        "expl": "Points = 30·80 + 20·90 = 2400 + 1800 = 4200; 4200 / 50 = 84 (D)."
+      },
+      {
+        "n": 8,
+        "topic": "Mean, median & mode",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "If the mean of 6, \\(x\\), 10, and 14 is 10, what is \\(x\\)?",
+        "choices": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "14"
+        ],
+        "hint": "Set the sum equal to 4 × 10.",
+        "expl": "\\(6 + x + 10 + 14 = 40 \\Rightarrow 30 + x = 40 \\Rightarrow x = 10\\) (C)."
+      },
+      {
+        "n": 9,
+        "topic": "Range & standard deviation",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "Which data set has the greater standard deviation? Set P = {5, 5, 5}; Set Q = {1, 5, 9}.",
+        "choices": [
+          "Set P",
+          "Set Q",
+          "They are equal",
+          "Cannot be determined",
+          "Both are zero"
+        ],
+        "hint": "Standard deviation measures spread around the mean.",
+        "expl": "Both have mean 5, but P has no spread (SD = 0) while Q is spread out, so Q has the greater standard deviation (B)."
+      },
+      {
+        "n": 10,
+        "topic": "Range & standard deviation",
+        "correct": "A",
+        "options": 5,
+        "level": "hard",
+        "text": "If every value in a data set is increased by 5, which statement is true?",
+        "choices": [
+          "The mean increases by 5 and the standard deviation is unchanged.",
+          "The mean and standard deviation both increase by 5.",
+          "The mean is unchanged and the standard deviation increases by 5.",
+          "Both the mean and standard deviation are unchanged.",
+          "The mean increases by 5 and the standard deviation decreases."
+        ],
+        "hint": "Adding a constant shifts the data but doesn't change how spread out it is.",
+        "expl": "Adding a constant shifts every value equally: the mean rises by 5, but the spread — and thus the standard deviation — is unchanged (A)."
+      },
+      {
+        "n": 11,
+        "topic": "Weighted averages",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "The average of 10 numbers is 15. A new number equal to 15 is added to the set. What is the new average?",
+        "choices": [
+          "13.6",
+          "14",
+          "15",
+          "15.5",
+          "16.5"
+        ],
+        "hint": "Adding a value equal to the current mean doesn't move the mean.",
+        "expl": "New sum = 150 + 15 = 165 over 11 numbers = 15 (C). Adding the mean itself leaves the mean unchanged."
+      },
+      {
+        "n": 12,
+        "topic": "Mean, median & mode",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "What is the median of 4, 6, 8, and 10?",
+        "choices": [
+          "6",
+          "8",
+          "9",
+          "7",
+          "5"
+        ],
+        "hint": "With an even count, average the two middle values.",
+        "expl": "Middle two are 6 and 8; median = (6 + 8)/2 = 7 (D)."
+      }
+    ]
+  },
+  {
+    "id": "quant-probability-ex",
+    "title": "Counting & Probability — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Permutations & combinations",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "In how many ways can 4 distinct books be arranged in a row?",
+        "choices": [
+          "12",
+          "16",
+          "24",
+          "48",
+          "4"
+        ],
+        "hint": "That's 4 factorial.",
+        "expl": "\\(4! = 4 \\cdot 3 \\cdot 2 \\cdot 1 = 24\\) (C)."
+      },
+      {
+        "n": 2,
+        "topic": "Permutations & combinations",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "In how many ways can 2 people be chosen from a group of 5 (order does not matter)?",
+        "choices": [
+          "5",
+          "10",
+          "20",
+          "25",
+          "15"
+        ],
+        "hint": "Use the combination formula C(5,2).",
+        "expl": "\\(\\binom{5}{2} = \\dfrac{5 \\cdot 4}{2} = 10\\) (B)."
+      },
+      {
+        "n": 3,
+        "topic": "Probability",
+        "correct": "D",
+        "options": 5,
+        "level": "easy",
+        "text": "A fair coin is flipped twice. What is the probability of getting two heads?",
+        "choices": [
+          "1/2",
+          "1/3",
+          "1/8",
+          "1/4",
+          "2/3"
+        ],
+        "hint": "Multiply the probability of heads on each flip.",
+        "expl": "\\(\\tfrac12 \\cdot \\tfrac12 = \\tfrac14\\) (D)."
+      },
+      {
+        "n": 4,
+        "topic": "Probability",
+        "correct": "A",
+        "options": 5,
+        "level": "easy",
+        "text": "A standard die is rolled once. What is the probability of an even number?",
+        "choices": [
+          "1/2",
+          "1/3",
+          "1/6",
+          "2/3",
+          "5/6"
+        ],
+        "hint": "Count the even faces out of 6.",
+        "expl": "Even faces are 2, 4, 6 — three of six, or 1/2 (A)."
+      },
+      {
+        "n": 5,
+        "topic": "Probability",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "A bag has 3 red and 2 blue marbles. What is the probability of drawing a red marble?",
+        "choices": [
+          "2/5",
+          "1/2",
+          "3/5",
+          "3/2",
+          "2/3"
+        ],
+        "hint": "Favorable over total.",
+        "expl": "3 red of 5 total → 3/5 (C)."
+      },
+      {
+        "n": 6,
+        "topic": "Permutations & combinations",
+        "correct": "E",
+        "options": 5,
+        "level": "medium",
+        "text": "From 6 people, in how many ways can a president and a vice-president be chosen (the two roles are distinct)?",
+        "choices": [
+          "12",
+          "15",
+          "20",
+          "36",
+          "30"
+        ],
+        "hint": "Order matters here; 6 choices then 5 choices.",
+        "expl": "\\(6 \\times 5 = 30\\) (E)."
+      },
+      {
+        "n": 7,
+        "topic": "Permutations & combinations",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "How many distinct three-digit codes can be formed using digits 0–9 if repetition is allowed?",
+        "choices": [
+          "720",
+          "1000",
+          "900",
+          "500",
+          "999"
+        ],
+        "hint": "Each of the three positions has 10 options.",
+        "expl": "\\(10 \\times 10 \\times 10 = 1000\\) (B). (All codes 000 through 999.)"
+      },
+      {
+        "n": 8,
+        "topic": "Probability",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "Two fair dice are rolled. What is the probability that the sum is 7?",
+        "choices": [
+          "1/12",
+          "1/9",
+          "5/36",
+          "1/6",
+          "1/4"
+        ],
+        "hint": "Count the ordered pairs that sum to 7 out of 36.",
+        "expl": "Pairs summing to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) — 6 of 36 = 1/6 (D)."
+      },
+      {
+        "n": 9,
+        "topic": "Permutations & combinations",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "At a party, every pair of 5 people shakes hands exactly once. How many handshakes occur?",
+        "choices": [
+          "5",
+          "20",
+          "10",
+          "25",
+          "15"
+        ],
+        "hint": "Each handshake is a pair — a combination.",
+        "expl": "\\(\\binom{5}{2} = 10\\) handshakes (C)."
+      },
+      {
+        "n": 10,
+        "topic": "Probability",
+        "correct": "A",
+        "options": 5,
+        "level": "hard",
+        "text": "A committee of 2 is chosen at random from 4 men and 3 women. What is the probability both are women?",
+        "choices": [
+          "1/7",
+          "2/7",
+          "1/3",
+          "3/7",
+          "1/2"
+        ],
+        "hint": "P = (ways to pick 2 women) / (ways to pick any 2).",
+        "expl": "\\(\\binom{3}{2} = 3\\) all-women pairs; \\(\\binom{7}{2} = 21\\) total; \\(3/21 = 1/7\\) (A)."
+      },
+      {
+        "n": 11,
+        "topic": "Permutations & combinations",
+        "correct": "B",
+        "options": 5,
+        "level": "easy",
+        "text": "How many ways can the letters of the word CAT be arranged?",
+        "choices": [
+          "3",
+          "6",
+          "9",
+          "12",
+          "24"
+        ],
+        "hint": "Three distinct letters.",
+        "expl": "\\(3! = 6\\) (B)."
+      },
+      {
+        "n": 12,
+        "topic": "Probability",
+        "correct": "B",
+        "options": 5,
+        "level": "hard",
+        "text": "A bag has 4 red and 6 green marbles. Two are drawn without replacement. What is the probability both are green?",
+        "choices": [
+          "9/25",
+          "1/3",
+          "5/9",
+          "1/2",
+          "3/5"
+        ],
+        "hint": "Multiply P(first green) by P(second green given the first was green).",
+        "expl": "\\(\\tfrac{6}{10} \\cdot \\tfrac{5}{9} = \\tfrac{30}{90} = \\tfrac13\\), choice B. (9/25 would be the with-replacement answer.)"
+      }
+    ]
+  },
+  {
+    "id": "quant-sets-ages-ex",
+    "title": "Overlapping Sets & Ages — Exercise",
+    "section": "quant",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Overlapping sets (Venn)",
+        "correct": "A",
+        "options": 5,
+        "level": "medium",
+        "text": "In a class of 30 students, 18 play soccer, 15 play tennis, and 8 play both. How many play neither?",
+        "choices": [
+          "5",
+          "7",
+          "3",
+          "8",
+          "10"
+        ],
+        "hint": "Use |A ∪ B| = |A| + |B| − |both|.",
+        "expl": "Play at least one = 18 + 15 − 8 = 25; neither = 30 − 25 = 5 (A)."
+      },
+      {
+        "n": 2,
+        "topic": "Overlapping sets (Venn)",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Of 40 people, 25 like coffee, 20 like tea, and 10 like both. How many like coffee only?",
+        "choices": [
+          "10",
+          "15",
+          "20",
+          "25",
+          "5"
+        ],
+        "hint": "Coffee only = coffee total − both.",
+        "expl": "25 − 10 = 15 like coffee only (B)."
+      },
+      {
+        "n": 3,
+        "topic": "Overlapping sets (Venn)",
+        "correct": "C",
+        "options": 5,
+        "level": "medium",
+        "text": "Of 50 students, 30 study French and 25 study Spanish; every student studies at least one. How many study both?",
+        "choices": [
+          "10",
+          "3",
+          "5",
+          "15",
+          "0"
+        ],
+        "hint": "|both| = |A| + |B| − |A ∪ B|, and everyone is in the union.",
+        "expl": "Both = 30 + 25 − 50 = 5 (C)."
+      },
+      {
+        "n": 4,
+        "topic": "Overlapping sets (Venn)",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "In a survey of 100 people, 60 read newspaper A, 50 read B, and 20 read both. How many read neither?",
+        "choices": [
+          "30",
+          "20",
+          "0",
+          "10",
+          "40"
+        ],
+        "hint": "Find how many read at least one first.",
+        "expl": "At least one = 60 + 50 − 20 = 90; neither = 100 − 90 = 10 (D)."
+      },
+      {
+        "n": 5,
+        "topic": "Overlapping sets (Venn)",
+        "correct": "C",
+        "options": 5,
+        "level": "hard",
+        "text": "Of 200 people, 120 own a car, 90 own a bike, and 40 own both. How many own a car but not a bike?",
+        "choices": [
+          "40",
+          "120",
+          "80",
+          "90",
+          "30"
+        ],
+        "hint": "Car only = car total − both.",
+        "expl": "120 − 40 = 80 own a car but not a bike (C)."
+      },
+      {
+        "n": 6,
+        "topic": "Age & number problems",
+        "correct": "B",
+        "options": 5,
+        "level": "medium",
+        "text": "Alia is twice as old as Ben. In 5 years, the sum of their ages will be 40. How old is Alia now?",
+        "choices": [
+          "10",
+          "20",
+          "15",
+          "25",
+          "30"
+        ],
+        "hint": "Let Ben = b; Alia = 2b; write the future-sum equation.",
+        "expl": "\\((2b + 5) + (b + 5) = 40 \\Rightarrow 3b + 10 = 40 \\Rightarrow b = 10\\); Alia = 20 (B)."
+      },
+      {
+        "n": 7,
+        "topic": "Age & number problems",
+        "correct": "D",
+        "options": 5,
+        "level": "hard",
+        "text": "A father is 30 years older than his son. In 10 years, the father will be twice as old as the son. How old is the father now?",
+        "choices": [
+          "40",
+          "45",
+          "48",
+          "50",
+          "55"
+        ],
+        "hint": "Let son = s; father = s + 30; set up the future condition.",
+        "expl": "\\((s + 30) + 10 = 2(s + 10) \\Rightarrow s + 40 = 2s + 20 \\Rightarrow s = 20\\); father = 50 (D)."
+      },
+      {
+        "n": 8,
+        "topic": "Age & number problems",
+        "correct": "A",
+        "options": 5,
+        "level": "hard",
+        "text": "A mother is 4 times as old as her daughter. In 16 years, she will be twice as old as her daughter. How old is the daughter now?",
+        "choices": [
+          "8",
+          "10",
+          "12",
+          "16",
+          "6"
+        ],
+        "hint": "Let daughter = d; mother = 4d; write the future condition.",
+        "expl": "\\(4d + 16 = 2(d + 16) \\Rightarrow 4d + 16 = 2d + 32 \\Rightarrow 2d = 16 \\Rightarrow d = 8\\) (A)."
+      },
+      {
+        "n": 9,
+        "topic": "Age & number problems",
+        "correct": "C",
+        "options": 5,
+        "level": "easy",
+        "text": "The sum of the ages of three children born in consecutive years is 30. What is the middle child's age?",
+        "choices": [
+          "8",
+          "9",
+          "10",
+          "11",
+          "12"
+        ],
+        "hint": "Consecutive integers centered on the middle value.",
+        "expl": "Ages n−1, n, n+1 sum to 3n = 30, so n = 10 (C)."
+      },
+      {
+        "n": 10,
+        "topic": "Age & number problems",
+        "correct": "D",
+        "options": 5,
+        "level": "medium",
+        "text": "Anya is 5 years older than Bala, and Bala is 3 years older than Chetan. How much older is Anya than Chetan?",
+        "choices": [
+          "2",
+          "5",
+          "3",
+          "8",
+          "15"
+        ],
+        "hint": "Add the two age gaps.",
+        "expl": "Anya − Chetan = 5 + 3 = 8 years (D)."
       }
     ]
   }

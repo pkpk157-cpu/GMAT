@@ -373,6 +373,15 @@
   .rn-prog > i { display: block; height: 100%; background: var(--accent); border-radius: 5px; transition: width .3s ease; }
   .rn-sub { font-size: 12px; color: var(--ink-soft); margin-top: 7px; font-weight: 600; }
   .qcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 18px; margin-top: 14px; }
+  /* Reading-comprehension passage panel */
+  .rc-passage { border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); margin-bottom: 16px; overflow: hidden; }
+  .rc-passage .rc-head { display: flex; align-items: center; gap: 8px; padding: 9px 13px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--line); background: var(--surface); }
+  .rc-passage .rc-scroll { padding: 13px 15px; max-height: 260px; overflow-y: auto; -webkit-overflow-scrolling: touch; position: relative; }
+  .rc-passage.open .rc-scroll { max-height: none; }
+  .rc-passage .rc-scroll p { font-size: 14.5px; line-height: 1.62; margin: 0 0 11px; color: var(--ink-soft); text-wrap: pretty; }
+  .rc-passage .rc-scroll p:last-child { margin-bottom: 0; }
+  .rc-passage .rc-ptitle { font-weight: 700; color: var(--ink); margin-bottom: 10px; font-size: 15px; }
+  .rc-passage .rc-toggle { width: 100%; border: none; border-top: 1px solid var(--line); background: var(--surface); color: var(--accent); font-weight: 700; font-size: 12.5px; padding: 9px; cursor: pointer; }
   .qtop { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; flex-wrap: wrap; }
   .qnum { font-size: 11.5px; font-weight: 800; color: var(--ink-faint); letter-spacing: .05em; text-transform: uppercase; margin-right: auto; }
   .qtext { font-size: 17px; line-height: 1.5; font-weight: 500; text-wrap: pretty; }
@@ -647,7 +656,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v41";
+  const APP_VERSION = "v42";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1245,6 +1254,16 @@
   }
 
   let runSetId = null, runIndex = 0, qStart = 0, qAccum = 0, qPaused = false, qTimer = null, pendingL = null, timedFor = null;
+  // Reading-comprehension passage panel (shared by the runner and the session).
+  let passageOpen = false;
+  function passageHTML(set) {
+    if (!set || !set.passage) return "";
+    const p = set.passage, paras = (p.paras || []).map(t => `<p>${esc(t)}</p>`).join("");
+    const title = p.title ? `<div class="rc-ptitle">${esc(p.title)}</div>` : "";
+    const toggle = (p.paras && p.paras.length > 2)
+      ? `<button class="rc-toggle" data-passtoggle="1">${passageOpen ? "Collapse passage ▲" : "Show full passage ▼"}</button>` : "";
+    return `<div class="rc-passage${passageOpen ? " open" : ""}"><div class="rc-head">${esc(p.label || "📖 Passage")}</div><div class="rc-scroll">${title}${paras}</div>${toggle}</div>`;
+  }
   function stopTimer() { if (qTimer) { clearInterval(qTimer); qTimer = null; } }
   function elapsedMs() { if (timedFor == null) return 0; return qAccum + (qPaused ? 0 : Math.max(0, Date.now() - qStart)); }
   function startQuestionTimer(key) { qAccum = 0; qPaused = false; qStart = Date.now(); timedFor = key; }
@@ -1261,10 +1280,10 @@
     updateTimerDisplay(); runTimerInterval();
   }
   function resetQTimer() { qAccum = 0; qStart = Date.now(); updateTimerDisplay(); runTimerInterval(); }
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
   function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
-  function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
+  function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
   let jumperFlaggedOnly = false, jumperLevel = null;
   function openJumper() {
@@ -1325,7 +1344,7 @@
     const flagged = isFlagged(set.id, q.n);
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard"><div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
+    h += `<div class="qcard" id="qcard">${passageHTML(set)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
       <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
@@ -1410,6 +1429,7 @@
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); run.idx = 0; runIndex = 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
+    if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderRunner(); return; }  // RC passage expand / collapse
     if (e.target.closest("[data-toggle-timer]")) { toggleTimer(); return; }   // tap the timer to pause / resume
     if (e.target.closest("[data-reset-timer]")) { resetQTimer(); return; }     // ↺ resets this question's timer
     const fl = e.target.closest("[data-flag]"); if (fl) { toggleFlag(set.id, fl.getAttribute("data-flag")); renderRunner(); return; }
@@ -1571,7 +1591,7 @@
     }
     h += `</div>`;
     const elim = sess.elim[sess.idx] || {}, pend = sess.pending;
-    h += `<div class="qcard"><div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
+    h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
     h += `<div class="qtext">${esc(q.text || ("Question " + q.n))}</div>${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
@@ -1594,7 +1614,7 @@
     sess.curLevel = LEVELS[Math.max(0, Math.min(2, lvlIdx(sess.curLevel) + (correct ? 1 : -1)))];
     if (sess.idx >= sess.count - 1) { finishSession(false); return; }
     const nxt = sessPick(); if (!nxt) { finishSession(false); return; }
-    sess.order.push(nxt); sess.used.add(nxt.key); sess.idx++; sess.qStart = Date.now();
+    sess.order.push(nxt); sess.used.add(nxt.key); sess.idx++; sess.qStart = Date.now(); passageOpen = false;
     renderSession(); window.scrollTo({ top: 0 });
   }
 
@@ -1658,6 +1678,7 @@
     if (e.target.closest("[data-sessclose]")) { closeSession(true); return; }
     if (e.target.closest("[data-sessagain]")) { closeSession(true); openSessionConfig(); return; }
     if (!sess || sess.submitted) return;
+    if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderSession(); return; }
     const el = e.target.closest("[data-sesselim]"); if (el) { const L = el.getAttribute("data-sesselim"), k = sess.idx; sess.elim[k] = sess.elim[k] || {}; if (sess.elim[k][L]) delete sess.elim[k][L]; else sess.elim[k][L] = 1; renderSession(); return; }
     const pk = e.target.closest("[data-sesspick]"); if (pk) { const L = pk.getAttribute("data-sesspick"); if (sess.elim[sess.idx]) delete sess.elim[sess.idx][L]; sess.pending = L; renderSession(); return; }
     if (e.target.closest("[data-sessnext]")) sessCommitAndAdvance();

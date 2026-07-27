@@ -1393,5 +1393,133 @@ window.GMAT_SETS = [
         "level": "medium"
       }
     ]
+  },
+  {
+    "id": "quant-profitloss-ex",
+    "title": "Profit, Loss & Discount — Exercise",
+    "section": "quant",
+    "source": "Profit & Loss examples (converted to multiple-choice)",
+    "questions": [
+      {
+        "n": 1, "topic": "Profit, loss & discount", "correct": "A", "options": 4,
+        "text": "A cycle bought for $1,600 was sold for $1,400. What is the loss percent?",
+        "choices": ["12.5%", "12%", "14%", "10%"],
+        "hint": "Loss% is on the cost price.",
+        "expl": "Step 1 — Loss \\(= 1600 - 1400 = 200\\).\nStep 2 — Loss% \\(= \\frac{200}{1600}\\times100 = 12.5\\%\\).\nAnswer: 12.5% (A).",
+        "level": "easy"
+      },
+      {
+        "n": 2, "topic": "Profit, loss & discount", "correct": "A", "options": 4,
+        "text": "By selling a table for $330 a trader gains 10%. What is the cost price?",
+        "choices": ["$300", "$297", "$303", "$320"],
+        "hint": "SP = CP × (1 + gain%); solve for CP.",
+        "expl": "Step 1 — \\(CP = \\frac{100}{100+10}\\times330 = \\frac{100}{110}\\times330\\).\nStep 2 — \\(= 300\\).\nAnswer: $300 (A).",
+        "level": "easy"
+      },
+      {
+        "n": 3, "topic": "Profit, loss & discount", "correct": "C", "options": 4,
+        "text": "A sells a bicycle to B at 20% profit, and B sells it to C at 25% profit. If C pays $225, what did A pay?",
+        "choices": ["$140", "$160", "$150", "$180"],
+        "hint": "Divide back through each profit factor.",
+        "expl": "Step 1 — For B→C: B's cost \\(= \\frac{225}{1.25} = 180\\).\nStep 2 — For A→B: A's cost \\(= \\frac{180}{1.20} = 150\\).\nAnswer: $150 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 4, "topic": "Profit, loss & discount", "correct": "D", "options": 4,
+        "text": "Some articles were bought at 6 for $5 and sold at 5 for $6. What is the gain percent?",
+        "choices": ["20%", "25%", "36%", "44%"],
+        "hint": "Find cost and selling price per article, or take LCM of quantities.",
+        "expl": "Step 1 — CP per article \\(= \\frac{5}{6}\\); SP per article \\(= \\frac{6}{5}\\).\nStep 2 — Gain% \\(= \\frac{6/5 - 5/6}{5/6}\\times100 = \\frac{11/30}{25/30}\\times100\\).\nStep 3 — \\(= \\frac{11}{25}\\times100 = 44\\%\\).\nAnswer: 44% (D).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "Two radios are each sold for $792 — one at a 10% gain and the other at a 10% loss. What is the net result?",
+        "choices": ["No gain or loss", "1% loss", "1% gain", "2% loss"],
+        "hint": "Same selling price with equal +p% and −p% always gives a loss of p²/100.",
+        "expl": "Step 1 — CPs: \\(\\frac{792}{1.1} = 720\\) and \\(\\frac{792}{0.9} = 880\\); total CP \\(= 1600\\).\nStep 2 — Total SP \\(= 1584\\), so loss \\(= 16\\), i.e. \\(\\frac{16}{1600} = 1\\%\\).\nStep 3 — Shortcut: loss \\(= \\frac{10^2}{100} = 1\\%\\).\nAnswer: 1% loss (B).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Profit, loss & discount", "correct": "A", "options": 4,
+        "text": "A man buys two apartments for $200,000 each. He sells one at a 20% loss and the other at a 20% gain. What is his overall result?",
+        "choices": ["No gain or loss", "4% loss", "4% gain", "2% loss"],
+        "hint": "When the cost prices are equal and the +% equals the −%, they cancel.",
+        "expl": "Step 1 — Loss on one \\(= 40{,}000\\); gain on the other \\(= 40{,}000\\).\nStep 2 — They exactly offset — net zero. (This only cancels because the CPs are equal.)\nAnswer: No gain or loss (A).",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Profit, loss & discount", "correct": "C", "options": 4,
+        "text": "By selling a radio for $1,536, Ramesh loses 20%. What percent would he gain or lose by selling it for $2,000?",
+        "choices": ["4% gain", "5% gain", "\\(4\\tfrac16\\%\\) gain", "\\(4\\tfrac16\\%\\) loss"],
+        "hint": "Find the cost price first from the 20% loss.",
+        "expl": "Step 1 — \\(CP = \\frac{1536}{0.8} = 1920\\).\nStep 2 — At $2,000: gain \\(= 80\\), so \\(\\frac{80}{1920}\\times100 = 4\\tfrac16\\%\\) gain.\nAnswer: \\(4\\tfrac16\\%\\) gain (C).",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Profit, loss & discount", "correct": "A", "options": 4,
+        "text": "What single discount is equivalent to successive discounts of 15% and 20%?",
+        "choices": ["32%", "35%", "30%", "33%"],
+        "hint": "Combine with \\(a + b - \\frac{ab}{100}\\), or multiply the surviving fractions.",
+        "expl": "Step 1 — Surviving fraction \\(= 0.85\\times0.80 = 0.68\\).\nStep 2 — So the discount is \\(1 - 0.68 = 0.32 = 32\\%\\).\nAnswer: 32% (A).",
+        "level": "easy"
+      },
+      {
+        "n": 9, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "After a 12% discount on the marked price, an article sells for $880. What is the marked price?",
+        "choices": ["$990", "$1,000", "$1,024", "$950"],
+        "hint": "$880 is 88% of the marked price.",
+        "expl": "Step 1 — \\(0.88\\times MP = 880\\).\nStep 2 — \\(MP = \\frac{880}{0.88} = 1000\\).\nAnswer: $1,000 (B).",
+        "level": "easy"
+      },
+      {
+        "n": 10, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "A shopkeeper gives a 10% discount and still makes a 26% profit. If an article is marked $280, what did it cost him?",
+        "choices": ["$210", "$200", "$220", "$190"],
+        "hint": "Find the selling price after discount, then work back through the profit.",
+        "expl": "Step 1 — SP \\(= 0.90\\times280 = 252\\).\nStep 2 — \\(CP = \\frac{252}{1.26} = 200\\).\nAnswer: $200 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "If the cost price of 15 tables equals the selling price of 20 tables, what is the loss percent?",
+        "choices": ["20%", "25%", "\\(33\\tfrac13\\%\\)", "30%"],
+        "hint": "Use loss% \\(= \\frac{x-y}{y}\\times100\\) when CP of x = SP of y.",
+        "expl": "Step 1 — \\(\\frac{x-y}{y}\\times100 = \\frac{15-20}{20}\\times100\\).\nStep 2 — \\(= \\frac{-5}{20}\\times100 = -25\\%\\) — a 25% loss.\nAnswer: 25% (B).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "If the cost price of 6 articles equals the selling price of 4 articles, what is the gain percent?",
+        "choices": ["\\(33\\tfrac13\\%\\)", "50%", "40%", "\\(66\\tfrac23\\%\\)"],
+        "hint": "SP of 4 = CP of 6, so find gain on those 4.",
+        "expl": "Step 1 — Let each article cost $1. SP of 4 articles \\(= CP of 6 = 6\\).\nStep 2 — Cost of those 4 \\(= 4\\); gain \\(= 2\\).\nStep 3 — Gain% \\(= \\frac{2}{4}\\times100 = 50\\%\\).\nAnswer: 50% (B).",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "By what percent must the cost price be marked up so that, after a 10% discount, a 20% profit is still made?",
+        "choices": ["30%", "\\(33\\tfrac13\\%\\)", "32%", "35%"],
+        "hint": "Let CP = 100; find the SP needed, then the marked price.",
+        "expl": "Step 1 — CP = 100, required SP \\(= 120\\).\nStep 2 — \\(0.90\\times MP = 120\\Rightarrow MP = \\frac{1200}{9} = 133\\tfrac13\\).\nStep 3 — Markup \\(= 33\\tfrac13\\%\\) above cost.\nAnswer: \\(33\\tfrac13\\%\\) (B).",
+        "level": "hard"
+      },
+      {
+        "n": 14, "topic": "Profit, loss & discount", "correct": "B", "options": 4,
+        "text": "Pure ghee costs $100/kg. After mixing it with oil at $50/kg, a shopkeeper sells the mixture at $96/kg for a 20% profit. In what ratio (ghee : oil) does he mix them?",
+        "choices": ["2 : 3", "3 : 2", "1 : 1", "2 : 1"],
+        "hint": "Find the mixture's cost per kg, then apply alligation.",
+        "expl": "Step 1 — Mixture cost \\(= \\frac{96}{1.2} = 80\\) per kg.\nStep 2 — Alligation around 80: ghee:oil \\(= (80-50):(100-80) = 30:20\\).\nStep 3 — \\(= 3:2\\).\nAnswer: 3 : 2 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 15, "topic": "Profit, loss & discount", "correct": "A", "options": 4,
+        "text": "The sale price of an article, including 10% sales tax, is $616. If the shopkeeper made a 12% profit, what was the cost price?",
+        "choices": ["$500", "$550", "$480", "$560"],
+        "hint": "$616 = CP × (1 + profit) × (1 + tax).",
+        "expl": "Step 1 — \\(CP\\times1.12\\times1.10 = 616\\).\nStep 2 — \\(CP\\times1.232 = 616\\Rightarrow CP = \\frac{616}{1.232} = 500\\).\nAnswer: $500 (A).",
+        "level": "medium"
+      }
+    ]
   }
 ];

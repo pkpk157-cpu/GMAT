@@ -432,7 +432,8 @@
   .cn-toct { display: block; font-weight: 650; font-size: 15px; }
   .cn-tocs { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
   .cn-chev { color: var(--ink-faint); flex: none; }
-  .cn-article { max-width: 640px; margin: 0 auto; }
+  .cn-article { width: 100%; min-width: 0; max-width: 640px; margin: 0 auto; }
+  .cn-p, .cn-li, .cn-h, .cn-h1, .cn-toct, .cn-tocs, .cn-call, .cn-eg-q, .cn-eg-op, .cn-eg-why, .cn-table th, .cn-table td { overflow-wrap: break-word; word-break: break-word; }
   .cn-back { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; color: var(--c-cr); font-weight: 700; font-size: 13px; padding: 4px 0; margin-bottom: 4px; }
   .cn-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); }
   .cn-h1 { font-size: 23px; font-weight: 750; letter-spacing: -.02em; margin: 4px 0 18px; }
@@ -441,13 +442,14 @@
   .cn-p b, .cn-li b { color: var(--ink); font-weight: 700; }
   .cn-ul, .cn-ol { margin: 10px 0; padding-left: 22px; display: flex; flex-direction: column; gap: 7px; }
   .cn-li { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
-  .cn-formula { margin: 14px 0; padding: 14px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; text-align: center; }
+  .cn-formula { margin: 14px 0; padding: 14px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; max-width: 100%; overflow-x: auto; text-align: center; }
+  .cn-formula .katex-display { margin: 0; }
   .cn-call { margin: 14px 0; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.55; border-left: 3px solid; }
   .cn-call.tip { background: color-mix(in srgb, var(--accent) 9%, var(--surface)); border-color: var(--accent); color: var(--ink-soft); }
   .cn-call.warn { background: color-mix(in srgb, var(--bad) 9%, var(--surface)); border-color: var(--bad); color: var(--ink-soft); }
   .cn-call.note { background: var(--surface-2); border-color: var(--line); color: var(--ink-soft); }
   .cn-call b { color: var(--ink); }
-  .cn-table-wrap { overflow-x: auto; margin: 14px 0; }
+  .cn-table-wrap { max-width: 100%; overflow-x: auto; margin: 14px 0; }
   .cn-table { width: 100%; border-collapse: collapse; font-size: 14px; }
   .cn-table th { text-align: left; font-weight: 700; color: var(--ink); padding: 9px 11px; border-bottom: 2px solid var(--line); background: var(--surface-2); }
   .cn-table td { padding: 9px 11px; border-bottom: 1px solid var(--line-soft); color: var(--ink-soft); vertical-align: top; }
@@ -587,7 +589,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v23";
+  const APP_VERSION = "v24";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.

@@ -82,8 +82,8 @@ window.GMAT_CONCEPTS = [
             "Large numbers ⇏ large percentages (and small ⇏ small).",
             "Large percentages ⇏ large numbers (and small ⇏ small)."
           ] },
-          { t: "p", x: "Any percentage is a part over a whole:" },
-          { t: "formula", x: "\\%\\ \\text{women} = \\dfrac{\\text{women}}{\\text{women} + \\text{men}} \\times 100 = \\dfrac{\\text{part}}{\\text{total base}} \\times 100" },
+          { t: "p", x: "Any percentage is a <b>part over a whole</b>. For women in a company, the whole is women + men:" },
+          { t: "formula", x: "\\% = \\dfrac{\\text{part}}{\\text{total base}} \\times 100" },
           { t: "p", x: "Because the <b>base</b> can change, a percentage can move opposite to the raw count. Always ask: what is the base, and could it be shifting?" },
           { t: "h", x: "Signal words" },
           { t: "table",

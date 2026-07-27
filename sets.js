@@ -961,5 +961,173 @@ window.GMAT_SETS = [
         "level": "hard"
       }
     ]
+  },
+  {
+    "id": "quant-percentage-ex",
+    "title": "Percentages — Exercise",
+    "section": "quant",
+    "source": "Percentage exercise (answer key, hints & explanations)",
+    "questions": [
+      {
+        "n": 1, "topic": "Percentages & percent change", "correct": "C", "options": 4,
+        "text": "\\(p\\) is six times as large as \\(q\\). The percent that \\(q\\) is less than \\(p\\) is:",
+        "choices": ["\\(16\\tfrac23\\%\\)", "60%", "\\(83\\tfrac13\\%\\)", "90%"],
+        "hint": "Express the gap (p − q) as a fraction of p, the larger quantity.",
+        "expl": "Step 1 — \\(p = 6q\\), so the gap is \\(p-q = 5q\\).\nStep 2 — “q is less than p” compares the gap to \\(p\\): \\(\\frac{5q}{6q}\\times100\\).\nStep 3 — \\(=\\frac{5}{6}\\times100 = 83\\tfrac13\\%\\).\nAnswer: \\(83\\tfrac13\\%\\) (C).",
+        "level": "easy"
+      },
+      {
+        "n": 2, "topic": "Percentages & percent change", "correct": "D", "options": 4,
+        "text": "Two numbers are respectively 20% and 50% of a third number. The first number is what percent of the second?",
+        "choices": ["10%", "20%", "30%", "40%"],
+        "hint": "Let the third number be 100 and read off the first two.",
+        "expl": "Step 1 — Let the third number be 100. First \\(=20\\), second \\(=50\\).\nStep 2 — First as a percent of second: \\(\\frac{20}{50}\\times100 = 40\\%\\).\nAnswer: 40% (D).",
+        "level": "easy"
+      },
+      {
+        "n": 3, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "40% of a store's customers purchase items, and of those, 15% purchase hats. What percent of the store's customers purchase hats?",
+        "choices": ["4%", "6%", "15%", "24%"],
+        "hint": "Take a percent of a percent — multiply the two.",
+        "expl": "Step 1 — Of 100 customers, 40 purchase items.\nStep 2 — 15% of those 40 buy hats: \\(0.15\\times40 = 6\\).\nStep 3 — That's 6 of every 100 customers = 6%.\nAnswer: 6% (B).",
+        "level": "easy"
+      },
+      {
+        "n": 4, "topic": "Percentages & percent change", "correct": "D", "options": 4,
+        "text": "The price of a cooker was increased by 15%, and the number sold then fell by 15%. What was the net effect on sales revenue?",
+        "choices": ["15% decrease", "No effect", "2.25% increase", "2.25% decrease"],
+        "hint": "Up x% then down x% is never a wash — use \\(-\\frac{x^2}{100}\\).",
+        "expl": "Step 1 — Revenue \\(= \\text{price}\\times\\text{quantity}\\), changed by factors \\(1.15\\) and \\(0.85\\).\nStep 2 — \\(1.15\\times0.85 = 0.9775\\), a 2.25% drop.\nStep 3 — Shortcut: up x% then down x% gives \\(-\\frac{x^2}{100} = -\\frac{225}{100} = -2.25\\%\\).\nAnswer: 2.25% decrease (D).",
+        "level": "easy"
+      },
+      {
+        "n": 5, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "A's salary is 25% higher than B's salary. By what percent is B's salary lower than A's?",
+        "choices": ["\\(16\\tfrac13\\%\\)", "20%", "25%", "\\(33\\tfrac13\\%\\)"],
+        "hint": "The base flips: use \\(\\frac{r}{100+r}\\times100\\).",
+        "expl": "Step 1 — Let B \\(=100\\), so A \\(=125\\).\nStep 2 — B is lower than A by \\(\\frac{125-100}{125}\\times100 = \\frac{25}{125}\\times100\\).\nStep 3 — \\(=20\\%\\). (Not 25% — the base is now the larger number, A.)\nAnswer: 20% (B).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "In a housing society, 30% of residents are men over 18 and 40% are women over 18. If the 24 remaining residents are children, how many residents are there in total?",
+        "choices": ["32", "80", "94", "112"],
+        "hint": "Find what percent the children represent first.",
+        "expl": "Step 1 — Adults are \\(30\\%+40\\% = 70\\%\\), so children are 30%.\nStep 2 — 30% of the total \\(=24\\).\nStep 3 — Total \\(=\\frac{24}{0.30} = 80\\).\nAnswer: 80 (B).",
+        "level": "easy"
+      },
+      {
+        "n": 7, "topic": "Percentages & percent change", "correct": "D", "options": 4,
+        "text": "Production of milk chocolates rose 30% in one month to 9,100 per month. What was it one month ago?",
+        "choices": ["10,000", "9,000", "8,000", "7,000"],
+        "hint": "9,100 is 130% of the earlier value — divide, don't subtract 30%.",
+        "expl": "Step 1 — \\(130\\%\\text{ of old} = 9100\\).\nStep 2 — Old \\(=\\frac{9100}{1.3} = 7000\\).\nAnswer: 7,000 (D).",
+        "level": "easy"
+      },
+      {
+        "n": 8, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "In an election between two candidates, one got 40% of the votes and was defeated by 160 votes. How many votes were polled in total?",
+        "choices": ["900", "800", "700", "600"],
+        "hint": "The winner got 60%; the margin is the difference of the two shares.",
+        "expl": "Step 1 — Shares are 40% and 60%, so the margin is \\(60\\%-40\\% = 20\\%\\) of the total.\nStep 2 — 20% of total \\(=160\\).\nStep 3 — Total \\(=\\frac{160}{0.20} = 800\\).\nAnswer: 800 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Percentages & percent change", "correct": "A", "options": 4,
+        "text": "The price of groundnut oil rose from $24 to $27 per kg. By what percent should a family cut consumption to keep its expenditure unchanged?",
+        "choices": ["\\(11\\tfrac19\\%\\)", "\\(11\\tfrac{1}{11}\\%\\)", "\\(11\\tfrac{1}{10}\\%\\)", "\\(9\\tfrac{1}{10}\\%\\)"],
+        "hint": "Price up r%, consumption must drop \\(\\frac{r}{100+r}\\times100\\).",
+        "expl": "Step 1 — Price rise \\(=\\frac{27-24}{24}\\times100 = 12.5\\%\\).\nStep 2 — Required cut \\(=\\frac{12.5}{100+12.5}\\times100 = \\frac{12.5}{112.5}\\times100\\).\nStep 3 — \\(=\\frac{100}{9} = 11\\tfrac19\\%\\).\nAnswer: \\(11\\tfrac19\\%\\) (A).",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "10% of a village's inhabitants died of cholera; then 25% of the remainder left. The population is now 4,050. What was the original population?",
+        "choices": ["5,000", "6,000", "7,000", "8,000"],
+        "hint": "Apply the two survival factors 0.90 and 0.75 to the original.",
+        "expl": "Step 1 — After deaths: 90% remain. After departures: 75% of that remain.\nStep 2 — \\(0.75\\times0.90\\times x = 4050\\), so \\(0.675x = 4050\\).\nStep 3 — \\(x = \\frac{4050}{0.675} = 6000\\).\nAnswer: 6,000 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Percentages & percent change", "correct": "C", "options": 4,
+        "text": "A scooter costs $25,000 new. At the end of each year its value is 80% of its value at the start of that year. What is its value after 3 years?",
+        "choices": ["$10,000", "$12,500", "$12,800", "$12,000"],
+        "hint": "Multiply by 0.8 three times (compound depreciation).",
+        "expl": "Step 1 — Value \\(=25000\\times(0.8)^3\\).\nStep 2 — \\((0.8)^3 = 0.512\\).\nStep 3 — \\(25000\\times0.512 = 12800\\).\nAnswer: $12,800 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Percentages & percent change", "correct": "D", "options": 4,
+        "text": "A's income is 150% of B's, and C's income is 120% of A's. If A, B and C together earn $86,000, what is C's income?",
+        "choices": ["$30,000", "$32,000", "$20,000", "$36,000"],
+        "hint": "Write everything in terms of B, then solve for B first.",
+        "expl": "Step 1 — Let B \\(=x\\). Then A \\(=1.5x\\), C \\(=1.2\\times1.5x = 1.8x\\).\nStep 2 — \\(x + 1.5x + 1.8x = 4.3x = 86000\\), so \\(x = 20000\\).\nStep 3 — C \\(=1.8\\times20000 = 36000\\).\nAnswer: $36,000 (D).",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Ratios & proportions", "correct": "C", "options": 4,
+        "text": "Ravi's salary is 150% of Amit's, and Amit's salary is 80% of Ram's. What is the ratio of Ram's salary to Ravi's?",
+        "choices": ["1 : 2", "2 : 3", "5 : 6", "6 : 5"],
+        "hint": "Anchor Ram at 100 and work outward.",
+        "expl": "Step 1 — Let Ram \\(=100\\). Amit \\(=80\\% = 80\\).\nStep 2 — Ravi \\(=150\\%\\text{ of }80 = 120\\).\nStep 3 — Ram : Ravi \\(=100:120 = 5:6\\).\nAnswer: 5 : 6 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 14, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "In a shipment of 120 parts, 5% were defective; in another of 80 parts, 10% were defective. For the two shipments combined, what percent were defective?",
+        "choices": ["6.5%", "7.0%", "7.5%", "8.0%"],
+        "hint": "Count actual defectives, then divide by the combined total.",
+        "expl": "Step 1 — Defectives: \\(5\\%\\times120 = 6\\) and \\(10\\%\\times80 = 8\\); total \\(=14\\).\nStep 2 — Combined parts \\(=120+80 = 200\\).\nStep 3 — \\(\\frac{14}{200}\\times100 = 7\\%\\) (a weighted average, not \\(7.5\\%\\)).\nAnswer: 7.0% (B).",
+        "level": "medium"
+      },
+      {
+        "n": 15, "topic": "Percentages & percent change", "correct": "D", "options": 4,
+        "text": "In January, 4,000 ticketless travellers were caught. In February the number rose 5%, in March it fell 5%, and in April it fell a further 10%. How many were caught in April?",
+        "choices": ["3,125", "3,255", "3,575", "3,591"],
+        "hint": "Apply the factors 1.05, 0.95, 0.90 in turn.",
+        "expl": "Step 1 — \\(4000\\times1.05 = 4200\\).\nStep 2 — \\(4200\\times0.95 = 3990\\).\nStep 3 — \\(3990\\times0.90 = 3591\\).\nAnswer: 3,591 (D).",
+        "level": "medium"
+      },
+      {
+        "n": 16, "topic": "Percentages & percent change", "correct": "C", "options": 4,
+        "text": "A village of 5,000 people sees its men increase 10% and its women increase 15%, so the population becomes 5,600. How many men were there originally?",
+        "choices": ["2,000", "2,500", "3,000", "4,000"],
+        "hint": "Let men = x, women = 5000 − x; the total increase is 600.",
+        "expl": "Step 1 — \\(0.10x + 0.15(5000-x) = 600\\).\nStep 2 — \\(0.10x + 750 - 0.15x = 600 \\Rightarrow -0.05x = -150\\).\nStep 3 — \\(x = 3000\\).\nAnswer: 3,000 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 17, "topic": "Percentages & percent change", "correct": "C", "options": 4,
+        "text": "When the price of petrol rises 40%, a man cuts his consumption by 20%. What is the percent change in his expenditure?",
+        "choices": ["20% increase", "16% increase", "12% increase", "40% increase"],
+        "hint": "Expenditure = price × consumption; multiply the factors.",
+        "expl": "Step 1 — New expenditure factor \\(=1.40\\times0.80 = 1.12\\).\nStep 2 — That's a 12% increase.\nAnswer: 12% increase (C).",
+        "level": "medium"
+      },
+      {
+        "n": 18, "topic": "Percentages & percent change", "correct": "B", "options": 4,
+        "text": "A man saves 10% of his income. Two years later his income has risen 20%, yet he saves the same dollar amount as before. By what percent has his expenditure increased?",
+        "choices": ["22%", "\\(22\\tfrac29\\%\\)", "\\(23\\tfrac13\\%\\)", "24%"],
+        "hint": "Fix income at 100; track saving (constant) and the new expenditure.",
+        "expl": "Step 1 — Income 100 → saving 10, expenditure 90.\nStep 2 — New income \\(=120\\); saving still 10, so expenditure \\(=110\\).\nStep 3 — Increase \\(=\\frac{110-90}{90}\\times100 = \\frac{20}{90}\\times100 = 22\\tfrac29\\%\\).\nAnswer: \\(22\\tfrac29\\%\\) (B).",
+        "level": "hard"
+      },
+      {
+        "n": 19, "topic": "Overlapping sets (Venn)", "correct": "C", "options": 4,
+        "text": "40% of people read newspaper X, 50% read Y, and 10% read both. What percent read neither?",
+        "choices": ["10%", "15%", "20%", "25%"],
+        "hint": "Use \\(|X\\cup Y| = |X| + |Y| - |X\\cap Y|\\), then subtract from 100%.",
+        "expl": "Step 1 — At least one \\(=40\\%+50\\%-10\\% = 80\\%\\).\nStep 2 — Neither \\(=100\\%-80\\% = 20\\%\\).\nAnswer: 20% (C).",
+        "level": "easy"
+      },
+      {
+        "n": 20, "topic": "Overlapping sets (Venn)", "correct": "A", "options": 4,
+        "text": "65% of students passed Civics, 60% passed History, and 40% passed both. If 90 students failed both subjects, how many students are there in total?",
+        "choices": ["600", "650", "700", "750"],
+        "hint": "Find the percent who passed at least one, then the percent who failed both.",
+        "expl": "Step 1 — Passed at least one \\(=65\\%+60\\%-40\\% = 85\\%\\).\nStep 2 — Failed both \\(=100\\%-85\\% = 15\\%\\).\nStep 3 — \\(15\\%\\text{ of total} = 90\\Rightarrow \\text{total} = \\frac{90}{0.15} = 600\\).\nAnswer: 600 (A).",
+        "level": "hard"
+      }
+    ]
   }
 ];

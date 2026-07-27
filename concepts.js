@@ -535,6 +535,155 @@ window.GMAT_CONCEPTS = [
   },
 
   {
+    id: "quant-topics",
+    section: "quant",
+    title: "Quant — core concepts by topic",
+    source: "Adapted from your Quant topic concept notes",
+    parts: [
+      {
+        id: "qt-percent",
+        title: "Percentages",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "A percent is just a fraction out of 100. Fluency comes from <b>knowing the common fraction ↔ percent equivalents cold</b> so you never calculate them:" },
+          { t: "table", head: ["Fraction", "%"], rows: [
+            ["1/2", "50%"], ["1/3", "33⅓%"], ["1/4", "25%"], ["1/5", "20%"],
+            ["1/6", "16⅔%"], ["1/8", "12.5%"], ["1/9", "11⅑%"], ["1/20", "5%"]
+          ] },
+          { t: "h", x: "Change, increase, decrease" },
+          { t: "formula", x: "\\text{change \\%} = \\dfrac{\\text{new} - \\text{old}}{\\text{old}} \\times 100" },
+          { t: "p", x: "A rise of x% then a further rise of y% is <b>not</b> x+y — the combined effect is:" },
+          { t: "formula", x: "x + y + \\dfrac{xy}{100}" },
+          { t: "ul", items: [
+            "Up x% then down x% is a net <b>loss</b> of \\( \\frac{x^2}{100}\\% \\) — never zero.",
+            "“A is r% more than B” ⟹ B is \\( \\frac{r}{100+r}\\times100\\% \\) less than A (not r%).",
+            "Price up r%, to keep spend flat cut usage by \\( \\frac{r}{100+r}\\times100\\% \\)."
+          ] },
+          { t: "tip", x: "Turn “% of” into multiplication: 20% of 240 = 0.2 × 240, or use fractions — 37.5% of 240 = ⅜ × 240 = 90. Choose whichever is cleaner." }
+        ]
+      },
+      {
+        id: "qt-ratio",
+        title: "Ratios & Proportions",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "A ratio a : b compares parts. Treat the parts as <b>multiples of a common unit</b>: a : b really means 'ak and bk for some k'. That single k unlocks most ratio questions." },
+          { t: "ul", items: [
+            "To split a quantity Q in ratio a : b, one share is \\( \\frac{a}{a+b}\\times Q \\).",
+            "Chain ratios: given a : b and b : c, scale so the shared term matches, then read a : b : c.",
+            "A proportion a : b = c : d means <b>product of extremes = product of means</b>: \\( ad = bc \\)."
+          ] },
+          { t: "warn", x: "You can't add a number to both sides of a ratio and keep it — 2 : 3 is not 3 : 4. Work with the actual multiples (2k, 3k) instead." },
+          { t: "eg",
+            q: "A sum is split between X and Y in the ratio 3 : 5. If Y gets $40 more than X, how much is the total?",
+            choices: ["$120", "$140", "$160", "$180", "$200"],
+            ans: "C",
+            why: "Shares are 3k and 5k; the gap 5k − 3k = 2k = $40, so k = 20. Total = 8k = 8 × 20 = $160."
+          }
+        ]
+      },
+      {
+        id: "qt-average",
+        title: "Averages",
+        mins: 3,
+        blocks: [
+          { t: "formula", x: "\\text{average} = \\dfrac{\\text{sum of terms}}{\\text{number of terms}}" },
+          { t: "ul", items: [
+            "The <b>sum</b> is the bridge: total = average × count. Most average questions are really sum questions.",
+            "Adding a value equal to the current average leaves it unchanged; adding one above pulls it up, below pulls it down.",
+            "For evenly-spaced sets, the average equals the <b>middle value</b> (= (first + last)/2)."
+          ] },
+          { t: "h", x: "Weighted average" },
+          { t: "p", x: "When groups of different sizes combine, weight by size — you can't just average the averages:" },
+          { t: "formula", x: "\\bar{x} = \\dfrac{n_1\\bar{x}_1 + n_2\\bar{x}_2}{n_1 + n_2}" },
+          { t: "tip", x: "The combined average always lands <b>between</b> the two group averages, closer to the bigger group — a quick sanity check and often enough to answer." }
+        ]
+      },
+      {
+        id: "qt-mixture",
+        title: "Mixtures & Alligation",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "Alligation is weighted-average logic run backwards: given a blend's average, find the <b>ratio</b> of the two ingredients. With cheaper value c, dearer value d, and mean m:" },
+          { t: "formula", x: "\\dfrac{\\text{qty of cheaper}}{\\text{qty of dearer}} = \\dfrac{d - m}{m - c}" },
+          { t: "p", x: "(Each ingredient's 'distance' from the mean is inversely proportional to how much of it you use.)" },
+          { t: "h", x: "Repeated replacement" },
+          { t: "p", x: "If you remove x from a container of volume V and top up with the other liquid, n times, the original liquid left is:" },
+          { t: "formula", x: "V\\left(1 - \\dfrac{x}{V}\\right)^{n}" },
+          { t: "tip", x: "Alligation also cracks problems on average speed, blended interest rates, and salary/marks mixes — anything where two rates combine into one." }
+        ]
+      },
+      {
+        id: "qt-profit",
+        title: "Profit, Loss & Discount",
+        mins: 4,
+        blocks: [
+          { t: "formula", x: "\\text{profit \\%} = \\dfrac{\\text{SP} - \\text{CP}}{\\text{CP}} \\times 100" },
+          { t: "ul", items: [
+            "Selling price from cost: \\( \\text{SP} = \\text{CP}\\left(1 + \\frac{p}{100}\\right) \\); a loss uses a minus sign.",
+            "<b>Discount is on the marked price</b>, profit is on the cost — keep the two bases separate.",
+            "Marked up m% then discounted d%: net effect \\( m - d - \\frac{md}{100}\\% \\) on cost.",
+            "Two items sold at the same price, one at +x% and one at −x%: always a net <b>loss</b> of \\( \\frac{x^2}{100}\\% \\)."
+          ] },
+          { t: "warn", x: "“Profit % on cost” and “profit % on selling price” are different — GMAT wording chooses the base deliberately, so read which one is meant." }
+        ]
+      },
+      {
+        id: "qt-interest",
+        title: "Simple & Compound Interest",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "Simple interest is a flat charge on the original principal each year:" },
+          { t: "formula", x: "\\text{SI} = \\dfrac{P \\cdot R \\cdot T}{100}" },
+          { t: "p", x: "Compound interest charges on the growing balance, so it snowballs:" },
+          { t: "formula", x: "A = P\\left(1 + \\dfrac{R}{100}\\right)^{T}" },
+          { t: "ul", items: [
+            "Compounded k times a year: \\( A = P\\left(1 + \\frac{R}{100k}\\right)^{kT} \\).",
+            "Over 2 years, CI beats SI by exactly \\( P\\left(\\frac{R}{100}\\right)^2 \\) — a fast shortcut.",
+            "CI for the <b>first</b> year equals SI for that year; the gap only opens from year two."
+          ] },
+          { t: "tip", x: "Percentage growth, population, and appreciation/depreciation all use the compound formula — same machinery, different story." }
+        ]
+      },
+      {
+        id: "qt-speed",
+        title: "Speed, Time & Distance",
+        mins: 4,
+        blocks: [
+          { t: "formula", x: "\\text{distance} = \\text{speed} \\times \\text{time}" },
+          { t: "ul", items: [
+            "Convert km/h → m/s by \\( \\times\\frac{5}{18} \\); m/s → km/h by \\( \\times\\frac{18}{5} \\).",
+            "<b>Average speed</b> is total distance ÷ total time — for equal distances at speeds x and y it's \\( \\frac{2xy}{x+y} \\) (the harmonic mean), <b>not</b> \\( \\frac{x+y}{2} \\).",
+            "Relative speed: same direction ⟹ subtract; opposite directions ⟹ add.",
+            "Boats: downstream speed = b + s, upstream = b − s (b = boat, s = stream)."
+          ] },
+          { t: "eg",
+            q: "A car covers a distance at 40 km/h and returns along the same road at 60 km/h. What is its average speed for the whole trip?",
+            choices: ["48 km/h", "50 km/h", "52 km/h", "45 km/h", "55 km/h"],
+            ans: "A",
+            why: "Equal distances, so use the harmonic mean: 2·40·60 / (40+60) = 4800/100 = 48 km/h — not the tempting 50."
+          }
+        ]
+      },
+      {
+        id: "qt-work",
+        title: "Time & Work (with Pipes & Cisterns)",
+        mins: 3,
+        blocks: [
+          { t: "p", x: "The one idea: work in terms of <b>rate = 1 job per unit time</b>. If A finishes in a days, A's rate is 1/a per day; rates simply add." },
+          { t: "formula", x: "\\dfrac{1}{T} = \\dfrac{1}{a} + \\dfrac{1}{b} \\quad\\Rightarrow\\quad T = \\dfrac{ab}{a+b}" },
+          { t: "ul", items: [
+            "Scaling: \\( \\frac{M_1 D_1 H_1}{W_1} = \\frac{M_2 D_2 H_2}{W_2} \\) (men · days · hours per unit work stays constant).",
+            "<b>Pipes & cisterns</b> is the same maths: an inlet adds a positive rate, a leak/outlet subtracts.",
+            "A handy trick: set total work = LCM of the given times, so each worker's rate is a whole number."
+          ] },
+          { t: "note", x: "That's the core arithmetic & word-problem concept layer. Number-properties, algebra and statistics notes can follow, and practice sets per topic come next." }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "data-insights",
     section: "data",
     title: "Data Insights — the whole section",

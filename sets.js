@@ -2401,5 +2401,193 @@ window.GMAT_SETS = [
         "level": "medium"
       }
     ]
+  },
+  {
+    "id": "cr-session2-ex",
+    "title": "Critical Reasoning — Set 2",
+    "section": "cr",
+    "source": "CR practice: assumption, strengthen, evaluate, paradox & boldface",
+    "questions": [
+      {
+        "n": 1, "topic": "Assumption", "correct": "D", "options": 5,
+        "text": "Country B plans to power its cars with domestically produced oil and ethanol. The government says this will sharply reduce the country's reliance on foreign oil. The argument relies on the assumption that:",
+        "choices": [
+          "Ethanol is superior to every other alternative energy source.",
+          "Ethanol production will grow faster than oil production.",
+          "Ethanol is suitable for every application that currently uses oil.",
+          "Gasoline consumption will not rise substantially faster than domestic oil-and-ethanol production.",
+          "Ethanol is as fuel-efficient per gallon as gasoline."
+        ],
+        "correct": "D",
+        "hint": "Negate each choice; the one that breaks the conclusion is the assumption.",
+        "expl": "You only avoid importing if domestic production keeps up with demand. Negate (D): if consumption rises much faster than production, the country must still import — the conclusion collapses. So (D) is required.\nAnswer: D.",
+        "level": "hard"
+      },
+      {
+        "n": 2, "topic": "Assumption", "correct": "A", "options": 5,
+        "text": "Rising sea levels caused by global warming will, within the next century, destroy major coastal cities and displace millions of people. The argument assumes that:",
+        "choices": [
+          "New technology in the next century will not divert rising seas away from coastal cities.",
+          "Individuals will not become more aware of ways to cut greenhouse-gas emissions.",
+          "Rising seas affect all coastal centers to the same degree.",
+          "Some experts predict more than an eight-degree temperature rise.",
+          "Human activity is the sole cause of global warming."
+        ],
+        "correct": "A",
+        "hint": "What unstated fact must hold for 'the cities will be destroyed' to follow?",
+        "expl": "Negate (A): if future technology can divert the rising seas, the cities aren't destroyed and no one is displaced — the conclusion fails. So the argument depends on (A).\nAnswer: A.",
+        "level": "hard"
+      },
+      {
+        "n": 3, "topic": "Assumption", "correct": "C", "options": 5,
+        "text": "Utility companies say switching to solar and wind power will give all customers stable energy supplies at low cost. The claim assumes that:",
+        "choices": [
+          "The public will readily accept energy from renewable sources.",
+          "No new supplies of oil and gas will be discovered.",
+          "Weather patterns are consistent and predictable.",
+          "Renewable conversion technology is no more expensive than current technology.",
+          "Energy produced by combustion cannot be made less risky."
+        ],
+        "correct": "C",
+        "hint": "Solar and wind depend on something — what must be true for 'stable' supply?",
+        "expl": "Negate (C): if weather is inconsistent and unpredictable, solar and wind output is unreliable, so supplies wouldn't be stable — breaking the conclusion. So (C) is assumed.\nAnswer: C.",
+        "level": "medium"
+      },
+      {
+        "n": 4, "topic": "Assumption", "correct": "D", "options": 5,
+        "text": "Adolescents who play video games regularly are three times as likely to develop carpal tunnel syndrome. A doctor concludes that a federal law banning the sale of video games to minors would help reduce carpal tunnel among adolescents. The argument assumes that:",
+        "choices": [
+          "A majority of legislators would vote for such a ban.",
+          "All adolescents who regularly play video games develop carpal tunnel syndrome.",
+          "Adolescents cannot develop carpal tunnel syndrome from any other activity.",
+          "Parents will not simply purchase video games for their adolescent children.",
+          "Video games provide no benefits to adolescents."
+        ],
+        "correct": "D",
+        "hint": "For a sales ban to cut usage, minors must not get the games another way.",
+        "expl": "Negate (D): if parents just buy the games for their kids, the sales ban leaves usage unchanged and carpal tunnel unaffected — the conclusion fails. So (D) is required.\nAnswer: D.",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Assumption", "correct": "D", "options": 5,
+        "text": "Alusia offers a $1,000-per-worker tax credit to any company employing more than 20 manufacturing workers, expecting most Calonian manufacturers to relocate there. The plan's success relies on the assumption that:",
+        "choices": [
+          "Tax credits are the most effective incentive for luring companies.",
+          "Calonia will not offer a matching tax credit to companies that stay.",
+          "Calonian companies are less likely to succeed if they relocate.",
+          "Most Calonian manufacturers expect to employ at least 20 workers within ten years.",
+          "Calonian companies pay each worker more than $1,000 per year on average."
+        ],
+        "correct": "D",
+        "hint": "The credit only applies above 20 workers — does it reach most companies?",
+        "expl": "Negate (D): if most Calonian manufacturers don't expect 20+ workers, the credit doesn't apply to them and they won't relocate — the plan fails. So (D) is required.\nAnswer: D.",
+        "level": "hard"
+      },
+      {
+        "n": 6, "topic": "Strengthen", "correct": "C", "options": 5,
+        "text": "Historically, urban waterfront lots were left to industry; today beachfront homes sell for huge sums. So a developer wanting a large profit should buy urban waterfront lots and build homes on them. Which most strengthens the argument?",
+        "choices": [
+          "People today have more money for real estate than in past centuries.",
+          "Cities offer developers tax incentives to rehabilitate the waterfront.",
+          "Homeowners will pay large sums for residential properties in traditionally industrial districts.",
+          "Many urban waterfront lots are available to buy.",
+          "Interior residential districts are more expensive than the waterfront."
+        ],
+        "correct": "C",
+        "hint": "The plan needs buyers for homes on formerly industrial urban waterfront.",
+        "expl": "The profit depends on people paying well for homes on formerly industrial urban waterfront. (C) supplies exactly that; negate it and the profit disappears. The others give cheaper costs, incentives, or supply — none establishes buyers.\nAnswer: C.",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Strengthen", "correct": "B", "options": 5,
+        "text": "After a city installed speed cameras on Main Street, accidents there fell 30% in a year. Officials conclude the cameras caused the drop. Which most strengthens the conclusion?",
+        "choices": [
+          "The speed cameras were the first of their kind installed in the city.",
+          "On comparable streets without cameras, accident numbers stayed about the same that year.",
+          "Drivers reported disliking the new cameras.",
+          "The city plans to install more cameras next year.",
+          "Most accidents on Main Street had involved speeding."
+        ],
+        "correct": "B",
+        "hint": "Rule out a city-wide decline that would explain the drop without the cameras.",
+        "expl": "If similar camera-free streets saw no such decline (B), a general downward trend is ruled out, making the cameras the likely cause. The others don't isolate the cameras as the reason.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Evaluate the argument", "correct": "E", "options": 5,
+        "text": "The recording industry lacks the resources to prosecute more than a small number of illegal downloaders, so prosecuting them will have minimal impact on the overall number of people who download music illegally. Answering which question would most help evaluate this argument?",
+        "choices": [
+          "Whether the industry's lawyers could work more efficiently.",
+          "Whether illegally downloaded songs are then shared with others.",
+          "Whether new security technology could identify downloaders faster.",
+          "Whether illegal downloading has increased in recent years.",
+          "Whether the threat of prosecution would deter other people from downloading illegally."
+        ],
+        "correct": "E",
+        "hint": "Apply the extremes test: which answer's two extremes push the conclusion opposite ways?",
+        "expl": "If the threat of prosecution strongly deters others, the impact is large (weakens); if it deters no one, the impact is minimal (strengthens). (E)'s two extremes swing the argument opposite ways, so it tests the conclusion.\nAnswer: E.",
+        "level": "hard"
+      },
+      {
+        "n": 9, "topic": "Evaluate the argument", "correct": "B", "options": 5,
+        "text": "To increase profits, MillCo plans to cut costs by laying off nonessential employees. Answering which question would most help evaluate whether the plan will work?",
+        "choices": [
+          "Whether MillCo could cut costs more by trimming health benefits.",
+          "Whether revenues will be hurt badly enough to threaten MillCo's profits.",
+          "Whether the laid-off employees will find new jobs.",
+          "Whether MillCo's competitors are also cutting staff.",
+          "Whether employee morale will fall after the layoffs."
+        ],
+        "correct": "B",
+        "hint": "Profit = revenue − cost; the plan cuts cost, so what about revenue?",
+        "expl": "If revenues fall enough to outweigh the savings, the plan fails (weakens); if they don't, it works (strengthens). (B) is the question whose two answers test the argument. (A) offers a different cost cut, irrelevant to THIS plan.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Explain the paradox", "correct": "B", "options": 5,
+        "text": "Since moving to a better time slot, a TV show's audience nearly doubled, yet sales of its branded merchandise fell sharply over the same period. Which best explains this?",
+        "choices": [
+          "Rising popularity of a show usually raises the price of its merchandise.",
+          "Six months ago the producers ended the deep merchandise discounts they had used to build the show's popularity.",
+          "The show's writers changed six months ago.",
+          "Merchandise for other shows sold well that year.",
+          "The new time slot is later in the evening."
+        ],
+        "correct": "B",
+        "hint": "Find a new fact that lets both facts (more viewers, fewer sales) be true at once.",
+        "expl": "Ending the deep discounts (B) raised prices, so more viewers can coincide with fewer units sold — both facts stand. The others don't connect audience growth to falling merchandise sales.\nAnswer: B.",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Explain the paradox", "correct": "C", "options": 5,
+        "text": "An anti-theft device is known to lower the chance that a car is stolen. Yet cars fitted with the device are stolen at a higher rate than cars without it. Which best resolves the paradox?",
+        "choices": [
+          "The device is inexpensive to install.",
+          "Thieves generally avoid cars they know have the device.",
+          "The device is chosen mainly for expensive, highly desirable cars that thieves target most.",
+          "Most car owners choose not to install the device.",
+          "The device occasionally malfunctions."
+        ],
+        "correct": "C",
+        "hint": "A selection effect: what kind of car tends to get the device?",
+        "expl": "If the device is installed mostly on the most theft-prone luxury cars (C), those cars are stolen more often despite the device lowering each car's individual risk — both facts hold.\nAnswer: C.",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Boldface & method of reasoning", "correct": "B", "options": 5,
+        "text": "Critic: The mayor claims the new subway line will ease the city's traffic. But the line serves only the wealthy suburbs, whose residents rarely use public transit. Therefore the line will do little to reduce traffic. In the critic's argument, the two boldface parts — 'the line serves only the wealthy suburbs, whose residents rarely use public transit' and 'the line will do little to reduce traffic' — play which roles?",
+        "choices": [
+          "The first is the critic's conclusion; the second is evidence for it.",
+          "The first is evidence the critic uses; the second is the critic's conclusion.",
+          "Both are conclusions the critic rejects.",
+          "The first is the mayor's conclusion; the second supports the mayor.",
+          "The first is an assumption; the second is a counterexample."
+        ],
+        "correct": "B",
+        "hint": "Which part is the claim being argued for, and which supports it?",
+        "expl": "The first boldface is the evidence (suburb residents rarely use transit); the second is the critic's conclusion (the line won't reduce traffic). Evidence → conclusion.\nAnswer: B.",
+        "level": "medium"
+      }
+    ]
   }
 ];

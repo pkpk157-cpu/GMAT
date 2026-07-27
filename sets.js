@@ -1649,5 +1649,133 @@ window.GMAT_SETS = [
         "level": "hard"
       }
     ]
+  },
+  {
+    "id": "quant-timework-ex",
+    "title": "Time & Work — Exercise",
+    "section": "quant",
+    "source": "Time & Work question bank (with solutions)",
+    "questions": [
+      {
+        "n": 1, "topic": "Work & rate", "correct": "C", "options": 4,
+        "text": "A can do a job in 12 days. A, B and C together finish it in 6 days. If B is half as efficient as A, how many days does C alone need?",
+        "choices": ["12", "16", "24", "18"],
+        "hint": "Work in daily fractions: rate of C = combined − A − B.",
+        "expl": "Step 1 — Rates: A \\(= \\frac{1}{12}\\), combined \\(= \\frac{1}{6}\\), B \\(= \\frac{1}{2}\\cdot\\frac{1}{12} = \\frac{1}{24}\\).\nStep 2 — C \\(= \\frac{1}{6} - \\frac{1}{12} - \\frac{1}{24} = \\frac{4-2-1}{24} = \\frac{1}{24}\\).\nStep 3 — C alone \\(= 24\\) days.\nAnswer: 24 days (C).",
+        "level": "medium"
+      },
+      {
+        "n": 2, "topic": "Work & rate", "correct": "B", "options": 4,
+        "text": "A + B can do a job in 12 days, B + C in 16 days, and A + C in 24 days. How long do A, B and C together take?",
+        "choices": ["\\(10\\tfrac13\\) days", "\\(10\\tfrac23\\) days", "12 days", "9 days"],
+        "hint": "Add the three pair-rates to get twice the combined rate.",
+        "expl": "Step 1 — Take total work \\(= 48\\). Pair rates: \\(A+B = 4\\), \\(B+C = 3\\), \\(A+C = 2\\) units/day.\nStep 2 — Sum \\(= 9 = 2(A+B+C)\\), so \\(A+B+C = 4.5\\) units/day.\nStep 3 — Days \\(= \\frac{48}{4.5} = \\frac{32}{3} = 10\\tfrac23\\).\nAnswer: \\(10\\tfrac23\\) days (B).",
+        "level": "medium"
+      },
+      {
+        "n": 3, "topic": "Work & rate", "correct": "D", "options": 4,
+        "text": "A alone needs 36 days. B is 1.5 times as efficient as A, and C is twice as efficient as A. How many days do all three together take?",
+        "choices": ["15", "9", "12", "8"],
+        "hint": "Set total work to a convenient number so each rate is an integer.",
+        "expl": "Step 1 — Total \\(= 72\\). Rates: A \\(= 2\\), B \\(= 3\\), C \\(= 4\\) units/day.\nStep 2 — Together \\(= 9\\) units/day; days \\(= \\frac{72}{9} = 8\\).\nAnswer: 8 (D).",
+        "level": "easy"
+      },
+      {
+        "n": 4, "topic": "Work & rate", "correct": "B", "options": 4,
+        "text": "A needs 24 days and B needs 36 days. C is twice as efficient as A and B working together. How many days does C alone take?",
+        "choices": ["\\(4\\tfrac15\\)", "\\(7\\tfrac15\\)", "\\(5\\tfrac15\\)", "\\(6\\tfrac15\\)"],
+        "hint": "Find A+B's combined rate, double it for C.",
+        "expl": "Step 1 — Total \\(= 72\\): A \\(= 3\\), B \\(= 2\\) units/day, so A+B \\(= 5\\).\nStep 2 — C \\(= 2\\times5 = 10\\) units/day.\nStep 3 — C alone \\(= \\frac{72}{10} = 7\\tfrac15\\) days.\nAnswer: \\(7\\tfrac15\\) (B).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "A and B together do a job in 30 days. C, working against them, can undo the whole job in 120 days. B and C together take 240 days. How long does A alone take?",
+        "choices": ["48 days", "36 days", "60 days", "42 days"],
+        "hint": "Treat C's destruction as a negative rate.",
+        "expl": "Step 1 — Total \\(= 240\\): A+B \\(= 8\\), C \\(= -2\\) units/day.\nStep 2 — B+C \\(= 1\\Rightarrow B = 1 - (-2) = 3\\).\nStep 3 — A \\(= 8 - 3 = 5\\); A alone \\(= \\frac{240}{5} = 48\\) days.\nAnswer: 48 days (A).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "P, Q and R finish a job together and are paid $84,000. Alone they would take 12, 15 and 20 days respectively. What is P and Q's combined share?",
+        "choices": ["$63,000", "$56,000", "$42,000", "$49,000"],
+        "hint": "Pay splits by efficiency (daily rate), not by days.",
+        "expl": "Step 1 — Efficiency ratio \\(= \\frac{1}{12}:\\frac{1}{15}:\\frac{1}{20} = 5:4:3\\).\nStep 2 — P+Q share \\(= \\frac{5+4}{12}\\times84000 = \\frac{9}{12}\\times84000\\).\nStep 3 — \\(= 63000\\).\nAnswer: $63,000 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "A, B and C finish a job in 6 days and are paid $480 total. If their efficiencies are in ratio 4 : 5 : 7, what is B's daily pay?",
+        "choices": ["$25", "$30", "$20", "$40"],
+        "hint": "Daily total pay ÷ efficiency share.",
+        "expl": "Step 1 — Daily pay \\(= \\frac{480}{6} = 80\\).\nStep 2 — B's share \\(= \\frac{5}{4+5+7}\\times80 = \\frac{5}{16}\\times80 = 25\\).\nAnswer: $25 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "24 men are set to finish a job in 35 days. After 20 days they have done only 50%. How many extra men are needed to finish on time?",
+        "choices": ["8", "10", "12", "11"],
+        "hint": "The two halves are equal work, so the man-days for each half are equal.",
+        "expl": "Step 1 — First half: \\(24\\times20 = 480\\) man-days for 50% of the job.\nStep 2 — The remaining 50% must also equal 480 man-days, now over 15 days: \\((24+x)\\times15 = 480\\).\nStep 3 — \\(24 + x = 32\\Rightarrow x = 8\\).\nAnswer: 8 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "10 men finish a job in 18 days; 15 women finish the same job in 24 days. 5 men and 6 women work for 10 days, then 5 men finish the rest. What is the total number of days?",
+        "choices": ["30 days", "20 days", "26 days", "13 days"],
+        "hint": "First convert women into man-equivalents.",
+        "expl": "Step 1 — \\(10\\times18 = 15\\times24\\) in the respective units ⟹ \\(1\\) man \\(= 2\\) women.\nStep 2 — So \\(5\\) men + \\(6\\) women \\(= 5 + 3 = 8\\) men-equivalent. Total work \\(= 10\\times18 = 180\\) man-days.\nStep 3 — First 10 days: \\(8\\times10 = 80\\); remaining \\(100\\) by 5 men \\(= 20\\) days.\nStep 4 — Total \\(= 10 + 20 = 30\\) days.\nAnswer: 30 days (A).",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Work & rate", "correct": "C", "options": 4,
+        "text": "A job would take one man 11 days alone. Starting with one man, a new man joins each day; after the 8th day no more are added. In how many days is 4 times the original job completed?",
+        "choices": ["11", "10", "9", "8"],
+        "hint": "Day k has k men working (until day 8). Add up the man-days.",
+        "expl": "Step 1 — 4× work \\(= 4\\times11 = 44\\) man-days.\nStep 2 — Days 1–8 give \\(1+2+\\dots+8 = 36\\) man-days.\nStep 3 — Remaining \\(8\\) man-days done on day 9 by the 8 men.\nStep 4 — Total \\(= 9\\) days.\nAnswer: 9 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "Together, Rashmi and Pallavi make a carpet in x days. Alone, Rashmi takes 3 days more than x and Pallavi takes 12 days more than x. How long does Rashmi take alone?",
+        "choices": ["9 days", "6 days", "12 days", "8 days"],
+        "hint": "Set 1/(x+3) + 1/(x+12) = 1/x and solve for x.",
+        "expl": "Step 1 — \\(\\frac{1}{x+3} + \\frac{1}{x+12} = \\frac{1}{x}\\).\nStep 2 — Clearing gives \\(x^2 = 36\\Rightarrow x = 6\\).\nStep 3 — Rashmi alone \\(= x + 3 = 9\\) days.\nAnswer: 9 days (A).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Work & rate", "correct": "C", "options": 4,
+        "text": "A alone can do half a job in 35 days. B takes as long to do one-third of the job as A takes to do one-quarter. How many days do A and B together take for the whole job?",
+        "choices": ["35 days", "40 days", "30 days", "60 days"],
+        "hint": "Get A's full time first, then translate B's condition into a rate ratio.",
+        "expl": "Step 1 — A does half in 35 days ⟹ whole in 70 days.\nStep 2 — A does ¼ in \\(17.5\\) days; B does ⅓ in \\(17.5\\) days ⟹ B whole \\(= 52.5\\) days.\nStep 3 — Rates ratio A:B \\(= 3:4\\); together \\(\\frac{70\\times3}{7} = 30\\) days.\nAnswer: 30 days (C).",
+        "level": "hard"
+      },
+      {
+        "n": 13, "topic": "Work & rate", "correct": "C", "options": 4,
+        "text": "B takes 4 times as long as A and C together; C takes 3 times as long as A and B together. If all three together finish in 20 days, how long does B alone take?",
+        "choices": ["110 days", "80 days", "100 days", "90 days"],
+        "hint": "\"B = 4×(A+C)\" in time means B's rate relates to the rest; convert to efficiencies.",
+        "expl": "Step 1 — From the two conditions the efficiency ratio works out to A:B:C \\(= 11:4:5\\).\nStep 2 — Total work \\(= 20\\times(11+4+5) = 400\\) units.\nStep 3 — B alone \\(= \\frac{400}{4} = 100\\) days.\nAnswer: 100 days (C).",
+        "level": "hard"
+      },
+      {
+        "n": 14, "topic": "Work & rate", "correct": "C", "options": 4,
+        "text": "A is \\(166\\tfrac23\\%\\) as efficient as B (i.e. 66⅔% more). Working together they complete \\(88\\tfrac89\\%\\) of the job in 10 days. How many days does B alone need for the whole job?",
+        "choices": ["40", "25", "30", "35"],
+        "hint": "Efficiency ratio A:B = 5:3 → days ratio 3:5.",
+        "expl": "Step 1 — A:B efficiency \\(= 5:3\\). Let total \\(= 15k\\): A \\(= 5\\), B \\(= 3\\) units/day, together \\(8\\).\nStep 2 — \\(\\frac{8}{9}\\) of work in 10 days ⟹ \\(8\\times10 = \\frac{8}{9}\\times15k\\Rightarrow k = 6\\).\nStep 3 — B alone \\(= 5k = 30\\) days.\nAnswer: 30 (C).",
+        "level": "hard"
+      },
+      {
+        "n": 15, "topic": "Work & rate", "correct": "A", "options": 4,
+        "text": "In 15 minutes Sunder can cut 112 onions, and Subhash is 125% as efficient. Working together, how long do they take to cut 4,200 onions?",
+        "choices": ["4 h 10 min", "4 h 20 min", "4 h 50 min", "4 h 15 min"],
+        "hint": "Find their combined onions-per-hour rate.",
+        "expl": "Step 1 — Subhash cuts \\(1.25\\times112 = 140\\) per 15 min; together \\(252\\) per 15 min.\nStep 2 — Per hour \\(= 252\\times4 = 1008\\) onions.\nStep 3 — Time \\(= \\frac{4200}{1008} = 4\\tfrac16\\) h \\(=\\) 4 h 10 min.\nAnswer: 4 h 10 min (A).",
+        "level": "medium"
+      }
+    ]
   }
 ];

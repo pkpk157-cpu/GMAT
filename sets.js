@@ -1777,5 +1777,253 @@ window.GMAT_SETS = [
         "level": "medium"
       }
     ]
+  },
+  {
+    "id": "quant-average-ex",
+    "title": "Averages — Exercise",
+    "section": "quant",
+    "source": "Average exercise (with answers, hints & explanations)",
+    "questions": [
+      {
+        "n": 1, "topic": "Weighted averages", "correct": "D", "options": 4,
+        "text": "Of 40 boys, the average weight of 30 of them is 60 kg and of the remaining 10 is 56 kg. What is the average weight of the whole class?",
+        "choices": ["58.5", "58", "57", "59"],
+        "hint": "Weight by group size — total weight ÷ total count.",
+        "expl": "Step 1 — Total \\(= 30\\times60 + 10\\times56 = 1800 + 560 = 2360\\).\nStep 2 — Average \\(= \\frac{2360}{40} = 59\\).\nAnswer: 59 (D).",
+        "level": "easy"
+      },
+      {
+        "n": 2, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "The average of six numbers is 3.95. Two of them average 3.4 and another two average 3.85. What is the average of the remaining two?",
+        "choices": ["4.5", "4.6", "4.7", "4.8"],
+        "hint": "Work with sums: subtract the known groups' sums from the total.",
+        "expl": "Step 1 — Total \\(= 6\\times3.95 = 23.7\\).\nStep 2 — Remaining sum \\(= 23.7 - 2(3.4) - 2(3.85) = 23.7 - 6.8 - 7.7 = 9.2\\).\nStep 3 — Average \\(= \\frac{9.2}{2} = 4.6\\).\nAnswer: 4.6 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 3, "topic": "Mean, median & mode", "correct": "A", "options": 4,
+        "text": "A picnic group averages 16 years. When 20 new people averaging 15 years join, the average becomes 15.5. How many were in the group originally?",
+        "choices": ["20", "18", "22", "24"],
+        "hint": "Set up total-age equation before and after the join.",
+        "expl": "Step 1 — \\(\\frac{16x + 15\\cdot20}{x+20} = 15.5\\).\nStep 2 — \\(16x + 300 = 15.5x + 310\\Rightarrow 0.5x = 10\\).\nStep 3 — \\(x = 20\\).\nAnswer: 20 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 4, "topic": "Mean, median & mode", "correct": "C", "options": 4,
+        "text": "The average age of 36 students is 14 years. Adding the teacher raises the average by 1 year. How old is the teacher?",
+        "choices": ["31", "36", "51", "48"],
+        "hint": "New total (37 people) minus old total gives the teacher's age.",
+        "expl": "Step 1 — Teacher \\(= 37\\times15 - 36\\times14 = 555 - 504\\).\nStep 2 — \\(= 51\\).\nAnswer: 51 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "In his 12th innings a batsman scores 65 and raises his average by 2. What is his average after the 12th innings (he was never 'not out')?",
+        "choices": ["42", "43", "44", "45"],
+        "hint": "If the new average is x, the previous 11 averaged x−2.",
+        "expl": "Step 1 — \\(12x = 11(x-2) + 65\\).\nStep 2 — \\(12x = 11x - 22 + 65\\Rightarrow x = 43\\).\nAnswer: 43 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Mean, median & mode", "correct": "A", "options": 4,
+        "text": "In the first 10 overs the run rate was 3.2. What rate is needed in the remaining 40 overs to reach a target of 282?",
+        "choices": ["6.25", "6.50", "6.75", "7.00"],
+        "hint": "Runs still needed ÷ overs remaining.",
+        "expl": "Step 1 — Runs so far \\(= 10\\times3.2 = 32\\); needed \\(= 282 - 32 = 250\\).\nStep 2 — Rate \\(= \\frac{250}{40} = 6.25\\).\nAnswer: 6.25 (A).",
+        "level": "medium"
+      },
+      {
+        "n": 7, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "The average attendance for the first 4 days of a week is 30, and for the first 5 days is 32. What was the attendance on the 5th day?",
+        "choices": ["32", "40", "38", "36"],
+        "hint": "Difference of the two running totals.",
+        "expl": "Step 1 — 5-day total \\(= 5\\times32 = 160\\); 4-day total \\(= 4\\times30 = 120\\).\nStep 2 — Day 5 \\(= 160 - 120 = 40\\).\nAnswer: 40 (B).",
+        "level": "easy"
+      },
+      {
+        "n": 8, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "A batsman scores 87 in his 17th innings and raises his average by 3. What is his average after the 17th innings?",
+        "choices": ["36", "39", "42", "45"],
+        "hint": "Previous 16 innings averaged (x−3) if x is the new average.",
+        "expl": "Step 1 — \\(16(x-3) + 87 = 17x\\).\nStep 2 — \\(16x - 48 + 87 = 17x\\Rightarrow x = 39\\).\nAnswer: 39 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Mean, median & mode", "correct": "D", "options": 4,
+        "text": "A student's average is 63 per paper. With 20 more marks in Geography and 2 more in History, the average would be 65. How many papers were there?",
+        "choices": ["8", "9", "10", "11"],
+        "hint": "The extra 22 marks raise the average by 2 across all papers.",
+        "expl": "Step 1 — \\(63x + 22 = 65x\\).\nStep 2 — \\(2x = 22\\Rightarrow x = 11\\).\nAnswer: 11 (D).",
+        "level": "medium"
+      },
+      {
+        "n": 10, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "A hostel has 35 students. When 7 more join, daily mess expenses rise by $42 but the average per head drops by $1. What was the original daily expenditure?",
+        "choices": ["$400", "$420", "$445", "$465"],
+        "hint": "Let original average be x; write the new average two ways.",
+        "expl": "Step 1 — Original total \\(= 35x\\); new total \\(= 35x + 42\\) over 42 heads at \\(x-1\\).\nStep 2 — \\(35x + 42 = 42(x-1)\\Rightarrow 35x + 42 = 42x - 42\\).\nStep 3 — \\(7x = 84\\Rightarrow x = 12\\); original \\(= 35\\times12 = 420\\).\nAnswer: $420 (B).",
+        "level": "hard"
+      },
+      {
+        "n": 11, "topic": "Weighted averages", "correct": "B", "options": 4,
+        "text": "A class of 45 averages 52 kg. Five students averaging 48 kg leave and five averaging 54 kg join. What is the new average weight?",
+        "choices": ["52.6 kg", "\\(52\\tfrac23\\) kg", "\\(52\\tfrac13\\) kg", "53 kg"],
+        "hint": "Adjust the total by what left and what joined.",
+        "expl": "Step 1 — New total \\(= 45\\times52 - 5\\times48 + 5\\times54 = 2340 - 240 + 270 = 2370\\).\nStep 2 — Average \\(= \\frac{2370}{45} = 52\\tfrac23\\) kg.\nAnswer: \\(52\\tfrac23\\) kg (B).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "The average temperature for Mon–Tue–Wed was 55°, and for Tue–Wed–Thu was 60°. If Thursday was 56°, what was Monday's temperature?",
+        "choices": ["39°", "41°", "45°", "43°"],
+        "hint": "Subtract the overlapping (Tue+Wed) from each triple.",
+        "expl": "Step 1 — Mon+Tue+Wed \\(= 165\\); Tue+Wed+Thu \\(= 180\\).\nStep 2 — Tue+Wed \\(= 180 - 56 = 124\\).\nStep 3 — Mon \\(= 165 - 124 = 41\\).\nAnswer: 41° (B).",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Weighted averages", "correct": "B", "options": 4,
+        "text": "One section of 20 students averages 66% and another of 15 students averages 70%. What is the combined average?",
+        "choices": ["66.7%", "67.7%", "68.7%", "69.7%"],
+        "hint": "Weight each average by its section size.",
+        "expl": "Step 1 — \\(\\frac{20\\times66 + 15\\times70}{35} = \\frac{1320 + 1050}{35} = \\frac{2370}{35}\\).\nStep 2 — \\(= 67.7\\%\\).\nAnswer: 67.7% (B).",
+        "level": "medium"
+      },
+      {
+        "n": 14, "topic": "Weighted averages", "correct": "C", "options": 4,
+        "text": "A taxi averages 40 km/h for 60% of a journey's distance, 30 km/h for 20%, and 10 km/h for the last 20%. What is the average speed for the whole journey?",
+        "choices": ["25 km/h", "26 km/h", "24 km/h", "30 km/h"],
+        "hint": "Average speed = total distance ÷ total time; use a convenient total distance.",
+        "expl": "Step 1 — For distance D, time \\(= \\frac{0.6D}{40} + \\frac{0.2D}{30} + \\frac{0.2D}{10} = 0.015D + 0.00667D + 0.02D = 0.04167D\\).\nStep 2 — Average \\(= \\frac{D}{0.04167D} = 24\\) km/h.\nAnswer: 24 km/h (C).",
+        "level": "hard"
+      },
+      {
+        "n": 15, "topic": "Mean, median & mode", "correct": "B", "options": 4,
+        "text": "The average of 5 consecutive integers is n. If the next two consecutive integers are also included, the average of the 7 numbers will:",
+        "choices": ["increase by 2", "increase by 1", "remain the same", "increase by 1.4"],
+        "hint": "For consecutive integers the average is the middle value.",
+        "expl": "Step 1 — Five consecutive: \\(n-2,\\dots,n+2\\), average \\(= n\\).\nStep 2 — Seven consecutive: \\(n-2,\\dots,n+4\\), average \\(= n+1\\) (the new middle).\nAnswer: increase by 1 (B).",
+        "level": "medium"
+      }
+    ]
+  },
+  {
+    "id": "quant-mixture-ex",
+    "title": "Mixtures & Alligation — Exercise",
+    "section": "quant",
+    "source": "Mixture & Alligation exercise (with answers & explanations)",
+    "questions": [
+      {
+        "n": 1, "topic": "Mixtures & solutions", "correct": "B", "options": 4,
+        "text": "Gold is 19 times as heavy as water and copper 9 times. In what ratio (gold : copper) must they be mixed so the result is 15 times as heavy as water?",
+        "choices": ["2 : 3", "3 : 2", "1 : 3", "2 : 1"],
+        "hint": "Alligation: distances from the mean are inversely proportional to amounts.",
+        "expl": "Step 1 — Around mean 15: gold is 4 above (19), copper is 6 below (9).\nStep 2 — Amounts are inverse to distances: gold : copper \\(= 6 : 4 = 3 : 2\\).\nAnswer: 3 : 2 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 2, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "6 litres of a 20% alcohol solution are mixed with 4 litres of a 60% alcohol solution. What is the alcohol strength of the mixture?",
+        "choices": ["80%", "40%", "36%", "48%"],
+        "hint": "Total alcohol ÷ total volume.",
+        "expl": "Step 1 — Alcohol \\(= 0.20\\times6 + 0.60\\times4 = 1.2 + 2.4 = 3.6\\) L in 10 L.\nStep 2 — Strength \\(= \\frac{3.6}{10}\\times100 = 36\\%\\).\nAnswer: 36% (C).",
+        "level": "easy"
+      },
+      {
+        "n": 3, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "80 kg of tea at $15/kg is mixed with 20 kg at $20/kg. To earn 25% profit, at what price per kg should the mix be sold?",
+        "choices": ["$23.75", "$22", "$20", "$19.20"],
+        "hint": "Find the blended cost, then add 25%.",
+        "expl": "Step 1 — Cost \\(= \\frac{80\\times15 + 20\\times20}{100} = \\frac{1600}{100} = 16\\).\nStep 2 — SP \\(= 1.25\\times16 = 20\\).\nAnswer: $20 (C).",
+        "level": "easy"
+      },
+      {
+        "n": 4, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "Two tea varieties costing $20/kg and $25/kg are blended in ratio 5 : 4 and sold at $23/kg. What is the profit percent?",
+        "choices": ["5% profit", "3.5% loss", "3.5% profit", "No profit, no loss"],
+        "hint": "Weighted cost per kg vs. selling price.",
+        "expl": "Step 1 — Cost \\(= \\frac{5\\times20 + 4\\times25}{9} = \\frac{200}{9} \\approx 22.22\\).\nStep 2 — Profit% \\(= \\frac{23 - 22.22}{22.22}\\times100 \\approx 3.5\\%\\).\nAnswer: 3.5% profit (C).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Mixtures & solutions", "correct": "A", "options": 4,
+        "text": "A chemist has 10 litres of a 10% nitric-acid solution. How much water must be added to dilute it to 4% strength?",
+        "choices": ["15 L", "20 L", "18 L", "25 L"],
+        "hint": "The amount of acid stays fixed; only water increases.",
+        "expl": "Step 1 — Acid \\(= 10\\%\\times10 = 1\\) L (constant).\nStep 2 — \\(4\\%\\times(10 + x) = 1\\Rightarrow 10 + x = 25\\).\nStep 3 — \\(x = 15\\) L.\nAnswer: 15 L (A).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Mixtures & solutions", "correct": "D", "options": 4,
+        "text": "How many millilitres of water must be added to 9 ml of aftershave containing 50% alcohol to make it 30% alcohol?",
+        "choices": ["3", "4", "5", "6"],
+        "hint": "Alcohol amount is fixed; solve for the new total volume.",
+        "expl": "Step 1 — Alcohol \\(= 0.50\\times9 = 4.5\\) ml.\nStep 2 — \\(0.30\\times(9 + x) = 4.5\\Rightarrow 9 + x = 15\\).\nStep 3 — \\(x = 6\\) ml.\nAnswer: 6 (D).",
+        "level": "easy"
+      },
+      {
+        "n": 7, "topic": "Mixtures & solutions", "correct": "B", "options": 4,
+        "text": "55 litres of adulterated milk has milk : water = 7 : 4. How much water must be added to make it 7 : 6?",
+        "choices": ["5 L", "10 L", "15 L", "25 L"],
+        "hint": "Milk stays fixed; find the water needed for the new ratio.",
+        "expl": "Step 1 — Milk \\(= \\frac{7}{11}\\times55 = 35\\) L; water \\(= 20\\) L.\nStep 2 — For 7 : 6 with milk 35, water \\(= \\frac{6}{7}\\times35 = 30\\) L.\nStep 3 — Add \\(30 - 20 = 10\\) L.\nAnswer: 10 L (B).",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "Alloys A and B have gold : copper in ratios 7 : 2 and 7 : 11. Equal quantities are melted into alloy C. What is gold : copper in C?",
+        "choices": ["5 : 7", "5 : 9", "7 : 5", "9 : 5"],
+        "hint": "Take equal amounts (LCM of 9 and 18) and add the gold and copper parts.",
+        "expl": "Step 1 — Per 18 units of each: A has gold 14, copper 4; B has gold 7, copper 11.\nStep 2 — Gold \\(= 21\\), copper \\(= 15\\).\nStep 3 — Ratio \\(= 21 : 15 = 7 : 5\\).\nAnswer: 7 : 5 (C).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "A can holds liquids A and B in ratio 7 : 5. When 9 litres are drawn off and the can is refilled with B, the ratio becomes 7 : 9. How many litres of A did the can hold originally?",
+        "choices": ["10", "20", "21", "25"],
+        "hint": "Removing mixture keeps the A:B ratio; then only B is added.",
+        "expl": "Step 1 — Let A \\(= 7x\\), B \\(= 5x\\), total \\(12x\\). Drawing 9 removes \\(\\frac{7}{12}\\cdot9\\) of A.\nStep 2 — A left \\(= 7x - \\frac{63}{12}\\); setting the new ratio \\(\\frac{A}{B}=\\frac{7}{9}\\) solves to \\(x = 3\\).\nStep 3 — A originally \\(= 7\\times3 = 21\\) L.\nAnswer: 21 (C).",
+        "level": "hard"
+      },
+      {
+        "n": 10, "topic": "Mixtures & solutions", "correct": "B", "options": 4,
+        "text": "A jar of whisky is 40% alcohol. Part is replaced by whisky that is 19% alcohol, giving 26% overall. What fraction was replaced?",
+        "choices": ["1/3", "2/3", "2/5", "3/5"],
+        "hint": "Alligation of the two strengths around the final 26%.",
+        "expl": "Step 1 — Around mean 26: original (40) is 14 above, added (19) is 7 below.\nStep 2 — Original : added \\(= 7 : 14 = 1 : 2\\).\nStep 3 — Replaced (added) fraction \\(= \\frac{2}{3}\\).\nAnswer: 2/3 (B).",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Mixtures & solutions", "correct": "B", "options": 4,
+        "text": "How many kg of custard powder at $40/kg must be mixed with 16 kg at $55/kg so that selling the mix at $60/kg gives 25% profit?",
+        "choices": ["11 kg", "14 kg", "12 kg", "20 kg"],
+        "hint": "Find the mixture's required cost, then apply alligation.",
+        "expl": "Step 1 — Cost of mix \\(= \\frac{60}{1.25} = 48\\).\nStep 2 — Alligation around 48: cheaper(40) : dearer(55) \\(= (55-48):(48-40) = 7:8\\).\nStep 3 — \\(\\frac{40\\text{-powder}}{16} = \\frac{7}{8}\\Rightarrow 40\\text{-powder} = 14\\) kg.\nAnswer: 14 kg (B).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Mixtures & solutions", "correct": "B", "options": 4,
+        "text": "From a 50-litre cask full of milk, 10 litres are drawn and replaced with water. This is done twice. How much milk remains?",
+        "choices": ["20 litres", "32 litres", "25 litres", "30 litres"],
+        "hint": "Each replacement multiplies the milk by (1 − 10/50).",
+        "expl": "Step 1 — Milk left \\(= 50\\left(1 - \\frac{10}{50}\\right)^2 = 50(0.8)^2\\).\nStep 2 — \\(= 50\\times0.64 = 32\\) litres.\nAnswer: 32 litres (B).",
+        "level": "medium"
+      },
+      {
+        "n": 13, "topic": "Mixtures & solutions", "correct": "C", "options": 4,
+        "text": "From a 54-litre vessel full of acid, some is drawn off and replaced with water; the same is repeated once more, leaving 24 litres of pure acid. How much acid was drawn off each time?",
+        "choices": ["12 L", "16 L", "18 L", "24 L"],
+        "hint": "Use 54(1 − y/54)² = 24.",
+        "expl": "Step 1 — \\(54\\left(1 - \\frac{y}{54}\\right)^2 = 24\\Rightarrow \\left(1 - \\frac{y}{54}\\right)^2 = \\frac{4}{9}\\).\nStep 2 — \\(1 - \\frac{y}{54} = \\frac{2}{3}\\Rightarrow \\frac{y}{54} = \\frac{1}{3}\\).\nStep 3 — \\(y = 18\\) L.\nAnswer: 18 L (C).",
+        "level": "medium"
+      },
+      {
+        "n": 14, "topic": "Mixtures & solutions", "correct": "B", "options": 4,
+        "text": "A tank is filled with A, then refilled with B each time it is half-empty, alternating A, B, A, B. After four fills, what percent of the tank is A-type?",
+        "choices": ["33.5%", "37.5%", "40%", "50%"],
+        "hint": "Track A through each half-emptying (each halves the current A).",
+        "expl": "Step 1 — Start 100% A. Half-empty + fill B → 50 A. Again + A → 75 A. Again + B → 37.5 A. Again + B → the last fill... tracking gives A = 37.5.\nStep 2 — Working the four steps: 100 → 50 → 75 → 37.5% A.\nAnswer: 37.5% (B).",
+        "level": "hard"
+      }
+    ]
   }
 ];

@@ -491,6 +491,35 @@
   .cn-nav button:disabled { opacity: .4; }
   .cn-nav button.next { background: var(--c-cr); border-color: var(--c-cr); color: #fff; }
 
+  /* Custom adaptive practice session */
+  .cta-session { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 15px 17px; border-radius: var(--radius); border: none; background: linear-gradient(135deg, var(--accent), var(--c-overall)); color: #fff; box-shadow: var(--shadow); margin-bottom: 14px; cursor: pointer; }
+  .cta-session .ico { font-size: 22px; flex: none; }
+  .cta-session .t { font-weight: 800; font-size: 15px; }
+  .cta-session .s { font-size: 12.5px; opacity: .9; margin-top: 2px; }
+  .sc-body { display: flex; flex-direction: column; gap: 16px; max-height: 78vh; overflow-y: auto; }
+  .sc-h { font-weight: 800; font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  .sc-seg { display: flex; flex-wrap: wrap; gap: 7px; }
+  .sc-seg button { flex: 1; min-width: 52px; padding: 9px 6px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 13px; color: var(--ink); }
+  .sc-seg button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .sc-sources { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .sc-secrow { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--surface-2); font-weight: 700; font-size: 13px; border-top: 1px solid var(--line); }
+  .sc-secrow:first-child { border-top: none; }
+  .sc-secrow .sec-toggle { margin-left: auto; font-size: 12px; color: var(--accent); background: none; border: none; font-weight: 700; cursor: pointer; }
+  .sc-setrow { display: flex; align-items: center; gap: 10px; padding: 9px 12px 9px 22px; border-top: 1px solid var(--line-soft); font-size: 13.5px; cursor: pointer; }
+  .sc-setrow .cb { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--line); display: grid; place-items: center; flex: none; color: #fff; font-size: 12px; }
+  .sc-setrow.on .cb { background: var(--accent); border-color: var(--accent); }
+  .sc-setrow .qn { margin-left: auto; color: var(--ink-faint); font-size: 12px; }
+  .sc-start { width: 100%; padding: 14px; border-radius: 11px; border: none; background: var(--accent); color: #fff; font-weight: 800; font-size: 15px; cursor: pointer; }
+  .sc-start:disabled { opacity: .45; }
+  .ss-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .ss-prog { font-weight: 700; font-size: 13px; color: var(--ink-soft); }
+  .ss-timer { margin-left: auto; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 15px; color: var(--accent); background: var(--accent-wash); padding: 5px 11px; border-radius: 8px; }
+  .ss-timer.low { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, var(--surface)); }
+  .ss-trace { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 4px; }
+  .ss-trace i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .ss-trace i.easy { background: var(--good); } .ss-trace i.medium { background: var(--gold); } .ss-trace i.hard { background: var(--bad); }
+  .ss-trace i.ok { outline: 2px solid color-mix(in srgb, var(--good) 60%, transparent); } .ss-trace i.no { opacity: .4; }
+
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
   @media (max-width: 430px) {
@@ -556,6 +585,13 @@
   <div class="pf-body" id="cn-body"></div>
 </div>
 
+<!-- Custom adaptive practice session -->
+<div class="scrim" id="sess-config" hidden><div class="modal" id="sess-config-card"></div></div>
+<div class="profile" id="session" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="ss-title">Practice session</h2><button class="pf-close" id="ss-close" title="End session">✕</button></div></div>
+  <div class="pf-body" id="ss-body"></div>
+</div>
+
 <script src="sets.js"></script>
 <script src="concepts.js"></script>
 <script>
@@ -611,7 +647,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v40";
+  const APP_VERSION = "v41";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -771,6 +807,9 @@
     const dT = state.targets.daily||0, wT = state.targets.weekly||0;
 
     let h = `<div class="sec-head" style="--secc:var(--c-overall)"><h2><span class="bar"></span>Overall Progress</h2><p>${esc(SECTIONS.find(s=>s.dashboard).blurb)}</p></div>`;
+
+    // adaptive practice session entry
+    h += `<button class="cta-session" data-session-open="1"><span class="ico">🎯</span><div><div class="t">Start a practice session</div><div class="s">Pick topics, length &amp; a timer — questions get harder as you get them right, just like the real test.</div></div></button>`;
 
     // goals
     if (dT>0 || wT>0) {
@@ -955,6 +994,7 @@
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this set added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
     const oc = e.target.closest("[data-openconcept]"); if (oc) { openConcept(oc.getAttribute("data-openconcept")); return; }
+    if (e.target.closest("[data-session-open]")) { openSessionConfig(); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
   });
 
@@ -1434,10 +1474,202 @@
     const j = e.target.closest("[data-jump]"); if (j) { const set = SETS.find(s => s.id === runSetId); closeJumper(); if (set) goto(parseInt(j.getAttribute("data-jump"), 10), set); }
   });
 
+  /* ===================== Adaptive practice session ===================== */
+  // A custom, GMAT-style session: pick how many questions, from which sets, and
+  // an optional overall time limit. Questions are ordered by performance —
+  // start at medium, get one right → the next is harder, get one wrong → easier.
+  const LEVELS = ["easy", "medium", "hard"];
+  const lvlIdx = (l) => { const i = LEVELS.indexOf(l); return i < 0 ? 1 : i; };   // unknown → medium
+  let cfg = null;   // config: { sets:Set<id>, count, time(min) }
+  let sess = null;  // live session
+
+  function selectedPoolCount() { let n = 0; SETS.forEach(s => { if (cfg.sets.has(s.id)) n += s.questions.length; }); return n; }
+
+  function openSessionConfig() {
+    if (!cfg) cfg = { sets: new Set(SETS.map(s => s.id)), count: 10, time: 0 };
+    cfg.sets = new Set([...cfg.sets].filter(id => SETS.some(s => s.id === id)));
+    if (!cfg.sets.size) SETS.forEach(s => cfg.sets.add(s.id));
+    renderSessionConfig();
+    document.getElementById("sess-config").hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeSessionConfig() {
+    document.getElementById("sess-config").hidden = true;
+    if (document.getElementById("session").hidden) document.body.style.overflow = "";
+  }
+  function renderSessionConfig() {
+    const total = selectedPoolCount();
+    const counts = [5, 10, 15, 20, 30], times = [0, 10, 20, 30, 45];
+    let h = `<span class="kick">Practice session</span><h2>Build your session</h2><p class="lead">Choose how many questions, which topics, and an optional time limit. The order adapts to how you're doing — right answers make the next question harder.</p><div class="sc-body">`;
+    h += `<div><div class="sc-h">Number of questions</div><div class="sc-seg">`;
+    counts.forEach(c => h += `<button class="${cfg.count === c ? "on" : ""}" data-count="${c}">${c}</button>`);
+    h += `</div></div>`;
+    h += `<div><div class="sc-h">Time limit</div><div class="sc-seg">`;
+    times.forEach(t => h += `<button class="${cfg.time === t ? "on" : ""}" data-time="${t}">${t === 0 ? "None" : t + " min"}</button>`);
+    h += `</div></div>`;
+    h += `<div><div class="sc-h">Topics to include</div><div class="sc-sources">`;
+    SECTIONS.filter(s => s.subjects).forEach(sec => {
+      const list = SETS.filter(s => s.section === sec.id); if (!list.length) return;
+      const allOn = list.every(s => cfg.sets.has(s.id));
+      h += `<div class="sc-secrow"><span style="color:${sec.color}">●</span> ${esc(sec.nav)}<button class="sec-toggle" data-sectoggle="${sec.id}">${allOn ? "Clear" : "All"}</button></div>`;
+      list.forEach(s => {
+        const on = cfg.sets.has(s.id);
+        h += `<div class="sc-setrow ${on ? "on" : ""}" data-settoggle="${esc(s.id)}"><span class="cb">${on ? "✓" : ""}</span><span>${esc(s.title)}</span><span class="qn">${s.questions.length} Qs</span></div>`;
+      });
+    });
+    h += `</div></div>`;
+    const eff = Math.min(cfg.count, total);
+    h += `<button class="sc-start" data-sessstart="1" ${total === 0 ? "disabled" : ""}>${total === 0 ? "Select at least one topic" : `Start ${eff} question${eff === 1 ? "" : "s"}${cfg.time ? " · " + cfg.time + " min" : ""} →`}</button>`;
+    h += `</div>`;
+    document.getElementById("sess-config-card").innerHTML = h;
+  }
+
+  function sessPick() {
+    const li = lvlIdx(sess.curLevel);
+    const avail = sess.pool.filter(x => !sess.used.has(x.key));
+    if (!avail.length) return null;
+    let bestD = 99; avail.forEach(x => { const d = Math.abs(lvlIdx(x.lvl) - li); if (d < bestD) bestD = d; });
+    const tier = avail.filter(x => Math.abs(lvlIdx(x.lvl) - li) === bestD);
+    return tier[Math.floor(Math.random() * tier.length)];
+  }
+  function startSession() {
+    const pool = [];
+    SETS.forEach(s => { if (!cfg.sets.has(s.id)) return; s.questions.forEach(q => pool.push({ set: s, q, lvl: LEVELS.includes(q.level) ? q.level : "medium", key: s.id + "#" + q.n })); });
+    if (!pool.length) return;
+    const count = Math.min(cfg.count, pool.length);
+    sess = { pool, count, order: [], idx: 0, answers: {}, elim: {}, pending: null, curLevel: "medium", used: new Set(), timeMs: cfg.time * 60000, endsAt: cfg.time ? Date.now() + cfg.time * 60000 : 0, timer: null, qStart: 0, submitted: false, logged: false, timeUp: false };
+    const first = sessPick(); if (first) { sess.order.push(first); sess.used.add(first.key); }
+    closeSessionConfig();
+    document.getElementById("session").hidden = false;
+    document.body.style.overflow = "hidden";
+    sess.qStart = Date.now();
+    renderSession(); startSessTimer(); window.scrollTo({ top: 0 });
+  }
+
+  function startSessTimer() { stopSessTimer(); if (!sess || !sess.timeMs) return; sess.timer = setInterval(sessTick, 500); sessTick(); }
+  function stopSessTimer() { if (sess && sess.timer) { clearInterval(sess.timer); sess.timer = null; } }
+  function sessTick() {
+    if (!sess) return;
+    const rem = Math.max(0, sess.endsAt - Date.now());
+    const el = document.getElementById("ss-timer");
+    if (el) { el.textContent = "⏱ " + fmtClock(rem); el.className = "ss-timer" + (rem <= 60000 ? " low" : ""); }
+    if (rem <= 0 && !sess.submitted) finishSession(true);
+  }
+
+  function renderSession() {
+    if (!sess) return;
+    const body = document.getElementById("ss-body");
+    if (sess.submitted) { body.innerHTML = sessResultsHTML(); typeset(body); return; }
+    const cur = sess.order[sess.idx], q = cur.q, sec = secById(cur.set.section), nOpt = q.options || 5;
+    let h = `<div class="ss-top"><span class="ss-prog">Question ${sess.idx + 1} of ${sess.count}</span>`;
+    if (sess.timeMs) h += `<span class="ss-timer" id="ss-timer">⏱ ${fmtClock(Math.max(0, sess.endsAt - Date.now()))}</span>`;
+    h += `</div><div class="ss-trace">`;
+    for (let i = 0; i < sess.count; i++) {
+      if (i < sess.idx) { const o = sess.order[i], a = sess.answers[i]; h += `<i class="${o.lvl} ${a && a.correct ? "ok" : "no"}"></i>`; }
+      else if (i === sess.idx) h += `<i class="${cur.lvl}" style="outline:2px solid var(--accent)"></i>`;
+      else h += `<i style="background:var(--line)"></i>`;
+    }
+    h += `</div>`;
+    const elim = sess.elim[sess.idx] || {}, pend = sess.pending;
+    h += `<div class="qcard"><div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
+    h += `<div class="qtext">${esc(q.text || ("Question " + q.n))}</div>${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
+    LET.slice(0, nOpt).forEach((L, i) => {
+      const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
+      let cls = pend === L ? "sel" : ""; if (elim[L]) cls += " struck";
+      h += `<div class="choice-wrap"><button class="choice ${cls}" data-sesspick="${L}"><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button><button class="choice-elim ${elim[L] ? "on" : ""}" data-sesselim="${L}" aria-label="Cross out option ${L}">✕</button></div>`;
+    });
+    h += `</div>`;
+    const last = sess.idx === sess.count - 1;
+    h += `<button class="btn-primary" style="margin-top:16px" data-sessnext ${pend ? "" : "disabled"}>${last ? "Finish session" : "Next question ›"}</button>`;
+    h += `<p class="mode-note" style="text-align:center">${pend ? "Locked in — tap to continue." : "Pick an option to continue. No going back — just like the real test."}</p></div>`;
+    body.innerHTML = h; typeset(body);
+  }
+
+  function sessCommitAndAdvance() {
+    if (!sess || sess.pending == null) return;
+    const cur = sess.order[sess.idx], q = cur.q;
+    const correct = sess.pending === q.correct, ms = Math.max(0, Date.now() - sess.qStart);
+    sess.answers[sess.idx] = { chosen: sess.pending, correct, ms, level: cur.lvl };
+    sess.pending = null;
+    sess.curLevel = LEVELS[Math.max(0, Math.min(2, lvlIdx(sess.curLevel) + (correct ? 1 : -1)))];
+    if (sess.idx >= sess.count - 1) { finishSession(false); return; }
+    const nxt = sessPick(); if (!nxt) { finishSession(false); return; }
+    sess.order.push(nxt); sess.used.add(nxt.key); sess.idx++; sess.qStart = Date.now();
+    renderSession(); window.scrollTo({ top: 0 });
+  }
+
+  function finishSession(timeUp) {
+    if (!sess) return;
+    stopSessTimer(); sess.submitted = true; sess.timeUp = !!timeUp;
+    if (!sess.logged) { sessLog(); sess.logged = true; }
+    renderSession(); window.scrollTo({ top: 0 });
+  }
+  function sessLog() {
+    const k = dkey(); let add = 0;
+    sess.order.forEach((o, i) => {
+      const a = sess.answers[i]; if (!a) return;
+      const id = resolveTopic(o.set.section, o.q.topic);
+      if (id) { const rec = getRec(id); rec.d += 1; if (a.correct) rec.c += 1; rec.ms += a.ms || 0; setRec(id, rec); add++; }
+      else console.warn("GMAT session: no topic match for", o.set.section, "/", o.q.topic);
+    });
+    if (add) state.daily[k] = Math.max(0, (state.daily[k] || 0) + add);
+    save();
+  }
+  function sessResultsHTML() {
+    let correct = 0, tms = 0; const rows = [];
+    sess.order.forEach((o, i) => { const a = sess.answers[i]; if (!a) return; rows.push({ o, a }); if (a.correct) correct++; tms += a.ms; });
+    const done = rows.length, pct = done ? Math.round(correct / done * 100) : 0, ac = accClass(pct), avg = done ? tms / done : 0;
+    let h = `<div class="rn-score panel"><div class="rs-num ${ac}">${correct}<span class="rs-tot">/ ${done}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your progress</div>${avg ? `<div class="rs-time">⏱ ${fmtClock(avg)} avg / question</div>` : ""}</div></div>`;
+    if (sess.timeUp) h += `<div class="qnote" style="margin-top:12px">⏱ Time's up — the session ended at your time limit. ${done} of ${sess.count} answered.</div>`;
+    h += `<div class="panel" style="margin-top:14px"><h3>Difficulty journey</h3><p class="sub">Each answer set the next question's level. Green = right, red = wrong — a rising green streak means the questions were getting harder.</p><div class="ss-trace">`;
+    rows.forEach(({ o, a }) => h += `<i class="${o.lvl} ${a.correct ? "ok" : "no"}" title="${o.lvl} · ${a.correct ? "correct" : "wrong"}"></i>`);
+    h += `</div></div>`;
+    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green. Tap a question for the explanation.</p><div class="qlist">`;
+    rows.forEach(({ o, a }, i) => {
+      const q = o.q, nOpt = q.options || 5;
+      h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${i + 1}</span><div class="rev-opts">` +
+        LET.slice(0, nOpt).map(L => { let c = ""; if (L === q.correct) c = "correct"; else if (L === a.chosen && !a.correct) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
+        `</div><span class="rev-time">⏱ ${fmtClock(a.ms)}</span><span class="rev-mark ${a.correct ? "ok" : "no"}">${a.correct ? "✓" : "✗"}</span></div>` +
+        (q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
+        (q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
+        `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}</div></div>`;
+    });
+    h += `</div></div><div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-sessagain="1">New session</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-sessclose="1">Done</button></div>`;
+    return h;
+  }
+  function closeSession(force) {
+    if (sess && !sess.submitted && !force && !confirm("End this practice session? Answers so far won't be saved to your stats.")) return false;
+    stopSessTimer(); sess = null;
+    document.getElementById("session").hidden = true;
+    document.body.style.overflow = "";
+    render(); return true;
+  }
+
+  document.getElementById("sess-config").addEventListener("click", (e) => {
+    if (e.target.id === "sess-config") { closeSessionConfig(); return; }
+    if (!cfg) return;
+    const c = e.target.closest("[data-count]"); if (c) { cfg.count = parseInt(c.getAttribute("data-count"), 10); renderSessionConfig(); return; }
+    const t = e.target.closest("[data-time]"); if (t) { cfg.time = parseInt(t.getAttribute("data-time"), 10); renderSessionConfig(); return; }
+    const st = e.target.closest("[data-sectoggle]"); if (st) { const id = st.getAttribute("data-sectoggle"), list = SETS.filter(s => s.section === id), allOn = list.every(s => cfg.sets.has(s.id)); list.forEach(s => { if (allOn) cfg.sets.delete(s.id); else cfg.sets.add(s.id); }); renderSessionConfig(); return; }
+    const sr = e.target.closest("[data-settoggle]"); if (sr) { const id = sr.getAttribute("data-settoggle"); if (cfg.sets.has(id)) cfg.sets.delete(id); else cfg.sets.add(id); renderSessionConfig(); return; }
+    if (e.target.closest("[data-sessstart]")) startSession();
+  });
+  document.getElementById("session").addEventListener("click", (e) => {
+    if (e.target.closest("[data-sessclose]")) { closeSession(true); return; }
+    if (e.target.closest("[data-sessagain]")) { closeSession(true); openSessionConfig(); return; }
+    if (!sess || sess.submitted) return;
+    const el = e.target.closest("[data-sesselim]"); if (el) { const L = el.getAttribute("data-sesselim"), k = sess.idx; sess.elim[k] = sess.elim[k] || {}; if (sess.elim[k][L]) delete sess.elim[k][L]; else sess.elim[k][L] = 1; renderSession(); return; }
+    const pk = e.target.closest("[data-sesspick]"); if (pk) { const L = pk.getAttribute("data-sesspick"); if (sess.elim[sess.idx]) delete sess.elim[sess.idx][L]; sess.pending = L; renderSession(); return; }
+    if (e.target.closest("[data-sessnext]")) sessCommitAndAdvance();
+  });
+  document.getElementById("ss-close").onclick = () => closeSession(false);
+
   /* ===== Hardware / gesture Back button: step up one layer instead of closing the app ===== */
   function backCloseTopLayer() {
     const vis = (id) => { const el = document.getElementById(id); return el && !el.hidden; };
     if (vis("jumper"))   { closeJumper();  return true; }
+    if (vis("sess-config")) { closeSessionConfig(); return true; }
+    if (vis("session"))  { closeSession(false); return true; }
     if (vis("logsheet")) { closeSheet();   return true; }
     if (vis("concept")) {
       if (cnPartIdx >= 0) gotoPart(-1);    // article → back to contents

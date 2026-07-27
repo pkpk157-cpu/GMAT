@@ -6,13 +6,13 @@ window.GMAT_CONCEPTS = [
   {
     id: "cr-class-sessions",
     section: "cr",
-    title: "Critical Reasoning — Class Sessions Guide",
-    source: "Adapted from your Sandeep Gupta CR guide",
+    title: "Critical Reasoning",
+    source: "Adapted from your course material",
     sample: true,
     parts: [
       {
         id: "cr-framework",
-        title: "How CR works & the elimination mindset",
+        title: "How CR works",
         mins: 4,
         blocks: [
           { t: "p", x: "Every CR argument is built from <b>facts (premises)</b> and often a <b>conclusion</b> drawn from them. Your job changes with the question type, but the underlying skill is the same: read precisely and reason only from what is actually stated." },
@@ -98,7 +98,7 @@ window.GMAT_CONCEPTS = [
       },
       {
         id: "cr-conditional",
-        title: "Conditional reasoning & the contrapositive",
+        title: "Conditional reasoning",
         mins: 4,
         blocks: [
           { t: "p", x: "Take the statement <b>“If A, then B.”</b> Here <i>if</i> means <i>whenever</i>. Only one rearrangement is logically valid — the contrapositive." },
@@ -235,7 +235,7 @@ window.GMAT_CONCEPTS = [
       },
       {
         id: "cr-assumption",
-        title: "Assumption (the negation test)",
+        title: "Assumption questions",
         mins: 4,
         blocks: [
           { t: "p", x: "An assumption is an <b>unstated premise</b> that bridges the argument's fact and its conclusion. “Every male over 18 can vote, so Jack can vote” assumes <i>(Jack is a male over 18)</i> — drop that bridge and the conclusion collapses." },
@@ -266,12 +266,12 @@ window.GMAT_CONCEPTS = [
   {
     id: "rc-octaave",
     section: "rc",
-    title: "Reading Comprehension — the OCTAAVE method",
-    source: "Adapted from your Sandeep Gupta RC guide",
+    title: "Reading Comprehension",
+    source: "Adapted from your course material",
     parts: [
       {
         id: "rc-how",
-        title: "How RC works & the OCTAAVE map",
+        title: "How RC works & OCTAAVE",
         mins: 4,
         blocks: [
           { t: "p", x: "Every RC passage is a <b>formal piece of writing</b>, and what separates formal writing from a chat message is that it has a <b>purpose</b>. That's why almost every passage carries a <i>primary purpose</i> question — nailing the purpose is half the battle." },
@@ -414,8 +414,8 @@ window.GMAT_CONCEPTS = [
   {
     id: "quant-insights",
     section: "quant",
-    title: "Quant — how the section really works",
-    source: "Adapted from your Sandeep Gupta Quant guide",
+    title: "Quant — how it works",
+    source: "Adapted from your course material",
     parts: [
       {
         id: "q-scoring",
@@ -537,7 +537,7 @@ window.GMAT_CONCEPTS = [
   {
     id: "quant-topics",
     section: "quant",
-    title: "Quant — core concepts by topic",
+    title: "Quant — core concepts",
     source: "Adapted from your Quant topic concept notes",
     parts: [
       {
@@ -667,7 +667,7 @@ window.GMAT_CONCEPTS = [
       },
       {
         id: "qt-work",
-        title: "Time & Work (with Pipes & Cisterns)",
+        title: "Time & Work & Pipes",
         mins: 3,
         blocks: [
           { t: "p", x: "The one idea: work in terms of <b>rate = 1 job per unit time</b>. If A finishes in a days, A's rate is 1/a per day; rates simply add." },
@@ -686,8 +686,8 @@ window.GMAT_CONCEPTS = [
   {
     id: "data-insights",
     section: "data",
-    title: "Data Insights — the whole section",
-    source: "Adapted from your Sandeep Gupta DS & IR guides",
+    title: "Data Insights",
+    source: "Adapted from your course material",
     parts: [
       {
         id: "di-overview",
@@ -746,7 +746,7 @@ window.GMAT_CONCEPTS = [
       },
       {
         id: "di-ds-traps",
-        title: "Data Sufficiency — strategy & the C-trap",
+        title: "Data Sufficiency — traps",
         mins: 4,
         blocks: [
           { t: "p", x: "Every hard DS question hides a trap. The habits below defuse most of them:" },

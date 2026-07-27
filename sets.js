@@ -1521,5 +1521,133 @@ window.GMAT_SETS = [
         "level": "medium"
       }
     ]
+  },
+  {
+    "id": "quant-speed-ex",
+    "title": "Speed, Time & Distance — Exercise",
+    "section": "quant",
+    "source": "Time, Speed & Distance question bank (with solutions)",
+    "questions": [
+      {
+        "n": 1, "topic": "Speed, distance & time", "correct": "A", "options": 4,
+        "text": "Over a distance of 540 km, increasing the speed by 3 km/h saves 2 hours. What is the new (increased) speed?",
+        "choices": ["30 km/h", "40 km/h", "50 km/h", "45 km/h"],
+        "hint": "Let original speed be S; write time = 540/S for both cases.",
+        "expl": "Step 1 — \\(\\frac{540}{S} - \\frac{540}{S+3} = 2\\).\nStep 2 — Solving gives \\(S = 27\\).\nStep 3 — New speed \\(= 27 + 3 = 30\\) km/h.\nAnswer: 30 km/h (A).",
+        "level": "medium"
+      },
+      {
+        "n": 2, "topic": "Speed, distance & time", "correct": "B", "options": 4,
+        "text": "A cycle covers 75 km in 15 hours and a bike covers 80 km in 5 hours. What is the average speed over the whole journey?",
+        "choices": ["7 km/h", "7.75 km/h", "6.65 km/h", "8 km/h"],
+        "hint": "Average speed = total distance ÷ total time.",
+        "expl": "Step 1 — Total distance \\(= 75 + 80 = 155\\) km; total time \\(= 15 + 5 = 20\\) h.\nStep 2 — Average \\(= \\frac{155}{20} = 7.75\\) km/h.\nAnswer: 7.75 km/h (B).",
+        "level": "easy"
+      },
+      {
+        "n": 3, "topic": "Speed, distance & time", "correct": "D", "options": 4,
+        "text": "If the speed ratio of P, Q and R covering the same distance is \\(5 : 2 : 1\\), what is the ratio of the times they take?",
+        "choices": ["2 : 15 : 1", "2 : 5 : 1", "2 : 1 : 10", "2 : 5 : 10"],
+        "hint": "For a fixed distance, time is inversely proportional to speed.",
+        "expl": "Step 1 — Time \\(\\propto \\frac{1}{\\text{speed}}\\): \\(\\frac{1}{5} : \\frac{1}{2} : \\frac{1}{1}\\).\nStep 2 — Multiply by 10: \\(2 : 5 : 10\\).\nAnswer: 2 : 5 : 10 (D).",
+        "level": "easy"
+      },
+      {
+        "n": 4, "topic": "Speed, distance & time", "correct": "C", "options": 4,
+        "text": "If Gopal walked at 10 km/h instead of 7 km/h, he would cover 30 km more in the same time. How far does he actually travel at 7 km/h?",
+        "choices": ["50 km", "60 km", "70 km", "80 km"],
+        "hint": "The 3 km/h extra over the same time accounts for the 30 km.",
+        "expl": "Step 1 — Extra distance \\(= (10-7)\\times t = 30\\), so \\(t = 10\\) h.\nStep 2 — Actual distance \\(= 7\\times10 = 70\\) km.\nAnswer: 70 km (C).",
+        "level": "medium"
+      },
+      {
+        "n": 5, "topic": "Speed, distance & time", "correct": "B", "options": 4,
+        "text": "Over 540 km, Car A takes 6 hours more than Car B, and their speed ratio is \\(3 : 5\\). What is Car B's speed?",
+        "choices": ["80 km/h", "60 km/h", "50 km/h", "70 km/h"],
+        "hint": "Speed ratio 3:5 means time ratio 5:3.",
+        "expl": "Step 1 — Time ratio \\(= 5 : 3\\), difference \\(= 2\\) parts \\(= 6\\) h, so 1 part \\(= 3\\) h.\nStep 2 — B's time \\(= 3\\times3 = 9\\) h; B's speed \\(= \\frac{540}{9} = 60\\) km/h.\nAnswer: 60 km/h (B).",
+        "level": "medium"
+      },
+      {
+        "n": 6, "topic": "Speed, distance & time", "correct": "A", "options": 4,
+        "text": "A truck's speed is 30% less than a bus's, and their average speed (over equal distances) is 35 km/h. What is the truck's speed?",
+        "choices": ["59.5 km/h", "60 km/h", "31.5 km/h", "25.7 km/h"],
+        "hint": "Equal distances → average = harmonic mean of the two speeds.",
+        "expl": "Step 1 — Speeds in ratio \\(7 : 10\\), say \\(7s\\) and \\(10s\\).\nStep 2 — Harmonic mean \\(= \\frac{2\\cdot7s\\cdot10s}{17s} = \\frac{140s}{17} = 35\\Rightarrow s = 8.5\\).\nStep 3 — Truck \\(= 7s = 59.5\\) km/h.\nAnswer: 59.5 km/h (A).",
+        "level": "hard"
+      },
+      {
+        "n": 7, "topic": "Speed, distance & time", "correct": "C", "options": 4,
+        "text": "Naval walks at 3 km/h for 3.5 hours, then at 5.5 km/h for 3 hours. What is his average speed for the whole journey?",
+        "choices": ["3.5 km/h", "7.15 km/h", "4.15 km/h", "6.35 km/h"],
+        "hint": "Total distance ÷ total time — never just average the two speeds.",
+        "expl": "Step 1 — Distances: \\(3\\times3.5 = 10.5\\) and \\(5.5\\times3 = 16.5\\); total \\(= 27\\) km.\nStep 2 — Total time \\(= 6.5\\) h; average \\(= \\frac{27}{6.5} \\approx 4.15\\) km/h.\nAnswer: 4.15 km/h (C).",
+        "level": "medium"
+      },
+      {
+        "n": 8, "topic": "Speed, distance & time", "correct": "A", "options": 4,
+        "text": "A driver's actual speed is 45 km/h, but due to traffic he drives at 36 km/h and takes 2 hours longer. What is the total distance?",
+        "choices": ["360 km", "450 km", "180 km", "330 km"],
+        "hint": "Speed ratio 45:36 = 5:4, so time ratio 4:5.",
+        "expl": "Step 1 — Time ratio \\(= 4 : 5\\), difference \\(1\\) part \\(= 2\\) h.\nStep 2 — Actual time \\(= 4\\times2 = 8\\) h; distance \\(= 45\\times8 = 360\\) km.\nAnswer: 360 km (A).",
+        "level": "medium"
+      },
+      {
+        "n": 9, "topic": "Speed, distance & time", "correct": "B", "options": 4,
+        "text": "Two bikes travel toward each other at 10 km/h and 12 km/h, starting 396 km apart. After how many hours do they meet?",
+        "choices": ["10 hours", "18 hours", "16 hours", "17 hours"],
+        "hint": "Approaching each other means speeds add (relative speed).",
+        "expl": "Step 1 — Relative speed \\(= 10 + 12 = 22\\) km/h.\nStep 2 — Time \\(= \\frac{396}{22} = 18\\) h.\nAnswer: 18 hours (B).",
+        "level": "easy"
+      },
+      {
+        "n": 10, "topic": "Speed, distance & time", "correct": "D", "options": 4,
+        "text": "Driving at 20 km/h, Arjun reaches the office 5 minutes early; at 16 km/h he arrives 5 minutes late. What is the on-time travel duration?",
+        "choices": ["15 minutes", "35 minutes", "40 minutes", "45 minutes"],
+        "hint": "Speed ratio 20:16 = 5:4 → time ratio 4:5; the gap is 10 minutes.",
+        "expl": "Step 1 — Time ratio \\(= 4 : 5\\); the difference (1 part) equals \\(5 + 5 = 10\\) min.\nStep 2 — Faster time \\(= 4\\times10 = 40\\) min; on-time \\(= 40 + 5 = 45\\) min.\nAnswer: 45 minutes (D).",
+        "level": "medium"
+      },
+      {
+        "n": 11, "topic": "Speed, distance & time", "correct": "A", "options": 4,
+        "text": "Sumit takes 2 hours less to cover 160 km when he increases his speed by 4 km/h. How long does the (original) trip take?",
+        "choices": ["10 hours", "12 hours", "9 hours", "13 hours"],
+        "hint": "Let original speed S, time T = 160/S; write the faster case too.",
+        "expl": "Step 1 — \\(S = \\frac{160}{T}\\) and \\(S + 4 = \\frac{160}{T-2}\\).\nStep 2 — Solving gives \\(S = 16,\\ T = 10\\) h.\nAnswer: 10 hours (A).",
+        "level": "medium"
+      },
+      {
+        "n": 12, "topic": "Speed, distance & time", "correct": "C", "options": 4,
+        "text": "A ship at 80% of its usual speed takes 10 minutes longer to cover 480 km. What is its usual speed?",
+        "choices": ["240 km/h", "480 km/h", "720 km/h", "360 km/h"],
+        "hint": "80% speed → time ratio 4:5; the extra 1 part is 10 minutes.",
+        "expl": "Step 1 — Time ratio usual:slow \\(= 4 : 5\\); 1 part \\(= 10\\) min, so usual time \\(= 40\\) min \\(= \\frac{2}{3}\\) h.\nStep 2 — Usual speed \\(= \\frac{480}{2/3} = 720\\) km/h.\nAnswer: 720 km/h (C).",
+        "level": "hard"
+      },
+      {
+        "n": 13, "topic": "Speed, distance & time", "correct": "C", "options": 4,
+        "text": "A bus starts at 45 km/h and its speed increases by 10% each subsequent hour. How far does it travel in 3 hours?",
+        "choices": ["140.95 km", "145.95 km", "148.95 km", "150.95 km"],
+        "hint": "Add each hour's distance: 45, then 45×1.1, then that ×1.1.",
+        "expl": "Step 1 — Hour 1: 45; hour 2: \\(49.5\\); hour 3: \\(54.45\\).\nStep 2 — Total \\(= 45 + 49.5 + 54.45 = 148.95\\) km.\nAnswer: 148.95 km (C).",
+        "level": "medium"
+      },
+      {
+        "n": 14, "topic": "Speed, distance & time", "correct": "B", "options": 4,
+        "text": "A train's speed is 20% more than a bus's. Over 120 km each, the train takes 30 minutes less than the bus. What is the bus's speed?",
+        "choices": ["20 km/h", "40 km/h", "60 km/h", "50 km/h"],
+        "hint": "Speed ratio bus:train = 5:6, so time ratio = 6:5.",
+        "expl": "Step 1 — Time ratio bus:train \\(= 6 : 5\\); difference (1 part) \\(= 30\\) min \\(= 0.5\\) h.\nStep 2 — Bus time \\(= 6\\times0.5 = 3\\) h; bus speed \\(= \\frac{120}{3} = 40\\) km/h.\nAnswer: 40 km/h (B).",
+        "level": "medium"
+      },
+      {
+        "n": 15, "topic": "Speed, distance & time", "correct": "D", "options": 4,
+        "text": "P's speed is 50% of Q's, and P takes 4 hours longer than Q to cover 120 km. What is the average speed of P and Q together (total distance ÷ total time)?",
+        "choices": ["10 km/h", "40 km/h", "30 km/h", "20 km/h"],
+        "hint": "Half the speed means double the time; find both times.",
+        "expl": "Step 1 — Speeds \\(1 : 2\\Rightarrow\\) times \\(2t : t\\); difference \\(t = 4\\) h.\nStep 2 — P: 8 h, Q: 4 h; each covers 120 km, total \\(= 240\\) km in \\(12\\) h.\nStep 3 — Average \\(= \\frac{240}{12} = 20\\) km/h.\nAnswer: 20 km/h (D).",
+        "level": "hard"
+      }
+    ]
   }
 ];

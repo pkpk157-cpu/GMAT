@@ -7188,5 +7188,897 @@ window.GMAT_SETS = [
         "expl": "Anya − Chetan = 5 + 3 = 8 years (D)."
       }
     ]
+  },
+  {
+    "id": "cr-method-reasoning",
+    "title": "Method of Reasoning — Exercise",
+    "section": "cr",
+    "source": "Adapted from your course material",
+    "questions": [
+      {
+        "n": 1,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Xavier: Demand by tourists in Nepal for inexpensive thangka paintings has resulted in the proliferation of inferior thangkas containing symbolic inaccuracies—a sure sign of a dying art form. Nepal should prohibit sales of thangkas to tourists, for such a prohibition will induce artists to create thangkas that meet traditional standards. Yvette: An art form without dedicated young artists will decay and die. If tourists were forbidden to buy thangkas, young artists would cease making thangkas and concentrate instead on an art form tourists can buy. Yvette responds to Xavier by",
+        "choices": [
+          "denying the existence of the problem that Xavier’s proposal is designed to ameliorate",
+          "challenging the integrity of Xavier’s sources of information",
+          "arguing that Xavier’s proposal, if implemented, would result in the very consequences it is meant to prevent",
+          "using an analogy to draw a conclusion that is inconsistent with the conclusion drawn by Xavier",
+          "showing that the evidence presented by Xavier has no bearing on the point at issue"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "By summarizing each person’s point of view, you can characterize how one responds to the other. Xavier’s purpose in proposing that Nepal prohibit tourist sales of thangkas is to encourage young artists to create the traditional ones rather than cheap knockoffs. But if Nepal does so, Yvette replies, thangkas won’t be made at all—just as correct choice (C) describes. (A) Yvette’s concern with the decay and death of Nepalese art shows that she’s just as cognizant of the problem as Xavier is. (B) , (D) Yvette presents a necessary condition for healthy art and then speculates on what would happen if Xavier’s plan went through. None of that challenges his information (B) or makes any analogy (D). (E) Yvette accepts Xavier’s evidence; she just feels his proposed solution would intensify the problem.",
+        "level": "easy"
+      },
+      {
+        "n": 2,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Mark: To convey an understanding of past events, a historian should try to capture what it was like to experience those events. For instance, a foot soldier in the Battle of Waterloo knew through direct experience what the battle was like, and it is this kind of knowledge that the historian must capture. Carla: But how do you go about choosing whose perspective is the valid one? Is the foot soldier’s perspective more valid than that of a general? Should it be a French or an English soldier? Your approach would generate a biased version of history, and to avoid that, historians must stick to general and objective characterizations of the past. Carla does which one of the following in disputing Mark’s position?",
+        "choices": [
+          "contests Mark’s understanding of historical events",
+          "questions Mark’s presupposition that one person can understand another’s feelings",
+          "argues that the selection involved in carrying out Mark’s proposal would distort the result",
+          "questions whether Mark accurately describes the kind of historical writing he deplores",
+          "gives reason to believe that Mark’s recommendation is motivated by his professional self-interest"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Carla says, “But how do you go about choosing which perspective is the valid one? . . . Your approach would generate a biased version of history .... ” This is nicely summed up in (C). Although Carla says that Mark’s proposed method of history would “generate a biased version of history,” she never indicates that such a method would be impossible (B), nor does she actually question Mark’s own understanding of historical events (A). (D) uses the phrase “the kind of writing \\[Mark\\] deplores,” but there is no indication that Mark deplores anything. (E) is also way off base, introducing “professional self-interest.”",
+        "level": "medium"
+      },
+      {
+        "n": 3,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Adam: Marking road edges with reflecting posts gives drivers a clear view of the edges, thereby enabling them to drive more safely. Therefore, marking road edges with reflecting posts will decrease the annual number of road accidents. Aiesha: You seem to forget that drivers exceed the speed limit more frequently and drive close to the road edge more frequently on roads that are marked with reflecting posts than on similar roads without posts, and those are driving behaviors that cause road accidents. Aiesha responds to Adam’s argument by",
+        "choices": [
+          "questioning Adam’s assertion that reflecting posts give drivers a clear view of road edges",
+          "presenting a possible alternative method for decreasing road accidents",
+          "raising a consideration that challenges the argument’s assumption that facilitating safe driving will result in safer driving",
+          "denying that the drivers’ view of the road is relevant to the number of road accidents",
+          "providing additional evidence to undermine the claim that safer driving does not necessarily reduce the number of road accidents"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Adam assumes that “enabling \\[drivers\\] to drive more safely” will “decrease the annual number of accidents.” That’s a reasonable assumption, but Aiesha points out an alternative outcome—clearer markings will actually make it easier for people to drive faster and closer to the edge of the road, behaviors that causes accidents. Aiesha is thus pointing out the sad fact that making it easier for people to drive safely will not necessarily ensure that people do so (C). Aiesha disagrees that reflecting posts will decrease accidents, but she doesn’t disagree that they will make the road edge easier to see (A), or that they are relevant to the number of accidents (D) (though she thinks they will increase, not decrease, that number). Although she disagrees with Adam, she doesn’t present an alternative suggestion (B).",
+        "level": "medium"
+      },
+      {
+        "n": 4,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Robert: Speed limits on residential streets in Crownsbury are routinely ignored by drivers. People crossing those streets are endangered by speeding drivers, yet the city does not have enough police officers to patrol every street. So, the city should install speed bumps and signs warning of their presence on residential streets to slow down traffic. Sheila: That is a bad idea. People who are driving too fast can easily lose control of their vehicles when they hit a speed bump. The relationship of Sheila’s statement to Robert’s argument is that Sheila’s statement",
+        "choices": [
+          "raises the objection that the problem with which Robert is concerned may not be as serious as he takes it to be",
+          "argues that the solution Robert advocates is likely to have undesirable side effects of its own",
+          "defends an alternative course of action as more desirable than the one advocated by Robert",
+          "concedes that the solution advocated by Robert would be effective, but insists that the reasons for this are not those given by Robert",
+          "charges that Robert’s proposal would have no net effect on the problem he describes"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Sheila is worried that putting up signs and speed bumps is likely to cause serious accidents when speeders hit the speed bumps. In other words, Robert’s solution is likely to have serious new side effects (B). Sheila certainly never implies that speeding isn’t a serious problem, so we can rule out (A). (C) and (D) are also out, since Sheila only attacks Robert’s suggestion, and never suggests any alternative course of action (C) or endorses Robert’s suggestion for alternate reasons (D). (E) might be tempting, but beware of the phrase “no net effect.” Sheila doesn’t just think Robert’s suggestion would be ineffective—she feels it would actually cause new accidents.",
+        "level": "medium"
+      },
+      {
+        "n": 5,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Joanna: The only way for a company to be successful, after emerging from bankruptcy, is to produce the same goods or services that it did before going bankrupt. It is futile for such a company to try to learn a whole new business. Ruth: Wrong. The Kelton Company was a major mining operation that went into bankruptcy. On emerging from bankruptcy, Kelton turned its mines into landfills and is presently a highly successful waste-management concern. Ruth uses which one of the following argumentative techniques in countering Joanna’s argument?",
+        "choices": [
+          "She presents a counterexample to a claim.",
+          "She offers an alternative explanation for a phenomenon.",
+          "She supports a claim by offering a developed and relevant analogy.",
+          "She undermines a claim by showing that it rests on an ambiguity.",
+          "She establishes a conclusion by excluding the only plausible alternative to that conclusion."
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Joanna says that a company emerging from bankruptcy must not (“the only way”) change its business. Yet Ruth is quick to point to such a company that diversifies and succeeds in a way that Joanna deems “futile.” Simply put, that’s a “counter” to Joanna’s “claim,” (A). Ruth “explains” (B) how the Kelton Co. turned itself around, but that’s not an “alternative” to any “phenomenon” Joanna describes. An analogy (C) is a declaration that two unlike things share some significant similarity; but Kelton is an example of a once-bankrupt company, not an analogy to one. Both Joanna and Ruth’s claims are concrete, and neither accuses the other of ambiguity (D). And if anyone here is “excluding a plausible alternative” (E) it’s Joanna, who refuses to accept that a company can change its nature after bankruptcy and become successful.",
+        "level": "medium"
+      },
+      {
+        "n": 6,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "A newspaper article on Britain’s unions argued that their strength was declining. The article’s evidence was the decreasing number and size of strikes, as if the reason for the unions’ existence was to organize strikes. Surely, in a modern industrial society, the calling of a strike is evidence that the negotiating position of the union was too weak. Strong unions do not need to call strikes. They can concentrate their efforts on working with others in the labor market to achieve common goals, such as profitable and humane working conditions. The argument criticizing the newspaper article employs which one of the following strategies?",
+        "choices": [
+          "questioning the accuracy of the statistical evidence that the newspaper article uses",
+          "detailing historical changes that make the newspaper article’s analysis outdated",
+          "reinterpreting evidence that the newspaper article uses as indicating the opposite of what the newspaper concludes",
+          "arguing that the newspaper article’s conclusion is motivated by a desire to change the role of unions",
+          "pointing to common interests among unions and management which the newspaper article ignores"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "(C) has it right: The author takes the very evidence (few and tiny strikes) used by the paper to belittle unions, and shows that it can speak to unions’ strength. Far from questioning the evidence’s accuracy (A) the author accepts it and uses it to his own ends. The author’s evidence is interpretive rather than historical (B) and no hint of “outdatedness” appears. In questioning the article’s conclusion, the author does not impugn its writer’s motives (D) nor does he need to; (E) seems to put its toe in the water of impugning motives as well.",
+        "level": "easy"
+      },
+      {
+        "n": 7,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Proponent: Irradiation of food by gamma rays would keep it from spoiling before it reaches the consumer in food stores. The process leaves no radiation behind, and vitamin losses are comparable to those that occur in cooking, so there is no reason to reject irradiation on the grounds of nutrition or safety. Indeed, it kills harmful Salmonella bacteria, which in contaminated poultry have caused serious illness to consumers. Opponent: The irradiation process has no effect on the bacteria that cause botulism, a very serious form of food poisoning, while those that cause bad odors that would warn consumers of botulism are killed. Moreover, Salmonella and the bacteria that cause botulism can easily be killed in poultry by using a safe chemical dip. The opponent’s argument proceeds by",
+        "choices": [
+          "isolating an ambiguity in a crucial term in the proponent’s argument",
+          "showing that claims made in the proponent’s argument result in a self-contradiction",
+          "establishing that undesirable consequences result from the adoption of either one of two proposed remedies",
+          "shifting perspective from safety with respect to consumers to safety with respect to producers",
+          "pointing out an alternative way of obtaining an advantage claimed by the proponent without risking a particular disadvantage"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "What the proponent propounds is the subjecting of food to gamma irradiation which, he asserts, retards spoilage, doesn’t compromise nutrition or safety, and kills Salmonella. The opponent in effect says, hey, we should employ this chemical dip, which will not only kill Salmonella but will also avoid a disadvantage of irradiation (namely that irradiation both leaves botulism bacteria unscathed and eliminates a botulism warning). The above states in specific terms that which (E) asserts in abstract ones. Both arguments are quite concrete and leave no room for verbal ambiguity (A). That the opponent contradicts the proponent is not the same as saying that he proves a self- contradiction (B). Besides irradiation, the only other proposed remedy mentioned (C) is the chemical dip, about which the opponent establishes no undesirable consequences.",
+        "level": "hard"
+      },
+      {
+        "n": 8,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Linguist: Some people have understood certain studies as showing that bilingual children have a reduced “conceptual map” because bilingualism overstresses the child’s linguistic capacities. Vocabulary tests taken by bilingual children appear to show that these children tend to have a smaller vocabulary than do most children of the same age group. But these studies are deeply flawed, since the tests were given in only one language. Dual-language tests revealed that the children often expressed a given concept with a word from only one of their two languages. The linguist’s argument proceeds by",
+        "choices": [
+          "offering evidence for the advantages of bilingualism over monolingualism",
+          "pointing out an inconsistency in the view that bilingualism overstresses a child’s linguistic capabilities",
+          "offering evidence that undermines the use of any vocabulary test to provide information about a child’s conceptual map",
+          "providing a different explanation for the apparent advantages of bilingualism from the explanation suggested by the results of certain studies",
+          "pointing out a methodological error in the technique used to obtain the purported evidence of a problem with bilingualism"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "“Abstracting” an argument means reducing each sentence to its purpose. We do it a lot in Parallel Reasoning, and it comes in handy in Method questions too. Sentence 1: allegation (studies show that bilingual kids have a reduced “conceptual map,” whatever that means; the important thing is that it sounds bad). Sentence 2: some detail about those studies (i.e., that which they “appear to show”). Sentence 3: author’s value judgment (the studies are flawed). Sentence 4: the truth behind the test results. Since the author’s overall purpose is clearly to discredit this rap at bilingualism—and since she does so by pointing out where the vocabulary tests went wrong—(E) must be the right answer.",
+        "level": "hard"
+      },
+      {
+        "n": 9,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Dr. Jones: The new technology dubbed “telemedicine” will provide sustained improvement in at least rural patient care since it allows rural physicians to televise medical examinations to specialists who live at great distances—specialists who will thus be able to provide advice the rural patient would otherwise not receive. Dr. Carabella: Not so. Telemedicine might help rural patient care initially. However, small hospitals will soon realize that they can minimize expenses by replacing physicians with technicians who can use telemedicine to transmit examinations to large medical centers, resulting in fewer patients being able to receive traditional, direct medical examination. Eventually, it will be the rare individual who ever gets truly personal attention. Hence, rural as well as urban patient care will suffer. Dr. Carabella uses which one of the following strategies in responding to Dr. Jones?",
+        "choices": [
+          "listing a set of considerations to show that a prescribed treatment that seems to be benefiting a patient in fact harms that patient",
+          "describing the application of the technology discussed by Dr. Jones as one step that initiates a process that leads to an undesirable end",
+          "citing evidence that Dr. Jones lacks the professional training to judge the case at issue",
+          "invoking medical statistics that cast doubt on the premises used in Dr. Jones’s argument",
+          "providing grounds for dismissing Dr. Jones’s interpretation of a key term in medical technology"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "“Which of the following strategies . . .” signals a Method question; form a solid prephrase before attacking the choices. Carabella’s sheer movement from “initially” to “eventually,” and her dire predictions as to the ultimate bitter end of what at first seems to be a smart technology, should make (B) stand out. Carabella never claims that a seeming benefit is in fact harmful, (A), though she does feel that the initial benefits of telemedicine will turn into debits. There’s no personal criticism that amounts to an ad hominem attack, (C), nor are any statistics cited whatsoever, (D). And while Carabella takes strong issue with Jones’s optimism, she does not challenge any of his terminology, (E).",
+        "level": "hard"
+      },
+      {
+        "n": 10,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "P: Complying with the new safety regulations is useless. Even if the new regulations had been in effect before last year’s laboratory fire, they would not have prevented the fire or the injuries resulting from it because they do not address its underlying causes. Q: But any regulations that can potentially prevent money from being wasted are useful. If obeyed, the new safety regulations will prevent some accidents, and whenever there is an accident here at the laboratory, money is wasted even if no one is injured. Q responds to P’s position by",
+        "choices": [
+          "extending the basis for assessing the utility of complying with the new regulations",
+          "citing additional evidence that undermines P’s assessment of the extent to which the new regulations would have prevented injuries in last year’s laboratory fire",
+          "giving examples to show that the uselessness of all regulations cannot validly be inferred from the uselessness of one particular set of regulations",
+          "showing that P’s argument depends on the false assumption that compliance with any regulations that would have prevented last year’s fire would be useful",
+          "pointing out a crucial distinction, overlooked by P, between potential benefits and actual benefits"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "So, what’s Q’s method of argument? You should have had a pretty good feel for this, whether or not you were able to prephrase it precisely. The best way to go here is probably to knock off the things she doesn’t do on our way to the choice that sounds like a reasonable description of her method. (A) sounds pretty darn reasonable—she does broaden the concept of utility by bringing up the money issue whereas P spoke only of preventing injuries. It makes it easier to debate P on the usefulness of the regulations when she extends the argument in this way. Let’s keep (A) on hold just to scan the rest of the choices to make sure they’re as wrong as they need to be: (B) Q doesn’t attack on this front—she never argues that the regulations would have prevented injuries from last year’s fire. Instead, she switches the focus to saving money.",
+        "level": "hard"
+      },
+      {
+        "n": 11,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Frankie: If jelly makers were given incentives to make a certain percentage of their jellies from cloudberries, income for cloudberry gatherers would increase. Anna: That plan would fail. Cacao, like cloudberries, was once harvested from wild plants. When chocolate became popular in Europe, the cacao gathers could not supply enough to meet the increased demand, and farmers began to grow large quantities of it at low cost. Now all cacao used in commercial chocolate production is grown on farms. Likewise, if the demand for cloudberries increases, domesticated berries grown on farms will completely supplant berries gathered in the wild. Anna’s argument proceeds by",
+        "choices": [
+          "giving a reason why a proposed course of action would be beneficial to all those affected by it",
+          "reinterpreting evidence presented in support of a proposal as a reason to reject the proposal",
+          "projecting the result of following a proposal in a given situation by comparing that situation with a past situation",
+          "proposing a general theory as a way of explaining a specific market situation",
+          "contending that the uses for one product are similar to the uses for another product"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "It’s Anna we’re concerned with here, as the stem helpfully points out—specifically, her method of argument. Only a gong or buzzer would state her opinion of Frankie’s plan more emphatically than does her first sentence—the plan’s a loser. Frankie believes that if it could be made worth their while for jellymakers to use cloudberries, cloudberry gatherers would make more money. But Anna rains on that parade by bringing up the subject of cacao, a product also once harvested in the wild. When demand for it rose, she claims, cacao began to be grown cheaply on farms, to the point where no commercial production of it relied on cacao gatherers.",
+        "level": "easy"
+      },
+      {
+        "n": 12,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "From the tenth century until around the year 1500, there were Norse settlers living in Greenland. During that time, average yearly temperatures fell slightly worldwide, and some people claim that this temperature drop wiped out the Norse settlements by rendering Greenland too cold for human habitation. But this explanation cannot be correct, because Inuit settlers from North America, who were living in Greenland during the time the Norse settlers were there, continued to thrive long after 1500. Which one of the following is a technique of reasoning used in the argument?",
+        "choices": [
+          "denying the relevance of an analogy",
+          "producing evidence that is inconsistent with the claim being opposed",
+          "presenting an alternative explanation that purports to account for more of the known facts",
+          "citing a general rule that undermines the claim being opposed",
+          "redefining a term in a way that is favorable to the argument’s conclusion"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The writer argues that blaming inhuman cold for the disappearance of the Norse from Greenland doesn’t work because another group, the Inuit, thrived there even as the Norse disappeared. In more generic terms, the author rejects the original conclusion (that cold killed off the Norse) after considering additional evidence (the survival of the Inuit during the same time period). This method of argument is described in (B). (A) The author doesn’t present an analogy to refute, so (A) cannot be the method of argument. An analogy is a likening of the mechanism of one phenomenon or event to another seemingly unrelated phenomenon or event; and no such thing happens here. (C) The author explicitly states that the inhuman-cold explanation doesn’t suffice, but then fails to offer an alternative explanation.",
+        "level": "medium"
+      },
+      {
+        "n": 13,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "A group of unusual meteorites was found in Shergotty, India. Their structure indicates that they originated on one of the geologically active planets, Mercury, Venus, or Mars. Because of Mercury’s proximity to the Sun, any material dislodged from that planet’s surface would have been captured by the Sun, rather than falling to Earth as meteorites. Nor could Venus be the source of the meteorites, because its gravity would have prevented dislodged material from escaping into space. The meteorites, therefore, probably fell to Earth after being dislodged from Mars, perhaps as the result of a collision with a large object. The argument derives its conclusion by",
+        "choices": [
+          "offering a counterexample to a theory",
+          "eliminating competing alternative explanations",
+          "contrasting present circumstances with past circumstances",
+          "questioning an assumption",
+          "abstracting a general principle from specific data"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Since we’re asked how the author puts together her argument, we need to identify the author’s Method of Argument. The argument proceeds in a linear fashion: Meteors came from either Mercury, Venus, or Mars. The source wasn’t Mercury (too close to the Sun), and it wasn’t Venus (gravity problems), and so, the author announces, the source must be Mars. We don’t learn anything else about Mars, but we don’t need to, as long as the only candidates are those three planets and the other two are out. So, the author came to her conclusion by eliminating the competing explanations, as (B) points out. (A) No particular examples are cited, and the author isn’t disputing one theory; she’s supporting a theory by debunking its alternatives. (C) What contrast? The story describes what must have been the case, based on what is known about the planets.",
+        "level": "medium"
+      },
+      {
+        "n": 14,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Land developer: By attempting to preserve endangered species that otherwise would become extinct during our lifetime, we are wasting money on species that will disappear over time regardless of our efforts. Paleontologists have established that extinction is the normal fate of species on the geological time scale of millions of years. Environmentalist: To claim that we should let species disappear because all species eventually die out makes about as much sense as arguing that we should not spend money to find a cure for cancer because all humans are inevitably mortal. The method the environmentalist uses to object to the land developer’s argument is to",
+        "choices": [
+          "clarify a dilemma that is embedded in the land developer’s argument",
+          "attack the character of the land developer rather than the position the land developer is taking",
+          "show that more evidence is needed to substantiate the land developer’s conclusion",
+          "show that the land developer’s line of reasoning would lead to an unacceptable conclusion if applied to a different situation",
+          "argue that there are problems that money, however judiciously spent, cannot solve"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The question stem alerts us to look for the method used by the environmentalist in objecting to the land developer’s position. That is, we want to know how the environmentalist argues, not what the argument is. The developer’s main point is that it’s a waste of money to try to preserve species that will soon become extinct anyway. How does the environmentalist argue against this point? The environmentalist responds by comparing this reasoning to not spending money on cancer research just because everyone must eventually die. The environmentalist strongly implies that it would be unheard of to take this position with respect to humans. The environmentalist brings up a totally different situation in order to show that it would be reprehensible to espouse the developer’s philosophy in other circumstances.",
+        "level": "medium"
+      },
+      {
+        "n": 15,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Party spokesperson: The opposition party’s proposal to stimulate economic activity in the province by refunding $600 million in provincial taxes to taxpayers, who could be expected to spend the money, envisions an illusory benefit. Since the province’s budget is required to be in balance, either new taxes would be needed to make up the shortfall, in which case the purpose of the refund would be defeated, or else workers for the province would be dismissed. So, either the province’s taxpayers or its workers, who are also residents of the province, will have the $600 million to spend, but there can be no resulting net increase in spending to stimulate the province’s economy. The spokesperson proceeds by",
+        "choices": [
+          "reinterpreting a term that is central to an opposing argument",
+          "arguing that a predicted advantage would be offset by an accompanying disadvantage",
+          "casting doubt on the motives of opponents",
+          "drawing a distinction between different kinds of economic activity",
+          "seeking to show that the assumption that taxpayers would spend money that might be refunded to them is dubious"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The stem asks us to find the choice that describes how the argument proceeds, so this is another Method of Argument question. The spokesperson asserts that the tax refund will not result in a net increase in spending since other taxes would have to be raised or province employees must lose their jobs to compensate for the lost revenue. Even though the taxpayers received a refund, either all of the taxpayers must pay more taxes and won’t have the extra money to spend, or some province employees will lose their jobs and not have any money to spend. If one of these two scenarios must occur, as the spokesperson contends, then the refund will not result in more money being spent in the province. In both scenarios, the province offsets the refund by imposing a financial penalty on at least some of the people.",
+        "level": "medium"
+      },
+      {
+        "n": 16,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Although Damon had ample time earlier in the month to complete the paper he is scheduled to present at a professional conference tomorrow morning, he repeatedly put off doing it. Damon could still get the paper ready in time, but only if he works on it all evening without interruption. However, his seven-year- old daughter’s tap-dance recital takes place this evening, and Damon had promised both to attend and to take his daughter and her friends out for ice cream afterward. Thus, because of his procrastination, Damon will be forced to choose between his professional and his family responsibilities. The argument proceeds by",
+        "choices": [
+          "providing evidence that one event will occur in order to establish that an alternative event cannot occur",
+          "showing that two situations are similar in order to justify the claim that someone with certain responsibilities in the first situation has similar responsibilities in the second situation",
+          "invoking sympathy for someone who finds himself in a dilemma in order to excuse that person’s failure to meet all of his responsibilities",
+          "making clear the extent to which someone’s actions resulted in harm to others in order to support the claim that those actions were irresponsible",
+          "demonstrating that two situations cannot both occur by showing that something necessary for one of those situations is incompatible with something necessary for the other situation"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Here the choices are ever so much denser than the situation, which is pretty simple. Damon cannot attend the recital and go out afterwards and finish the paper in time. The need for 100% uninterrupted effort to finish the paper is the necessary condition about which (E) is speaking. Because he must stay home, he cannot go out. (A) distorts the situation badly. Contrary to (A), the author doesn’t predict which choice Damon will make (to finish the paper or go to the recital); she simply argues that he cannot do both. (B) is an even more egregious distortion. No essential similarities between the work and family situations are described, and there’s no claim of similar responsibilities that needs “justifying.” (C) The author demonstrates no sympathy for Damon, and no interest whatsoever in excusing him. Damon’s dilemma is of his own making.",
+        "level": "easy"
+      },
+      {
+        "n": 17,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Alan: Government subsidies have been proposed in Cariana to encourage farmers in Rochelle, the country’s principal agricultural region, to implement certain new farming techniques. Unless these techniques are implemented, erosion of productive topsoil cannot be controlled. Unfortunately, farmers cannot afford to shoulder the entire cost of the new techniques, which are more expensive than those currently used. Therefore, without subsidies, agricultural output in Rochelle will inevitably decline. Betty: But erosion in Rochelle is caused by recurring floods, which will end next year once Cariana completes the hydroelectric dam it is building across the region’s major river. Therefore, Rochelle’s total agricultural output will stabilize at its present level even without subsidies. Betty uses which one of the following argumentative techniques in countering Alan’s argument?",
+        "choices": [
+          "showing that one premise in Alan’s argument is inconsistent with another premise in his argument",
+          "making additional claims that, if correct, undermine a premise in Alan’s argument",
+          "demonstrating that Alan’s conclusion is true but not for the reasons Alan gives to support it",
+          "presenting evidence indicating that the policy Alan argues in favor of would have damaging consequences that outweigh its positive consequences",
+          "pointing out that Alan’s argument mistakenly identifies something as the cause of a trend when it is really an effect of that trend"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Alan concluded that subsidies are necessary to prevent a decline in agricultural output. He came to this conclusion based on two main premises: that soil erosion can’t be controlled without the implementation of new techniques and that farmers can’t implement the techniques without subsidies. In order to disprove this conclusion, Betty introduces a new factor, the hydroelectric dam. She claims that floods cause erosion, and that the dam will prevent the floods (and thus control the erosion). Thus, as (B) says, she uses new claims (the dam will end flooding) to undermine Alan’s premise that the new farming techniques are necessary to control soil erosion. (A) Betty doesn’t try to show an internal contradiction in Alan’s argument, but instead introduces an entirely new consideration.",
+        "level": "hard"
+      },
+      {
+        "n": 18,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "A number of seriously interested amateur astronomers have tested the new Exodus refractor telescope. With it, they were able to observe in crisp detail planetary features that were seen only as fuzzy images in their 8-inch (approximately 20-centimeter) Newtonian telescopes, even though the 8-inch telescopes, with their wider apertures, gather more light than the 4-inch (approximately 10-centimeter) Exodus. Given these amateur astronomers’ observational findings, any serious amateur astronomer ought to choose the Exodus if she or he is buying a telescope for planetary observation. The argument proceeds by",
+        "choices": [
+          "evaluating the credibility of claims made by a particular group",
+          "detailing the ways in which a testing situation approximates the conditions of ordinary use",
+          "placing a phenomenon in a wider context in order to explain it",
+          "supporting a recommendation to a group on the basis of the experience of a subset of that group",
+          "distinguishing between the actual reasons why a certain group did a particular thing and the best reasons for doing that thing"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "This ad for Exodus telescopes is directed at “any serious amateur astronomer,” and makes its appeal based on the nifty findings of other serious amateur astronomers—a clear-cut case of appealing to a group based on the experience of a subset. (A) Astronomers’ claims are reported but not evaluated as to credibility. Indeed, they are taken on faith. (B) suggests a dichotomy—between testing conditions and “ordinary” conditions—not supported by the passage. The ad seems to assume that the large group of astronomers will work with the Exodus in the same way, and have the same success, that the subgroup did. (C) is just gibberish. There’s no “wide context” here, just some specific test results by amateur astronomers that (it is suggested) are replicable by others. (E) Motive never enters into it.",
+        "level": "hard"
+      },
+      {
+        "n": 19,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Whittaker: There can be no such thing as the number of medical school students who drop out before their second year, because if they drop out, they never have a second year. Hudson: By your reasoning I cannot help but become rich, because there is similarly no such thing as my dying before my first million dollars is in the bank. Hudson responds to Whittaker by",
+        "choices": [
+          "showing that a relevantly analogous argument leads to an untenable conclusion",
+          "citing a specific example to counter Whittaker’s general claim",
+          "pointing out that Whittaker mistakes a necessary situation for a possible situation",
+          "claiming that what Whittaker says cannot be true because Whittaker acts as if it were false",
+          "showing that Whittaker’s argument relies on analyzing an extreme and unrepresentative case"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Hudson does not respond directly to Whittaker’s argument. Instead, he applies Whittaker’s reasoning— “by your reasoning”—to an entirely different situation. A big clue that Hudson is applying Whittaker’s logic to a different situation is his use of the word “similarly.” Hudson claims, based on Whittaker’s reasoning, that it is inevitable that he will become rich because he cannot die before he has his first million dollars in the bank\\! Now, it’s certainly possible, if not likely, that you can die before you have your first million in the bank. And not having your first million in the bank is very unlikely to prevent you from dying. Thus, Hudson responds to Whittaker by making an analogy that leads to a silly conclusion— choice (A).",
+        "level": "hard"
+      },
+      {
+        "n": 20,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Wife: The work of the artist who painted the portrait of my grandparents 50 years ago has become quite popular lately, so the portrait has recently become valuable. But since these sorts of artistic fads fade rapidly, the practical thing to do would be to sell the portrait while it is still worth something, and thereby enable our daughter to attend the college she has chosen. Husband: How could you make such a suggestion? That painting is the only thing you own that belonged to your grandparents. I don’t think it’s a very good painting, but it has great sentimental value. Besides, you owe it to our daughter to keep it in the family as a link to her family’s past. The husband uses which one of the following argumentative techniques in replying to the wife’s suggestion?",
+        "choices": [
+          "taking issue with the practicality of her suggestion",
+          "questioning her aesthetic judgment",
+          "claiming that the reasons she gives are based on emotions rather than on rational considerations",
+          "asserting that the evidence she cites in support of her suggestion is false",
+          "invoking a competing obligation that he judges to override her practical considerations"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "In response to his wife’s desire to sell a painting in order to pay for their daughter’s college education, the husband offers three different reasons for hanging on to the thing, but it’s the third reason that relates most to her argument: the husband sees the family link as an obligation that overrides the practical consideration of paying for college. (A) and (D) The husband doesn’t argue that her solution is either impractical or false: he doesn’t argue that the painting won’t pay for college, only that that shouldn’t be the governing consideration. (B) Since the wife doesn’t say that the painting is lovely (just that it’s valuable), the husband’s criticism is not a slur on her taste. (C) If anything, it’s the husband whose recommendation is based on emotion—sentimental value and family connections and all that—not the wife.",
+        "level": "hard"
+      },
+      {
+        "n": 21,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Walter: For the economically privileged in a society to tolerate an injustice perpetrated against one of society’s disadvantaged is not just morally wrong but also shortsighted: a system that inflicts an injustice on a disadvantaged person today can equally well inflict that same injustice on a well- to-do person tomorrow. Larissa: In our society, the wealthy as well as the well-educated can protect themselves against all sorts of injustices suffered by the less well-off. Allowing such injustices to persist is bad policy not because it places everyone at equal risk of injustice but because it is a potent source of social unrest. Larissa responds to Walter by doing which one of the following?",
+        "choices": [
+          "giving reason to doubt the truth of Walter’s conclusion",
+          "drawing implausible consequences from Walter’s assumptions",
+          "questioning Walter’s authority to address matters of social policy",
+          "providing an alternative reason for accepting the truth of Walter’s conclusion",
+          "charging Walter with stopping short of recognizing the full implications of his position"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Walter’s conclusion is that tolerating an injustice is morally wrong and shortsighted. His evidence follows the colon (always pay attention to punctuation). Larissa also believes that allowing injustices is bad policy, but disagrees with Walter as to the reason. The key to understanding Larissa’s evidence is the phrase “not because . . . but because.” She disagrees with Walter’s reason for the conclusion and provides her own. Therefore, you’re looking for an answer choice, such as (D), which states that Larissa agrees with Walter’s conclusion but disagrees with his evidence (reason). (A) might have been tricky if you didn’t read the stimulus critically. Larissa agrees with Walter’s conclusion, she only disagrees with his reasoning.",
+        "level": "easy"
+      },
+      {
+        "n": 22,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Gamba: Muñoz claims that the Southwest Hopeville Neighbors Association overwhelmingly opposes the new water system, citing this as evidence of citywide opposition. The association did pass a resolution opposing the new water system, but only 25 of 350 members voted, with 10 in favor of the system. Furthermore, the 15 opposing votes represent far less than 1 percent of Hopeville’s population. One should not assume that so few votes represent the view of the majority of Hopeville’s residents. Of the following, which one most accurately describes Gamba’s strategy of argumentation?",
+        "choices": [
+          "questioning a conclusion based on the results of a vote, on the grounds that people with certain views are more likely to vote",
+          "questioning a claim supported by statistical data by arguing that statistical data can be manipulated to support whatever view the interpreter wants to support",
+          "attempting to refute an argument by showing that, contrary to what has been claimed, the truth of the premises does not guarantee the truth of the conclusion",
+          "criticizing a view on the grounds that the view is based on evidence that is in principle impossible to disconfirm",
+          "attempting to cast doubt on a conclusion by claiming that the statistical sample on which the conclusion is based is too small to be dependable"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "An author will often proceed by pointing out a flaw in a position she opposes. Whenever the GMAT begins with the formulation “so-and-so claims that . . .” you should expect the author to contradict the claim somehow. After all, if they weren’t going to contradict a claim, they’d make it themselves, instead of pointing out who is responsible for such a ridiculous idea. This argument is no different. Gamba begins by outlining Muñoz’s claims: that the Hopewell Neighbors Association opposes the new water system, and that this means the city opposes it. She then goes on to shred Muñoz’s evidence for his claims. As Gamba tells us, it turns out that less than 10% of the 350-member Association even voted on the water system, and that even then the vote was pretty close—it came out 15 to 10 against the water system.",
+        "level": "medium"
+      },
+      {
+        "n": 23,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "According to the proposed Factory Safety Act, a company may operate an automobile factory only if that factory is registered as a class B factory. In addressing whether a factory may postpone its safety inspections, this Act also stipulates that no factory can be class B without punctual inspections. Thus, under the Factory Safety Act, a factory that manufactures automobiles would not be able to postpone its safety inspections. The argument proceeds by",
+        "choices": [
+          "pointing out how two provisions of the proposed Factory Safety Act jointly entail the unacceptability of a certain state of affairs",
+          "considering two possible interpretations of a proposed legal regulation and eliminating the less plausible one",
+          "showing that the terms of the proposed Factory Safety Act are incompatible with existing legislation",
+          "showing that two different provisions of the proposed Factory Safety Act conflict and thus cannot apply to a particular situation",
+          "pointing out that if a provision applies in a specific situation, it must apply in any analogous situation"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The correct answer to a Method of Argument question will be a 1:1 matchup between the stimulus and the answer choice. This question, which deals with a proposed Factory Safety Act, includes the most obvious Formal Logic statement of the entire section, with an “only-if” in the first sentence. We know from translating this statement that if a company operates an auto factory, it must register that facility as a “class B” factory. The second statement tells us that class B factories must have punctual inspections, and the argument concludes that the Factory Safety Act would prevent auto factories from postponing inspections. This is a classic Formal Logic formulation: If A, then B; If B, then C, therefore, if A, then C.",
+        "level": "medium"
+      },
+      {
+        "n": 24,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Editorial: Many observers note with dismay the decline in the number of nongovernmental, voluntary community organizations. They argue that this decline is caused by the corresponding growth of government services once provided by these voluntary community groups. But this may not be true. The increase in government services may coincide with a decrease in volunteerism, but the former does not necessarily cause the latter; the latter may indeed cause the former. The editorial undermines the conclusion of the causal argument by",
+        "choices": [
+          "showing that there is no causality involved",
+          "offering a counterexample to the alleged correlation",
+          "proving that no generalization can properly be drawn about people’s motives for volunteering",
+          "offering an alternate explanation of the correlation cited",
+          "proving that governments must do what community organizations fail to do"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Remember the three classic alternatives to causal arguments. We know from the question stem that we’ll be dealing with a causal argument: X caused Y. You should immediately think of the three classic alternatives: Y caused X; Z caused Y and/or X; or the link was a coincidence. Here, the author is the one weakening a causal argument, so we’ll see if he uses one of these three. Sure enough, the last sentence, “the latter may indeed cause the former,” tells us that we’re looking for “Y caused X,” a reversal of the causal argument. We find this in (D). (A) contradicts the stimulus—the author tells us that the causal relationship is reversed, not nonexistent. (B) There is no counterexample cited. (C) “People’s motives for volunteering” are not part of the argument; we only know that fewer people are volunteering, not why.",
+        "level": "medium"
+      },
+      {
+        "n": 25,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Phoebe: There have been many reported sightings of strange glowing lights, but a number of these sightings have a straightforward, natural explanation. They occurred clustered in time and location around the epicenters of three earthquakes, and so were almost certainly earthquake lights, a form of ball lightning caused by stresses in the ground. Quincy: I am skeptical that the association between the lights and the earthquakes is anything more than a coincidence. The theory that ground stresses related to earthquakes can cause any kind of lightning is extremely speculative. In responding to Phoebe, Quincy",
+        "choices": [
+          "takes a correlation to be a causal relation",
+          "challenges the accuracy of the data about sightings that Phoebe takes for granted",
+          "criticizes Phoebe’s explanation as unsubstantiated",
+          "offers an explanation of the glowing lights different from Phoebe’s",
+          "accuses Phoebe of introducing irrelevant information"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "In dialog-based Method of Argument questions, first read the part of the stimulus for which you are asked to find the method, especially if the two speakers’ remarks are about the same length. We must describe Quincy’s method of argument, and because Quincy says quite a lot, the odds are in our favor that we can predict the answer by reading Quincy’s remarks alone. If, by contrast, Quincy uttered only two or three lines, it would definitely be necessary to read both arguments. Quincy questions what is probably Phoebe’s conclusion, and, getting more specific, says that a theory (probably central to Phoebe’s argument) is “speculative,” or in other words, not proven. So, we can characterize his reasoning in general terms: he objects to Phoebe on the ground that she uses a dubious theory as her central support.",
+        "level": "medium"
+      },
+      {
+        "n": 26,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Yang: Yeast has long been known to be a leaven, that is, a substance used in baking to make breads rise. Since biblical evidence ties the use of leavens to events dating back to 1200 B.c., we can infer that yeast was already known to be a leaven at that time. Campisi: I find your inference unconvincing; several leavens other than yeast could have been known in 1200 B.c. Campisi counters Yang’s argument by",
+        "choices": [
+          "suggesting that an alternative set of evidence better supports Yang’s conclusion",
+          "questioning the truth of a presumption underlying Yang’s argument",
+          "denying the truth of Yang’s conclusion without considering the reason given for that conclusion",
+          "pointing out that the premises of Yang’s argument more strongly support a contrary conclusion",
+          "calling into question the truth of the evidence presented in Yang’s argument"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "When the question stem asks about one of two speakers, define the important speaker’s objection before scanning the choices. Reading Campisi first, we see that Campisi thinks an “inference” Yang makes is unconvincing, and offers what appears to be an alternative. An inference is something that is unstated. Yang says people knew yeast was a leaven at least as early as 1200 B.C. because they used leavens at that time. Yang’s assumption, then, is that it was yeast that they were using, an assumption that Campisi challenges, which leads us to (B). (A) Campisi’s “alternative” isn’t a “set of evidence” nor does it “support Yang’s conclusion”—it works against Yang’s conclusion. (C) Campisi does consider the reason given and argues specifically that it fails to prove Yang’s point.",
+        "level": "easy"
+      },
+      {
+        "n": 27,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Peter: Because the leaves of mildly drought-stressed plants are tougher in texture than the leaves of abundantly watered plants, insects prefer to feed on the leaves of abundantly watered plants. Therefore, to minimize crop damage, farmers should water crops only just enough to ensure that there is no substantial threat, from a lack of water, to either the growth or the yield of the crops. Jennifer: Indeed. In fact, a mildly drought-stressed plant will divert a small amount of its resources from normal growth to the development of pesticidal toxins, but abundantly watered plants will not. Jennifer’s comment is related to Peter’s argument in which one of the following ways?",
+        "choices": [
+          "It offers information that supports each of the claims that Peter makes in his argument.",
+          "It supports Peter’s argument by supplying a premise without which Peter’s conclusion cannot properly be drawn.",
+          "It supports Peter’s argument by offering an explanation of all of Peter’s premises.",
+          "It supports one of Peter’s premises although it undermines Peter’s conclusion.",
+          "It supports the conclusion of Peter’s argument by offering independent grounds for that conclusion."
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Peter’s argument is one for underwatering, which he implies makes leaves less desirable to insect predators than the less- tough leaves produced by abundant watering. “Indeed, in fact” signals Jennifer’s agreement with Peter’s conclusion that farmers should not overwater. But her evidence comes from a different but related place: She approvingly cites the greater likelihood that underwatered plants will develop poisons to kill insects. So, her point is the same as his, but she cites alternative evidence for it, and that’s (E). Jennifer can’t be supporting (A) or explaining (C) Peter’s claims because each person’s evidence focuses on a different factor. And as such, she can’t be supplying a missing premise (B) either.",
+        "level": "hard"
+      },
+      {
+        "n": 28,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Conservationist: The risk to airplane passengers from collisions between airplanes using the airport and birds from the wildlife refuge is negligible. In the 10 years since the refuge was established, only 20 planes have been damaged in collisions with birds, and no passenger has been injured as a result of such a collision. The wildlife refuge therefore poses no safety risk. Pilot: You neglect to mention that 17 of those 20 collisions occurred within the past 2 years, and that the number of birds in the refuge is rapidly increasing. As the number of collisions between birds and airplanes increases, so does the likelihood that at least one such collision will result in passenger injuries. The pilot counters the conservationist by",
+        "choices": [
+          "attempting to show that the conservationist’s description of the facts is misleading",
+          "questioning the conservationist’s motives for reaching a certain conclusion",
+          "asserting that dangerous situations inevitably become more dangerous with the passage of time",
+          "discrediting the moral principle on which the conservationist’s argument is based",
+          "disputing the accuracy of the figures cited by the conservationist"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "“Counters . . . by” tells you to assess the approach or method. Why, according to the conservationist, is the wildlife refuge “therefore” no safety risk? Only 20 damaged planes in 10 years, and no passenger injuries. But the pilot sheds new light on those stats: Most of the 20 are extremely recent, and the bird population is skyrocketing. In other words, the context of the conservationists’ facts suggests that the refuge is not a place of safety, but a place of tragedy just waiting to happen. It all amounts to identifying a misleading use of statistics, (A). The most tempting wrong choice is (E), but note that the pilot accepts the accuracy of the statistics. He merely suggests that they have a very different meaning.",
+        "level": "hard"
+      },
+      {
+        "n": 29,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Some people claim that the reason herbs are not prescribed as drugs by licensed physicians is that the medical effectiveness of herbs is seriously in doubt. No drug can be offered for sale, however, unless it has regulatory-agency approval for medicinal use in specific illnesses or conditions. It costs about $200 million to get regulatory-agency approval for a drug, and only the holder of a patent can expect to recover such large expenses. Although methods of extracting particular substances from herbs can be patented, herbs themselves and their medicinal uses cannot be. Therefore, under the current system licensed physicians cannot recommend the medicinal use of herbs. Which one of the following most accurately describes the argumentative technique used in the argument?",
+        "choices": [
+          "questioning a claim about why something is the case by supplying an alternative explanation",
+          "attacking the validity of the data on which a competing claim is based",
+          "revealing an inconsistency in the reasoning used to develop an opposing position",
+          "identifying all plausible explanations for why something is the case and arguing that all but one of them can be eliminated",
+          "testing a theory by determining the degree to which a specific situation conforms to the predictions of that theory"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The author’s sheer purpose is to counter the claim made in the first sentence by providing another reason—or “an alternative explanation,” in (A)’s words—why physicians don’t prescribe herbs. The data (if any) used by the people mentioned in sentence 1 goes unmentioned, let alone attacked (B). The author doesn’t see an inconsistency (C) in the claim that physicians mistrust herbs; she just sees the story from a different angle. Many other explanations for the physician/herb situation (D) go unmentioned here, and (E) would be closer if it said that the author rejects one theory (if we can call it that) by proposing another one. But that would turn (E) into (A), after all.",
+        "level": "hard"
+      },
+      {
+        "n": 30,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Mall manager: By congregating in large groups near the stores in our mall, teenagers create an atmosphere in which many adult shoppers feel uncomfortable. As a result, the adults have begun to spend less time shopping than they have in the past. The mall’s goal in this situation is to prevent a significant loss in overall sales, so merchants should do their utmost to discourage teenagers from congregating near stores. Merchant: But the amount spent by teenagers who congregate near mall stores constitutes a significant percentage of the total amount spent in those stores. The merchant’s response to the manager’s argument is most accurately described as",
+        "choices": [
+          "disputing the truth of claims the manager offers as support for the recommendation",
+          "giving information that pertains to the relation between the manager’s recommendation and the mall’s goal",
+          "suggesting that the mall’s goal is an undesirable one",
+          "contending that the manager’s recommendation is sound but for reasons other than those given by the manager",
+          "using the information cited by the manager to make an additional recommendation that would help achieve the goal"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "A short response most likely focuses on a narrow segment of the first argument; zero in on that narrow focus to paraphrase the answer. The mall manager is concerned by the large groups of teenagers congregating in his mall, and argues that their presence causes adults to spend less time shopping in the mall’s stores. He uses this information to conclude that merchants in the mall should discourage teenagers from congregating near their stores, giving as a reason the fact that the mall’s goal is to prevent a loss in sales. The merchant (perhaps one of those being told to kick the teenagers out?) counters that the teenagers themselves account for a significant percentage of the total sales in the stores. This response is short and to the point, so we can quickly figure out which part of the mall manager’s argument it responds to.",
+        "level": "hard"
+      },
+      {
+        "n": 31,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Anthropologist: After mapping the complete dominance hierarchy for a troupe of vervet monkeys by examining their pairwise interaction, we successfully predicted more complex forms of their group behavior by assuming that each monkey had knowledge of the complete hierarchy. Since our prediction was so accurate, it follows that the assumption we used to reach it was in fact true. Primatologist: Although I agree that your assumption helped you make those predictions, your conclusion does not follow. You might as well argue that since we can predict the output of some bank cash machines by assuming that these machines actually want to satisfy the customers’ requests, these cash machines must really have desires. The primatologist uses which one of the following argumentative techniques in countering the anthropologist’s argument?",
+        "choices": [
+          "citing various facts that could not obtain if the anthropologist’s conclusion were correct",
+          "offering another argument that has as its premise the denial of the thesis that the anthropologist defends",
+          "applying one of the anthropologist’s reasoning steps in another argument in an attempt to show that it leads to an absurd conclusion",
+          "attacking the anthropologist’s expertise by suggesting the anthropologist is ignorant of the analogy that can be drawn between animals and machines",
+          "suggesting that the anthropologist’s argument relies on a misinterpretation of a key scientific term"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The anthropologist details an experiment he was a part of and the conclusions that experiment arrived at. In short, the experiment involved mapping out the hierarchy for a troupe of monkeys, then using that hierarchy to predict the behavior of the monkeys. But in making his predictions, the anthropologist informs us, he made one key assumption: that every monkey knew the hierarchy in the same way that the anthropologist did. He concludes that this assumption is correct from the fact that his predictions were correct. But the primatologist begs to differ, and does so by way of analogy. His analogy leads to the conclusion that bank cash machines really have desires, simply from the fact that we can predict their behavior by assuming that they have desires.",
+        "level": "easy"
+      },
+      {
+        "n": 32,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "James: Chemists have recently invented a new technique for extracting rhodium, an element necessary for manufacturing catalytic converters for automobiles, from nuclear waste. Catalytic converters function to remove noxious gases from automobile exhaust. The use of nuclear power is therefore contributing in at least one way to creating a cleaner environment. Marta: The technique you mention, though effective, is still at an experimental stage, so there has been no shift in the sources of the rhodium currently used in manufacturing catalytic converters. Marta responds to James’s argument by",
+        "choices": [
+          "casting doubt on the accuracy of the claims made by James in support of his conclusion",
+          "questioning the credibility of advocates of nuclear power",
+          "indicating that James is assuming the truth of the conclusion that he intends to establish",
+          "pointing out a fact that James, in drawing his conclusion, did not take into account",
+          "point out that James’s premises are no more plausible than is his conclusion"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The correct choice for a Method of Argument question must match the stimulus point for point. James is jazzed about a new technique for extracting rhodium from nuclear waste. Rhodium is used to make catalytic converters, and catalytic converters in turn make cars cleaner. And so, James argues, nuclear power is helping to make the environment cleaner. How does Marta respond? That’s all fine and good, but the technique is actually still in the preliminary stages and hasn’t been carried out yet. Marta agrees with all James’ evidence, but not his conclusion. (A) Marta has no argument with the evidence James mentions, but with his conclusion. Eliminate. (B) Marta never mentions advocates of nuclear power, so she can hardly be questioning their credibility. She only questions James. Eliminate. (C) accuses James of using circular logic.",
+        "level": "medium"
+      },
+      {
+        "n": 33,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Inez: In these poor economic times, people want to be sure they are getting good value for their money. I predict people would be more willing to buy antiques at our fair if we first have the object inspected by professional appraisers who would remove any objects of questionable authenticity. Anika: I disagree with your prediction. Our customers already are antiques experts. Furthermore, hiring professional appraisers would push up our costs considerably, thus forcing us to raise the prices on all our antiques. Anika’s response proceeds by",
+        "choices": [
+          "indicating that a particular plan would have an effect contrary to the anticipated effect",
+          "claiming that a particular plan should not be adopted because, while effective, it would have at least one undesirable consequence",
+          "arguing that an alternative plan could achieve a desired result more easily than the plan originally proposed",
+          "questioning the assumption that authorities are available who have special knowledge of the problem under discussion",
+          "offering a counterexample in order to show that a particular general claim is too broadly stated"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "This question asks you to determine the way Anika’s response flows, and her statement “I disagree with your prediction” is a great clue. Inez’s prediction is that having antiques professionally appraised would make customers more willing to buy the antiques, because it would remove the possibility of getting suckered into purchasing fake items. Anika disagreeing with the prediction is a pretty blatant sign that she believes the opposite—this plan would not make customers more willing to buy the antiques. And the rest of her statement bears this out: the customers are already experts, so hiring a professional would only raise costs, causing people to buy fewer antiques. Pretty straightforward: Anika feels that Inez’s plan would have the opposite of the anticipated effect, which is (A) precisely. (B) is a half-right, half wrong choice.",
+        "level": "medium"
+      },
+      {
+        "n": 34,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Sarah: Some schools seek to foster a habit of volunteering in their students by requiring them to perform community service. But since a person who has been forced to do something has not really volunteered and since the habit of volunteering cannot be said to have been fostered in a person who has not yet volunteered for anything, there is no way this policy can succeed by itself. Paul: I disagree. Some students forced to perform community service have enjoyed it so much that they subsequently actually volunteer to do something similar. In such cases, the policy can clearly be said to have fostered a habit of volunteering. Paul responds to Sarah’s argument using which one of the following argumentative techniques?",
+        "choices": [
+          "He argues that Sarah is assuming just what she sets out to prove.",
+          "He argues that Sarah’s conception of what it means to volunteer excludes certain activities that ought to be considered instances of volunteering.",
+          "He introduces considerations that call into question one of Sarah’s assumptions.",
+          "He questions Sarah’s motives for advancing an argument against the school policy.",
+          "He argues that a policy Sarah fails to consider could accomplish the same aim as the policy that Sarah considers."
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Next, we’re faced with another disagreeing pair, Sarah and Paul. And Paul is up front in his opposition as he flatly states “I disagree.” Paul disagrees with Sarah’s opinion that programs that require students to volunteer don’t succeed in producing people who like to volunteer because those students are forced to participate. Au contraire, says Paul: Some students enjoy their community service so much that they eventually decide to volunteer on their own. In other words, he brings up a situation which breaks down Sarah’s assumption that all volunteering is necessarily forced volunteering. Choice (C) gets the point.",
+        "level": "medium"
+      },
+      {
+        "n": 35,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "M: The Greek alphabet must have been invented by some individual who knew the Phoenician writing system and who wanted to have some way of recording Homeric epics and thereby preserving expressions of a highly developed tradition of oral poetry. P: Your hypothesis is laughable\\! What would have been the point of such a person’s writing Homeric epics down? Surely a person who knew them well enough to write them down would not need to read them; and no one else could read them, according to your hypothesis. Which one of the following is an argumentative strategy that P uses in responding to M?",
+        "choices": [
+          "attacking M’s understanding of the literary value of oral poetry",
+          "disagreeing with M’s thesis without attempting to refute it",
+          "challenging M’s knowledge of the Phoenician writing system",
+          "attempting to undermine M’s hypothesis by making it appear absurd",
+          "providing an alternative interpretation of evidence put forward by M"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "If, when two people are talking in a stimulus, you’re used to reading the second person first, simply seeing that P calls M’s hypothesis laughable might have caused you to stop right there and check out what M’s hypothesis is. The issue is, who invented the Greek alphabet? M’s idea is that it was someone who knew how to write Phoenician and wanted to record and preserve Homer’s cool (but orally transmitted in Greek) poetry. This idea is laughable, according to P, because the inventor of the Greek alphabet by definition must have been the only person who could read Homer in Greek; and since that particular guy already knew Homer by heart, why on earth would he bother to write it down? Anyway, M’s idea is ridiculous and self-contradictory, P implies—or “absurd,” as (D) has it.",
+        "level": "medium"
+      },
+      {
+        "n": 36,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "The widespread staff reductions in a certain region’s economy are said to be causing people who still have their jobs to cut back on new purchases as though they, too, had become economically distressed. Clearly, however, actual spending by such people is undiminished, because there has been no unusual increase in the amount of money held by those people in savings account. The argument in the passage proceeds by doing which one of the following?",
+        "choices": [
+          "concluding that since an expected consequence of a supposed development did not occur, that development itself did not take place",
+          "concluding that since only one of the two predictable consequences of a certain kind of behavior is observed to occur, this observed occurrence cannot, in the current situation, be a consequence of such behavior",
+          "arguing that since people’s economic behavior is guided by economic self-interest, only misinformation or error will cause people to engage in economic behavior that harms them economically",
+          "arguing that since two alternative developments exhaust all the plausible possibilities, one of those developments occurred and the other did not",
+          "concluding that since the evidence concerning a supposed change is ambiguous, it is most likely that no change is actually taking place"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The issue at hand, we learn from sentence 1, is: What has been the effect of a region’s high unemployment on the employed people there? Rumor seems to have it that even the working folks have cut back on their spending, as if they too were in financial trouble. But the author rebuts that rumor: “Clearly,” he concludes, workers are spending as usual. What makes him think so is that workers’ savings accounts are about normal. He seems to think that if the working folks were cutting back on their spending, they’d be putting more money away in savings. And since they’re not saving more (see the contrapositive at work here?), they must not be cutting back on spending. This Method of Argument question wants us to translate that analysis into abstract terms. One way you might approach it is like so: If a certain thing were happening (e.g.",
+        "level": "easy"
+      },
+      {
+        "n": 37,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Astronomer: Astronomical observations in many areas have become useless because light from nearby cities obscures the stars Many people argue that since streetlights are needed for safety, such interference from lights is inevitable. Here in Sandsville, however, the local observatory’s view remains relatively clear, since the city has restricted unnecessary lighting and installed special street lamps that direct all their light downward. It is therefore possible to have both well-lighted streets and relatively dark skies. The astronomer’s argument proceeds by",
+        "choices": [
+          "appealing to a scientific authority to challenge a widely held belief",
+          "questioning the accuracy of evidence given in support of the opposing position",
+          "proposing an alternative scientific explanation for a natural phenomenon",
+          "making a distinction between terms",
+          "offering a counter example to a general claim"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Since we know from the stem that we’re looking for the method of argument, we can focus on how the astronomer makes her argument. The keyword “therefore” indicates the conclusion. It is possible to have well-lit streets and relatively dark skies. How does the author back up this claim? She notes that many people believe that interference from light is unfortunate but necessary, since people need bright lights for safe streets. “Here in Sandsville, however,” indicates that the example of Sandsville will be used to counter that claim. And it does. Sandville’s experience demonstrates that it is possible to have it both ways, so the astronomer does offer a counterexample to a general claim, (E). (A) What scientific authority? No one’s expertise is at issue.",
+        "level": "hard"
+      },
+      {
+        "n": 38,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Charles: During recessions unemployment typically rises. Thus, during a recession air pollution due to automobile exhaust decreases, since fewer people commute in cars to jobs and so cars emitting pollutants into the air are used less. Darla: Why think that air pollution would decrease? During a recession fewer people can afford to buy new cars, and cars tend to emit more pollutants as they get older. Which one of the following most accurately describes how Darla’s response is related to Charles’s argument?",
+        "choices": [
+          "It calls into question the truth of the premises that Charles uses to support his conclusion.",
+          "It makes an additional claim that can be true only if Charles’s conclusion is false.",
+          "It presents an additional consideration that weakens the support given to Charles’s conclusion by his evidence.",
+          "It argues that Charles’s conclusion is true, although not for the reasons Charles gives to support that conclusion.",
+          "It presents an argument showing that the premises in Charles’ s argument support an absurd conclusion that Charles has overlooked."
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Charles indicates that during recessions a greater percentage of people are out of work. The keyword “thus” signals the conclusion: During a recession air pollution caused by cars decreases. Why? The keyword “since” indicates supporting evidence follows: Fewer people are commuting, which means fewer cars and therefore less pollution. Darla then challenges the conclusion, but she doesn’t challenge Charles’ evidence. Instead, she brings up a competing consideration: If fewer people have jobs, then fewer people have new cars, which means more old cars are on the road. Old cars pollute more, which could mean more pollution. Generally speaking, Darla undermines Charles’ argument by introducing an additional consideration, (C). (A) Darla doesn’t contest Charles’ evidence; she just claims that it doesn’t justify his conclusion.",
+        "level": "hard"
+      },
+      {
+        "n": 39,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Politician: The mandatory jail sentences that became law two years ago for certain crimes have enhanced the integrity of our system of justice, for no longer are there two kinds of justice, the kind dispensed by lenient judges and the kind dispensed by severe ones. Public advocate: But with judges stripped of discretionary powers, there can be no leniency even where it would be appropriate. So, juries now sometimes acquit a given defendant solely because the jurors feel that the mandatory sentence would be too harsh. Those juries, then, do not return an accurate verdict on the defendant’s guilt. This is why it is imperative that the legislation instituting mandatory jail sentences be repealed. The public advocate responds to the politician’s argument by doing which one of the following?",
+        "choices": [
+          "trying to show that the politician’s conclusion merely paraphrases the politician’s evidence",
+          "claiming that the politician’s evidence, properly analyzed, has no bearing on the conclusion the politician derives from it",
+          "arguing that leniency is not a trait of individuals but that, rather, it is a property of certain kinds of decisions",
+          "arguing that an analysis of the consequences of certain legislation undermines the politician’s conclusion",
+          "charging that the politician exaggerated the severity of a problem in order to justify a sweeping solution"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The issue is mandatory sentencing, which the politician esteems as a positive vehicle for justice, since (to him) it makes justice less subject to whether a judge happens to be strict or lenient. The advocate wants to see it repealed because of its effects on juries, who (she argues) may acquit not because they’re convinced the accused is not guilty, but because they feel the mandatory sentence would be too harsh. So, the advocate’s response, as (D) says, examines the consequences of the policy in an effort to show that mandatory sentencing doesn’t ensure, but rather perverts, justice. (A) would only be accurate if the advocate were accusing the politician of circular reasoning. But her point deals with the ramifications of the proposal, not the politician’s repeating himself.",
+        "level": "hard"
+      },
+      {
+        "n": 40,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Millions of female bats rear their pups in Bracken Cave. Although the mothers all leave the cave nightly, on their return each mother is almost always swiftly reunited with her own pup. Since the bats’ calls are their only means of finding one another, and a bat pup cannot distinguish the call of its mother from that of any other adult bat, it is clear that each mother bat can recognize the call of her pup. The argument seeks to do which one of the following?",
+        "choices": [
+          "derive a general conclusion about all members of a group from facts known about representative members of that group",
+          "establish the validity of one explanation for a phenomenon by excluding alternative explanations",
+          "support, by describing a suitable mechanism, the hypothesis that a certain phenomenon can occur",
+          "conclude that members of two groups are likely to share a certain ability because of other characteristics they share",
+          "demonstrate that a general rule applies in a particular case"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The issue here concerns the method by which female bats reunite with their “pups” amongst millions of bats in Bracken Cave. The only possible way to find one another is through bat calls (by way of the Bat Phone?), but the pups are clueless— they can’t tell mommy from a hole in the wall. But since the moms do hook up swiftly with their pups upon return, the author concludes that the mother bat must be able to recognize the call of her pup. What, in general terms, is the argument trying to do? It asserts a conclusion regarding a phenomenon by ruling out the only other possible explanation for the phenomenon.",
+        "level": "hard"
+      },
+      {
+        "n": 41,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Tom: Employers complain that people graduating from high school too often lack the vocational skills required for full-time employment. Therefore, since these skills are best acquired on the job, we should require high school students to work at part-time jobs so that they acquire the skills needed for today’s job market. Mary: There are already too few part-time jobs for students who want to work, and simply requiring students to work will not create jobs for them. Which one of the following most accurately describes how Mary’s response is related to Tom’s argument?",
+        "choices": [
+          "It analyzes an undesirable result of undertaking the course of action that Tom recommends.",
+          "It argues that Tom has mistaken an unavoidable trend for an avoidable one.",
+          "It provides information that is inconsistent with an explicitly stated premise in Tom’s argument.",
+          "It presents a consideration that undercuts an assumption on which Tom’s argument depends.",
+          "It defends an alternative solution to the problem that Tom describes."
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Does Mary come right out and tell Tom that it’s a terrible idea? No. But she does introduce a new consideration that certainly puts a damper on his proposal. Tom believes that high school students should work part-time jobs to help prepare them for the work world, but what if these job opportunities simply aren’t available? He assumes that the opportunity for part-time work exists for high school students, but Mary strongly implies that this may not be the case. (D) describes her response perfectly: she presents a consideration (the lack of part-time job opportunities for high schoolers) that undercuts Tom’s basic assumption (that high-schoolers can get part-time work). (A) No, Mary never says “here’s a really bad thing that will happen if we require high school students to work part-time jobs.",
+        "level": "easy"
+      },
+      {
+        "n": 42,
+        "topic": "Boldface & method of reasoning",
+        "correct": "C",
+        "options": 5,
+        "text": "Philosopher: The eighteenth-century thesis that motion is absolute asserts that the change in an object’s position over time could be measured without reference to the position of any other object. A well-respected physicist, however, claims that this thesis is incoherent. Since a thesis that is incoherent cannot be accepted as a description of reality, motion cannot be absolute. The argument uses which one of the following argumentative techniques?",
+        "choices": [
+          "attempting to persuade by the mere use of technical terminology",
+          "using experimental results to justify a change in definition",
+          "relying on the authority of an expert to support a premise",
+          "inferring from what has been observed to be the case under experimental conditions to what is in principle true",
+          "generalizing from what is true in one region of space to what must be true in all regions of space"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "This argument begins by describing an eighteenth-century theory, and continues by asserting that a “well-respected physicist” has deemed the theory to be incoherent. The author then rejects the theory on the grounds that it’s incoherent. The only support for rejecting the theory is the statement by the physicist. (C), therefore, best describes the method of argumentation. (A) Although there is some technical terminology in the argument (motion is absolute, object’s position over time), it’s fairly simple and certainly not used as a means of argumentation. (B) , (D) No experimental results were used in the argument; the sole support for the argument is the statement by a single authority. (E) is way off the mark. The conclusion has nothing to do with accepting a theory about “all regions of space” based on a generalization.",
+        "level": "medium"
+      },
+      {
+        "n": 43,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "It is widely believed that eating chocolate can cause definition of knowledge acne. report Indeed, that, in many their own people experience, who are susceptible eating large to acne amounts of chocolate is invariably followed by an outbreak of that skin condition. However, it is likely that common wisdom has mistaken an effect for a cause. Several recent scientific studies indicate that hormonal changes associated with stress can cause acne and there is good evidence that people who are fond of chocolate tend to eat more chocolate when they are under stress. The argument employs which one of the following argumentative strategies?",
+        "choices": [
+          "It cites counterevidence that calls into question the accuracy of the evidence advanced in support of the position being challenged.",
+          "It provides additional evidence that points to an alternative interpretation of the evidence offered in support of the position being challenged.",
+          "It invokes the superior authority of science over common opinion in order to dismiss out of hand the relevance of evidence based on everyday experience.",
+          "It demonstrates that the position being challenged is inconsistent with certain well-established facts.",
+          "It provides counterexamples to show that, contrary to the assumption on which the commonly held position rests, causes do not always precede their effects."
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The author bolsters her belief as to the true cause + effect by citing scientific studies (the “additional evidence” of which (B) speaks), studies whose results question the sentence 2 evidence that people think supports the “widespread belief” of sentence 1. Each phrase of (B)’s has a parallel in the argument. All five choices look good without a prephrased idea of the right one. The author doesn’t “question the accuracy” of the chocolate/acne correlation; rather, she reinterprets that connection, so (A) distorts the logic. Since the author accepts the chocolate/acne correlation that is part of “everyday experience,” she is hardly “dismissing it out of hand” (C), nor is she relying on the mere authority of science over common sense. The chocolate/acne correlation is consistent with science’s view of the role of stress, so (D) is a 180.",
+        "level": "medium"
+      },
+      {
+        "n": 44,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "43. Lydia: Red squirrels are known to make holes in the Essayist: Knowledge has been defined as a true belief bark of sugar maple trees and to consume the formed by a reliable process. This definition has trees’ sap. Since sugar maple sap is essentially been criticized on the grounds that if someone water with a small concentration of sugar, the had a reliable power of clairvoyance, we would squirrels almost certainly are after either water not accept that person’s claim to know certain or sugar. Water is easily available from other things on the basis of this power. I agree that we sources in places where maple trees grow, so the would reject such claims, but we would do so squirrels would not go to the trouble of chewing because we really do not believe in clairvoyance holes in trees just to get water. Therefore, they are as a reliable process. Were we to believe in probably after the sugar. clairvoyance, we would accept knowledge claims Galina: It must be something other than sugar, because made on the basis of it. the concentration of sugar in the maple sap is Which one of the following most accurately describes so low that a squirrel would need to drink an the essayist’s method of defending the definition against enormous amount of sap to get any significant the objection? amount of sugar.",
+        "choices": [
+          "asserting that the objection is based on a belief Lydia’s argument proceeds by about the reliability of clairvoyance rather than (A) dismissing potentially disconfirming data",
+          "citing a general rule of which the conclusion is a specific instance",
+          "presenting an observed action as part of a larger pattern of behavior",
+          "drawing an analogy between well-understood phenomena and an unexplained phenomenon",
+          "rejecting a possible alternative explanation for an observed phenomenon on the nature of knowledge or its definition (B) asserting that the case of clairvoyance is one of knowledge even though we do not really believe in clairvoyance as a reliable process (C) arguing against the assumption that clairvoyance is unreliable (D) explaining that the definition of knowledge is a matter of personal choice (E) demonstrating that the case of clairvoyance is not a case of knowledge and does not fit the"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The objection to the definition is that in the case of clairvoyance, meeting the sufficient condition of “true belief formed by reliable process” would still not make people accept clairvoyant statements as “knowledge”—hence, to the objectors, the conditions aren’t sufficient and the definition of knowledge is faulty. The author’s rebuttal wisely points out that the objection shifts the scope: Clairvoyance isn’t accepted as reliable (if it were, we would accept its claims as knowledge), so the counter objection isn’t on the mark. (A) explains that. (B) is a 180 because the author asserts that the unreliability of clairvoyance makes it impossible to yield knowledge. (C) is a 180, too, because she defends rather than rebuts that unreliability.",
+        "level": "medium"
+      },
+      {
+        "n": 45,
+        "topic": "Boldface & method of reasoning",
+        "correct": "E",
+        "options": 5,
+        "text": "Hospital auditor: The Rodríguez family stipulated that the funds they donated to the neurological clinic all be used to minimize patients’ suffering. The clinic administration is clearly violating those terms, since it has allocated nearly one fifth of those funds for research into new diagnostic technologies, instead of letting that money flow directly to its patients. Clinic administrator: But the successful development of new technologies will allow early diagnosis of many neurological disorders. In most cases, patients who are treated in the early stages of neurological disorders suffer far less than do patients who are not treated until their neurological disorders reach advanced stages. The clinic administrator responds to the hospital auditor by doing which one of the following?",
+        "choices": [
+          "demonstrating that the hospital auditor’s conclusion, though broadly correct, stands in need of a minor qualification",
+          "showing that the hospital auditor’s argument fails to separate what is the case from what ought to be the case",
+          "reminding the hospital auditor that, in the case at issue, being told what to do is tantamount to being told how to do it",
+          "arguing that, in assessing the severity of a violation, the reasoning motivating the violation needs to be considered",
+          "reinterpreting a key phrase in the hospital auditor’s argument so as to undermine an assumption underlying that argument"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The administrator’s first word, “But,” hints that she is going to take issue with the auditor’s point of view, and so she does. But how? She believes that the money is in fact working to alleviate patient suffering, through the development of diagnostic tools that will minimize the suffering of patients who’d feel much worse if their disorder were discovered late rather than early. The choices here confound prephrasing a bit, because they indulge in a lot of confusing abstract verbiage. But wrestling the language down to the ground should lead you to (E). The “key phrase” that the administrator “reinterprets” in order to undermine the auditor’s assumption is as follows: “instead of letting that money flow directly to \\[the\\] patients.",
+        "level": "easy"
+      },
+      {
+        "n": 46,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Dillworth: More and more people are deciding not to have children because of the personal and economic sacrifices children require and because so often children are ungrateful for the considerable sacrifices their parents do make for them. However, such considerations have no bearing on the fact that their children provide the best chance most people have of ensuring that their values live on after them. Therefore, for anyone with deeply held values, foregoing parenthood out of reluctance to make sacrifices for which little gratitude can be expected would probably be a mistake. Travers: Your reasoning ignores another fact that deserves consideration: children’s ingratitude for parental sacrifices usually stems from a wholesale rejection of parental values. Dillworth employs which one of the following argumentative strategies?",
+        "choices": [
+          "showing that considerations cited as drawbacks to a given course of action are not really drawbacks at all",
+          "exposing as morally suspect the motives of people who would make the choice that Dillworth rejects",
+          "indirectly establishing that a given course of action is obligatory by arguing that the alternative course of action is prohibited",
+          "distinguishing a category of person for whom the reason presented in favor of a given course of action is more telling than the reasons cited against that course of action",
+          "using evidence that a certain course of action would be appropriate under one set of conditions to arrive at a general conclusion about what would be appropriate in all cases"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Keywords help you navigate your way through Dillworth’s unusually lengthy diatribe. Situation: People are deciding against kids for two reasons: a lot of sacrifice is required, and the kids end up ungrateful, grumble grumble. Contrast Keyword “However”: He brings up another consideration that, in his mind, outweighs the first: the fact that kids are the best way of passing on one’s values. Conclusion Keyword “Therefore”: Dillworth’s point is that those who hold values should separate themselves from the pack mentioned in sentence 1, and have kids despite all the sacrifice and ingratitude. (D) puts all of that in abstract language. The “category” is people with deep values, the “given course of action” is having kids, and the “reasons cited against \\[it\\]” are the sacrifices and ingratitude.",
+        "level": "hard"
+      },
+      {
+        "n": 47,
+        "topic": "Boldface & method of reasoning",
+        "correct": "B",
+        "options": 5,
+        "text": "Philosopher: It is absurd to argue that people are morally obligated to act in a certain way simply because not acting in that way would be unnatural. An unnatural action is either a violation of the laws of nature or a statistical anomaly. There is no possibility of acting as one cannot, nor does the mere fact that something is not usually done provide any good reason not to do it. Which one of the following most accurately describes a technique used in the philosopher’s argument?",
+        "choices": [
+          "undermining a concept by showing that its acceptance would violate a law of nature",
+          "stating the definition of a key term of the argument",
+          "using statistical findings to dispute a claim",
+          "undermining a claim by showing that the claim is self-contradictory",
+          "using empirical evidence to support one definition of a key term of the argument over another"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Reading and analyzing a question stem carefully can render a question much easier than it might at first appear. The stem asks for “a” technique used by the philosopher, not “the” technique; and as soon as we read “An unnatural action is either...” we can see that he has employed technique (B): yes, he has defined that key term, namely “unnatural action.” No other understanding of the dense stimulus is required, solely because we noticed the “a” rather than “the.” (A) The only concept the author might be accused of undermining is the concept of “unnatural action.” But he does so not by alleging that it violates nature’s laws, but by arguing that no such action can exist, that neither definition of the concept makes any sense. (C) No statistical findings are offered.",
+        "level": "hard"
+      },
+      {
+        "n": 48,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Zachary: The term “fresco” refers to paint that has been applied to wet plaster. Once dried, a fresco indelibly preserves the paint that a painter has applied in this way. Unfortunately, additions known to have been made by later painters have obscured the original fresco work done by Michelangelo in the Sistine Chapel. Therefore, in order to restore Michelangelo’s Sistine Chapel paintings to the appearance that Michelangelo intended them to have, everything except the original fresco work must be stripped away. Stephen: But it was extremely common for painters of Michelangelo’s era to add painted details to their own fresco work after the frescos had dried. Stephen’s response to Zachary proceeds by",
+        "choices": [
+          "calling into question an assumption on which Zachary’s conclusion depends",
+          "challenging the definition of a key term in Zachary’s argument",
+          "drawing a conclusion other than the one that Zachary reaches",
+          "denying the truth of one of the stated premises of Zachary’s argument",
+          "demonstrating the Zachary’s conclusion is not consistent with the premises he uses to support it"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Stephen is playing good GMAT test-taker in his response. Zachary’s argument concludes (“Therefore”) that to return the Sistine Chapel to what Michelangelo intended, it’s necessary to strip away “everything except” the original fresco work. The evidence for this is that later painters made additions. Stephen identifies the gap between evidence and conclusion: What if Michelangelo himself had made additions after his original work, in order to fulfill his intentions? (And it sounds as if he may well have done so.) If so, stripping away “everything except” the original work would not achieve Michelangelo’s intentions at all. Stephen is doing exactly what you should be doing on a large portion of Logical Reasoning questions: identifying the assumption (A).",
+        "level": "hard"
+      },
+      {
+        "n": 49,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Statistician: Changes in the Sun’s luminosity correlate exceedingly well with average land temperatures on Earth. Clearly—and contrary to accepted opinion among meteorologists—the Sun’s luminosity essentially controls land temperatures on Earth. Meteorologist: I disagree. Any professional meteorologist will tell you that in a system as complicated as that giving rise to the climate, no significant aspect can be controlled by a single variable. The rejection by the meteorologist of the statistician’s conclusion employs which one of the following techniques of argumentation?",
+        "choices": [
+          "supporting a conclusion about a specific case by invoking a relevant generalization",
+          "producing a single counterexample that establishes that a generalization is false as stated",
+          "reanalyzing a correlation as reflecting the multiple effects of a single cause",
+          "rejecting a conclusion because it is a proposition that cannot be experimentally tested",
+          "pointing out that potentially unfavorable evidence has been systematically neglected"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The statistician argues from correlation to causation: the Sun’s luminosity correlates with Earth’s land temperatures, therefore the Sun’s luminosity determines Earth’s land temperatures. The meteorologist doesn’t attack this reasoning, as you might expect, but instead simply declares that the conclusion is impossible because it’s a recognized rule among meteorologists that in a complex system (like the Earth’s climate) no significant aspect (like land temperature) can be controlled by a single variable (like the Sun’s luminosity). As (A) says, the meteorologist invokes a relevant generalization (The above-mentioned rule) to draw a conclusion about this particular problem.",
+        "level": "hard"
+      },
+      {
+        "n": 50,
+        "topic": "Boldface & method of reasoning",
+        "correct": "A",
+        "options": 5,
+        "text": "Some people have been promoting a new herbal mixture as a remedy for the common cold. The mixture contains, among other things, extracts of the plants purple coneflower and goldenseal. A cold sufferer, skeptical of the claim that the mixture is an effective cold remedy, argued, “Suppose that the mixture were an effective cold remedy. Since most people with colds wish to recover quickly, it follows that almost everybody with a cold would be using it. Therefore, since there are many people who have colds but do not use the mixture, it is obviously not effective.” Which one of the following most accurately describes the method of reasoning the cold sufferer uses to reach the conclusion of the argument?",
+        "choices": [
+          "finding a claim to be false on the grounds that it would if true have consequences that are false",
+          "accepting a claim on the basis of public opinion of the claim",
+          "showing that conditions necessary to establish the truth of a claim are met",
+          "basing a generalization on a representative group of instances",
+          "showing that a measure claimed to be effective in achieving a certain effect would actually make achieving the effect more difficult"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Now we’re asked for the cold sufferer’s method of argument, so let’s check the choices against the argument until we find a match. Choice (A) has a few different parts, so let’s take it a bit at a time. Does the cold sufferer find a claim to be false? Sure; our grumpy cold sufferer is skeptical of the claim that the herbal mixture is an effective cold remedy, and in fact proceeds to pronounce this claim false. So far so good. But does the rest hold up? Yes: The cold sufferer denounces the claim because he feels that, if the claim were true, there would be consequences (almost everyone with a cold would be using it) that in fact are false (many people with colds don’t use it). All elements match up, so (A) fits the bill of the cold sufferer’s method of argument. (B) The cold sufferer denounces the claim; he doesn’t accept it.",
+        "level": "easy"
+      },
+      {
+        "n": 51,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "S: It would be premature to act to halt the threatened “global warming trend,” since that alleged trend might not be real. After all, scientists disagree about it, some predicting over twice as much warming as others, so clearly their predictions cannot be based on firm evidence. W: Most scientists consider discussions of accepted ideas boring, and prefer to argue about what is not known. According to the International Science Council, there is a consensus among reputable investigators that average global warming in the next century will be from 1.5° to 4.5°C. W’s rejoinder proceeds by",
+        "choices": [
+          "denying the existence of the disagreements cited by S",
+          "accepting S’s conclusion while disputing the reasons offered for it",
+          "relying on authorities whose views conflict with the views of the authorities cited by S",
+          "putting disagreements cited by S in perspective by emphasizing similarities",
+          "reasoning in a circle by accepting evidence only if it agrees with a desired conclusion"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "Since W draws no conclusion, the facts she cites make sense only in the context of S’s argument that we shouldn’t try to halt future global warming because scientists disagree all over the place; the evidence isn’t firm; global warming may not even be real. What W does is suggest that scientists don’t bother to argue when facts are established, and that scientists do accept one fact: global warming is happening, albeit within an uncertain 3°C range. W’s facts are the “similarities” among scientists to which (D) refers. (A) W and S are equally aware of the disagreements among scientists; it’s just that W denies those disagreements’ relevance to the global warming debate.",
+        "level": "medium"
+      },
+      {
+        "n": 52,
+        "topic": "Boldface & method of reasoning",
+        "correct": "D",
+        "options": 5,
+        "text": "Psychologists have claimed that many people are more susceptible to psychological problems in the winter than in the summer; the psychologists call this condition seasonal affective disorder. Their claim is based on the results of surveys in which people were asked to recall how they felt at various times in the past. However, it is not clear that people are able to report accurately on their past psychological states. Therefore, these survey results do not justify the psychologists’ claim that there is any such condition as seasonal affective disorder. The author criticizes the psychologists’ claim by",
+        "choices": [
+          "offering an alternative explanation of the variation in the occurrence of psychological problems across seasons",
+          "questioning whether any seasonal variation in the occurrence of psychological problems could properly be labeled a disorder",
+          "questioning the representativeness of the population sample surveyed by the psychologists",
+          "questioning an assumption that the author attributes to the psychologists",
+          "demonstrating that fewer people actually suffer from seasonal affective disorder than psychologists had previously thought"
+        ],
+        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
+        "expl": "The stimulus begins with the psychologists’ claim that people are more susceptible to psychological problems in the winter than in the summer (seasonal affective disorder). The only support cited for this claim comes from the survey. The psychologists are assuming that the self-reported results of the survey are accurate. The author disagrees with this assumption and uses the word “however” to signal that she disputes the validity of the survey results because she does not believe that self-reported results about the past are accurate. The author, “therefore,” does not believe that the survey results support the existence of the disorder. The author disputes the psychologists’ conclusion by questioning their central assumption that the results of such a survey can be accurate—choice (D).",
+        "level": "medium"
+      }
+    ]
   }
 ];

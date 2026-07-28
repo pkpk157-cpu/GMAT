@@ -160,6 +160,14 @@
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 17px 19px; margin-top: 14px; }
   .panel h3 { margin: 0 0 3px; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
   .panel .sub { color: var(--ink-soft); font-size: 13px; margin: 0 0 14px; }
+  /* Numbered section header used on each subject tab (Concepts / Practice / Logged) */
+  .tabsec { scroll-margin-top: 70px; }
+  .tabsec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .tabsec-n { flex: none; width: 30px; height: 30px; border-radius: 9px; background: color-mix(in srgb, var(--secc, var(--accent)) 16%, var(--surface)); color: var(--secc, var(--accent)); font-weight: 800; font-size: 15px; display: grid; place-items: center; }
+  .tabsec-h { min-width: 0; margin-right: auto; }
+  .tabsec-h h3 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+  .tabsec-h p { color: var(--ink-soft); font-size: 12.5px; margin: 2px 0 0; }
+  .tabsec-meta { flex: none; }
 
   .breakdown { display: flex; flex-direction: column; gap: 13px; }
   .bd-row { display: grid; grid-template-columns: 128px 1fr auto; gap: 12px; align-items: center; }
@@ -656,7 +664,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v42";
+  const APP_VERSION = "v43";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -768,13 +776,19 @@
     return p === null ? "" : `<span class="${accClass(p)} ${extra||""}">${p}%</span>`;
   }
 
-  function sectionHTML(sec) {
+  // Numbered header for the three standard sections on every subject tab.
+  function tabSecHead(n, title, sub, metaHTML) {
+    return `<div class="tabsec-head"><span class="tabsec-n">${n}</span><div class="tabsec-h"><h3>${title}</h3><p>${sub}</p></div>${metaHTML ? `<span class="tabsec-meta">${metaHTML}</span>` : ""}</div>`;
+  }
+
+  function questionsLoggedHTML(sec) {
     const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
-    let h = `<div class="sec-head" style="--secc:${sec.color}">
-      <h2><span class="bar"></span>${esc(sec.title)}</h2>
-      <p class="sec-exam">⏱ ${esc(EXAM[sec.id] || "")}</p>
-      <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}${ag.ms>0?`<span>Avg <b>${fmtDur(ag.ms/ag.d)}</b>/q</span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
-    </div><div class="subjects">`;
+    const meta = ag.d > 0
+      ? `<span class="acc ${accClass(p)}" style="font-weight:800;font-size:15px">${ag.d} · ${p===null?"—":p+"%"}</span>`
+      : "";
+    let h = `<section class="panel tabsec" id="tab-logged" style="--secc:${sec.color}">`;
+    h += tabSecHead(3, "Questions logged", "Your attempts per topic. Tap ✓ / ✗ to log one, or a count to enter a batch.", meta);
+    h += `<div class="subjects" style="margin-top:0">`;
     sec.subjects.forEach(su => {
       const ckey = sec.id+"::"+su.name, collapsed = state.collapsed[ckey] ? " collapsed" : "";
       const a = subjectAgg(sec.id, su), sp = accPct(a.c, a.d);
@@ -798,9 +812,20 @@
       });
       h += `</div></section>`;
     });
-    h += `</div>`;
-    h += conceptsPanelHTML(conceptsFor(sec.id));
-    h += setsPanelHTML(setsFor(sec.id));
+    return h + `</div></section>`;
+  }
+
+  function sectionHTML(sec) {
+    const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
+    let h = `<div class="sec-head" style="--secc:${sec.color}">
+      <h2><span class="bar"></span>${esc(sec.title)}</h2>
+      <p class="sec-exam">⏱ ${esc(EXAM[sec.id] || "")}</p>
+      <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}${ag.ms>0?`<span>Avg <b>${fmtDur(ag.ms/ag.d)}</b>/q</span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
+    </div>`;
+    // Three clearly defined sections, in order.
+    h += conceptsPanelHTML(conceptsFor(sec.id), sec);   // 1 · Concepts & theory
+    h += setsPanelHTML(setsFor(sec.id), { num: 2, sec }); // 2 · Practice sets
+    h += questionsLoggedHTML(sec);                        // 3 · Questions logged
     return h;
   }
 
@@ -1071,13 +1096,16 @@
     return score > 0 ? best : null;
   }
 
-  function conceptsPanelHTML(list) {
-    if (!list.length) return "";
+  function conceptsPanelHTML(list, sec) {
+    const secc = sec ? sec.color : "var(--accent)";
+    if (!list.length) {
+      return `<section class="panel tabsec" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format.", "")}<p class="footnote" style="margin:0;text-align:left">No guides here yet.</p></section>`;
+    }
     let totalParts = 0, totalRead = 0;
     list.forEach(g => { totalParts += g.parts.length; totalRead += guideReadCount(g); });
     const pct = totalParts ? totalRead / totalParts : 0, allDone = totalRead === totalParts;
-    let h = `<div class="panel"><div class="cn-hdr"><div><h3>Concepts &amp; theory</h3><p class="sub" style="margin:0">Study guides in a clean, readable format — tap to read, then jump into practice.</p></div>
-      <span class="cn-ring" title="${totalRead} of ${totalParts} sections read">${ring(pct, allDone?"var(--good)":"var(--accent)")}<span class="cn-ringpct">${totalRead}/${totalParts}</span></span></div><div class="cn-toc">`;
+    const meta = `<span class="cn-ring" title="${totalRead} of ${totalParts} sections read">${ring(pct, allDone?"var(--good)":"var(--accent)")}<span class="cn-ringpct">${totalRead}/${totalParts}</span></span>`;
+    let h = `<section class="panel tabsec" id="tab-concepts" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format — tap to read, then jump into practice.", meta)}<div class="cn-toc">`;
     list.forEach(g => {
       const done = guideReadCount(g), n = g.parts.length, complete = done === n;
       h += `<button class="cn-tocrow ${complete?"done":""}" data-openconcept="${esc(g.id)}">
@@ -1085,7 +1113,7 @@
         <span class="cn-tocmeta"><span class="cn-toct">${esc(g.title)}${g.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</span><span class="cn-tocs">${complete?"All read":done>0?(done+" of "+n+" read"):(n+" sections")}${g.source?" · "+esc(g.source):""}</span></span>
         <span class="cn-chev">›</span></button>`;
     });
-    return h + `</div></div>`;
+    return h + `</div></section>`;
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
@@ -1235,10 +1263,19 @@
     state.daily[k] = Math.max(0, (state.daily[k] || 0) + add); save();
   }
 
-  function setsPanelHTML(list) {
-    let h = `<div class="panel"><h3>Practice sets</h3>`;
-    if (!list.length) return h + `<p class="sub" style="margin:0">No sets here yet. Send your question documents in the chat — I'll tag every question and they'll appear here, ready to score.</p></div>`;
-    h += `<p class="sub">Open a set, enter your answers, and it scores you and logs each question into the right topic.</p><div class="setlist">`;
+  function setsPanelHTML(list, opts) {
+    opts = opts || {};
+    const secc = opts.sec ? opts.sec.color : "var(--accent)";
+    // On a subject tab we render the numbered section-2 header; on the Overall
+    // dashboard we keep the plain "Practice sets" heading.
+    const openTag = opts.num
+      ? `<section class="panel tabsec" id="tab-practice" style="--secc:${secc}">${tabSecHead(opts.num, "Practice sets", "Open a set, answer, and it scores you and logs each question into the right topic.", `${list.length} set${list.length===1?"":"s"}`)}`
+      : `<div class="panel"><h3>Practice sets</h3>`;
+    const closeTag = opts.num ? `</section>` : `</div>`;
+    if (!list.length) return openTag + `<p class="${opts.num?"footnote":"sub"}" style="margin:0;text-align:left">No sets here yet. Send your question documents in the chat — I'll tag every question and they'll appear here, ready to score.</p>${closeTag}`;
+    let h = openTag;
+    if (!opts.num) h += `<p class="sub">Open a set, enter your answers, and it scores you and logs each question into the right topic.</p>`;
+    h += `<div class="setlist">`;
     list.forEach(s => {
       const sec = secById(s.section), run = getRun(s.id), answered = Object.keys(run.ans).length;
       let status, cls;
@@ -1250,7 +1287,7 @@
         <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id)?`<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>`:""}</div></div>
         <div class="setbtns">${hasProgress?`<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this set">↺</button>`:""}<button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div></div>`;
     });
-    return h + `</div></div>`;
+    return h + `</div>${closeTag}`;
   }
 
   let runSetId = null, runIndex = 0, qStart = 0, qAccum = 0, qPaused = false, qTimer = null, pendingL = null, timedFor = null;

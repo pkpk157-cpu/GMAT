@@ -160,12 +160,14 @@
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 17px 19px; margin-top: 14px; }
   .panel h3 { margin: 0 0 3px; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
   .panel .sub { color: var(--ink-soft); font-size: 13px; margin: 0 0 14px; }
-  /* Numbered section header used on each subject tab (Concepts / Practice / Logged) */
-  .tabsec { scroll-margin-top: 70px; }
-  .tabsec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-  .tabsec-n { flex: none; width: 30px; height: 30px; border-radius: 9px; background: color-mix(in srgb, var(--secc, var(--accent)) 16%, var(--surface)); color: var(--secc, var(--accent)); font-weight: 800; font-size: 15px; display: grid; place-items: center; }
+  /* Numbered section header used on each subject tab (Concepts / Practice / Logged).
+     A full-width colored band tinted with the section's own accent gives the
+     app contrast and makes the three sections read at a glance. */
+  .tabsec { scroll-margin-top: 70px; padding-top: 0; overflow: hidden; }
+  .tabsec-head { display: flex; align-items: center; gap: 12px; margin: 0 -19px 16px; padding: 13px 17px; background: linear-gradient(135deg, color-mix(in srgb, var(--secc, var(--accent)) 20%, var(--surface)), color-mix(in srgb, var(--secc, var(--accent)) 8%, var(--surface))); border-bottom: 1px solid color-mix(in srgb, var(--secc, var(--accent)) 22%, var(--line)); }
+  .tabsec-n { flex: none; width: 30px; height: 30px; border-radius: 9px; background: var(--secc, var(--accent)); color: #fff; font-weight: 800; font-size: 15px; display: grid; place-items: center; box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--secc, var(--accent)) 60%, transparent); }
   .tabsec-h { min-width: 0; margin-right: auto; }
-  .tabsec-h h3 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+  .tabsec-h h3 { margin: 0; font-size: 16px; font-weight: 800; letter-spacing: -.01em; color: color-mix(in srgb, var(--secc, var(--accent)) 62%, var(--ink)); }
   .tabsec-h p { color: var(--ink-soft); font-size: 12.5px; margin: 2px 0 0; }
   .tabsec-meta { flex: none; }
 
@@ -664,7 +666,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v43";
+  const APP_VERSION = "v44";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.

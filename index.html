@@ -546,6 +546,9 @@
   .cn-tocrow { display: flex; align-items: center; gap: 12px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 14px 15px; transition: .12s; }
   .cn-tocrow:hover { border-color: var(--c-cr); }
   .cn-tocnum { width: 30px; height: 30px; border-radius: 8px; background: var(--surface-2); color: var(--c-cr); font-weight: 800; display: grid; place-items: center; flex: none; font-size: 14px; }
+  .cn-tocic, .set-ic { flex: none; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font-size: 17px; background: color-mix(in srgb, var(--secc, var(--accent)) 15%, var(--surface)); }
+  .cn-tocstat { flex: none; font-size: 11px; font-weight: 800; color: var(--ink-soft); background: var(--surface-2); padding: 2px 9px; border-radius: 999px; }
+  .cn-tocstat.done { color: #fff; background: var(--good); }
   .cn-tocmeta { min-width: 0; margin-right: auto; }
   .cn-toct { display: block; font-weight: 650; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cn-tocs { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -882,7 +885,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v58";
+  const APP_VERSION = "v59";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1644,6 +1647,56 @@
   const FLASHCARDS = window.GMAT_FLASHCARDS || [];
   const flashDecksFor = (secId) => { const s = FLASHCARDS.find(x => x.section === secId); return s ? s.decks : []; };
   const DECK_ICONS = { "fc-q-pct":"%","fc-q-pl":"🏷","fc-q-int":"💰","fc-q-ratio":"⚖","fc-q-speed":"🚄","fc-q-work":"🛠","fc-q-avg":"📊","fc-q-exp":"^","fc-q-alg":"𝑥","fc-q-num":"#","fc-q-prob":"🎲","fc-q-seq":"∑","fc-d-ds":"◧","fc-d-ds2":"🎯","fc-d-graph":"📈","fc-rc-oct":"📖","fc-rc-types":"❓","fc-rc-traps":"⚠","fc-cr-anatomy":"🧩","fc-cr-types":"🗂","fc-cr-tools":"🔧","fc-cr-flaws":"⚡" };
+  // Pick a topic emoji from a title — gives every concept guide and practice set
+  // a glanceable icon, matching the flash-card deck vocabulary. Checked most-
+  // specific first; falls back to a per-section default.
+  function topicIcon(title, secId) {
+    const t = (title || "").toLowerCase(), h = (...ws) => ws.some(w => t.indexOf(w) >= 0);
+    if (h("passage")) return "📄";
+    if (h("data sufficiency")) return "◧";
+    if (h("data insights", "what data")) return "🧮";
+    if (h("two-part", "two part")) return "🔀";
+    if (h("graphic", "graph", "trend")) return "📈";
+    if (h("table")) return "▦";
+    if (h("multi-source", "multi source", "source")) return "🗂";
+    if (h("octaave", "how rc")) return "📖";
+    if (h("opinion")) return "🗣";
+    if (h("contradiction")) return "↔";
+    if (h("tone")) return "🎭";
+    if (h("awareness")) return "👁";
+    if (h("avoid")) return "🚫";
+    if (h("verify", "eliminate")) return "✅";
+    if (h("inference", "must be true")) return "🔎";
+    if (h("conditional")) return "🔗";
+    if (h("weaken")) return "⬇";
+    if (h("strengthen")) return "💪";
+    if (h("assumption")) return "🧱";
+    if (h("evaluate")) return "🔬";
+    if (h("paradox", "resolve", "explain")) return "🧩";
+    if (h("flaw")) return "⚡";
+    if (h("boldface", "method of reasoning")) return "🏗";
+    if (h("conclusion")) return "🎯";
+    if (h("how cr", "critical reasoning")) return "💬";
+    if (h("pacing")) return "⏱";
+    if (h("scoring")) return "🏆";
+    if (h("what to study")) return "🗺";
+    if (h("how gmat quant", "quant —", "how it works")) return "⚙";
+    if (h("percent")) return "%";
+    if (h("ratio", "proportion")) return "⚖";
+    if (h("interest")) return "💰";
+    if (h("profit", "loss", "discount")) return "🏷";
+    if (h("speed", "distance")) return "🚄";
+    if (h("work", "pipe")) return "🛠";
+    if (h("average")) return "📊";
+    if (h("mixture", "alligation")) return "⚗";
+    if (h("exponent", "root", "power")) return "√";
+    if (h("algebra")) return "𝑥";
+    if (h("probab")) return "🎲";
+    if (h("sequence", "series", "progression")) return "∑";
+    if (h("geometry", "triangle", "angle", "circle")) return "📐";
+    if (h("number", "simplification")) return "#";
+    return secId === "quant" ? "🔢" : secId === "data" ? "📊" : secId === "rc" ? "📖" : secId === "cr" ? "💡" : "★";
+  }
 
   function flashcardsPanelHTML(secId, sec, num) {
     const decks = flashDecksFor(secId), secc = sec ? sec.color : "var(--accent)";
@@ -1784,8 +1837,9 @@
     list.forEach(g => {
       const done = guideReadCount(g), n = g.parts.length, complete = done === n;
       h += `<button class="cn-tocrow ${complete?"done":""}" data-openconcept="${esc(g.id)}">
-        <span class="cn-tocnum ${complete?"done":""}">${complete?"✓":done+"/"+n}</span>
+        <span class="cn-tocic">${topicIcon(g.title, sec?sec.id:"")}</span>
         <span class="cn-tocmeta"><span class="cn-toct">${esc(g.title)}${g.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</span><span class="cn-tocs">${complete?"All read":done>0?(done+" of "+n+" read"):(n+" sections")}${g.source?" · "+esc(g.source):""}</span></span>
+        <span class="cn-tocstat ${complete?"done":""}">${complete?"✓":done+"/"+n}</span>
         <span class="cn-chev">›</span></button>`;
     });
     return h + `</div></div></section>`;
@@ -2172,7 +2226,7 @@
       else if (answered) { status = `${answered}/${s.questions.length} answered`; cls = ""; }
       else { status = "not started"; cls = "muted"; }
       const hasProgress = run.submitted || answered > 0;
-      h += `<div class="setrow"><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
+      h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
         <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id)?`<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>`:""}</div></div>
         <div class="setbtns">${hasProgress?`<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this set">↺</button>`:""}<button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div></div>`;
     });

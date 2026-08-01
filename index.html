@@ -85,6 +85,49 @@
   .avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--accent-wash); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); font-weight: 700; font-size: 16px; font-family: var(--serif); display: grid; place-items: center; transition: .15s; }
   .avatar:hover { filter: brightness(.97); }
   .avatar svg { width: 20px; height: 20px; }
+  .tb-trophy { position: relative; width: 40px; height: 40px; border-radius: 50%; flex: none; background: var(--surface-2); border: 1px solid var(--line); font-size: 19px; line-height: 1; display: grid; place-items: center; cursor: pointer; transition: .15s; }
+  .tb-trophy:hover { filter: brightness(.97); }
+  .tb-trophy .dot { position: absolute; top: -1px; right: -1px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
+  .tb-trophy.alldone { background: linear-gradient(135deg, #FFD65A, #F5A623); border-color: #E9A00E; box-shadow: 0 0 0 3px color-mix(in srgb, #F5A623 22%, transparent); }
+  .tb-trophy.alldone .dot { display: none; }
+  /* topbar layout: trophy sits right before the avatar */
+  .tb-inner .tb-trophy + .avatar { margin-left: 8px; }
+
+  /* Achievements page */
+  .av-hero { text-align: center; padding: 6px 0 18px; }
+  .av-trophy { font-size: 52px; line-height: 1; filter: drop-shadow(0 6px 14px color-mix(in srgb, #F5A623 40%, transparent)); }
+  .av-lvl { font-family: var(--serif); font-size: 24px; font-weight: 600; margin-top: 8px; }
+  .av-xpbar { height: 9px; border-radius: 5px; background: var(--surface-2); overflow: hidden; margin: 12px auto 6px; max-width: 320px; }
+  .av-xpbar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--c-overall)); border-radius: 5px; transition: width .3s; }
+  .av-xpsub { font-size: 12px; color: var(--ink-faint); }
+  .av-chips { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .av-chip { font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+  .av-panel { margin-top: 14px; }
+  .av-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .av-head h3 { margin: 0; }
+  .av-count { margin-left: auto; font-weight: 800; font-size: 13px; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 999px; }
+  .av-count.all { color: #fff; background: var(--good); }
+  .av-prog { height: 8px; border-radius: 5px; background: var(--surface-2); overflow: hidden; margin-bottom: 12px; }
+  .av-prog i { display: block; height: 100%; background: var(--good); border-radius: 5px; transition: width .3s; }
+  .av-done-note { color: var(--good); font-weight: 700; font-size: 13px; margin: -4px 0 12px; }
+  .av-reset { font-size: 11.5px; color: var(--ink-faint); margin: 12px 0 0; text-align: center; }
+  .tasks { display: flex; flex-direction: column; gap: 9px; }
+  .task { display: flex; align-items: flex-start; gap: 12px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .task.done { background: color-mix(in srgb, var(--good) 9%, var(--surface)); border-color: color-mix(in srgb, var(--good) 30%, var(--line)); }
+  .task-ic { flex: none; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 16px; background: var(--surface-2); }
+  .task.done .task-ic { background: var(--good); color: #fff; font-weight: 800; }
+  .task-meta { min-width: 0; flex: 1; }
+  .task-lbl { font-weight: 700; font-size: 14px; }
+  .task.done .task-lbl { color: var(--ink-soft); }
+  .task-sub { font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+  .task-bar { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-top: 7px; }
+  .task-bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+  .badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .badge { text-align: center; padding: 14px 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); opacity: .55; filter: grayscale(1); }
+  .badge.got { opacity: 1; filter: none; background: color-mix(in srgb, var(--gold) 10%, var(--surface)); border-color: color-mix(in srgb, var(--gold) 35%, var(--line)); }
+  .badge-ic { font-size: 26px; line-height: 1; }
+  .badge-lbl { display: block; font-size: 11.5px; font-weight: 700; margin-top: 7px; color: var(--ink-soft); }
+  .badge.got .badge-lbl { color: var(--ink); }
 
   .wrap { max-width: 940px; margin: 0 auto; padding: 20px 18px 40px; }
 
@@ -607,6 +650,7 @@
       <span class="tb-days tnum" id="tb-days">—</span>
       <span class="tb-meta"><span class="l" id="tb-label">days to exam</span><span class="d" id="tb-date">set your date</span></span>
     </button>
+    <button class="tb-trophy" id="btn-achv" title="Achievements, daily &amp; weekly goals">🏆<span class="dot"></span></button>
     <button class="avatar" id="btn-profile" title="Profile, targets, accuracy & activity">P</button>
   </div>
 </header>
@@ -634,6 +678,12 @@
 <div class="profile" id="profile" hidden>
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Profile</h2><button class="pf-close" id="pf-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="pf-body"></div>
+</div>
+
+<!-- Achievements -->
+<div class="profile" id="achv" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Achievements</h2><button class="pf-close" id="av-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="av-body"></div>
 </div>
 <input type="file" id="restore-input" accept="application/json,.json" hidden />
 
@@ -750,7 +800,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v49";
+  const APP_VERSION = "v50";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -766,7 +816,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip" };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -816,12 +866,71 @@
   function streak(){ let n=0,cur=new Date(); if(!(state.daily[dkey(cur)]>0)) cur.setDate(cur.getDate()-1); while(state.daily[dkey(cur)]>0){ n++; cur.setDate(cur.getDate()-1); } return n; }
   function heatLevel(count){ if(count<=0) return 0; const t=state.targets.daily||20, r=count/t; if(r<0.34) return 1; if(r<0.67) return 2; if(r<1) return 3; return 4; }
 
+  /* ===================== Achievements / gamification ===================== */
+  // Record that the user did something today (login, concept, flash, session, set).
+  function markActivity(kind) {
+    const k = dkey();
+    if (!state.activity) state.activity = {};
+    if (!state.activity[k]) state.activity[k] = {};
+    state.activity[k][kind] = (state.activity[k][kind] || 0) + 1;
+    save();
+  }
+  const actToday = () => (state.activity && state.activity[dkey()]) || {};
+  function weekDayKeys(){ const s=startOfWeek(new Date()), arr=[]; for(let i=0;i<7;i++){ const dd=new Date(s); dd.setDate(s.getDate()+i); arr.push(dkey(dd)); } return arr; }
+  function weekAgg(){
+    let activeDays=0, concept=0, flash=0, session=0, set=0, conceptDays=0, flashDays=0;
+    weekDayKeys().forEach(k=>{ const a=(state.activity&&state.activity[k])||{}, q=state.daily[k]||0;
+      if (q>0 || (a.concept||a.flash||a.session||a.set)) activeDays++;
+      concept+=a.concept||0; flash+=a.flash||0; session+=a.session||0; set+=a.set||0;
+      if (a.concept) conceptDays++; if (a.flash) flashDays++;
+    });
+    return { activeDays, concept, flash, session, set, conceptDays, flashDays, questions: weekTotal() };
+  }
+  function dailyTasks(){
+    const a=actToday(), q=todayTotal(), tgt=state.targets.daily||0;
+    return [
+      { icon:"👋", label:"Show up — open the app", done:true },
+      { icon:"🎯", label:"Hit today's question target", sub:tgt>0?`${Math.min(q,tgt)} / ${tgt} questions`:"set a daily target in your profile", done:tgt>0&&q>=tgt, prog:tgt>0?q/tgt:0 },
+      { icon:"📖", label:"Study a concept guide", done:!!a.concept },
+      { icon:"🗂", label:"Review a flash-card deck", done:!!a.flash },
+      { icon:"✎", label:"Do some practice", sub:"a set or an adaptive session", done:(a.session||0)+(a.set||0)>0 },
+    ];
+  }
+  function weeklyTasks(){
+    const w=weekAgg(), wt=state.targets.weekly||0;
+    return [
+      { icon:"🎯", label:"Hit your weekly target", sub:wt>0?`${Math.min(w.questions,wt)} / ${wt} questions`:"set a weekly target", done:wt>0&&w.questions>=wt, prog:wt>0?w.questions/wt:0 },
+      { icon:"📅", label:"Practise 5 days this week", sub:`${w.activeDays} / 5 days`, done:w.activeDays>=5, prog:w.activeDays/5 },
+      { icon:"📖", label:"Study concepts on 3 days", sub:`${w.conceptDays} / 3 days`, done:w.conceptDays>=3, prog:w.conceptDays/3 },
+      { icon:"🗂", label:"Review flash cards on 3 days", sub:`${w.flashDays} / 3 days`, done:w.flashDays>=3, prog:w.flashDays/3 },
+      { icon:"✎", label:"Finish 3 practice sessions", sub:`${Math.min(w.session+w.set,3)} / 3`, done:(w.session+w.set)>=3, prog:(w.session+w.set)/3 },
+    ];
+  }
+  function allConceptsRead(){ let tot=0,read=0; CONCEPTS.forEach(g=>{ tot+=g.parts.length; read+=guideReadCount(g); }); return tot>0 && read>=tot; }
+  function badgeList(){
+    const g=grandAgg(), total=g.d, acc=accPct(g.c,g.d), st=streak(), allDaily=dailyTasks().every(t=>t.done);
+    return [
+      { icon:"🔥", label:"3-day streak", got:st>=3 },
+      { icon:"⚡", label:"7-day streak", got:st>=7 },
+      { icon:"🏅", label:"30-day streak", got:st>=30 },
+      { icon:"⭐", label:"50 questions", got:total>=50 },
+      { icon:"🌟", label:"250 questions", got:total>=250 },
+      { icon:"💫", label:"500 questions", got:total>=500 },
+      { icon:"🎯", label:"80%+ over 50 Qs", got:total>=50 && acc!==null && acc>=80 },
+      { icon:"🎓", label:"Read every concept", got:allConceptsRead() },
+      { icon:"✨", label:"Perfect day", got:allDaily },
+    ];
+  }
+  function xpTotal(){ const g=grandAgg(); let parts=0; CONCEPTS.forEach(gd=>parts+=guideReadCount(gd)); const bg=badgeList().filter(b=>b.got).length; return g.d + parts*3 + bg*25; }
+
   /* Top bar */
   function renderTop() {
     const d = daysLeft();
     const days=document.getElementById("tb-days"), lbl=document.getElementById("tb-label"), dt=document.getElementById("tb-date");
     days.classList.remove("past");
     document.getElementById("btn-profile").innerHTML = state.name ? esc(state.name.trim()[0].toUpperCase()) : ICON.person;
+    // Trophy indicator: gold glow when every daily task is done, else a nudge dot.
+    document.getElementById("btn-achv").classList.toggle("alldone", dailyTasks().every(t => t.done));
     if (d === null) { days.textContent="—"; lbl.textContent="days to exam"; dt.textContent="set your date"; return; }
     const nice = new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined,{ month:"short", day:"numeric", year:"numeric" });
     if (d>0){ days.textContent=d; lbl.textContent="days to exam"; dt.textContent=nice; }
@@ -1091,6 +1200,36 @@
   function openProfile() { calCursor = new Date(); calCursor.setDate(1); renderProfile(); document.getElementById("profile").hidden = false; document.body.style.overflow = "hidden"; }
   function closeProfile() { document.getElementById("profile").hidden = true; document.body.style.overflow = ""; render(); }
 
+  /* Achievements page */
+  function taskRow(t){
+    const pct = t.prog != null ? Math.round(Math.min(1, Math.max(0, t.prog)) * 100) : 0;
+    return `<div class="task ${t.done?"done":""}">
+      <span class="task-ic">${t.done?"✓":t.icon}</span>
+      <div class="task-meta"><div class="task-lbl">${esc(t.label)}</div>${t.sub?`<div class="task-sub">${esc(t.sub)}</div>`:""}${(t.prog!=null && !t.done)?`<div class="task-bar"><i style="width:${pct}%"></i></div>`:""}</div>
+    </div>`;
+  }
+  function achievementsHTML(){
+    const dt=dailyTasks(), wt=weeklyTasks(), bg=badgeList();
+    const dDone=dt.filter(t=>t.done).length, wDone=wt.filter(t=>t.done).length, gotB=bg.filter(b=>b.got).length;
+    const st=streak(), xp=xpTotal(), lvl=Math.floor(xp/100)+1, into=xp%100;
+    let h = `<div class="av-hero"><div class="av-trophy">🏆</div><div class="av-lvl">Level ${lvl}</div>
+      <div class="av-xpbar"><i style="width:${into}%"></i></div><div class="av-xpsub">${into} / 100 XP to level ${lvl+1}</div>
+      <div class="av-chips"><span class="av-chip">🔥 ${st}-day streak</span><span class="av-chip">🏅 ${gotB}/${bg.length} badges</span><span class="av-chip">⭐ ${xp} XP</span></div></div>`;
+    h += `<section class="panel av-panel"><div class="av-head"><h3>Daily tasks</h3><span class="av-count ${dDone===dt.length?"all":""}">${dDone}/${dt.length}</span></div>
+      <div class="av-prog"><i style="width:${Math.round(dDone/dt.length*100)}%"></i></div>${dDone===dt.length?`<div class="av-done-note">All done — perfect day! ✨</div>`:""}
+      <div class="tasks">${dt.map(taskRow).join("")}</div><p class="av-reset">Daily tasks reset at midnight</p></section>`;
+    h += `<section class="panel av-panel"><div class="av-head"><h3>This week</h3><span class="av-count ${wDone===wt.length?"all":""}">${wDone}/${wt.length}</span></div>
+      <div class="av-prog"><i style="width:${Math.round(wDone/wt.length*100)}%"></i></div>
+      <div class="tasks">${wt.map(taskRow).join("")}</div></section>`;
+    h += `<section class="panel av-panel"><div class="av-head"><h3>Badges</h3><span class="av-count">${gotB}/${bg.length}</span></div>
+      <div class="badges">${bg.map(b=>`<div class="badge ${b.got?"got":""}"><span class="badge-ic">${b.icon}</span><span class="badge-lbl">${esc(b.label)}</span></div>`).join("")}</div></section>`;
+    h += `<p class="footnote">Keep a daily habit — small reps compound. GMAT Focus Edition · ${APP_VERSION}</p>`;
+    return h;
+  }
+  function renderAchv(){ document.getElementById("av-body").innerHTML = achievementsHTML(); }
+  function openAchv(){ renderAchv(); document.getElementById("achv").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("achievements-open"); }
+  function closeAchv(){ document.getElementById("achv").hidden = true; document.body.style.overflow = ""; render(); }
+
   /* Backup / restore */
   function backup() {
     try {
@@ -1169,6 +1308,8 @@
 
   document.getElementById("restore-input").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) restoreFrom(f); e.target.value = ""; });
   document.getElementById("btn-profile").onclick = openProfile;
+  document.getElementById("btn-achv").onclick = openAchv;
+  document.getElementById("av-close").onclick = closeAchv;
   document.getElementById("tb-count").onclick = openProfile;
   document.getElementById("pf-close").onclick = closeProfile;
   document.getElementById("ob-save").onclick = () => { state.name=document.getElementById("ob-name").value.trim(); state.examDate=document.getElementById("ob-date").value||""; save(); document.getElementById("onboard").hidden=true; render(); };
@@ -1216,6 +1357,7 @@
     renderFlash();
     document.getElementById("flash").hidden = false;
     document.body.style.overflow = "hidden"; window.scrollTo({ top: 0 });
+    markActivity("flash");
     if (window.gtrack) gtrack("flashcards-open");
   }
   function closeFlash() { document.getElementById("flash").hidden = true; fcDeck = null; document.body.style.overflow = ""; render(); }
@@ -1292,7 +1434,7 @@
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
-  function openConcept(id) { cnGuideId = id; cnPartIdx = -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("concept-open"); }
+  function openConcept(id) { cnGuideId = id; cnPartIdx = -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); markActivity("concept"); if (window.gtrack) gtrack("concept-open"); }
   function closeConcept() { document.getElementById("concept").hidden = true; cnGuideId = null; document.body.style.overflow = ""; render(); }
 
   function blockHTML(b) {
@@ -1693,6 +1835,7 @@
       if (run.mode !== "practice" && answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
       set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct, run.times[q.n] || 0); });
       const res = scoreRun(set, run); run.submitted = true; run.score = res.score; run.total = res.total; save();
+      markActivity("set");
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
     if (e.target.closest("[data-retake]")) { resetRun(set, false); renderRunner(); return; }
@@ -1835,7 +1978,7 @@
   function finishSession(timeUp) {
     if (!sess) return;
     stopSessTimer(); sess.submitted = true; sess.timeUp = !!timeUp;
-    if (!sess.logged) { sessLog(); sess.logged = true; }
+    if (!sess.logged) { sessLog(); markActivity("session"); sess.logged = true; }
     renderSession(); window.scrollTo({ top: 0 });
   }
   function sessLog() {
@@ -1931,6 +2074,7 @@
       } else closeRunner();          // practice / results → straight back to the section page
       return true;
     }
+    if (vis("achv"))     { closeAchv();    return true; }
     if (vis("profile"))  { closeProfile(); return true; }
     if (vis("onboard"))  { return true; } // ignore Back during first-run setup
     return false;                          // base tab — nothing to close
@@ -1944,6 +2088,7 @@
   armBack();
 
   /* Boot */
+  markActivity("login");            // opening the app counts as showing up today
   function render(){ renderTop(); renderBotnav(); renderView(); }
   render();
   if (!state.examDate && !state.name) document.getElementById("onboard").hidden = false;

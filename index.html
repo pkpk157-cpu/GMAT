@@ -6,8 +6,8 @@
 <title>GMAT Prep Tracker</title>
 <meta name="description" content="Track your GMAT Focus Edition prep — exam countdown, daily & weekly targets, per-topic accuracy, weak-spot focus areas, and an activity calendar." />
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#1B212B" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#E6EDFA" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#070C17" media="(prefers-color-scheme: dark)" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -20,45 +20,49 @@
 <style>
   :root {
     color-scheme: light dark;
-    --paper:#F3F6FC; --surface:#FFFFFF; --surface-2:#E9EFF9; --ink:#14203A;
-    --ink-soft:#4B5568; --ink-faint:#8791A3; --line:#DCE3F0; --line-soft:#E9EEF7;
-    --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:#E6EEFE;
-    --gold:#0E7490; --gold-wash:#DCEEF3;
+    --paper:#E6EDFA; --surface:rgba(255,255,255,.64); --surface-2:rgba(255,255,255,.44); --ink:#111B31;
+    --ink-soft:#414B62; --ink-faint:#79839A; --line:rgba(70,90,130,.16); --line-soft:rgba(70,90,130,.09);
+    --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:rgba(37,99,235,.12);
+    --gold:#0E7490; --gold-wash:rgba(14,116,137,.12);
     --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B;
     --c-quant:#2563EB; --c-data:#0EA5E9; --c-overall:#1E3A8A; --c-verbal:#4F46E5; --c-cr:#6366F1;
-    --radius:14px; --radius-s:9px;
-    --shadow:0 1px 2px rgba(20,25,40,.05),0 8px 24px -14px rgba(20,25,40,.18);
+    --glass-hi:rgba(255,255,255,.85); --bar:rgba(255,255,255,.58); --blur:saturate(185%) blur(22px);
+    --radius:17px; --radius-s:11px;
+    --shadow:0 1px 1px rgba(20,25,40,.04),0 14px 34px -16px rgba(20,25,40,.22);
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper:#0E1626; --surface:#172236; --surface-2:#212F49; --ink:#E7ECF5;
-      --ink-soft:#A3ADC2; --ink-faint:#6B7690; --line:#2C3A54; --line-soft:#222E45;
-      --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:#16233C;
-      --gold:#38BDF8; --gold-wash:#0C2A3A;
+      --paper:#070C17; --surface:rgba(30,42,63,.52); --surface-2:rgba(255,255,255,.06); --ink:#E7ECF5;
+      --ink-soft:#A3ADC2; --ink-faint:#6B7690; --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.055);
+      --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:rgba(91,155,243,.16);
+      --gold:#38BDF8; --gold-wash:rgba(56,189,248,.14);
       --good:#5FC79E; --warn:#D8A64A; --bad:#E08869;
       --c-quant:#5B9BF3; --c-data:#4FC3F7; --c-overall:#8AB0F5; --c-verbal:#8A93F0; --c-cr:#9BA6F7;
-      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -16px rgba(0,0,0,.6);
+      --glass-hi:rgba(255,255,255,.16); --bar:rgba(11,18,33,.55);
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 38px -18px rgba(0,0,0,.72);
     }
   }
   :root[data-theme="light"] {
-    --paper:#F3F6FC; --surface:#FFFFFF; --surface-2:#E9EFF9; --ink:#14203A;
-    --ink-soft:#4B5568; --ink-faint:#8791A3; --line:#DCE3F0; --line-soft:#E9EEF7;
-    --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:#E6EEFE;
-    --gold:#0E7490; --gold-wash:#DCEEF3;
+    --paper:#E6EDFA; --surface:rgba(255,255,255,.64); --surface-2:rgba(255,255,255,.44); --ink:#111B31;
+    --ink-soft:#414B62; --ink-faint:#79839A; --line:rgba(70,90,130,.16); --line-soft:rgba(70,90,130,.09);
+    --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:rgba(37,99,235,.12);
+    --gold:#0E7490; --gold-wash:rgba(14,116,137,.12);
     --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B;
     --c-quant:#2563EB; --c-data:#0EA5E9; --c-overall:#1E3A8A; --c-verbal:#4F46E5; --c-cr:#6366F1;
-    --shadow:0 1px 2px rgba(20,25,40,.05),0 8px 24px -14px rgba(20,25,40,.18);
+    --glass-hi:rgba(255,255,255,.85); --bar:rgba(255,255,255,.58);
+    --shadow:0 1px 1px rgba(20,25,40,.04),0 14px 34px -16px rgba(20,25,40,.22);
   }
   :root[data-theme="dark"] {
-    --paper:#0E1626; --surface:#172236; --surface-2:#212F49; --ink:#E7ECF5;
-    --ink-soft:#A3ADC2; --ink-faint:#6B7690; --line:#2C3A54; --line-soft:#222E45;
-    --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:#16233C;
-    --gold:#38BDF8; --gold-wash:#0C2A3A;
+    --paper:#070C17; --surface:rgba(30,42,63,.52); --surface-2:rgba(255,255,255,.06); --ink:#E7ECF5;
+    --ink-soft:#A3ADC2; --ink-faint:#6B7690; --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.055);
+    --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:rgba(91,155,243,.16);
+    --gold:#38BDF8; --gold-wash:rgba(56,189,248,.14);
     --good:#5FC79E; --warn:#D8A64A; --bad:#E08869;
     --c-quant:#5B9BF3; --c-data:#4FC3F7; --c-overall:#8AB0F5; --c-verbal:#8A93F0; --c-cr:#9BA6F7;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -16px rgba(0,0,0,.6);
+    --glass-hi:rgba(255,255,255,.16); --bar:rgba(11,18,33,.55);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 38px -18px rgba(0,0,0,.72);
   }
 
   * { box-sizing: border-box; }
@@ -67,13 +71,36 @@
     font-family: var(--sans); background: var(--paper); color: var(--ink);
     -webkit-font-smoothing: antialiased; line-height: 1.5;
     padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    min-height: 100vh;
+  }
+  /* Liquid-glass ambient backdrop — soft coloured light the frosted panels refract. */
+  body::before {
+    content: ""; position: fixed; inset: -12%; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(38% 32% at 12% 4%, rgba(59,130,246,.40), transparent 62%),
+      radial-gradient(34% 30% at 90% 8%, rgba(99,102,241,.36), transparent 62%),
+      radial-gradient(44% 42% at 50% 106%, rgba(14,165,233,.34), transparent 60%),
+      radial-gradient(30% 34% at 94% 80%, rgba(139,92,246,.26), transparent 60%),
+      radial-gradient(28% 30% at 4% 68%, rgba(16,185,129,.16), transparent 60%);
+    background-attachment: fixed;
+  }
+  /* Frosted glass on the primary surfaces (the essence of the Liquid Glass look). */
+  .topbar, .botnav, .panel, .qcard, .fc-card, .modal, .pf-head, .stat, .goal,
+  .rc-passage, .rn-score, .cta-session, .btn-soft, .seg, .modebtn, .fc-modebtn,
+  .sc-seg button, .navbtn, .fc-nav button, .cn-nav button, .jchip, .av-chip,
+  .cn-tocrow, .fc-deckrow, .setrow, .subject, .task, .badge, .goal, .modechooser {
+    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
+  }
+  /* Bright top rim (specular highlight) on the main cards. */
+  .panel, .qcard, .fc-card, .stat, .goal, .rc-passage, .rn-score {
+    box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow);
   }
   .tnum { font-variant-numeric: tabular-nums; }
   button { font-family: inherit; cursor: pointer; }
   svg { display: block; }
 
   /* Top bar */
-  .topbar { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .topbar { position: sticky; top: 0; z-index: 30; background: var(--bar); border-bottom: 1px solid var(--line); }
   .tb-inner { max-width: 940px; margin: 0 auto; padding: 11px 18px; display: flex; align-items: center; gap: 14px; }
   .tb-count { display: flex; align-items: center; gap: 11px; margin-right: auto; background: none; border: none; padding: 4px 6px; border-radius: 12px; text-align: left; }
   .tb-count:hover { background: var(--surface-2); }
@@ -132,7 +159,7 @@
   .wrap { max-width: 940px; margin: 0 auto; padding: 20px 18px 40px; }
 
   /* Bottom nav */
-  .botnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); display: flex; justify-content: center; }
+  .botnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--bar); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); display: flex; justify-content: center; }
   .botnav-inner { width: 100%; max-width: 500px; display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; }
   .bn { border: none; background: none; padding: 8px 2px 9px; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-faint); font-size: 10.5px; font-weight: 700; transition: color .15s; }
   .bn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
@@ -248,9 +275,9 @@
   .spark .bcol.today .bd { color: var(--accent); font-weight: 700; }
 
   /* Profile */
-  .profile { position: fixed; inset: 0; z-index: 70; background: var(--paper); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .profile { position: fixed; inset: 0; z-index: 70; background: var(--bar); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .profile[hidden] { display: none; }
-  .pf-head { position: sticky; top: 0; z-index: 2; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .pf-head { position: sticky; top: 0; z-index: 2; background: var(--bar); border-bottom: 1px solid var(--line); }
   .pf-head-in { max-width: 640px; margin: 0 auto; padding: 13px 18px; display: flex; align-items: center; gap: 12px; }
   .pf-title { font-family: var(--serif); font-size: 19px; font-weight: 600; margin: 0; }
   .pf-close { margin-left: auto; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 18px; }
@@ -313,7 +340,7 @@
   .btn-danger:hover { color: var(--bad); border-color: var(--bad); }
 
   /* Modals */
-  .scrim { position: fixed; inset: 0; background: rgba(15,18,26,.55); display: grid; place-items: center; z-index: 80; padding: 20px; backdrop-filter: blur(3px); }
+  .scrim { position: fixed; inset: 0; background: rgba(15,18,26,.45); display: grid; place-items: center; z-index: 80; padding: 20px; -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%); }
   .scrim[hidden] { display: none; }
   .modal { background: var(--surface); border-radius: 18px; border: 1px solid var(--line); width: 100%; max-width: 420px; padding: 24px; box-shadow: 0 30px 70px -20px rgba(0,0,0,.5); }
   .modal .kick { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
@@ -800,7 +827,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v50";
+  const APP_VERSION = "v51";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.

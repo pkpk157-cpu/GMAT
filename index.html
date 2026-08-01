@@ -243,6 +243,7 @@
   .tabsec.collapsed .tabsec-head { margin-bottom: 0; }
   .tabsec.collapsed .tabsec-body { display: none; }
   .tabsec-n { flex: none; width: 30px; height: 30px; border-radius: 9px; background: var(--secc, var(--accent)); color: #fff; font-weight: 800; font-size: 15px; display: grid; place-items: center; box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--secc, var(--accent)) 60%, transparent); }
+  .tabsec-n svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .tabsec-h { min-width: 0; margin-right: auto; }
   .tabsec-h h3 { margin: 0; font-size: 16px; font-weight: 800; letter-spacing: -.01em; color: color-mix(in srgb, var(--secc, var(--accent)) 62%, var(--ink)); }
   .tabsec-h p { color: var(--ink-soft); font-size: 12.5px; margin: 2px 0 0; }
@@ -833,7 +834,12 @@
     overall:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.6"/></svg>',
     rc:    '<svg viewBox="0 0 24 24"><path d="M12 6c-2.2-1.3-5-1.3-7.5 0v12c2.5-1.3 5.3-1.3 7.5 0 2.2-1.3 5-1.3 7.5 0V6c-2.5-1.3-5.3-1.3-7.5 0z"/><line x1="12" y1="6" x2="12" y2="18"/></svg>',
     cr:    '<svg viewBox="0 0 24 24"><path d="M20 15a2 2 0 0 1-2 2H9l-4 3V6a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="12.5" x2="13" y2="12.5"/></svg>',
-    person:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>'
+    person:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>',
+    // Section-header icons (replace the old 1·2·3·4 numbering on each tab)
+    concepts:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>',
+    flash:'<svg viewBox="0 0 24 24"><rect x="8" y="3.5" width="12" height="14" rx="2"/><path d="M4 8v10.5A2 2 0 0 0 6 20.5h10"/></svg>',
+    practice:'<svg viewBox="0 0 24 24"><path d="M12.5 20H21"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+    logged:'<svg viewBox="0 0 24 24"><path d="M10 6h10"/><path d="M10 12h10"/><path d="M10 18h10"/><path d="M3.5 6l1.2 1.2L7 5"/><path d="M3.5 12l1.2 1.2L7 11"/><path d="M3.5 18l1.2 1.2L7 17"/></svg>'
   };
 
   const SECTIONS = [
@@ -876,7 +882,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v56";
+  const APP_VERSION = "v57";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1065,7 +1071,7 @@
       : "";
     const key = tsecKey(sec.id, "logged");
     let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-logged" style="--secc:${sec.color}">`;
-    h += tabSecHead(4, "Questions logged", "Your attempts per topic. Tap ✓ / ✗ to log one, or a count to enter a batch.", meta, key);
+    h += tabSecHead(ICON.logged, "Questions logged", "Your attempts per topic. Tap ✓ / ✗ to log one, or a count to enter a batch.", meta, key);
     h += `<div class="tabsec-body"><div class="subjects" style="margin-top:0">`;
     sec.subjects.forEach(su => {
       const ckey = sec.id+"::"+su.name, collapsed = state.collapsed[ckey] ? " collapsed" : "";
@@ -1101,10 +1107,10 @@
       <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}${ag.ms>0?`<span>Avg <b>${fmtDur(ag.ms/ag.d)}</b>/q</span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
     </div>`;
     // Four clearly defined sections, in order.
-    h += conceptsPanelHTML(conceptsFor(sec.id), sec);    // 1 · Concepts & theory
-    h += flashcardsPanelHTML(sec.id, sec, 2);            // 2 · Flash cards
-    h += setsPanelHTML(setsFor(sec.id), { num: 3, sec }); // 3 · Practice sets
-    h += questionsLoggedHTML(sec);                        // 4 · Questions logged
+    h += conceptsPanelHTML(conceptsFor(sec.id), sec);         // Concepts & theory
+    h += flashcardsPanelHTML(sec.id, sec, ICON.flash);        // Flash cards
+    h += setsPanelHTML(setsFor(sec.id), { num: ICON.practice, sec }); // Practice sets
+    h += questionsLoggedHTML(sec);                             // Questions logged
     return h;
   }
 
@@ -1768,13 +1774,13 @@
   function conceptsPanelHTML(list, sec) {
     const secc = sec ? sec.color : "var(--accent)", key = tsecKey(sec ? sec.id : "", "concepts");
     if (!list.length) {
-      return `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format.", "", key)}<div class="tabsec-body"><p class="footnote" style="margin:0;text-align:left">No guides here yet.</p></div></section>`;
+      return `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(ICON.concepts, "Concepts &amp; theory", "Study guides in a clean, readable format.", "", key)}<div class="tabsec-body"><p class="footnote" style="margin:0;text-align:left">No guides here yet.</p></div></section>`;
     }
     let totalParts = 0, totalRead = 0;
     list.forEach(g => { totalParts += g.parts.length; totalRead += guideReadCount(g); });
     const pct = totalParts ? totalRead / totalParts : 0, allDone = totalRead === totalParts;
     const meta = `<span class="cn-ring" title="${totalRead} of ${totalParts} sections read">${ring(pct, allDone?"var(--good)":"var(--accent)")}<span class="cn-ringpct">${totalRead}/${totalParts}</span></span>`;
-    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format — tap to read, then jump into practice.", meta, key)}<div class="tabsec-body"><div class="cn-toc">`;
+    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(ICON.concepts, "Concepts &amp; theory", "Study guides in a clean, readable format — tap to read, then jump into practice.", meta, key)}<div class="tabsec-body"><div class="cn-toc">`;
     list.forEach(g => {
       const done = guideReadCount(g), n = g.parts.length, complete = done === n;
       h += `<button class="cn-tocrow ${complete?"done":""}" data-openconcept="${esc(g.id)}">

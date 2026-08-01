@@ -876,7 +876,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v55";
+  const APP_VERSION = "v56";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -904,7 +904,7 @@
       if (old) return Object.assign({}, defaults, { name: old.name || "", examDate: old.examDate || "", daily: old.daily || {} }); } catch (e) {}
     return JSON.parse(JSON.stringify(defaults));
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} try { scheduleSyncPush(); } catch (e) {} }
 
   const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
   const dkey = (d) => { const x = d || new Date(); return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); };
@@ -1224,6 +1224,23 @@
   }
 
   /* Profile */
+  function syncPanelInner() {
+    let h = `<h3>Sync across devices</h3>`;
+    if (!syncLinked()) {
+      h += `<p class="sub">Keep your progress in step between your phone and iPad. It's stored in a private GitHub Gist that only you can see — create a token with <b>gist</b> scope, paste it below, then link your other devices with the same token.</p>
+      <p class="footnote" style="text-align:left;margin:0 0 12px"><a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=GMAT%20Prep%20sync" target="_blank" rel="noopener">Create a token on GitHub →</a> &nbsp;(tick only the <b>gist</b> scope)</p>
+      <div class="field"><label for="sync-token">GitHub token</label><input id="sync-token" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off" spellcheck="false"></div>
+      <button class="btn-primary" style="width:100%"${syncBusy ? " disabled" : ""} data-sync-link="1">${syncBusy ? "Linking…" : "Link this device"}</button>`;
+    } else {
+      const last = getLastSync();
+      h += `<p class="sub">Synced ✓${last ? ` · last synced ${relTime(last)}` : ""}. Your progress updates automatically when you open the app or switch away from it.</p>
+      <div class="pf-actions"><button class="btn-soft"${syncBusy ? " disabled" : ""} data-sync-now="1">${syncBusy ? "Syncing…" : "↻ Sync now"}</button><button class="btn-soft" data-sync-unlink="1">Unlink</button></div>`;
+    }
+    if (syncStatus) h += `<p class="footnote" style="text-align:left;margin:12px 0 0">${esc(syncStatus)}</p>`;
+    h += `<p class="footnote" style="text-align:left;margin:12px 0 0">Your token stays on this device and is only ever sent to GitHub. A private gist is unlisted (not searchable) rather than encrypted — fine for personal study stats. Revoke the token anytime in GitHub settings.</p>`;
+    return h;
+  }
+
   function profileHTML() {
     const g = grandAgg(), gAcc = accPct(g.c, g.d), st = streak(), today = todayTotal(), week = weekTotal();
     const dT = state.targets.daily||0, wT = state.targets.weekly||0, dl = daysLeft();
@@ -1254,6 +1271,8 @@
     h += `<section class="panel"><h3>Backup & restore</h3><p class="sub">Your data lives on this device only. Download a backup so you never lose it — then restore it on a new phone or after reinstalling.</p>
       <div class="pf-actions"><button class="btn-soft" data-backup="1">⬇ Back up data</button><button class="btn-soft" data-restore="1">⬆ Restore</button></div>
       ${installable?`<button class="btn-primary" style="margin-top:12px" data-install="1">Install app on this device</button>`:""}</section>`;
+
+    h += `<section class="panel" id="sync-panel">${syncPanelInner()}</section>`;
 
     h += `<section class="panel"><h3>Appearance</h3><p class="sub">Choose how the app looks.</p>
       <div class="seg"><button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button><button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button><button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button></div></section>`;
@@ -1352,6 +1371,171 @@
     reader.readAsText(file);
   }
 
+  /* ---- Cross-device sync (private GitHub Gist store) ----
+     No backend: the full state JSON lives in one private gist the user owns.
+     GitHub's REST API is CORS-enabled for authenticated calls, so both iOS
+     Safari and Android Chrome can read/write it directly. Cumulative data is
+     max/union-merged (never loses logged questions); settings are last-write-
+     wins by a syncedAt marker. */
+  const SYNC_TOKEN_KEY = "gmat_sync_token";
+  const SYNC_GIST_KEY  = "gmat_sync_gist";
+  const SYNC_AT_KEY    = "gmat_sync_at";
+  const SYNC_FILE = "gmat-prep-data.json";
+  let syncStatus = "";      // human-readable status shown in the Sync panel
+  let syncBusy = false;     // disables buttons + shows spinner text
+  let pushTimer = null;     // debounce handle for push-after-save
+
+  function syncCfg() { try { return { token: localStorage.getItem(SYNC_TOKEN_KEY) || "", gist: localStorage.getItem(SYNC_GIST_KEY) || "" }; } catch (e) { return { token:"", gist:"" }; } }
+  function setSyncCfg(token, gist) { try { if (token != null) localStorage.setItem(SYNC_TOKEN_KEY, token); if (gist != null) localStorage.setItem(SYNC_GIST_KEY, gist); } catch (e) {} }
+  function syncLinked() { const c = syncCfg(); return !!(c.token && c.gist); }
+  function unlink() { try { localStorage.removeItem(SYNC_TOKEN_KEY); localStorage.removeItem(SYNC_GIST_KEY); localStorage.removeItem(SYNC_AT_KEY); } catch (e) {} syncStatus = ""; }
+  function getLastSync() { try { return parseInt(localStorage.getItem(SYNC_AT_KEY) || "0", 10) || 0; } catch (e) { return 0; } }
+  function setLastSync(t) { try { localStorage.setItem(SYNC_AT_KEY, String(t)); } catch (e) {} }
+  function relTime(t) {
+    const s = Math.max(0, Math.round((Date.now() - t) / 1000));
+    if (s < 45) return "just now";
+    const m = Math.round(s / 60); if (m < 60) return m + " min ago";
+    const h = Math.round(m / 60); if (h < 24) return h + " hr ago";
+    const d = Math.round(h / 24); return d + " day" + (d === 1 ? "" : "s") + " ago";
+  }
+
+  async function ghFetch(path, opts) {
+    const c = syncCfg(); opts = opts || {};
+    const res = await fetch("https://api.github.com" + path, Object.assign({}, opts, {
+      headers: Object.assign({
+        "Authorization": "Bearer " + c.token,
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+      }, opts.headers || {})
+    }));
+    if (res.status === 401 || res.status === 403) throw new Error("auth");
+    if (!res.ok) throw new Error("http " + res.status);
+    return res.json();
+  }
+
+  /* ---- merge helpers ---- */
+  function mergeCounts(a, b) {
+    const out = {}, ids = new Set(Object.keys(a || {}).concat(Object.keys(b || {})));
+    const norm = (r) => !r ? { d:0, c:0, ms:0 } : (typeof r === "number" ? { d:r, c:0, ms:0 } : { d:r.d||0, c:r.c||0, ms:r.ms||0 });
+    ids.forEach(id => {
+      const x = norm((a || {})[id]), y = norm((b || {})[id]);
+      const yWins = (y.d > x.d) || (y.d === x.d && y.c > x.c) || (y.d === x.d && y.c === x.c && y.ms > x.ms);
+      const w = yWins ? y : x;
+      if (w.d > 0 || w.c > 0) out[id] = { d:w.d, c:w.c, ms:w.ms };
+    });
+    return out;
+  }
+  function mergeMaxNum(a, b) { const out = {}, ks = new Set(Object.keys(a || {}).concat(Object.keys(b || {}))); ks.forEach(k => { out[k] = Math.max((a || {})[k] || 0, (b || {})[k] || 0); }); return out; }
+  function mergeActivity(a, b) {
+    const out = {}, dks = new Set(Object.keys(a || {}).concat(Object.keys(b || {})));
+    dks.forEach(dk => { const x = (a || {})[dk] || {}, y = (b || {})[dk] || {}, m = {}, kinds = new Set(Object.keys(x).concat(Object.keys(y)));
+      kinds.forEach(kd => { m[kd] = Math.max(x[kd] || 0, y[kd] || 0); }); out[dk] = m; });
+    return out;
+  }
+  function mergeNestedUnion(a, b) {   // { outer: { inner: truthy } } — e.g. flags, read
+    const out = {}, ok = new Set(Object.keys(a || {}).concat(Object.keys(b || {})));
+    ok.forEach(o => { out[o] = Object.assign({}, (a || {})[o] || {}, (b || {})[o] || {}); });
+    return out;
+  }
+  function mergeRuns(a, b) {
+    const out = {}, ks = new Set(Object.keys(a || {}).concat(Object.keys(b || {})));
+    const ansN = (r) => r && r.ans ? Object.keys(r.ans).length : 0;
+    ks.forEach(k => { const x = (a || {})[k], y = (b || {})[k]; if (!x) { out[k] = y; return; } if (!y) { out[k] = x; return; } out[k] = ansN(y) > ansN(x) ? y : x; });
+    return out;
+  }
+  function mergeSrs(a, b, cloudNewer) {   // union keys; on conflict take the newer side
+    const out = {}, ks = new Set(Object.keys(a || {}).concat(Object.keys(b || {})));
+    ks.forEach(k => { const x = (a || {})[k], y = (b || {})[k]; out[k] = (x && y) ? (cloudNewer ? y : x) : (x || y); });
+    return out;
+  }
+  function mergeState(local, cloud) {
+    local = local || {}; cloud = cloud || {};
+    const lt = local.syncedAt || 0, ct = cloud.syncedAt || 0, cloudNewer = ct > lt;
+    const lww = (key, dflt) => { const lv = local[key], cv = cloud[key];
+      if (lv === undefined) return cv === undefined ? dflt : cv;
+      if (cv === undefined) return lv; return cloudNewer ? cv : lv; };
+    const m = Object.assign({}, defaults, local, cloud);
+    m.counts   = mergeCounts(local.counts, cloud.counts);
+    m.daily    = mergeMaxNum(local.daily, cloud.daily);
+    m.activity = mergeActivity(local.activity, cloud.activity);
+    m.flags    = mergeNestedUnion(local.flags, cloud.flags);
+    m.read     = mergeNestedUnion(local.read, cloud.read);
+    m.runs     = mergeRuns(local.runs, cloud.runs);
+    m.srs      = mergeSrs(local.srs, cloud.srs, cloudNewer);
+    m.fcsrs    = mergeSrs(local.fcsrs, cloud.fcsrs, cloudNewer);
+    m.name     = lww("name", "");
+    m.examDate = lww("examDate", "");
+    m.active   = lww("active", "overall");
+    m.fcMode   = lww("fcMode", "flip");
+    m.collapsed = lww("collapsed", {});
+    m.reminder = lww("reminder", defaults.reminder);
+    m.targets  = Object.assign({}, defaults.targets, lww("targets", defaults.targets));
+    m.syncedAt = Math.max(lt, ct);
+    return m;
+  }
+
+  async function pull(silent) {
+    if (!syncLinked() || !navigator.onLine) return;
+    const c = syncCfg();
+    const g = await ghFetch("/gists/" + c.gist);
+    const f = g.files && g.files[SYNC_FILE];
+    if (!f) return;
+    let content = f.content;
+    if (f.truncated && f.raw_url) { content = await (await fetch(f.raw_url)).text(); }
+    const cloud = JSON.parse(content);
+    state = mergeState(state, cloud);
+    save();
+    render(); renderTop(); renderBotnav();
+    if (!document.getElementById("profile").hidden) renderProfile();
+    if (!silent) { syncStatus = "Synced ✓"; renderSyncPanel(); }
+  }
+  async function push() {
+    if (!syncLinked() || !navigator.onLine) return;
+    const c = syncCfg();
+    const payload = Object.assign({}, state, { syncedAt: Date.now() });
+    await ghFetch("/gists/" + c.gist, { method:"PATCH", body: JSON.stringify({
+      files: { [SYNC_FILE]: { content: JSON.stringify(payload) } }
+    }) });
+    state.syncedAt = payload.syncedAt;
+    setLastSync(payload.syncedAt);
+  }
+  function scheduleSyncPush() {
+    if (!syncLinked() || !navigator.onLine) return;
+    if (pushTimer) clearTimeout(pushTimer);
+    pushTimer = setTimeout(() => { pushTimer = null; push().then(() => renderSyncPanel()).catch(() => {}); }, 4000);
+  }
+  async function linkDevice(token) {
+    setSyncCfg(token, "");                                  // store token, clear any old gist id
+    const gists = await ghFetch("/gists?per_page=100");    // validates token + discovers existing store
+    let found = "";
+    for (let i = 0; i < gists.length; i++) { if (gists[i].files && gists[i].files[SYNC_FILE]) { found = gists[i].id; break; } }
+    if (found) {
+      setSyncCfg(null, found);
+      await pull(true);
+      setLastSync(Date.now());
+      syncStatus = "Linked — pulled your existing data onto this device.";
+    } else {
+      state.syncedAt = Date.now();
+      const created = await ghFetch("/gists", { method:"POST", body: JSON.stringify({
+        description: "GMAT Prep Tracker — synced study data (private)", public: false,
+        files: { [SYNC_FILE]: { content: JSON.stringify(state) } }
+      }) });
+      save();
+      setSyncCfg(null, created.id);
+      setLastSync(state.syncedAt);
+      syncStatus = "Linked — this device is now your sync source.";
+    }
+    renderSyncPanel();
+  }
+  async function syncNow() {
+    if (!syncLinked() || syncBusy) return;
+    syncBusy = true; syncStatus = "Syncing…"; renderSyncPanel();
+    try { await pull(true); await push(); syncStatus = "Synced ✓"; }
+    catch (e) { syncStatus = e.message === "auth" ? "Token was rejected — re-link this device." : (!navigator.onLine ? "You're offline — will sync when back online." : "Sync failed — try again."); }
+    syncBusy = false; renderSyncPanel();
+  }
+  function renderSyncPanel() { const el = document.getElementById("sync-panel"); if (el) el.innerHTML = syncPanelInner(); }
+
   /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
     const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
@@ -1404,6 +1588,16 @@
     if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from your saved practice-set attempts?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }
     if (e.target.closest("[data-refresh]")) { try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) navigator.serviceWorker.getRegistration().then(r => { if (r) r.update(); }); } catch (e) {} location.reload(); return; }
     if (e.target.closest("[data-install]")) { const p=window.__gmatInstall; if (p) { p.prompt(); p.userChoice.finally(()=>{ window.__gmatInstall=null; renderProfile(); }); } return; }
+    if (e.target.closest("[data-sync-link]")) {
+      const inp = document.getElementById("sync-token"), t = (inp && inp.value || "").trim();
+      if (!t) { syncStatus = "Paste your GitHub token first."; renderSyncPanel(); return; }
+      syncBusy = true; syncStatus = "Linking…"; renderSyncPanel();
+      linkDevice(t).catch(err => { syncStatus = err && err.message === "auth" ? "That token was rejected — check it has the gist scope." : "Couldn't link — check your connection and try again."; })
+        .finally(() => { syncBusy = false; renderSyncPanel(); });
+      return;
+    }
+    if (e.target.closest("[data-sync-now]")) { syncNow(); return; }
+    if (e.target.closest("[data-sync-unlink]")) { if (confirm("Unlink this device? Your data stays here — it just stops syncing.")) { unlink(); renderSyncPanel(); } return; }
     if (e.target.closest("[data-rem-test]")) { pushNotify("Test notification 🔔", "Reminders are working. You'll get a nudge on days you haven't practised."); return; }
     if (e.target.closest("[data-reset]")) { if (confirm("Reset every logged question to zero? Name, exam date and targets stay. This cannot be undone.")) { state.counts={}; state.daily={}; save(); renderProfile(); } }
   });
@@ -2490,6 +2684,15 @@
   try { reminderNudge(); applyReminder(); } catch (e) {}   // daily reminder: nudge + (re)schedule
   function render(){ renderTop(); renderBotnav(); renderView(); }
   render();
+  // Cross-device sync: pull the latest on open, push on leave, and re-pull when
+  // the app is brought back to the foreground. All no-ops until a device is linked.
+  try { if (syncLinked()) pull(true).catch(() => {}); } catch (e) {}
+  document.addEventListener("visibilitychange", () => {
+    if (!syncLinked()) return;
+    if (document.visibilityState === "visible") { pull(true).catch(() => {}); }
+    else { if (pushTimer) { clearTimeout(pushTimer); pushTimer = null; } push().catch(() => {}); }
+  });
+  window.addEventListener("focus", () => { if (syncLinked()) pull(true).catch(() => {}); });
   if (!state.examDate && !state.name) document.getElementById("onboard").hidden = false;
   // KaTeX scripts are deferred, so typeset again once they've loaded.
   window.addEventListener("load", () => { typeset(document.getElementById("view")); typeset(document.getElementById("rn-body")); });

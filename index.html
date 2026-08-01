@@ -614,6 +614,35 @@
 <script src="sets.js"></script>
 <script src="concepts.js"></script>
 <script>
+/* ---------------------------------------------------------------------------
+   Optional, privacy-friendly usage analytics (GoatCounter — cookieless, GDPR-
+   friendly, collects NO personal data; your name / progress are never sent).
+   Shows aggregate usage: visitors, returning visitors, and a few key actions.
+
+   To switch ON:
+     1. Create a free site at https://www.goatcounter.com (takes ~1 minute).
+     2. Put the code you chose (the "xxxx" in xxxx.goatcounter.com) below.
+     3. View your dashboard any time at https://YOURCODE.goatcounter.com
+   Leave it "" to keep analytics off (default). Nothing loads when it's empty.
+--------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  window.gtrack = function () {};                       // safe no-op until enabled
+  var CODE = "";                                        // <-- your GoatCounter code turns analytics on
+  var host = location.hostname;
+  if (!CODE || host === "localhost" || host === "127.0.0.1" || location.protocol === "file:") return;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "//gc.zgo.at/count.js";
+  s.setAttribute("data-goatcounter", "https://" + CODE + ".goatcounter.com/count");
+  document.head.appendChild(s);
+  // Record a key in-app action as an event (never any personal data).
+  window.gtrack = function (name) {
+    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, event: true }); } catch (e) {}
+  };
+})();
+</script>
+<script>
 (function () {
   "use strict";
 
@@ -666,7 +695,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v45";
+  const APP_VERSION = "v46";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1119,7 +1148,7 @@
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
-  function openConcept(id) { cnGuideId = id; cnPartIdx = -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function openConcept(id) { cnGuideId = id; cnPartIdx = -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("concept-open"); }
   function closeConcept() { document.getElementById("concept").hidden = true; cnGuideId = null; document.body.style.overflow = ""; render(); }
 
   function blockHTML(b) {
@@ -1319,7 +1348,7 @@
     updateTimerDisplay(); runTimerInterval();
   }
   function resetQTimer() { qAccum = 0; qStart = Date.now(); updateTimerDisplay(); runTimerInterval(); }
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); }
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("practice-set-open"); }
   function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
@@ -1603,6 +1632,7 @@
     document.body.style.overflow = "hidden";
     sess.qStart = Date.now();
     renderSession(); startSessTimer(); window.scrollTo({ top: 0 });
+    if (window.gtrack) gtrack("adaptive-session-start");
   }
 
   function startSessTimer() { stopSessTimer(); if (!sess || !sess.timeMs) return; sess.timer = setInterval(sessTick, 500); sessTick(); }

@@ -246,7 +246,7 @@
   .tabsec-n svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .tabsec-h { min-width: 0; margin-right: auto; }
   .tabsec-h h3 { margin: 0; font-size: 16px; font-weight: 800; letter-spacing: -.01em; color: color-mix(in srgb, var(--secc, var(--accent)) 62%, var(--ink)); }
-  .tabsec-h p { color: var(--ink-soft); font-size: 12.5px; margin: 2px 0 0; }
+  .tabsec-h p { color: color-mix(in srgb, var(--ink) 88%, var(--secc, var(--accent))); font-size: 13px; font-weight: 500; line-height: 1.4; margin: 3px 0 0; }
   .tabsec-meta { flex: none; }
 
   .breakdown { display: flex; flex-direction: column; gap: 13px; }
@@ -882,7 +882,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v57";
+  const APP_VERSION = "v58";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.

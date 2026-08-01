@@ -559,16 +559,27 @@
   .fc-count { text-align: center; font-weight: 700; font-size: 13px; color: var(--ink-soft); margin-bottom: 4px; }
   .fc-prog { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-bottom: 18px; }
   .fc-prog i { display: block; height: 100%; background: var(--secc, var(--accent)); transition: width .25s; }
-  .fc-stage { margin-bottom: 18px; }
-  .fc-card { position: relative; width: 100%; min-height: 240px; border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 52px 22px 42px; text-align: center; cursor: pointer; background: var(--surface); animation: fcpop .26s ease; }
-  .fc-card .fc-q, .fc-card .fc-a { display: block; }
+  .fc-modebar { display: flex; gap: 7px; margin-bottom: 14px; }
+  .fc-modebtn { flex: 1; padding: 9px 6px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 12.5px; color: var(--ink-soft); cursor: pointer; }
+  .fc-modebtn.on { background: var(--secc, var(--accent)); border-color: var(--secc, var(--accent)); color: #fff; }
+  .fc-stage { margin-bottom: 14px; }
+  /* Fixed, uniform card size for every card; content is vertically centered
+     (flip mode) via an inline-block ghost — no flex, which keeps KaTeX stable. */
+  .fc-card { position: relative; width: 100%; height: 320px; border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 22px 20px; background: var(--surface); animation: fcpop .26s ease; overflow-y: auto; overflow-x: hidden; cursor: pointer; text-align: center; }
+  .fc-card::before { content: ""; display: inline-block; height: 100%; vertical-align: middle; }
+  .fc-cc { display: inline-block; vertical-align: middle; width: 100%; }
   .fc-card.back { background: linear-gradient(160deg, color-mix(in srgb, var(--secc, var(--accent)) 13%, var(--surface)), var(--surface)); }
+  .fc-card.both { cursor: default; text-align: left; }
+  .fc-card.both::before { display: none; }
+  .fc-card.both .fc-cc { display: block; }
   @keyframes fcpop { from { opacity: 0; transform: translateY(9px) scale(.985); } to { opacity: 1; transform: none; } }
-  .fc-tag { position: absolute; top: 12px; left: 14px; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--secc, var(--accent)); }
-  .fc-flip-hint { position: absolute; bottom: 11px; right: 14px; font-size: 11px; color: var(--ink-faint); }
+  .fc-tag { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--secc, var(--accent)); margin-bottom: 9px; }
   .fc-q { font-size: 20px; font-weight: 700; line-height: 1.4; text-wrap: pretty; }
+  .fc-card.both .fc-q { font-size: 17px; }
   .fc-a { font-size: 17px; line-height: 1.55; text-wrap: pretty; }
   .fc-a b { color: var(--ink); }
+  .fc-div { height: 1px; background: var(--line); margin: 16px 0; }
+  .fc-hint { text-align: center; font-size: 12px; color: var(--ink-faint); margin: -2px 0 14px; }
   .fc-nav { display: flex; align-items: center; gap: 10px; }
   .fc-nav button { flex: 1; padding: 12px; border-radius: 11px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 14px; color: var(--ink); cursor: pointer; }
   .fc-nav button:disabled { opacity: .4; }
@@ -739,7 +750,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v48";
+  const APP_VERSION = "v49";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -755,7 +766,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip" };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1208,24 +1219,43 @@
     if (window.gtrack) gtrack("flashcards-open");
   }
   function closeFlash() { document.getElementById("flash").hidden = true; fcDeck = null; document.body.style.overflow = ""; render(); }
+  function fcModeCur() { return state.fcMode === "both" ? "both" : "flip"; }
   function renderFlash() {
     if (!fcDeck) return;
-    const n = fcOrder.length, card = fcDeck.cards[fcOrder[fcIdx]];
+    const n = fcOrder.length, card = fcDeck.cards[fcOrder[fcIdx]], mode = fcModeCur();
     const body = document.getElementById("fc-body");
-    body.innerHTML = `<div class="fc-view">
-      <div class="fc-count">Card ${fcIdx + 1} of ${n}</div>
-      <div class="fc-prog"><i style="width:${Math.round((fcIdx + 1) / n * 100)}%"></i></div>
-      <div class="fc-stage"><div class="fc-card ${fcFlipped ? "back" : ""}" data-fcflip="1">
+    const modebar = `<div class="fc-modebar">
+      <button class="fc-modebtn ${mode === "flip" ? "on" : ""}" data-fcmode="flip">🔄 Flip to reveal</button>
+      <button class="fc-modebtn ${mode === "both" ? "on" : ""}" data-fcmode="both">👁 Both sides</button></div>`;
+    let cardHTML, hint = "";
+    if (mode === "both") {
+      cardHTML = `<div class="fc-card both"><div class="fc-cc">
+        <span class="fc-tag">Prompt</span><div class="fc-q">${card.f}</div>
+        <div class="fc-div"></div>
+        <span class="fc-tag">Answer</span><div class="fc-a">${card.b}</div>
+      </div></div>`;
+    } else {
+      cardHTML = `<div class="fc-card ${fcFlipped ? "back" : ""}" data-fcflip="1"><div class="fc-cc">
         <span class="fc-tag">${fcFlipped ? "Answer" : "Prompt"}</span>
         <div class="${fcFlipped ? "fc-a" : "fc-q"}">${fcFlipped ? card.b : card.f}</div>
-        <span class="fc-flip-hint">tap to flip ↻</span>
-      </div></div>
-      <div class="fc-nav"><button data-fcprev ${fcIdx === 0 ? "disabled" : ""}>‹ Prev</button><button class="fc-flip" data-fcflip="1">Flip</button><button data-fcnext ${fcIdx === n - 1 ? "disabled" : ""}>Next ›</button></div>
+      </div></div>`;
+      hint = `<div class="fc-hint">Tap the card ${fcFlipped ? "to see the prompt" : "or press Flip to reveal the answer"}</div>`;
+    }
+    const nav = mode === "both"
+      ? `<div class="fc-nav"><button data-fcprev ${fcIdx === 0 ? "disabled" : ""}>‹ Prev</button><button data-fcnext ${fcIdx === n - 1 ? "disabled" : ""}>Next ›</button></div>`
+      : `<div class="fc-nav"><button data-fcprev ${fcIdx === 0 ? "disabled" : ""}>‹ Prev</button><button class="fc-flip" data-fcflip="1">Flip</button><button data-fcnext ${fcIdx === n - 1 ? "disabled" : ""}>Next ›</button></div>`;
+    body.innerHTML = `<div class="fc-view">
+      ${modebar}
+      <div class="fc-count">Card ${fcIdx + 1} of ${n}</div>
+      <div class="fc-prog"><i style="width:${Math.round((fcIdx + 1) / n * 100)}%"></i></div>
+      <div class="fc-stage">${cardHTML}</div>
+      ${hint}${nav}
       <div class="fc-tools"><button data-fcshuffle>🔀 Shuffle</button><button data-fcrestart>↺ Restart</button></div>
     </div>`;
     typeset(body);
   }
-  function fcFlip() { fcFlipped = !fcFlipped; renderFlash(); }
+  function fcFlip() { if (fcModeCur() === "both") return; fcFlipped = !fcFlipped; renderFlash(); }
+  function fcSetMode(m) { state.fcMode = m; save(); fcFlipped = false; renderFlash(); }
   function fcGo(step) { const n = fcOrder.length; fcIdx = Math.max(0, Math.min(n - 1, fcIdx + step)); fcFlipped = false; renderFlash(); }
   // Concept "read" tracking — a part counts as read once opened.
   function conceptRead(gid, pid) { return !!(state.read && state.read[gid] && state.read[gid][pid]); }
@@ -1873,6 +1903,7 @@
   document.getElementById("fc-close").onclick = closeFlash;
   document.getElementById("fc-body").addEventListener("click", (e) => {
     if (!fcDeck) return;
+    const md = e.target.closest("[data-fcmode]"); if (md) { fcSetMode(md.getAttribute("data-fcmode")); return; }
     if (e.target.closest("[data-fcflip]")) { fcFlip(); return; }
     if (e.target.closest("[data-fcprev]")) { fcGo(-1); return; }
     if (e.target.closest("[data-fcnext]")) { fcGo(1); return; }

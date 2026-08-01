@@ -592,6 +592,13 @@
   .cta-session .ico { font-size: 22px; flex: none; }
   .cta-session .t { font-weight: 800; font-size: 15px; }
   .cta-session .s { font-size: 12.5px; opacity: .9; margin-top: 2px; }
+  .cta-review { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 15px 17px; border-radius: var(--radius); border: 1px solid color-mix(in srgb, var(--gold) 40%, var(--line)); background: var(--surface); box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); margin-bottom: 14px; cursor: pointer; color: var(--ink); }
+  .cta-review .ico { font-size: 22px; flex: none; color: var(--gold); font-weight: 800; }
+  .cta-review div { margin-right: auto; }
+  .cta-review .t { font-weight: 800; font-size: 15px; }
+  .cta-review .s { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+  .cta-review .cta-badge { flex: none; min-width: 26px; height: 26px; padding: 0 8px; border-radius: 999px; background: var(--gold); color: #fff; font-weight: 800; font-size: 13px; display: grid; place-items: center; }
+  .rv-src { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--ink-faint); }
   .sc-body { display: flex; flex-direction: column; gap: 16px; max-height: 78vh; overflow-y: auto; }
   .sc-h { font-weight: 800; font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
   .sc-seg { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -712,6 +719,12 @@
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Achievements</h2><button class="pf-close" id="av-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="av-body"></div>
 </div>
+
+<!-- Review queue (spaced repetition) -->
+<div class="profile" id="review" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="rv-title">Review</h2><button class="pf-close" id="rv-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="rv-body"></div>
+</div>
 <input type="file" id="restore-input" accept="application/json,.json" hidden />
 
 <!-- Practice-set runner -->
@@ -827,7 +840,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v51";
+  const APP_VERSION = "v52";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -843,7 +856,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1075,6 +1088,12 @@
     // adaptive practice session entry
     h += `<button class="cta-session" data-session-open="1"><span class="ico">🎯</span><div><div class="t">Start a practice session</div><div class="s">Pick topics, length &amp; a timer — questions get harder as you get them right, just like the real test.</div></div></button>`;
 
+    // spaced-repetition review entry
+    const due = reviewDueCount();
+    if (due > 0) {
+      h += `<button class="cta-review" data-review-open="1"><span class="ico">↻</span><div><div class="t">Review ${due} question${due===1?"":"s"}</div><div class="s">Your missed &amp; flagged questions, resurfaced on a spaced schedule. Clear them to lock in what you learn.</div></div><span class="cta-badge">${due}</span></button>`;
+    }
+
     // goals
     if (dT>0 || wT>0) {
       h += `<div class="goals">`;
@@ -1291,6 +1310,7 @@
     const oc = e.target.closest("[data-openconcept]"); if (oc) { openConcept(oc.getAttribute("data-openconcept")); return; }
     const fd = e.target.closest("[data-flashdeck]"); if (fd) { openFlashDeck(fd.getAttribute("data-flashdeck"), state.active); return; }
     if (e.target.closest("[data-session-open]")) { openSessionConfig(); return; }
+    if (e.target.closest("[data-review-open]")) { openReview(); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
   });
   // Keyboard: Enter / Space toggles a section header (it has role="button").
@@ -1539,9 +1559,127 @@
   function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{}, elim:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; r.elim = r.elim || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
   // Topic count and daily count move together — never bump one without the other.
+  /* ===== Spaced-repetition review queue (Leitner) ===== */
+  // Missed & flagged questions resurface on a schedule until mastered.
+  const SRS_INTERVALS = { 1:1, 2:3, 3:7, 4:16, 5:40 };   // days until due, per box
+  function srsKey(setId, n) { return setId + "#" + n; }
+  function addDaysKey(days) { const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate() + days); return dkey(d); }
+  function srsRecordMiss(setId, n) {
+    if (!state.srs) state.srs = {};
+    const k = srsKey(setId, n), e = state.srs[k] || { box:1, w:0 };
+    e.box = 1; e.due = dkey(); e.w = (e.w || 0) + 1;
+    state.srs[k] = e; save();
+  }
+  function srsGrade(setId, n, correct) {                   // called on a review attempt
+    if (!state.srs) state.srs = {};
+    const k = srsKey(setId, n), e = state.srs[k]; if (!e) return;
+    if (correct) {
+      if ((e.box || 1) >= 5) { delete state.srs[k]; save(); return; }   // mastered → graduate out
+      e.box = Math.min(5, (e.box || 1) + 1); e.due = addDaysKey(SRS_INTERVALS[e.box]);
+    } else { e.box = 1; e.due = dkey(); e.w = (e.w || 0) + 1; }
+    save();
+  }
+  function srsOnAnswer(setId, n, correct) {                // called from normal practice
+    if (correct) { if (state.srs && state.srs[srsKey(setId, n)]) srsGrade(setId, n, true); }
+    else srsRecordMiss(setId, n);
+  }
+  // Pool of questions to review now: SRS entries that are due + all flagged.
+  function reviewPool() {
+    const seen = new Set(), pool = [], today = dkey();
+    Object.keys(state.srs || {}).forEach(k => {
+      const e = state.srs[k]; if (!e || (e.due && e.due > today)) return;
+      const i = k.lastIndexOf("#"), sid = k.slice(0, i), n = k.slice(i + 1);
+      const set = SETS.find(s => s.id === sid); if (!set) return;
+      const q = set.questions.find(x => String(x.n) === n); if (!q) return;
+      seen.add(k); pool.push({ set, q, key:k, box:e.box || 1, src:"srs" });
+    });
+    Object.keys(state.flags || {}).forEach(sid => {
+      const set = SETS.find(s => s.id === sid); if (!set) return;
+      Object.keys(state.flags[sid] || {}).forEach(n => {
+        const k = srsKey(sid, n); if (seen.has(k)) return;
+        const q = set.questions.find(x => String(x.n) === String(n)); if (!q) return;
+        seen.add(k); pool.push({ set, q, key:k, box:0, src:"flag" });
+      });
+    });
+    return pool;
+  }
+  function reviewDueCount() { return reviewPool().length; }
+  function srsScheduledCount() { const t = dkey(); return Object.values(state.srs || {}).filter(e => e && (!e.due || e.due <= t)).length; }
+
+  function aiExplainHTML() { return ""; }   // AI tutor (implemented below); stub keeps review self-contained
+  function aiExplainRun() {}
+
+  /* Review runner — one due question at a time, with immediate feedback. */
+  let rev = null;
+  function openReview() {
+    const pool = reviewPool();
+    if (!pool.length) return;
+    // shuffle for variety
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    rev = { pool, idx:0, answered:{}, elim:{}, pending:null, correct:0, graduated:0 };
+    passageOpen = false;
+    document.getElementById("review").hidden = false; document.body.style.overflow = "hidden";
+    renderReview(); window.scrollTo({ top:0 });
+    if (window.gtrack) gtrack("review-open");
+  }
+  function closeReview() { rev = null; document.getElementById("review").hidden = true; document.body.style.overflow = ""; render(); }
+  function renderReview() {
+    if (!rev) return;
+    const body = document.getElementById("rv-body"), n = rev.pool.length;
+    if (rev.idx >= n) {
+      const still = reviewDueCount();
+      let h = `<div class="rn-score panel"><div class="rs-num ${accClass(Math.round(rev.correct/n*100))}">${rev.correct}<span class="rs-tot">/ ${n}</span></div><div class="rs-side"><div class="rs-pct ${accClass(Math.round(rev.correct/n*100))}">${Math.round(rev.correct/n*100)}%</div>${rev.graduated?`<div class="rs-log">🎓 ${rev.graduated} mastered</div>`:""}</div></div>`;
+      h += `<div class="panel" style="margin-top:14px"><h3>Nice work</h3><p class="sub" style="margin:0">${still>0?`<b>${still}</b> item${still===1?"":"s"} still due — keep going, or come back later.`:"You're all caught up on reviews. 🎉 New misses will resurface here on a spaced schedule."}</p></div>`;
+      h += `<div class="rn-foot">${still>0?`<button class="btn-soft" style="flex:none;padding:11px 20px" data-rvmore>Review ${still} more</button>`:""}<button class="btn-primary" style="width:auto;padding:12px 22px" data-rvclose>Done</button></div>`;
+      body.innerHTML = h; typeset(body); return;
+    }
+    const cur = rev.pool[rev.idx], q = cur.q, sec = secById(cur.set.section), nOpt = q.options || 5;
+    const a = rev.answered[rev.idx], revealed = !!a, pend = rev.pending, elim = rev.elim[rev.idx] || {};
+    let h = `<div class="rn-prog"><i style="width:${Math.round(rev.idx/n*100)}%"></i></div><div class="rn-sub">${rev.idx+1} of ${n} · spaced review</div>`;
+    h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
+    h += `<div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
+    LET.slice(0, nOpt).forEach((L, i) => {
+      const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
+      let cls = "", dis = "";
+      if (revealed) { dis = "disabled"; if (L === q.correct) cls = "correct"; else if (L === a.chosen) cls = "wrong"; }
+      else if (pend === L) cls = "sel";
+      if (!revealed && elim[L]) cls += " struck";
+      const pickBtn = `<button class="choice ${cls}" data-rvpick="${L}" ${dis}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button>`;
+      const elimBtn = revealed ? "" : `<button class="choice-elim ${elim[L]?"on":""}" data-rvelim="${L}" aria-label="Cross out ${L}">✕</button>`;
+      h += `<div class="choice-wrap">${pickBtn}${elimBtn}</div>`;
+    });
+    h += `</div>`;
+    if (revealed) {
+      h += `<div class="feedback ${a.correct?"ok":"no"}">${a.correct?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
+      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
+      h += aiExplainHTML(cur.set, q, a.chosen);
+      const last = rev.idx === n-1;
+      h += `<div class="rn-nav"><span></span><button class="navbtn primary" data-rvnext>${last?"See results":"Next ›"}</button></div>`;
+    } else {
+      if (q.hint) h += `<details class="expl hint-box"><summary>💡 Hint</summary><div class="ex">${esc(q.hint)}</div></details>`;
+      h += `<button class="btn-primary" style="margin-top:16px" data-rvcheck ${pend?"":"disabled"}>${pend?`Check answer ${pend}`:"Pick an answer"}</button>`;
+    }
+    h += `</div>`;
+    body.innerHTML = h; typeset(body);
+  }
+  function reviewCheck() {
+    if (!rev || rev.pending == null) return;
+    const cur = rev.pool[rev.idx], q = cur.q, correct = rev.pending === q.correct;
+    rev.answered[rev.idx] = { chosen: rev.pending, correct };
+    rev.pending = null;
+    if (correct) rev.correct++;
+    const wasBox = (state.srs && state.srs[cur.key] && state.srs[cur.key].box) || 0;
+    srsGrade(cur.set.id, q.n, correct);
+    if (correct && wasBox >= 5) rev.graduated++;
+    // a review rep counts toward today's activity & streak (not first-attempt accuracy)
+    const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
+    markActivity("review"); save();
+    renderReview(); window.scrollTo({ top:0 });
+  }
+
   function logOne(set, q, correct, ms) {
     const run = ensureRun(set.id);
-    if (run.logged[q.n]) return;
+    if (run.logged[q.n]) { return; }
     ms = Math.max(0, ms || 0);
     const id = resolveTopic(set.section, q.topic);
     if (id) {
@@ -1552,6 +1690,7 @@
       console.warn("GMAT: no topic match for", set.section, "/", q.topic);
       run.logged[q.n] = { day: null, topic: null, correct: !!correct, ms };
     }
+    srsOnAnswer(set.id, q.n, !!correct);
     save();
   }
   // Rebuild topic totals + daily activity purely from recorded practice-set
@@ -2015,6 +2154,7 @@
       const id = resolveTopic(o.set.section, o.q.topic);
       if (id) { const rec = getRec(id); rec.d += 1; if (a.correct) rec.c += 1; rec.ms += a.ms || 0; setRec(id, rec); add++; }
       else console.warn("GMAT session: no topic match for", o.set.section, "/", o.q.topic);
+      srsOnAnswer(o.set.id, o.q.n, a.correct);
     });
     if (add) state.daily[k] = Math.max(0, (state.daily[k] || 0) + add);
     save();
@@ -2071,6 +2211,20 @@
 
   /* Events — flash cards */
   document.getElementById("fc-close").onclick = closeFlash;
+
+  /* Events — review queue */
+  document.getElementById("rv-close").onclick = closeReview;
+  document.getElementById("rv-body").addEventListener("click", (e) => {
+    if (!rev) return;
+    if (e.target.closest("[data-rvclose]")) { closeReview(); return; }
+    if (e.target.closest("[data-rvmore]")) { openReview(); return; }
+    if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderReview(); return; }
+    if (e.target.closest("[data-rvnext]")) { rev.idx++; rev.pending = null; passageOpen = false; renderReview(); window.scrollTo({ top:0 }); return; }
+    if (e.target.closest("[data-rvcheck]")) { reviewCheck(); return; }
+    const el = e.target.closest("[data-rvelim]"); if (el) { const k = rev.idx, L = el.getAttribute("data-rvelim"); rev.elim[k] = rev.elim[k] || {}; if (rev.elim[k][L]) delete rev.elim[k][L]; else rev.elim[k][L] = 1; renderReview(); return; }
+    const pk = e.target.closest("[data-rvpick]"); if (pk) { if (rev.answered[rev.idx]) return; const L = pk.getAttribute("data-rvpick"); if (rev.elim[rev.idx]) delete rev.elim[rev.idx][L]; rev.pending = L; renderReview(); return; }
+    const aib = e.target.closest("[data-aiexplain]"); if (aib) { aiExplainRun(aib); return; }
+  });
   document.getElementById("fc-body").addEventListener("click", (e) => {
     if (!fcDeck) return;
     const md = e.target.closest("[data-fcmode]"); if (md) { fcSetMode(md.getAttribute("data-fcmode")); return; }
@@ -2102,6 +2256,7 @@
       return true;
     }
     if (vis("achv"))     { closeAchv();    return true; }
+    if (vis("review"))   { closeReview();  return true; }
     if (vis("profile"))  { closeProfile(); return true; }
     if (vis("onboard"))  { return true; } // ignore Back during first-run setup
     return false;                          // base tab — nothing to close

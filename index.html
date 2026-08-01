@@ -165,6 +165,13 @@
      app contrast and makes the three sections read at a glance. */
   .tabsec { scroll-margin-top: 70px; padding-top: 0; overflow: hidden; }
   .tabsec-head { display: flex; align-items: center; gap: 12px; margin: 0 -19px 16px; padding: 13px 17px; background: linear-gradient(135deg, color-mix(in srgb, var(--secc, var(--accent)) 20%, var(--surface)), color-mix(in srgb, var(--secc, var(--accent)) 8%, var(--surface))); border-bottom: 1px solid color-mix(in srgb, var(--secc, var(--accent)) 22%, var(--line)); }
+  .tabsec-head[data-tabsec] { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .tabsec-head[data-tabsec]:hover { background: linear-gradient(135deg, color-mix(in srgb, var(--secc, var(--accent)) 26%, var(--surface)), color-mix(in srgb, var(--secc, var(--accent)) 11%, var(--surface))); }
+  .tabsec-chev { flex: none; margin-left: 6px; color: color-mix(in srgb, var(--secc, var(--accent)) 60%, var(--ink-faint)); font-size: 15px; transition: transform .2s; }
+  .tabsec.collapsed .tabsec-chev { transform: rotate(-90deg); }
+  .tabsec.collapsed { padding-bottom: 0; }
+  .tabsec.collapsed .tabsec-head { margin-bottom: 0; }
+  .tabsec.collapsed .tabsec-body { display: none; }
   .tabsec-n { flex: none; width: 30px; height: 30px; border-radius: 9px; background: var(--secc, var(--accent)); color: #fff; font-weight: 800; font-size: 15px; display: grid; place-items: center; box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--secc, var(--accent)) 60%, transparent); }
   .tabsec-h { min-width: 0; margin-right: auto; }
   .tabsec-h h3 { margin: 0; font-size: 16px; font-weight: 800; letter-spacing: -.01em; color: color-mix(in srgb, var(--secc, var(--accent)) 62%, var(--ink)); }
@@ -732,7 +739,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v47";
+  const APP_VERSION = "v48";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -844,19 +851,26 @@
     return p === null ? "" : `<span class="${accClass(p)} ${extra||""}">${p}%</span>`;
   }
 
-  // Numbered header for the three standard sections on every subject tab.
-  function tabSecHead(n, title, sub, metaHTML) {
-    return `<div class="tabsec-head"><span class="tabsec-n">${n}</span><div class="tabsec-h"><h3>${title}</h3><p>${sub}</p></div>${metaHTML ? `<span class="tabsec-meta">${metaHTML}</span>` : ""}</div>`;
+  // Numbered header for the standard sections on every subject tab.
+  // `key` makes the whole section collapsible (tap the header to minimise/expand).
+  function tabSecHead(n, title, sub, metaHTML, key) {
+    const chev = key ? `<span class="tabsec-chev">▾</span>` : "";
+    return `<div class="tabsec-head"${key ? ` data-tabsec="${esc(key)}" role="button" tabindex="0" aria-expanded="${tsecCollapsed(key) ? "false" : "true"}"` : ""}><span class="tabsec-n">${n}</span><div class="tabsec-h"><h3>${title}</h3><p>${sub}</p></div>${metaHTML ? `<span class="tabsec-meta">${metaHTML}</span>` : ""}${chev}</div>`;
   }
+  // Collapse state for whole tab sections, keyed per section+area (distinct from
+  // the per-subject collapse keys, which never contain "§").
+  const tsecKey = (secId, area) => secId + "::§" + area;
+  function tsecCollapsed(key) { return !!(state.collapsed && state.collapsed[key]); }
 
   function questionsLoggedHTML(sec) {
     const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
     const meta = ag.d > 0
       ? `<span class="acc ${accClass(p)}" style="font-weight:800;font-size:15px">${ag.d} · ${p===null?"—":p+"%"}</span>`
       : "";
-    let h = `<section class="panel tabsec" id="tab-logged" style="--secc:${sec.color}">`;
-    h += tabSecHead(4, "Questions logged", "Your attempts per topic. Tap ✓ / ✗ to log one, or a count to enter a batch.", meta);
-    h += `<div class="subjects" style="margin-top:0">`;
+    const key = tsecKey(sec.id, "logged");
+    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-logged" style="--secc:${sec.color}">`;
+    h += tabSecHead(4, "Questions logged", "Your attempts per topic. Tap ✓ / ✗ to log one, or a count to enter a batch.", meta, key);
+    h += `<div class="tabsec-body"><div class="subjects" style="margin-top:0">`;
     sec.subjects.forEach(su => {
       const ckey = sec.id+"::"+su.name, collapsed = state.collapsed[ckey] ? " collapsed" : "";
       const a = subjectAgg(sec.id, su), sp = accPct(a.c, a.d);
@@ -880,7 +894,7 @@
       });
       h += `</div></section>`;
     });
-    return h + `</div></section>`;
+    return h + `</div></div></section>`;
   }
 
   function sectionHTML(sec) {
@@ -1094,12 +1108,20 @@
     const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
     const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
     const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
+    const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this set added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
     const oc = e.target.closest("[data-openconcept]"); if (oc) { openConcept(oc.getAttribute("data-openconcept")); return; }
     const fd = e.target.closest("[data-flashdeck]"); if (fd) { openFlashDeck(fd.getAttribute("data-flashdeck"), state.active); return; }
     if (e.target.closest("[data-session-open]")) { openSessionConfig(); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
+  });
+  // Keyboard: Enter / Space toggles a section header (it has role="button").
+  document.getElementById("view").addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const ts = e.target.closest("[data-tabsec]"); if (!ts) return;
+    e.preventDefault();
+    const k = ts.getAttribute("data-tabsec"); state.collapsed[k] = !state.collapsed[k]; save(); renderView();
   });
 
   /* Events — concept reader */
@@ -1161,12 +1183,14 @@
   function flashcardsPanelHTML(secId, sec, num) {
     const decks = flashDecksFor(secId), secc = sec ? sec.color : "var(--accent)";
     const total = decks.reduce((a, d) => a + d.cards.length, 0);
-    let h = `<section class="panel tabsec" id="tab-flash" style="--secc:${secc}">${tabSecHead(num, "Flash cards", "Rules, tricks &amp; formulas worth memorising — tap a deck, then tap cards to flip.", total ? `${total} cards` : "")}`;
-    if (!decks.length) return h + `<p class="footnote" style="margin:0;text-align:left">No flash cards here yet.</p></section>`;
+    const key = tsecKey(secId, "flash");
+    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-flash" style="--secc:${secc}">${tabSecHead(num, "Flash cards", "Rules, tricks &amp; formulas worth memorising — tap a deck, then tap cards to flip.", total ? `${total} cards` : "", key)}`;
+    if (!decks.length) return h + `<div class="tabsec-body"><p class="footnote" style="margin:0;text-align:left">No flash cards here yet.</p></div></section>`;
+    h += `<div class="tabsec-body">`;
     decks.forEach(d => {
       h += `<button class="fc-deckrow" data-flashdeck="${esc(d.id)}"><span class="fc-deckicon">${DECK_ICONS[d.id] || "★"}</span><span class="fc-deckmeta"><span class="fc-decktitle">${esc(d.title)}</span><span class="fc-decksub">${d.cards.length} card${d.cards.length === 1 ? "" : "s"}</span></span><span class="cn-chev">›</span></button>`;
     });
-    return h + `</section>`;
+    return h + `</div></section>`;
   }
 
   let fcDeck = null, fcSecId = null, fcIdx = 0, fcFlipped = false, fcOrder = [];
@@ -1218,15 +1242,15 @@
   }
 
   function conceptsPanelHTML(list, sec) {
-    const secc = sec ? sec.color : "var(--accent)";
+    const secc = sec ? sec.color : "var(--accent)", key = tsecKey(sec ? sec.id : "", "concepts");
     if (!list.length) {
-      return `<section class="panel tabsec" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format.", "")}<p class="footnote" style="margin:0;text-align:left">No guides here yet.</p></section>`;
+      return `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format.", "", key)}<div class="tabsec-body"><p class="footnote" style="margin:0;text-align:left">No guides here yet.</p></div></section>`;
     }
     let totalParts = 0, totalRead = 0;
     list.forEach(g => { totalParts += g.parts.length; totalRead += guideReadCount(g); });
     const pct = totalParts ? totalRead / totalParts : 0, allDone = totalRead === totalParts;
     const meta = `<span class="cn-ring" title="${totalRead} of ${totalParts} sections read">${ring(pct, allDone?"var(--good)":"var(--accent)")}<span class="cn-ringpct">${totalRead}/${totalParts}</span></span>`;
-    let h = `<section class="panel tabsec" id="tab-concepts" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format — tap to read, then jump into practice.", meta)}<div class="cn-toc">`;
+    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(1, "Concepts &amp; theory", "Study guides in a clean, readable format — tap to read, then jump into practice.", meta, key)}<div class="tabsec-body"><div class="cn-toc">`;
     list.forEach(g => {
       const done = guideReadCount(g), n = g.parts.length, complete = done === n;
       h += `<button class="cn-tocrow ${complete?"done":""}" data-openconcept="${esc(g.id)}">
@@ -1234,7 +1258,7 @@
         <span class="cn-tocmeta"><span class="cn-toct">${esc(g.title)}${g.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</span><span class="cn-tocs">${complete?"All read":done>0?(done+" of "+n+" read"):(n+" sections")}${g.source?" · "+esc(g.source):""}</span></span>
         <span class="cn-chev">›</span></button>`;
     });
-    return h + `</div></section>`;
+    return h + `</div></div></section>`;
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
@@ -1389,10 +1413,11 @@
     const secc = opts.sec ? opts.sec.color : "var(--accent)";
     // On a subject tab we render the numbered section-2 header; on the Overall
     // dashboard we keep the plain "Practice sets" heading.
+    const key = opts.num ? tsecKey(opts.sec.id, "practice") : null;
     const openTag = opts.num
-      ? `<section class="panel tabsec" id="tab-practice" style="--secc:${secc}">${tabSecHead(opts.num, "Practice sets", "Open a set, answer, and it scores you and logs each question into the right topic.", `${list.length} set${list.length===1?"":"s"}`)}`
+      ? `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-practice" style="--secc:${secc}">${tabSecHead(opts.num, "Practice sets", "Open a set, answer, and it scores you and logs each question into the right topic.", `${list.length} set${list.length===1?"":"s"}`, key)}<div class="tabsec-body">`
       : `<div class="panel"><h3>Practice sets</h3>`;
-    const closeTag = opts.num ? `</section>` : `</div>`;
+    const closeTag = opts.num ? `</div></section>` : `</div>`;
     if (!list.length) return openTag + `<p class="${opts.num?"footnote":"sub"}" style="margin:0;text-align:left">No sets here yet. Send your question documents in the chat — I'll tag every question and they'll appear here, ready to score.</p>${closeTag}`;
     let h = openTag;
     if (!opts.num) h += `<p class="sub">Open a set, enter your answers, and it scores you and logs each question into the right topic.</p>`;

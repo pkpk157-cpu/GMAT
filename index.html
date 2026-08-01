@@ -599,6 +599,27 @@
   .cta-review .s { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
   .cta-review .cta-badge { flex: none; min-width: 26px; height: 26px; padding: 0 8px; border-radius: 999px; background: var(--gold); color: #fff; font-weight: 800; font-size: 13px; display: grid; place-items: center; }
   .rv-src { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--ink-faint); }
+  .cta-focus { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; padding: 13px 16px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); margin-bottom: 14px; cursor: pointer; color: var(--ink); }
+  .cta-focus .ico { font-size: 20px; flex: none; }
+  .cta-focus div { margin-right: auto; }
+  .cta-focus .t { font-weight: 800; font-size: 14.5px; }
+  .cta-focus .s { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+  .cta-focus .cn-chev { color: var(--ink-faint); font-size: 20px; }
+  /* Focus timer overlay */
+  .fo-view { text-align: center; padding: 10px 0 20px; }
+  .fo-phase { font-weight: 800; font-size: 15px; margin-bottom: 16px; }
+  .fo-ringwrap { position: relative; width: 240px; max-width: 72vw; margin: 0 auto 22px; }
+  .fo-ring { width: 100%; height: auto; transform: rotate(-90deg); }
+  .fo-ring-bg { fill: none; stroke: var(--surface-2); stroke-width: 13; }
+  #fo-ring-fg { fill: none; stroke-width: 13; stroke-linecap: round; transition: stroke-dashoffset .3s linear; }
+  .fo-timebox { position: absolute; inset: 0; display: grid; place-content: center; }
+  .fo-time { font-family: var(--serif); font-size: 46px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1; }
+  .fo-sub { font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .06em; margin-top: 6px; }
+  .fo-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
+  .fo-presets { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; }
+  .fo-preset { padding: 9px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-weight: 700; font-size: 13px; color: var(--ink); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); }
+  .fo-preset.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .fo-note { font-size: 12px; color: var(--ink-faint); max-width: 330px; margin: 8px auto 0; }
   .sc-body { display: flex; flex-direction: column; gap: 16px; max-height: 78vh; overflow-y: auto; }
   .sc-h { font-weight: 800; font-size: 13px; letter-spacing: .02em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
   .sc-seg { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -730,6 +751,12 @@
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="rv-title">Review</h2><button class="pf-close" id="rv-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="rv-body"></div>
 </div>
+
+<!-- Focus timer (Pomodoro) -->
+<div class="profile" id="focus" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Focus timer</h2><button class="pf-close" id="fo-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="fo-body"></div>
+</div>
 <input type="file" id="restore-input" accept="application/json,.json" hidden />
 
 <!-- Practice-set runner -->
@@ -845,7 +872,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v53";
+  const APP_VERSION = "v54";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1099,6 +1126,9 @@
       h += `<button class="cta-review" data-review-open="1"><span class="ico">↻</span><div><div class="t">Review ${due} question${due===1?"":"s"}</div><div class="s">Your missed &amp; flagged questions, resurfaced on a spaced schedule. Clear them to lock in what you learn.</div></div><span class="cta-badge">${due}</span></button>`;
     }
 
+    // focus timer entry
+    h += `<button class="cta-focus" data-focus-open="1"><span class="ico">🍅</span><div><div class="t">Focus timer</div><div class="s">Pomodoro deep-work blocks with a break reminder${focusTodayCount()>0?` · ${focusTodayCount()} today`:""}</div></div><span class="cn-chev">›</span></button>`;
+
     // goals
     if (dT>0 || wT>0) {
       h += `<div class="goals">`;
@@ -1316,6 +1346,7 @@
     const fd = e.target.closest("[data-flashdeck]"); if (fd) { openFlashDeck(fd.getAttribute("data-flashdeck"), state.active); return; }
     if (e.target.closest("[data-session-open]")) { openSessionConfig(); return; }
     if (e.target.closest("[data-review-open]")) { openReview(); return; }
+    if (e.target.closest("[data-focus-open]")) { openFocus(); return; }
     if (e.target.closest("[data-open-profile]")) openProfile();
   });
   // Keyboard: Enter / Space toggles a section header (it has role="button").
@@ -1658,6 +1689,74 @@
 
   function aiExplainHTML() { return ""; }   // AI tutor (implemented below); stub keeps review self-contained
   function aiExplainRun() {}
+
+  /* ===== Focus timer (Pomodoro) ===== */
+  function notifyReady() { return ("Notification" in window) && Notification.permission === "granted"; }
+  function requestNotify() { try { if ("Notification" in window && Notification.permission === "default") return Notification.requestPermission(); } catch (e) {} return Promise.resolve(Notification && Notification.permission); }
+  function pushNotify(title, body) { try { if (notifyReady()) new Notification(title, { body, icon:"icon-192.png", badge:"icon-192.png" }); } catch (e) {} }
+  function chime() {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      const ac = new AC();
+      [0, 0.18].forEach((t, i) => { const o = ac.createOscillator(), g = ac.createGain(); o.connect(g); g.connect(ac.destination); o.type = "sine"; o.frequency.value = i ? 1175 : 880; g.gain.setValueAtTime(0.0001, ac.currentTime + t); g.gain.exponentialRampToValueAtTime(0.25, ac.currentTime + t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + t + 0.35); o.start(ac.currentTime + t); o.stop(ac.currentTime + t + 0.36); });
+      setTimeout(() => ac.close(), 900);
+    } catch (e) {}
+  }
+  const FOCUS_PRESETS = [15, 25, 50];
+  let foc = { phase:"focus", focusMin:25, remain:25*60, running:false, endsAt:0, timer:null };
+  function focusTodayCount() { const a = actToday(); return a.focus || 0; }
+  function openFocus() { renderFocus(); document.getElementById("focus").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("focus-open"); }
+  function closeFocus() { document.getElementById("focus").hidden = true; document.body.style.overflow = ""; render(); }  // timer keeps running in the background
+  function focusPhaseTotal() { return foc.phase === "focus" ? foc.focusMin * 60 : 5 * 60; }
+  function focusStart() {
+    if (foc.running) return;
+    foc.running = true; foc.endsAt = Date.now() + foc.remain * 1000;
+    if (foc.timer) clearInterval(foc.timer);
+    foc.timer = setInterval(focusTick, 250);
+    requestNotify();
+    renderFocus();
+  }
+  function focusPause() { if (!foc.running) return; foc.remain = Math.max(0, Math.round((foc.endsAt - Date.now())/1000)); foc.running = false; if (foc.timer) { clearInterval(foc.timer); foc.timer = null; } renderFocus(); }
+  function focusReset() { focusPause(); foc.remain = focusPhaseTotal(); renderFocus(); }
+  function focusSetMin(m) { foc.focusMin = m; if (foc.phase === "focus" && !foc.running) { foc.remain = m*60; } renderFocus(); }
+  function focusTick() {
+    if (!foc.running) return;
+    const rem = Math.max(0, Math.round((foc.endsAt - Date.now())/1000));
+    foc.remain = rem;
+    if (rem <= 0) { focusComplete(); return; }
+    // light update: just the time + ring, no full re-render
+    const t = document.getElementById("fo-time"); if (t) t.textContent = fmtClock(rem*1000);
+    const r = document.getElementById("fo-ring-fg"); if (r) { const tot = focusPhaseTotal(); r.style.strokeDashoffset = String((1 - rem/tot) * FO_CIRC); }
+  }
+  function focusComplete() {
+    if (foc.timer) { clearInterval(foc.timer); foc.timer = null; }
+    foc.running = false;
+    if (navigator.vibrate) try { navigator.vibrate([140,70,140]); } catch (e) {}
+    chime();
+    if (foc.phase === "focus") {
+      markActivity("focus");
+      pushNotify("Focus session complete 🍅", "Nice work — take a 5-minute break.");
+      foc.phase = "break"; foc.remain = 5*60; focusStart();          // auto-start the break
+    } else {
+      pushNotify("Break over ☕", "Ready for another focused block?");
+      foc.phase = "focus"; foc.remain = foc.focusMin*60; renderFocus(); // wait for the user to start
+    }
+  }
+  const FO_R = 92, FO_CIRC = 2 * Math.PI * FO_R;
+  function renderFocus() {
+    const body = document.getElementById("fo-body"); if (!body) return;
+    const tot = focusPhaseTotal(), off = (1 - foc.remain/tot) * FO_CIRC;
+    const col = foc.phase === "focus" ? "var(--accent)" : "var(--good)";
+    let h = `<div class="fo-view">
+      <div class="fo-phase ${foc.phase}">${foc.phase === "focus" ? "🍅 Focus" : "☕ Break"}</div>
+      <div class="fo-ringwrap"><svg viewBox="0 0 220 220" class="fo-ring"><circle class="fo-ring-bg" cx="110" cy="110" r="${FO_R}"/><circle id="fo-ring-fg" cx="110" cy="110" r="${FO_R}" style="stroke:${col};stroke-dasharray:${FO_CIRC.toFixed(1)};stroke-dashoffset:${off.toFixed(1)}"/></svg><div class="fo-timebox"><div class="fo-time" id="fo-time">${fmtClock(foc.remain*1000)}</div><div class="fo-sub">${foc.running ? "in progress" : "paused"}</div></div></div>`;
+    h += `<div class="fo-controls"><button class="btn-primary" style="width:auto;padding:13px 30px" data-fostart>${foc.running ? "Pause" : (foc.remain < focusPhaseTotal() ? "Resume" : "Start")}</button><button class="btn-soft" style="flex:none;padding:13px 20px" data-foreset>Reset</button></div>`;
+    if (foc.phase === "focus" && !foc.running) {
+      h += `<div class="fo-presets">${FOCUS_PRESETS.map(m => `<button class="fo-preset ${foc.focusMin===m?"on":""}" data-fomin="${m}">${m} min</button>`).join("")}</div>`;
+    }
+    h += `<p class="fo-note">${focusTodayCount()>0?`🍅 ${focusTodayCount()} focus session${focusTodayCount()===1?"":"s"} today · `:""}The timer keeps running if you switch tabs. ${notifyReady()?"":"Enable notifications to get pinged when a block ends."}</p>`;
+    body.innerHTML = h;
+  }
 
   /* Review runner — one due question at a time, with immediate feedback. */
   let rev = null;
@@ -2262,6 +2361,14 @@
   /* Events — flash cards */
   document.getElementById("fc-close").onclick = closeFlash;
 
+  /* Events — focus timer */
+  document.getElementById("fo-close").onclick = closeFocus;
+  document.getElementById("fo-body").addEventListener("click", (e) => {
+    if (e.target.closest("[data-fostart]")) { foc.running ? focusPause() : focusStart(); return; }
+    if (e.target.closest("[data-foreset]")) { focusReset(); return; }
+    const m = e.target.closest("[data-fomin]"); if (m) { focusSetMin(parseInt(m.getAttribute("data-fomin"), 10)); return; }
+  });
+
   /* Events — review queue */
   document.getElementById("rv-close").onclick = closeReview;
   document.getElementById("rv-body").addEventListener("click", (e) => {
@@ -2308,6 +2415,7 @@
       return true;
     }
     if (vis("achv"))     { closeAchv();    return true; }
+    if (vis("focus"))    { closeFocus();   return true; }
     if (vis("review"))   { closeReview();  return true; }
     if (vis("profile"))  { closeProfile(); return true; }
     if (vis("onboard"))  { return true; } // ignore Back during first-run setup

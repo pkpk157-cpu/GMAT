@@ -663,6 +663,11 @@
   .fc-nav .fc-flip { flex: 1.4; background: var(--secc, var(--accent)); border-color: var(--secc, var(--accent)); color: #fff; }
   .fc-tools { display: flex; justify-content: center; gap: 14px; margin-top: 14px; }
   .fc-tools button { background: none; border: none; color: var(--accent); font-weight: 700; font-size: 13px; cursor: pointer; }
+  .fc-grade { display: flex; gap: 10px; margin-bottom: 12px; }
+  .fc-grade .fc-g { flex: 1; padding: 13px; border-radius: 12px; border: 1px solid var(--line); font-weight: 800; font-size: 14px; cursor: pointer; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); }
+  .fc-grade .fc-g.no { background: color-mix(in srgb, var(--bad) 12%, var(--surface)); border-color: color-mix(in srgb, var(--bad) 35%, var(--line)); color: var(--bad); }
+  .fc-grade .fc-g.yes { background: color-mix(in srgb, var(--good) 14%, var(--surface)); border-color: color-mix(in srgb, var(--good) 38%, var(--line)); color: var(--good); }
+  .fc-due { flex: none; font-size: 11px; font-weight: 800; color: #fff; background: var(--gold); padding: 2px 9px; border-radius: 999px; margin-right: 4px; }
 
   .footnote { text-align: center; color: var(--ink-faint); font-size: 12px; margin-top: 30px; }
 
@@ -840,7 +845,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v52";
+  const APP_VERSION = "v53";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -856,7 +861,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1382,22 +1387,45 @@
   function flashcardsPanelHTML(secId, sec, num) {
     const decks = flashDecksFor(secId), secc = sec ? sec.color : "var(--accent)";
     const total = decks.reduce((a, d) => a + d.cards.length, 0);
-    const key = tsecKey(secId, "flash");
-    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-flash" style="--secc:${secc}">${tabSecHead(num, "Flash cards", "Rules, tricks &amp; formulas worth memorising — tap a deck, then tap cards to flip.", total ? `${total} cards` : "", key)}`;
+    const key = tsecKey(secId, "flash"), secDue = fcSectionDue(secId);
+    const meta = total ? `${total} cards${secDue ? ` · <span style="color:var(--gold)">${secDue} due</span>` : ""}` : "";
+    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-flash" style="--secc:${secc}">${tabSecHead(num, "Flash cards", "Rate each card — the ones you don't know come back sooner (spaced repetition).", meta, key)}`;
     if (!decks.length) return h + `<div class="tabsec-body"><p class="footnote" style="margin:0;text-align:left">No flash cards here yet.</p></div></section>`;
     h += `<div class="tabsec-body">`;
     decks.forEach(d => {
-      h += `<button class="fc-deckrow" data-flashdeck="${esc(d.id)}"><span class="fc-deckicon">${DECK_ICONS[d.id] || "★"}</span><span class="fc-deckmeta"><span class="fc-decktitle">${esc(d.title)}</span><span class="fc-decksub">${d.cards.length} card${d.cards.length === 1 ? "" : "s"}</span></span><span class="cn-chev">›</span></button>`;
+      const due = fcDeckDue(d);
+      h += `<button class="fc-deckrow" data-flashdeck="${esc(d.id)}"><span class="fc-deckicon">${DECK_ICONS[d.id] || "★"}</span><span class="fc-deckmeta"><span class="fc-decktitle">${esc(d.title)}</span><span class="fc-decksub">${d.cards.length} card${d.cards.length === 1 ? "" : "s"}</span></span>${due ? `<span class="fc-due">${due} due</span>` : ""}<span class="cn-chev">›</span></button>`;
     });
     return h + `</div></section>`;
   }
 
-  let fcDeck = null, fcSecId = null, fcIdx = 0, fcFlipped = false, fcOrder = [];
+  /* Flash-card confidence (spaced repetition) */
+  const FC_INTERVALS = { 1:1, 2:3, 3:8, 4:20, 5:45 };
+  const fcCardKey = (deckId, i) => deckId + "#" + i;
+  function fcGrade(deckId, i, knew) {
+    if (!state.fcsrs) state.fcsrs = {};
+    const k = fcCardKey(deckId, i), e = state.fcsrs[k] || { box:0 };
+    if (knew) { e.box = Math.min(5, (e.box || 0) + 1); e.due = addDaysKey(FC_INTERVALS[e.box] || 45); }
+    else { e.box = 1; e.due = dkey(); }
+    state.fcsrs[k] = e; save();
+  }
+  function fcCardStudied(deckId, i) { return !!(state.fcsrs && state.fcsrs[fcCardKey(deckId, i)]); }
+  function fcCardDueNow(deckId, i) { const e = state.fcsrs && state.fcsrs[fcCardKey(deckId, i)]; return !!(e && (!e.due || e.due <= dkey())); }
+  function fcDeckDue(deck) { let n = 0; deck.cards.forEach((_, i) => { if (fcCardDueNow(deck.id, i)) n++; }); return n; }
+  function fcSectionDue(secId) { return flashDecksFor(secId).reduce((a, d) => a + fcDeckDue(d), 0); }
+  // Order cards: due-for-review first, then never-studied, then not-yet-due.
+  function fcDeckOrder(deck) {
+    const idx = deck.cards.map((_, i) => i);
+    const rank = (i) => fcCardDueNow(deck.id, i) ? 0 : (!fcCardStudied(deck.id, i) ? 1 : 2);
+    return idx.sort((a, b) => rank(a) - rank(b));
+  }
+
+  let fcDeck = null, fcSecId = null, fcIdx = 0, fcFlipped = false, fcOrder = [], fcSession = { knew:0, didnt:0 };
   function openFlashDeck(deckId, secId) {
     const decks = flashDecksFor(secId), d = decks.find(x => x.id === deckId);
     if (!d) return;
-    fcDeck = d; fcSecId = secId; fcIdx = 0; fcFlipped = false;
-    fcOrder = d.cards.map((_, i) => i);
+    fcDeck = d; fcSecId = secId; fcIdx = 0; fcFlipped = false; fcSession = { knew:0, didnt:0 };
+    fcOrder = fcDeckOrder(d);
     document.getElementById("fc-title").textContent = d.title;
     const sec = secById(secId);
     document.getElementById("flash").style.setProperty("--secc", sec ? sec.color : "var(--accent)");
@@ -1411,25 +1439,41 @@
   function fcModeCur() { return state.fcMode === "both" ? "both" : "flip"; }
   function renderFlash() {
     if (!fcDeck) return;
-    const n = fcOrder.length, card = fcDeck.cards[fcOrder[fcIdx]], mode = fcModeCur();
+    const n = fcOrder.length, mode = fcModeCur();
     const body = document.getElementById("fc-body");
+    if (fcIdx >= n) {   // completion after grading through the deck
+      const done = fcSession.knew + fcSession.didnt;
+      body.innerHTML = `<div class="fc-view">
+        <div class="rn-score panel"><div class="rs-num">${fcSession.knew}<span class="rs-tot">/ ${done}</span></div><div class="rs-side"><div class="rs-pct">knew it</div><div class="rs-log">${fcSession.didnt} to revisit</div></div></div>
+        <div class="panel" style="margin-top:14px"><h3>Deck reviewed</h3><p class="sub" style="margin:0">Cards you didn't know come back sooner; ones you knew are spaced further out. ${fcSession.didnt?`<b>${fcSession.didnt}</b> card${fcSession.didnt===1?"":"s"} will resurface soon.`:"Great recall! 🎉"}</p></div>
+        <div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-fcrestart>Study again</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-fcclose>Done</button></div>
+      </div>`;
+      typeset(body); return;
+    }
+    const card = fcDeck.cards[fcOrder[fcIdx]];
     const modebar = `<div class="fc-modebar">
       <button class="fc-modebtn ${mode === "flip" ? "on" : ""}" data-fcmode="flip">🔄 Flip to reveal</button>
       <button class="fc-modebtn ${mode === "both" ? "on" : ""}" data-fcmode="both">👁 Both sides</button></div>`;
-    let cardHTML, hint = "";
+    let cardHTML, hint = "", answerShown;
     if (mode === "both") {
+      answerShown = true;
       cardHTML = `<div class="fc-card both"><div class="fc-cc">
         <span class="fc-tag">Prompt</span><div class="fc-q">${card.f}</div>
         <div class="fc-div"></div>
         <span class="fc-tag">Answer</span><div class="fc-a">${card.b}</div>
       </div></div>`;
     } else {
+      answerShown = fcFlipped;
       cardHTML = `<div class="fc-card ${fcFlipped ? "back" : ""}" data-fcflip="1"><div class="fc-cc">
         <span class="fc-tag">${fcFlipped ? "Answer" : "Prompt"}</span>
         <div class="${fcFlipped ? "fc-a" : "fc-q"}">${fcFlipped ? card.b : card.f}</div>
       </div></div>`;
       hint = `<div class="fc-hint">Tap the card ${fcFlipped ? "to see the prompt" : "or press Flip to reveal the answer"}</div>`;
     }
+    // Confidence buttons appear once the answer is visible; they grade + advance.
+    const grade = answerShown
+      ? `<div class="fc-grade"><button class="fc-g no" data-fcgrade="0">😕 Didn't know</button><button class="fc-g yes" data-fcgrade="1">😎 Knew it</button></div>`
+      : "";
     const nav = mode === "both"
       ? `<div class="fc-nav"><button data-fcprev ${fcIdx === 0 ? "disabled" : ""}>‹ Prev</button><button data-fcnext ${fcIdx === n - 1 ? "disabled" : ""}>Next ›</button></div>`
       : `<div class="fc-nav"><button data-fcprev ${fcIdx === 0 ? "disabled" : ""}>‹ Prev</button><button class="fc-flip" data-fcflip="1">Flip</button><button data-fcnext ${fcIdx === n - 1 ? "disabled" : ""}>Next ›</button></div>`;
@@ -1438,7 +1482,7 @@
       <div class="fc-count">Card ${fcIdx + 1} of ${n}</div>
       <div class="fc-prog"><i style="width:${Math.round((fcIdx + 1) / n * 100)}%"></i></div>
       <div class="fc-stage">${cardHTML}</div>
-      ${hint}${nav}
+      ${hint}${grade}${nav}
       <div class="fc-tools"><button data-fcshuffle>🔀 Shuffle</button><button data-fcrestart>↺ Restart</button></div>
     </div>`;
     typeset(body);
@@ -1446,6 +1490,12 @@
   function fcFlip() { if (fcModeCur() === "both") return; fcFlipped = !fcFlipped; renderFlash(); }
   function fcSetMode(m) { state.fcMode = m; save(); fcFlipped = false; renderFlash(); }
   function fcGo(step) { const n = fcOrder.length; fcIdx = Math.max(0, Math.min(n - 1, fcIdx + step)); fcFlipped = false; renderFlash(); }
+  function fcGradeGo(knew) {
+    if (!fcDeck) return;
+    fcGrade(fcDeck.id, fcOrder[fcIdx], knew);
+    fcSession[knew ? "knew" : "didnt"]++;
+    fcIdx++; fcFlipped = false; renderFlash(); window.scrollTo({ top:0 });
+  }
   // Concept "read" tracking — a part counts as read once opened.
   function conceptRead(gid, pid) { return !!(state.read && state.read[gid] && state.read[gid][pid]); }
   function markConceptRead(gid, pid) { if (!state.read) state.read = {}; if (!state.read[gid]) state.read[gid] = {}; if (!state.read[gid][pid]) { state.read[gid][pid] = 1; save(); } }
@@ -2228,11 +2278,13 @@
   document.getElementById("fc-body").addEventListener("click", (e) => {
     if (!fcDeck) return;
     const md = e.target.closest("[data-fcmode]"); if (md) { fcSetMode(md.getAttribute("data-fcmode")); return; }
+    const gr = e.target.closest("[data-fcgrade]"); if (gr) { fcGradeGo(gr.getAttribute("data-fcgrade") === "1"); return; }
+    if (e.target.closest("[data-fcclose]")) { closeFlash(); return; }
     if (e.target.closest("[data-fcflip]")) { fcFlip(); return; }
     if (e.target.closest("[data-fcprev]")) { fcGo(-1); return; }
     if (e.target.closest("[data-fcnext]")) { fcGo(1); return; }
-    if (e.target.closest("[data-fcshuffle]")) { for (let i = fcOrder.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [fcOrder[i], fcOrder[j]] = [fcOrder[j], fcOrder[i]]; } fcIdx = 0; fcFlipped = false; renderFlash(); return; }
-    if (e.target.closest("[data-fcrestart]")) { fcOrder = fcDeck.cards.map((_, i) => i); fcIdx = 0; fcFlipped = false; renderFlash(); return; }
+    if (e.target.closest("[data-fcshuffle]")) { for (let i = fcOrder.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [fcOrder[i], fcOrder[j]] = [fcOrder[j], fcOrder[i]]; } fcIdx = 0; fcFlipped = false; fcSession = { knew:0, didnt:0 }; renderFlash(); return; }
+    if (e.target.closest("[data-fcrestart]")) { fcOrder = fcDeckOrder(fcDeck); fcIdx = 0; fcFlipped = false; fcSession = { knew:0, didnt:0 }; renderFlash(); return; }
   });
 
   /* ===== Hardware / gesture Back button: step up one layer instead of closing the app ===== */

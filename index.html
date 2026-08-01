@@ -332,6 +332,10 @@
   .seg button.on { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
 
   .pf-actions { display: flex; gap: 10px; }
+  .pf-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; font-size: 14px; padding: 4px 0; }
+  .pf-toggle input { width: 20px; height: 20px; accent-color: var(--accent); }
+  .pf-remrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 14px; color: var(--ink-soft); font-weight: 600; }
+  .pf-remrow input[type=time] { font-family: inherit; font-size: 15px; font-weight: 700; padding: 8px 11px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); }
   .btn-soft { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 11px; border-radius: 11px; font-weight: 650; font-size: 13.5px; transition: .12s; }
   .btn-soft:hover { border-color: var(--accent); color: var(--accent); }
   .btn-primary { width: 100%; padding: 12px; border: none; border-radius: 11px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; transition: .15s; }
@@ -872,7 +876,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v54";
+  const APP_VERSION = "v55";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -888,7 +892,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" } };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1254,6 +1258,20 @@
     h += `<section class="panel"><h3>Appearance</h3><p class="sub">Choose how the app looks.</p>
       <div class="seg"><button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button><button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button><button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button></div></section>`;
 
+    // Study reminders
+    const rem = state.reminder || { on:false, time:"19:00" };
+    const perm = ("Notification" in window) ? Notification.permission : "unsupported";
+    let remStatus;
+    if (perm === "unsupported") remStatus = "Your browser doesn't support notifications.";
+    else if (perm === "denied") remStatus = "Notifications are blocked — enable them for this site in your browser settings.";
+    else if (rem.on && perm === "granted") remStatus = `On — you'll get a nudge at ${fmtTime12(rem.time)} on days you haven't practised.`;
+    else remStatus = "Get a daily nudge to keep your streak alive.";
+    h += `<section class="panel"><h3>Study reminders</h3><p class="sub">${esc(remStatus)}</p>
+      <label class="pf-toggle"><span>Daily practice reminder</span><input type="checkbox" id="rem-on" ${rem.on?"checked":""} ${perm==="unsupported"||perm==="denied"?"disabled":""}></label>
+      <div class="pf-remrow"><label for="rem-time">Remind me at</label><input type="time" id="rem-time" value="${esc(rem.time||"19:00")}"></div>
+      ${rem.on&&perm==="granted"?`<button class="btn-soft" style="width:100%;margin-top:10px" data-rem-test="1">Send a test notification</button>`:""}
+      <p class="footnote" style="margin:10px 0 0;text-align:left">Reminders fire while the app is installed. On iPhone/iPad, add the app to your Home Screen first, and keep in mind iOS only delivers reminders reliably when the app has been opened recently — a nudge always shows next time you open it.</p></section>`;
+
     h += `<section class="panel"><h3>Fix out-of-sync stats</h3><p class="sub">If your daily / weekly totals disagree with the subject tabs, rebuild your topic totals and daily activity from your saved practice-set attempts.</p><button class="btn-soft" style="width:100%" data-rebuild="1">Re-sync my stats</button></section>`;
 
     h += `<section class="panel"><h3>App</h3><p class="sub">Version ${APP_VERSION}. If a new feature isn't showing, tap refresh to pull the latest.</p><button class="btn-soft" style="width:100%" data-refresh="1">🔄 Check for updates &amp; refresh</button></section>`;
@@ -1386,7 +1404,19 @@
     if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from your saved practice-set attempts?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }
     if (e.target.closest("[data-refresh]")) { try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) navigator.serviceWorker.getRegistration().then(r => { if (r) r.update(); }); } catch (e) {} location.reload(); return; }
     if (e.target.closest("[data-install]")) { const p=window.__gmatInstall; if (p) { p.prompt(); p.userChoice.finally(()=>{ window.__gmatInstall=null; renderProfile(); }); } return; }
+    if (e.target.closest("[data-rem-test]")) { pushNotify("Test notification 🔔", "Reminders are working. You'll get a nudge on days you haven't practised."); return; }
     if (e.target.closest("[data-reset]")) { if (confirm("Reset every logged question to zero? Name, exam date and targets stay. This cannot be undone.")) { state.counts={}; state.daily={}; save(); renderProfile(); } }
+  });
+  // Reminder toggle / time (change events, not clicks)
+  document.getElementById("profile").addEventListener("change", (e) => {
+    if (!state.reminder) state.reminder = { on:false, time:"19:00", nudged:"" };
+    if (e.target.id === "rem-on") {
+      if (e.target.checked) {
+        requestNotify().then((perm) => { state.reminder.on = (perm === "granted"); save(); applyReminder(); renderProfile(); });
+      } else { state.reminder.on = false; save(); applyReminder(); renderProfile(); }
+      return;
+    }
+    if (e.target.id === "rem-time") { state.reminder.time = e.target.value || "19:00"; state.reminder.nudged = ""; save(); applyReminder(); renderProfile(); return; }
   });
 
   document.getElementById("restore-input").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; if (f) restoreFrom(f); e.target.value = ""; });
@@ -1690,8 +1720,34 @@
   function aiExplainHTML() { return ""; }   // AI tutor (implemented below); stub keeps review self-contained
   function aiExplainRun() {}
 
-  /* ===== Focus timer (Pomodoro) ===== */
+  /* ===== Notifications, reminders & focus timer ===== */
   function notifyReady() { return ("Notification" in window) && Notification.permission === "granted"; }
+  function fmtTime12(hhmm) { const p = String(hhmm || "19:00").split(":"), h = +p[0]||0, m = +p[1]||0; const ap = h < 12 ? "AM" : "PM"; return (((h + 11) % 12) + 1) + ":" + String(m).padStart(2,"0") + " " + ap; }
+  function reminderNextTs(time) { const p = String(time||"19:00").split(":"), d = new Date(); d.setHours(+p[0]||0, +p[1]||0, 0, 0); if (d.getTime() <= Date.now()) d.setDate(d.getDate() + 1); return d.getTime(); }
+  async function applyReminder() {
+    try {
+      if (!("serviceWorker" in navigator) || !navigator.serviceWorker.getRegistration) return;
+      const reg = await navigator.serviceWorker.getRegistration(); if (!reg || !reg.showNotification) return;
+      if (reg.getNotifications) { const ex = await reg.getNotifications({ tag:"gmat-daily", includeTriggered:true }).catch(()=>[]); ex.forEach(n => n.close()); }
+      const rem = state.reminder;
+      if (!(rem && rem.on && notifyReady())) return;
+      if (typeof window.TimestampTrigger === "undefined") return;   // unsupported (e.g. iOS) — the in-app nudge covers it
+      await reg.showNotification("Time to practise 📘", { tag:"gmat-daily", body:"A few GMAT questions keep your streak alive.", icon:"icon-192.png", badge:"icon-192.png", showTrigger: new window.TimestampTrigger(reminderNextTs(rem.time)) });
+    } catch (e) {}
+  }
+  function reminderNudge() {
+    const rem = state.reminder; if (!(rem && rem.on)) return;
+    const today = dkey(); if (rem.nudged === today) return;
+    const p = String(rem.time||"19:00").split(":"), now = new Date();
+    const past = now.getHours() > (+p[0]) || (now.getHours() === (+p[0]) && now.getMinutes() >= (+p[1]));
+    if (!past) return;
+    const a = actToday();
+    if (todayTotal() > 0 || a.session || a.set || a.review) return;   // already practised
+    rem.nudged = today; save();
+    pushNotify("Keep your streak 🔥", "You haven't practised today — a few questions is all it takes.");
+  }
+
+  /* ===== Focus timer (Pomodoro) ===== */
   function requestNotify() { try { if ("Notification" in window && Notification.permission === "default") return Notification.requestPermission(); } catch (e) {} return Promise.resolve(Notification && Notification.permission); }
   function pushNotify(title, body) { try { if (notifyReady()) new Notification(title, { body, icon:"icon-192.png", badge:"icon-192.png" }); } catch (e) {} }
   function chime() {
@@ -2431,6 +2487,7 @@
 
   /* Boot */
   markActivity("login");            // opening the app counts as showing up today
+  try { reminderNudge(); applyReminder(); } catch (e) {}   // daily reminder: nudge + (re)schedule
   function render(){ renderTop(); renderBotnav(); renderView(); }
   render();
   if (!state.examDate && !state.name) document.getElementById("onboard").hidden = false;

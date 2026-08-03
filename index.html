@@ -796,6 +796,7 @@
 </div>
 
 <script src="sets.js"></script>
+<script src="sets-extra.js"></script>
 <script src="concepts.js"></script>
 <script src="flashcards.js"></script>
 <script>
@@ -885,7 +886,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v59";
+  const APP_VERSION = "v60";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1635,6 +1636,17 @@
   (function(){ const t=localStorage.getItem("gmat_theme"); if (t && t!=="system") document.documentElement.setAttribute("data-theme",t); })();
 
   /* ===================== Practice sets ===================== */
+  // Merge the expansion questions (sets-extra.js) into their parent sets, each
+  // appended with the next sequential `n`. Kept in a separate file so the large
+  // hand-formatted sets.js stays untouched.
+  (function () {
+    const extra = window.GMAT_SETS_EXTRA || [], base = window.GMAT_SETS || [];
+    extra.forEach(x => {
+      const set = base.find(s => s.id === x.setId);
+      if (!set || !Array.isArray(set.questions) || !Array.isArray(x.add)) return;
+      x.add.forEach(q => { set.questions.push(Object.assign({ n: set.questions.length + 1 }, q)); });
+    });
+  })();
   const SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
   const LET = ["A","B","C","D","E","F","G","H"];
   const setsFor = (secId) => SETS.filter(s => s.section === secId);

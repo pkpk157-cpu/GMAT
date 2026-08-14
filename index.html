@@ -355,6 +355,29 @@
   .ach-lbl { display: block; font-size: 14.5px; font-weight: 750; color: var(--ink); margin-top: 1px; }
   .ach-x { flex: none; color: var(--ink-faint); font-size: 20px; line-height: 1; background: none; border: none; padding: 0 2px; cursor: pointer; }
   @media (prefers-reduced-motion: reduce) { .ach-toast, .ach-toast.out { animation: none; } }
+
+  /* Nico — corner mascot */
+  #nico { position: fixed; left: 8px; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); width: 78px; z-index: 90; pointer-events: none; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); }
+  .nico-svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .nico-tail { transform-origin: 120px 138px; animation: nico-wag 1.5s ease-in-out infinite; }
+  @keyframes nico-wag { 0%,100% { transform: rotate(2deg); } 50% { transform: rotate(-18deg); } }
+  .nico-head { transform-origin: 80px 106px; animation: nico-breathe 3.4s ease-in-out infinite; }
+  @keyframes nico-breathe { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(1.4px) rotate(-1deg); } }
+  .nico-tongue { display: none; }
+  /* Correct — happy hop + nod */
+  #nico.nod { animation: nico-hop .55s ease; }
+  @keyframes nico-hop { 0%,100% { transform: translateY(0); } 42% { transform: translateY(-7px); } }
+  #nico.nod .nico-head { animation: nico-nod .52s ease-in-out 2; }
+  @keyframes nico-nod { 0%,100% { transform: rotate(0) translateY(0); } 32% { transform: rotate(9deg) translateY(5px); } 66% { transform: rotate(-3deg) translateY(-1px); } }
+  #nico.nod .nico-tongue { display: block; }
+  /* Wrong — head shake ("no") */
+  #nico.shake .nico-head { animation: nico-shake .46s ease-in-out 2; }
+  @keyframes nico-shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
+  .nico-bubble { position: absolute; left: 62px; bottom: 62px; background: var(--surface); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid var(--line); border-radius: 12px; padding: 5px 11px; font-size: 12.5px; font-weight: 800; color: var(--ink); white-space: nowrap; box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow); opacity: 0; transform: translateY(6px) scale(.86); transition: opacity .2s, transform .2s; }
+  .nico-bubble::after { content: ""; position: absolute; left: 12px; bottom: -6px; width: 12px; height: 12px; background: var(--surface); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
+  .nico-bubble.show { opacity: 1; transform: none; }
+  @media (max-width: 380px) { #nico { width: 66px; } }
+  @media (prefers-reduced-motion: reduce) { .nico-tail, .nico-head, #nico.nod, #nico.nod .nico-head, #nico.shake .nico-head { animation: none; } }
   .btn-danger { width: 100%; padding: 11px; border: 1px solid var(--line); border-radius: 11px; background: none; color: var(--ink-soft); font-size: 13.5px; font-weight: 600; }
   .btn-danger:hover { color: var(--bad); border-color: var(--bad); }
 
@@ -741,6 +764,41 @@
 
 <nav class="botnav"><div class="botnav-inner" id="botnav"></div></nav>
 
+<!-- Nico — the app mascot: a little dachshund who sits in the corner, nods when
+     you get a question right and shakes his head when you get one wrong. -->
+<div id="nico" aria-hidden="true" title="Nico">
+  <div class="nico-bubble" id="nico-bubble"></div>
+  <svg viewBox="0 0 160 186" class="nico-svg">
+    <ellipse cx="80" cy="178" rx="44" ry="7" fill="rgba(0,0,0,.16)"/>
+    <path class="nico-tail" d="M118,138 q24,-2 32,-20 q-4,22 -26,30 z" fill="#1f1f28"/>
+    <path d="M44,152 q-8,-48 36,-48 q44,0 36,48 q-3,18 -36,18 q-33,0 -36,-18 z" fill="#1f1f28"/>
+    <ellipse cx="80" cy="150" rx="19" ry="23" fill="#b76a33"/>
+    <ellipse cx="63" cy="169" rx="11" ry="8" fill="#c17838"/>
+    <ellipse cx="97" cy="169" rx="11" ry="8" fill="#c17838"/>
+    <path d="M55,119 q25,15 50,0 l-2,11 q-23,13 -46,0 z" fill="#3b83c9"/>
+    <g class="nico-tag"><ellipse cx="80" cy="135" rx="12" ry="9" fill="#e8b84b"/><ellipse cx="80" cy="135" rx="12" ry="9" fill="none" stroke="#c8912e" stroke-width="1.4"/><path d="M75,133 a2.6,2.6 0 1 0 0.1,0 M85,133 a2.6,2.6 0 1 0 0.1,0 M75.5,137 a2.6,2.6 0 1 0 0.1,0 M84.5,137 a2.6,2.6 0 1 0 0.1,0 M76,135 h8" stroke="#7a5a1e" stroke-width="1.5" fill="none"/></g>
+    <g class="nico-head">
+      <path d="M42,54 q-18,8 -15,42 q3,18 19,15 q5,-32 8,-55 z" fill="#191921"/>
+      <path d="M118,54 q18,8 15,42 q-3,18 -19,15 q-5,-32 -8,-55 z" fill="#191921"/>
+      <path d="M80,22 q35,0 41,36 q4,27 -11,42 q-12,11 -30,11 q-18,0 -30,-11 q-15,-15 -11,-42 q6,-36 41,-36 z" fill="#22222c"/>
+      <ellipse cx="80" cy="88" rx="27" ry="21" fill="#c17838"/>
+      <ellipse cx="62" cy="55" rx="6.5" ry="5.5" fill="#b76a33"/>
+      <ellipse cx="98" cy="55" rx="6.5" ry="5.5" fill="#b76a33"/>
+      <g class="nico-eyes">
+        <ellipse cx="63" cy="64" rx="8.5" ry="9.5" fill="#fff"/>
+        <ellipse cx="97" cy="64" rx="8.5" ry="9.5" fill="#fff"/>
+        <circle class="nico-pupil" cx="65" cy="66" r="4.6" fill="#241c16"/>
+        <circle class="nico-pupil" cx="99" cy="66" r="4.6" fill="#241c16"/>
+        <circle cx="66.6" cy="64.4" r="1.5" fill="#fff"/>
+        <circle cx="100.6" cy="64.4" r="1.5" fill="#fff"/>
+      </g>
+      <path d="M80,74 q7.5,0 6.5,6.5 q-1,5.5 -6.5,5.5 q-5.5,0 -6.5,-5.5 q-1,-6.5 6.5,-6.5 z" fill="#241c1c"/>
+      <path class="nico-tongue" d="M74,90 q6,9 12,0 q0,8 -6,8 q-6,0 -6,-8 z" fill="#e8768a"/>
+      <path d="M80,86 q-9,8 -17,3 M80,86 q9,8 17,3" stroke="#3a2a1e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+</div>
+
 <!-- Onboarding -->
 <div class="scrim" id="onboard" hidden>
   <div class="modal">
@@ -901,7 +959,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v65";
+  const APP_VERSION = "v66";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2202,6 +2260,7 @@
     // a review rep counts toward today's activity & streak (not first-attempt accuracy)
     const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
     markActivity("review"); save();
+    nicoReact(correct);
     renderReview(); window.scrollTo({ top:0 });
   }
 
@@ -2335,6 +2394,23 @@
   let modePrompt = false;
   function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("practice-set-open"); }
   function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
+
+  // Nico reacts to a graded answer: nod + happy hop when right, head-shake when wrong.
+  let nicoTimer = null, nicoBubbleTimer = null;
+  function nicoReact(ok) {
+    const el = document.getElementById("nico"); if (!el) return;
+    el.classList.remove("nod", "shake"); void el.offsetWidth;   // restart the animation
+    el.classList.add(ok ? "nod" : "shake");
+    clearTimeout(nicoTimer); nicoTimer = setTimeout(() => el.classList.remove("nod", "shake"), 1200);
+    const b = document.getElementById("nico-bubble");
+    if (b) {
+      const msgs = ok ? ["Nice!", "Good job!", "Woof! 🎉", "Yes!", "Great!"] : ["Almost!", "Try again!", "Keep going!", "Hmm…"];
+      b.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+      b.classList.add("show");
+      clearTimeout(nicoBubbleTimer); nicoBubbleTimer = setTimeout(() => b.classList.remove("show"), 1700);
+    }
+    try { if (ok && navigator.vibrate) navigator.vibrate(15); } catch (e) {}
+  }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
@@ -2521,6 +2597,7 @@
       save();
       if (run.mode === "practice") {
         logOne(set, q, chosen === q.correct, run.times[q.n] || 0);
+        nicoReact(chosen === q.correct);
         renderRunner(); window.scrollTo({ top:0 }); return;
       }
       if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // advance in test mode

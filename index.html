@@ -811,6 +811,7 @@
 
 <script src="sets.js"></script>
 <script src="sets-extra.js"></script>
+<script src="sets-rc.js"></script>
 <script src="concepts.js"></script>
 <script src="flashcards.js"></script>
 <script>
@@ -900,7 +901,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v62";
+  const APP_VERSION = "v63";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1700,6 +1701,8 @@
       if (!set || !Array.isArray(set.questions) || !Array.isArray(x.add)) return;
       x.add.forEach(q => { set.questions.push(Object.assign({ n: set.questions.length + 1 }, q)); });
     });
+    // Whole new sets (e.g. new RC passages in sets-rc.js) are appended as-is.
+    (window.GMAT_SETS_NEW || []).forEach(s => { if (s && Array.isArray(s.questions) && s.questions.length && !base.some(b => b.id === s.id)) base.push(s); });
   })();
   const SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
   const LET = ["A","B","C","D","E","F","G","H"];

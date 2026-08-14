@@ -770,22 +770,6 @@ window.GMAT_SETS = [
         "level": "hard"
       },
       {
-        "n": 48,
-        "topic": "Roots & radicals",
-        "correct": "D",
-        "options": 4,
-        "text": "The smallest of \\(\\sqrt8+\\sqrt5,\\ \\sqrt7+\\sqrt6,\\ \\sqrt{10}+\\sqrt3\\) and \\(\\sqrt{11}+\\sqrt2\\) is:",
-        "choices": [
-          "\\(\\sqrt8+\\sqrt5\\)",
-          "\\(\\sqrt7+\\sqrt6\\)",
-          "\\(\\sqrt{10}+\\sqrt3\\)",
-          "\\(\\sqrt{11}+\\sqrt2\\)"
-        ],
-        "hint": "Same as before — compare the squares of each sum.",
-        "expl": "Step 1 — \\((\\sqrt a+\\sqrt b)^2=a+b+2\\sqrt{ab}\\), each \\(a+b=13\\).\nStep 2 — Compare \\(ab\\): smallest is 22.\nStep 3 — Smallest \\(=\\sqrt{11}+\\sqrt2\\).\nAnswer: \\(\\sqrt{11}+\\sqrt2\\) (D).",
-        "level": "medium"
-      },
-      {
         "n": 49,
         "topic": "Roots & radicals",
         "correct": "C",

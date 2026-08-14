@@ -340,7 +340,21 @@
   .btn-soft { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 11px; border-radius: 11px; font-weight: 650; font-size: 13.5px; transition: .12s; }
   .btn-soft:hover { border-color: var(--accent); color: var(--accent); }
   .btn-primary { width: 100%; padding: 12px; border: none; border-radius: 11px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; transition: .15s; }
-  .btn-primary:hover { background: var(--accent-ink); }
+  .btn-primary:not(:disabled):hover { background: var(--accent-ink); }
+  .btn-primary:disabled { opacity: .4; cursor: not-allowed; background: var(--ink-faint); box-shadow: none; }
+
+  /* Achievement celebration toasts */
+  .ach-wrap { position: fixed; top: calc(env(safe-area-inset-top,0px) + 12px); left: 0; right: 0; z-index: 200; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; padding: 0 12px; }
+  .ach-toast { pointer-events: auto; width: 100%; max-width: 400px; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 15px; background: var(--surface); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line)); box-shadow: inset 0 1px 0 var(--glass-hi), 0 12px 32px -8px color-mix(in srgb, var(--gold) 42%, transparent), var(--shadow); animation: achpop .38s cubic-bezier(.2,.8,.3,1.2); }
+  .ach-toast.out { animation: achout .3s ease forwards; }
+  @keyframes achpop { from { opacity: 0; transform: translateY(-14px) scale(.94); } to { opacity: 1; transform: none; } }
+  @keyframes achout { to { opacity: 0; transform: translateY(-10px) scale(.97); } }
+  .ach-ic { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; background: color-mix(in srgb, var(--gold) 20%, var(--surface)); box-shadow: 0 2px 10px -3px color-mix(in srgb, var(--gold) 60%, transparent); }
+  .ach-meta { min-width: 0; margin-right: auto; }
+  .ach-kind { display: block; font-size: 11px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; color: color-mix(in srgb, var(--gold) 60%, var(--ink)); }
+  .ach-lbl { display: block; font-size: 14.5px; font-weight: 750; color: var(--ink); margin-top: 1px; }
+  .ach-x { flex: none; color: var(--ink-faint); font-size: 20px; line-height: 1; background: none; border: none; padding: 0 2px; cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) { .ach-toast, .ach-toast.out { animation: none; } }
   .btn-danger { width: 100%; padding: 11px; border: 1px solid var(--line); border-radius: 11px; background: none; color: var(--ink-soft); font-size: 13.5px; font-weight: 600; }
   .btn-danger:hover { color: var(--bad); border-color: var(--bad); }
 
@@ -886,7 +900,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v60";
+  const APP_VERSION = "v61";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -914,7 +928,8 @@
       if (old) return Object.assign({}, defaults, { name: old.name || "", examDate: old.examDate || "", daily: old.daily || {} }); } catch (e) {}
     return JSON.parse(JSON.stringify(defaults));
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} try { scheduleSyncPush(); } catch (e) {} }
+  function saveRaw() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function save() { saveRaw(); try { scheduleSyncPush(); } catch (e) {} try { checkAchievements(); } catch (e) {} }
 
   const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
   const dkey = (d) => { const x = d || new Date(); return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); };
@@ -1008,6 +1023,44 @@
     ];
   }
   function xpTotal(){ const g=grandAgg(); let parts=0; CONCEPTS.forEach(gd=>parts+=guideReadCount(gd)); const bg=badgeList().filter(b=>b.got).length; return g.d + parts*3 + bg*25; }
+
+  /* Achievement celebration toasts — pop up the moment a daily task, weekly
+     goal, or badge is newly completed. `state.celebrated` remembers what has
+     already been announced so each one fires exactly once. */
+  const ACH_BUSY = { on:false };
+  function achKeys(){
+    const out=[], dk=dkey(), wk=weekDayKeys()[0];
+    dailyTasks().forEach(t=>{ if(t.done && t.label.indexOf("Show up")<0) out.push({ k:"d|"+dk+"|"+t.label, kind:"Daily task done", icon:t.icon, label:t.label }); });
+    weeklyTasks().forEach(t=>{ if(t.done) out.push({ k:"w|"+wk+"|"+t.label, kind:"Weekly goal done", icon:t.icon, label:t.label }); });
+    badgeList().forEach(b=>{ if(b.got) out.push({ k:"b|"+b.label, kind:"Badge unlocked", icon:b.icon, label:b.label }); });
+    return out;
+  }
+  function checkAchievements(){
+    if (ACH_BUSY.on) return; ACH_BUSY.on = true;
+    try {
+      const cur = achKeys();
+      if (!state.celebrated) { state.celebrated = {}; cur.forEach(a => state.celebrated[a.k] = 1); saveRaw(); return; } // seed silently the first time
+      const fresh = cur.filter(a => !state.celebrated[a.k]);
+      if (!fresh.length) return;
+      fresh.forEach(a => state.celebrated[a.k] = 1); saveRaw();
+      queueAchToasts(fresh);
+    } finally { ACH_BUSY.on = false; }
+  }
+  function queueAchToasts(list){
+    let wrap = document.getElementById("ach-wrap");
+    if (!wrap) { wrap = document.createElement("div"); wrap.id = "ach-wrap"; wrap.className = "ach-wrap"; document.body.appendChild(wrap); }
+    try { if (navigator.vibrate) navigator.vibrate([20, 40, 20]); } catch(e) {}
+    list.slice(0, 4).forEach((a, i) => {
+      setTimeout(() => {
+        const el = document.createElement("div"); el.className = "ach-toast"; el.setAttribute("role", "status");
+        el.innerHTML = '<span class="ach-ic">' + a.icon + '</span><span class="ach-meta"><span class="ach-kind">🎉 ' + esc(a.kind) + '</span><span class="ach-lbl">' + esc(a.label) + '</span></span><button class="ach-x" aria-label="Dismiss">&times;</button>';
+        const remove = () => { el.classList.add("out"); setTimeout(() => el.remove(), 300); };
+        el.querySelector(".ach-x").addEventListener("click", remove);
+        wrap.appendChild(el);
+        setTimeout(remove, 4500);
+      }, i * 400);
+    });
+  }
 
   /* Top bar */
   function renderTop() {
@@ -1473,6 +1526,7 @@
     m.runs     = mergeRuns(local.runs, cloud.runs);
     m.srs      = mergeSrs(local.srs, cloud.srs, cloudNewer);
     m.fcsrs    = mergeSrs(local.fcsrs, cloud.fcsrs, cloudNewer);
+    m.celebrated = Object.assign({}, local.celebrated, cloud.celebrated);   // union: never re-congratulate
     m.name     = lww("name", "");
     m.examDate = lww("examDate", "");
     m.active   = lww("active", "overall");

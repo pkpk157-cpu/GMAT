@@ -356,37 +356,72 @@
   .ach-x { flex: none; color: var(--ink-faint); font-size: 20px; line-height: 1; background: none; border: none; padding: 0 2px; cursor: pointer; }
   @media (prefers-reduced-motion: reduce) { .ach-toast, .ach-toast.out { animation: none; } }
 
-  /* Nico — corner mascot */
-  /* Sits in the corner, but fades out while the page scrolls so he never
-     obscures the text underneath. */
-  #nico { position: fixed; left: 6px; bottom: calc(60px + env(safe-area-inset-bottom, 0px)); width: 62px; z-index: 90; pointer-events: none; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); opacity: .96; transition: opacity .25s ease; }
+  /* ---------- Nico — corner mascot ---------- */
+  #nico-zone { position: fixed; left: 6px; bottom: calc(60px + env(safe-area-inset-bottom, 0px)); width: 62px; z-index: 90; pointer-events: none; }
+  #nico { width: 100%; border: none; background: none; padding: 0; pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); opacity: .96; transition: opacity .25s ease, transform .3s ease; }
+  #nico:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
   #nico.nico-away { opacity: 0; }
-  /* Any full-screen overlay (reader, runner, review, profile…) takes the whole
-     screen, so Nico steps aside rather than sitting on top of the text — he
-     pops back in only to react to an answer. */
-  body:has(.profile:not([hidden])) #nico,
-  body:has(.scrim:not([hidden])) #nico { opacity: 0; }
-  body:has(.profile:not([hidden])) #nico.nico-show { opacity: 1; }
+  /* Full-screen overlays cover the app, so Nico steps aside — except in
+     practice mode, where he stays on screen as your study buddy. */
+  body:has(.profile:not([hidden])) #nico-zone,
+  body:has(.scrim:not([hidden])) #nico-zone { opacity: 0; pointer-events: none; }
+  body.nico-stay:has(.profile:not([hidden])) #nico-zone { opacity: 1; }
+  body:has(.profile:not([hidden])) #nico-zone.nico-show { opacity: 1; }
   .nico-svg { width: 100%; height: auto; display: block; overflow: visible; }
   .nico-tail { transform-origin: 120px 138px; animation: nico-wag 1.5s ease-in-out infinite; }
   @keyframes nico-wag { 0%,100% { transform: rotate(2deg); } 50% { transform: rotate(-18deg); } }
   .nico-head { transform-origin: 80px 106px; animation: nico-breathe 3.4s ease-in-out infinite; }
   @keyframes nico-breathe { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(1.4px) rotate(-1deg); } }
   .nico-tongue { display: none; }
-  /* Correct — happy hop + nod */
-  #nico.nod { animation: nico-hop .55s ease; }
-  @keyframes nico-hop { 0%,100% { transform: translateY(0); } 42% { transform: translateY(-7px); } }
-  #nico.nod .nico-head { animation: nico-nod .52s ease-in-out 2; }
+  #nico.happy .nico-tongue { display: block; }
+  #nico.happy .nico-tail { animation-duration: .34s; }
+
+  /* --- Celebration moves (one is picked at random on a right answer) --- */
+  #nico.nod    { animation: nico-hop .55s ease; }
+  #nico.jump   { animation: nico-jump .72s cubic-bezier(.3,.9,.4,1); }
+  #nico.flip   { animation: nico-flip .82s cubic-bezier(.35,.7,.4,1); }
+  #nico.spin   { animation: nico-spin .78s cubic-bezier(.4,.8,.4,1); }
+  #nico.wiggle { animation: nico-wiggle .7s ease-in-out; }
+  #nico.bounce { animation: nico-bounce .86s ease; }
+  @keyframes nico-hop   { 0%,100% { transform: translateY(0); } 42% { transform: translateY(-7px); } }
+  @keyframes nico-jump  { 0%,100% { transform: translateY(0) scaleY(1); } 18% { transform: translateY(2px) scaleY(.86); } 55% { transform: translateY(-34px) scaleY(1.08); } 85% { transform: translateY(0) scaleY(.94); } }
+  @keyframes nico-flip  { 0% { transform: translateY(0) rotate(0); } 20% { transform: translateY(2px) scaleY(.88); } 55% { transform: translateY(-36px) rotate(-200deg); } 80% { transform: translateY(-6px) rotate(-360deg); } 100% { transform: translateY(0) rotate(-360deg); } }
+  @keyframes nico-spin  { 0% { transform: translateY(0) rotateY(0); } 30% { transform: translateY(-14px) rotateY(180deg); } 60% { transform: translateY(-14px) rotateY(360deg); } 100% { transform: translateY(0) rotateY(360deg); } }
+  @keyframes nico-wiggle{ 0%,100% { transform: rotate(0); } 20% { transform: rotate(-11deg); } 45% { transform: rotate(9deg); } 70% { transform: rotate(-6deg); } }
+  @keyframes nico-bounce{ 0%,100% { transform: translateY(0); } 20% { transform: translateY(-22px); } 40% { transform: translateY(0); } 58% { transform: translateY(-12px); } 76% { transform: translateY(0); } 88% { transform: translateY(-5px); } }
+  #nico.nod .nico-head, #nico.jump .nico-head, #nico.bounce .nico-head { animation: nico-nod .52s ease-in-out 2; }
   @keyframes nico-nod { 0%,100% { transform: rotate(0) translateY(0); } 32% { transform: rotate(9deg) translateY(5px); } 66% { transform: rotate(-3deg) translateY(-1px); } }
-  #nico.nod .nico-tongue { display: block; }
   /* Wrong — head shake ("no") */
   #nico.shake .nico-head { animation: nico-shake .46s ease-in-out 2; }
   @keyframes nico-shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
-  .nico-bubble { position: absolute; left: 50px; bottom: 50px; background: var(--surface); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid var(--line); border-radius: 12px; padding: 5px 11px; font-size: 14px; font-weight: 800; color: var(--ink); white-space: nowrap; box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow); opacity: 0; transform: translateY(6px) scale(.86); transition: opacity .2s, transform .2s; }
+  /* Tap — a little lunge as he barks */
+  #nico.bark { animation: nico-bark .34s ease; }
+  @keyframes nico-bark { 0%,100% { transform: scale(1); } 35% { transform: scale(1.14) translateY(-4px); } }
+  #nico.bark .nico-head { animation: nico-barkhead .34s ease; }
+  @keyframes nico-barkhead { 0%,100% { transform: rotate(0); } 40% { transform: rotate(-11deg) translateY(-3px); } }
+  #nico.bark .nico-tongue { display: block; }
+
+  /* --- Kennel / sleeping --- */
+  #nico-house { display: none; width: 100%; border: none; background: none; padding: 0; pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); animation: nico-housein .4s cubic-bezier(.2,.8,.3,1.2); }
+  #nico-house:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
+  .nico-house-svg { width: 100%; height: auto; display: block; overflow: visible; }
+  @keyframes nico-housein { from { opacity: 0; transform: scale(.7) translateY(8px); } to { opacity: 1; transform: none; } }
+  .nico-zzz { animation: nico-zzz 2.6s ease-in-out infinite; }
+  @keyframes nico-zzz { 0%,100% { opacity: .25; transform: translateY(2px); } 50% { opacity: 1; transform: translateY(-3px); } }
+  /* asleep: kennel on screen, Nico tucked inside */
+  #nico-zone.asleep #nico { display: none; }
+  #nico-zone.asleep #nico-house { display: block; }
+  /* going to bed / waking up — he shrinks into and pops out of the doorway */
+  #nico.tuckin { animation: nico-tuckin .5s ease-in forwards; }
+  @keyframes nico-tuckin { to { transform: translate(10px, 14px) scale(.18); opacity: 0; } }
+  #nico.popout { animation: nico-popout .52s cubic-bezier(.2,.9,.3,1.3); }
+  @keyframes nico-popout { from { transform: translate(10px, 14px) scale(.18); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  .nico-bubble { position: absolute; left: 50px; bottom: 50px; background: var(--surface); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid var(--line); border-radius: 12px; padding: 5px 11px; font-size: 14px; font-weight: 800; color: var(--ink); white-space: nowrap; box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow); opacity: 0; transform: translateY(6px) scale(.86); transition: opacity .2s, transform .2s; pointer-events: none; z-index: 2; }
   .nico-bubble::after { content: ""; position: absolute; left: 12px; bottom: -6px; width: 12px; height: 12px; background: var(--surface); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
   .nico-bubble.show { opacity: 1; transform: none; }
-  @media (max-width: 380px) { #nico { width: 66px; } }
-  @media (prefers-reduced-motion: reduce) { .nico-tail, .nico-head, #nico.nod, #nico.nod .nico-head, #nico.shake .nico-head { animation: none; } }
+  @media (max-width: 380px) { #nico-zone { width: 56px; } }
+  @media (prefers-reduced-motion: reduce) { .nico-tail, .nico-head, .nico-zzz, #nico, #nico .nico-head { animation: none !important; } }
   .btn-danger { width: 100%; padding: 11px; border: 1px solid var(--line); border-radius: 11px; background: none; color: var(--ink-soft); font-size: 15px; font-weight: 600; }
   .btn-danger:hover { color: var(--bad); border-color: var(--bad); }
 
@@ -773,10 +808,27 @@
 
 <nav class="botnav"><div class="botnav-inner" id="botnav"></div></nav>
 
-<!-- Nico — the app mascot: a little dachshund who sits in the corner, nods when
-     you get a question right and shakes his head when you get one wrong. -->
-<div id="nico" aria-hidden="true" title="Nico">
+<!-- Nico — the app mascot: a little dachshund who sits in the corner, celebrates
+     right answers, barks when tapped, and naps in his kennel on a long press. -->
+<div id="nico-zone">
   <div class="nico-bubble" id="nico-bubble"></div>
+  <!-- Kennel: only on screen while Nico is asleep inside it. -->
+  <button id="nico-house" type="button" aria-label="Wake Nico up (press and hold)" title="Press and hold to wake Nico">
+    <svg viewBox="0 0 150 130" class="nico-house-svg">
+      <ellipse cx="75" cy="123" rx="52" ry="6" fill="rgba(0,0,0,.16)"/>
+      <path d="M75,10 L142,60 L128,60 L128,120 L22,120 L22,60 L8,60 z" fill="#C9553F"/>
+      <path d="M22,60 L128,60 L128,120 L22,120 z" fill="#D9A566"/>
+      <path d="M22,60 L128,60 L128,68 L22,68 z" fill="#b86a4a"/>
+      <path d="M75,72 q22,0 22,26 v22 h-44 v-22 q0,-26 22,-26 z" fill="#5a3b26"/>
+      <path d="M75,78 q17,0 17,21 v21 h-34 v-21 q0,-21 17,-21 z" fill="#241a12"/>
+      <g class="nico-zzz">
+        <text x="98" y="46" font-size="20" font-weight="800" fill="#7c8aa5">z</text>
+        <text x="112" y="32" font-size="15" font-weight="800" fill="#93a0b8">z</text>
+        <text x="123" y="21" font-size="11" font-weight="800" fill="#a8b3c8">z</text>
+      </g>
+    </svg>
+  </button>
+  <div id="nico" role="button" tabindex="0" aria-label="Nico — tap to hear him bark, press and hold to send him to bed" title="Nico">
   <svg viewBox="0 0 160 186" class="nico-svg">
     <ellipse cx="80" cy="178" rx="44" ry="7" fill="rgba(0,0,0,.16)"/>
     <path class="nico-tail" d="M118,138 q24,-2 32,-20 q-4,22 -26,30 z" fill="#1f1f28"/>
@@ -806,6 +858,7 @@
       <path d="M80,86 q-9,8 -17,3 M80,86 q9,8 17,3" stroke="#3a2a1e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
     </g>
   </svg>
+  </div>
 </div>
 
 <!-- Onboarding -->
@@ -968,7 +1021,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v67";
+  const APP_VERSION = "v68";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2402,36 +2455,131 @@
   // position are preserved, so re-choosing simply resumes where you left off.
   let modePrompt = false;
   function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("practice-set-open"); }
-  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
+  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; document.body.classList.remove("nico-stay"); render(); }
 
   // Nico reacts to a graded answer: nod + happy hop when right, head-shake when wrong.
+  const NICO_MOVES = ["jump", "flip", "spin", "bounce", "wiggle", "nod"];
+  const NICO_ANIM = ["nod", "shake", "jump", "flip", "spin", "wiggle", "bounce", "bark", "tuckin", "popout"];
+  const NICO_SLEEP_KEY = "gmat_nico_asleep";
   let nicoTimer = null, nicoBubbleTimer = null;
-  function nicoReact(ok) {
-    const el = document.getElementById("nico"); if (!el) return;
-    el.classList.remove("nod", "shake"); void el.offsetWidth;   // restart the animation
-    el.classList.add(ok ? "nod" : "shake", "nico-show", "nico-visible");
-    el.classList.remove("nico-away");
-    clearTimeout(nicoTimer); nicoTimer = setTimeout(() => el.classList.remove("nod", "shake", "nico-show"), 1900);
-    const b = document.getElementById("nico-bubble");
-    if (b) {
-      const msgs = ok ? ["Nice!", "Good job!", "Woof! 🎉", "Yes!", "Great!"] : ["Almost!", "Try again!", "Keep going!", "Hmm…"];
-      b.textContent = msgs[Math.floor(Math.random() * msgs.length)];
-      b.classList.add("show");
-      clearTimeout(nicoBubbleTimer); nicoBubbleTimer = setTimeout(() => b.classList.remove("show"), 1700);
-    }
-    try { if (ok && navigator.vibrate) navigator.vibrate(15); } catch (e) {}
+  const nicoEl = () => document.getElementById("nico");
+  const nicoZone = () => document.getElementById("nico-zone");
+  const nicoAsleep = () => { try { return localStorage.getItem(NICO_SLEEP_KEY) === "1"; } catch (e) { return false; } };
+
+  function nicoSay(text, ms) {
+    const b = document.getElementById("nico-bubble"); if (!b) return;
+    b.textContent = text; b.classList.add("show");
+    clearTimeout(nicoBubbleTimer); nicoBubbleTimer = setTimeout(() => b.classList.remove("show"), ms || 1700);
   }
-  // Fade Nico out while anything is scrolling so he never covers the text below him.
+  // A short synthesized "woof" — no audio file needed.
+  function nicoBarkSound() {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      const ctx = nicoBarkSound.ctx || (nicoBarkSound.ctx = new AC());
+      if (ctx.state === "suspended") ctx.resume();
+      const t0 = ctx.currentTime;
+      const osc = ctx.createOscillator(), gain = ctx.createGain(), filt = ctx.createBiquadFilter();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(420, t0);            // "w-oo"
+      osc.frequency.exponentialRampToValueAtTime(180, t0 + 0.09);
+      osc.frequency.exponentialRampToValueAtTime(120, t0 + 0.17);
+      filt.type = "bandpass"; filt.frequency.setValueAtTime(900, t0); filt.Q.value = 1.4;
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(0.32, t0 + 0.02);   // sharp attack
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.19); // quick decay
+      osc.connect(filt); filt.connect(gain); gain.connect(ctx.destination);
+      osc.start(t0); osc.stop(t0 + 0.22);
+    } catch (e) {}
+  }
+  function nicoPlay(cls, hold) {
+    const el = nicoEl(); if (!el) return;
+    NICO_ANIM.forEach(c => el.classList.remove(c)); void el.offsetWidth;  // restart the animation
+    el.classList.add(cls);
+    const zone = nicoZone(); if (zone) zone.classList.add("nico-show");
+    el.classList.remove("nico-away");
+    clearTimeout(nicoTimer);
+    nicoTimer = setTimeout(() => {
+      el.classList.remove(cls, "happy");
+      if (zone) zone.classList.remove("nico-show");
+    }, hold || 1900);
+  }
+  function nicoReact(ok) {
+    if (nicoAsleep()) return;                       // let sleeping dogs lie
+    if (ok) {
+      nicoPlay(NICO_MOVES[Math.floor(Math.random() * NICO_MOVES.length)]);
+      const el = nicoEl(); if (el) el.classList.add("happy");
+      nicoSay(["Nice!", "Good job!", "Woof! 🎉", "Yes!", "Great!", "Nailed it!"][Math.floor(Math.random() * 6)]);
+      nicoBarkSound();
+    } else {
+      nicoPlay("shake");
+      nicoSay(["Almost!", "Try again!", "Keep going!", "Hmm…"][Math.floor(Math.random() * 4)]);
+    }
+    try { if (navigator.vibrate) navigator.vibrate(ok ? 15 : [8, 40, 8]); } catch (e) {}
+  }
+  function nicoSleep() {
+    const zone = nicoZone(), el = nicoEl(); if (!zone || !el || nicoAsleep()) return;
+    nicoSay("Goodnight… 😴", 1500);
+    nicoPlay("tuckin", 500);
+    setTimeout(() => { try { localStorage.setItem(NICO_SLEEP_KEY, "1"); } catch (e) {} zone.classList.add("asleep"); el.classList.remove("tuckin"); }, 460);
+    try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {}
+  }
+  function nicoWake() {
+    const zone = nicoZone(); if (!zone || !nicoAsleep()) return;
+    try { localStorage.setItem(NICO_SLEEP_KEY, "0"); } catch (e) {}
+    zone.classList.remove("asleep");
+    nicoPlay("popout", 700);
+    nicoSay("I'm back! 🐾", 1600);
+    nicoBarkSound();
+    try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {}
+  }
+
+  /* Nico interactions: tap = bark, press-and-hold = bed. Hold the kennel to wake him. */
   (function () {
-    const el = document.getElementById("nico"); if (!el) return;
+    const zone = nicoZone(), dog = nicoEl(), house = document.getElementById("nico-house");
+    if (!zone || !dog || !house) return;
+    if (nicoAsleep()) zone.classList.add("asleep");
+
+    function wireHold(el, onHold, onTap) {
+      let timer = null, held = false, sx = 0, sy = 0;
+      const start = (e) => {
+        held = false;
+        const p = e.touches ? e.touches[0] : e; sx = p.clientX; sy = p.clientY;
+        clearTimeout(timer);
+        timer = setTimeout(() => { held = true; onHold(); }, 550);
+      };
+      const move = (e) => {
+        const p = e.touches ? e.touches[0] : e;
+        if (Math.abs(p.clientX - sx) > 12 || Math.abs(p.clientY - sy) > 12) { clearTimeout(timer); }
+      };
+      const end = (e) => {
+        clearTimeout(timer);
+        if (!held && onTap) { onTap(); }
+        if (held && e && e.cancelable) e.preventDefault();   // long press shouldn't also fire a tap
+        held = false;
+      };
+      el.addEventListener("touchstart", start, { passive: true });
+      el.addEventListener("touchmove", move, { passive: true });
+      el.addEventListener("touchend", end);
+      el.addEventListener("touchcancel", () => clearTimeout(timer));
+      el.addEventListener("mousedown", start);
+      el.addEventListener("mousemove", move);
+      el.addEventListener("mouseup", end);
+      el.addEventListener("mouseleave", () => clearTimeout(timer));
+      el.addEventListener("contextmenu", (e) => e.preventDefault());   // no iOS callout on long press
+      el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onTap ? onTap() : onHold(); } });
+    }
+    wireHold(dog, nicoSleep, () => { nicoPlay("bark", 700); nicoSay("Woof!", 1100); nicoBarkSound(); try { if (navigator.vibrate) navigator.vibrate(10); } catch (e) {} });
+    wireHold(house, nicoWake, () => nicoSay("Shhh… sleeping 😴", 1400));
+
+    // Fade out while scrolling so he never covers the text underneath.
     let t = null;
     const onScroll = () => {
-      if (el.classList.contains("nod") || el.classList.contains("shake")) return; // stay put mid-reaction
-      el.classList.add("nico-away");
-      clearTimeout(t); t = setTimeout(() => el.classList.remove("nico-away"), 550);
+      if (NICO_ANIM.some(c => dog.classList.contains(c))) return;   // stay put mid-reaction
+      dog.classList.add("nico-away");
+      clearTimeout(t); t = setTimeout(() => dog.classList.remove("nico-away"), 550);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("scroll", onScroll, { passive: true, capture: true }); // overlays scroll internally
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
   })();
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
@@ -2566,6 +2714,8 @@
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
     const h = run.submitted ? resultsHTML(set, run, sec, qs) : ((modePrompt || !run.mode) ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
+    // In practice mode Nico stays on screen the whole time as your study buddy.
+    document.body.classList.toggle("nico-stay", run.mode === "practice" && !run.submitted && !modePrompt);
     document.getElementById("rn-title").textContent = set.title;
     const body = document.getElementById("rn-body");
     body.innerHTML = h;

@@ -901,7 +901,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v63";
+  const APP_VERSION = "v64";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2329,7 +2329,11 @@
     updateTimerDisplay(); runTimerInterval();
   }
   function resetQTimer() { qAccum = 0; qStart = Date.now(); updateTimerDisplay(); runTimerInterval(); }
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("practice-set-open"); }
+  // Re-ask Practice vs Test every time the set is opened (unless it's already
+  // submitted, in which case we go straight to the results). Answers and
+  // position are preserved, so re-choosing simply resumes where you left off.
+  let modePrompt = false;
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("practice-set-open"); }
   function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; render(); }
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
   function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
@@ -2371,8 +2375,10 @@
   function modeChooserHTML(set, sec, total) {
     const lc = levelCounts(set);
     const diff = (lc.easy||lc.medium||lc.hard) ? `<div class="diff-bar"><span class="lvl lvl-easy">${lc.easy} easy</span><span class="lvl lvl-medium">${lc.medium} medium</span><span class="lvl lvl-hard">${lc.hard} hard</span></div>` : "";
+    const answered = Object.keys(getRun(set.id).ans).length;
+    const resume = answered > 0 ? `<p class="mode-note" style="margin:0 0 10px"><b>You've answered ${answered} of ${total}.</b> Pick a mode to pick up where you left off.</p>` : "";
     return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} questions</div>${diff}
-      <div class="qcard"><div class="mode-h">How do you want to run this set?</div>
+      <div class="qcard"><div class="mode-h">How do you want to run this set?</div>${resume}
       <button class="modebtn" data-mode="practice"><b>Practice mode</b><span>Tells you correct or incorrect right after each answer, with an explanation. Best for learning.</span></button>
       <button class="modebtn" data-mode="test"><b>Test mode</b><span>Answer all ${total} first, then get your score and full solutions at the end.</span></button>
       <p class="mode-note">Either way, every answer is logged into your Quant &amp; Overall progress for today.</p></div>`;
@@ -2461,7 +2467,7 @@
     stopTimer();
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
-    const h = run.submitted ? resultsHTML(set, run, sec, qs) : (!run.mode ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
+    const h = run.submitted ? resultsHTML(set, run, sec, qs) : ((modePrompt || !run.mode) ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
     document.getElementById("rn-title").textContent = set.title;
     const body = document.getElementById("rn-body");
     body.innerHTML = h;
@@ -2477,7 +2483,7 @@
 
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); run.idx = 0; runIndex = 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
+    const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); modePrompt = false; runIndex = run.idx || 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
     if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderRunner(); return; }  // RC passage expand / collapse
     if (e.target.closest("[data-toggle-timer]")) { toggleTimer(); return; }   // tap the timer to pause / resume
     if (e.target.closest("[data-reset-timer]")) { resetQTimer(); return; }     // ↺ resets this question's timer

@@ -356,11 +356,18 @@
   .ach-x { flex: none; color: var(--ink-faint); font-size: 20px; line-height: 1; background: none; border: none; padding: 0 2px; cursor: pointer; }
   @media (prefers-reduced-motion: reduce) { .ach-toast, .ach-toast.out { animation: none; } }
 
-  /* ---------- Nico — corner mascot ---------- */
-  #nico-zone { position: fixed; left: 6px; bottom: calc(60px + env(safe-area-inset-bottom, 0px)); width: 62px; z-index: 90; pointer-events: none; }
-  #nico { width: 100%; border: none; background: none; padding: 0; pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); opacity: .96; transition: opacity .25s ease, transform .3s ease; }
+  /* ---------- Nico — draggable mascot ---------- */
+  /* Nico and his kennel are stacked on the same spot so he can walk into it. */
+  #nico-zone { position: fixed; left: 6px; bottom: calc(60px + env(safe-area-inset-bottom, 0px)); width: 62px; height: 74px; z-index: 90; pointer-events: none; touch-action: none; }
+  #nico { position: absolute; left: 0; bottom: 0; width: 100%; border: none; background: none; padding: 0; pointer-events: auto; cursor: grab; -webkit-tap-highlight-color: transparent; touch-action: none; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); opacity: .96; transition: opacity .25s ease; }
   #nico:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
   #nico.nico-away { opacity: 0; }
+  /* being dragged */
+  #nico-zone.dragging { transition: none; }
+  #nico-zone.dragging #nico { cursor: grabbing; animation: none !important; transform: scale(1.12); filter: drop-shadow(0 12px 16px rgba(0,0,0,.3)); }
+  /* long-press build-up before he heads to bed */
+  #nico.charging { animation: nico-charge 3s ease-in forwards; }
+  @keyframes nico-charge { 0% { transform: scale(1); } 60% { transform: scale(.94) rotate(-2deg); } 100% { transform: scale(.9) rotate(2deg); } }
   /* Full-screen overlays cover the app, so Nico steps aside — except in
      practice mode, where he stays on screen as your study buddy. */
   body:has(.profile:not([hidden])) #nico-zone,
@@ -402,20 +409,38 @@
   #nico.bark .nico-tongue { display: block; }
 
   /* --- Kennel / sleeping --- */
-  #nico-house { display: none; width: 100%; border: none; background: none; padding: 0; pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); animation: nico-housein .4s cubic-bezier(.2,.8,.3,1.2); }
+  #nico-house { display: none; position: absolute; left: -6px; bottom: 0; width: 76px; border: none; background: none; padding: 0; pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: none; filter: drop-shadow(0 6px 9px rgba(0,0,0,.22)); }
   #nico-house:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
   .nico-house-svg { width: 100%; height: auto; display: block; overflow: visible; }
-  @keyframes nico-housein { from { opacity: 0; transform: scale(.7) translateY(8px); } to { opacity: 1; transform: none; } }
-  .nico-zzz { animation: nico-zzz 2.6s ease-in-out infinite; }
-  @keyframes nico-zzz { 0%,100% { opacity: .25; transform: translateY(2px); } 50% { opacity: 1; transform: translateY(-3px); } }
-  /* asleep: kennel on screen, Nico tucked inside */
+  @keyframes nico-housein { from { opacity: 0; transform: scale(.6) translateY(10px); } to { opacity: 1; transform: none; } }
+  .nico-zzz { animation: nico-zzz 2.6s ease-in-out infinite; opacity: 0; }
+  @keyframes nico-zzz { 0%,100% { opacity: .25; transform: translateY(2px); } 50% { opacity: 1; transform: translateY(-4px); } }
+  /* Nico's sleeping head resting in the doorway — only once he's settled. */
+  .nico-sleephead { opacity: 0; transition: opacity .45s ease; }
+  .nico-sleephead .sh-breathe { transform-origin: 75px 112px; animation: nico-sleepbreathe 3.6s ease-in-out infinite; }
+  @keyframes nico-sleepbreathe { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-1.6px) scale(1.03); } }
+
+  /* Stage 1 — bedtime: the kennel pops up and Nico walks into it. */
+  #nico-zone.bedtime #nico-house { display: block; animation: nico-housein .4s cubic-bezier(.2,.8,.3,1.2); }
+  #nico-zone.bedtime #nico { animation: nico-walkin 1.5s ease-in forwards; z-index: 1; }
+  @keyframes nico-walkin {
+    0%   { transform: translate(0,0) scale(1); opacity: 1; }
+    12%  { transform: translate(2px,-3px) rotate(-3deg); }
+    24%  { transform: translate(5px,0) rotate(2deg); }
+    36%  { transform: translate(8px,-3px) rotate(-3deg); }
+    48%  { transform: translate(11px,0) rotate(2deg); }
+    60%  { transform: translate(14px,-2px) rotate(-2deg); }
+    72%  { transform: translate(16px,2px) scale(.82); opacity: 1; }
+    100% { transform: translate(18px,12px) scale(.24); opacity: 0; }
+  }
+  /* Stage 2 — asleep: kennel stays, his head rests in the doorway. */
   #nico-zone.asleep #nico { display: none; }
   #nico-zone.asleep #nico-house { display: block; }
-  /* going to bed / waking up — he shrinks into and pops out of the doorway */
-  #nico.tuckin { animation: nico-tuckin .5s ease-in forwards; }
-  @keyframes nico-tuckin { to { transform: translate(10px, 14px) scale(.18); opacity: 0; } }
-  #nico.popout { animation: nico-popout .52s cubic-bezier(.2,.9,.3,1.3); }
-  @keyframes nico-popout { from { transform: translate(10px, 14px) scale(.18); opacity: 0; } to { transform: none; opacity: 1; } }
+  #nico-zone.asleep .nico-sleephead { opacity: 1; }
+  #nico-zone.asleep .nico-zzz { opacity: 1; }
+  /* Waking up — he pops back out of the doorway. */
+  #nico.popout { animation: nico-popout .6s cubic-bezier(.2,.9,.3,1.3); }
+  @keyframes nico-popout { from { transform: translate(18px,12px) scale(.24); opacity: 0; } to { transform: none; opacity: 1; } }
 
   .nico-bubble { position: absolute; left: 50px; bottom: 50px; background: var(--surface); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid var(--line); border-radius: 12px; padding: 5px 11px; font-size: 14px; font-weight: 800; color: var(--ink); white-space: nowrap; box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow); opacity: 0; transform: translateY(6px) scale(.86); transition: opacity .2s, transform .2s; pointer-events: none; z-index: 2; }
   .nico-bubble::after { content: ""; position: absolute; left: 12px; bottom: -6px; width: 12px; height: 12px; background: var(--surface); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
@@ -821,6 +846,26 @@
       <path d="M22,60 L128,60 L128,68 L22,68 z" fill="#b86a4a"/>
       <path d="M75,72 q22,0 22,26 v22 h-44 v-22 q0,-26 22,-26 z" fill="#5a3b26"/>
       <path d="M75,78 q17,0 17,21 v21 h-34 v-21 q0,-21 17,-21 z" fill="#241a12"/>
+      <!-- Nico curled up asleep, head resting in the doorway -->
+      <g class="nico-sleephead" transform="translate(75,111) scale(1.16) translate(-75,-111)">
+        <g class="sh-breathe">
+          <!-- body just inside the door -->
+          <ellipse cx="75" cy="117" rx="17" ry="7" fill="#1f1f28"/>
+          <!-- ears either side -->
+          <path d="M60,104 q-7,4 -6,14 q1,6 7,5 q1,-11 3,-19 z" fill="#191921"/>
+          <path d="M90,104 q7,4 6,14 q-1,6 -7,5 q-1,-11 -3,-19 z" fill="#191921"/>
+          <!-- head -->
+          <ellipse cx="75" cy="107" rx="15" ry="13" fill="#22222c"/>
+          <!-- muzzle resting on the threshold -->
+          <ellipse cx="75" cy="113" rx="10" ry="7.5" fill="#c17838"/>
+          <!-- closed, contented eyes -->
+          <path d="M67,105 q3,3 6,0" stroke="#0f0f16" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M77,105 q3,3 6,0" stroke="#0f0f16" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <!-- nose -->
+          <ellipse cx="75" cy="110.5" rx="3" ry="2.4" fill="#241c1c"/>
+        </g>
+      </g>
+      </g>
       <g class="nico-zzz">
         <text x="98" y="46" font-size="20" font-weight="800" fill="#7c8aa5">z</text>
         <text x="112" y="32" font-size="15" font-weight="800" fill="#93a0b8">z</text>
@@ -1021,7 +1066,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v68";
+  const APP_VERSION = "v69";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2460,7 +2505,7 @@
   // Nico reacts to a graded answer: nod + happy hop when right, head-shake when wrong.
   const NICO_MOVES = ["jump", "flip", "spin", "bounce", "wiggle", "nod"];
   const NICO_ANIM = ["nod", "shake", "jump", "flip", "spin", "wiggle", "bounce", "bark", "tuckin", "popout"];
-  const NICO_SLEEP_KEY = "gmat_nico_asleep";
+  const NICO_SLEEP_KEY = "gmat_nico_asleep", NICO_POS_KEY = "gmat_nico_pos";
   let nicoTimer = null, nicoBubbleTimer = null;
   const nicoEl = () => document.getElementById("nico");
   const nicoZone = () => document.getElementById("nico-zone");
@@ -2516,64 +2561,119 @@
     }
     try { if (navigator.vibrate) navigator.vibrate(ok ? 15 : [8, 40, 8]); } catch (e) {}
   }
+  // Bedtime: the kennel pops up, Nico walks in, lies down and sleeps with his
+  // head resting in the doorway.
   function nicoSleep() {
     const zone = nicoZone(), el = nicoEl(); if (!zone || !el || nicoAsleep()) return;
-    nicoSay("Goodnight… 😴", 1500);
-    nicoPlay("tuckin", 500);
-    setTimeout(() => { try { localStorage.setItem(NICO_SLEEP_KEY, "1"); } catch (e) {} zone.classList.add("asleep"); el.classList.remove("tuckin"); }, 460);
-    try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {}
+    NICO_ANIM.forEach(c => el.classList.remove(c));
+    el.classList.remove("charging");
+    nicoSay("Off to bed… 😴", 2200);
+    zone.classList.add("bedtime");
+    try { if (navigator.vibrate) navigator.vibrate([10, 60, 10]); } catch (e) {}
+    clearTimeout(nicoSleep.t);
+    nicoSleep.t = setTimeout(() => {
+      try { localStorage.setItem(NICO_SLEEP_KEY, "1"); } catch (e) {}
+      zone.classList.remove("bedtime");
+      zone.classList.add("asleep");
+    }, 1500);
   }
   function nicoWake() {
     const zone = nicoZone(); if (!zone || !nicoAsleep()) return;
     try { localStorage.setItem(NICO_SLEEP_KEY, "0"); } catch (e) {}
-    zone.classList.remove("asleep");
-    nicoPlay("popout", 700);
-    nicoSay("I'm back! 🐾", 1600);
+    clearTimeout(nicoSleep.t);
+    zone.classList.remove("asleep", "bedtime");
+    nicoPlay("popout", 800);
+    nicoSay("I'm up! 🐾", 1600);
     nicoBarkSound();
     try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {}
   }
 
-  /* Nico interactions: tap = bark, press-and-hold = bed. Hold the kennel to wake him. */
+  /* Nico interactions
+       drag          — pick him up and drop him anywhere on screen (remembered)
+       tap           — he barks
+       hold 3s       — his kennel appears, he walks in, lies down and sleeps
+       hold the kennel — he wakes up and comes back out                        */
   (function () {
     const zone = nicoZone(), dog = nicoEl(), house = document.getElementById("nico-house");
     if (!zone || !dog || !house) return;
     if (nicoAsleep()) zone.classList.add("asleep");
 
-    function wireHold(el, onHold, onTap) {
-      let timer = null, held = false, sx = 0, sy = 0;
-      const start = (e) => {
-        held = false;
-        const p = e.touches ? e.touches[0] : e; sx = p.clientX; sy = p.clientY;
-        clearTimeout(timer);
-        timer = setTimeout(() => { held = true; onHold(); }, 550);
-      };
-      const move = (e) => {
-        const p = e.touches ? e.touches[0] : e;
-        if (Math.abs(p.clientX - sx) > 12 || Math.abs(p.clientY - sy) > 12) { clearTimeout(timer); }
-      };
-      const end = (e) => {
-        clearTimeout(timer);
-        if (!held && onTap) { onTap(); }
-        if (held && e && e.cancelable) e.preventDefault();   // long press shouldn't also fire a tap
-        held = false;
-      };
-      el.addEventListener("touchstart", start, { passive: true });
-      el.addEventListener("touchmove", move, { passive: true });
-      el.addEventListener("touchend", end);
-      el.addEventListener("touchcancel", () => clearTimeout(timer));
-      el.addEventListener("mousedown", start);
-      el.addEventListener("mousemove", move);
-      el.addEventListener("mouseup", end);
-      el.addEventListener("mouseleave", () => clearTimeout(timer));
-      el.addEventListener("contextmenu", (e) => e.preventDefault());   // no iOS callout on long press
-      el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onTap ? onTap() : onHold(); } });
+    const HOLD_SLEEP = 3000, HOLD_WAKE = 700, DRAG_THRESH = 6;
+    let holdTimer = null, dragging = false, moved = false, sx = 0, sy = 0, offX = 0, offY = 0, which = null;
+
+    const pt = (e) => (e.touches && e.touches[0]) ? e.touches[0] : e;
+    function placeAt(x, y) {
+      const w = zone.offsetWidth || 62, h = zone.offsetHeight || 74;
+      x = Math.max(2, Math.min(window.innerWidth - w - 2, x));
+      y = Math.max(2, Math.min(window.innerHeight - h - 2, y));
+      zone.style.left = x + "px"; zone.style.top = y + "px"; zone.style.bottom = "auto";
     }
-    wireHold(dog, nicoSleep, () => { nicoPlay("bark", 700); nicoSay("Woof!", 1100); nicoBarkSound(); try { if (navigator.vibrate) navigator.vibrate(10); } catch (e) {} });
-    wireHold(house, nicoWake, () => nicoSay("Shhh… sleeping 😴", 1400));
+    function savePos() {
+      const r = zone.getBoundingClientRect();
+      try { localStorage.setItem(NICO_POS_KEY, JSON.stringify({ x: Math.round(r.left), y: Math.round(r.top) })); } catch (e) {}
+    }
+    function restorePos() {
+      try {
+        const p = JSON.parse(localStorage.getItem(NICO_POS_KEY) || "null");
+        if (p && typeof p.x === "number" && typeof p.y === "number") placeAt(p.x, p.y);
+      } catch (e) {}
+    }
+    restorePos();
+    window.addEventListener("resize", () => {                      // keep him on screen after a rotate/resize
+      if (zone.style.left) { const r = zone.getBoundingClientRect(); placeAt(r.left, r.top); }
+    });
+
+    function onDown(e, target) {
+      which = target; moved = false; dragging = false;
+      const p = pt(e), r = zone.getBoundingClientRect();
+      sx = p.clientX; sy = p.clientY; offX = p.clientX - r.left; offY = p.clientY - r.top;
+      clearTimeout(holdTimer);
+      if (target === "dog") {
+        dog.classList.add("charging");                             // visible 3s build-up
+        holdTimer = setTimeout(() => { if (!dragging && !moved) nicoSleep(); }, HOLD_SLEEP);
+      } else {
+        holdTimer = setTimeout(() => { if (!dragging && !moved) nicoWake(); }, HOLD_WAKE);
+      }
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
+      document.addEventListener("pointercancel", onUp);
+    }
+    function onMove(e) {
+      const p = pt(e);
+      if (!dragging && (Math.abs(p.clientX - sx) > DRAG_THRESH || Math.abs(p.clientY - sy) > DRAG_THRESH)) {
+        moved = true; dragging = true;
+        clearTimeout(holdTimer);                                   // dragging cancels the bedtime hold
+        dog.classList.remove("charging");
+        zone.classList.add("dragging");
+      }
+      if (dragging) { e.preventDefault(); placeAt(p.clientX - offX, p.clientY - offY); }
+    }
+    function onUp() {
+      clearTimeout(holdTimer);
+      dog.classList.remove("charging");
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerup", onUp);
+      document.removeEventListener("pointercancel", onUp);
+      if (dragging) { zone.classList.remove("dragging"); savePos(); nicoSay("Comfy here! 🐾", 1200); }
+      else if (!moved) {                                           // a plain tap
+        if (which === "dog") { nicoPlay("bark", 700); nicoSay("Woof!", 1100); nicoBarkSound(); try { if (navigator.vibrate) navigator.vibrate(10); } catch (e) {} }
+        else nicoSay("Shhh… sleeping 😴", 1400);
+      }
+      dragging = false; which = null;
+    }
+    dog.addEventListener("pointerdown", (e) => onDown(e, "dog"));
+    house.addEventListener("pointerdown", (e) => onDown(e, "house"));
+    [dog, house].forEach(el => {
+      el.addEventListener("contextmenu", (e) => e.preventDefault());  // no long-press callout
+      el.addEventListener("dragstart", (e) => e.preventDefault());
+    });
+    dog.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nicoPlay("bark", 700); nicoSay("Woof!", 1100); nicoBarkSound(); } });
+    house.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nicoWake(); } });
 
     // Fade out while scrolling so he never covers the text underneath.
     let t = null;
     const onScroll = () => {
+      if (dragging || zone.classList.contains("bedtime")) return;
       if (NICO_ANIM.some(c => dog.classList.contains(c))) return;   // stay put mid-reaction
       dog.classList.add("nico-away");
       clearTimeout(t); t = setTimeout(() => dog.classList.remove("nico-away"), 550);

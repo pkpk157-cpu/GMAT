@@ -15,13 +15,14 @@ window.GMAT_SETS = [
         "n": 1,
         "topic": "Divisibility & remainders",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "Minimum difference between \\(x\\) and \\(y\\) such that \\(1x71y61\\) is exactly divisible by 11 is:",
         "choices": [
           "2",
           "3",
           "1",
-          "0"
+          "0",
+          "4"
         ],
         "hint": "Use the divisibility rule for 11: compare the sum of the odd-position digits with the sum of the even-position digits.",
         "expl": "Step 1 — Divisibility rule for 11: (sum of digits in odd positions) − (sum in even positions) must be 0 or a multiple of 11.\nStep 2 — In \\(1x71y61\\), odd positions hold \\(1,7,y,1\\); even positions hold \\(x,1,6\\).\nStep 3 — Odd sum \\(=9+y\\); even sum \\(=7+x\\).\nStep 4 — Set the difference to 0: \\((9+y)-(7+x)=0 \\Rightarrow x-y=2\\).\nStep 5 — So the minimum difference is 2.\nAnswer: 2 (A).",
@@ -31,13 +32,14 @@ window.GMAT_SETS = [
         "n": 2,
         "topic": "Divisibility & remainders",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The four integers next lower than 81, and the four next higher than 81, are written down and added together. This sum is divisible by:",
         "choices": [
           "7",
           "9",
           "11",
-          "13"
+          "13",
+          "15"
         ],
         "hint": "Don't add all eight — pair each lower number with a higher one symmetric about 81.",
         "expl": "Step 1 — The eight numbers are \\(77,78,79,80\\) and \\(82,83,84,85\\).\nStep 2 — Pair smallest with largest: \\((77+85),(78+84),(79+83),(80+82)\\), each \\(=162\\).\nStep 3 — Sum \\(=4\\times162=648=8\\times81\\).\nStep 4 — Since \\(81=3^4\\), the sum is divisible by 9.\nAnswer: 9 (B).",
@@ -63,13 +65,14 @@ window.GMAT_SETS = [
         "n": 4,
         "topic": "Integers, factors & multiples",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "How many numbers between 1 and 300 are divisible by 3 and 5 together?",
         "choices": [
           "16",
           "18",
           "20",
-          "100"
+          "100",
+          "102"
         ],
         "hint": "'Divisible by 3 and 5' means divisible by their LCM.",
         "expl": "Step 1 — 'Divisible by 3 and 5' means divisible by \\(\\operatorname{lcm}(3,5)=15\\) (don't add \\(3+5\\)).\nStep 2 — Multiples of 15 up to 300: \\(15,30,\\dots,300\\).\nStep 3 — Count \\(=300\\div15=20\\).\nAnswer: 20 (C).",
@@ -79,13 +82,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Divisibility & remainders",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "What is the remainder when \\(1!+2!+3!+\\dots+100!\\) is divided by 7?",
         "choices": [
           "0",
           "5",
           "6",
-          "3"
+          "3",
+          "1"
         ],
         "hint": "Which factorials are already multiples of 7? Ignore those.",
         "expl": "Step 1 — For \\(k\\ge7\\), \\(k!\\) is a multiple of 7, contributing remainder 0.\nStep 2 — Only \\(1!\\) to \\(6!\\) matter: \\(1+2+6+24+120+720=873\\).\nStep 3 — \\(873=7\\times124+5\\).\nAnswer: 5 (B).",
@@ -95,13 +99,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Integers, factors & multiples",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "How many numbers lying between 1 and 500 are divisible by 13?",
         "choices": [
           "40",
           "38",
           "41",
-          "46"
+          "46",
+          "48"
         ],
         "hint": "Find the largest multiple of 13 that is still under 500.",
         "expl": "Step 1 — Largest multiple of 13 under 500: \\(500\\div13\\approx38.4\\), so \\(13\\times38=494\\).\nStep 2 — Hence 38 numbers.\nAnswer: 38 (B).",
@@ -111,13 +116,14 @@ window.GMAT_SETS = [
         "n": 7,
         "topic": "Divisibility & remainders",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "Two different numbers when divided by the same divisor left remainders 11 and 21 respectively, and when their sum was divided by the same divisor the remainder was 4. What is the divisor?",
         "choices": [
           "36",
           "28",
           "14",
-          "9"
+          "9",
+          "44"
         ],
         "hint": "There's a shortcut: divisor relates to the remainders and the remainder of the sum.",
         "expl": "Step 1 — The numbers are \\(da+11\\) and \\(db+21\\); their sum \\(=d(a+b)+32\\).\nStep 2 — Remainder of the sum \\(=32\\bmod d=4\\), so \\(d\\mid(32-4)=28\\), with \\(d>21\\).\nStep 3 — Thus \\(d=28\\). Shortcut: \\((11+21)-4=28\\).\nAnswer: 28 (B).",
@@ -143,13 +149,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Divisibility & remainders",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "A number when divided by 5 leaves a remainder 3. What is the remainder when the square of the same number is divided by 5?",
         "choices": [
           "9",
           "3",
           "0",
-          "4"
+          "4",
+          "1"
         ],
         "hint": "The remainder of \\(N^2\\bmod 5\\) depends only on \\(N\\bmod 5\\) — try the smallest such \\(N\\).",
         "expl": "Step 1 — \\(N=5q+3\\); the remainder of \\(N^2\\) depends only on \\(N\\bmod5\\), so take \\(N=3\\).\nStep 2 — \\(N^2=9\\).\nStep 3 — \\(9\\div5=1\\) remainder 4.\nAnswer: 4 (D).",
@@ -159,13 +166,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Fractions & decimals",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The value of \\(3 \\div (8-5) + (4-2) + 2 + \\frac{8}{13}\\) is:",
         "choices": [
           "\\(\\frac{15}{17}\\)",
           "\\(\\frac{13}{17}\\)",
           "\\(\\frac{15}{19}\\)",
-          "\\(\\frac{13}{19}\\)"
+          "\\(\\frac{13}{19}\\)",
+          "\\(\\frac{1}{17}\\)"
         ],
         "hint": "Apply BODMAS: division before addition.",
         "expl": "Step 1 — Apply BODMAS: \\((8-5)=3,\\ (4-2)=2\\), division before addition.\nStep 2 — Working through, the expression simplifies to \\(\\frac{13}{17}\\).\nNote — The exact operators were garbled in the source PDF; verify. Intended value \\(\\frac{13}{17}\\).\nAnswer: \\(\\frac{13}{17}\\) (B).",
@@ -176,13 +184,14 @@ window.GMAT_SETS = [
         "n": 11,
         "topic": "Divisibility & remainders",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A number when successively divided by 7 and 8 leaves the remainders 3 and 5 respectively. What is the remainder when the same number is divided by 56?",
         "choices": [
           "38",
           "31",
           "37",
-          "26"
+          "26",
+          "43"
         ],
         "hint": "For two successive divisions, combine as (first divisor \\(\\times\\) second remainder) + first remainder.",
         "expl": "Step 1 — Rebuild the smallest \\(N\\): quotient after \\(\\div7\\) is \\(8\\cdot0+5=5\\), so \\(N=7\\times5+3=38\\).\nStep 2 — Since \\(7\\times8=56\\), \\(38\\div56\\) leaves 38.\nStep 3 — Shortcut: \\(7\\times5+3=38\\).\nAnswer: 38 (A).",
@@ -192,13 +201,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Integers, factors & multiples",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A boy wanted to write the numbers from the smallest number to the greatest three-digit number. How many times does he need to press the keys of the computer to do this job?",
         "choices": [
           "2708",
           "2889",
           "2644",
-          "2978"
+          "2978",
+          "3067"
         ],
         "hint": "Split the count by 1-digit, 2-digit and 3-digit numbers.",
         "expl": "Step 1 — Writing 1 to 999, count presses by digit-length:\n • 1–9: \\(9\\times1=9\\).\n • 10–99: \\(90\\times2=180\\).\n • 100–999: \\(900\\times3=2700\\).\nStep 2 — Total \\(=9+180+2700=2889\\).\nAnswer: 2889 (B).",
@@ -273,13 +283,14 @@ window.GMAT_SETS = [
         "n": 17,
         "topic": "Fractions & decimals",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A boy multiplied a certain number \\(x\\) by 13. He found that the resulting product consisted entirely of nines. Find the smallest value of \\(x\\).",
         "choices": [
           "76913",
           "76933",
           "76923",
-          "75933"
+          "75933",
+          "76943"
         ],
         "hint": "'All nines' means the product is 999999 — what is \\(999999\\div13\\)?",
         "expl": "Step 1 — 'All nines' means the product is \\(999999\\) (since \\(10^6-1\\) is divisible by 13).\nStep 2 — \\(999999\\div13=76923\\).\nAnswer: 76923 (C).",
@@ -289,13 +300,14 @@ window.GMAT_SETS = [
         "n": 18,
         "topic": "Divisibility & remainders",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "A number is successively divided by 5, 6, 8 leaving remainders 3, 4, 7 respectively. What will be the remainders if the order of divisors is reversed?",
         "choices": [
           "7, 4, 3",
           "5, 3, 4",
           "2, 5, 4",
-          "1, 5, 4"
+          "1, 5, 4",
+          "9"
         ],
         "hint": "Build the actual number from the remainders, then re-divide in reverse order.",
         "expl": "Step 1 — Build \\(N\\): \\(8\\cdot0+7=7;\\ 6\\times7+4=46;\\ 5\\times46+3=233\\).\nStep 2 — Reverse \\((\\div8,\\div6,\\div5)\\) on 233: \\(233\\to r1;\\ 29\\to r5;\\ 4\\to r4\\).\nStep 3 — Remainders: 1, 5, 4.\nAnswer: 1, 5, 4 (D).",
@@ -321,13 +333,14 @@ window.GMAT_SETS = [
         "n": 20,
         "topic": "Divisibility & remainders",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "Two numbers when divided by a certain divisor leave the remainders 4375 and 2986 respectively; but when the sum of the two numbers is divided by the same divisor, the remainder is 2361. The divisor is:",
         "choices": [
           "2014",
           "5000",
           "625",
-          "2639"
+          "2639",
+          "6389"
         ],
         "hint": "Same divisor-from-remainders shortcut as the earlier problem.",
         "expl": "Step 1 — Divisor \\(=(\\text{sum of remainders})-(\\text{remainder of sum})\\).\nStep 2 — \\(=(4375+2986)-2361=5000\\).\nAnswer: 5000 (B).",
@@ -337,13 +350,14 @@ window.GMAT_SETS = [
         "n": 21,
         "topic": "Exponent rules",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "Find the unit digit in the product \\((2467)^{153}\\times(341)^{72}\\).",
         "choices": [
           "6",
           "7",
           "8",
-          "9"
+          "9",
+          "10"
         ],
         "hint": "Only the unit digit matters — use the 4-step cycle of the unit digit.",
         "expl": "Step 1 — Unit digit of \\(2467^{153}\\): 7 cycles \\(7,9,3,1\\); \\(153\\bmod4=1\\to7\\).\nStep 2 — Unit digit of \\(341^{72}=1\\).\nStep 3 — \\(7\\times1=7\\).\nAnswer: 7 (B).",
@@ -353,13 +367,14 @@ window.GMAT_SETS = [
         "n": 22,
         "topic": "Divisibility & remainders",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "Which digits should come in place of \\(*\\) and \\(\\$\\) if the number \\(62684{*}{\\$}\\) is divisible by both 8 and 5?",
         "choices": [
           "4, 0",
           "0, 4",
           "0, 0",
-          "4, 4"
+          "4, 4",
+          "8"
         ],
         "hint": "Use the \\(\\div5\\) rule to fix \\(\\$\\) first, then the \\(\\div8\\) rule for \\(*\\).",
         "expl": "Step 1 — \\(\\div5 \\Rightarrow \\$=0\\) or 5; \\(\\div8\\) needs even \\(\\Rightarrow \\$=0\\).\nStep 2 — Then \\(4{*}0\\) divisible by 8: \\(480\\div8=60 \\Rightarrow *=4\\).\nAnswer: 4, 0 (A).",
@@ -369,13 +384,14 @@ window.GMAT_SETS = [
         "n": 23,
         "topic": "Divisibility & remainders",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A boy multiplies 987 by a certain number and obtains 559981 as his answer. If in the answer both 9's are wrong but the other digits are correct, then the correct answer will be:",
         "choices": [
           "553681",
           "555181",
           "555681",
-          "556581"
+          "556581",
+          "557481"
         ],
         "hint": "The true product must be a multiple of \\(987=3\\times7\\times47\\).",
         "expl": "Step 1 — \\(987=3\\times7\\times47\\); the true product is a multiple of 987 matching \\(5\\,5\\,\\_\\,6\\,8\\,1\\).\nStep 2 — \\(987\\times563=555681\\).\nAnswer: 555681 (C).",
@@ -418,13 +434,14 @@ window.GMAT_SETS = [
         "n": 26,
         "topic": "Divisibility & remainders",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A number when divided by 296 gives a remainder 75. When the same number is divided by 37, the remainder will be:",
         "choices": [
           "1",
           "2",
           "8",
-          "11"
+          "11",
+          "14"
         ],
         "hint": "296 is a multiple of 37 — reduce 75 against 37.",
         "expl": "Step 1 — \\(296=8\\times37\\) and \\(75=2\\times37+1\\).\nStep 2 — So \\(N=37k+1 \\Rightarrow N\\div37\\) leaves remainder 1.\nAnswer: 1 (A).",
@@ -434,13 +451,14 @@ window.GMAT_SETS = [
         "n": 27,
         "topic": "Divisibility & remainders",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A number was divided successively in order by 4, 5 and 6. The remainders were respectively 2, 3 and 4. The number is:",
         "choices": [
           "214",
           "476",
           "954",
-          "1908"
+          "1908",
+          "2386"
         ],
         "hint": "Reconstruct the number from the last quotient using each remainder.",
         "expl": "Step 1 — Rebuild from the last quotient \\(=1\\): \\(6\\times1+4=10;\\ 5\\times10+3=53;\\ 4\\times53+2=214\\).\nAnswer: 214 (A).",
@@ -450,13 +468,14 @@ window.GMAT_SETS = [
         "n": 28,
         "topic": "Divisibility & remainders",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "The least number which must be subtracted from 6709 to make it exactly divisible by 9 is:",
         "choices": [
           "2",
           "3",
           "4",
-          "5"
+          "5",
+          "6"
         ],
         "hint": "Find \\(6709\\bmod 9\\) via its digit sum, then subtract that remainder.",
         "expl": "Step 1 — Digit sum of 6709 \\(=22\\); \\(22\\bmod9=4\\).\nStep 2 — Subtract 4 to reach a multiple of 9.\nAnswer: 4 (C).",
@@ -466,13 +485,14 @@ window.GMAT_SETS = [
         "n": 29,
         "topic": "Fractions & decimals",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "\\(2.002 + 7.9\\times\\{2.8 - 6.3\\times(3.6-1.5) + 15.6\\} = \\; ?\\)",
         "choices": [
           "2.002",
           "4.2845",
           "40.843",
-          "42.845"
+          "42.845",
+          "45.130"
         ],
         "hint": "Follow BODMAS; estimate \\(7.9\\times(\\text{bracket})\\) to sanity-check.",
         "expl": "Step 1 — Inner: \\(3.6-1.5=2.1\\).\nStep 2 — \\(2.8-6.3\\times2.1+15.6=2.8-13.23+15.6=5.17\\).\nStep 3 — \\(7.9\\times5.17=40.843\\).\nStep 4 — \\(2.002+40.843=42.845\\).\nAnswer: 42.845 (D).",
@@ -499,13 +519,14 @@ window.GMAT_SETS = [
         "n": 31,
         "topic": "Divisibility & remainders",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A number when divided successively by 4 and 5 leaves remainders 1 and 4 respectively. When it is successively divided by 5 and 4, then the respective remainders will be:",
         "choices": [
           "1, 2",
           "2, 3",
           "3, 2",
-          "4, 1"
+          "4, 1",
+          "5"
         ],
         "hint": "Build the smallest number, then divide it in the reversed order.",
         "expl": "Step 1 — Build \\(N=4\\times4+1=17\\).\nStep 2 — \\(17\\div5=3\\ r2;\\ 3\\div4=0\\ r3\\).\nStep 3 — Remainders: 2, 3.\nAnswer: 2, 3 (B).",
@@ -515,13 +536,14 @@ window.GMAT_SETS = [
         "n": 32,
         "topic": "Integers, factors & multiples",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "How many times must 79 be subtracted from \\(5\\times10^{4}\\) so as to obtain 43759?",
         "choices": [
           "77",
           "78",
           "79",
-          "80"
+          "80",
+          "81"
         ],
         "hint": "It's a single division: \\((50000-43759)\\div79\\).",
         "expl": "Step 1 — \\((50000-43759)\\div79=6241\\div79\\).\nStep 2 — \\(6241=79^2\\), so the answer is 79.\nAnswer: 79 (C).",
@@ -531,13 +553,14 @@ window.GMAT_SETS = [
         "n": 33,
         "topic": "Prime numbers & factorization",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "If the product of the first sixty positive consecutive integers is divisible by \\(8^{n}\\), where \\(n\\) is an integer, then the largest possible value of \\(n\\) is:",
         "choices": [
           "18",
           "19",
           "17",
-          "16"
+          "16",
+          "20"
         ],
         "hint": "Use Legendre's rule for the power of 2 in \\(60!\\), then divide by 3 for 8.",
         "expl": "Step 1 — Power of 2 in \\(60!=\\lfloor60/2\\rfloor+\\lfloor60/4\\rfloor+\\lfloor60/8\\rfloor+\\lfloor60/16\\rfloor+\\lfloor60/32\\rfloor\\).\nStep 2 — \\(=30+15+7+3+1=56\\).\nStep 3 — \\(8=2^3\\), so \\(n=\\lfloor56/3\\rfloor=18\\).\nAnswer: 18 (A).",
@@ -547,13 +570,14 @@ window.GMAT_SETS = [
         "n": 34,
         "topic": "Exponent rules",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The digit in the unit's place of the number represented by \\((7^{95}-3^{58})\\) is:",
         "choices": [
           "0",
           "4",
           "6",
-          "7"
+          "7",
+          "9"
         ],
         "hint": "Track unit digits only using each base's 4-cycle; mind the borrow in subtraction.",
         "expl": "Step 1 — \\(7^{95}\\): \\(95\\bmod4=3\\to\\) ends in 3.\nStep 2 — \\(3^{58}\\): \\(58\\bmod4=2\\to\\) ends in 9.\nStep 3 — Unit of \\((\\dots3)-(\\dots9)\\): borrow \\(\\to13-9=4\\).\nAnswer: 4 (B).",
@@ -563,13 +587,14 @@ window.GMAT_SETS = [
         "n": 35,
         "topic": "Prime numbers & factorization",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "If the product of the first forty positive consecutive integers is divisible by \\(5^{n}\\), where \\(n\\) is an integer, then the largest possible value of \\(n\\) is:",
         "choices": [
           "8",
           "9",
           "10",
-          "7"
+          "7",
+          "11"
         ],
         "hint": "Legendre's rule: power of 5 in \\(40!=\\lfloor40/5\\rfloor+\\lfloor40/25\\rfloor\\).",
         "expl": "Step 1 — Power of 5 in \\(40!=\\lfloor40/5\\rfloor+\\lfloor40/25\\rfloor=8+1=9\\).\nAnswer: 9 (B).",
@@ -595,13 +620,14 @@ window.GMAT_SETS = [
         "n": 37,
         "topic": "Divisibility & remainders",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "After the division of a number successively by 3, 4 and 7, the remainders obtained are 2, 1 and 4 respectively. What will be the remainder if 84 divides the same number?",
         "choices": [
           "80",
           "76",
           "41",
-          "53"
+          "53",
+          "92"
         ],
         "hint": "Build the number from the remainders; compare with \\(84=3\\times4\\times7\\).",
         "expl": "Step 1 — Build \\(N\\): \\(7\\cdot0+4=4;\\ 4\\times4+1=17;\\ 3\\times17+2=53\\).\nStep 2 — \\(84=3\\times4\\times7\\) and \\(53<84\\), so remainder is 53.\nAnswer: 53 (D).",
@@ -611,13 +637,14 @@ window.GMAT_SETS = [
         "n": 38,
         "topic": "Fractions & decimals",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "At a college football game, \\(\\frac{4}{5}\\) of the seats in the lower deck of the stadium were sold. If \\(\\frac{1}{4}\\) of all the seating in the stadium is located in the lower deck, and if \\(\\frac{2}{3}\\) of all the seats in the stadium were sold, then what fraction of the unsold seats in the stadium was in the lower deck?",
         "choices": [
           "\\(\\frac{3}{20}\\)",
           "\\(\\frac{1}{6}\\)",
           "\\(\\frac{1}{5}\\)",
-          "\\(\\frac{1}{3}\\)"
+          "\\(\\frac{1}{3}\\)",
+          "\\(\\frac{1}{20}\\)"
         ],
         "hint": "Pick a convenient total number of seats (e.g. 20) and count directly.",
         "expl": "Step 1 — Let total \\(=20\\). Lower deck \\(=\\frac{1}{4}\\times20=5\\); sold there \\(=\\frac{4}{5}\\times5=4\\), unsold \\(=1\\).\nStep 2 — Total unsold \\(=\\frac{1}{3}\\times20=\\frac{20}{3}\\).\nStep 3 — Fraction \\(=1\\div\\frac{20}{3}=\\frac{3}{20}\\).\nAnswer: \\(\\frac{3}{20}\\) (A).",
@@ -627,13 +654,14 @@ window.GMAT_SETS = [
         "n": 39,
         "topic": "Divisibility & remainders",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A number \\(A4571203B\\) is divisible by 18. Find the values of \\(A\\) and \\(B\\).",
         "choices": [
           "8, 4",
           "6, 8",
           "4, 6",
-          "6, 6"
+          "6, 6",
+          "10"
         ],
         "hint": "\\(18=2\\times9\\): use the even rule for \\(B\\) and the digit-sum rule for 9.",
         "expl": "Step 1 — \\(18=2\\times9\\); \\(B\\) even for \\(\\div2\\).\nStep 2 — Digit sum \\(=A+B+22\\) divisible by 9 \\(\\Rightarrow A+B=5\\) or 14.\nStep 3 — With \\(B\\) even, \\(A=6,B=8\\) (sum 14).\nAnswer: 6, 8 (B).",
@@ -642,10 +670,11 @@ window.GMAT_SETS = [
       {
         "n": 40,
         "topic": "Sequences & series",
-        "correct": "B",
-        "options": 4,
+        "correct": "C",
+        "options": 5,
         "text": "What is the sum of all two-digit numbers that give a remainder of 3 when they are divided by 7?",
         "choices": [
+          "0",
           "666",
           "676",
           "683",
@@ -675,13 +704,14 @@ window.GMAT_SETS = [
         "n": 42,
         "topic": "Roots & radicals",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "Evaluate \\(\\dfrac{\\sqrt{24}+\\sqrt6}{\\sqrt{24}-\\sqrt6}\\).",
         "choices": [
           "2",
           "3",
           "4",
-          "5"
+          "5",
+          "6"
         ],
         "hint": "Simplify \\(\\sqrt{24}\\) to \\(2\\sqrt6\\) first.",
         "expl": "Step 1 — \\(\\sqrt{24}=2\\sqrt6\\).\nStep 2 — \\(\\dfrac{2\\sqrt6+\\sqrt6}{2\\sqrt6-\\sqrt6}=\\dfrac{3\\sqrt6}{\\sqrt6}=3\\).\nAnswer: 3 (B).",
@@ -723,13 +753,14 @@ window.GMAT_SETS = [
         "n": 45,
         "topic": "Fractions & decimals",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "If all the fractions \\(\\frac{3}{5},\\ \\frac{1}{8},\\ \\frac{8}{11},\\ \\frac{4}{9},\\ \\frac{2}{7}\\) and \\(\\frac{5}{12}\\) are arranged in descending order of their values, which one will be the third?",
         "choices": [
           "\\(\\frac{1}{8}\\)",
           "\\(\\frac{4}{9}\\)",
           "\\(\\frac{5}{12}\\)",
-          "\\(\\frac{8}{11}\\)"
+          "\\(\\frac{8}{11}\\)",
+          "\\(\\frac{2}{8}\\)"
         ],
         "hint": "Convert the fractions to decimals to order them quickly.",
         "expl": "Step 1 — Decimals: \\(\\frac{3}{5}=0.60,\\ \\frac{1}{8}=0.125,\\ \\frac{8}{11}\\approx0.727,\\ \\frac{4}{9}\\approx0.444,\\ \\frac{2}{7}\\approx0.286,\\ \\frac{5}{12}\\approx0.417\\).\nStep 2 — Descending: \\(\\frac{8}{11}>\\frac{3}{5}>\\frac{4}{9}>\\frac{5}{12}>\\frac{2}{7}>\\frac{1}{8}\\).\nStep 3 — Third value \\(=\\frac{4}{9}\\).\nNote — Source list partly garbled; verify.\nAnswer: \\(\\frac{4}{9}\\) (B).",
@@ -822,13 +853,14 @@ window.GMAT_SETS = [
         "n": 52,
         "topic": "Fractions & decimals",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "\\(\\frac{1}{10}\\) of a pole is coloured red, \\(\\frac{1}{20}\\) white, \\(\\frac{1}{30}\\) blue, \\(\\frac{1}{40}\\) black, \\(\\frac{1}{50}\\) violet, \\(\\frac{1}{60}\\) yellow and the rest is green. If the length of the green portion of the pole is 12.08 metres, then the length of the pole is:",
         "choices": [
           "16 m",
           "18 m",
           "20 m",
-          "30 m"
+          "30 m",
+          "32 m"
         ],
         "hint": "Add all the coloured fractions; green is the remainder of the whole.",
         "expl": "Step 1 — Coloured \\(=\\frac{1}{10}+\\frac{1}{20}+\\frac{1}{30}+\\frac{1}{40}+\\frac{1}{50}+\\frac{1}{60}=\\frac{147}{600}\\).\nStep 2 — Green \\(=1-\\frac{147}{600}=\\frac{453}{600}\\).\nStep 3 — Length \\(=12.08\\times\\frac{600}{453}=16\\) m.\nAnswer: 16 m (A).",
@@ -838,13 +870,14 @@ window.GMAT_SETS = [
         "n": 53,
         "topic": "Fractions & decimals",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The fluid contained in a bucket can fill four large bottles or seven small bottles. A full large bottle is used to fill an empty small bottle. What fraction of the fluid is left over in the large bottle when the small one is full?",
         "choices": [
           "\\(\\frac{2}{7}\\)",
           "\\(\\frac{3}{7}\\)",
           "\\(\\frac{4}{7}\\)",
-          "\\(\\frac{5}{7}\\)"
+          "\\(\\frac{5}{7}\\)",
+          "\\(\\frac{1}{7}\\)"
         ],
         "hint": "Let the bucket equal the LCM of 4 and 7.",
         "expl": "Step 1 — Let bucket \\(=28\\) (LCM of 4, 7). Large bottle \\(=7\\), small \\(=4\\).\nStep 2 — Filling a small (4) from a large (7) leaves \\(7-4=3\\).\nStep 3 — Fraction \\(=\\frac{3}{7}\\).\nAnswer: \\(\\frac{3}{7}\\) (B).",
@@ -854,13 +887,14 @@ window.GMAT_SETS = [
         "n": 54,
         "topic": "Fractions & decimals",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "At an International Dinner, \\(\\frac{1}{5}\\) of the people attending were French men. If the number of French women at the dinner was \\(\\frac{2}{3}\\) greater than the number of French men, and there were no other French people at the dinner, then what fraction of the people at the dinner were not French?",
         "choices": [
           "\\(\\frac{1}{5}\\)",
           "\\(\\frac{2}{5}\\)",
           "\\(\\frac{2}{3}\\)",
-          "\\(\\frac{7}{15}\\)"
+          "\\(\\frac{7}{15}\\)",
+          "\\(\\frac{3}{5}\\)"
         ],
         "hint": "'\\(\\frac{2}{3}\\) greater' means multiply by \\(\\frac{5}{3}\\), not add \\(\\frac{2}{3}\\).",
         "expl": "Step 1 — French men \\(=\\frac{1}{5}\\).\nStep 2 — French women \\(=\\frac{1}{5}\\times\\frac{5}{3}=\\frac{1}{3}\\).\nStep 3 — Total French \\(=\\frac{1}{5}+\\frac{1}{3}=\\frac{8}{15}\\); not French \\(=\\frac{7}{15}\\).\nAnswer: \\(\\frac{7}{15}\\) (D).",
@@ -870,13 +904,14 @@ window.GMAT_SETS = [
         "n": 55,
         "topic": "Fractions & decimals",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "From a number of apples, a man sells half the number of existing apples plus 1 to the first customer, sells \\(\\frac{1}{3}\\) of the remaining apples plus 1 to the second customer, and \\(\\frac{1}{5}\\) of the remaining apples plus 1 to the third customer. He then finds that he has 3 apples left. How many apples did he have originally?",
         "choices": [
           "15",
           "18",
           "20",
-          "25"
+          "25",
+          "28"
         ],
         "hint": "Work backwards from the 3 apples left, reversing each step.",
         "expl": "Step 1 — Work backwards from 3 left: before \\(=(\\text{after}+1)\\div(1-\\text{fraction})\\).\nStep 2 — Before 3rd \\(=(3+1)\\div\\frac{4}{5}=5\\).\nStep 3 — Before 2nd \\(=(5+1)\\div\\frac{2}{3}=9\\).\nStep 4 — Before 1st \\(=(9+1)\\div\\frac{1}{2}=20\\).\nAnswer: 20 (C).",
@@ -918,13 +953,14 @@ window.GMAT_SETS = [
         "n": 58,
         "topic": "Prime numbers & factorization",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "If the product of the first fifty positive consecutive integers is divisible by \\(7^{n}\\), where \\(n\\) is an integer, then the largest possible value of \\(n\\) is:",
         "choices": [
           "7",
           "8",
           "10",
-          "5"
+          "5",
+          "12"
         ],
         "hint": "Legendre's rule: power of 7 in \\(50!=\\lfloor50/7\\rfloor+\\lfloor50/49\\rfloor\\).",
         "expl": "Step 1 — Power of 7 in \\(50!=\\lfloor50/7\\rfloor+\\lfloor50/49\\rfloor=7+1=8\\).\nAnswer: 8 (B).",
@@ -934,13 +970,14 @@ window.GMAT_SETS = [
         "n": 59,
         "topic": "Linear equations",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "In an examination, a boy was asked to multiply a given number by \\(\\frac{7}{19}\\). By mistake, he divided the given number by \\(\\frac{7}{19}\\) and got a result 624 more than the correct answer. The sum of the digits of the given number is:",
         "choices": [
           "10",
           "11",
           "13",
-          "14"
+          "14",
+          "15"
         ],
         "hint": "Set up the difference between multiplying and dividing by \\(\\frac{7}{19}\\).",
         "expl": "Step 1 — Correct \\(=N\\times\\frac{7}{19}\\); mistake \\(=N\\times\\frac{19}{7}\\).\nStep 2 — Difference: \\(N\\left(\\frac{19}{7}-\\frac{7}{19}\\right)=624\\).\nStep 3 — \\(\\frac{19}{7}-\\frac{7}{19}=\\frac{312}{133}\\), so \\(N=624\\times\\frac{133}{312}=266\\).\nStep 4 — Digit sum of 266 \\(=2+6+6=14\\).\nAnswer: 14 (D).",
@@ -974,13 +1011,14 @@ window.GMAT_SETS = [
         "n": 2,
         "topic": "Percentages & percent change",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "Two numbers are respectively 20% and 50% of a third number. The first number is what percent of the second?",
         "choices": [
           "10%",
           "20%",
           "30%",
-          "40%"
+          "40%",
+          "50%"
         ],
         "hint": "Let the third number be 100 and read off the first two.",
         "expl": "Step 1 — Let the third number be 100. First \\(=20\\), second \\(=50\\).\nStep 2 — First as a percent of second: \\(\\frac{20}{50}\\times100 = 40\\%\\).\nAnswer: 40% (D).",
@@ -990,13 +1028,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Percentages & percent change",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "40% of a store's customers purchase items, and of those, 15% purchase hats. What percent of the store's customers purchase hats?",
         "choices": [
           "4%",
           "6%",
           "15%",
-          "24%"
+          "24%",
+          "33%"
         ],
         "hint": "Take a percent of a percent — multiply the two.",
         "expl": "Step 1 — Of 100 customers, 40 purchase items.\nStep 2 — 15% of those 40 buy hats: \\(0.15\\times40 = 6\\).\nStep 3 — That's 6 of every 100 customers = 6%.\nAnswer: 6% (B).",
@@ -1038,13 +1077,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Percentages & percent change",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "In a housing society, 30% of residents are men over 18 and 40% are women over 18. If the 24 remaining residents are children, how many residents are there in total?",
         "choices": [
           "32",
           "80",
           "94",
-          "112"
+          "112",
+          "130"
         ],
         "hint": "Find what percent the children represent first.",
         "expl": "Step 1 — Adults are \\(30\\%+40\\% = 70\\%\\), so children are 30%.\nStep 2 — 30% of the total \\(=24\\).\nStep 3 — Total \\(=\\frac{24}{0.30} = 80\\).\nAnswer: 80 (B).",
@@ -1054,13 +1094,14 @@ window.GMAT_SETS = [
         "n": 7,
         "topic": "Percentages & percent change",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "Production of milk chocolates rose 30% in one month to 9,100 per month. What was it one month ago?",
         "choices": [
           "10,000",
           "9,000",
           "8,000",
-          "7,000"
+          "7,000",
+          "11,000"
         ],
         "hint": "9,100 is 130% of the earlier value — divide, don't subtract 30%.",
         "expl": "Step 1 — \\(130\\%\\text{ of old} = 9100\\).\nStep 2 — Old \\(=\\frac{9100}{1.3} = 7000\\).\nAnswer: 7,000 (D).",
@@ -1070,13 +1111,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Percentages & percent change",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "In an election between two candidates, one got 40% of the votes and was defeated by 160 votes. How many votes were polled in total?",
         "choices": [
           "900",
           "800",
           "700",
-          "600"
+          "600",
+          "1000"
         ],
         "hint": "The winner got 60%; the margin is the difference of the two shares.",
         "expl": "Step 1 — Shares are 40% and 60%, so the margin is \\(60\\%-40\\% = 20\\%\\) of the total.\nStep 2 — 20% of total \\(=160\\).\nStep 3 — Total \\(=\\frac{160}{0.20} = 800\\).\nAnswer: 800 (B).",
@@ -1102,13 +1144,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Percentages & percent change",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "10% of a village's inhabitants died of cholera; then 25% of the remainder left. The population is now 4,050. What was the original population?",
         "choices": [
           "5,000",
           "6,000",
           "7,000",
-          "8,000"
+          "8,000",
+          "9,000"
         ],
         "hint": "Apply the two survival factors 0.90 and 0.75 to the original.",
         "expl": "Step 1 — After deaths: 90% remain. After departures: 75% of that remain.\nStep 2 — \\(0.75\\times0.90\\times x = 4050\\), so \\(0.675x = 4050\\).\nStep 3 — \\(x = \\frac{4050}{0.675} = 6000\\).\nAnswer: 6,000 (B).",
@@ -1118,13 +1161,14 @@ window.GMAT_SETS = [
         "n": 11,
         "topic": "Percentages & percent change",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A scooter costs $25,000 new. At the end of each year its value is 80% of its value at the start of that year. What is its value after 3 years?",
         "choices": [
           "$10,000",
           "$12,500",
           "$12,800",
-          "$12,000"
+          "$12,000",
+          "$13,300"
         ],
         "hint": "Multiply by 0.8 three times (compound depreciation).",
         "expl": "Step 1 — Value \\(=25000\\times(0.8)^3\\).\nStep 2 — \\((0.8)^3 = 0.512\\).\nStep 3 — \\(25000\\times0.512 = 12800\\).\nAnswer: $12,800 (C).",
@@ -1134,13 +1178,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Percentages & percent change",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "A's income is 150% of B's, and C's income is 120% of A's. If A, B and C together earn $86,000, what is C's income?",
         "choices": [
           "$30,000",
           "$32,000",
           "$20,000",
-          "$36,000"
+          "$36,000",
+          "$40,000"
         ],
         "hint": "Write everything in terms of B, then solve for B first.",
         "expl": "Step 1 — Let B \\(=x\\). Then A \\(=1.5x\\), C \\(=1.2\\times1.5x = 1.8x\\).\nStep 2 — \\(x + 1.5x + 1.8x = 4.3x = 86000\\), so \\(x = 20000\\).\nStep 3 — C \\(=1.8\\times20000 = 36000\\).\nAnswer: $36,000 (D).",
@@ -1166,13 +1211,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Percentages & percent change",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "In a shipment of 120 parts, 5% were defective; in another of 80 parts, 10% were defective. For the two shipments combined, what percent were defective?",
         "choices": [
           "6.5%",
           "7.0%",
           "7.5%",
-          "8.0%"
+          "8.0%",
+          "8.5%"
         ],
         "hint": "Count actual defectives, then divide by the combined total.",
         "expl": "Step 1 — Defectives: \\(5\\%\\times120 = 6\\) and \\(10\\%\\times80 = 8\\); total \\(=14\\).\nStep 2 — Combined parts \\(=120+80 = 200\\).\nStep 3 — \\(\\frac{14}{200}\\times100 = 7\\%\\) (a weighted average, not \\(7.5\\%\\)).\nAnswer: 7.0% (B).",
@@ -1182,13 +1228,14 @@ window.GMAT_SETS = [
         "n": 15,
         "topic": "Percentages & percent change",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "In January, 4,000 ticketless travellers were caught. In February the number rose 5%, in March it fell 5%, and in April it fell a further 10%. How many were caught in April?",
         "choices": [
           "3,125",
           "3,255",
           "3,575",
-          "3,591"
+          "3,591",
+          "3,721"
         ],
         "hint": "Apply the factors 1.05, 0.95, 0.90 in turn.",
         "expl": "Step 1 — \\(4000\\times1.05 = 4200\\).\nStep 2 — \\(4200\\times0.95 = 3990\\).\nStep 3 — \\(3990\\times0.90 = 3591\\).\nAnswer: 3,591 (D).",
@@ -1198,13 +1245,14 @@ window.GMAT_SETS = [
         "n": 16,
         "topic": "Percentages & percent change",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A village of 5,000 people sees its men increase 10% and its women increase 15%, so the population becomes 5,600. How many men were there originally?",
         "choices": [
           "2,000",
           "2,500",
           "3,000",
-          "4,000"
+          "4,000",
+          "4,500"
         ],
         "hint": "Let men = x, women = 5000 − x; the total increase is 600.",
         "expl": "Step 1 — \\(0.10x + 0.15(5000-x) = 600\\).\nStep 2 — \\(0.10x + 750 - 0.15x = 600 \\Rightarrow -0.05x = -150\\).\nStep 3 — \\(x = 3000\\).\nAnswer: 3,000 (C).",
@@ -1214,13 +1262,14 @@ window.GMAT_SETS = [
         "n": 17,
         "topic": "Percentages & percent change",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "When the price of petrol rises 40%, a man cuts his consumption by 20%. What is the percent change in his expenditure?",
         "choices": [
           "20% increase",
           "16% increase",
           "12% increase",
-          "40% increase"
+          "40% increase",
+          "44%"
         ],
         "hint": "Expenditure = price × consumption; multiply the factors.",
         "expl": "Step 1 — New expenditure factor \\(=1.40\\times0.80 = 1.12\\).\nStep 2 — That's a 12% increase.\nAnswer: 12% increase (C).",
@@ -1246,13 +1295,14 @@ window.GMAT_SETS = [
         "n": 19,
         "topic": "Overlapping sets (Venn)",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "40% of people read newspaper X, 50% read Y, and 10% read both. What percent read neither?",
         "choices": [
           "10%",
           "15%",
           "20%",
-          "25%"
+          "25%",
+          "30%"
         ],
         "hint": "Use \\(|X\\cup Y| = |X| + |Y| - |X\\cap Y|\\), then subtract from 100%.",
         "expl": "Step 1 — At least one \\(=40\\%+50\\%-10\\% = 80\\%\\).\nStep 2 — Neither \\(=100\\%-80\\% = 20\\%\\).\nAnswer: 20% (C).",
@@ -1262,13 +1312,14 @@ window.GMAT_SETS = [
         "n": 20,
         "topic": "Overlapping sets (Venn)",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "65% of students passed Civics, 60% passed History, and 40% passed both. If 90 students failed both subjects, how many students are there in total?",
         "choices": [
           "600",
           "650",
           "700",
-          "750"
+          "750",
+          "800"
         ],
         "hint": "Find the percent who passed at least one, then the percent who failed both.",
         "expl": "Step 1 — Passed at least one \\(=65\\%+60\\%-40\\% = 85\\%\\).\nStep 2 — Failed both \\(=100\\%-85\\% = 15\\%\\).\nStep 3 — \\(15\\%\\text{ of total} = 90\\Rightarrow \\text{total} = \\frac{90}{0.15} = 600\\).\nAnswer: 600 (A).",
@@ -1286,13 +1337,14 @@ window.GMAT_SETS = [
         "n": 1,
         "topic": "Ratios & proportions",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "If \\(x : y = 2 : 3\\) and \\(2 : x = 4 : 8\\), what is the value of \\(y\\)?",
         "choices": [
           "6",
           "8",
           "4",
-          "12"
+          "12",
+          "14"
         ],
         "hint": "Use the second proportion to find x first.",
         "expl": "Step 1 — From \\(2 : x = 4 : 8\\): \\(4x = 16\\), so \\(x = 4\\).\nStep 2 — Then \\(x : y = 2 : 3\\) gives \\(4 : y = 2 : 3\\), so \\(y = 6\\).\nAnswer: 6 (A).",
@@ -1318,13 +1370,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Ratios & proportions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "What is the least positive integer which, when added to both terms of the ratio \\(5 : 9\\), makes the ratio greater than \\(7 : 10\\)?",
         "choices": [
           "6",
           "8",
           "5",
-          "7"
+          "7",
+          "9"
         ],
         "hint": "Set up (5+x)/(9+x) > 7/10 and solve for x.",
         "expl": "Step 1 — Require \\(\\frac{5+x}{9+x} > \\frac{7}{10}\\).\nStep 2 — Cross-multiply: \\(10(5+x) > 7(9+x)\\Rightarrow 50+10x > 63+7x\\).\nStep 3 — \\(3x > 13\\Rightarrow x > 4.33\\); least integer is 5.\nAnswer: 5 (C).",
@@ -1334,13 +1387,14 @@ window.GMAT_SETS = [
         "n": 4,
         "topic": "Ratios & proportions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The dimensions of a rectangular room, when each is increased by 4 m, are in ratio \\(4 : 3\\); when each is decreased by 4 m, they are in ratio \\(2 : 1\\). The dimensions are:",
         "choices": [
           "6 m and 4 m",
           "12 m and 8 m",
           "16 m and 12 m",
-          "24 m and 16 m"
+          "24 m and 16 m",
+          "30 m and 4 m"
         ],
         "hint": "Write two equations from the two ratio conditions in l and b.",
         "expl": "Step 1 — \\(\\frac{l+4}{b+4} = \\frac{4}{3}\\Rightarrow 3l - 4b = 4\\).\nStep 2 — \\(\\frac{l-4}{b-4} = \\frac{2}{1}\\Rightarrow l - 2b = -4\\).\nStep 3 — Solving: \\(l = 12,\\ b = 8\\).\nAnswer: 12 m and 8 m (B).",
@@ -1350,13 +1404,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Ratios & proportions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The sum of three numbers is 98. If the first to the second is \\(2 : 3\\) and the second to the third is \\(5 : 8\\), the second number is:",
         "choices": [
           "20",
           "30",
           "38",
-          "48"
+          "48",
+          "58"
         ],
         "hint": "Make the shared term (the second) equal before combining.",
         "expl": "Step 1 — Scale so 'second' matches: \\(A:B = 10:15\\), \\(B:C = 15:24\\), so \\(A:B:C = 10:15:24\\).\nStep 2 — \\(10x+15x+24x = 49x = 98\\Rightarrow x = 2\\).\nStep 3 — Second \\(= 15x = 30\\).\nAnswer: 30 (B).",
@@ -1366,13 +1421,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Ratios & proportions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "The ratio of ladies to gents at a party was \\(1 : 2\\); after 2 ladies and 2 gents left, it became \\(1 : 3\\). How many people were originally present?",
         "choices": [
           "6",
           "9",
           "12",
-          "15"
+          "15",
+          "18"
         ],
         "hint": "Let ladies = x, gents = 2x, then apply the change.",
         "expl": "Step 1 — \\(\\frac{x-2}{2x-2} = \\frac{1}{3}\\).\nStep 2 — \\(3x - 6 = 2x - 2\\Rightarrow x = 4\\).\nStep 3 — Total \\(= x + 2x = 4 + 8 = 12\\).\nAnswer: 12 (C).",
@@ -1398,13 +1454,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Mixtures & solutions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "In 45 litres of a mixture, milk and water are in ratio \\(4 : 1\\). How much water must be added to make the ratio \\(3 : 2\\)?",
         "choices": [
           "7.2 L",
           "24 L",
           "15 L",
-          "1.5 L"
+          "1.5 L",
+          "31.8 L"
         ],
         "hint": "The milk amount doesn't change — only water is added.",
         "expl": "Step 1 — Milk \\(= \\frac{4}{5}\\times45 = 36\\) L; water \\(= 9\\) L.\nStep 2 — Add x L water: \\(\\frac{36}{9+x} = \\frac{3}{2}\\).\nStep 3 — \\(72 = 27 + 3x\\Rightarrow x = 15\\).\nAnswer: 15 L (C).",
@@ -1414,13 +1471,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Ratios & proportions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "Zinc and copper are melted in ratio \\(9 : 11\\). What is the weight of the mixture if 28.8 kg of zinc is used?",
         "choices": [
           "58 kg",
           "60 kg",
           "64 kg",
-          "70 kg"
+          "70 kg",
+          "74 kg"
         ],
         "hint": "Zinc is 9 of every 20 parts of the mixture.",
         "expl": "Step 1 — Zinc fraction \\(= \\frac{9}{9+11} = \\frac{9}{20}\\).\nStep 2 — \\(\\frac{9}{20}\\times M = 28.8\\Rightarrow M = 28.8\\times\\frac{20}{9} = 64\\).\nAnswer: 64 kg (C).",
@@ -1462,13 +1520,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Ratios & proportions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The incomes of A and B are in ratio \\(3 : 2\\) and their expenses in ratio \\(5 : 3\\). If each saves $200, what is A's income?",
         "choices": [
           "$1,000",
           "$1,200",
           "$1,500",
-          "$1,800"
+          "$1,800",
+          "$2,100"
         ],
         "hint": "Saving = income − expense; write both savings and set each to 200.",
         "expl": "Step 1 — Incomes \\(3x, 2x\\); expenses \\(5y, 3y\\).\nStep 2 — \\(3x - 5y = 200\\) and \\(2x - 3y = 200\\).\nStep 3 — Subtract: \\(x - 2y = 0\\Rightarrow x = 2y\\); then \\(2x-3y = 4y-3y = y = 200\\), so \\(x = 400\\).\nStep 4 — A's income \\(= 3x = 1200\\).\nAnswer: $1,200 (B).",
@@ -1494,13 +1553,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Ratios & proportions",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "An ice-cream shop sold Vanilla to Chocolate cones in ratio \\(2 : 3\\). Had it sold 4 more Vanilla cones, the ratio would have been \\(3 : 4\\). How many Vanilla cones were sold?",
         "choices": [
           "32",
           "35",
           "42",
-          "48"
+          "48",
+          "54"
         ],
         "hint": "Chocolate is unchanged; write both ratios with the same C.",
         "expl": "Step 1 — \\(\\frac{V}{C} = \\frac{2}{3}\\Rightarrow C = \\frac{3V}{2}\\).\nStep 2 — \\(\\frac{V+4}{C} = \\frac{3}{4}\\Rightarrow 4(V+4) = 3C = 3\\cdot\\frac{3V}{2}\\).\nStep 3 — \\(4V + 16 = 4.5V\\Rightarrow 0.5V = 16\\Rightarrow V = 32\\).\nAnswer: 32 (A).",
@@ -1510,13 +1570,14 @@ window.GMAT_SETS = [
         "n": 15,
         "topic": "Ratios & proportions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "81 is divided into three parts such that \\(\\tfrac12\\) of the first, \\(\\tfrac13\\) of the second and \\(\\tfrac14\\) of the third are all equal. The three parts are:",
         "choices": [
           "36, 27, 18",
           "27, 18, 36",
           "18, 27, 36",
-          "30, 27, 24"
+          "30, 27, 24",
+          "42"
         ],
         "hint": "Set each equal expression to k, then write the parts in terms of k.",
         "expl": "Step 1 — Let \\(\\tfrac12 x = \\tfrac13 y = \\tfrac14 z = k\\), so \\(x = 2k,\\ y = 3k,\\ z = 4k\\).\nStep 2 — \\(x+y+z = 9k = 81\\Rightarrow k = 9\\).\nStep 3 — Parts are \\(18, 27, 36\\).\nAnswer: 18, 27, 36 (C).",
@@ -1526,13 +1587,14 @@ window.GMAT_SETS = [
         "n": 16,
         "topic": "Ratios & proportions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "$1,800 is divided among A, B, C so that 4 times A's share = 6 times B's share = 3 times C's share. What is A's share?",
         "choices": [
           "$400",
           "$600",
           "$700",
-          "$800"
+          "$800",
+          "$900"
         ],
         "hint": "Set 4A = 6B = 3C = k and express each share via k.",
         "expl": "Step 1 — \\(4A = 6B = 3C = k\\Rightarrow A = \\frac{k}{4},\\ B = \\frac{k}{6},\\ C = \\frac{k}{3}\\).\nStep 2 — Ratio \\(A:B:C = \\frac{1}{4}:\\frac{1}{6}:\\frac{1}{3} = 3:2:4\\).\nStep 3 — A \\(= \\frac{3}{9}\\times1800 = 600\\).\nAnswer: $600 (B).",
@@ -1566,13 +1628,14 @@ window.GMAT_SETS = [
         "n": 2,
         "topic": "Simple & compound interest",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A sum lent at simple interest amounts to $720 after 2 years and to $1,020 after a further 5 years. Find the sum and the rate.",
         "choices": [
           "$500, 10%",
           "$600, 10%",
           "$500, 12%",
-          "$600, 12%"
+          "$600, 12%",
+          "$700%"
         ],
         "hint": "The $300 over 5 years is interest; scale down to find yearly interest.",
         "expl": "Step 1 — SI for 5 years \\(= 1020 - 720 = 300\\), so SI/year \\(= 60\\).\nStep 2 — SI for 2 years \\(= 120\\); principal \\(= 720 - 120 = 600\\).\nStep 3 — Rate \\(= \\frac{120\\times100}{600\\times2} = 10\\%\\).\nAnswer: $600, 10% (B).",
@@ -1582,13 +1645,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Simple & compound interest",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A sum was put at simple interest for 4 years. Had the rate been 2% higher, it would have earned $56 more. Find the sum.",
         "choices": [
           "$500",
           "$600",
           "$700",
-          "$800"
+          "$800",
+          "$900"
         ],
         "hint": "Extra interest = P × (extra rate) × time ÷ 100.",
         "expl": "Step 1 — Extra interest \\(= \\frac{P\\times2\\times4}{100} = 56\\).\nStep 2 — \\(\\frac{8P}{100} = 56\\Rightarrow P = 700\\).\nAnswer: $700 (C).",
@@ -1598,13 +1662,14 @@ window.GMAT_SETS = [
         "n": 4,
         "topic": "Simple & compound interest",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "The simple interest on a sum is \\(\\tfrac{16}{25}\\) of the sum. If the rate percent and the number of years are equal, find the rate.",
         "choices": [
           "8% for 8 years",
           "6% for 6 years",
           "10% for 10 years",
-          "12% for 12 years"
+          "12% for 12 years",
+          "14%"
         ],
         "hint": "With rate = time = R, SI = P·R²/100.",
         "expl": "Step 1 — \\(\\frac{16}{25}P = \\frac{P\\cdot R\\cdot R}{100}\\).\nStep 2 — \\(R^2 = \\frac{1600}{25} = 64\\Rightarrow R = 8\\).\nStep 3 — So rate 8% and time 8 years.\nAnswer: 8% for 8 years (A).",
@@ -1614,13 +1679,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Simple & compound interest",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A person borrowed $2,500 in two parts, one at 5% p.a. and the other at 7% p.a. The total simple interest over 2 years was $275. How much was borrowed at 7%?",
         "choices": [
           "$600",
           "$625",
           "$650",
-          "$675"
+          "$675",
+          "$700"
         ],
         "hint": "Let the 5% part be x; write both interests over 2 years.",
         "expl": "Step 1 — \\(\\frac{x\\cdot5\\cdot2}{100} + \\frac{(2500-x)\\cdot7\\cdot2}{100} = 275\\).\nStep 2 — \\(10x + 14(2500-x) = 27500\\Rightarrow -4x = -7500\\Rightarrow x = 1875\\).\nStep 3 — At 7%: \\(2500 - 1875 = 625\\).\nAnswer: $625 (B).",
@@ -1662,13 +1728,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Simple & compound interest",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "$13,900 is split between scheme A (14% p.a.) and scheme B (11% p.a.) at simple interest. If the total interest over 2 years is $3,508, how much was invested in scheme B?",
         "choices": [
           "$6,400",
           "$6,500",
           "$7,200",
-          "$7,500"
+          "$7,500",
+          "$7,800"
         ],
         "hint": "Let A's amount be x; the rest is in B.",
         "expl": "Step 1 — \\(\\frac{x\\cdot14\\cdot2}{100} + \\frac{(13900-x)\\cdot11\\cdot2}{100} = 3508\\).\nStep 2 — \\(28x + 22(13900-x) = 350800\\Rightarrow 6x = 45000\\Rightarrow x = 7500\\).\nStep 3 — Scheme B \\(= 13900 - 7500 = 6400\\).\nAnswer: $6,400 (A).",
@@ -1678,13 +1745,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Simple & compound interest",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "$2,600 is invested at 4%, 6% and 8% p.a. (simple interest) so that the interest from each is the same after one year. How much was invested at 4%?",
         "choices": [
           "$200",
           "$600",
           "$800",
-          "$1,200"
+          "$1,200",
+          "$1600"
         ],
         "hint": "Equal interest at equal time means the amounts are inversely proportional to the rates.",
         "expl": "Step 1 — Equal interest ⟹ amounts \\(\\propto \\frac{1}{4} : \\frac{1}{6} : \\frac{1}{8} = 6 : 4 : 3\\).\nStep 2 — Total parts \\(= 13\\); the 4% share is the largest, \\(\\frac{6}{13}\\times2600 = 1200\\).\nAnswer: $1,200 (D).",
@@ -1694,13 +1762,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Simple & compound interest",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "$12,000 is invested at 10% p.a. and another amount at 20% p.a. (simple interest). If the blended return on the whole is 14% p.a., what is the total amount invested?",
         "choices": [
           "$20,000",
           "$22,000",
           "$24,000",
-          "$25,000"
+          "$25,000",
+          "$27,000"
         ],
         "hint": "Use alligation on the rates: distances from 14% give the amount ratio.",
         "expl": "Step 1 — Alligation: 10% and 20% around 14% give ratio \\((20-14):(14-10) = 6:4 = 3:2\\).\nStep 2 — The 10% part (3 parts) is $12,000, so 1 part \\(= 4000\\); 20% part (2 parts) \\(= 8000\\).\nStep 3 — Total \\(= 12000 + 8000 = 20000\\).\nAnswer: $20,000 (A).",
@@ -1710,13 +1779,14 @@ window.GMAT_SETS = [
         "n": 11,
         "topic": "Simple & compound interest",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "If the difference between simple and compound interest for 2 years on a sum at 5% p.a. is $6, find the sum.",
         "choices": [
           "$2,200",
           "$2,400",
           "$2,600",
-          "$2,000"
+          "$2,000",
+          "$2,800"
         ],
         "hint": "For 2 years, CI − SI \\(= P\\left(\\frac{r}{100}\\right)^2\\).",
         "expl": "Step 1 — \\(P\\left(\\frac{5}{100}\\right)^2 = 6\\).\nStep 2 — \\(\\frac{P}{400} = 6\\Rightarrow P = 2400\\).\nAnswer: $2,400 (B).",
@@ -1726,13 +1796,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Simple & compound interest",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The difference between compound and simple interest on $4,000 for 2 years at 5% p.a. (compounded yearly) is:",
         "choices": [
           "$20",
           "$10",
           "$50",
-          "$60"
+          "$60",
+          "$70"
         ],
         "hint": "Same shortcut: \\(P(r/100)^2\\).",
         "expl": "Step 1 — \\(4000\\left(\\frac{5}{100}\\right)^2 = 4000\\times0.0025\\).\nStep 2 — \\(= 10\\).\nAnswer: $10 (B).",
@@ -1742,13 +1813,14 @@ window.GMAT_SETS = [
         "n": 13,
         "topic": "Simple & compound interest",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A sum placed at compound interest doubles itself in 5 years. In how many years will it become 8 times itself?",
         "choices": [
           "15 years",
           "20 years",
           "25 years",
-          "30 years"
+          "30 years",
+          "35 years"
         ],
         "hint": "8 = 2³, and each doubling takes 5 years.",
         "expl": "Step 1 — Doubling takes 5 years, and \\(8 = 2^3\\).\nStep 2 — So three doublings \\(= 3\\times5 = 15\\) years.\nAnswer: 15 years (A).",
@@ -1758,13 +1830,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Simple & compound interest",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A sum doubles itself in 8 years under simple interest. What is the rate per annum?",
         "choices": [
           "10%",
           "12.5%",
           "15%",
-          "20%"
+          "20%",
+          "23%"
         ],
         "hint": "Doubling means the interest equals the principal.",
         "expl": "Step 1 — Interest \\(= P\\) over 8 years: \\(P = \\frac{P\\cdot R\\cdot8}{100}\\).\nStep 2 — \\(R = \\frac{100}{8} = 12.5\\%\\).\nAnswer: 12.5% (B).",
@@ -1774,13 +1847,14 @@ window.GMAT_SETS = [
         "n": 15,
         "topic": "Simple & compound interest",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "The compound interest on a sum for the 4th year at 8% p.a. is $486. What was the compound interest for the 3rd year on the same sum?",
         "choices": [
           "$450",
           "$475",
           "$456",
-          "$500"
+          "$500",
+          "$519"
         ],
         "hint": "Each year's CI is (1 + r) times the previous year's CI.",
         "expl": "Step 1 — Year-on-year, CI grows by the factor \\(1.08\\).\nStep 2 — 3rd-year CI \\(= \\frac{486}{1.08} = 450\\).\nAnswer: $450 (A).",
@@ -1798,13 +1872,14 @@ window.GMAT_SETS = [
         "n": 1,
         "topic": "Profit, loss & discount",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A cycle bought for $1,600 was sold for $1,400. What is the loss percent?",
         "choices": [
           "12.5%",
           "12%",
           "14%",
-          "10%"
+          "10%",
+          "15.5%"
         ],
         "hint": "Loss% is on the cost price.",
         "expl": "Step 1 — Loss \\(= 1600 - 1400 = 200\\).\nStep 2 — Loss% \\(= \\frac{200}{1600}\\times100 = 12.5\\%\\).\nAnswer: 12.5% (A).",
@@ -1814,13 +1889,14 @@ window.GMAT_SETS = [
         "n": 2,
         "topic": "Profit, loss & discount",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "By selling a table for $330 a trader gains 10%. What is the cost price?",
         "choices": [
           "$300",
           "$297",
           "$303",
-          "$320"
+          "$320",
+          "$323"
         ],
         "hint": "SP = CP × (1 + gain%); solve for CP.",
         "expl": "Step 1 — \\(CP = \\frac{100}{100+10}\\times330 = \\frac{100}{110}\\times330\\).\nStep 2 — \\(= 300\\).\nAnswer: $300 (A).",
@@ -1830,13 +1906,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Profit, loss & discount",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A sells a bicycle to B at 20% profit, and B sells it to C at 25% profit. If C pays $225, what did A pay?",
         "choices": [
           "$140",
           "$160",
           "$150",
-          "$180"
+          "$180",
+          "$190"
         ],
         "hint": "Divide back through each profit factor.",
         "expl": "Step 1 — For B→C: B's cost \\(= \\frac{225}{1.25} = 180\\).\nStep 2 — For A→B: A's cost \\(= \\frac{180}{1.20} = 150\\).\nAnswer: $150 (C).",
@@ -1846,13 +1923,14 @@ window.GMAT_SETS = [
         "n": 4,
         "topic": "Profit, loss & discount",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "Some articles were bought at 6 for $5 and sold at 5 for $6. What is the gain percent?",
         "choices": [
           "20%",
           "25%",
           "36%",
-          "44%"
+          "44%",
+          "52%"
         ],
         "hint": "Find cost and selling price per article, or take LCM of quantities.",
         "expl": "Step 1 — CP per article \\(= \\frac{5}{6}\\); SP per article \\(= \\frac{6}{5}\\).\nStep 2 — Gain% \\(= \\frac{6/5 - 5/6}{5/6}\\times100 = \\frac{11/30}{25/30}\\times100\\).\nStep 3 — \\(= \\frac{11}{25}\\times100 = 44\\%\\).\nAnswer: 44% (D).",
@@ -1910,13 +1988,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Profit, loss & discount",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "What single discount is equivalent to successive discounts of 15% and 20%?",
         "choices": [
           "32%",
           "35%",
           "30%",
-          "33%"
+          "33%",
+          "37%"
         ],
         "hint": "Combine with \\(a + b - \\frac{ab}{100}\\), or multiply the surviving fractions.",
         "expl": "Step 1 — Surviving fraction \\(= 0.85\\times0.80 = 0.68\\).\nStep 2 — So the discount is \\(1 - 0.68 = 0.32 = 32\\%\\).\nAnswer: 32% (A).",
@@ -1926,13 +2005,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Profit, loss & discount",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "After a 12% discount on the marked price, an article sells for $880. What is the marked price?",
         "choices": [
           "$990",
           "$1,000",
           "$1,024",
-          "$950"
+          "$950",
+          "$1048"
         ],
         "hint": "$880 is 88% of the marked price.",
         "expl": "Step 1 — \\(0.88\\times MP = 880\\).\nStep 2 — \\(MP = \\frac{880}{0.88} = 1000\\).\nAnswer: $1,000 (B).",
@@ -1942,13 +2022,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Profit, loss & discount",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A shopkeeper gives a 10% discount and still makes a 26% profit. If an article is marked $280, what did it cost him?",
         "choices": [
           "$210",
           "$200",
           "$220",
-          "$190"
+          "$190",
+          "$230"
         ],
         "hint": "Find the selling price after discount, then work back through the profit.",
         "expl": "Step 1 — SP \\(= 0.90\\times280 = 252\\).\nStep 2 — \\(CP = \\frac{252}{1.26} = 200\\).\nAnswer: $200 (B).",
@@ -2022,13 +2103,14 @@ window.GMAT_SETS = [
         "n": 15,
         "topic": "Profit, loss & discount",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "The sale price of an article, including 10% sales tax, is $616. If the shopkeeper made a 12% profit, what was the cost price?",
         "choices": [
           "$500",
           "$550",
           "$480",
-          "$560"
+          "$560",
+          "$580"
         ],
         "hint": "$616 = CP × (1 + profit) × (1 + tax).",
         "expl": "Step 1 — \\(CP\\times1.12\\times1.10 = 616\\).\nStep 2 — \\(CP\\times1.232 = 616\\Rightarrow CP = \\frac{616}{1.232} = 500\\).\nAnswer: $500 (A).",
@@ -2046,13 +2128,14 @@ window.GMAT_SETS = [
         "n": 1,
         "topic": "Speed, distance & time",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "Over a distance of 540 km, increasing the speed by 3 km/h saves 2 hours. What is the new (increased) speed?",
         "choices": [
           "30 km/h",
           "40 km/h",
           "50 km/h",
-          "45 km/h"
+          "45 km/h",
+          "55 km/h"
         ],
         "hint": "Let original speed be S; write time = 540/S for both cases.",
         "expl": "Step 1 — \\(\\frac{540}{S} - \\frac{540}{S+3} = 2\\).\nStep 2 — Solving gives \\(S = 27\\).\nStep 3 — New speed \\(= 27 + 3 = 30\\) km/h.\nAnswer: 30 km/h (A).",
@@ -2094,13 +2177,14 @@ window.GMAT_SETS = [
         "n": 4,
         "topic": "Speed, distance & time",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "If Gopal walked at 10 km/h instead of 7 km/h, he would cover 30 km more in the same time. How far does he actually travel at 7 km/h?",
         "choices": [
           "50 km",
           "60 km",
           "70 km",
-          "80 km"
+          "80 km",
+          "90 km"
         ],
         "hint": "The 3 km/h extra over the same time accounts for the 30 km.",
         "expl": "Step 1 — Extra distance \\(= (10-7)\\times t = 30\\), so \\(t = 10\\) h.\nStep 2 — Actual distance \\(= 7\\times10 = 70\\) km.\nAnswer: 70 km (C).",
@@ -2110,13 +2194,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Speed, distance & time",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "Over 540 km, Car A takes 6 hours more than Car B, and their speed ratio is \\(3 : 5\\). What is Car B's speed?",
         "choices": [
           "80 km/h",
           "60 km/h",
           "50 km/h",
-          "70 km/h"
+          "70 km/h",
+          "90 km/h"
         ],
         "hint": "Speed ratio 3:5 means time ratio 5:3.",
         "expl": "Step 1 — Time ratio \\(= 5 : 3\\), difference \\(= 2\\) parts \\(= 6\\) h, so 1 part \\(= 3\\) h.\nStep 2 — B's time \\(= 3\\times3 = 9\\) h; B's speed \\(= \\frac{540}{9} = 60\\) km/h.\nAnswer: 60 km/h (B).",
@@ -2126,13 +2211,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Speed, distance & time",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A truck's speed is 30% less than a bus's, and their average speed (over equal distances) is 35 km/h. What is the truck's speed?",
         "choices": [
           "59.5 km/h",
           "60 km/h",
           "31.5 km/h",
-          "25.7 km/h"
+          "25.7 km/h",
+          "65.8 km/h"
         ],
         "hint": "Equal distances → average = harmonic mean of the two speeds.",
         "expl": "Step 1 — Speeds in ratio \\(7 : 10\\), say \\(7s\\) and \\(10s\\).\nStep 2 — Harmonic mean \\(= \\frac{2\\cdot7s\\cdot10s}{17s} = \\frac{140s}{17} = 35\\Rightarrow s = 8.5\\).\nStep 3 — Truck \\(= 7s = 59.5\\) km/h.\nAnswer: 59.5 km/h (A).",
@@ -2142,13 +2228,14 @@ window.GMAT_SETS = [
         "n": 7,
         "topic": "Speed, distance & time",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "Naval walks at 3 km/h for 3.5 hours, then at 5.5 km/h for 3 hours. What is his average speed for the whole journey?",
         "choices": [
           "3.5 km/h",
           "7.15 km/h",
           "4.15 km/h",
-          "6.35 km/h"
+          "6.35 km/h",
+          "8.0 km/h"
         ],
         "hint": "Total distance ÷ total time — never just average the two speeds.",
         "expl": "Step 1 — Distances: \\(3\\times3.5 = 10.5\\) and \\(5.5\\times3 = 16.5\\); total \\(= 27\\) km.\nStep 2 — Total time \\(= 6.5\\) h; average \\(= \\frac{27}{6.5} \\approx 4.15\\) km/h.\nAnswer: 4.15 km/h (C).",
@@ -2158,13 +2245,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Speed, distance & time",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A driver's actual speed is 45 km/h, but due to traffic he drives at 36 km/h and takes 2 hours longer. What is the total distance?",
         "choices": [
           "360 km",
           "450 km",
           "180 km",
-          "330 km"
+          "330 km",
+          "540 km"
         ],
         "hint": "Speed ratio 45:36 = 5:4, so time ratio 4:5.",
         "expl": "Step 1 — Time ratio \\(= 4 : 5\\), difference \\(1\\) part \\(= 2\\) h.\nStep 2 — Actual time \\(= 4\\times2 = 8\\) h; distance \\(= 45\\times8 = 360\\) km.\nAnswer: 360 km (A).",
@@ -2174,13 +2262,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Speed, distance & time",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "Two bikes travel toward each other at 10 km/h and 12 km/h, starting 396 km apart. After how many hours do they meet?",
         "choices": [
           "10 hours",
           "18 hours",
           "16 hours",
-          "17 hours"
+          "17 hours",
+          "19 hours"
         ],
         "hint": "Approaching each other means speeds add (relative speed).",
         "expl": "Step 1 — Relative speed \\(= 10 + 12 = 22\\) km/h.\nStep 2 — Time \\(= \\frac{396}{22} = 18\\) h.\nAnswer: 18 hours (B).",
@@ -2190,13 +2279,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Speed, distance & time",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "Driving at 20 km/h, Arjun reaches the office 5 minutes early; at 16 km/h he arrives 5 minutes late. What is the on-time travel duration?",
         "choices": [
           "15 minutes",
           "35 minutes",
           "40 minutes",
-          "45 minutes"
+          "45 minutes",
+          "50 minutes"
         ],
         "hint": "Speed ratio 20:16 = 5:4 → time ratio 4:5; the gap is 10 minutes.",
         "expl": "Step 1 — Time ratio \\(= 4 : 5\\); the difference (1 part) equals \\(5 + 5 = 10\\) min.\nStep 2 — Faster time \\(= 4\\times10 = 40\\) min; on-time \\(= 40 + 5 = 45\\) min.\nAnswer: 45 minutes (D).",
@@ -2206,13 +2296,14 @@ window.GMAT_SETS = [
         "n": 11,
         "topic": "Speed, distance & time",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "Sumit takes 2 hours less to cover 160 km when he increases his speed by 4 km/h. How long does the (original) trip take?",
         "choices": [
           "10 hours",
           "12 hours",
           "9 hours",
-          "13 hours"
+          "13 hours",
+          "14 hours"
         ],
         "hint": "Let original speed S, time T = 160/S; write the faster case too.",
         "expl": "Step 1 — \\(S = \\frac{160}{T}\\) and \\(S + 4 = \\frac{160}{T-2}\\).\nStep 2 — Solving gives \\(S = 16,\\ T = 10\\) h.\nAnswer: 10 hours (A).",
@@ -2222,13 +2313,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Speed, distance & time",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A ship at 80% of its usual speed takes 10 minutes longer to cover 480 km. What is its usual speed?",
         "choices": [
           "240 km/h",
           "480 km/h",
           "720 km/h",
-          "360 km/h"
+          "360 km/h",
+          "840 km/h"
         ],
         "hint": "80% speed → time ratio 4:5; the extra 1 part is 10 minutes.",
         "expl": "Step 1 — Time ratio usual:slow \\(= 4 : 5\\); 1 part \\(= 10\\) min, so usual time \\(= 40\\) min \\(= \\frac{2}{3}\\) h.\nStep 2 — Usual speed \\(= \\frac{480}{2/3} = 720\\) km/h.\nAnswer: 720 km/h (C).",
@@ -2238,13 +2330,14 @@ window.GMAT_SETS = [
         "n": 13,
         "topic": "Speed, distance & time",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A bus starts at 45 km/h and its speed increases by 10% each subsequent hour. How far does it travel in 3 hours?",
         "choices": [
           "140.95 km",
           "145.95 km",
           "148.95 km",
-          "150.95 km"
+          "150.95 km",
+          "153.95 km"
         ],
         "hint": "Add each hour's distance: 45, then 45×1.1, then that ×1.1.",
         "expl": "Step 1 — Hour 1: 45; hour 2: \\(49.5\\); hour 3: \\(54.45\\).\nStep 2 — Total \\(= 45 + 49.5 + 54.45 = 148.95\\) km.\nAnswer: 148.95 km (C).",
@@ -2254,13 +2347,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Speed, distance & time",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A train's speed is 20% more than a bus's. Over 120 km each, the train takes 30 minutes less than the bus. What is the bus's speed?",
         "choices": [
           "20 km/h",
           "40 km/h",
           "60 km/h",
-          "50 km/h"
+          "50 km/h",
+          "70 km/h"
         ],
         "hint": "Speed ratio bus:train = 5:6, so time ratio = 6:5.",
         "expl": "Step 1 — Time ratio bus:train \\(= 6 : 5\\); difference (1 part) \\(= 30\\) min \\(= 0.5\\) h.\nStep 2 — Bus time \\(= 6\\times0.5 = 3\\) h; bus speed \\(= \\frac{120}{3} = 40\\) km/h.\nAnswer: 40 km/h (B).",
@@ -2270,13 +2364,14 @@ window.GMAT_SETS = [
         "n": 15,
         "topic": "Speed, distance & time",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "P's speed is 50% of Q's, and P takes 4 hours longer than Q to cover 120 km. What is the average speed of P and Q together (total distance ÷ total time)?",
         "choices": [
           "10 km/h",
           "40 km/h",
           "30 km/h",
-          "20 km/h"
+          "20 km/h",
+          "50 km/h"
         ],
         "hint": "Half the speed means double the time; find both times.",
         "expl": "Step 1 — Speeds \\(1 : 2\\Rightarrow\\) times \\(2t : t\\); difference \\(t = 4\\) h.\nStep 2 — P: 8 h, Q: 4 h; each covers 120 km, total \\(= 240\\) km in \\(12\\) h.\nStep 3 — Average \\(= \\frac{240}{12} = 20\\) km/h.\nAnswer: 20 km/h (D).",
@@ -2294,13 +2389,14 @@ window.GMAT_SETS = [
         "n": 1,
         "topic": "Work & rate",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A can do a job in 12 days. A, B and C together finish it in 6 days. If B is half as efficient as A, how many days does C alone need?",
         "choices": [
           "12",
           "16",
           "24",
-          "18"
+          "18",
+          "28"
         ],
         "hint": "Work in daily fractions: rate of C = combined − A − B.",
         "expl": "Step 1 — Rates: A \\(= \\frac{1}{12}\\), combined \\(= \\frac{1}{6}\\), B \\(= \\frac{1}{2}\\cdot\\frac{1}{12} = \\frac{1}{24}\\).\nStep 2 — C \\(= \\frac{1}{6} - \\frac{1}{12} - \\frac{1}{24} = \\frac{4-2-1}{24} = \\frac{1}{24}\\).\nStep 3 — C alone \\(= 24\\) days.\nAnswer: 24 days (C).",
@@ -2326,13 +2422,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Work & rate",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "A alone needs 36 days. B is 1.5 times as efficient as A, and C is twice as efficient as A. How many days do all three together take?",
         "choices": [
           "15",
           "9",
           "12",
-          "8"
+          "8",
+          "18"
         ],
         "hint": "Set total work to a convenient number so each rate is an integer.",
         "expl": "Step 1 — Total \\(= 72\\). Rates: A \\(= 2\\), B \\(= 3\\), C \\(= 4\\) units/day.\nStep 2 — Together \\(= 9\\) units/day; days \\(= \\frac{72}{9} = 8\\).\nAnswer: 8 (D).",
@@ -2358,13 +2455,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A and B together do a job in 30 days. C, working against them, can undo the whole job in 120 days. B and C together take 240 days. How long does A alone take?",
         "choices": [
           "48 days",
           "36 days",
           "60 days",
-          "42 days"
+          "42 days",
+          "66 days"
         ],
         "hint": "Treat C's destruction as a negative rate.",
         "expl": "Step 1 — Total \\(= 240\\): A+B \\(= 8\\), C \\(= -2\\) units/day.\nStep 2 — B+C \\(= 1\\Rightarrow B = 1 - (-2) = 3\\).\nStep 3 — A \\(= 8 - 3 = 5\\); A alone \\(= \\frac{240}{5} = 48\\) days.\nAnswer: 48 days (A).",
@@ -2374,13 +2472,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "P, Q and R finish a job together and are paid $84,000. Alone they would take 12, 15 and 20 days respectively. What is P and Q's combined share?",
         "choices": [
           "$63,000",
           "$56,000",
           "$42,000",
-          "$49,000"
+          "$49,000",
+          "$70,000"
         ],
         "hint": "Pay splits by efficiency (daily rate), not by days.",
         "expl": "Step 1 — Efficiency ratio \\(= \\frac{1}{12}:\\frac{1}{15}:\\frac{1}{20} = 5:4:3\\).\nStep 2 — P+Q share \\(= \\frac{5+4}{12}\\times84000 = \\frac{9}{12}\\times84000\\).\nStep 3 — \\(= 63000\\).\nAnswer: $63,000 (A).",
@@ -2390,13 +2489,14 @@ window.GMAT_SETS = [
         "n": 7,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A, B and C finish a job in 6 days and are paid $480 total. If their efficiencies are in ratio 4 : 5 : 7, what is B's daily pay?",
         "choices": [
           "$25",
           "$30",
           "$20",
-          "$40"
+          "$40",
+          "$45"
         ],
         "hint": "Daily total pay ÷ efficiency share.",
         "expl": "Step 1 — Daily pay \\(= \\frac{480}{6} = 80\\).\nStep 2 — B's share \\(= \\frac{5}{4+5+7}\\times80 = \\frac{5}{16}\\times80 = 25\\).\nAnswer: $25 (A).",
@@ -2406,13 +2506,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "24 men are set to finish a job in 35 days. After 20 days they have done only 50%. How many extra men are needed to finish on time?",
         "choices": [
           "8",
           "10",
           "12",
-          "11"
+          "11",
+          "13"
         ],
         "hint": "The two halves are equal work, so the man-days for each half are equal.",
         "expl": "Step 1 — First half: \\(24\\times20 = 480\\) man-days for 50% of the job.\nStep 2 — The remaining 50% must also equal 480 man-days, now over 15 days: \\((24+x)\\times15 = 480\\).\nStep 3 — \\(24 + x = 32\\Rightarrow x = 8\\).\nAnswer: 8 (A).",
@@ -2422,13 +2523,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "10 men finish a job in 18 days; 15 women finish the same job in 24 days. 5 men and 6 women work for 10 days, then 5 men finish the rest. What is the total number of days?",
         "choices": [
           "30 days",
           "20 days",
           "26 days",
-          "13 days"
+          "13 days",
+          "36 days"
         ],
         "hint": "First convert women into man-equivalents.",
         "expl": "Step 1 — \\(10\\times18 = 15\\times24\\) in the respective units ⟹ \\(1\\) man \\(= 2\\) women.\nStep 2 — So \\(5\\) men + \\(6\\) women \\(= 5 + 3 = 8\\) men-equivalent. Total work \\(= 10\\times18 = 180\\) man-days.\nStep 3 — First 10 days: \\(8\\times10 = 80\\); remaining \\(100\\) by 5 men \\(= 20\\) days.\nStep 4 — Total \\(= 10 + 20 = 30\\) days.\nAnswer: 30 days (A).",
@@ -2438,13 +2540,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Work & rate",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A job would take one man 11 days alone. Starting with one man, a new man joins each day; after the 8th day no more are added. In how many days is 4 times the original job completed?",
         "choices": [
           "11",
           "10",
           "9",
-          "8"
+          "8",
+          "12"
         ],
         "hint": "Day k has k men working (until day 8). Add up the man-days.",
         "expl": "Step 1 — 4× work \\(= 4\\times11 = 44\\) man-days.\nStep 2 — Days 1–8 give \\(1+2+\\dots+8 = 36\\) man-days.\nStep 3 — Remaining \\(8\\) man-days done on day 9 by the 8 men.\nStep 4 — Total \\(= 9\\) days.\nAnswer: 9 (C).",
@@ -2454,13 +2557,14 @@ window.GMAT_SETS = [
         "n": 11,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "Together, Rashmi and Pallavi make a carpet in x days. Alone, Rashmi takes 3 days more than x and Pallavi takes 12 days more than x. How long does Rashmi take alone?",
         "choices": [
           "9 days",
           "6 days",
           "12 days",
-          "8 days"
+          "8 days",
+          "14 days"
         ],
         "hint": "Set 1/(x+3) + 1/(x+12) = 1/x and solve for x.",
         "expl": "Step 1 — \\(\\frac{1}{x+3} + \\frac{1}{x+12} = \\frac{1}{x}\\).\nStep 2 — Clearing gives \\(x^2 = 36\\Rightarrow x = 6\\).\nStep 3 — Rashmi alone \\(= x + 3 = 9\\) days.\nAnswer: 9 days (A).",
@@ -2470,13 +2574,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Work & rate",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A alone can do half a job in 35 days. B takes as long to do one-third of the job as A takes to do one-quarter. How many days do A and B together take for the whole job?",
         "choices": [
           "35 days",
           "40 days",
           "30 days",
-          "60 days"
+          "60 days",
+          "65 days"
         ],
         "hint": "Get A's full time first, then translate B's condition into a rate ratio.",
         "expl": "Step 1 — A does half in 35 days ⟹ whole in 70 days.\nStep 2 — A does ¼ in \\(17.5\\) days; B does ⅓ in \\(17.5\\) days ⟹ B whole \\(= 52.5\\) days.\nStep 3 — Rates ratio A:B \\(= 3:4\\); together \\(\\frac{70\\times3}{7} = 30\\) days.\nAnswer: 30 days (C).",
@@ -2486,13 +2591,14 @@ window.GMAT_SETS = [
         "n": 13,
         "topic": "Work & rate",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "B takes 4 times as long as A and C together; C takes 3 times as long as A and B together. If all three together finish in 20 days, how long does B alone take?",
         "choices": [
           "110 days",
           "80 days",
           "100 days",
-          "90 days"
+          "90 days",
+          "120 days"
         ],
         "hint": "\"B = 4×(A+C)\" in time means B's rate relates to the rest; convert to efficiencies.",
         "expl": "Step 1 — From the two conditions the efficiency ratio works out to A:B:C \\(= 11:4:5\\).\nStep 2 — Total work \\(= 20\\times(11+4+5) = 400\\) units.\nStep 3 — B alone \\(= \\frac{400}{4} = 100\\) days.\nAnswer: 100 days (C).",
@@ -2502,13 +2608,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Work & rate",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A is \\(166\\tfrac23\\%\\) as efficient as B (i.e. 66⅔% more). Working together they complete \\(88\\tfrac89\\%\\) of the job in 10 days. How many days does B alone need for the whole job?",
         "choices": [
           "40",
           "25",
           "30",
-          "35"
+          "35",
+          "45"
         ],
         "hint": "Efficiency ratio A:B = 5:3 → days ratio 3:5.",
         "expl": "Step 1 — A:B efficiency \\(= 5:3\\). Let total \\(= 15k\\): A \\(= 5\\), B \\(= 3\\) units/day, together \\(8\\).\nStep 2 — \\(\\frac{8}{9}\\) of work in 10 days ⟹ \\(8\\times10 = \\frac{8}{9}\\times15k\\Rightarrow k = 6\\).\nStep 3 — B alone \\(= 5k = 30\\) days.\nAnswer: 30 (C).",
@@ -2518,13 +2625,14 @@ window.GMAT_SETS = [
         "n": 15,
         "topic": "Work & rate",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "In 15 minutes Sunder can cut 112 onions, and Subhash is 125% as efficient. Working together, how long do they take to cut 4,200 onions?",
         "choices": [
           "4 h 10 min",
           "4 h 20 min",
           "4 h 50 min",
-          "4 h 15 min"
+          "4 h 15 min",
+          "5 h 10 min"
         ],
         "hint": "Find their combined onions-per-hour rate.",
         "expl": "Step 1 — Subhash cuts \\(1.25\\times112 = 140\\) per 15 min; together \\(252\\) per 15 min.\nStep 2 — Per hour \\(= 252\\times4 = 1008\\) onions.\nStep 3 — Time \\(= \\frac{4200}{1008} = 4\\tfrac16\\) h \\(=\\) 4 h 10 min.\nAnswer: 4 h 10 min (A).",
@@ -2542,13 +2650,14 @@ window.GMAT_SETS = [
         "n": 1,
         "topic": "Weighted averages",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "Of 40 boys, the average weight of 30 of them is 60 kg and of the remaining 10 is 56 kg. What is the average weight of the whole class?",
         "choices": [
           "58.5",
           "58",
           "57",
-          "59"
+          "59",
+          "59.5"
         ],
         "hint": "Weight by group size — total weight ÷ total count.",
         "expl": "Step 1 — Total \\(= 30\\times60 + 10\\times56 = 1800 + 560 = 2360\\).\nStep 2 — Average \\(= \\frac{2360}{40} = 59\\).\nAnswer: 59 (D).",
@@ -2558,13 +2667,14 @@ window.GMAT_SETS = [
         "n": 2,
         "topic": "Mean, median & mode",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The average of six numbers is 3.95. Two of them average 3.4 and another two average 3.85. What is the average of the remaining two?",
         "choices": [
           "4.5",
           "4.6",
           "4.7",
-          "4.8"
+          "4.8",
+          "4.9"
         ],
         "hint": "Work with sums: subtract the known groups' sums from the total.",
         "expl": "Step 1 — Total \\(= 6\\times3.95 = 23.7\\).\nStep 2 — Remaining sum \\(= 23.7 - 2(3.4) - 2(3.85) = 23.7 - 6.8 - 7.7 = 9.2\\).\nStep 3 — Average \\(= \\frac{9.2}{2} = 4.6\\).\nAnswer: 4.6 (B).",
@@ -2574,13 +2684,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Mean, median & mode",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A picnic group averages 16 years. When 20 new people averaging 15 years join, the average becomes 15.5. How many were in the group originally?",
         "choices": [
           "20",
           "18",
           "22",
-          "24"
+          "24",
+          "26"
         ],
         "hint": "Set up total-age equation before and after the join.",
         "expl": "Step 1 — \\(\\frac{16x + 15\\cdot20}{x+20} = 15.5\\).\nStep 2 — \\(16x + 300 = 15.5x + 310\\Rightarrow 0.5x = 10\\).\nStep 3 — \\(x = 20\\).\nAnswer: 20 (A).",
@@ -2590,13 +2701,14 @@ window.GMAT_SETS = [
         "n": 4,
         "topic": "Mean, median & mode",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "The average age of 36 students is 14 years. Adding the teacher raises the average by 1 year. How old is the teacher?",
         "choices": [
           "31",
           "36",
           "51",
-          "48"
+          "48",
+          "56"
         ],
         "hint": "New total (37 people) minus old total gives the teacher's age.",
         "expl": "Step 1 — Teacher \\(= 37\\times15 - 36\\times14 = 555 - 504\\).\nStep 2 — \\(= 51\\).\nAnswer: 51 (C).",
@@ -2606,13 +2718,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Mean, median & mode",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "In his 12th innings a batsman scores 65 and raises his average by 2. What is his average after the 12th innings (he was never 'not out')?",
         "choices": [
           "42",
           "43",
           "44",
-          "45"
+          "45",
+          "46"
         ],
         "hint": "If the new average is x, the previous 11 averaged x−2.",
         "expl": "Step 1 — \\(12x = 11(x-2) + 65\\).\nStep 2 — \\(12x = 11x - 22 + 65\\Rightarrow x = 43\\).\nAnswer: 43 (B).",
@@ -2622,13 +2735,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Mean, median & mode",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "In the first 10 overs the run rate was 3.2. What rate is needed in the remaining 40 overs to reach a target of 282?",
         "choices": [
           "6.25",
           "6.50",
           "6.75",
-          "7.00"
+          "7.00",
+          "7.25"
         ],
         "hint": "Runs still needed ÷ overs remaining.",
         "expl": "Step 1 — Runs so far \\(= 10\\times3.2 = 32\\); needed \\(= 282 - 32 = 250\\).\nStep 2 — Rate \\(= \\frac{250}{40} = 6.25\\).\nAnswer: 6.25 (A).",
@@ -2638,13 +2752,14 @@ window.GMAT_SETS = [
         "n": 7,
         "topic": "Mean, median & mode",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The average attendance for the first 4 days of a week is 30, and for the first 5 days is 32. What was the attendance on the 5th day?",
         "choices": [
           "32",
           "40",
           "38",
-          "36"
+          "36",
+          "42"
         ],
         "hint": "Difference of the two running totals.",
         "expl": "Step 1 — 5-day total \\(= 5\\times32 = 160\\); 4-day total \\(= 4\\times30 = 120\\).\nStep 2 — Day 5 \\(= 160 - 120 = 40\\).\nAnswer: 40 (B).",
@@ -2654,13 +2769,14 @@ window.GMAT_SETS = [
         "n": 8,
         "topic": "Mean, median & mode",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A batsman scores 87 in his 17th innings and raises his average by 3. What is his average after the 17th innings?",
         "choices": [
           "36",
           "39",
           "42",
-          "45"
+          "45",
+          "48"
         ],
         "hint": "Previous 16 innings averaged (x−3) if x is the new average.",
         "expl": "Step 1 — \\(16(x-3) + 87 = 17x\\).\nStep 2 — \\(16x - 48 + 87 = 17x\\Rightarrow x = 39\\).\nAnswer: 39 (B).",
@@ -2670,13 +2786,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Mean, median & mode",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "A student's average is 63 per paper. With 20 more marks in Geography and 2 more in History, the average would be 65. How many papers were there?",
         "choices": [
           "8",
           "9",
           "10",
-          "11"
+          "11",
+          "12"
         ],
         "hint": "The extra 22 marks raise the average by 2 across all papers.",
         "expl": "Step 1 — \\(63x + 22 = 65x\\).\nStep 2 — \\(2x = 22\\Rightarrow x = 11\\).\nAnswer: 11 (D).",
@@ -2686,13 +2803,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Mean, median & mode",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A hostel has 35 students. When 7 more join, daily mess expenses rise by $42 but the average per head drops by $1. What was the original daily expenditure?",
         "choices": [
           "$400",
           "$420",
           "$445",
-          "$465"
+          "$465",
+          "$485"
         ],
         "hint": "Let original average be x; write the new average two ways.",
         "expl": "Step 1 — Original total \\(= 35x\\); new total \\(= 35x + 42\\) over 42 heads at \\(x-1\\).\nStep 2 — \\(35x + 42 = 42(x-1)\\Rightarrow 35x + 42 = 42x - 42\\).\nStep 3 — \\(7x = 84\\Rightarrow x = 12\\); original \\(= 35\\times12 = 420\\).\nAnswer: $420 (B).",
@@ -2718,13 +2836,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Mean, median & mode",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "The average temperature for Mon–Tue–Wed was 55°, and for Tue–Wed–Thu was 60°. If Thursday was 56°, what was Monday's temperature?",
         "choices": [
           "39°",
           "41°",
           "45°",
-          "43°"
+          "43°",
+          "47 °"
         ],
         "hint": "Subtract the overlapping (Tue+Wed) from each triple.",
         "expl": "Step 1 — Mon+Tue+Wed \\(= 165\\); Tue+Wed+Thu \\(= 180\\).\nStep 2 — Tue+Wed \\(= 180 - 56 = 124\\).\nStep 3 — Mon \\(= 165 - 124 = 41\\).\nAnswer: 41° (B).",
@@ -2734,13 +2853,14 @@ window.GMAT_SETS = [
         "n": 13,
         "topic": "Weighted averages",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "One section of 20 students averages 66% and another of 15 students averages 70%. What is the combined average?",
         "choices": [
           "66.7%",
           "67.7%",
           "68.7%",
-          "69.7%"
+          "69.7%",
+          "70.7%"
         ],
         "hint": "Weight each average by its section size.",
         "expl": "Step 1 — \\(\\frac{20\\times66 + 15\\times70}{35} = \\frac{1320 + 1050}{35} = \\frac{2370}{35}\\).\nStep 2 — \\(= 67.7\\%\\).\nAnswer: 67.7% (B).",
@@ -2750,13 +2870,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Weighted averages",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A taxi averages 40 km/h for 60% of a journey's distance, 30 km/h for 20%, and 10 km/h for the last 20%. What is the average speed for the whole journey?",
         "choices": [
           "25 km/h",
           "26 km/h",
           "24 km/h",
-          "30 km/h"
+          "30 km/h",
+          "31 km/h"
         ],
         "hint": "Average speed = total distance ÷ total time; use a convenient total distance.",
         "expl": "Step 1 — For distance D, time \\(= \\frac{0.6D}{40} + \\frac{0.2D}{30} + \\frac{0.2D}{10} = 0.015D + 0.00667D + 0.02D = 0.04167D\\).\nStep 2 — Average \\(= \\frac{D}{0.04167D} = 24\\) km/h.\nAnswer: 24 km/h (C).",
@@ -2806,13 +2927,14 @@ window.GMAT_SETS = [
         "n": 2,
         "topic": "Mixtures & solutions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "6 litres of a 20% alcohol solution are mixed with 4 litres of a 60% alcohol solution. What is the alcohol strength of the mixture?",
         "choices": [
           "80%",
           "40%",
           "36%",
-          "48%"
+          "48%",
+          "88%"
         ],
         "hint": "Total alcohol ÷ total volume.",
         "expl": "Step 1 — Alcohol \\(= 0.20\\times6 + 0.60\\times4 = 1.2 + 2.4 = 3.6\\) L in 10 L.\nStep 2 — Strength \\(= \\frac{3.6}{10}\\times100 = 36\\%\\).\nAnswer: 36% (C).",
@@ -2822,13 +2944,14 @@ window.GMAT_SETS = [
         "n": 3,
         "topic": "Mixtures & solutions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "80 kg of tea at $15/kg is mixed with 20 kg at $20/kg. To earn 25% profit, at what price per kg should the mix be sold?",
         "choices": [
           "$23.75",
           "$22",
           "$20",
-          "$19.20"
+          "$19.20",
+          "$25.50"
         ],
         "hint": "Find the blended cost, then add 25%.",
         "expl": "Step 1 — Cost \\(= \\frac{80\\times15 + 20\\times20}{100} = \\frac{1600}{100} = 16\\).\nStep 2 — SP \\(= 1.25\\times16 = 20\\).\nAnswer: $20 (C).",
@@ -2854,13 +2977,14 @@ window.GMAT_SETS = [
         "n": 5,
         "topic": "Mixtures & solutions",
         "correct": "A",
-        "options": 4,
+        "options": 5,
         "text": "A chemist has 10 litres of a 10% nitric-acid solution. How much water must be added to dilute it to 4% strength?",
         "choices": [
           "15 L",
           "20 L",
           "18 L",
-          "25 L"
+          "25 L",
+          "28 L"
         ],
         "hint": "The amount of acid stays fixed; only water increases.",
         "expl": "Step 1 — Acid \\(= 10\\%\\times10 = 1\\) L (constant).\nStep 2 — \\(4\\%\\times(10 + x) = 1\\Rightarrow 10 + x = 25\\).\nStep 3 — \\(x = 15\\) L.\nAnswer: 15 L (A).",
@@ -2870,13 +2994,14 @@ window.GMAT_SETS = [
         "n": 6,
         "topic": "Mixtures & solutions",
         "correct": "D",
-        "options": 4,
+        "options": 5,
         "text": "How many millilitres of water must be added to 9 ml of aftershave containing 50% alcohol to make it 30% alcohol?",
         "choices": [
           "3",
           "4",
           "5",
-          "6"
+          "6",
+          "7"
         ],
         "hint": "Alcohol amount is fixed; solve for the new total volume.",
         "expl": "Step 1 — Alcohol \\(= 0.50\\times9 = 4.5\\) ml.\nStep 2 — \\(0.30\\times(9 + x) = 4.5\\Rightarrow 9 + x = 15\\).\nStep 3 — \\(x = 6\\) ml.\nAnswer: 6 (D).",
@@ -2886,13 +3011,14 @@ window.GMAT_SETS = [
         "n": 7,
         "topic": "Mixtures & solutions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "55 litres of adulterated milk has milk : water = 7 : 4. How much water must be added to make it 7 : 6?",
         "choices": [
           "5 L",
           "10 L",
           "15 L",
-          "25 L"
+          "25 L",
+          "30 L"
         ],
         "hint": "Milk stays fixed; find the water needed for the new ratio.",
         "expl": "Step 1 — Milk \\(= \\frac{7}{11}\\times55 = 35\\) L; water \\(= 20\\) L.\nStep 2 — For 7 : 6 with milk 35, water \\(= \\frac{6}{7}\\times35 = 30\\) L.\nStep 3 — Add \\(30 - 20 = 10\\) L.\nAnswer: 10 L (B).",
@@ -2918,13 +3044,14 @@ window.GMAT_SETS = [
         "n": 9,
         "topic": "Mixtures & solutions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "A can holds liquids A and B in ratio 7 : 5. When 9 litres are drawn off and the can is refilled with B, the ratio becomes 7 : 9. How many litres of A did the can hold originally?",
         "choices": [
           "10",
           "20",
           "21",
-          "25"
+          "25",
+          "29"
         ],
         "hint": "Removing mixture keeps the A:B ratio; then only B is added.",
         "expl": "Step 1 — Let A \\(= 7x\\), B \\(= 5x\\), total \\(12x\\). Drawing 9 removes \\(\\frac{7}{12}\\cdot9\\) of A.\nStep 2 — A left \\(= 7x - \\frac{63}{12}\\); setting the new ratio \\(\\frac{A}{B}=\\frac{7}{9}\\) solves to \\(x = 3\\).\nStep 3 — A originally \\(= 7\\times3 = 21\\) L.\nAnswer: 21 (C).",
@@ -2934,13 +3061,14 @@ window.GMAT_SETS = [
         "n": 10,
         "topic": "Mixtures & solutions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A jar of whisky is 40% alcohol. Part is replaced by whisky that is 19% alcohol, giving 26% overall. What fraction was replaced?",
         "choices": [
           "1/3",
           "2/3",
           "2/5",
-          "3/5"
+          "3/5",
+          "4 /3"
         ],
         "hint": "Alligation of the two strengths around the final 26%.",
         "expl": "Step 1 — Around mean 26: original (40) is 14 above, added (19) is 7 below.\nStep 2 — Original : added \\(= 7 : 14 = 1 : 2\\).\nStep 3 — Replaced (added) fraction \\(= \\frac{2}{3}\\).\nAnswer: 2/3 (B).",
@@ -2950,13 +3078,14 @@ window.GMAT_SETS = [
         "n": 11,
         "topic": "Mixtures & solutions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "How many kg of custard powder at $40/kg must be mixed with 16 kg at $55/kg so that selling the mix at $60/kg gives 25% profit?",
         "choices": [
           "11 kg",
           "14 kg",
           "12 kg",
-          "20 kg"
+          "20 kg",
+          "22 kg"
         ],
         "hint": "Find the mixture's required cost, then apply alligation.",
         "expl": "Step 1 — Cost of mix \\(= \\frac{60}{1.25} = 48\\).\nStep 2 — Alligation around 48: cheaper(40) : dearer(55) \\(= (55-48):(48-40) = 7:8\\).\nStep 3 — \\(\\frac{40\\text{-powder}}{16} = \\frac{7}{8}\\Rightarrow 40\\text{-powder} = 14\\) kg.\nAnswer: 14 kg (B).",
@@ -2966,13 +3095,14 @@ window.GMAT_SETS = [
         "n": 12,
         "topic": "Mixtures & solutions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "From a 50-litre cask full of milk, 10 litres are drawn and replaced with water. This is done twice. How much milk remains?",
         "choices": [
           "20 litres",
           "32 litres",
           "25 litres",
-          "30 litres"
+          "30 litres",
+          "37 litres"
         ],
         "hint": "Each replacement multiplies the milk by (1 − 10/50).",
         "expl": "Step 1 — Milk left \\(= 50\\left(1 - \\frac{10}{50}\\right)^2 = 50(0.8)^2\\).\nStep 2 — \\(= 50\\times0.64 = 32\\) litres.\nAnswer: 32 litres (B).",
@@ -2982,13 +3112,14 @@ window.GMAT_SETS = [
         "n": 13,
         "topic": "Mixtures & solutions",
         "correct": "C",
-        "options": 4,
+        "options": 5,
         "text": "From a 54-litre vessel full of acid, some is drawn off and replaced with water; the same is repeated once more, leaving 24 litres of pure acid. How much acid was drawn off each time?",
         "choices": [
           "12 L",
           "16 L",
           "18 L",
-          "24 L"
+          "24 L",
+          "28 L"
         ],
         "hint": "Use 54(1 − y/54)² = 24.",
         "expl": "Step 1 — \\(54\\left(1 - \\frac{y}{54}\\right)^2 = 24\\Rightarrow \\left(1 - \\frac{y}{54}\\right)^2 = \\frac{4}{9}\\).\nStep 2 — \\(1 - \\frac{y}{54} = \\frac{2}{3}\\Rightarrow \\frac{y}{54} = \\frac{1}{3}\\).\nStep 3 — \\(y = 18\\) L.\nAnswer: 18 L (C).",
@@ -2998,13 +3129,14 @@ window.GMAT_SETS = [
         "n": 14,
         "topic": "Mixtures & solutions",
         "correct": "B",
-        "options": 4,
+        "options": 5,
         "text": "A tank is filled with A, then refilled with B each time it is half-empty, alternating A, B, A, B. After four fills, what percent of the tank is A-type?",
         "choices": [
           "33.5%",
           "37.5%",
           "40%",
-          "50%"
+          "50%",
+          "54.0%"
         ],
         "hint": "Track A through each half-emptying (each halves the current A).",
         "expl": "Step 1 — Start 100% A. Half-empty + fill B → 50 A. Again + A → 75 A. Again + B → 37.5 A. Again + B → the last fill... tracking gives A = 37.5.\nStep 2 — Working the four steps: 100 → 50 → 75 → 37.5% A.\nAnswer: 37.5% (B).",
@@ -5318,14 +5450,56 @@ window.GMAT_SETS = [
       ],
       "tables": [
         {
-          "head": ["Region", "Q1", "Q2", "Q3", "Q4", "Year"],
-          "rows": [
-            ["North", "120", "150", "130", "200", "600"],
-            ["South", "90", "90", "110", "110", "400"],
-            ["East", "200", "180", "220", "200", "800"],
-            ["West", "50", "70", "80", "100", "300"]
+          "head": [
+            "Region",
+            "Q1",
+            "Q2",
+            "Q3",
+            "Q4",
+            "Year"
           ],
-          "total": ["Total", "460", "490", "540", "610", "2,100"]
+          "rows": [
+            [
+              "North",
+              "120",
+              "150",
+              "130",
+              "200",
+              "600"
+            ],
+            [
+              "South",
+              "90",
+              "90",
+              "110",
+              "110",
+              "400"
+            ],
+            [
+              "East",
+              "200",
+              "180",
+              "220",
+              "200",
+              "800"
+            ],
+            [
+              "West",
+              "50",
+              "70",
+              "80",
+              "100",
+              "300"
+            ]
+          ],
+          "total": [
+            "Total",
+            "460",
+            "490",
+            "540",
+            "610",
+            "2,100"
+          ]
         }
       ]
     },
@@ -5432,25 +5606,129 @@ window.GMAT_SETS = [
         {
           "type": "line",
           "title": "Graph 1 — Average monthly high temperature (°C)",
-          "xLabel": "Month", "yLabel": "°C", "yMax": 35,
+          "xLabel": "Month",
+          "yLabel": "°C",
+          "yMax": 35,
           "points": [
-            { "x": "J", "y": 5 }, { "x": "F", "y": 8 }, { "x": "M", "y": 13 },
-            { "x": "A", "y": 18 }, { "x": "M", "y": 23 }, { "x": "J", "y": 28 },
-            { "x": "J", "y": 30 }, { "x": "A", "y": 29 }, { "x": "S", "y": 24 },
-            { "x": "O", "y": 18 }, { "x": "N", "y": 11 }, { "x": "D", "y": 6 }
+            {
+              "x": "J",
+              "y": 5
+            },
+            {
+              "x": "F",
+              "y": 8
+            },
+            {
+              "x": "M",
+              "y": 13
+            },
+            {
+              "x": "A",
+              "y": 18
+            },
+            {
+              "x": "M",
+              "y": 23
+            },
+            {
+              "x": "J",
+              "y": 28
+            },
+            {
+              "x": "J",
+              "y": 30
+            },
+            {
+              "x": "A",
+              "y": 29
+            },
+            {
+              "x": "S",
+              "y": 24
+            },
+            {
+              "x": "O",
+              "y": 18
+            },
+            {
+              "x": "N",
+              "y": 11
+            },
+            {
+              "x": "D",
+              "y": 6
+            }
           ]
         },
         {
           "type": "scatter",
           "title": "Graph 2 — Ice-cream sales vs. temperature",
-          "xLabel": "Day's high temperature (°C)", "yLabel": "Sales ($)",
-          "xMin": 5, "xMax": 35, "yMax": 700,
+          "xLabel": "Day's high temperature (°C)",
+          "yLabel": "Sales ($)",
+          "xMin": 5,
+          "xMax": 35,
+          "yMax": 700,
           "points": [
-            { "x": 7, "y": 90 }, { "x": 9, "y": 130 }, { "x": 12, "y": 170 },
-            { "x": 14, "y": 210 }, { "x": 16, "y": 250 }, { "x": 18, "y": 300 },
-            { "x": 20, "y": 330 }, { "x": 22, "y": 390 }, { "x": 24, "y": 420 },
-            { "x": 26, "y": 470 }, { "x": 28, "y": 520 }, { "x": 30, "y": 560 },
-            { "x": 32, "y": 610 }, { "x": 19, "y": 270 }, { "x": 25, "y": 450 }
+            {
+              "x": 7,
+              "y": 90
+            },
+            {
+              "x": 9,
+              "y": 130
+            },
+            {
+              "x": 12,
+              "y": 170
+            },
+            {
+              "x": 14,
+              "y": 210
+            },
+            {
+              "x": 16,
+              "y": 250
+            },
+            {
+              "x": 18,
+              "y": 300
+            },
+            {
+              "x": 20,
+              "y": 330
+            },
+            {
+              "x": 22,
+              "y": 390
+            },
+            {
+              "x": 24,
+              "y": 420
+            },
+            {
+              "x": 26,
+              "y": 470
+            },
+            {
+              "x": 28,
+              "y": 520
+            },
+            {
+              "x": 30,
+              "y": 560
+            },
+            {
+              "x": 32,
+              "y": 610
+            },
+            {
+              "x": 19,
+              "y": 270
+            },
+            {
+              "x": 25,
+              "y": 450
+            }
           ]
         }
       ]
@@ -5636,7 +5914,7 @@ window.GMAT_SETS = [
         "choices": [
           "Vendor A",
           "Vendor B",
-          "Vendor C",
+          "Vendor D",
           "Vendor A or C",
           "Vendor C"
         ],

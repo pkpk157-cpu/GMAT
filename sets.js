@@ -4642,7 +4642,7 @@ window.GMAT_SETS = [
         "topic": "Boldface & method of reasoning",
         "correct": "B",
         "options": 5,
-        "text": "Critic: The mayor claims the new subway line will ease the city's traffic. But the line serves only the wealthy suburbs, whose residents rarely use public transit. Therefore the line will do little to reduce traffic. In the critic's argument, the two boldface parts — 'the line serves only the wealthy suburbs, whose residents rarely use public transit' and 'the line will do little to reduce traffic' — play which roles?",
+        "text": "Critic: The mayor claims the new subway line will ease the city's traffic. But [[the line serves only the wealthy suburbs, whose residents rarely use public transit]]. Therefore [[the line will do little to reduce traffic]].\nIn the critic's argument, the two boldface portions play which roles?",
         "choices": [
           "The first is the critic's conclusion; the second is evidence for it.",
           "The first is evidence the critic uses; the second is the critic's conclusion.",
@@ -5314,12 +5314,19 @@ window.GMAT_SETS = [
       "label": "📊 Data",
       "title": "Quarterly sales by region ($ thousands)",
       "paras": [
-        "The table below lists one company's sales, in thousands of dollars, for four regions across four quarters.",
-        "North — Q1: 120, Q2: 150, Q3: 130, Q4: 200. Annual total: 600.",
-        "South — Q1: 90, Q2: 90, Q3: 110, Q4: 110. Annual total: 400.",
-        "East — Q1: 200, Q2: 180, Q3: 220, Q4: 200. Annual total: 800.",
-        "West — Q1: 50, Q2: 70, Q3: 80, Q4: 100. Annual total: 300.",
-        "Company total for the year: 2,100 (thousand dollars)."
+        "The table below lists one company's sales, in thousands of dollars, for four regions across four quarters."
+      ],
+      "tables": [
+        {
+          "head": ["Region", "Q1", "Q2", "Q3", "Q4", "Year"],
+          "rows": [
+            ["North", "120", "150", "130", "200", "600"],
+            ["South", "90", "90", "110", "110", "400"],
+            ["East", "200", "180", "220", "200", "800"],
+            ["West", "50", "70", "80", "100", "300"]
+          ],
+          "total": ["Total", "460", "490", "540", "610", "2,100"]
+        }
       ]
     },
     "questions": [
@@ -5416,11 +5423,36 @@ window.GMAT_SETS = [
     "section": "data",
     "source": "Adapted from your course material",
     "passage": {
-      "label": "📈 Graph description",
-      "title": "Two described graphs",
+      "label": "📈 Graphs",
+      "title": "Temperature through the year, and ice-cream sales",
       "paras": [
-        "Graph 1 (line graph): A city's average monthly high temperature (°C) rises steadily from 5 in January to a peak of 30 in July, then falls steadily back to 6 in December. The curve is roughly symmetric, highest in mid-summer and lowest in mid-winter.",
-        "Graph 2 (scatter plot): Each point is one ice-cream shop; the horizontal axis is the day's high temperature (°C) and the vertical axis is that day's sales ($). The points rise from lower-left to upper-right in a fairly tight band: hotter days show higher sales. A best-fit line would slope upward, and no points appear in the upper-left or lower-right corners."
+        "Graph 1 shows a city's average monthly high temperature. Graph 2 plots one day's ice-cream sales at each of several shops against that day's high temperature."
+      ],
+      "charts": [
+        {
+          "type": "line",
+          "title": "Graph 1 — Average monthly high temperature (°C)",
+          "xLabel": "Month", "yLabel": "°C", "yMax": 35,
+          "points": [
+            { "x": "J", "y": 5 }, { "x": "F", "y": 8 }, { "x": "M", "y": 13 },
+            { "x": "A", "y": 18 }, { "x": "M", "y": 23 }, { "x": "J", "y": 28 },
+            { "x": "J", "y": 30 }, { "x": "A", "y": 29 }, { "x": "S", "y": 24 },
+            { "x": "O", "y": 18 }, { "x": "N", "y": 11 }, { "x": "D", "y": 6 }
+          ]
+        },
+        {
+          "type": "scatter",
+          "title": "Graph 2 — Ice-cream sales vs. temperature",
+          "xLabel": "Day's high temperature (°C)", "yLabel": "Sales ($)",
+          "xMin": 5, "xMax": 35, "yMax": 700,
+          "points": [
+            { "x": 7, "y": 90 }, { "x": 9, "y": 130 }, { "x": 12, "y": 170 },
+            { "x": 14, "y": 210 }, { "x": 16, "y": 250 }, { "x": 18, "y": 300 },
+            { "x": 20, "y": 330 }, { "x": 22, "y": 390 }, { "x": 24, "y": 420 },
+            { "x": 26, "y": 470 }, { "x": 28, "y": 520 }, { "x": 30, "y": 560 },
+            { "x": 32, "y": 610 }, { "x": 19, "y": 270 }, { "x": 25, "y": 450 }
+          ]
+        }
       ]
     },
     "questions": [

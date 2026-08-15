@@ -583,6 +583,24 @@
   .qtop { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; flex-wrap: wrap; }
   .qnum { font-size: 13px; font-weight: 800; color: var(--ink-faint); letter-spacing: .05em; text-transform: uppercase; margin-right: auto; }
   .qtext { font-size: 17px; line-height: 1.5; font-weight: 500; text-wrap: pretty; }
+  /* Boldface spans in CR "boldface" questions — the parts you must identify. */
+  .bf { font-weight: 800; color: var(--ink); background: color-mix(in srgb, var(--accent) 12%, transparent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 3px; }
+
+  /* --- Data Insights: real tables and charts inside the source panel --- */
+  .di-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 4px 0 10px; }
+  .di-table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .di-table th, .di-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: right; white-space: nowrap; }
+  .di-table th { background: color-mix(in srgb, var(--accent) 10%, var(--surface-2)); font-weight: 800; color: var(--ink); }
+  .di-table td:first-child, .di-table th:first-child { text-align: left; font-weight: 700; }
+  .di-table tbody tr:nth-child(even) td { background: var(--surface-2); }
+  .di-table .di-total td { font-weight: 800; border-top: 2px solid color-mix(in srgb, var(--accent) 40%, var(--line)); }
+  .di-chart { margin: 6px 0 12px; }
+  .di-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .di-chart-title { font-size: 13.5px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+  .di-axis { stroke: var(--ink-faint); stroke-width: 1; }
+  .di-grid { stroke: var(--line); stroke-width: 1; }
+  .di-tick { font-size: 9px; fill: var(--ink-faint); font-weight: 700; }
+  .di-lab { font-size: 9.5px; fill: var(--ink-soft); font-weight: 700; }
   .qnote { font-size: 13.5px; color: var(--warn); margin-top: 10px; font-weight: 600; }
   .choices { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
   .choice-wrap { display: flex; align-items: stretch; gap: 7px; }
@@ -1066,7 +1084,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v69";
+  const APP_VERSION = "v70";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1098,6 +1116,9 @@
   function save() { saveRaw(); try { scheduleSyncPush(); } catch (e) {} try { checkAchievements(); } catch (e) {} }
 
   const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  // Question / passage text: escaped, but [[...]] marks a boldface span — the
+  // portions a GMAT "boldface" question asks you to identify.
+  const rich = (s) => esc(s == null ? "" : s).replace(/\[\[([\s\S]+?)\]\]/g, '<b class="bf">$1</b>');
   const dkey = (d) => { const x = d || new Date(); return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); };
   const topicId = (s, subj, t) => `${s}::${subj}::${t}`;
 
@@ -2330,7 +2351,7 @@
     const a = rev.answered[rev.idx], revealed = !!a, pend = rev.pending, elim = rev.elim[rev.idx] || {};
     let h = `<div class="rn-prog"><i style="width:${Math.round(rev.idx/n*100)}%"></i></div><div class="rn-sub">${rev.idx+1} of ${n} · spaced review</div>`;
     h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
-    h += `<div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
+    h += `<div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
       let cls = "", dis = "";
@@ -2470,14 +2491,73 @@
 
   let runSetId = null, runIndex = 0, qStart = 0, qAccum = 0, qPaused = false, qTimer = null, pendingL = null, timedFor = null;
   // Reading-comprehension passage panel (shared by the runner and the session).
+  /* ---- Data Insights: draw real tables and charts from structured data ---- */
+  function diTableHTML(t) {
+    if (!t || !Array.isArray(t.head) || !Array.isArray(t.rows)) return "";
+    const head = `<tr>${t.head.map(h => `<th>${esc(h)}</th>`).join("")}</tr>`;
+    const rows = t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("");
+    const tot = t.total ? `<tr class="di-total">${t.total.map(c => `<td>${esc(c)}</td>`).join("")}</tr>` : "";
+    return `${t.title ? `<div class="di-chart-title">${esc(t.title)}</div>` : ""}<div class="di-table-wrap"><table class="di-table"><thead>${head}</thead><tbody>${rows}${tot}</tbody></table></div>`;
+  }
+  function diChartHTML(c) {
+    if (!c || !Array.isArray(c.points) || !c.points.length) return "";
+    const W = 320, H = 170, L = 34, R = 8, T = 10, B = 26;          // viewBox + plot margins
+    const iw = W - L - R, ih = H - T - B;
+    const ys = c.points.map(p => p.y);
+    const yMax = c.yMax != null ? c.yMax : Math.ceil(Math.max(...ys) * 1.12);
+    const yMin = c.yMin != null ? c.yMin : 0;
+    const sx = (i) => L + (c.points.length === 1 ? iw / 2 : (iw * i) / (c.points.length - 1));
+    const sxBar = (i) => L + (iw * (i + 0.5)) / c.points.length;
+    const sy = (v) => T + ih - ((v - yMin) / (yMax - yMin || 1)) * ih;
+    let g = "";
+    // horizontal grid + y ticks
+    const steps = 4;
+    for (let k = 0; k <= steps; k++) {
+      const v = yMin + ((yMax - yMin) * k) / steps, y = sy(v);
+      g += `<line class="di-grid" x1="${L}" y1="${y.toFixed(1)}" x2="${W - R}" y2="${y.toFixed(1)}"/>`;
+      g += `<text class="di-tick" x="${L - 5}" y="${(y + 3).toFixed(1)}" text-anchor="end">${Math.round(v)}</text>`;
+    }
+    g += `<line class="di-axis" x1="${L}" y1="${T}" x2="${L}" y2="${T + ih}"/><line class="di-axis" x1="${L}" y1="${T + ih}" x2="${W - R}" y2="${T + ih}"/>`;
+    const col = c.color || "var(--accent)";
+    if (c.type === "bar") {
+      const bw = Math.max(6, (iw / c.points.length) * 0.62);
+      c.points.forEach((p, i) => {
+        const x = sxBar(i), y = sy(p.y);
+        g += `<rect x="${(x - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${(T + ih - y).toFixed(1)}" rx="2.5" fill="${col}"/>`;
+        g += `<text class="di-lab" x="${x.toFixed(1)}" y="${T + ih + 13}" text-anchor="middle">${esc(p.x)}</text>`;
+      });
+    } else if (c.type === "scatter") {
+      c.points.forEach(p => { g += `<circle cx="${sx(0) + ((p.x - c.xMin) / (c.xMax - c.xMin)) * iw}" cy="${sy(p.y)}" r="3.6" fill="${col}" opacity=".85"/>`; });
+      for (let k = 0; k <= 4; k++) {
+        const xv = c.xMin + ((c.xMax - c.xMin) * k) / 4, x = L + (iw * k) / 4;
+        g += `<text class="di-lab" x="${x.toFixed(1)}" y="${T + ih + 13}" text-anchor="middle">${Math.round(xv)}</text>`;
+      }
+    } else {                                                          // line
+      const d = c.points.map((p, i) => `${i ? "L" : "M"}${sx(i).toFixed(1)},${sy(p.y).toFixed(1)}`).join(" ");
+      g += `<path d="${d}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+      c.points.forEach((p, i) => {
+        g += `<circle cx="${sx(i).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="3" fill="${col}"/>`;
+        if (c.points.length <= 13) g += `<text class="di-lab" x="${sx(i).toFixed(1)}" y="${T + ih + 13}" text-anchor="middle">${esc(p.x)}</text>`;
+      });
+    }
+    const ax = c.xLabel ? `<text class="di-lab" x="${L + iw / 2}" y="${H - 1}" text-anchor="middle">${esc(c.xLabel)}</text>` : "";
+    const ay = c.yLabel ? `<text class="di-lab" x="${L - 24}" y="${T + ih / 2}" text-anchor="middle" transform="rotate(-90 ${L - 24} ${T + ih / 2})">${esc(c.yLabel)}</text>` : "";
+    return `<div class="di-chart">${c.title ? `<div class="di-chart-title">${esc(c.title)}</div>` : ""}<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(c.title || "chart")}">${g}${ax}${ay}</svg></div>`;
+  }
+
   let passageOpen = false;
   function passageHTML(set) {
     if (!set || !set.passage) return "";
-    const p = set.passage, paras = (p.paras || []).map(t => `<p>${esc(t)}</p>`).join("");
+    const p = set.passage, paras = (p.paras || []).map(t => `<p>${rich(t)}</p>`).join("");
     const title = p.title ? `<div class="rc-ptitle">${esc(p.title)}</div>` : "";
-    const toggle = (p.paras && p.paras.length > 2)
+    const tables = (p.tables || []).map(diTableHTML).join("");
+    const charts = (p.charts || []).map(diChartHTML).join("");
+    const visual = tables + charts;
+    // A chart or table must always be fully visible — never collapse those.
+    const toggle = (!visual && p.paras && p.paras.length > 2)
       ? `<button class="rc-toggle" data-passtoggle="1">${passageOpen ? "Collapse passage ▲" : "Show full passage ▼"}</button>` : "";
-    return `<div class="rc-passage${passageOpen ? " open" : ""}"><div class="rc-head">${esc(p.label || "📖 Passage")}</div><div class="rc-scroll">${title}${paras}</div>${toggle}</div>`;
+    const open = (passageOpen || !!visual) ? " open" : "";
+    return `<div class="rc-passage${open}"><div class="rc-head">${esc(p.label || (visual ? "📊 Source" : "📖 Passage"))}</div><div class="rc-scroll">${title}${paras}${visual}</div>${toggle}</div>`;
   }
   function stopTimer() { if (qTimer) { clearInterval(qTimer); qTimer = null; } }
   function elapsedMs() { if (timedFor == null) return 0; return qAccum + (qPaused ? 0 : Math.max(0, Date.now() - qStart)); }
@@ -2746,7 +2826,7 @@
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
     h += `<div class="qcard" id="qcard">${passageHTML(set)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
-      <div class="qtext">${esc(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
+      <div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
     LET.slice(0, nOpt).forEach((L, i) => {
@@ -2776,7 +2856,10 @@
     }
     h += `</div>`;
     const jump = `<button class="navpos jumpbtn" data-openjump title="Jump to any question">${runIndex+1} / ${total} ▾</button>`;
-    if (practice) {
+    if (total === 1) {
+      // Single question: no Prev/Next/jump to offer — just a way out once answered.
+      h += `<div class="rn-nav" style="justify-content:center">${revealed ? `<button class="navbtn primary" data-close-runner>Done</button>` : `<span class="mode-note" style="margin:0">Pick an option, then Confirm.</span>`}</div>`;
+    } else if (practice) {
       const nextBtn = revealed ? (last ? `<button class="navbtn primary" data-finish>See results</button>` : `<button class="navbtn primary" data-next>Next ›</button>`) : `<button class="navbtn" disabled>Next ›</button>`;
       h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button>${jump}${nextBtn}</div>`;
     } else {
@@ -2800,7 +2883,7 @@
       h += `<div class="revitem"><div class="qrow rev"><button class="qflag small ${isFlagged(set.id,p.n)?"on":""}" data-flag="${p.n}" title="Flag to revisit later">⚑</button><span class="qn">Q${p.n}</span><div class="rev-opts">` +
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
-        (q && q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
+        (q && q.text ? `<div class="rev-q">${rich(q.text)}</div>` : "") +
         (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · <span class="lvl lvl-${q.level}">${q.level}</span>`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
@@ -2813,7 +2896,11 @@
     stopTimer();
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
-    const h = run.submitted ? resultsHTML(set, run, sec, qs) : ((modePrompt || !run.mode) ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
+    // A one-question set has nothing to choose between: go straight into it in
+    // practice mode (question → hint → answer + explanation).
+    const single = total === 1;
+    if (single && run.mode !== "practice") { run.mode = "practice"; setRun(set.id, run); }
+    const h = run.submitted ? resultsHTML(set, run, sec, qs) : ((!single && (modePrompt || !run.mode)) ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
     // In practice mode Nico stays on screen the whole time as your study buddy.
     document.body.classList.toggle("nico-stay", run.mode === "practice" && !run.submitted && !modePrompt);
     document.getElementById("rn-title").textContent = set.title;
@@ -2998,7 +3085,7 @@
     h += `</div>`;
     const elim = sess.elim[sess.idx] || {}, pend = sess.pending;
     h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
-    h += `<div class="qtext">${esc(q.text || ("Question " + q.n))}</div>${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
+    h += `<div class="qtext">${rich(q.text || ("Question " + q.n))}</div>${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
       let cls = pend === L ? "sel" : ""; if (elim[L]) cls += " struck";
@@ -3057,7 +3144,7 @@
       h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${i + 1}</span><div class="rev-opts">` +
         LET.slice(0, nOpt).map(L => { let c = ""; if (L === q.correct) c = "correct"; else if (L === a.chosen && !a.correct) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div><span class="rev-time">⏱ ${fmtClock(a.ms)}</span><span class="rev-mark ${a.correct ? "ok" : "no"}">${a.correct ? "✓" : "✗"}</span></div>` +
-        (q.text ? `<div class="rev-q">${esc(q.text)}</div>` : "") +
+        (q.text ? `<div class="rev-q">${rich(q.text)}</div>` : "") +
         (q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}</div></div>`;
     });

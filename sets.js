@@ -4156,7 +4156,7 @@ window.GMAT_SETS = [
           "the only patients who are misdiagnosed using this scan are patients who lack one or more of the symptoms that are generally associated with appendicitis"
         ],
         "hint": "Negation test: negating the correct choice should break the conclusion.",
-        "expl": "Correct answer: A.",
+        "expl": "Step 1 — Conclusion: the scan lets doctors cut unnecessary surgeries **without** losing any necessary ones.\nStep 2 — The scan is wrong 2% of the time, and a wrong result comes in one of two flavours. A false positive says “appendicitis” when there was none — harmless here, because that patient would have been operated on anyway. A false negative says “no appendicitis” when there really was some — that patient is now sent home, and a necessary surgery is lost.\nStep 3 — So the conclusion only survives if none of the 2% are false negatives, i.e. every misdiagnosis is of the first kind. That is exactly (A).\nStep 4 — Negation test: if the errors were *never* false positives (B), they would all be false negatives and necessary surgeries would be missed — the conclusion collapses, confirming (A) is the required assumption. (C) rules out false positives, which the argument does not need; (D) and (E) describe symptom patterns that never touch the necessary-surgery count.\nAnswer: A.",
         "level": "hard"
       },
       {

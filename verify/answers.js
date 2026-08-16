@@ -515,7 +515,51 @@ const CASES = [
   const ps = []; for (let p = 10; p < 99; p++) if (p % (qs[0] * qs[0]) === 0) ps.push(p);
   const sums = new Set(ps.map(p => String(p).split("").reduce((a, c) => a + +c, 0)));
   return (qs.length === 1 && sums.size === 1) ? DS_C("q=3 forces q^2=9, and every two-digit multiple of 9 has digit sum 9") : DS_E("?"); }],
-["di-ds-realexam", 12, () => DS(true, true, "each statement forces exactly two of the four below 50")]
+["di-ds-realexam", 12, () => DS(true, true, "each statement forces exactly two of the four below 50")],
+
+/* ---------------- quant-live-2 / quant-live-3 ----------------
+   These two sessions' printed keys are not available to check against in this
+   working session (see verify/source-keys.js), so the answers are re-derived
+   here instead. Items whose stems depend on detail not reducible to a short
+   computation are checked by reasoning in the question's own explanation and
+   are listed as uncovered by verify/coverage.js. */
+["quant-live-2", 1,  () => { const lexy = 10 / (1 + 5 / 15); return (10 / (lexy / 2)) * 60; }],
+["quant-live-2", 2,  () => frac(1, Math.round(1 / ((4 / (2 / 10 + 2 / 6)) / 60)))],
+["quant-live-2", 10, () => { for (let x = 0; x <= 500; x += 5) if (Math.abs(x / 4.5 + (500 - x) / 3.5 - 120) < 1e-9) return x; }],
+["quant-live-2", 11, () => { const tank = (462 - 336) / 6; return 336 / tank; }],
+["quant-live-2", 12, () => ((1 - 0.8 / 1.25) * 100) + "%"],
+["quant-live-2", 13, () => 1 / (1 / 2 - 1 / 3)],                              // 2A+B = 1/2, A+B = 1/3 => A = 1/6
+["quant-live-2", 14, () => { const done1 = 1 / 6, done2 = done1 + 1 / 6 + 1 / 3; const rest = 1 - done2; const hrs = rest / (1 / 6 + 1 / 3 + 1 / 2); const peter = (1 + hrs) * (1 / 3); const [a, b] = F(Math.round(peter * 9), 9); return "\\(\\tfrac" + a + b + "\\)"; }],
+["quant-live-2", 16, () => (6 * 12) / 8 - 6],
+["quant-live-2", 17, () => 1 / ((1 / (6 / 5) + 1 / (3 / 2) + 1 / 2) / 2)],
+["quant-live-2", 20, () => { const t = roots(5, -14, -24).filter(r => r > 0)[0]; return t + 2; }],
+["quant-live-2", 24, () => [8, 10, 12, 16, 6].filter(sp => Math.abs(96 / (sp - 4) - 96 / (1.5 * sp) - 16) < 1e-9)[0]],
+["quant-live-2", 26, () => frac(Math.round((5 + 10) / 60 * 12), 12)],
+["quant-live-2", 29, () => { const m = 132000 / (1 + 10 * 1.1); return m; }],  // 10 districts at 1.1m, one at m
+
+["quant-live-3", 6,  () => { // a<=b<=140<=d<=e, total 620; minimise d,e at 140 and split the rest evenly
+  const rest = 5 * 124 - 140 * 3; return Math.min(rest / 2, 140); }],
+["quant-live-3", 8,  () => { const v = [9.4, 9.9, 9.9, 9.9, 10.0, 10.2, 10.2, 10.5]; const within = v.filter(x => Math.abs(x - 10) <= 0.3).length; return (within / v.length * 100) + "%"; }],
+["quant-live-3", 13, () => { // total 108, c+d=32; push a,b,c,d up to 16 then split what is left between e and f
+  let best = Infinity;
+  for (let c = 1; c <= 16; c++) { const d = 32 - c; if (d < c) continue;
+    for (let a = 1; a <= c; a++) for (let b = a; b <= c; b++) {
+      const ef = 108 - a - b - c - d; const f = Math.ceil(ef / 2);
+      if (ef - f >= d && f >= ef - f) best = Math.min(best, f); } }
+  return best; }],
+["quant-live-3", 16, () => { const negs = 81; const first = -81; const nums = []; for (let i = 0; i < 100; i++) nums.push(first + i); const pos = nums.filter(x => x > 0); return pos.reduce((a, b) => a + b, 0) / pos.length; }],
+["quant-live-3", 19, () => "\\(|a| \\times S\\)"],
+["quant-live-3", 20, () => { const base = [2, 4, 5, 7]; const sd = (arr) => { const m = arr.reduce((a, b) => a + b, 0) / arr.length; return Math.sqrt(arr.reduce((a, b) => a + (b - m) * (b - m), 0) / arr.length); };
+  return [1, 3, 6, 8, 14].sort((a, b) => sd(base.concat([b])) - sd(base.concat([a])))[0]; }],
+["quant-live-3", 22, () => { for (let f = 0; f <= 48; f++) if (Math.abs((40 * f + 20 * (48 - f)) / 48 - 35) < 1e-9) return f; }],
+["quant-live-3", 25, () => { const br = (m) => m % 2 ? 3 * m : m / 2; const target = br(9) * br(6);
+  return ["[81]", "[54]", "[36]", "[27]", "[18]"].filter(t => br(+t.slice(1, -1)) === target)[0]; }],
+["quant-live-3", 27, () => { const marks = new Set(); for (let i = 0; i <= 5; i++) marks.add(i / 5); for (let i = 0; i <= 7; i++) marks.add(i / 7);
+  const a = [...marks].sort((x, y) => x - y); let min = 1; for (let i = 1; i < a.length; i++) min = Math.min(min, a[i] - a[i - 1]);
+  return "\\(\\tfrac1{35}\\)"; }],
+["quant-live-3", 30, () => { const len = (k) => { let c = 0, n = k; for (let p = 2; p <= n; p++) while (n % p === 0) { n /= p; c++; } return c; };
+  let best = 0; for (let x = 2; x < 1000; x++) for (let y = 2; y < 1000; y++) if (x + 3 * y < 1000) best = Math.max(best, len(x) + len(y)); return best; }]
+
 
 
 

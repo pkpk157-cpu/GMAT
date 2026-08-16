@@ -1119,7 +1119,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v79";
+  const APP_VERSION = "v80";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2204,7 +2204,10 @@
     extra.forEach(x => {
       const set = base.find(s => s.id === x.setId);
       if (!set || !Array.isArray(set.questions) || !Array.isArray(x.add)) return;
-      x.add.forEach(q => { set.questions.push(Object.assign({ n: set.questions.length + 1 }, q)); });
+      // Number from the highest existing n, not from the count — a base set
+      // whose numbering has gaps would otherwise collide with itself.
+      let next = set.questions.reduce((m, q) => Math.max(m, q.n || 0), 0);
+      x.add.forEach(q => { set.questions.push(Object.assign({ n: ++next }, q)); });
     });
     // Whole new sets (e.g. new RC passages in sets-rc.js) are appended as-is.
     (window.GMAT_SETS_NEW || []).forEach(s => { if (s && Array.isArray(s.questions) && s.questions.length && !base.some(b => b.id === s.id)) base.push(s); });

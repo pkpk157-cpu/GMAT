@@ -3582,23 +3582,6 @@ window.GMAT_SETS = [
         "level": "medium"
       },
       {
-        "n": 3,
-        "topic": "Weaken",
-        "correct": "C",
-        "options": 5,
-        "text": "The percentage of interstate retirees who moved to Florida fell three points over ten years. Since many Florida businesses cater to retirees, this decline will hurt those businesses and Florida's economy. Which most weakens the argument?",
-        "choices": [
-          "Florida attracts more interstate retirees than any other state.",
-          "More people left Florida on retiring last year than ten years ago.",
-          "The number of people who moved to another state on retiring has risen significantly over ten years.",
-          "Such people moved a greater distance on average last year than ten years ago.",
-          "People were more likely to retire to North Carolina last year than ten years ago."
-        ],
-        "hint": "A smaller slice of a much larger pie can still be more pie.",
-        "expl": "If the total number of relocating retirees rose sharply (C), a three-point smaller percentage could still mean more retirees actually moving to Florida — no negative effect.\nAnswer: C.",
-        "level": "medium"
-      },
-      {
         "n": 4,
         "topic": "Weaken",
         "correct": "D",
@@ -3919,40 +3902,6 @@ window.GMAT_SETS = [
         "hint": "What unstated fact must hold for 'the cities will be destroyed' to follow?",
         "expl": "Negate (A): if future technology can divert the rising seas, the cities aren't destroyed and no one is displaced — the conclusion fails. So the argument depends on (A).\nAnswer: A.",
         "level": "hard"
-      },
-      {
-        "n": 3,
-        "topic": "Assumption",
-        "correct": "C",
-        "options": 5,
-        "text": "Utility companies say switching to solar and wind power will give all customers stable energy supplies at low cost. The claim assumes that:",
-        "choices": [
-          "The public will readily accept energy from renewable sources.",
-          "No new supplies of oil and gas will be discovered.",
-          "Weather patterns are consistent and predictable.",
-          "Renewable conversion technology is no more expensive than current technology.",
-          "Energy produced by combustion cannot be made less risky."
-        ],
-        "hint": "Solar and wind depend on something — what must be true for 'stable' supply?",
-        "expl": "Negate (C): if weather is inconsistent and unpredictable, solar and wind output is unreliable, so supplies wouldn't be stable — breaking the conclusion. So (C) is assumed.\nAnswer: C.",
-        "level": "medium"
-      },
-      {
-        "n": 4,
-        "topic": "Assumption",
-        "correct": "D",
-        "options": 5,
-        "text": "Adolescents who play video games regularly are three times as likely to develop carpal tunnel syndrome. A doctor concludes that a federal law banning the sale of video games to minors would help reduce carpal tunnel among adolescents. The argument assumes that:",
-        "choices": [
-          "A majority of legislators would vote for such a ban.",
-          "All adolescents who regularly play video games develop carpal tunnel syndrome.",
-          "Adolescents cannot develop carpal tunnel syndrome from any other activity.",
-          "Parents will not simply purchase video games for their adolescent children.",
-          "Video games provide no benefits to adolescents."
-        ],
-        "hint": "For a sales ban to cut usage, minors must not get the games another way.",
-        "expl": "Negate (D): if parents just buy the games for their kids, the sales ban leaves usage unchanged and carpal tunnel unaffected — the conclusion fails. So (D) is required.\nAnswer: D.",
-        "level": "medium"
       },
       {
         "n": 5,

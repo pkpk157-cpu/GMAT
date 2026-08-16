@@ -132,7 +132,7 @@ window.GMAT_SETS = [
       {
         "n": 8,
         "topic": "Divisibility & remainders",
-        "correct": "D",
+        "correct": "C",
         "options": 4,
         "text": "A number when divided by a divisor left remainder 23. When twice the number was divided by the same divisor the remainder was 11. Find the divisor.",
         "choices": [
@@ -141,8 +141,8 @@ window.GMAT_SETS = [
           "35",
           "data inadequate"
         ],
-        "hint": "Write both conditions as equations and count unknowns vs equations.",
-        "expl": "Step 1 — \\(N=dq_1+23\\) and \\(2N=dq_2+11\\).\nStep 2 — \\(2N=2dq_1+46\\), so remainder \\(46\\bmod d=11 \\Rightarrow d\\mid35,\\ d>23 \\Rightarrow d=35\\).\nStep 3 — But two equations, three unknowns \\((d,q_1,q_2)\\) — not uniquely fixed.\nStep 4 — Key marks it 'data inadequate'. (If a value is required, \\(d=35\\).)\nAnswer: data inadequate (D).",
+        "hint": "The remainder condition forces the divisor to be a factor of a specific number — and to be bigger than 23.",
+        "expl": "Step 1 — \\(N = dq_1 + 23\\), so \\(2N = 2dq_1 + 46\\). The \\(2dq_1\\) part is a multiple of d, so the remainder of \\(2N\\) comes from 46.\nStep 2 — We are told that remainder is 11, so \\(46 - 11 = 35\\) must be a multiple of d, i.e. \\(d \\mid 35\\).\nStep 3 — A remainder of 23 also forces \\(d > 23\\). Of the divisors of 35 — 1, 5, 7, 35 — only 35 clears that.\nStep 4 — Check: \\(N = 23\\) leaves remainder 23 on division by 35, and \\(2N = 46\\) leaves remainder 11. ✓\nStep 5 — So the divisor is uniquely determined; the data is not inadequate.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -349,7 +349,7 @@ window.GMAT_SETS = [
       {
         "n": 21,
         "topic": "Exponent rules",
-        "correct": "A",
+        "correct": "B",
         "options": 5,
         "text": "Find the unit digit in the product \\((2467)^{153}\\times(341)^{72}\\).",
         "choices": [
@@ -360,7 +360,7 @@ window.GMAT_SETS = [
           "10"
         ],
         "hint": "Only the unit digit matters — use the 4-step cycle of the unit digit.",
-        "expl": "Step 1 — Unit digit of \\(2467^{153}\\): 7 cycles \\(7,9,3,1\\); \\(153\\bmod4=1\\to7\\).\nStep 2 — Unit digit of \\(341^{72}=1\\).\nStep 3 — \\(7\\times1=7\\).\nAnswer: 7 (B).",
+        "expl": "Step 1 — Unit digit of \\(2467^{153}\\): 7 cycles \\(7,9,3,1\\); \\(153\\bmod4=1\\to7\\).\nStep 2 — Unit digit of \\(341^{72}=1\\).\nStep 3 — \\(7\\times1=7\\).\nAnswer: B (the unit digit is 7).",
         "level": "medium"
       },
       {
@@ -681,7 +681,7 @@ window.GMAT_SETS = [
           "777"
         ],
         "hint": "These form an arithmetic sequence — use \\(n\\times(\\text{first}+\\text{last})/2\\).",
-        "expl": "Step 1 — Numbers \\(10,17,24,\\dots,94\\) (each \\(7k+3\\)) — 13 terms.\nStep 2 — Sum \\(=13\\times\\frac{10+94}{2}=13\\times52=676\\).\nAnswer: 676 (B).",
+        "expl": "Step 1 — Numbers \\(10,17,24,\\dots,94\\) (each \\(7k+3\\)) — 13 terms.\nStep 2 — Sum \\(=13\\times\\frac{10+94}{2}=13\\times52=676\\).\nAnswer: C (the sum is 676).",
         "level": "medium"
       },
       {
@@ -2212,7 +2212,7 @@ window.GMAT_SETS = [
         "topic": "Speed, distance & time",
         "correct": "A",
         "options": 5,
-        "text": "A truck's speed is 30% less than a bus's, and their average speed (over equal distances) is 35 km/h. What is the truck's speed?",
+        "text": "A truck's speed is 30% less than a bus's, and their average speed (over equal distances) is 70 km/h. What is the truck's speed?",
         "choices": [
           "59.5 km/h",
           "60 km/h",
@@ -2221,7 +2221,7 @@ window.GMAT_SETS = [
           "65.8 km/h"
         ],
         "hint": "Equal distances → average = harmonic mean of the two speeds.",
-        "expl": "Step 1 — Speeds in ratio \\(7 : 10\\), say \\(7s\\) and \\(10s\\).\nStep 2 — Harmonic mean \\(= \\frac{2\\cdot7s\\cdot10s}{17s} = \\frac{140s}{17} = 35\\Rightarrow s = 8.5\\).\nStep 3 — Truck \\(= 7s = 59.5\\) km/h.\nAnswer: 59.5 km/h (A).",
+        "expl": "Step 1 — 30% less means the speeds are in the ratio \\(7 : 10\\); call them \\(7s\\) and \\(10s\\).\nStep 2 — Over equal distances the average is the harmonic mean: \\(\\dfrac{2(7s)(10s)}{7s + 10s} = \\dfrac{140s}{17}\\).\nStep 3 — Setting \\(\\dfrac{140s}{17} = 70\\) gives \\(s = 8.5\\).\nStep 4 — Truck \\(= 7s = 59.5\\) km/h (and the bus is \\(10s = 85\\); check: \\(\\dfrac{2(59.5)(85)}{144.5} = 70\\) ✓).\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -3663,8 +3663,8 @@ window.GMAT_SETS = [
           "Price reductions, achieved by cost-cutting in production, by some of the dominant firms in the carpet market are causing other producers to leave the market altogether.",
           "The carpet market is unlike most markets in that consumers are becoming increasingly resistant to new patterns and styles."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: D. The key to success is to isolate the conclusion, which appears in the last sentence: \"companies producing carpet will be able to gain market share in the carpet market only through purchasing competitors.\" Answer choice (A) is about a decline in profits (nothing to do with the market share) and revenues (market share is about percentage … not absolute revenu",
+        "hint": "Rule out the choices that attack profits or brand crowding — the conclusion is about how share is gained, not about how profitable it is.",
+        "expl": "Step 1 — Conclusion: as the population ages, carpet companies can gain market share **only** by purchasing competitors, not through more aggressive marketing.\nStep 2 — An \"only by X\" conclusion is weakened by showing share moving some other way.\nStep 3 — (D) does exactly that: dominant firms are cutting costs, cutting prices, and driving rival producers out of the market entirely. Their share grows as those rivals exit — no acquisition involved.\nStep 4 — (A) is about profits and revenues after mergers, not about how share is obtained. (B) says producers sell other floor coverings, which is outside the carpet market. (C) says there is no niche left for new brands, which if anything supports the conclusion. (E) resistance to new patterns also supports the claim that marketing cannot win share.\nAnswer: D.",
         "level": "medium"
       },
       {
@@ -3841,8 +3841,8 @@ window.GMAT_SETS = [
           "the power and authority of many agencies created under the New Deal had expanded well beyond the limits defined in their respective agency charters.",
           "most policymakers of that time considered federal regulation of the market to be an emergency measure that, as such, should only be temporary."
         ],
-        "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
-        "expl": "Correct answer: B. The conclusion is that \"many prominent economists of that time sided with those policymakers\", implying that the economists, like the policymakers, \"grew uncomfortable with the amount of power that had been given to the federal government and sought to discontinue many of the agencies created under the New Deal.\" How do we arrive at that conclusion? The agen",
+        "hint": "The economists feared a depression yet still wanted the agencies gone — find the fact that makes those two positions consistent.",
+        "expl": "Step 1 — The stance to strengthen: the economists sided with discontinuing the New Deal agencies, *although* they feared another depression.\nStep 2 — That looks self-defeating only if the agencies would help prevent a depression. So the stance is strengthened by anything showing they would not.\nStep 3 — (B) does that: the agencies were built to deliver financial relief *after* the crash, not to maintain economic stability. Keeping them would not reduce the risk of a new depression, so the economists lose nothing by scrapping them.\nStep 4 — (A) argues against *further* expansion, but the question is about dismantling what already exists. (C) reports public fears, which is not a reason for economists. (D) says the agencies exceeded their charters — a governance objection, not an economic one. (E) describes what policymakers considered, restating their view rather than supporting it.\nAnswer: B.",
         "level": "medium"
       },
       {
@@ -4257,8 +4257,8 @@ window.GMAT_SETS = [
           "If proper measures are not taken, the decline in the student's academic performance may become irreversible.",
           "Fluctuations in academic performance are typical for many students."
         ],
-        "hint": "Negation test: negating the correct choice should break the conclusion.",
-        "expl": "Correct answer: B. Conclusion: A caused B Assumption: B didn't cause A Two things happened:",
+        "hint": "One correlation, one causal conclusion — ask what else could explain the pairing.",
+        "expl": "Step 1 — The advisor sees two things happen together (arguments with parents, falling GPA) and concludes that the family problems **caused** the academic ones.\nStep 2 — Any causal conclusion drawn from a correlation must assume the causation does not run the other way.\nStep 3 — (B) rules out exactly that reversal: the falling GPA was not what the arguments were about. If it were, the family trouble would be the effect, not the cause.\nStep 4 — Negation test: if the decline in GPA *was* the reason for the arguments, the advisor's causal claim collapses — confirming (B) is required.\nStep 5 — (A) supplies a mechanism but is not required; the claim can hold for other reasons. (C) about GPA measuring intellectual ability is irrelevant to causation. (D) is a prediction about the future, not an assumption behind the claim. (E) about typical fluctuations would weaken rather than support the argument.\nAnswer: B.",
         "level": "hard"
       },
       {
@@ -4469,8 +4469,8 @@ window.GMAT_SETS = [
           "whether the computer translation contains errors of grammar and usage that drastically alter the meaning of the text",
           "how the accuracy rate of computer translation programs compares with that of human translators in relation to the users' needs"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: C. The core issue is: Should we use a computer program or human translators to translate a long document? What we know so far is: HUMAN TRANSLATORS - they have different writing styles, which can sometimes be incompatible COMPUTERS - faster than humans - stylistically uniform - 80% accuracy rate The author of this stimulus discusses large translations, which ar",
+        "hint": "Four of these could change your mind about the recommendation. Find the one that cannot.",
+        "expl": "Step 1 — The recommendation: for a long document needing a fast turnaround, use a computer program rather than several human translators.\nStep 2 — The whole case for the computer rests on speed plus **stylistic uniformity**, since splitting the job across humans produces clashing styles.\nStep 3 — (C) asks whether different computer programs each have their own distinct style. That does not matter: a single document is run through a single program, so the output is uniform whatever that program's style happens to be. Resolving it changes nothing — so it is LEAST important.\nStep 4 — Each of the others matters. (A) would remove the human side's only disadvantage. (B) questions whether the 80 percent figure is even meaningful. (D) asks whether the 20 percent of errors distort meaning badly. (E) compares the two accuracy rates against what users actually need.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -7791,8 +7791,8 @@ window.GMAT_SETS = [
           "supporting a recommendation to a group on the basis of the experience of a subset of that group",
           "distinguishing between the actual reasons why a certain group did a particular thing and the best reasons for doing that thing"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "This ad for Exodus telescopes is directed at “any serious amateur astronomer,” and makes its appeal based on the nifty findings of other serious amateur astronomers—a clear-cut case of appealing to a group based on the experience of a subset. (A) Astronomers’ claims are reported but not evaluated as to credibility. Indeed, they are taken on faith. (B) suggests a dichotomy—between testing conditions and “ordinary” conditions—not supported by the passage. The ad seems to assume that the large group of astronomers will work with the Exodus in the same way, and have the same success, that the subgroup did. (C) is just gibberish. There’s no “wide context” here, just some specific test results by amateur astronomers that (it is suggested) are replicable by others. (E) Motive never enters into it.",
+        "hint": "Ask who was tested and who the recommendation is aimed at.",
+        "expl": "The recommendation is aimed at every serious amateur astronomer, but the only evidence is what one subset of them experienced — that is (D). This ad for Exodus telescopes is directed at “any serious amateur astronomer,” and makes its appeal based on the nifty findings of other serious amateur astronomers—a clear-cut case of appealing to a group based on the experience of a subset. (A) Astronomers’ claims are reported but not evaluated as to credibility. Indeed, they are taken on faith. (B) suggests a dichotomy—between testing conditions and “ordinary” conditions—not supported by the passage. The ad seems to assume that the large group of astronomers will work with the Exodus in the same way, and have the same success, that the subgroup did. (C) is just gibberish. There’s no “wide context” here, just some specific test results by amateur astronomers that (it is suggested) are replicable by others. (E) Motive never enters into it.\nAnswer: D.",
         "level": "hard"
       },
       {
@@ -7825,8 +7825,8 @@ window.GMAT_SETS = [
           "asserting that the evidence she cites in support of her suggestion is false",
           "invoking a competing obligation that he judges to override her practical considerations"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "In response to his wife’s desire to sell a painting in order to pay for their daughter’s college education, the husband offers three different reasons for hanging on to the thing, but it’s the third reason that relates most to her argument: the husband sees the family link as an obligation that overrides the practical consideration of paying for college. (A) and (D) The husband doesn’t argue that her solution is either impractical or false: he doesn’t argue that the painting won’t pay for college, only that that shouldn’t be the governing consideration. (B) Since the wife doesn’t say that the painting is lovely (just that it’s valuable), the husband’s criticism is not a slur on her taste. (C) If anything, it’s the husband whose recommendation is based on emotion—sentimental value and family connections and all that—not the wife.",
+        "hint": "The husband gives three reasons — decide which one actually engages his wife's argument.",
+        "expl": "The husband's decisive move is to set a competing obligation — the family tie — above his wife's practical case, which is (E). In response to his wife’s desire to sell a painting in order to pay for their daughter’s college education, the husband offers three different reasons for hanging on to the thing, but it’s the third reason that relates most to her argument: the husband sees the family link as an obligation that overrides the practical consideration of paying for college. (A) and (D) The husband doesn’t argue that her solution is either impractical or false: he doesn’t argue that the painting won’t pay for college, only that that shouldn’t be the governing consideration. (B) Since the wife doesn’t say that the painting is lovely (just that it’s valuable), the husband’s criticism is not a slur on her taste. (C) If anything, it’s the husband whose recommendation is based on emotion—sentimental value and family connections and all that—not the wife.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -8029,8 +8029,8 @@ window.GMAT_SETS = [
           "pointing out a fact that James, in drawing his conclusion, did not take into account",
           "point out that James’s premises are no more plausible than is his conclusion"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The correct choice for a Method of Argument question must match the stimulus point for point. James is jazzed about a new technique for extracting rhodium from nuclear waste. Rhodium is used to make catalytic converters, and catalytic converters in turn make cars cleaner. And so, James argues, nuclear power is helping to make the environment cleaner. How does Marta respond? That’s all fine and good, but the technique is actually still in the preliminary stages and hasn’t been carried out yet. Marta agrees with all James’ evidence, but not his conclusion. (A) Marta has no argument with the evidence James mentions, but with his conclusion. Eliminate. (B) Marta never mentions advocates of nuclear power, so she can hardly be questioning their credibility. She only questions James. Eliminate. (C) accuses James of using circular logic.",
+        "hint": "Marta accepts every fact James gives. So her response cannot be an attack on his evidence.",
+        "expl": "Step 1 — James argues: rhodium can now be extracted from nuclear waste → rhodium makes catalytic converters → converters clean exhaust → therefore nuclear power is helping the environment.\nStep 2 — Marta grants every one of those facts. What she adds is that the technique is still experimental, so none of the rhodium in converters actually comes from nuclear waste yet.\nStep 3 — That is a fact James left out of account, and it undercuts his present-tense conclusion — (D).\nStep 4 — (A) is wrong because Marta disputes none of James's evidence. (B) is wrong: she never mentions nuclear-power advocates. (C) accuses him of circular reasoning, but his conclusion is nowhere among his premises. (E) claims his premises are no more plausible than his conclusion, but Marta treats the premises as true.\nAnswer: D.",
         "level": "medium"
       },
       {

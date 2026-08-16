@@ -3821,7 +3821,7 @@ window.GMAT_SETS = [
           "The information available to consumers on the health risks of smoking remained largely unchanged in the period before and after the tax increase.",
           "Most consumers were unaware that the tax on cigarettes was going to increase.",
           "During the year following the cigarette tax increase, many consumers had less income, in inflation- adjusted dollars, than they had had in the previous year.",
-          "During the year after the tax increase, there was a greater variety of cigarettes on the market than there had been during the previous year. FLAW questions The approach to solving Flaw questions is identical to the approach to solving Weaken questions. The GMAT mainly tests only three types of flaws:"
+          "During the year after the tax increase, there was a greater variety of cigarettes on the market than there had been during the previous year."
         ],
         "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
         "expl": "Correct answer: B. Note: this is an absolutely classic type of problem: it CONFLATES CORRELATION WITH CAUSATION. It takes a statistical correlation between cigarette tax and cigarette consumption, and postulates that one has a CAUSAL effect on the other.",
@@ -3869,40 +3869,6 @@ window.GMAT_SETS = [
     "section": "cr",
     "source": "CR practice — assumption questions",
     "questions": [
-      {
-        "n": 1,
-        "topic": "Assumption",
-        "correct": "D",
-        "options": 5,
-        "text": "Country B plans to power its cars with domestically produced oil and ethanol. The government says this will sharply reduce the country's reliance on foreign oil. The argument relies on the assumption that:",
-        "choices": [
-          "Ethanol is superior to every other alternative energy source.",
-          "Ethanol production will grow faster than oil production.",
-          "Ethanol is suitable for every application that currently uses oil.",
-          "Gasoline consumption will not rise substantially faster than domestic oil-and-ethanol production.",
-          "Ethanol is as fuel-efficient per gallon as gasoline."
-        ],
-        "hint": "Negate each choice; the one that breaks the conclusion is the assumption.",
-        "expl": "You only avoid importing if domestic production keeps up with demand. Negate (D): if consumption rises much faster than production, the country must still import — the conclusion collapses. So (D) is required.\nAnswer: D.",
-        "level": "hard"
-      },
-      {
-        "n": 2,
-        "topic": "Assumption",
-        "correct": "A",
-        "options": 5,
-        "text": "Rising sea levels caused by global warming will, within the next century, destroy major coastal cities and displace millions of people. The argument assumes that:",
-        "choices": [
-          "New technology in the next century will not divert rising seas away from coastal cities.",
-          "Individuals will not become more aware of ways to cut greenhouse-gas emissions.",
-          "Rising seas affect all coastal centers to the same degree.",
-          "Some experts predict more than an eight-degree temperature rise.",
-          "Human activity is the sole cause of global warming."
-        ],
-        "hint": "What unstated fact must hold for 'the cities will be destroyed' to follow?",
-        "expl": "Negate (A): if future technology can divert the rising seas, the cities aren't destroyed and no one is displaced — the conclusion fails. So the argument depends on (A).\nAnswer: A.",
-        "level": "hard"
-      },
       {
         "n": 5,
         "topic": "Assumption",

@@ -4782,8 +4782,8 @@ window.GMAT_SETS = [
           "The first is the mayor's conclusion; the second supports the mayor.",
           "The first is an assumption; the second is a counterexample."
         ],
-        "hint": "Which part is the claim being argued for, and which supports it?",
-        "expl": "The first boldface is the evidence (suburb residents rarely use transit); the second is the critic's conclusion (the line won't reduce traffic). Evidence → conclusion.\nAnswer: B.",
+        "hint": "Find the claim everything else is there to support — that is the conclusion, whoever holds it.",
+        "expl": "Step 1 — Map the argument. The mayor's claim (traffic will ease) is what the critic is attacking, so it is not the critic's own conclusion.\nStep 2 — \"Therefore\" points at the critic's conclusion: the line will do little to reduce traffic. That is the **second** boldface.\nStep 3 — The **first** boldface — the line serves suburbs whose residents rarely use transit — is the reason offered for that conclusion, i.e. evidence.\nStep 4 — So the order is evidence → conclusion, which is (B). (A) reverses the two. (C) is wrong because the critic asserts the second, not rejects it. (D) misassigns the first to the mayor, who never said it. (E) calls the first an assumption, but it is stated outright, not assumed.\nAnswer: B.",
         "level": "medium"
       }
     ]

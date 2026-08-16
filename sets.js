@@ -8086,18 +8086,18 @@ window.GMAT_SETS = [
       {
         "n": 44,
         "topic": "Boldface & method of reasoning",
-        "correct": "A",
+        "correct": "E",
         "options": 5,
-        "text": "43. Lydia: Red squirrels are known to make holes in the Essayist: Knowledge has been defined as a true belief bark of sugar maple trees and to consume the formed by a reliable process. This definition has trees’ sap. Since sugar maple sap is essentially been criticized on the grounds that if someone water with a small concentration of sugar, the had a reliable power of clairvoyance, we would squirrels almost certainly are after either water not accept that person’s claim to know certain or sugar. Water is easily available from other things on the basis of this power. I agree that we sources in places where maple trees grow, so the would reject such claims, but we would do so squirrels would not go to the trouble of chewing because we really do not believe in clairvoyance holes in trees just to get water. Therefore, they are as a reliable process. Were we to believe in probably after the sugar. clairvoyance, we would accept knowledge claims Galina: It must be something other than sugar, because made on the basis of it. the concentration of sugar in the maple sap is Which one of the following most accurately describes so low that a squirrel would need to drink an the essayist’s method of defending the definition against enormous amount of sap to get any significant the objection? amount of sugar.",
+        "text": "Lydia: Red squirrels are known to make holes in the bark of sugar maple trees and to consume the trees' sap. Since sugar maple sap is essentially water with a small concentration of sugar, the squirrels almost certainly are after either water or sugar. Water is easily available from other sources in places where maple trees grow, so the squirrels would not go to the trouble of chewing holes in trees just to get water. Therefore, they are probably after the sugar.\nLydia's argument proceeds by",
         "choices": [
-          "asserting that the objection is based on a belief Lydia’s argument proceeds by about the reliability of clairvoyance rather than (A) dismissing potentially disconfirming data",
+          "dismissing potentially disconfirming data",
           "citing a general rule of which the conclusion is a specific instance",
           "presenting an observed action as part of a larger pattern of behavior",
           "drawing an analogy between well-understood phenomena and an unexplained phenomenon",
-          "rejecting a possible alternative explanation for an observed phenomenon on the nature of knowledge or its definition (B) asserting that the case of clairvoyance is one of knowledge even though we do not really believe in clairvoyance as a reliable process (C) arguing against the assumption that clairvoyance is unreliable (D) explaining that the definition of knowledge is a matter of personal choice (E) demonstrating that the case of clairvoyance is not a case of knowledge and does not fit the"
+          "rejecting a possible alternative explanation for an observed phenomenon"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The objection to the definition is that in the case of clairvoyance, meeting the sufficient condition of “true belief formed by reliable process” would still not make people accept clairvoyant statements as “knowledge”—hence, to the objectors, the conditions aren’t sufficient and the definition of knowledge is faulty. The author’s rebuttal wisely points out that the objection shifts the scope: Clairvoyance isn’t accepted as reliable (if it were, we would accept its claims as knowledge), so the counter objection isn’t on the mark. (A) explains that. (B) is a 180 because the author asserts that the unreliability of clairvoyance makes it impossible to yield knowledge. (C) is a 180, too, because she defends rather than rebuts that unreliability.",
+        "hint": "Lydia names two candidate motives and then removes one of them.",
+        "expl": "Step 1 — Lydia narrows the squirrels' motive to two possibilities: water or sugar.\nStep 2 — She then rules out water, on the ground that water is easily available elsewhere and would not be worth chewing through bark for.\nStep 3 — With one of the two candidates eliminated, she concludes the other — sugar — is the motive. That is rejecting a possible alternative explanation, which is (E).\nStep 4 — (A) is wrong: she does not dismiss data, she reasons about which motive fits it. (B) cites no general rule. (C) never places the behaviour in a wider pattern. (D) draws no analogy.\nAnswer: E.",
         "level": "medium"
       },
       {

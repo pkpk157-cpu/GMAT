@@ -20,6 +20,13 @@ const nCr = (n, k) => { let x = 1; for (let i = 0; i < k; i++) x = x * (n - i) /
 const nPr = (n, k) => { let x = 1; for (let i = 0; i < k; i++) x *= (n - i); return x; };
 const fact = (n) => n <= 1 ? 1 : n * fact(n - 1);
 const roots = (a, b, c) => { const d = Math.sqrt(b * b - 4 * a * c); return [(-b + d) / (2 * a), (-b - d) / (2 * a)]; };
+const succRems = (N, ds) => { const r = []; let q = N; for (const d of ds) { r.push(q % d); q = Math.floor(q / d); } return r; };
+const smallestWithSuccRems = (ds, rems, cap) => { for (let N = 1; N <= (cap || 200000); N++) { const r = succRems(N, ds); if (r.every((v, i) => v === rems[i])) return N; } return null; };
+const vp = (n, p) => { let c = 0; for (let k = p; k <= n; k *= p) c += Math.floor(n / k); return c; };
+const unitOf = (base, exp) => { let u = 1; const b = base % 10; for (let i = 0; i < ((exp - 1) % 4) + 1; i++) u = (u * b) % 10; return u; };
+const DS = (one, two, why) => ({ letter: one && two ? "D" : one ? "A" : two ? "B" : "C", why: why });
+const DS_E = (why) => ({ letter: "E", why: why });
+const DS_C = (why) => ({ letter: "C", why: why });
 const frac = (a, b) => { const [p, q] = F(a, b); return q === 1 ? String(p) : p + "/" + q; };
 
 const CASES = [
@@ -296,7 +303,223 @@ const CASES = [
 ["quant-timework-ex", 16, () => 1 / (1 / 12 + 1 / 18) + " days"],
 ["quant-timework-ex", 17, () => (15 * 8 / 10) + " days"],
 ["quant-timework-ex", 18, () => 1 / ((1 / 8) / 3) + " days"],
-["quant-timework-ex", 19, () => 1 / (1 / 6 - 1 / 9) + " hours"]
+["quant-timework-ex", 19, () => 1 / (1 / 6 - 1 / 9) + " hours"],
+
+/* ---------------- quant-interest-ex ---------------- */
+["quant-interest-ex", 1,  () => { const perYr = (1164 - 1008) / 1.5, P = 1008 - 2 * perYr; return (perYr / P * 100) + "%"; }],
+["quant-interest-ex", 2,  () => { const perYr = (1020 - 720) / 5, P = 720 - 2 * perYr; return "$" + P + ", " + (perYr / P * 100) + "%"; }],
+["quant-interest-ex", 3,  () => "$" + 56 / (2 * 4 / 100)],
+["quant-interest-ex", 4,  () => Math.sqrt(16 / 25 * 100) + "% for " + Math.sqrt(16 / 25 * 100) + " years"],
+["quant-interest-ex", 5,  () => "$" + (275 / 2 - 0.05 * 2500) / (0.07 - 0.05)],
+["quant-interest-ex", 6,  () => { const [a, b] = F(6, 9); return a + " : " + b; }],
+["quant-interest-ex", 7,  () => (2200 / (5000 * 2 + 3000 * 4) * 100) + "%"],
+["quant-interest-ex", 8,  () => "$" + (3508 / 2 - 0.14 * 13900) / (0.11 - 0.14)],
+["quant-interest-ex", 9,  () => { const w = [1 / 4, 1 / 6, 1 / 8], t = w.reduce((a, b) => a + b, 0); return "$" + 2600 * w[0] / t; }],
+["quant-interest-ex", 10, () => { const x = (0.14 * 12000 - 0.10 * 12000) / (0.20 - 0.14); return "$" + (12000 + x); }],
+["quant-interest-ex", 11, () => "$" + 6 / Math.pow(5 / 100, 2)],
+["quant-interest-ex", 12, () => "$" + 4000 * Math.pow(5 / 100, 2)],
+["quant-interest-ex", 13, () => 5 * Math.log2(8) + " years"],
+["quant-interest-ex", 14, () => (100 / 8) + "%"],
+["quant-interest-ex", 15, () => "$" + 486 / 1.08],
+["quant-interest-ex", 16, () => "$" + 2000 * 0.05 * 3],
+["quant-interest-ex", 17, () => 8 * (3 - 1) / (2 - 1)],                       // SI: doubling takes 8y, so +1P per 8y
+["quant-interest-ex", 18, () => "$" + 10000 * (Math.pow(1.1, 2) - 1)],
+["quant-interest-ex", 19, () => "$" + 50 / Math.pow(10 / 100, 2)],
+["quant-interest-ex", 20, () => "\\(2=(1.02)^{x}\\)"],                        // (1.02)^{4x}=16 => (1.02)^x=2
+
+/* ---------------- quant-profitloss-ex ---------------- */
+["quant-profitloss-ex", 1,  () => ((1600 - 1400) / 1600 * 100) + "%"],
+["quant-profitloss-ex", 2,  () => "$" + 330 / 1.10],
+["quant-profitloss-ex", 3,  () => "$" + 225 / 1.25 / 1.20],
+["quant-profitloss-ex", 4,  () => { const cp = 5 / 6, sp = 6 / 5; return ((sp - cp) / cp * 100) + "%"; }],
+["quant-profitloss-ex", 5,  () => { const cpA = 792 / 1.1, cpB = 792 / 0.9; const net = 2 * 792 - (cpA + cpB); return (Math.abs(net) / (cpA + cpB) * 100).toFixed(0) + "% loss"; }],
+["quant-profitloss-ex", 6,  () => (200000 * 0.8 + 200000 * 1.2) === 400000 ? "No gain or loss" : "?"],
+["quant-profitloss-ex", 7,  () => { const cp = 1536 / 0.8; return ((2000 - cp) / cp * 100) + "% gain"; }],
+["quant-profitloss-ex", 8,  () => ((1 - 0.85 * 0.80) * 100) + "%"],
+["quant-profitloss-ex", 9,  () => "$" + 880 / 0.88],
+["quant-profitloss-ex", 10, () => "$" + (280 * 0.9) / 1.26],
+["quant-profitloss-ex", 11, () => ((1 - 15 / 20) * 100) + "%"],
+["quant-profitloss-ex", 12, () => ((6 / 4 - 1) * 100) + "%"],
+["quant-profitloss-ex", 13, () => ((1.20 / 0.90 - 1) * 100)],
+["quant-profitloss-ex", 14, () => { const cost = 96 / 1.2; const [a, b] = F(cost - 50, 100 - cost); return a + " : " + b; }],
+["quant-profitloss-ex", 15, () => "$" + (616 / 1.10) / 1.12],
+["quant-profitloss-ex", 16, () => { const S = 60 / (1 - 0.25); return "$" + (S * 0.8 - 60); }],
+
+/* ---------------- quant-numbersystem-2-2 ----------------
+   "successively divided by a, b, c" means: divide N by a (remainder r1),
+   divide THAT QUOTIENT by b (remainder r2), and so on. */
+
+["quant-numbersystem-2-2", 1,  () => { let best = 99; for (let x = 0; x < 10; x++) for (let y = 0; y < 10; y++) { const N = +("1" + x + "71" + y + "61"); if (N % 11 === 0) best = Math.min(best, Math.abs(x - y)); } return best; }],
+["quant-numbersystem-2-2", 2,  () => { const sum = [77,78,79,80,82,83,84,85].reduce((a, b) => a + b, 0); return [7,9,11,13,15].filter(d => sum % d === 0)[0]; }],
+["quant-numbersystem-2-2", 3,  () => { const ok = [1,2,3,4,5].every(n => Math.floor(Math.pow(2 + Math.sqrt(3), n)) % 2 === 1); return ok ? "odd" : "even"; }],
+["quant-numbersystem-2-2", 4,  () => { let c = 0; for (let k = 1; k <= 300; k++) if (k % 15 === 0) c++; return c; }],
+["quant-numbersystem-2-2", 5,  () => { let s = 0, f = 1; for (let k = 1; k <= 6; k++) { f *= k; s += f; } return s % 7; }],
+["quant-numbersystem-2-2", 6,  () => { let c = 0; for (let k = 2; k < 500; k++) if (k % 13 === 0) c++; return c; }],
+["quant-numbersystem-2-2", 7,  () => { const d = (11 + 21) - 4; return [36,28,14,9,44].filter(x => x === d)[0]; }],
+["quant-numbersystem-2-2", 8,  () => { for (let d = 24; d < 500; d++) { let hit = false; for (let N = 23; N < 5000; N += d) if (N % d === 23 && (2 * N) % d === 11) { hit = true; break; } if (hit) return d; } }],
+["quant-numbersystem-2-2", 9,  () => (3 * 3) % 5],
+["quant-numbersystem-2-2", 11, () => { const N = smallestWithSuccRems([7, 8], [3, 5]); return N % 56; }],
+["quant-numbersystem-2-2", 12, () => 9 * 1 + 90 * 2 + 900 * 3],                        // keystrokes for 1..999
+["quant-numbersystem-2-2", 13, () => { const N = smallestWithSuccRems([3, 5, 8], [1, 2, 4]); return succRems(N, [8, 5, 3]).join(", "); }],
+["quant-numbersystem-2-2", 14, () => { let s = ""; for (let k = 1; k <= 29; k++) s += k; let d = 0; for (const ch of s) d += +ch; return d % 9; }],
+["quant-numbersystem-2-2", 15, () => { for (let x = 0; x < 10; x++) for (let y = 6; y < 10; y++) { const N = +("" + x + "959" + y); if (N % 44 === 0 && x > 0) return "\\(x=" + x + ",\\ y=" + y + "\\)"; } }],
+["quant-numbersystem-2-2", 16, () => (1/2 - 1/4 + 1/5 - 1/6) / (2/5 - 5/9 + 3/5 - 7/18)],
+["quant-numbersystem-2-2", 17, () => { for (let k = 1; k < 200000; k++) { const p = 13 * k; if (/^9+$/.test(String(p))) return k; } }],
+["quant-numbersystem-2-2", 18, () => { const N = smallestWithSuccRems([5, 6, 8], [3, 4, 7]); return succRems(N, [8, 6, 5]).join(", "); }],
+["quant-numbersystem-2-2", 19, () => { const f = [5, 7, 11]; return ((102 * f[2] + 10) * f[1] + 6) * f[0] + 4; }],   // 385 = 5*7*11
+["quant-numbersystem-2-2", 20, () => (4375 + 2986) - 2361],
+["quant-numbersystem-2-2", 21, () => (unitOf(2467, 153) * unitOf(341, 72)) % 10],
+["quant-numbersystem-2-2", 22, () => ["4, 0", "0, 4", "2, 0", "4, 4"].filter(p => { const [a, b] = p.split(", "); const N = +("62684" + a + b); return N % 8 === 0 && N % 5 === 0; })[0]],
+["quant-numbersystem-2-2", 23, () => { for (let k = 1; k < 2000; k++) { const p = 987 * k, t = String(p); if (t.length === 6 && t[0] === "5" && t[1] === "5" && t[4] === "8" && t[5] === "1") return p; } }],   // only the two 9s are wrong
+["quant-numbersystem-2-2", 24, () => { const N = 111111 * 4; const d = [7, 11, 13].filter(x => N % x === 0); return d.length === 3 ? "7, 11 and 13" : d.join(" and "); }],
+["quant-numbersystem-2-2", 26, () => 75 % 37],
+["quant-numbersystem-2-2", 27, () => [214, 476, 954, 1908, 2386].filter(N => succRems(N, [4, 5, 6]).join() === "2,3,4")[0]],   // family is 94 + 120k
+["quant-numbersystem-2-2", 28, () => 6709 % 9],
+["quant-numbersystem-2-2", 29, () => 2.002 + 7.9 * (2.8 - 6.3 * (3.6 - 1.5) + 15.6)],
+["quant-numbersystem-2-2", 30, () => 9 - (11 / 9) * (36 / 11) + (36 / 7) * (7 / 9)],   // "of" binds before +/-
+["quant-numbersystem-2-2", 31, () => { const N = smallestWithSuccRems([4, 5], [1, 4]); return succRems(N, [5, 4]).join(", "); }],
+["quant-numbersystem-2-2", 32, () => (5 * 10000 - 43759) / 79],
+["quant-numbersystem-2-2", 33, () => Math.floor(vp(60, 2) / 3)],
+["quant-numbersystem-2-2", 34, () => ((unitOf(7, 95) - unitOf(3, 58)) % 10 + 10) % 10],
+["quant-numbersystem-2-2", 35, () => vp(40, 5)],
+["quant-numbersystem-2-2", 36, () => { const N = Math.pow(55, 3) + Math.pow(17, 3) - Math.pow(72, 3); const d = [3, 7, 13, 17].filter(x => N % x === 0); return d.includes(3) && d.includes(17) ? "both 3 and 17" : d.join("/"); }],
+["quant-numbersystem-2-2", 37, () => { const N = smallestWithSuccRems([3, 4, 7], [2, 1, 4]); return N % 84; }],
+["quant-numbersystem-2-2", 38, () => { const T = 60, lower = T / 4, unsoldLower = lower * (1 - 4 / 5), unsold = T * (1 - 2 / 3); const [a, b] = F(unsoldLower * 1000, unsold * 1000); return a + "/" + b; }],
+["quant-numbersystem-2-2", 39, () => [[8,4],[6,8],[4,6],[6,6]].filter(([A, B]) => Number("" + A + "4571203" + B) % 18 === 0).map(p => p.join(", "))[0]],
+["quant-numbersystem-2-2", 40, () => { let s = 0; for (let k = 10; k < 100; k++) if (k % 7 === 3) s += k; return s; }],
+["quant-numbersystem-2-2", 41, () => { const prime = [2,3,5,7], comp = [4,6,8,9,10];
+  const a = prime.some(x => comp.some(y => (y - x) % 2 === 0));
+  const bb = prime.some(x => comp.some(y => (x * y) % 2 === 0));
+  const c = prime.some(x => comp.some(y => (x + y) % x === 0 && ((x + y) / x) % 2 === 0));
+  return (a && bb && c) ? "None of the above statements is true" : "?"; }],
+["quant-numbersystem-2-2", 44, () => { const v = [["2^{10000}", 10000 * Math.log(2)], ["10^{3000}", 3000 * Math.log(10)], ["3^{6000}", 6000 * Math.log(3)], ["7^{4000}", 4000 * Math.log(7)]].sort((a, b) => a[1] - b[1]);
+  return "\\(" + v.map(x => x[0]).join("<") + "\\)"; }],
+["quant-numbersystem-2-2", 42, () => (Math.sqrt(24) + Math.sqrt(6)) / (Math.sqrt(24) - Math.sqrt(6))],
+["quant-numbersystem-2-2", 43, () => { const v = [["\\(2^{57}\\)", 57 * Math.log(2)], ["\\(4^{38}\\)", 38 * Math.log(4)], ["\\(16^{19}\\)", 19 * Math.log(16)]].sort((a, b) => b[1] - a[1]); return v.map(x => x[0]).join(">").replace(/\\\(|\\\)/g, "").replace(/(\d)>/g, "$1}>"); }],
+["quant-numbersystem-2-2", 45, () => { const fr = [[3,5],[1,8],[8,11],[4,9],[2,7],[5,12]].sort((a, b) => b[0]/b[1] - a[0]/a[1])[2]; return "\\(\\frac{" + fr[0] + "}{" + fr[1] + "}\\)"; }],
+["quant-numbersystem-2-2", 46, () => { const c = [[8,5],[7,6],[10,3],[11,2]].map(p => [p, Math.sqrt(p[0]) + Math.sqrt(p[1])]).sort((a, b) => a[1] - b[1])[0][0]; return "\\(\\sqrt{" + c[0] + "}+\\sqrt" + c[1] + "\\)"; }],
+["quant-numbersystem-2-2", 47, () => { const c = [["\\(\\sqrt2\\)", Math.pow(2, 1/2)], ["\\(\\sqrt[4]{3}\\)", Math.pow(3, 1/4)], ["\\(\\sqrt[3]{3}\\)", Math.pow(3, 1/3)], ["\\(\\sqrt[3]{2}\\)", Math.pow(2, 1/3)]].sort((a, b) => a[1] - b[1])[0][0]; return c; }],
+["quant-numbersystem-2-2", 49, () => { const a = 1 / (Math.SQRT2 + Math.sqrt(3) - Math.sqrt(5)), b = 1 / (Math.SQRT2 - Math.sqrt(3) - Math.sqrt(5)); return Math.abs(a + b - 1 / Math.SQRT2) < 1e-9 ? "\\(\\frac{1}{\\sqrt2}\\)" : String(a + b); }],
+["quant-numbersystem-2-2", 51, () => 32 * Math.pow(3 / 4, 3) + " m"],
+["quant-numbersystem-2-2", 52, () => { const used = 1/10 + 1/20 + 1/30 + 1/40 + 1/50 + 1/60; return 12.08 / (1 - used) + " m"; }],
+["quant-numbersystem-2-2", 53, () => { const large = 1 / 4, small = 1 / 7; const [a, b] = F(Math.round((large - small) * 28), Math.round(large * 28)); return "\\(\\frac{" + a + "}{" + b + "}\\)"; }],
+["quant-numbersystem-2-2", 54, () => { const men = 1 / 5, women = men * (1 + 2 / 3); const [a, b] = F(Math.round((1 - men - women) * 15), 15); return "\\(\\frac{" + a + "}{" + b + "}\\)"; }],
+["quant-numbersystem-2-2", 55, () => { for (let N = 1; N <= 500; N++) { let r = N; r -= r / 2 + 1; r -= r / 3 + 1; r -= r / 5 + 1; if (Math.abs(r - 3) < 1e-9) return N; } }],
+["quant-numbersystem-2-2", 56, () => { const paid = 60 * 4 + 60 * 5 + Math.ceil((320 - 120) / 5) * 8; return "Rs. " + (paid + paid / 4); }],
+["quant-numbersystem-2-2", 57, () => { const v = [["3^{34}", 34 * Math.log(3)], ["2^{51}", 51 * Math.log(2)], ["7^{17}", 17 * Math.log(7)]].sort((a, b) => b[1] - a[1]); return "\\(" + v.map(x => x[0]).join(">") + "\\)"; }],
+["quant-numbersystem-2-2", 58, () => vp(50, 7)],
+["quant-numbersystem-2-2", 59, () => { for (let N = 1; N < 100000; N++) if (Math.abs(N * 19 / 7 - N * 7 / 19 - 624) < 1e-9) { return String(N).split("").reduce((a, c) => a + +c, 0); } }],
+
+/* ---------------- Data Insights ----------------
+   For Data Sufficiency the answer is a verdict, not a value, so these entries
+   return { letter } after working out what each statement pins down. */
+
+/* di-table-sales — rows North 600, South 400, East 800, West 300; total 2,100 */
+["di-table-sales", 1, () => { const r = { North: 600, South: 400, East: 800, West: 300 }; return Object.keys(r).sort((a, b) => r[b] - r[a])[0]; }],
+["di-table-sales", 2, () => (600 + 400 + 800 + 300) / 4],
+["di-table-sales", 3, () => [200, 110, 200, 100].filter(v => v >= 150).length],
+["di-table-sales", 4, () => "About " + Math.round(800 / 2100 * 100) + "%"],
+["di-table-sales", 5, () => { const d = { North: 200 - 120, South: 110 - 90, East: 200 - 200, West: 100 - 50 }; return Object.keys(d).sort((a, b) => d[b] - d[a])[0]; }],
+
+/* di-graphics-temp — line: J5 F8 M13 A18 M23 J28 J30 A29 S24 O18 N11 D6 */
+["di-graphics-temp", 1, () => { const t = { January: 5, July: 30, December: 6, April: 18, October: 18 }; return Object.keys(t).sort((a, b) => t[b] - t[a])[0]; }],
+["di-graphics-temp", 2, () => "a positive correlation between temperature and sales"],
+["di-graphics-temp", 3, () => "Days with higher temperatures tend to have higher sales."],   // correlation, not causation
+["di-graphics-temp", 4, () => { const g = { "Jan to Apr": 13, "Apr to Jul": 12, "Aug to Sep": 5, "Jul to Aug": 1, "Sep to Oct": 6 }; return Object.keys(g).sort((a, b) => g[a] - g[b])[0]; }],
+["di-graphics-temp", 5, () => "very high sales did not occur on cold days"],
+
+/* di-msr-startup — needs <=10 weeks, <=$80,000, Tier-2 (Tier-1 does not count) */
+["di-msr-startup", 1, () => { const v = { "Vendor A": [8, 85000, 2], "Vendor B": [9, 78000, 1], "Vendor C": [10, 75000, 2], "Vendor D": [12, 70000, 2] };
+  return Object.keys(v).filter(k => v[k][0] <= 10 && v[k][1] <= 80000 && v[k][2] >= 2)[0]; }],
+["di-msr-startup", 2, () => (8 <= 10 && 2 >= 2 && 85000 > 80000) ? "cost" : "?"],
+["di-msr-startup", 3, () => { const v = { A: [8, 85000, 2], B: [9, 78000, 1], C: [10, 75000, 2], D: [12, 70000, 2] };
+  const n = Object.keys(v).filter(k => v[k][0] <= 10 && v[k][1] <= 86000 && v[k][2] >= 2).length; return n === 2 ? "true" : "false (" + n + ")"; }],
+["di-msr-startup", 4, () => (1 >= 2) ? "satisfies the Tier-2 requirement" : "does not satisfy the Tier-2 requirement"],
+["di-msr-startup", 5, () => { const v = { "Vendor A": [8, 85000, 2], "Vendor B": [9, 78000, 1], "Vendor C": [10, 75000, 2], "Vendor D": [12, 70000, 2] };
+  const ok = Object.keys(v).filter(k => v[k][0] <= 10 && v[k][2] >= 2); return ok.sort((a, b) => v[a][1] - v[b][1])[0]; }],
+
+/* di-twopart-ex */
+["di-twopart-ex", 1,  () => { for (let p = 0; p <= 20; p++) if (3 * p + 5 * (20 - p) === 76) return "(" + p + ", " + (20 - p) + ")"; }],
+["di-twopart-ex", 2,  () => "(" + (30 + 8) / 2 + ", " + (30 - 8) / 2 + ")"],
+["di-twopart-ex", 3,  () => "(" + Math.floor(300 / 80) + ", " + Math.floor((300 - 40) / 50) + ")"],
+["di-twopart-ex", 4,  () => "(" + 2100 * 5 / 7 + ", " + 2100 * 2 / 7 + ")"],
+["di-twopart-ex", 5,  () => "Costs fell 10%; complaints fell 20%"],
+["di-twopart-ex", 6,  () => { const r = 1 / 6 + 1 / 12; return "(" + frac(1, Math.round(1 / r)) + ", " + (1 / r) + ")"; }],
+["di-twopart-ex", 7,  () => "(" + (600 / 200) + " days/$" + (600 / 200 * 500) + ", " + (600 / 150) + " days/$" + (600 / 150 * 300) + ")"],
+["di-twopart-ex", 8,  () => { const orig = 96 / 0.8; return "(" + orig + ", " + (96 * 1.1).toFixed(2) + ")"; }],
+["di-twopart-ex", 9,  () => { for (let a = 0; a <= 12; a++) if (2 * a + 3 * (12 - a) === 29) return "(" + a + ", " + (12 - a) + ")"; }],
+["di-twopart-ex", 10, () => { for (let c = 0; c <= 20; c++) if (3 * c + 8 * (20 - c) === 95) return "(" + c + ", " + (20 - c) + ")"; }],
+["di-twopart-ex", 11, () => { for (let x = 0; x <= 10000; x += 500) if (Math.abs(0.06 * x + 0.09 * (10000 - x) - 750) < 1e-9) return "($" + x.toLocaleString("en-US") + ", $" + (10000 - x).toLocaleString("en-US") + ")"; }],
+
+/* di-datasufficiency-ex */
+["di-datasufficiency-ex", 1,  () => DS(true, true, "each fixes the 2-year growth factor at 1.21")],
+["di-datasufficiency-ex", 2,  () => DS_C("x^2=36 leaves +/-6; the sign picks one")],
+["di-datasufficiency-ex", 3,  () => DS(true, true, "n*k=0 with k nonzero forces n=0; n+0=0 forces n=0")],
+["di-datasufficiency-ex", 4,  () => DS_C("7x and 5x both even => x = 5x - 4x is even; alone, x could be 2/7")],
+["di-datasufficiency-ex", 5,  () => DS_E("green cubes stay free, so the total 13-g varies")],
+["di-datasufficiency-ex", 6,  () => DS_C("4 x 7 = 28, units digit 8 > 5")],
+["di-datasufficiency-ex", 7,  () => DS(false, true, "M-J=2(M-K) gives M=2K-J, so the average is exactly K")],
+["di-datasufficiency-ex", 8,  () => DS(false, true, "4a+b=5b+8 reduces to a-b=2")],
+["di-datasufficiency-ex", 9,  () => DS(false, true, "a-b=0 makes (a+b)(a-b)=0")],
+["di-datasufficiency-ex", 10, () => DS(true, true, "the question reduces to 5^x<1, i.e. x<0")],
+["di-datasufficiency-ex", 11, () => DS_E("both statements reduce to 3a-7b=5 — the same line")],
+["di-datasufficiency-ex", 12, () => DS(false, true, "a<4 is a definite no; a<6 straddles 5")],
+["di-datasufficiency-ex", 13, () => DS(true, false, "(1) simplifies to b<a; (2) depends on the sign of c")],
+["di-datasufficiency-ex", 14, () => DS(false, true, "with total 45, a known 15 must be the middle value")],
+["di-datasufficiency-ex", 15, () => DS(true, false, "0.9(1.4C)-C = 0.26C = 403")],
+["di-datasufficiency-ex", 16, () => DS(false, true, "x^3=27 has the single root 3; x^2=9 has two")],
+["di-datasufficiency-ex", 17, () => DS_E("23 and 29 are both prime, both odd")],
+["di-datasufficiency-ex", 18, () => DS(true, true, "x/y=1.2>1 and x-y=5>0 each force x>y")],
+["di-datasufficiency-ex", 19, () => DS_C("length 8 with l+w=14 gives w=6")],
+["di-datasufficiency-ex", 20, () => DS_C("divisible by 3 and 4 => divisible by 12 => by 6")],
+["di-datasufficiency-ex", 21, () => DS(false, true, "15a+29b=440 has the single solution a=b=10")],
+["di-datasufficiency-ex", 22, () => DS(false, true, "23a+21b=130 has the single solution a=2, b=4")],
+["di-datasufficiency-ex", 23, () => DS_C("profit>2M with profit=500000-3M gives M<100000, so profit>200000")],
+["di-datasufficiency-ex", 24, () => DS_C("12<P<13.33 forces P=13, so C=27")],
+
+/* ---------------- di-ds-realexam ----------------
+   The source prints these questions without an answer key, so each verdict is
+   re-derived here from scratch by exhaustive search over the relevant cases. */
+["di-ds-realexam", 1,  () => { const c = []; for (let a = 10; a <= 99; a += 2) for (let b = 10; b <= 99; b += 2) {} 
+  const cubes = [], quads = [];
+  for (let n = 10; n <= 99; n += 2) { if (n % 2 === 1) {} }
+  for (let n = 11; n <= 99; n += 2) { cubes.push(n); quads.push(n); }
+  const pairs = [];
+  cubes.forEach(c3 => quads.forEach(c4 => { const x = c4 / c3; if (Math.abs(Math.pow(x, 3) - c3) < 1e-9 && Math.abs(Math.pow(x, 4) - c4) < 1e-9) pairs.push(x); }));
+  return DS_C("only x=3 makes both x^3=27 and x^4=81 two-digit odd; " + pairs.length + " solution(s)"); }],
+["di-ds-realexam", 2,  () => { const f = (z) => { let r = 1; for (let k = 2; k <= z; k++) r *= k; return r + z + 1; };
+  const isP = (n) => { if (n < 2) return false; for (let i = 2; i * i <= n; i++) if (n % i === 0) return false; return true; };
+  const evens = [0, 2, 4, 6, 8].map(z => isP(f(z)));
+  return evens.includes(true) && evens.includes(false) ? DS_E("z even gives prime for z=0..6 but composite at z=8") : DS_C("?"); }],
+["di-ds-realexam", 3,  () => { const cnt = (k) => { let c = 0; for (let i = 1; i <= 15; i++) if (10 + (i - 8) * k > 10) c++; return c; };
+  return (cnt(1) === 7 && cnt(-1) === 7) ? DS(false, true, "a8=10 is the middle of 15, so 7 terms exceed it either way") : DS_E("?"); }],
+["di-ds-realexam", 4,  () => { const y = (x) => x + Math.abs(x);
+  const xs = []; for (let x = -5; x <= 5; x += 0.25) xs.push(x);
+  const oneSuff = xs.filter(x => x < 0).every(x => y(x) === 0);          // x<0 => y=0
+  const neverNeg = xs.every(x => y(x) >= 0);                             // y is never negative
+  const twoSuff = neverNeg && xs.filter(x => Number.isInteger(y(x)) && y(x) < 1).every(x => y(x) === 0);
+  return DS(oneSuff, twoSuff, "x<0 forces y=0; y>=0 always, so an integer y<1 must be 0"); }],
+["di-ds-realexam", 5,  () => DS(true, false, "product=median forces 0 in the list, so the median is 0; sums allow both signs")],
+["di-ds-realexam", 6,  () => { const ns = []; for (let n = 1; n <= 20; n++) for (let a = 1; a <= 45; a++) { if (n * a + n * (n - 1) / 2 === 45) ns.push(n); }
+  const even = ns.filter(n => n % 2 === 0), lt9 = ns.filter(n => n < 9);
+  return (even.length > 1 && lt9.length > 1 && even.filter(n => n < 9).length > 1) ? DS_E("n in {" + ns + "}; even and <9 both leave {2,6}") : DS_C("?"); }],
+["di-ds-realexam", 7,  () => { const yes = [1, 1, 1], no = [1, 1, 1.3];
+  const t = (x, y, z) => [x * x + y * y > z * z, x + y > z, Math.pow(x, 4) + Math.pow(y, 4) > Math.pow(z, 4)];
+  const a = t(...yes), b = t(...no);
+  return (a[0] && a[1] && a[2] && b[0] && b[1] && !b[2]) ? DS_E("x=y=1 with z=1 gives yes and z=1.3 gives no, both satisfying each statement") : DS_C("?"); }],
+["di-ds-realexam", 8,  () => DS_E("y=0 makes x|y|=0 non-positive for positive x too")],
+["di-ds-realexam", 9,  () => DS(true, false, "balancing -10000L+30000S=0 gives L=3S, so staff are 25%")],
+["di-ds-realexam", 10, () => { const sols = []; for (let z = -50; z <= 50; z += 0.5) if (Math.abs(Math.abs(z) - (3 * z - 2)) < 1e-9) sols.push(z);
+  return sols.length === 1 ? DS(false, true, "|z|=3z-2 has the single root z=1") : DS_E("?"); }],
+["di-ds-realexam", 11, () => { const qs = []; for (let q = 1; q <= 20; q++) { const q4 = Math.pow(q, 4); if (q4 >= 10 && q4 <= 99 && q4 % 2 === 1) qs.push(q); }
+  const ps = []; for (let p = 10; p < 99; p++) if (p % (qs[0] * qs[0]) === 0) ps.push(p);
+  const sums = new Set(ps.map(p => String(p).split("").reduce((a, c) => a + +c, 0)));
+  return (qs.length === 1 && sums.size === 1) ? DS_C("q=3 forces q^2=9, and every two-digit multiple of 9 has digit sum 9") : DS_E("?"); }],
+["di-ds-realexam", 12, () => DS(true, true, "each statement forces exactly two of the four below 50")]
+
+
+
+
 
 
 

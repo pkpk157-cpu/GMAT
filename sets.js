@@ -163,24 +163,6 @@ window.GMAT_SETS = [
         "level": "easy"
       },
       {
-        "n": 10,
-        "topic": "Fractions & decimals",
-        "correct": "B",
-        "options": 5,
-        "text": "The value of \\(3 \\div (8-5) + (4-2) + 2 + \\frac{8}{13}\\) is:",
-        "choices": [
-          "\\(\\frac{15}{17}\\)",
-          "\\(\\frac{13}{17}\\)",
-          "\\(\\frac{15}{19}\\)",
-          "\\(\\frac{13}{19}\\)",
-          "\\(\\frac{1}{17}\\)"
-        ],
-        "hint": "Apply BODMAS: division before addition.",
-        "expl": "Step 1 — Apply BODMAS: \\((8-5)=3,\\ (4-2)=2\\), division before addition.\nStep 2 — Working through, the expression simplifies to \\(\\frac{13}{17}\\).\nNote — The exact operators were garbled in the source PDF; verify. Intended value \\(\\frac{13}{17}\\).\nAnswer: \\(\\frac{13}{17}\\) (B).",
-        "note": "Math from the PDF was ambiguous — verify the exact expression.",
-        "level": "medium"
-      },
-      {
         "n": 11,
         "topic": "Divisibility & remainders",
         "correct": "A",
@@ -372,12 +354,12 @@ window.GMAT_SETS = [
         "choices": [
           "4, 0",
           "0, 4",
-          "0, 0",
+          "2, 0",
           "4, 4",
           "8"
         ],
         "hint": "Use the \\(\\div5\\) rule to fix \\(\\$\\) first, then the \\(\\div8\\) rule for \\(*\\).",
-        "expl": "Step 1 — \\(\\div5 \\Rightarrow \\$=0\\) or 5; \\(\\div8\\) needs even \\(\\Rightarrow \\$=0\\).\nStep 2 — Then \\(4{*}0\\) divisible by 8: \\(480\\div8=60 \\Rightarrow *=4\\).\nAnswer: 4, 0 (A).",
+        "expl": "Step 1 — Divisible by 5 means the last digit is 0 or 5; divisible by 8 means the number is even, so the last digit must be 0.\nStep 2 — Divisibility by 8 depends only on the last three digits, here \\(4{*}0\\). Testing: 400 ✓, 420 ✗, 440 ✓, 480 ✓.\nStep 3 — Of the pairs offered, only \\(*=4,\\ \\$=0\\) gives a last-three of 440, which 8 divides.\nAnswer: A.",
         "level": "medium"
       },
       {
@@ -412,23 +394,6 @@ window.GMAT_SETS = [
         "hint": "A digit repeated six times equals that digit \\(\\times\\,111111\\) — factor 111111.",
         "expl": "Step 1 — A digit repeated six times \\(=d\\times111111\\).\nStep 2 — \\(111111=3\\times7\\times11\\times13\\times37\\).\nStep 3 — So it's divisible by 7, 11 and 13.\nAnswer: 7, 11 and 13 (C).",
         "level": "medium"
-      },
-      {
-        "n": 25,
-        "topic": "Fractions & decimals",
-        "correct": "D",
-        "options": 4,
-        "text": "Find the value of \\(*\\) in the following:  \\(\\left(1\\tfrac{2}{3}+\\frac{2}{7}\\times\\frac{*}{7}\\right)=\\left(1\\tfrac{1}{4}\\times\\frac{2}{3}+\\frac{1}{6}\\right)\\)",
-        "choices": [
-          "0.006",
-          "\\(\\frac{1}{6}\\)",
-          "0.6",
-          "6"
-        ],
-        "hint": "Isolate the term with \\(*\\) and solve the resulting equation.",
-        "expl": "Step 1 — Isolate the term containing \\(*\\) and solve the linear equation.\nStep 2 — The value is 6.\nNote — Source expression garbled; verify. Intended answer 6.\nAnswer: 6 (D).",
-        "note": "Math from the PDF was ambiguous — verify the exact expression.",
-        "level": "hard"
       },
       {
         "n": 26,
@@ -501,7 +466,7 @@ window.GMAT_SETS = [
       {
         "n": 30,
         "topic": "Fractions & decimals",
-        "correct": "B",
+        "correct": "D",
         "options": 4,
         "text": "\\(9 - 1\\tfrac{2}{9}\\text{ of }3\\tfrac{3}{11} + 5\\tfrac{1}{7}\\text{ of }\\frac{7}{9} = \\; ?\\)",
         "choices": [
@@ -510,8 +475,8 @@ window.GMAT_SETS = [
           "\\(8\\tfrac{32}{81}\\)",
           "9"
         ],
-        "hint": "Convert mixed numbers to improper fractions, treat 'of' as \\(\\times\\), then apply BODMAS.",
-        "expl": "Step 1 — Convert mixed numbers to improper fractions; treat 'of' as \\(\\times\\).\nStep 2 — Apply BODMAS to get 8.\nNote — Source expression garbled; verify. Intended answer 8.\nAnswer: 8 (B).",
+        "hint": "\"of\" means multiply, and it is evaluated before the addition and subtraction.",
+        "expl": "Step 1 — Convert the mixed numbers: \\(1\\tfrac29 = \\tfrac{11}{9}\\), \\(3\\tfrac{3}{11} = \\tfrac{36}{11}\\), \\(5\\tfrac17 = \\tfrac{36}{7}\\).\nStep 2 — \\(\\tfrac{11}{9} \\text{ of } \\tfrac{36}{11} = \\tfrac{11}{9} \\times \\tfrac{36}{11} = 4\\).\nStep 3 — \\(\\tfrac{36}{7} \\text{ of } \\tfrac{7}{9} = \\tfrac{36}{7} \\times \\tfrac{7}{9} = 4\\).\nStep 4 — \\(9 - 4 + 4 = 9\\).\nAnswer: D.",
         "note": "Math from the PDF was ambiguous — verify the exact expression.",
         "level": "hard"
       },
@@ -817,23 +782,6 @@ window.GMAT_SETS = [
         "level": "hard"
       },
       {
-        "n": 50,
-        "topic": "Roots & radicals",
-        "correct": "C",
-        "options": 4,
-        "text": "The value of \\(\\dfrac{\\sqrt2(\\sqrt3+1)(2-\\sqrt3)}{(\\sqrt2-1)(3\\sqrt3-5)}\\) is:",
-        "choices": [
-          "1",
-          "\\(2-\\sqrt3\\)",
-          "\\(2+\\sqrt3\\)",
-          "\\(\\sqrt3-2\\)"
-        ],
-        "hint": "Rationalize the denominator, then simplify.",
-        "expl": "Step 1 — Rationalize the denominator with its conjugate.\nStep 2 — The expression collapses to \\(2+\\sqrt3\\).\nNote — Source expression garbled; verify.\nAnswer: \\(2+\\sqrt3\\) (C).",
-        "note": "Math from the PDF was ambiguous — verify the exact expression.",
-        "level": "hard"
-      },
-      {
         "n": 51,
         "topic": "Sequences & series",
         "correct": "B",
@@ -936,7 +884,7 @@ window.GMAT_SETS = [
       {
         "n": 57,
         "topic": "Exponent rules",
-        "correct": "B",
+        "correct": "A",
         "options": 4,
         "text": "Arrange the following (from greatest to least): \\(3^{34},\\ 2^{51},\\ 7^{17}\\). We get:",
         "choices": [
@@ -945,8 +893,8 @@ window.GMAT_SETS = [
           "\\(3^{34}>7^{17}>2^{51}\\)",
           "\\(25^{51}>3^{34}>7^{17}\\)"
         ],
-        "hint": "Rewrite each as a power with exponent 17, then compare bases.",
-        "expl": "Step 1 — To exponent 17: \\(3^{34}=9^{17},\\ 2^{51}=8^{17},\\ 7^{17}\\).\nStep 2 — Per the key, order is \\(7^{17}>2^{51}>3^{34}\\).\nAnswer: (B).",
+        "hint": "34, 51 and 17 share a factor of 17 — rewrite all three with the same exponent.",
+        "expl": "Step 1 — Put all three over the exponent 17: \\(3^{34} = (3^{2})^{17} = 9^{17}\\), \\(2^{51} = (2^{3})^{17} = 8^{17}\\), and \\(7^{17}\\).\nStep 2 — With a common positive exponent, the larger base wins: \\(9^{17} > 8^{17} > 7^{17}\\).\nStep 3 — So \\(3^{34} > 2^{51} > 7^{17}\\).\nAnswer: A.",
         "level": "medium"
       },
       {
@@ -5791,16 +5739,16 @@ window.GMAT_SETS = [
         "correct": "D",
         "options": 5,
         "level": "hard",
-        "text": "According to Graph 1, between which pair of consecutive listed months (Jan, Apr, Jul, Oct, Dec) is the temperature change closest to zero?",
+        "text": "According to Graph 1, between which pair of consecutive months is the change in average high temperature closest to zero?",
         "choices": [
           "Jan to Apr",
           "Apr to Jul",
-          "Jul to Oct",
-          "Oct to Dec",
-          "Jan to Dec"
+          "Aug to Sep",
+          "Jul to Aug",
+          "Sep to Oct"
         ],
-        "hint": "Estimate roughly: Jan 5, Apr about 17–18, Jul 30, Oct about 17–18, Dec 6.",
-        "expl": "With Jan≈5, Apr≈17, Jul=30, Oct≈17, Dec≈6: Jan→Apr ≈ +12, Apr→Jul ≈ +13, Jul→Oct ≈ −13, Oct→Dec ≈ −11, and Jan→Dec ≈ +1. The Jan-to-Dec change is closest to zero (D)."
+        "hint": "Read each pair's two heights off the line and compare the gaps, ignoring direction.",
+        "expl": "Step 1 — From Graph 1: Jan 5, Apr 18, Jul 30, Aug 29, Sep 24, Oct 18.\nStep 2 — Gaps: Jan→Apr 13, Apr→Jul 12, Aug→Sep 5, Jul→Aug 1, Sep→Oct 6.\nStep 3 — The smallest change is the 1 degree between July and August — the curve is flattest at its peak.\nAnswer: D."
       },
       {
         "n": 5,

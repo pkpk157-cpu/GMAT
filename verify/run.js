@@ -55,6 +55,11 @@ for (const [sid, n, fn] of CASES) {
   const keyed = q.choices[LET.indexOf(q.correct)];
   let expected;
   try { expected = fn(); } catch (e) { bad.push([sid, n, "computation threw: " + e.message]); continue; }
+  if (expected && typeof expected === "object" && expected.letter) {
+    if (expected.letter === q.correct) { ok++; continue; }
+    bad.push([sid, n, `derived ${expected.letter} (${expected.why || "sufficiency"}), key is ${q.correct}`]);
+    continue;
+  }
   if (matches(expected, keyed)) { ok++; continue; }
   const alt = q.choices.findIndex(c => matches(expected, c));
   bad.push([sid, n, `computed ${JSON.stringify(String(expected))}, key ${q.correct}=${JSON.stringify(keyed)}` +

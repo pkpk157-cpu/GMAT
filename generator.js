@@ -551,3 +551,163 @@
 
   window.GMAT_GEN = { TOPICS: TOPICS, makeSet: makeSet, _rng: rng };
 })();
+
+/* ---------------------------------------------------------------------------
+   Optional add-on: generate questions with the Claude API.
+
+   The template engine above cannot write a reading passage or a critical-
+   reasoning argument, so RC and CR are served by the API instead. This path is
+   entirely opt-in: it does nothing until the user supplies their own Anthropic
+   API key, which is held only in this device's localStorage and is sent only to
+   api.anthropic.com. Unlike the template path, the answers here are written by
+   the model rather than computed, so generated sets are labelled as such and
+   never mixed into the verified bank.
+--------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  const KEY_STORE = "gmat_ai_key";
+  const MODEL = "claude-opus-5";
+
+  const getKey = () => { try { return localStorage.getItem(KEY_STORE) || ""; } catch (e) { return ""; } };
+  const setKey = (k) => { try { k ? localStorage.setItem(KEY_STORE, k) : localStorage.removeItem(KEY_STORE); } catch (e) {} };
+  const hasKey = () => !!getKey();
+
+  /* One question. `passage` is attached at the set level for RC. */
+  const QUESTION_SCHEMA = {
+    type: "object",
+    properties: {
+      topic:   { type: "string", description: "The GMAT sub-skill this question tests, e.g. 'Assumption' or 'Inference'." },
+      level:   { type: "string", enum: ["easy", "medium", "hard"] },
+      text:    { type: "string", description: "The question stem. Use [[double brackets]] around any portion that should render in boldface." },
+      choices: { type: "array", items: { type: "string" }, minItems: 5, maxItems: 5 },
+      correct: { type: "string", enum: ["A", "B", "C", "D", "E"] },
+      hint:    { type: "string", description: "One sentence pointing at the method, without giving the answer away." },
+      expl:    { type: "string", description: "A step-by-step explanation, each step on its own line beginning 'Step 1 — ', and a final line naming the answer letter. Say why each wrong choice is wrong." }
+    },
+    required: ["topic", "level", "text", "choices", "correct", "hint", "expl"],
+    additionalProperties: false
+  };
+  const SET_SCHEMA = {
+    type: "object",
+    properties: {
+      passage: {
+        type: "object",
+        description: "Only for Reading Comprehension. Omit entirely for Critical Reasoning.",
+        properties: {
+          title: { type: "string" },
+          paras: { type: "array", items: { type: "string" }, minItems: 3, maxItems: 6 }
+        },
+        required: ["title", "paras"],
+        additionalProperties: false
+      },
+      questions: { type: "array", items: QUESTION_SCHEMA, minItems: 1, maxItems: 12 }
+    },
+    required: ["questions"],
+    additionalProperties: false
+  };
+
+  const BRIEF = {
+    rc: "Write ONE Reading Comprehension passage in the style of the GMAT Focus Edition — 300 to 400 words of dense, formal, non-fiction prose on an academic subject (science, history, economics or social science), with a clear central argument and at least one point of scholarly disagreement. Then write questions on it covering a mix of main-idea, inference, detail, and function/purpose. Every question must be answerable from the passage alone.",
+    cr: "Write Critical Reasoning questions in the style of the GMAT Focus Edition. Each is a short argument (40 to 90 words) followed by a question stem. Cover a mix of assumption, strengthen, weaken, inference, evaluate, flaw, and boldface types. For a boldface question, wrap each boldface portion in [[double brackets]]. Wrong answers must be genuinely tempting — out of scope, reversed, or true-but-irrelevant — never obviously silly.",
+    quant: "Write Problem Solving questions in the style of the GMAT Focus Edition, on the topic given. Use clean numbers that work out exactly. Wrong answers must be the results of specific, plausible mistakes.",
+    data: "Write Data Insights questions in the style of the GMAT Focus Edition, on the topic given."
+  };
+
+  function buildPrompt(secId, count, topicHint) {
+    return [
+      BRIEF[secId] || BRIEF.quant,
+      topicHint ? "Focus on: " + topicHint + "." : "",
+      "Produce exactly " + count + " question" + (count === 1 ? "" : "s") + ".",
+      "Requirements for every question:",
+      "- exactly five answer choices, labelled implicitly A to E by their order in the array",
+      "- exactly one defensible correct answer; double-check it before you commit to it",
+      "- no two choices may say the same thing",
+      "- mathematical notation in LaTeX between \\\\( and \\\\) delimiters",
+      "- the explanation must actually derive the answer, not assert it"
+    ].filter(Boolean).join("\n");
+  }
+
+  /* Reject anything that would break the runner or mislead the user. The API
+     can return a well-formed object that is still a bad question. */
+  function validate(q) {
+    if (!q || typeof q.text !== "string" || !q.text.trim()) return "empty question text";
+    if (!Array.isArray(q.choices) || q.choices.length !== 5) return "not exactly 5 choices";
+    if (q.choices.some((c) => typeof c !== "string" || !c.trim())) return "blank choice";
+    const norm = q.choices.map((c) => c.replace(/\s+/g, " ").trim().toLowerCase());
+    if (new Set(norm).size !== 5) return "duplicate choices";
+    if (["A", "B", "C", "D", "E"].indexOf(q.correct) < 0) return "correct letter out of range";
+    if (typeof q.expl !== "string" || q.expl.trim().length < 40) return "explanation too thin";
+    const all = q.text + q.expl + (q.hint || "") + q.choices.join(" ");
+    if ((all.split("\\(").length - 1) !== (all.split("\\)").length - 1)) return "unbalanced LaTeX delimiters";
+    return null;
+  }
+
+  async function generate(opts) {
+    const key = getKey();
+    if (!key) throw new Error("No API key saved on this device.");
+    const count = Math.max(1, Math.min(12, opts.count || 4));
+    let res;
+    try {
+      res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-api-key": key,
+          "anthropic-version": "2023-06-01",
+          // Required for calls made straight from a browser rather than a server.
+          "anthropic-dangerous-direct-browser-access": "true"
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          max_tokens: 16000,
+          thinking: { type: "adaptive" },
+          output_config: { format: { type: "json_schema", schema: SET_SCHEMA } },
+          messages: [{ role: "user", content: buildPrompt(opts.section, count, opts.topic) }]
+        })
+      });
+    } catch (e) {
+      throw new Error("Couldn't reach the Claude API — check your connection and try again.");
+    }
+    if (!res.ok) {
+      let detail = "";
+      try { const j = await res.json(); detail = (j.error && j.error.message) || ""; } catch (e) {}
+      if (res.status === 401) throw new Error("That API key was rejected. Check it in your profile and re-save.");
+      if (res.status === 429) throw new Error("Rate limited by the API — wait a moment and try again.");
+      if (res.status === 400 && /credit|balance/i.test(detail)) throw new Error("Your Anthropic account is out of credit.");
+      throw new Error("The API returned " + res.status + (detail ? ": " + detail : "."));
+    }
+    const data = await res.json();
+    const block = (data.content || []).find((b) => b.type === "text");
+    if (!block) throw new Error("The API returned no question text.");
+    let parsed;
+    try { parsed = JSON.parse(block.text); } catch (e) { throw new Error("The API's reply wasn't valid JSON."); }
+
+    const good = [], rejected = [];
+    (parsed.questions || []).forEach((q) => {
+      const why = validate(q);
+      if (why) { rejected.push(why); return; }
+      good.push({ n: good.length + 1, topic: q.topic || "Generated", level: q.level || "medium",
+                  options: 5, text: q.text, choices: q.choices, correct: q.correct,
+                  hint: q.hint || "", expl: q.expl });
+    });
+    if (!good.length) throw new Error("Every generated question failed validation" + (rejected.length ? " (" + rejected[0] + ")" : "") + ". Try again.");
+
+    const seed = Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36);
+    const set = {
+      id: "gen-ai-" + seed,
+      title: "AI · " + (opts.topic || opts.label || "Mixed"),
+      section: opts.section,
+      generated: true,
+      ai: true,
+      source: "Written by " + MODEL + " on this device — not from the verified bank",
+      questions: good
+    };
+    if (opts.section === "rc" && parsed.passage && Array.isArray(parsed.passage.paras)) {
+      set.passage = { title: parsed.passage.title || "Passage", paras: parsed.passage.paras };
+    }
+    return { set: set, rejected: rejected };
+  }
+
+  window.GMAT_GEN.ai = { getKey: getKey, setKey: setKey, hasKey: hasKey, generate: generate,
+                         validate: validate, MODEL: MODEL, _schema: SET_SCHEMA };
+})();

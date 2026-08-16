@@ -233,6 +233,11 @@
   /* Numbered section header used on each subject tab (Concepts / Practice / Logged).
      A full-width colored band tinted with the section's own accent gives the
      app contrast and makes the three sections read at a glance. */
+  .pf-adv { font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; vertical-align: 2px;
+    padding: 3px 7px; border-radius: 999px; margin-left: 7px; background: color-mix(in srgb, var(--accent) 14%, var(--surface)); color: var(--ink-faint); }
+  .ai-status { font-size: 13.5px; font-weight: 600; margin: 12px 0 0; color: var(--ink-faint); }
+  .ai-status.ok { color: var(--good); }
+  .ai-status.bad { color: var(--bad); }
   /* ---- Generate practice ---- */
   .gen-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
   .gen-chip { font: inherit; font-size: 13.5px; font-weight: 650; padding: 7px 12px; border-radius: 999px; cursor: pointer;
@@ -1384,6 +1389,41 @@
   }
 
   /* ===================== Generate practice ===================== */
+  let genBusy = false, genStatus = "", genStatusCls = "";
+  function setGenStatus(msg, cls) { genStatus = msg || ""; genStatusCls = cls || ""; renderView(); }
+
+  // Generate a set through the Claude API. Only reachable once the user has
+  // saved their own key; the request and the key never leave this device except
+  // to go to api.anthropic.com.
+  async function generateAiSet(secId) {
+    const AI = window.GMAT_GEN && window.GMAT_GEN.ai;
+    if (!AI || !AI.hasKey()) { setGenStatus("Add an API key under Profile → AI question generation first.", "bad"); return; }
+    if (genBusy) return;
+    const sel = document.querySelector(`[data-gencount="${secId}"]`);
+    const count = sel ? parseInt(sel.value, 10) || 4 : 4;
+    const sec = secById(secId);
+    genBusy = true; setGenStatus("Writing " + count + " question" + (count === 1 ? "" : "s") + "… this takes a few seconds.", "");
+    try {
+      const out = await AI.generate({ section: secId, count: count, label: sec ? sec.nav : secId });
+      state.genSets = (state.genSets || []).concat([out.set]);
+      while (state.genSets.length > 20) {
+        const gone = state.genSets.shift();
+        delete state.runs[gone.id];
+        const at = SETS.findIndex(x => x.id === gone.id); if (at >= 0) SETS.splice(at, 1);
+      }
+      SETS.push(out.set);
+      save();
+      genBusy = false;
+      const dropped = out.rejected.length;
+      setGenStatus(dropped ? ("Kept " + out.set.questions.length + "; dropped " + dropped + " that failed validation.") : "", dropped ? "" : "");
+      openRunner(out.set.id);
+      if (window.gtrack) gtrack("generate-ai-set");
+    } catch (e) {
+      genBusy = false;
+      setGenStatus((e && e.message) || "Generation failed.", "bad");
+    }
+  }
+
   // Builds fresh questions on this device from parameterised templates. The
   // answer is computed by the template rather than written down, so a
   // generated question cannot carry a wrong key.
@@ -1403,7 +1443,26 @@
     const open = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-generate" style="--secc:${sec.color}">` +
       tabSecHead(ICON.spark, "Generate practice", "Build a fresh set on any topic — new numbers every time, answers computed on the spot.", "", key) +
       `<div class="tabsec-body">`;
-    if (!topics.length) return open + `<p class="footnote" style="margin:0;text-align:left">No generators for this section yet.</p></div></section>`;
+    const AI = window.GMAT_GEN && window.GMAT_GEN.ai;
+    const aiOn = !!(AI && AI.hasKey());
+    const mine0 = (state.genSets || []).filter(g => g.section === sec.id);
+    // RC and CR have no template generators — a passage or an argument has to be
+    // written, not parameterised — so those tabs offer the AI path instead.
+    if (!topics.length) {
+      let h = open;
+      if (!aiOn) {
+        h += `<p class="footnote" style="margin:0 0 4px;text-align:left">${esc(sec.nav)} questions need a written passage or argument, which the offline templates can't produce. Add an Anthropic API key under <b>Profile → AI question generation</b> to generate them.</p>`;
+        return h + genListHTML(mine0, sec) + `</div></section>`;
+      }
+      h += `<div class="gen-row"><label for="gen-n-${esc(sec.id)}">Questions</label>` +
+        `<select id="gen-n-${esc(sec.id)}" data-gencount="${esc(sec.id)}">` +
+        [3, 4, 6, 8].map(n => `<option value="${n}"${n === 4 ? " selected" : ""}>${n}</option>`).join("") +
+        `</select><button class="gen-go" data-genai="${esc(sec.id)}"${genBusy ? " disabled" : ""}>${genBusy ? "Writing…" : "✨ Generate with AI"}</button></div>`;
+      if (genStatus) h += `<p class="ai-status ${genStatusCls}">${esc(genStatus)}</p>`;
+      h += genListHTML(mine0, sec);
+      h += `<p class="gen-note">Written by ${esc(AI.MODEL)} and billed to your own Anthropic account. These answers are model-written, not computed or checked against a printed key — useful for extra reps, but the verified sets above are the source of truth.</p>`;
+      return h + `</div></section>`;
+    }
     const picked = genPicked(sec.id);
     let h = open + `<div class="gen-chips">`;
     topics.forEach(t => {
@@ -1414,7 +1473,16 @@
       `<select id="gen-n-${esc(sec.id)}" data-gencount="${esc(sec.id)}">` +
       [5, 10, 15, 20].map(n => `<option value="${n}"${n === 10 ? " selected" : ""}>${n}</option>`).join("") +
       `</select><button class="gen-go" data-gengo="${esc(sec.id)}"${picked.length ? "" : " disabled"}>✨ Generate set</button></div>`;
-    const mine = (state.genSets || []).filter(g => g.section === sec.id);
+    h += genListHTML((state.genSets || []).filter(g => g.section === sec.id), sec);
+    if (aiOn) h += `<div class="gen-row" style="margin-top:12px"><button class="gen-go" style="margin-left:0" data-genai="${esc(sec.id)}"${genBusy ? " disabled" : ""}>${genBusy ? "Writing…" : "✨ Or write new ones with AI"}</button></div>`;
+    if (genStatus) h += `<p class="ai-status ${genStatusCls}">${esc(genStatus)}</p>`;
+    h += `<p class="gen-note">Generated questions are built from templates and scored the same way as the rest of the app, so they count towards your topic accuracy. They supplement the verified bank — they don't replace it.</p>`;
+    return h + `</div></section>`;
+  }
+
+  // The list of sets already generated for a section (shared by both paths).
+  function genListHTML(mine, sec) {
+    let h = "";
     if (mine.length) {
       h += `<div class="setlist" style="margin-top:15px">`;
       mine.slice().reverse().forEach(gs => {
@@ -1424,13 +1492,12 @@
         else if (answered) { status = `${answered}/${gs.questions.length} answered`; cls = ""; }
         else { status = "not started"; cls = "muted"; }
         h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">✨</span><div class="si"><div class="st">${esc(gs.title)}</div>
-          <div class="sm"><span class="badge" style="--sc:${sec.color}">Generated</span><span>${gs.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
+          <div class="sm"><span class="badge" style="--sc:${sec.color}">${gs.ai ? "AI · unverified" : "Generated"}</span><span>${gs.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
           <div class="setbtns"><button class="reset-set" data-gendel="${esc(gs.id)}" title="Delete this generated set">🗑</button><button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(gs.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
       });
       h += `</div>`;
     }
-    h += `<p class="gen-note">Generated questions are built from templates and scored the same way as the rest of the app, so they count towards your topic accuracy. They supplement the verified bank — they don't replace it.</p>`;
-    return h + `</div></section>`;
+    return h;
   }
 
   function sectionHTML(sec) {
@@ -1614,6 +1681,8 @@
       ${installable?`<button class="btn-primary" style="margin-top:12px" data-install="1">Install app on this device</button>`:""}</section>`;
 
     h += `<section class="panel" id="sync-panel">${syncPanelInner()}</section>`;
+
+    h += `<section class="panel" id="ai-panel">${aiPanelInner()}</section>`;
 
     h += `<section class="panel"><h3>Appearance</h3><p class="sub">Choose how the app looks.</p>
       <div class="seg"><button data-theme-set="light" class="${themePref==='light'?'on':''}">Light</button><button data-theme-set="dark" class="${themePref==='dark'?'on':''}">Dark</button><button data-theme-set="system" class="${themePref==='system'?'on':''}">System</button></div></section>`;
@@ -1876,6 +1945,27 @@
     catch (e) { syncStatus = e.message === "auth" ? "Token was rejected — re-link this device." : (!navigator.onLine ? "You're offline — will sync when back online." : "Sync failed — try again."); }
     syncBusy = false; renderSyncPanel();
   }
+  /* ---- AI question generation (optional add-on) ---- */
+  function aiPanelInner() {
+    const AI = window.GMAT_GEN && window.GMAT_GEN.ai;
+    if (!AI) return `<h3>AI question generation</h3><p class="sub">The generator didn't load. Pull the latest version and try again.</p>`;
+    let h = `<h3>AI question generation <span class="pf-adv">advanced</span></h3>`;
+    if (AI.hasKey()) {
+      h += `<p class="sub">Connected. Reading Comprehension and Critical Reasoning can now be generated from the <b>Generate practice</b> panel on those tabs.</p>
+        <p class="sub" style="margin-top:8px">Questions written this way are produced by ${esc(AI.MODEL)} and are <b>not</b> verified the way the rest of the bank is — treat them as extra drilling, not as a source of truth.</p>
+        <div class="pf-actions"><button class="btn-soft" data-ai-forget="1">Remove key from this device</button></div>`;
+    } else {
+      h += `<p class="sub">The offline generator can't write a reading passage or a reasoning argument, so RC and CR need a model. Add your own Anthropic API key to turn that on. Everything else in the app works without it.</p>
+        <p class="sub" style="margin-top:8px">The key is stored only in this device's browser storage and is sent only to api.anthropic.com. It is never included in a backup or in cross-device sync, and you can revoke it any time at <b>console.anthropic.com</b>. Generating questions is billed to your own account.</p>
+        <p class="footnote" style="text-align:left;margin:0 0 12px"><a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Create an API key →</a></p>
+        <div class="field"><label for="ai-key">Anthropic API key</label><input id="ai-key" type="password" placeholder="sk-ant-…" autocomplete="off" spellcheck="false"></div>
+        <div class="pf-actions"><button class="btn-primary" data-ai-save="1">Save key</button></div>`;
+    }
+    h += `<p class="ai-status" id="ai-status"></p>`;
+    return h;
+  }
+  function renderAiPanel() { const el = document.getElementById("ai-panel"); if (el) el.innerHTML = aiPanelInner(); }
+
   function renderSyncPanel() { const el = document.getElementById("sync-panel"); if (el) el.innerHTML = syncPanelInner(); }
 
   /* Events — view */
@@ -1893,6 +1983,7 @@
       state.genPick = state.genPick || {}; state.genPick[secId] = cur; save(); renderView(); return;
     }
     const gg = e.target.closest("[data-gengo]"); if (gg) { generateSet(gg.getAttribute("data-gengo")); return; }
+    const ga = e.target.closest("[data-genai]"); if (ga) { generateAiSet(ga.getAttribute("data-genai")); return; }
     const gd = e.target.closest("[data-gendel]"); if (gd) {
       const id = gd.getAttribute("data-gendel");
       const gs = (state.genSets || []).find(x => x.id === id);
@@ -1943,6 +2034,21 @@
     if (e.target.closest("[data-save-details]")) { state.name=document.getElementById("pf-name").value.trim(); state.examDate=document.getElementById("pf-date").value||""; save(); renderTop(); renderProfile(); return; }
     const th = e.target.closest("[data-theme-set]"); if (th) { setTheme(th.getAttribute("data-theme-set")); renderProfile(); return; }
     const cal = e.target.closest("[data-cal]"); if (cal) { calCursor.setMonth(calCursor.getMonth()+parseInt(cal.getAttribute("data-cal"),10)); renderProfile(); return; }
+    if (e.target.closest("[data-ai-save]")) {
+      const el = document.getElementById("ai-key"), k = el ? el.value.trim() : "";
+      const st = document.getElementById("ai-status");
+      if (!k) { if (st) { st.textContent = "Paste a key first."; st.className = "ai-status bad"; } return; }
+      window.GMAT_GEN.ai.setKey(k); renderAiPanel();
+      const st2 = document.getElementById("ai-status");
+      if (st2) { st2.textContent = "Saved on this device."; st2.className = "ai-status ok"; }
+      renderView(); return;
+    }
+    if (e.target.closest("[data-ai-forget]")) {
+      window.GMAT_GEN.ai.setKey(""); renderAiPanel(); renderView();
+      const st = document.getElementById("ai-status");
+      if (st) { st.textContent = "Key removed."; st.className = "ai-status"; }
+      return;
+    }
     if (e.target.closest("[data-backup]")) { backup(); return; }
     if (e.target.closest("[data-restore]")) { document.getElementById("restore-input").click(); return; }
     if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from your saved practice-set attempts?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }

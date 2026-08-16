@@ -393,88 +393,88 @@
     { topic:"Overlapping sets (Venn)", level:"medium", correct:"E", options:5,
       text:"How many attendees are at a convention if 150 of the attendees are neither female nor students, one-sixth of the attendees are female students, two-thirds of the attendees are female, and one-third of the attendees are students?",
       choices:["300","450","600","800","900"],
-      hint:"‘Female or student’ = female + student − female-students; the rest are the 150.",
-      expl:"\\(|F\\cup S| = \\tfrac23T + \\tfrac13T - \\tfrac16T = \\tfrac56T\\). The remaining \\(\\tfrac16T = 150\\), so \\(T = 900\\).\nAnswer: E." },
+      hint:"Use the two-set formula on fractions of the total, then read off what \"neither\" must equal.",
+      expl:"Step 1 — Let the total be T. Then \\(F = \\tfrac{2T}{3}\\), \\(S = \\tfrac{T}{3}\\) and \\(F \\cap S = \\tfrac{T}{6}\\).\nStep 2 — \\(F \\cup S = \\tfrac{2T}{3} + \\tfrac{T}{3} - \\tfrac{T}{6} = \\tfrac{5T}{6}\\).\nStep 3 — \"Neither\" is \\(T - \\tfrac{5T}{6} = \\tfrac{T}{6} = 150\\), so \\(T = 900\\).\nAnswer: E." },
     { topic:"Overlapping sets (Venn)", level:"medium", correct:"B", options:5,
       text:"In a group of 68 students, each student is registered for at least one of three classes — History, Math and English. 25 are registered for History, 25 for Math and 34 for English. If only 3 students are registered for all three classes, how many are registered for exactly two classes?",
       choices:["13","10","9","8","7"],
-      hint:"Sum of the three counts double-counts the exactly-two students and triple-counts the exactly-three.",
-      expl:"Sum \\(=25+25+34=84 = (\\text{exactly 1}) + 2(\\text{exactly 2}) + 3(\\text{exactly 3})\\); total \\(=68=(\\text{ex1})+(\\text{ex2})+(\\text{ex3})\\). Subtract: \\(84-68=(\\text{ex2})+2(3)\\Rightarrow \\text{ex2}=16-6=10\\).\nAnswer: B." }
+      hint:"The sum of the three group sizes counts doubles twice and triples three times.",
+      expl:"Step 1 — \\(25 + 25 + 34 = 84\\), while only 68 distinct students exist.\nStep 2 — The identity is: sum of groups \\(=\\) total \\(+\\) (exactly two) \\(+\\ 2\\times\\) (exactly three).\nStep 3 — \\(84 = 68 + x + 2(3)\\), so \\(x = 10\\).\nAnswer: B." }
   ]},
   { setId:"quant-percentage-ex", add:[
     { topic:"Percentages & percent change", level:"medium", correct:"A", options:5,
       text:"A school's annual budget for student computers increased by 60% this year over last year. If the price of a student computer increased by 20% this year, then the number of computers it can purchase this year is what percent greater than the number it purchased last year?",
       choices:["33⅓%","40%","42%","48%","60%"],
-      hint:"Quantity = budget ÷ price.",
-      expl:"Number bought scales as \\(\\frac{1.60}{1.20}=\\frac{4}{3}\\approx1.333\\), i.e. \\(33\\tfrac13\\%\\) more.\nAnswer: A." },
+      hint:"Quantity is budget divided by price — so divide the two multipliers.",
+      expl:"Step 1 — New quantity \\(= \\dfrac{1.6 \\times \\text{budget}}{1.2 \\times \\text{price}} = \\dfrac{1.6}{1.2}\\) of the old quantity.\nStep 2 — \\(\\dfrac{1.6}{1.2} = \\dfrac43\\), an increase of \\(\\tfrac13\\).\nStep 3 — That is 33.33%.\nAnswer: A." },
     { topic:"Percentages & percent change", level:"hard", correct:"D", options:5,
       text:"A corporation's annual report stated that profits were up 10 percent over the previous year, although profits as a percent of sales were down 10 percent. Total sales that year were approximately what percent of sales for the previous year?",
       choices:["78%","90%","110%","122%","190%"],
-      hint:"Profit = margin × sales.",
-      expl:"\\(P_2=1.1P_1\\) and margin\\(_2=0.9\\,\\)margin\\(_1\\). Since \\(P=\\text{margin}\\times S\\): \\(1.1P_1 = 0.9\\,m_1 S_2\\) and \\(P_1=m_1S_1\\Rightarrow \\frac{S_2}{S_1}=\\frac{1.1}{0.9}\\approx1.22\\).\nAnswer: D." },
+      hint:"Sales is profit divided by the profit margin — so divide the two multipliers.",
+      expl:"Step 1 — Profit multiplier: 1.1. Margin multiplier: 0.9.\nStep 2 — Since \\(S = \\dfrac{P}{P/S}\\), the sales multiplier is \\(\\dfrac{1.1}{0.9} \\approx 1.222\\).\nStep 3 — About 122%.\nAnswer: D." },
     { topic:"Percentages & percent change", level:"hard", correct:"A", options:5,
       text:"A driver paid n dollars for auto insurance in 1997. The premium rose by p percent for 1998; for each of 1999 and 2000 the premium was decreased by 1/6 from the previous year's figure. If the 2000 premium was again n dollars, what is the value of p?",
       choices:["44","12","40","36","50"],
-      hint:"Two decreases of 1/6 multiply the premium by (5/6)² .",
-      expl:"\\(n(1+\\tfrac{p}{100})(\\tfrac56)^2=n\\Rightarrow 1+\\tfrac{p}{100}=\\tfrac{36}{25}=1.44\\Rightarrow p=44\\).\nAnswer: A." }
+      hint:"Chain the three multipliers and set the product equal to 1.",
+      expl:"Step 1 — \\(n\\left(1 + \\tfrac{p}{100}\\right)\\left(\\tfrac56\\right)^{2} = n\\).\nStep 2 — \\(1 + \\tfrac{p}{100} = \\left(\\tfrac65\\right)^{2} = \\tfrac{36}{25} = 1.44\\).\nStep 3 — \\(p = 44\\).\nAnswer: A." }
   ]},
   { setId:"quant-mixture-ex", add:[
     { topic:"Mixtures & solutions", level:"medium", correct:"A", options:5,
       text:"Grapes are 92% water and raisins are 20% water. A quantity of raisins currently weighs 10 pounds. How much did it weigh when it was all grapes? (Only water evaporates; the solid content is unchanged.)",
       choices:["100 pounds","25 pounds","46 pounds","92 pounds","146 pounds"],
-      hint:"The non-water solid stays constant.",
-      expl:"Solid in raisins \\(=80\\%\\times10=8\\) lb. As grapes this solid was \\(8\\%\\) of the weight: \\(8/0.08=100\\) lb.\nAnswer: A." },
+      hint:"Track the part that never changes — the solid.",
+      expl:"Step 1 — The 10 pounds of raisins are 20% water, so the solid weighs \\(0.8 \\times 10 = 8\\) pounds.\nStep 2 — As grapes, that same 8 pounds of solid made up \\(100\\% - 92\\% = 8\\%\\) of the weight.\nStep 3 — \\(\\dfrac{8}{0.08} = 100\\) pounds.\nAnswer: A." },
     { topic:"Mixtures & solutions", level:"medium", correct:"A", options:5,
       text:"A portion of a 50% alcohol solution is replaced with an equal amount of a 25% alcohol solution. If the result is a 30% alcohol solution, what portion of the original solution was replaced?",
       choices:["80%","75%","66%","20%","3%"],
-      hint:"Let x be the fraction replaced and balance the alcohol.",
-      expl:"\\(50(1-x)+25x=30\\Rightarrow 50-25x=30\\Rightarrow x=0.8\\), i.e. 80%.\nAnswer: A." }
+      hint:"Let p be the fraction replaced and write the alcohol balance for one unit of solution.",
+      expl:"Step 1 — After replacing a fraction p: alcohol \\(= 0.50(1 - p) + 0.25p = 0.30\\).\nStep 2 — \\(0.50 - 0.25p = 0.30\\), so \\(0.25p = 0.20\\) and \\(p = 0.8\\).\nStep 3 — 80% of the original was replaced.\nAnswer: A." }
   ]},
   { setId:"quant-profitloss-ex", add:[
     { topic:"Profit, loss & discount", level:"medium", correct:"C", options:5,
       text:"A merchant bought a jacket for $60 and set a selling price equal to the purchase price plus a markup that was 25 percent of the selling price. During a sale the merchant discounted the selling price by 20 percent and sold the jacket. What was the merchant's gross profit?",
       choices:["$0","$3","$4","$12","$15"],
-      hint:"The markup is a fraction of the selling price, not the cost.",
-      expl:"\\(SP=60+0.25\\,SP\\Rightarrow 0.75\\,SP=60\\Rightarrow SP=80\\). Sale price \\(=0.8\\times80=64\\); profit \\(=64-60=\\$4\\).\nAnswer: C." }
+      hint:"The markup is a percentage of the selling price, not of the cost — set up an equation rather than multiplying.",
+      expl:"Step 1 — \\(S = 60 + 0.25S\\), so \\(0.75S = 60\\) and \\(S = 80\\).\nStep 2 — Discounted price: \\(0.80 \\times 80 = 64\\).\nStep 3 — Gross profit \\(= 64 - 60 = \\$4\\).\nAnswer: C." }
   ]},
   { setId:"quant-ratio-ex", add:[
     { topic:"Ratios & proportions", level:"medium", correct:"A", options:5,
       text:"According to the directions on a can of frozen orange-juice concentrate, 1 can of concentrate is mixed with 3 cans of water. How many 12-ounce cans of concentrate are required to prepare two hundred 6-ounce servings of orange juice?",
       choices:["25","34","50","67","100"],
-      hint:"Concentrate is one-quarter of the finished juice by volume.",
-      expl:"Total juice \\(=200\\times6=1200\\) oz; concentrate \\(=\\tfrac14\\times1200=300\\) oz \\(=300/12=25\\) cans.\nAnswer: A." }
+      hint:"Find the total volume of juice first, then the fraction of it that is concentrate.",
+      expl:"Step 1 — Juice needed: \\(200 \\times 6 = 1200\\) ounces.\nStep 2 — Concentrate is 1 part in 4, so \\(1200 \\div 4 = 300\\) ounces of concentrate.\nStep 3 — \\(300 \\div 12 = 25\\) cans.\nAnswer: A." }
   ]},
   { setId:"quant-quadratic-ex", add:[
     { topic:"Quadratic equations", level:"hard", correct:"A", options:5,
       text:"A merchant paid $300 for a shipment of x identical calculators. She used 2 of them as demonstrators and sold each of the rest for $5 more than the average cost of the x calculators. If total revenue was $120 more than the cost of the shipment, how many calculators were in the shipment?",
       choices:["30","28","26","25","24"],
-      hint:"Average cost is 300/x; set revenue = 420 and clear the fraction.",
-      expl:"\\((x-2)\\left(\\tfrac{300}{x}+5\\right)=420\\Rightarrow 5x-\\tfrac{600}{x}=130\\Rightarrow x^2-26x-120=0\\Rightarrow (x-30)(x+4)=0\\Rightarrow x=30\\).\nAnswer: A." }
+      hint:"Average cost is \\(300/x\\) — build the revenue equation and clear the fraction.",
+      expl:"Step 1 — \\((x - 2)\\left(\\dfrac{300}{x} + 5\\right) = 420\\).\nStep 2 — Expanding: \\(300 + 5x - \\dfrac{600}{x} - 10 = 420\\), so \\(5x - \\dfrac{600}{x} = 130\\).\nStep 3 — Multiplying by x: \\(5x^{2} - 130x - 600 = 0\\), i.e. \\(x^{2} - 26x - 120 = 0\\), i.e. \\((x - 30)(x + 4) = 0\\).\nStep 4 — \\(x = 30\\).\nAnswer: A." }
   ]},
   { setId:"quant-interest-ex", add:[
     { topic:"Simple & compound interest", level:"hard", correct:"B", options:5,
       text:"A certain investment grows at an annual interest rate of 8%, compounded quarterly. Which of the following equations can be solved to find the number of years, x, for the investment to increase by a factor of 16?",
       choices:["\\(16=(1.02)^{x/4}\\)","\\(2=(1.02)^{x}\\)","\\(16=(1.08)^{4x}\\)","\\(2=(1.02)^{x/4}\\)","\\(\\tfrac1{16}=(1.02)^{4x}\\)"],
-      hint:"Quarterly rate is 2% and there are 4x quarters; take the fourth root.",
-      expl:"\\(16=(1.02)^{4x}\\). Taking the fourth root of both sides: \\(16^{1/4}=2=(1.02)^{x}\\).\nAnswer: B." }
+      hint:"Quarterly compounding at 8% a year means 2% per quarter and 4x quarters — then look for the equivalent form.",
+      expl:"Step 1 — The growth condition is \\((1.02)^{4x} = 16\\).\nStep 2 — Since \\(16 = 2^{4}\\), take the fourth root of both sides: \\((1.02)^{x} = 2\\).\nStep 3 — That is exactly choice B; none of the others is equivalent.\nAnswer: B." }
   ]},
   { setId:"di-datasufficiency-ex", add:[
     { topic:"Value questions", level:"medium", correct:"B", options:5, choices:DS,
       text:"Joanna bought only $0.15 stamps and $0.29 stamps. How many $0.15 stamps did she buy?\n(1) She bought an equal number of $0.15 stamps and $0.29 stamps.\n(2) She bought $4.40 worth of stamps.",
-      hint:"For (2), look for integer solutions of 15a + 29b = 440.",
-      expl:"(1) equal counts give 0.44n for unknown n — not sufficient. (2) \\(15a+29b=440\\) has the unique non-negative solution \\(a=10, b=10\\) — sufficient.\nAnswer: B." },
+      hint:"A single linear equation in two non-negative integers often has exactly one solution — check before assuming otherwise.",
+      expl:"Step 1 — (1) gives only that the two counts match, with no total — insufficient.\nStep 2 — (2) \\(15a + 29b = 440\\). Reducing mod 15: \\(14b \\equiv 5\\), i.e. \\(b \\equiv 10 \\pmod{15}\\). \\(b = 10\\) gives \\(a = 10\\), and \\(b = 25\\) already overshoots 440.\nStep 3 — So the only solution is \\(a = b = 10\\) — sufficient on its own.\nAnswer: B." },
     { topic:"Value questions", level:"medium", correct:"B", options:5, choices:DS,
       text:"Marta bought several pencils, each either a 23-cent pencil or a 21-cent pencil. How many 23-cent pencils did she buy?\n(1) Marta bought a total of 6 pencils.\n(2) The total value of the pencils was 130 cents.",
-      hint:"Solve 23a + 21b = 130 in non-negative integers.",
-      expl:"(1) 6 pencils allows many splits — not sufficient. (2) \\(23a+21b=130\\) has the unique solution \\(a=2, b=4\\) — sufficient.\nAnswer: B." },
+      hint:"Try every possible count of 23-cent pencils against statement (2) — there are only a handful.",
+      expl:"Step 1 — (1) With 6 pencils the split could be 0/6, 1/5, and so on — insufficient.\nStep 2 — (2) \\(23a + 21b = 130\\) with a, b non-negative integers. Testing \\(a = 0\\) through 5, only \\(a = 2\\) leaves \\(130 - 46 = 84 = 21 \\times 4\\) — sufficient.\nAnswer: B." },
     { topic:"Value questions", level:"hard", correct:"C", options:5, choices:DS,
       text:"A construction company was paid $500,000 for a project whose only costs were labor and materials. Was the company's profit greater than $150,000?\n(1) The company's total cost was three times its cost for materials.\n(2) The company's profit was greater than its cost for labor.",
-      hint:"Let materials = m, labor = l; combine the two relations.",
-      expl:"(1) cost \\(=3m\\Rightarrow l=2m\\); profit \\(=500-3m\\) (in $000s) — depends on m, not sufficient. (2) alone: not sufficient. Together: profit \\(>l\\Rightarrow 500-3m>2m\\Rightarrow m<100\\Rightarrow\\) profit \\(>200>150\\) — sufficient.\nAnswer: C." },
+      hint:"Write everything in terms of the materials cost, then turn statement (2) into an inequality.",
+      expl:"Step 1 — (1) says total cost \\(= 3M\\), so labour \\(= 2M\\) — but M is unknown, so profit is unknown. Insufficient.\nStep 2 — (2) alone gives no absolute figures. Insufficient.\nStep 3 — Together, profit \\(= 500{,}000 - 3M\\) and the condition profit \\(> 2M\\) gives \\(500{,}000 > 5M\\), i.e. \\(M < 100{,}000\\).\nStep 4 — Then profit \\(= 500{,}000 - 3M > 500{,}000 - 300{,}000 = 200{,}000 > 150{,}000\\) — a definite yes.\nAnswer: C." },
     { topic:"Value questions", level:"medium", correct:"C", options:5, choices:DS,
       text:"Of the 60 animals on a certain farm, 2/3 are either cows or pigs. How many of the animals are cows?\n(1) The farm has more than twice as many cows as pigs.\n(2) The farm has more than 12 pigs.",
-      hint:"Cows + pigs = 40; find whether the two bounds pin down a single integer.",
-      expl:"Cows + pigs \\(=40\\). (1) \\(c>2p\\) alone and (2) \\(p>12\\) alone are each insufficient. Together: \\(c=40-p>2p\\Rightarrow p<13.3\\), and \\(p>12\\Rightarrow p=13\\), so \\(c=27\\) — sufficient.\nAnswer: C." }
+      hint:"The two inequalities squeeze the pig count from both sides.",
+      expl:"Step 1 — Cows plus pigs \\(= \\tfrac23 \\times 60 = 40\\).\nStep 2 — (1) \\(C > 2P\\) with \\(C = 40 - P\\) gives \\(40 - P > 2P\\), i.e. \\(P < 13.33\\) — a range, insufficient alone.\nStep 3 — (2) \\(P > 12\\) — insufficient alone.\nStep 4 — Together \\(12 < P < 13.33\\) forces \\(P = 13\\), so \\(C = 27\\).\nAnswer: C." }
   ]},
 
   /* ---- Boldface CR (from the Drive "RC + CR Session 6" doc; answer key from that doc).

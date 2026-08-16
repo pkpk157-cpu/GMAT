@@ -233,6 +233,19 @@
   /* Numbered section header used on each subject tab (Concepts / Practice / Logged).
      A full-width colored band tinted with the section's own accent gives the
      app contrast and makes the three sections read at a glance. */
+  /* ---- Generate practice ---- */
+  .gen-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
+  .gen-chip { font: inherit; font-size: 13.5px; font-weight: 650; padding: 7px 12px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); transition: background .15s, border-color .15s, color .15s; }
+  .gen-chip[aria-pressed="true"] { background: color-mix(in srgb, var(--secc, var(--accent)) 16%, var(--surface));
+    border-color: color-mix(in srgb, var(--secc, var(--accent)) 55%, var(--line)); color: color-mix(in srgb, var(--secc, var(--accent)) 70%, var(--ink)); }
+  .gen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+  .gen-row label { font-size: 13.5px; font-weight: 650; color: var(--ink-faint); }
+  .gen-row select { font: inherit; font-size: 14px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+  .gen-go { font: inherit; font-size: 14.5px; font-weight: 750; padding: 9px 16px; border-radius: 11px; cursor: pointer; border: 0;
+    background: var(--secc, var(--accent)); color: #fff; margin-left: auto; }
+  .gen-go[disabled] { opacity: .45; cursor: not-allowed; }
+  .gen-note { font-size: 13px; color: var(--ink-faint); margin: 11px 0 0; line-height: 1.45; }
   .tabsec { scroll-margin-top: 70px; padding-top: 0; overflow: hidden; }
   .tabsec-head { display: flex; align-items: center; gap: 12px; margin: 0 -19px 16px; padding: 13px 17px; background: linear-gradient(135deg, color-mix(in srgb, var(--secc, var(--accent)) 20%, var(--surface)), color-mix(in srgb, var(--secc, var(--accent)) 8%, var(--surface))); border-bottom: 1px solid color-mix(in srgb, var(--secc, var(--accent)) 22%, var(--line)); }
   .tabsec-head[data-tabsec] { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
@@ -998,6 +1011,7 @@
 <script src="sets-di.js"></script>
 <script src="sets-quant-live.js"></script>
 <script src="sets-quant-live2.js"></script>
+<script src="generator.js"></script>
 <script src="concepts.js"></script>
 <script src="flashcards.js"></script>
 <script>
@@ -1044,7 +1058,8 @@
     concepts:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>',
     flash:'<svg viewBox="0 0 24 24"><rect x="8" y="3.5" width="12" height="14" rx="2"/><path d="M4 8v10.5A2 2 0 0 0 6 20.5h10"/></svg>',
     practice:'<svg viewBox="0 0 24 24"><path d="M12.5 20H21"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
-    logged:'<svg viewBox="0 0 24 24"><path d="M10 6h10"/><path d="M10 12h10"/><path d="M10 18h10"/><path d="M3.5 6l1.2 1.2L7 5"/><path d="M3.5 12l1.2 1.2L7 11"/><path d="M3.5 18l1.2 1.2L7 17"/></svg>'
+    logged:'<svg viewBox="0 0 24 24"><path d="M10 6h10"/><path d="M10 12h10"/><path d="M10 18h10"/><path d="M3.5 6l1.2 1.2L7 5"/><path d="M3.5 12l1.2 1.2L7 11"/><path d="M3.5 18l1.2 1.2L7 17"/></svg>',
+    spark:'<svg viewBox="0 0 24 24"><path d="M12 2.5l2.1 5.4 5.4 2.1-5.4 2.1L12 17.5l-2.1-5.4L4.5 10l5.4-2.1z"/><path d="M18.5 16.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>'
   };
 
   const SECTIONS = [
@@ -1087,7 +1102,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v76";
+  const APP_VERSION = "v77";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1103,7 +1118,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" } };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1346,6 +1361,78 @@
     return h + `</div></div></section>`;
   }
 
+  // Build a set, persist it, splice it into the live SETS array (so the runner
+  // and every aggregate see it immediately) and open it.
+  function generateSet(secId) {
+    const G = window.GMAT_GEN;
+    if (!G) { alert("The generator didn't load. Pull the latest version from your profile and try again."); return; }
+    const sel = document.querySelector(`[data-gencount="${secId}"]`);
+    const count = sel ? parseInt(sel.value, 10) || 10 : 10;
+    const set = G.makeSet(genPicked(secId), count);
+    if (!set || !set.questions.length) { alert("Couldn't build a set from those topics — try picking another one."); return; }
+    state.genSets = (state.genSets || []).concat([set]);
+    // Keep the newest 20 generated sets; drop the oldest along with its run.
+    while (state.genSets.length > 20) {
+      const gone = state.genSets.shift();
+      delete state.runs[gone.id];
+      const at = SETS.findIndex(x => x.id === gone.id); if (at >= 0) SETS.splice(at, 1);
+    }
+    SETS.push(set);
+    save(); renderView();
+    openRunner(set.id);
+    if (window.gtrack) gtrack("generate-set");
+  }
+
+  /* ===================== Generate practice ===================== */
+  // Builds fresh questions on this device from parameterised templates. The
+  // answer is computed by the template rather than written down, so a
+  // generated question cannot carry a wrong key.
+  function genTopicsFor(secId) {
+    const G = window.GMAT_GEN;
+    return G ? G.TOPICS.filter(t => t.section === secId) : [];
+  }
+  function genPicked(secId) {
+    const all = genTopicsFor(secId).map(t => t.id);
+    const cur = (state.genPick && state.genPick[secId]) || [];
+    const kept = cur.filter(id => all.indexOf(id) >= 0);
+    return kept.length ? kept : all.slice(0, 1);
+  }
+  function generatorPanelHTML(sec) {
+    const topics = genTopicsFor(sec.id);
+    const key = tsecKey(sec.id, "generate");
+    const open = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-generate" style="--secc:${sec.color}">` +
+      tabSecHead(ICON.spark, "Generate practice", "Build a fresh set on any topic — new numbers every time, answers computed on the spot.", "", key) +
+      `<div class="tabsec-body">`;
+    if (!topics.length) return open + `<p class="footnote" style="margin:0;text-align:left">No generators for this section yet.</p></div></section>`;
+    const picked = genPicked(sec.id);
+    let h = open + `<div class="gen-chips">`;
+    topics.forEach(t => {
+      const on = picked.indexOf(t.id) >= 0;
+      h += `<button type="button" class="gen-chip" aria-pressed="${on}" data-gentopic="${esc(sec.id)}|${esc(t.id)}">${esc(t.label)}</button>`;
+    });
+    h += `</div><div class="gen-row"><label for="gen-n-${esc(sec.id)}">Questions</label>` +
+      `<select id="gen-n-${esc(sec.id)}" data-gencount="${esc(sec.id)}">` +
+      [5, 10, 15, 20].map(n => `<option value="${n}"${n === 10 ? " selected" : ""}>${n}</option>`).join("") +
+      `</select><button class="gen-go" data-gengo="${esc(sec.id)}"${picked.length ? "" : " disabled"}>✨ Generate set</button></div>`;
+    const mine = (state.genSets || []).filter(g => g.section === sec.id);
+    if (mine.length) {
+      h += `<div class="setlist" style="margin-top:15px">`;
+      mine.slice().reverse().forEach(gs => {
+        const run = getRun(gs.id), answered = Object.keys(run.ans).length;
+        let status, cls;
+        if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
+        else if (answered) { status = `${answered}/${gs.questions.length} answered`; cls = ""; }
+        else { status = "not started"; cls = "muted"; }
+        h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">✨</span><div class="si"><div class="st">${esc(gs.title)}</div>
+          <div class="sm"><span class="badge" style="--sc:${sec.color}">Generated</span><span>${gs.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
+          <div class="setbtns"><button class="reset-set" data-gendel="${esc(gs.id)}" title="Delete this generated set">🗑</button><button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(gs.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
+      });
+      h += `</div>`;
+    }
+    h += `<p class="gen-note">Generated questions are built from templates and scored the same way as the rest of the app, so they count towards your topic accuracy. They supplement the verified bank — they don't replace it.</p>`;
+    return h + `</div></section>`;
+  }
+
   function sectionHTML(sec) {
     const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
     let h = `<div class="sec-head" style="--secc:${sec.color}">
@@ -1357,6 +1444,7 @@
     h += conceptsPanelHTML(conceptsFor(sec.id), sec);         // Concepts & theory
     h += flashcardsPanelHTML(sec.id, sec, ICON.flash);        // Flash cards
     h += setsPanelHTML(setsFor(sec.id), { num: ICON.practice, sec }); // Practice sets
+    h += generatorPanelHTML(sec);                              // Generate practice
     h += questionsLoggedHTML(sec);                             // Questions logged
     return h;
   }
@@ -1798,6 +1886,24 @@
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this set added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
+    const gt = e.target.closest("[data-gentopic]"); if (gt) {
+      const [secId, topId] = gt.getAttribute("data-gentopic").split("|");
+      const cur = genPicked(secId).slice(), at = cur.indexOf(topId);
+      if (at >= 0) { if (cur.length > 1) cur.splice(at, 1); } else cur.push(topId);
+      state.genPick = state.genPick || {}; state.genPick[secId] = cur; save(); renderView(); return;
+    }
+    const gg = e.target.closest("[data-gengo]"); if (gg) { generateSet(gg.getAttribute("data-gengo")); return; }
+    const gd = e.target.closest("[data-gendel]"); if (gd) {
+      const id = gd.getAttribute("data-gendel");
+      const gs = (state.genSets || []).find(x => x.id === id);
+      if (gs && confirm(`Delete "${gs.title}"?\n\nThe questions are gone for good, but anything you already logged from it stays in your totals.`)) {
+        state.genSets = state.genSets.filter(x => x.id !== id);
+        delete state.runs[id];
+        const at = SETS.findIndex(x => x.id === id); if (at >= 0) SETS.splice(at, 1);
+        save(); renderView();
+      }
+      return;
+    }
     const oc = e.target.closest("[data-openconcept]"); if (oc) { openConcept(oc.getAttribute("data-openconcept")); return; }
     const fd = e.target.closest("[data-flashdeck]"); if (fd) { openFlashDeck(fd.getAttribute("data-flashdeck"), state.active); return; }
     if (e.target.closest("[data-session-open]")) { openSessionConfig(); return; }
@@ -1892,6 +1998,14 @@
     });
     // Whole new sets (e.g. new RC passages in sets-rc.js) are appended as-is.
     (window.GMAT_SETS_NEW || []).forEach(s => { if (s && Array.isArray(s.questions) && s.questions.length && !base.some(b => b.id === s.id)) base.push(s); });
+  })();
+  // Sets the user generated on this device live in state, so they survive a
+  // reload and their runs are tracked exactly like a hand-authored set's.
+  (function () {
+    const base = window.GMAT_SETS || [];
+    (state.genSets || []).forEach(gs => {
+      if (gs && Array.isArray(gs.questions) && gs.questions.length && !base.some(b => b.id === gs.id)) base.push(gs);
+    });
   })();
   const SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
   const LET = ["A","B","C","D","E","F","G","H"];
@@ -2354,7 +2468,7 @@
     const a = rev.answered[rev.idx], revealed = !!a, pend = rev.pending, elim = rev.elim[rev.idx] || {};
     let h = `<div class="rn-prog"><i style="width:${Math.round(rev.idx/n*100)}%"></i></div><div class="rn-sub">${rev.idx+1} of ${n} · spaced review</div>`;
     h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
-    h += `<div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
+    h += `<div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
       let cls = "", dis = "";
@@ -2494,6 +2608,9 @@
 
   let runSetId = null, runIndex = 0, qStart = 0, qAccum = 0, qPaused = false, qTimer = null, pendingL = null, timedFor = null;
   // Reading-comprehension passage panel (shared by the runner and the session).
+  // A generated Table Analysis question carries its own table rather than
+  // sharing one across the set, so it renders per question.
+  const qTableHTML = (q) => (q && q.passageTable) ? diTableHTML(q.passageTable) : "";
   /* ---- Data Insights: draw real tables and charts from structured data ---- */
   function diTableHTML(t) {
     if (!t || !Array.isArray(t.head) || !Array.isArray(t.rows)) return "";
@@ -2829,7 +2946,7 @@
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
     h += `<div class="qcard" id="qcard">${passageHTML(set)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
-      <div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
+      <div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
     LET.slice(0, nOpt).forEach((L, i) => {
@@ -2886,7 +3003,7 @@
       h += `<div class="revitem"><div class="qrow rev"><button class="qflag small ${isFlagged(set.id,p.n)?"on":""}" data-flag="${p.n}" title="Flag to revisit later">⚑</button><span class="qn">Q${p.n}</span><div class="rev-opts">` +
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
-        (q && q.text ? `<div class="rev-q">${rich(q.text)}</div>` : "") +
+        (q && q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
         (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · <span class="lvl lvl-${q.level}">${q.level}</span>`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
@@ -3088,7 +3205,7 @@
     h += `</div>`;
     const elim = sess.elim[sess.idx] || {}, pend = sess.pending;
     h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
-    h += `<div class="qtext">${rich(q.text || ("Question " + q.n))}</div>${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
+    h += `<div class="qtext">${rich(q.text || ("Question " + q.n))}</div>${qTableHTML(q)}${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
       let cls = pend === L ? "sel" : ""; if (elim[L]) cls += " struck";
@@ -3147,7 +3264,7 @@
       h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${i + 1}</span><div class="rev-opts">` +
         LET.slice(0, nOpt).map(L => { let c = ""; if (L === q.correct) c = "correct"; else if (L === a.chosen && !a.correct) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div><span class="rev-time">⏱ ${fmtClock(a.ms)}</span><span class="rev-mark ${a.correct ? "ok" : "no"}">${a.correct ? "✓" : "✗"}</span></div>` +
-        (q.text ? `<div class="rev-q">${rich(q.text)}</div>` : "") +
+        (q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
         (q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}</div></div>`;
     });

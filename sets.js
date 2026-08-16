@@ -4173,7 +4173,7 @@ window.GMAT_SETS = [
           "The nasal spray vaccine is not effective when administered to adults."
         ],
         "hint": "Negation test: negating the correct choice should break the conclusion.",
-        "expl": "Correct answer: D. D",
+        "expl": "Step 1 — Conclusion: vaccinating children with the nasal spray would bring **no significant public-health benefit**.\nStep 2 — The support offered is that children themselves seldom get seriously ill. That only rules out a benefit *to the children*.\nStep 3 — The gap: vaccinating children could still protect the adults who do suffer serious complications, if children are a major source of adult infections. The argument must be assuming that is not the case — which is (D).\nStep 4 — Negation test: if adults *do* catch influenza primarily from children, vaccinating children would cut adult cases, and the conclusion collapses. That confirms (D) is required.\nStep 5 — The others: (A) safety of combining the two vaccines is irrelevant to whether a benefit exists; (B) the mechanism does not matter, only the effect; (C) affordability for adults is outside the argument; (E) whether the spray also works on adults would, if anything, be a separate route to benefit, not an assumption this argument needs.\nAnswer: D.",
         "level": "hard"
       },
       {

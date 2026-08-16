@@ -238,6 +238,18 @@
   .ai-status { font-size: 13.5px; font-weight: 600; margin: 12px 0 0; color: var(--ink-faint); }
   .ai-status.ok { color: var(--good); }
   .ai-status.bad { color: var(--bad); }
+  /* ---- Difficulty recalibrated from your own results ---- */
+  .lvl-recal { position: relative; border-style: dashed; }
+  .lvl-recal i { font-style: normal; font-size: 9px; margin-left: 3px; vertical-align: 1px; opacity: .8; }
+  .recal { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px dashed color-mix(in srgb, var(--secc, var(--accent)) 38%, var(--line)); background: color-mix(in srgb, var(--secc, var(--accent)) 6%, var(--surface)); }
+  .recal h4 { margin: 0 0 4px; font-size: 14px; font-weight: 800; color: color-mix(in srgb, var(--secc, var(--accent)) 60%, var(--ink)); }
+  .recal p { margin: 0 0 9px; font-size: 13px; color: var(--ink-faint); line-height: 1.45; }
+  .recal ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .recal li { font-size: 13.5px; color: var(--ink-soft); display: flex; align-items: baseline; gap: 7px; }
+  .recal li b { font-weight: 700; color: var(--ink); }
+  .recal .rdir { flex: none; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; }
+  .recal .rdir.up { background: color-mix(in srgb, var(--bad) 16%, var(--surface)); color: var(--bad); }
+  .recal .rdir.down { background: color-mix(in srgb, var(--good) 16%, var(--surface)); color: var(--good); }
   /* ---- Generate practice ---- */
   .gen-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
   .gen-chip { font: inherit; font-size: 13.5px; font-weight: 650; padding: 7px 12px; border-radius: 999px; cursor: pointer;
@@ -1107,7 +1119,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v77";
+  const APP_VERSION = "v78";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1388,6 +1400,97 @@
     if (window.gtrack) gtrack("generate-set");
   }
 
+  /* ===================== Difficulty recalibration =====================
+     A question's printed level comes from whoever wrote it, and it is a claim
+     about the average test-taker, not about you. Once you have answered enough
+     questions in a given topic-and-level bucket, your own results are the
+     better estimate — so the badge shifts to match how that bucket actually
+     behaves for you, and says so when it does.
+
+     Deliberately conservative: it needs a real sample before it moves anything,
+     it only ever shifts one band, and it never rewrites the stored data. */
+  const LEVEL_ORDER = ["easy", "medium", "hard"];
+  // Roughly what each band should feel like for the person it was written for.
+  const LEVEL_BASELINE = { easy: 0.85, medium: 0.70, hard: 0.55 };
+  const RECAL_MIN_SAMPLE = 6;     // fewer than this and a bucket says nothing
+  const RECAL_MARGIN = 0.15;      // how far off baseline before the badge moves
+  let recalCache = null;
+
+  function recalBuckets() {
+    if (recalCache) return recalCache;
+    const buckets = {};
+    const setById = {};
+    SETS.forEach(s => { setById[s.id] = s; });
+    Object.keys(state.runs || {}).forEach(sid => {
+      const set = setById[sid], run = state.runs[sid];
+      if (!set || !run || !run.logged) return;
+      Object.keys(run.logged).forEach(n => {
+        const rec = run.logged[n];
+        if (!rec || typeof rec.correct !== "boolean") return;
+        const q = set.questions.find(x => String(x.n) === String(n));
+        if (!q || !q.level || !q.topic) return;
+        const k = set.section + "::" + q.topic + "::" + q.level;
+        const b = buckets[k] || (buckets[k] = { n: 0, c: 0 });
+        b.n++; if (rec.correct) b.c++;
+      });
+    });
+    recalCache = buckets;
+    return buckets;
+  }
+  function clearRecal() { recalCache = null; }
+
+  // Returns { level, shifted, why } — `shifted` is -1 (easier for you),
+  // +1 (harder for you) or 0 (left as written).
+  function personalLevel(section, q) {
+    const lvl = q && q.level;
+    if (!lvl || LEVEL_ORDER.indexOf(lvl) < 0) return { level: lvl, shifted: 0, why: "" };
+    const b = recalBuckets()[section + "::" + q.topic + "::" + lvl];
+    if (!b || b.n < RECAL_MIN_SAMPLE) return { level: lvl, shifted: 0, why: "" };
+    const acc = b.c / b.n, base = LEVEL_BASELINE[lvl];
+    const at = LEVEL_ORDER.indexOf(lvl);
+    const pctTxt = Math.round(acc * 100) + "% on " + b.n + " " + lvl + " " + q.topic + " questions";
+    if (acc >= base + RECAL_MARGIN && at > 0)
+      return { level: LEVEL_ORDER[at - 1], shifted: -1, why: "Marked " + lvl + ", but you're at " + pctTxt + " — easier for you." };
+    if (acc <= base - RECAL_MARGIN && at < LEVEL_ORDER.length - 1)
+      return { level: LEVEL_ORDER[at + 1], shifted: 1, why: "Marked " + lvl + ", but you're at " + pctTxt + " — harder for you." };
+    return { level: lvl, shifted: 0, why: "" };
+  }
+  // The level badge, recalibrated against your own results where there is
+  // enough evidence to justify it.
+  function levelBadge(section, q) {
+    if (!q || !q.level) return "";
+    const p = personalLevel(section, q);
+    if (!p.shifted) return `<span class="lvl lvl-${p.level}">${p.level}</span>`;
+    return `<span class="lvl lvl-${p.level} lvl-recal" title="${esc(p.why)}">${p.level}<i>${p.shifted < 0 ? "▼" : "▲"}</i></span>`;
+  }
+  // Per-section summary of every bucket your results disagree with.
+  function recalSummary(secId) {
+    const out = [];
+    const buckets = recalBuckets();
+    Object.keys(buckets).forEach(k => {
+      const [sec, topic, lvl] = k.split("::");
+      if (sec !== secId) return;
+      const b = buckets[k];
+      if (b.n < RECAL_MIN_SAMPLE) return;
+      const acc = b.c / b.n, base = LEVEL_BASELINE[lvl], at = LEVEL_ORDER.indexOf(lvl);
+      if (acc >= base + RECAL_MARGIN && at > 0) out.push({ topic, lvl, acc, n: b.n, dir: -1 });
+      else if (acc <= base - RECAL_MARGIN && at < LEVEL_ORDER.length - 1) out.push({ topic, lvl, acc, n: b.n, dir: 1 });
+    });
+    return out.sort((a, b) => (a.dir - b.dir) || (a.acc - b.acc));
+  }
+
+  function recalPanelHTML(sec) {
+    const rows = recalSummary(sec.id);
+    if (!rows.length) return "";
+    let h = `<div class="panel recal" style="--secc:${sec.color}"><h4>Difficulty, recalibrated for you</h4>` +
+      `<p>These labels came from whoever wrote the questions. On ${esc(sec.nav)} your own results disagree, so the badges on these questions now show your level instead.</p><ul>`;
+    rows.forEach(r => {
+      h += `<li><span class="rdir ${r.dir < 0 ? "down" : "up"}">${r.dir < 0 ? "easier" : "harder"}</span>` +
+        `<span><b>${esc(r.topic)}</b> · marked ${esc(r.lvl)} · you're at ${Math.round(r.acc * 100)}% over ${r.n} question${r.n === 1 ? "" : "s"}</span></li>`;
+    });
+    return h + `</ul></div>`;
+  }
+
   /* ===================== Generate practice ===================== */
   let genBusy = false, genStatus = "", genStatusCls = "";
   function setGenStatus(msg, cls) { genStatus = msg || ""; genStatusCls = cls || ""; renderView(); }
@@ -1512,6 +1615,7 @@
     h += flashcardsPanelHTML(sec.id, sec, ICON.flash);        // Flash cards
     h += setsPanelHTML(setsFor(sec.id), { num: ICON.practice, sec }); // Practice sets
     h += generatorPanelHTML(sec);                              // Generate practice
+    h += recalPanelHTML(sec);                                  // Difficulty vs. your results
     h += questionsLoggedHTML(sec);                             // Questions logged
     return h;
   }
@@ -2573,7 +2677,7 @@
     const cur = rev.pool[rev.idx], q = cur.q, sec = secById(cur.set.section), nOpt = q.options || 5;
     const a = rev.answered[rev.idx], revealed = !!a, pend = rev.pending, elim = rev.elim[rev.idx] || {};
     let h = `<div class="rn-prog"><i style="width:${Math.round(rev.idx/n*100)}%"></i></div><div class="rn-sub">${rev.idx+1} of ${n} · spaced review</div>`;
-    h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
+    h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(cur.set.section, q)}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
     h += `<div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
@@ -2618,6 +2722,7 @@
   function logOne(set, q, correct, ms) {
     const run = ensureRun(set.id);
     if (run.logged[q.n]) { return; }
+    clearRecal();
     ms = Math.max(0, ms || 0);
     const id = resolveTopic(set.section, q.topic);
     if (id) {
@@ -3051,7 +3156,7 @@
     const flagged = isFlagged(set.id, q.n);
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard">${passageHTML(set)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${q.level?`<span class="lvl lvl-${q.level}">${q.level}</span>`:""}</div>
+    h += `<div class="qcard" id="qcard">${passageHTML(set)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(set.section, q)}</div>
       <div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
@@ -3111,7 +3216,7 @@
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
         (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
-        `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · <span class="lvl lvl-${q.level}">${q.level}</span>`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
+        `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · ${levelBadge(set.section, q)}`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
     h += `</div></div>`;
     h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;

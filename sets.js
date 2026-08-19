@@ -3374,8 +3374,8 @@ window.GMAT_SETS = [
           "The ratio of taxpayers to voters has increased over the last ten years.",
           "The ratio of voters to taxpayers is unchanged."
         ],
-        "hint": "Taxpayers grew faster than voters from a larger starting base.",
-        "expl": "Taxpayers started higher and grew 100%; voters grew less. So taxpayers grew faster, and the taxpayer-to-voter ratio must have risen.\nAnswer: D.",
+        "hint": "Both groups grew. Compare how fast, not how many.",
+        "expl": "Given — ten years ago taxpayers slightly outnumbered registered voters. Since then taxpayers doubled, while voters grew by less than 100%.\nWhat follows — taxpayers grew faster than voters, so taxpayers per voter must be higher now than it was. That is (D), and it holds whatever the starting numbers were.\n(A) Taxpayers started ahead and grew faster, so they cannot now be fewer.\n(B) Nothing links who is a taxpayer to who is a voter; the two groups need not overlap at all.\n(C) This is the ratio the wrong way up. Voters per taxpayer has [[fallen]].\n(E) The ratio cannot be unchanged when one side doubles and the other does not.",
         "level": "medium"
       },
       {
@@ -3391,8 +3391,8 @@ window.GMAT_SETS = [
           "They eat more varied foods as they age.",
           "They tend to lose weight as they age."
         ],
-        "hint": "Fat amount rises but fat's share of the diet is constant — so what must the total do?",
-        "expl": "If fat grams increase while fat stays the same fraction of the diet, total food intake must be increasing.\nAnswer: B.",
+        "hint": "Fat grams up, fat percentage flat. Ask what the percentage is a percentage of.",
+        "expl": "Given — adults consume increasing amounts of fat as they age, yet fat stays a constant [[share]] of their diet.\nWhat follows — if the amount of fat rises while its share of the total holds steady, the total must be rising too. That is (B).\n(A) The passage never compares country X with anywhere else.\n(C) Children's diets are never mentioned.\n(D) Variety is a different property from quantity and is not discussed.\n(E) Weight change does not follow from intake alone; activity and metabolism are unaddressed.",
         "level": "medium"
       },
       {
@@ -3408,8 +3408,8 @@ window.GMAT_SETS = [
           "The city's tax revenue will decline by 1 percent if jobs aren't replaced.",
           "The relocation will increase the percentage of Metroburg jobs that are public-sector."
         ],
-        "hint": "Public jobs stay the same; total private jobs fall — what happens to the public share?",
-        "expl": "Private-sector jobs drop while public-sector jobs stay constant, so public jobs become a larger share of the remaining total. (The revenue claims overstate a precise 1% — salaries, not headcount, drive the 2% tax.)\nAnswer: E.",
+        "hint": "Private jobs leave, public jobs stay. Ask what happens to the mix.",
+        "expl": "Given — a large private employer relocates out of Metroburg with all its employees, while all other public and private employee counts stay constant.\nWhat follows — the number of public-sector jobs is unchanged while the total shrinks, so public-sector jobs are a larger share of what remains. That is (E), and it is forced by the arithmetic.\n(A) and (D) Both put a figure on the revenue loss. The tax supplies half the budget, but nothing tells you what fraction of the city's payroll this one employer represented, so 1 percent cannot be derived.\n(B) The employees leave with the company, so this says nothing certain about residents' unemployment.\n(C) The company's tax position at its new location is outside the passage entirely.",
         "level": "hard"
       },
       {
@@ -3425,8 +3425,8 @@ window.GMAT_SETS = [
           "Patrons will buy a card only on days they need 50+ copies.",
           "Revenue will increase if no patron prefers the remaining coin machines."
         ],
-        "hint": "A 50-copy card costs $4.50 (50×9¢); think about the effective per-copy price if under-used.",
-        "expl": "A card is prepaid for 50 copies ($4.50). If used to under 90% of capacity (fewer than 45 copies), the effective price exceeds 10¢/copy, so revenue rises versus coins.\nAnswer: C.",
+        "hint": "Work out what the card actually costs per copy, then compare it with a dime.",
+        "expl": "Given — copies cost 10¢ by coin. A prepaid card allows up to 50 copies at 9¢, so it costs $4.50 whether or not all 50 are used. Total copies made will be unchanged.\nWhat follows — a card used for fewer than 45 copies works out at more than 10¢ each, so the library takes in more than it would have on coins. That is (C): under 90% of capacity is exactly under 45 copies.\n(A) Usage is stated to be unchanged in total, but that does not mean no individual patron increases theirs.\n(B) Nothing indicates the number of users falls.\n(D) There is no basis for a claim about when patrons choose to buy.\n(E) Whether patrons prefer coin machines does not by itself determine revenue; the arithmetic of card usage does.",
         "level": "hard"
       },
       {
@@ -3442,8 +3442,8 @@ window.GMAT_SETS = [
           "All who do their own research make a profit.",
           "Some who make a profit do so without doing any research of their own."
         ],
-        "hint": "Most do no research; a majority profit — the two big groups must overlap.",
-        "expl": "Most investors do no research and a majority profit; two majorities of the same set must overlap, so some profitable investors did no research.\nAnswer: E.",
+        "hint": "Two majorities of the same group have to overlap.",
+        "expl": "Given — most investors do no research of their own, and a majority of investors make a profit.\nWhat follows — two subsets each holding more than half of the same population cannot be disjoint, so at least one investor is in both. That is (E).\n(A) The passage divides the non-researchers into broker-followers and hunch-players but never says those two together are most investors.\n(B) and (D) Both claim [[all]] of a group profits, which no premise supports.\n(C) A statement about brokers specifically; the premises are about investors as a whole.",
         "level": "medium"
       },
       {
@@ -3459,8 +3459,8 @@ window.GMAT_SETS = [
           "All minted gold coins had less than 92% gold.",
           "The only unrefined gold that could be minted directly was non-Senegalese."
         ],
-        "hint": "Refining raises purity; Senegalese (92%, purest) was never refined. So what was refined?",
-        "expl": "Refining was done to gold other than the Senegalese (which was purest and left unrefined). Since Senegalese at 92% was the purest known, the refined gold started below 92%.\nAnswer: A.",
+        "hint": "Senegalese gold was the purest known and was never refined. So what was being refined?",
+        "expl": "Given — Senegalese gold at 92% was the purest known and was minted without refining. Mints nonetheless refined gold regularly to make purer coins.\nWhat follows — the gold they refined cannot have been Senegalese, and since Senegalese was the purest known, whatever they refined started below 92%. That is (A).\n(B) Uniform weight and proportion is never claimed.\n(C) Monetary value is not discussed anywhere in the passage.\n(D) Too strong, and backwards: refining produced coins [[purer]] than 92%.\n(E) The passage says Senegalese gold was minted unrefined, so it is precisely gold that could be minted directly.",
         "level": "hard"
       },
       {
@@ -3476,8 +3476,8 @@ window.GMAT_SETS = [
           "Each segment strongly supports Mr. Quintana.",
           "Each segment strongly supports Mr. Ramirez."
         ],
-        "hint": "Salim contradicts the consequent, so the antecedent (Puerta-segments also support Quintana) must fail.",
-        "expl": "Salim shows some Quintana supporters do support Ramirez, contradicting Mashika's conclusion. So Mashika's condition (Puerta-supporting segments also support Quintana) is false — i.e., some segments support Puerta but not Quintana.\nAnswer: B.",
+        "hint": "A conditional with a false consequent tells you the antecedent is false too.",
+        "expl": "Given — Mashika: if the segments supporting Puerta also support Quintana, then no segment supporting Quintana supports Ramirez. Salim: some segments do support both Quintana and Ramirez.\nWhat follows — Salim makes the consequent false, so the antecedent must be false as well: it is not the case that the Puerta segments all support Quintana. Some support Puerta but not Quintana. That is (B).\n(A) Contradicts Salim, who states that some segments support both.\n(C), (D), (E) All introduce \"strongly\", a degree of support the exchange never mentions.",
         "level": "hard"
       }
     ]
@@ -3501,8 +3501,8 @@ window.GMAT_SETS = [
           "If developers do not build apartments, taxes will not rise substantially.",
           "If developers do not build apartments, roads will not be congested."
         ],
-        "hint": "Follow the forward chain from 'apartments built'.",
-        "expl": "Apartments → more residents → congested roads → new roads; new roads require substantial tax increases. So building apartments forces substantial tax increases.\nAnswer: B.",
+        "hint": "Link the conditionals into one chain and read off the ends.",
+        "expl": "The chain — apartments get built → population rises → roads congest → new roads are built → and neither new roads nor new schools can be built without substantial tax increases.\nWhat follows — start at apartments and run the chain to its end: if developers build apartments, taxes go up substantially. That is (B).\n(A) Residents banding together stops the rezoning, but nothing says apartments are impossible by any other route.\n(C) Denies the antecedent. Taxes could rise for reasons the passage never mentions.\n(D) The same error: no apartments does not guarantee no tax rise.\n(E) Also denies the antecedent — congestion is not stated to require apartments.",
         "level": "hard"
       },
       {
@@ -3518,8 +3518,8 @@ window.GMAT_SETS = [
           "Any well-designed coffeehouse or restaurant has a spacious interior.",
           "Any coffeehouse with a spacious interior is well designed."
         ],
-        "hint": "Chain: well designed → comfortable → spacious.",
-        "expl": "'Uncomfortable → not well designed' contrapositive gives 'well designed → comfortable', and 'comfortable → spacious'. Coffeehouses/restaurants are public places, so any well-designed one has a spacious interior.\nAnswer: D.",
+        "hint": "Three of the statements chain together. Follow them from \"well designed\".",
+        "expl": "The chain — well designed → comfortable (since uncomfortable means not well designed) → spacious interior. And all coffeehouses and restaurants are public places, so the chain applies to them.\nWhat follows — any well-designed coffeehouse or restaurant has a spacious interior. That is (D).\n(A) Reverses the last link: spacious does not guarantee comfortable.\n(B) Reverses the artwork claim. Most well-designed places feature artwork, not the other way round.\n(C) \"Most well-designed public places\" does not carry down to the coffeehouse subset, which could be atypical.\n(E) Reverses two links at once, from spacious back to well designed.",
         "level": "hard"
       },
       {
@@ -3535,8 +3535,8 @@ window.GMAT_SETS = [
           "None of the rhetoric students are taking literature.",
           "Some students are taking art but not literature."
         ],
-        "hint": "The physics-and-art students can't be literature students.",
-        "expl": "Several physics students take art; since no literature student takes physics, those art-takers aren't literature students — so some students take art but not literature.\nAnswer: E.",
+        "hint": "Use the physics students as the bridge between the two facts.",
+        "expl": "Given — no literature student takes physics; several physics students take art; no rhetoric student takes physics.\nWhat follows — the physics students who take art are, by the first premise, not literature students. So there are students taking art but not literature. That is (E).\n(A) Nothing rules it out, but nothing establishes it either.\n(B) Far too strong: literature students are only excluded from physics, not from art.\n(C) Rhetoric and literature are only linked through physics, which neither group takes, so no overlap can be derived.\n(D) The same problem — sharing an exclusion from physics does not separate the two groups from each other.",
         "level": "medium"
       }
     ]
@@ -3560,8 +3560,8 @@ window.GMAT_SETS = [
           "Since the first outbreak, farmers treat mild cases themselves and no longer report them.",
           "Cattle that survive CXC rarely contract it a second time."
         ],
-        "hint": "A higher death-rate percentage can come from a shrinking denominator (reported cases).",
-        "expl": "Rate = deaths ÷ reported cases. If mild cases are no longer reported (D), the denominator shrinks, so the percentage rises even if the number of deaths did not increase.\nAnswer: D.",
+        "hint": "A rate is a fraction. Ask what happened to the bottom of it.",
+        "expl": "Conclusion — more cows are dying of CXC than five years ago.\nSupport — deaths as a share of [[reported]] cases rose from 5% to over 18%.\nThe weak point — the figure is a rate, and a rate can climb because the numerator grew or because the denominator shrank.\nWhy (D) works — if farmers now treat mild cases themselves and stop reporting them, only the severe cases reach the statistics. The share dying rises even if the number dying is flat or falling.\n(A) Misattributed deaths would inflate today's count, which supports the conclusion rather than weakening it.\n(B) Overcounting during the [[first]] outbreak would make the old rate too high, so the rise would be even more real.\n(C) An inoculation programme would cut deaths, but 70% effectiveness against serious illness does not explain a rising reported rate.\n(E) Immunity in survivors affects who catches CXC again, not the share of reported cases that end in death.",
         "level": "medium"
       },
       {
@@ -3577,8 +3577,8 @@ window.GMAT_SETS = [
           "An increasing proportion of non-plastic waste is now recycled and no longer reaches disposal.",
           "The percentage of products using plastic packaging is rising while total plastic made is unchanged."
         ],
-        "hint": "A rising share of the total needn't mean a rising amount — the total could be shrinking.",
-        "expl": "Plastic's percentage can rise simply because non-plastic waste is being diverted to recycling (D), shrinking the total handled — so plastic's amount could be flat or falling.\nAnswer: D.",
+        "hint": "The evidence is about proportion. The conclusion is about amount.",
+        "expl": "Conclusion — the amount of plastic reaching landfills is increasing.\nSupport — plastics make up an ever-increasing [[percentage]] of the waste handled.\nThe weak point — a percentage rises whenever the rest of the mix falls, even if the plastic itself never budges.\nWhy (D) works — if more and more non-plastic waste is recycled and never reaches disposal, the total shrinks and plastic's share climbs on its own. The quantity of plastic need not have grown at all.\n(A) Sending plastics to landfills rather than incinerators supports the conclusion.\n(B) Unrecyclable plastic also points towards more plastic in landfills, not less.\n(C) Reuse would reduce plastic waste, but it says nothing about why the percentage is rising.\n(E) More products using plastic packaging while total plastic output is unchanged is close, but it leaves the amount reaching landfills untouched rather than explaining the rising share.",
         "level": "medium"
       },
       {
@@ -3594,8 +3594,8 @@ window.GMAT_SETS = [
           "Price reductions, achieved by cost-cutting in production, by some of the dominant firms in the carpet market are causing other producers to leave the market altogether.",
           "The carpet market is unlike most markets in that consumers are becoming increasingly resistant to new patterns and styles."
         ],
-        "hint": "Rule out the choices that attack profits or brand crowding — the conclusion is about how share is gained, not about how profitable it is.",
-        "expl": "Step 1 — Conclusion: as the population ages, carpet companies can gain market share [[only]] by purchasing competitors, not through more aggressive marketing.\nStep 2 — An \"only by X\" conclusion is weakened by showing share moving some other way.\nStep 3 — (D) does exactly that: dominant firms are cutting costs, cutting prices, and driving rival producers out of the market entirely. Their share grows as those rivals exit — no acquisition involved.\nStep 4 — (A) is about profits and revenues after mergers, not about how share is obtained. (B) says producers sell other floor coverings, which is outside the carpet market. (C) says there is no niche left for new brands, which if anything supports the conclusion. (E) resistance to new patterns also supports the claim that marketing cannot win share.\nAnswer: D.",
+        "hint": "The conclusion says share can be gained [[only]] one way. Find another way.",
+        "expl": "Conclusion — as the population ages, carpet firms can gain market share only by buying competitors, not by marketing harder.\nSupport — the market cannot grow much, and people buy carpet only once or twice in a lifetime.\nThe weak point — an \"only by X\" claim falls to any single example of share moving by some other route.\nWhy (D) works — dominant firms are cutting costs, cutting prices and driving rivals out of the market entirely. Their share grows as those rivals exit, with no acquisition involved.\n(A) Mergers hurting profits and revenues says nothing about how [[share]] is obtained.\n(B) Selling other floor coverings is activity outside the carpet market the conclusion is about.\n(C) No niche left for new brands makes marketing look even less promising, supporting the conclusion.\n(E) Resistance to new patterns likewise strengthens the case that marketing cannot win share.",
         "level": "medium"
       },
       {
@@ -3611,8 +3611,8 @@ window.GMAT_SETS = [
           "The number of people who left Florida when they retired to live in another state was greater last year than it was ten years ago.",
           "Florida attracts more people who move from one state to another when they retire than does any other state."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: C. A. Distance is irrelevant. B. We are concerned specifically with the number of retirees moving to Florida. C. CORRECT Assume that last year 1000 people retired and moved to another state. Out of these 1000 people, 100 of them move to Florida. That means, 10% of the people moved to Florida. This year, the % of the people moved to Florida decreased by 3%.",
+        "hint": "A falling share of a growing total can still be a growing number.",
+        "expl": "Conclusion — the decline will hurt Florida businesses that cater to retirees.\nSupport — the [[percentage]] of interstate retirees choosing Florida fell three points over ten years.\nThe weak point — the businesses care about how many retirees arrive, not what fraction of the national total they represent.\nWhy (C) works — if the number of people relocating on retirement has risen significantly, a slightly smaller slice of a much larger pie can still be more people than before. The premise stays true and the conclusion stops following.\n(A) Greater average distance moved does not tell you how many chose Florida.\n(B) More people retiring to North Carolina helps explain the falling share, which supports the conclusion.\n(D) More people leaving Florida on retirement would worsen the situation, strengthening the argument.\n(E) Florida still leading the field is consistent with its intake falling; it does not address the number arriving.",
         "level": "medium"
       },
       {
@@ -3628,8 +3628,8 @@ window.GMAT_SETS = [
           "Most sledding injuries occur when a sled collides with a tree, a rock, or another sled.",
           "Because the traditional wooden sled can carry more than one rider, an accident involving a wooden sled can result in several children being injured."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: C. The passage connects an increased NUMBER of injuries with a contention that the plastic sleds are MORE LIKELY to cause injuries (i.e., that the plastic sleds cause a higher RATE / FREQUENCY of injuries).",
+        "hint": "More injuries could mean more danger per ride, or simply more rides.",
+        "expl": "Conclusion — plastic sleds are more dangerous than wooden ones.\nSupport — far more children were injured sledding last winter than ten years ago.\nThe weak point — the injury count depends on how risky each ride is [[and]] on how many rides happen. Only the first supports the conclusion.\nWhy (C) works — if plastic sleds can be used in a much wider variety of snow conditions, there is simply far more sledding now. More injuries follow from more exposure, not from greater danger per ride.\n(A) A few children still using wooden sleds does not bear on why total injuries rose.\n(B) Lack of helmets applies to both sled types and to both periods.\n(D) Collisions with trees and rocks describe how injuries happen, not why there are more of them.\n(E) Multiple riders per wooden sled would raise injuries from [[wooden]] sleds, which cuts against the conclusion only weakly and does not explain the overall rise.",
         "level": "medium"
       },
       {
@@ -3645,8 +3645,8 @@ window.GMAT_SETS = [
           "those countries whose manufactured products compete with Darfir's on the world market currently all have stable currencies",
           "a sharp improvement in the efficiency of Darfir's manufacturing plants would make Darfir's products a bargain on the world markets even without weakening of the pundra relative to other currencies."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: B. \"Which of the following, if true, provides the government with the strongest grounds to doubt that the politicians' recommendation, if followed, will achieve its aim?\" Answer choice E does not address \"if followed\". E says, essentially: there is a better way to achieve the goal of increasing exports.",
+        "hint": "The remedy worked twice before. Ask what has changed since.",
+        "expl": "Conclusion — weakening the pundra again would produce another large rise in exports.\nSupport — the last two periods of a weak pundra made Darfir's goods cheap abroad and exports rose substantially.\nThe weak point — cheap goods only become exports if there are goods to sell. The past episodes began from a different starting point.\nWhy (B) works — the manufacturing sector spent decades well below peak capacity, which is what let output surge before. It is now running at near-peak levels, so there is little room to produce the extra goods a weak currency would create demand for.\n(A) The same politicians having made the same recommendation before is about their track record, not about whether it would work now.\n(C) A condition on the economy becoming [[healthier]] does not address whether exports would rise.\n(D) Competitors having stable currencies would make a weak pundra [[more]] effective, strengthening the recommendation.\n(E) Efficiency gains offer an alternative route to cheap goods; a different way to reach the goal does not show this way fails.",
         "level": "medium"
       },
       {
@@ -3662,8 +3662,8 @@ window.GMAT_SETS = [
           "Buying unprocessed cashews at lower than world market prices enables cashew processors in Kernland to sell processed nuts at competitive prices",
           "A lack of profitable crops is driving an increasing number of small farmers in Kernland off their land and into the cities."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: E. E is right because it shows us that without good crops to grow for profit, poor farmers move to the city. Well, the tariff, if removed, would allow those poor farmers to make money growing cashews (and maybe they will come back from the cities - where they were working in the domestic processing plants - and will start growing the profitable crop).",
+        "hint": "The tariff is defended as protecting urban jobs. Ask where the people go without it.",
+        "expl": "Conclusion — removing the tariff would seriously hamper efforts to cut urban unemployment.\nSupport — all the cashew processing plants, and so the processing jobs, are in urban areas.\nThe weak point — urban unemployment depends on how many people are in the cities looking for work, not only on how many processing jobs exist.\nWhy (E) works — a lack of profitable crops is already pushing small farmers off the land and into the cities. Lifting the tariff would let farmers profit from cashews and stay put, easing the very urban unemployment the argument says it would worsen.\n(A) Byproducts used in paints and plastics do not bear on employment.\n(B) Subsidies in other countries concern competitiveness, not Kernland's urban job market.\n(C) More farmers than processors is suggestive, but it says nothing about migration into the cities, which is what drives urban unemployment.\n(D) Cheap inputs helping processors compete supports the case for keeping the tariff.",
         "level": "medium"
       },
       {
@@ -3679,8 +3679,8 @@ window.GMAT_SETS = [
           "The average monthly cost of subscribing to several channels on a personalized electronic news service will approximately equal the cost of a month's subscription to a newspaper.",
           "Most people who subscribe to personalized electronic news services will not have to pay extra costs for installation since the services will use connections installed by cable and telephone companies."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: A. These (electronic news) services will provide people with the information they are looking for more quickly and efficiently than printed newspapers can -> newspaper sales will decline drastically if these services become widely available. Do people primarily read newspapers searching for stuff they already know about? No.",
+        "hint": "Ask what people use newspapers for beyond looking up topics.",
+        "expl": "Conclusion — newspaper sales will fall drastically once personalised electronic news is widely available.\nSupport — the services deliver stories on chosen topics faster and more efficiently than print can.\nThe weak point — the comparison is only on one dimension: retrieving stories about topics you already know you want.\nWhy (A) works — if most readers also browse headlines and pictures for amusing stories on unfamiliar topics, the electronic service cannot replace that, because it only supplies subscribed topics. Readers keep buying papers for what the new service structurally cannot give them.\n(B) Price variation between providers does not tell you whether people abandon newspapers.\n(C) People who never used newspapers were never part of newspaper sales, so their behaviour cannot explain a decline.\n(D) Comparable cost removes a reason to prefer print, which if anything supports the conclusion.\n(E) No installation cost lowers the barrier to the new service, again supporting the conclusion.",
         "level": "medium"
       },
       {
@@ -3696,8 +3696,8 @@ window.GMAT_SETS = [
           "Polar bears are only one of many species of mammal whose members have been known to find their way home from considerable distances.",
           "Polar bears often rely on their extreme sensitivity to smell in order to scent out familiar territory."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: B. (B) is correct. First of all, to fit the definition of navigation, the animal must find its way from unfamiliar territory to familiar territory beyond the range of its senses. Next, a polar bear returned home after being released 300 miles away. (A) ... so what? Nothing in the given definition of navigation says that changing direction is not allowed.",
+        "hint": "Read the definition of navigation in the first sentence, then check whether the example meets it.",
+        "expl": "Conclusion — polar bears can navigate over considerable distances.\nSupport — a bear released more than 500 kilometres away returned to its home territory.\nThe weak point — the passage defines navigation as finding the way from [[unfamiliar]] territory. The example only counts if the release site was unfamiliar.\nWhy (B) works — if the release site lay on the bear's annual migration route, the bear was in country it already knew and was not navigating in the defined sense at all. The evidence stops supporting the claim.\n(A) Stopping and changing course describes the journey; it does not show the territory was familiar.\n(C) The terrain crossed says nothing about whether the starting point was known to the bear.\n(D) Other mammals doing the same would, if anything, make the claim more plausible.\n(E) Scenting out [[familiar]] territory is a mechanism for navigating, not a reason to doubt that it happened.",
         "level": "medium"
       },
       {
@@ -3713,8 +3713,8 @@ window.GMAT_SETS = [
           "If, when a beetle pauses, it has not gained on the insect it is pursuing, the beetle generally ends its pursuit.",
           "The faster a beetle pursues an insect fleeing directly away from it, the more frequently the beetle stops."
         ],
-        "hint": "Attack the link between evidence and conclusion - look for an overlooked alternative.",
-        "expl": "Correct answer: B. The keywords here are: rapidly changing visual information … The word \"move / moving\" does not guarantee rapidly changing visual information. An insect can move at the rate of 1 inch per hour as well. So, A and C can be eliminated.",
+        "hint": "Two hypotheses. The right finding has to push one up and the other down.",
+        "expl": "Conclusion — the task is to find evidence that supports one explanation of the beetles' pauses and undermines the other.\nSupport — the two candidates are fatigue (the beetle must rest) and vision (the beetle goes briefly blind while running).\nThe weak point — most findings bear on only one hypothesis, or damage both at once, and so fail the requirement.\nWhy (B) works — a beetle that alters course [[while running]] is clearly seeing during the chase, which undercuts the blindness hypothesis. And pauses growing more frequent as the chase wears on is exactly what fatigue predicts. One up, one down.\n(A) Fleeing from prey moved towards it shows a threat response and speaks to neither hypothesis.\n(C) Responding immediately to direction changes undercuts blindness, but pausing equally often uphill and downhill undercuts fatigue too — it damages both.\n(D) Abandoning a chase that is not gaining ground is about persistence, not about why the beetle pauses.\n(E) More stops at higher speed fits both stories equally: faster running is more tiring and also changes the visual field faster.",
         "level": "medium"
       }
     ]
@@ -3738,8 +3738,8 @@ window.GMAT_SETS = [
           "Many urban waterfront lots are available to buy.",
           "Interior residential districts are more expensive than the waterfront."
         ],
-        "hint": "The plan needs buyers for homes on formerly industrial urban waterfront.",
-        "expl": "The profit depends on people paying well for homes on formerly industrial urban waterfront. (C) supplies exactly that; negate it and the profit disappears. The others give cheaper costs, incentives, or supply — none establishes buyers.\nAnswer: C.",
+        "hint": "The plan turns on whether anyone will buy a home in an old industrial district.",
+        "expl": "Conclusion — a developer wanting a large profit should buy urban waterfront lots and build homes on them.\nSupport — beachfront homes sell for huge sums, and urban waterfront was historically left to industry.\nThe gap — beachfront demand is not the same as demand for a house on a former industrial riverbank. The plan needs buyers willing to pay in [[that]] setting.\nWhy (C) works — it says directly that homeowners will pay large sums for residential property in traditionally industrial districts, which is exactly the demand the plan depends on.\n(A) More money for real estate in general does not show anyone wants to live on the industrial waterfront.\n(B) Tax incentives reduce the developer's cost, but the profit still depends on someone buying the homes.\n(D) Plenty of lots available means the developer can buy in; it says nothing about selling.\n(E) Interior districts being more expensive suggests buyers prefer inland, which cuts against the plan.",
         "level": "medium"
       },
       {
@@ -3755,8 +3755,8 @@ window.GMAT_SETS = [
           "The city plans to install more cameras next year.",
           "Most accidents on Main Street had involved speeding."
         ],
-        "hint": "Rule out a city-wide decline that would explain the drop without the cameras.",
-        "expl": "If similar camera-free streets saw no such decline (B), a general downward trend is ruled out, making the cameras the likely cause. The others don't isolate the cameras as the reason.\nAnswer: B.",
+        "hint": "Rule out the possibility that accidents fell everywhere that year.",
+        "expl": "Conclusion — the speed cameras caused the 30% fall in accidents on Main Street.\nSupport — accidents fell in the year after the cameras went in.\nThe gap — a fall after an event is not a fall because of it. Some city-wide or nationwide trend could explain it.\nWhy (B) works — comparable streets [[without]] cameras saw no change over the same year. That removes the general-trend explanation and isolates the cameras as what differed.\n(A) Being the first such cameras in the city is a detail about novelty, not evidence of effect.\n(C) Driver dislike says nothing about whether accidents fell because of the cameras.\n(D) A plan to install more cameras is a consequence of believing the conclusion, not support for it.\n(E) Speeding being common in past accidents makes the cameras a plausible mechanism, but it is much weaker than a control group and does not rule out other causes.",
         "level": "medium"
       },
       {
@@ -3772,8 +3772,8 @@ window.GMAT_SETS = [
           "the power and authority of many agencies created under the New Deal had expanded well beyond the limits defined in their respective agency charters.",
           "most policymakers of that time considered federal regulation of the market to be an emergency measure that, as such, should only be temporary."
         ],
-        "hint": "The economists feared a depression yet still wanted the agencies gone — find the fact that makes those two positions consistent.",
-        "expl": "Step 1 — The stance to strengthen: the economists sided with discontinuing the New Deal agencies, [[although]] they feared another depression.\nStep 2 — That looks self-defeating only if the agencies would help prevent a depression. So the stance is strengthened by anything showing they would not.\nStep 3 — (B) does that: the agencies were built to deliver financial relief [[after]] the crash, not to maintain economic stability. Keeping them would not reduce the risk of a new depression, so the economists lose nothing by scrapping them.\nStep 4 — (A) argues against [[further]] expansion, but the question is about dismantling what already exists. (C) reports public fears, which is not a reason for economists. (D) says the agencies exceeded their charters — a governance objection, not an economic one. (E) describes what policymakers considered, restating their view rather than supporting it.\nAnswer: B.",
+        "hint": "The economists feared a depression and still wanted the agencies gone. Make those two consistent.",
+        "expl": "Conclusion — the economists were right to side with discontinuing the New Deal agencies.\nSupport — policymakers had grown uncomfortable with federal power, and the economists agreed [[although]] they feared another depression.\nThe gap — that position looks self-defeating if the agencies would help prevent a depression. It is strengthened by anything showing they would not.\nWhy (B) works — the agencies were built to deliver financial relief after the crash, not to maintain economic stability. Scrapping them therefore costs nothing in depression protection.\n(A) This argues against [[further]] expansion, whereas the question is about dismantling what already exists.\n(C) Public fears are not a reason for economists to hold a view.\n(D) Agencies exceeding their charters is a governance objection, not an economic one.\n(E) What policymakers considered simply restates their position rather than supporting it.",
         "level": "medium"
       },
       {
@@ -3789,8 +3789,8 @@ window.GMAT_SETS = [
           "Gasohol is cheaper to produce and hence costs less at the pump than gasoline.",
           "Burning gasoline adds more carbon dioxide to the atmosphere than plants can remove."
         ],
-        "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
-        "expl": "Correct answer: C. (C) is correct. Here, the author's conclusion is that there should be a greater use of gasohol. The support given is that gasohol is higher in octane and has fewer emissions than gasoline. Also, burning gasohol adds no more carbon to the atmosphere than plants remove.",
+        "hint": "An EXCEPT question. Four choices help the case for gasohol; find the one that does not.",
+        "expl": "Conclusion — there should be greater use of gasohol.\nSupport — gasohol has a higher octane rating, produces less carbon monoxide, and adds no net carbon dioxide.\nThe task — identify the choice that fails to strengthen. Any drawback of gasohol, or any point that is simply neutral, qualifies.\nWhy (C) is the answer — burning slightly more gasohol per kilometre than gasoline is a [[disadvantage]]. It means more fuel consumed for the same distance, which works against greater use rather than for it.\n(A) Cars running better on gasohol is a clear point in its favour.\n(B) Needing less gasoline makes an energy shortage less likely, another benefit.\n(D) Cheaper to produce and cheaper at the pump strengthens the case.\n(E) Gasoline adding more carbon dioxide than plants can remove sharpens the environmental contrast in gasohol's favour.",
         "level": "medium"
       },
       {
@@ -3806,8 +3806,8 @@ window.GMAT_SETS = [
           "The new antihistamine is chemically similar to some of the new drugs being tested.",
           "The new antihistamine should be on the market only if most new drugs being tested should be on the market also."
         ],
-        "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
-        "expl": "Correct answer: A. (A) is correct. Here's the core: Introduction of drugs to marketplace should be contingent on understanding social impact + the social impact of a certain antihistamine (one already on the market) is unclear -> there should be a general reduction in the pace of bringing to market new drugs now being tested.",
+        "hint": "The argument leaps from one drug to every drug being tested. Support that leap.",
+        "expl": "Conclusion — there should be a general slowdown in bringing new drugs to market.\nSupport — the social impact of one new antihistamine is far from clear.\nThe gap — one poorly understood drug says nothing about the rest unless it is representative, or better than representative.\nWhy (A) works — if this antihistamine is [[much better]] understood than most drugs still in testing, then the others are in worse shape, and a general slowdown follows.\n(B) \"Some\" is far too weak to justify a general reduction in pace.\n(C) A relationship between economic success and understanding is a different subject entirely.\n(D) Chemical similarity does not imply similarly understood [[social]] impact, which is what the argument is about.\n(E) This links the antihistamine's fate to the others' but gives no reason to slow anything down.",
         "level": "medium"
       },
       {
@@ -3823,8 +3823,8 @@ window.GMAT_SETS = [
           "During the year following the cigarette tax increase, many consumers had less income, in inflation- adjusted dollars, than they had had in the previous year.",
           "During the year after the tax increase, there was a greater variety of cigarettes on the market than there had been during the previous year."
         ],
-        "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
-        "expl": "Correct answer: B. Note: this is an absolutely classic type of problem: it CONFLATES CORRELATION WITH CAUSATION. It takes a statistical correlation between cigarette tax and cigarette consumption, and postulates that one has a CAUSAL effect on the other.",
+        "hint": "Sales fell after the tax rose. Rule out the other things that make people quit smoking.",
+        "expl": "Conclusion — cigarette sales volume is strongly related to the after-tax price.\nSupport — sales fell 10% in the year after an eight-cent tax rise, against 1% the year before.\nThe gap — anything else that changed in that year could account for the sharper drop.\nWhy (B) works — health-risk information stayed largely unchanged across both periods. That removes the most obvious rival explanation for people cutting back, leaving price as the operative difference.\n(A) A rebound in the second year would suggest the effect was temporary, weakening the link.\n(C) Unawareness of the coming increase rules out stockpiling beforehand, a much smaller point than removing a rival cause.\n(D) Falling real incomes supplies an [[alternative]] reason sales dropped, so it weakens the argument.\n(E) More variety on the market would tend to support sales, which does not help explain the fall.",
         "level": "medium"
       },
       {
@@ -3840,8 +3840,8 @@ window.GMAT_SETS = [
           "overlooks the possibility that the same thing may causally contribute both to education and to good health",
           "does not acknowledge that some people who fail to make informed lifestyle choices are in good health"
         ],
-        "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
-        "expl": "Correct answer: D. Note that the conclusion of the argument is an explicit claim of causation: \"Thus research supports the view that good health is largely the result of making informed lifestyle choices.\" That is, making informed lifestyle choices has a direct impact on good health.",
+        "hint": "Correlation between health and education, then a causal conclusion. Look for the third factor.",
+        "expl": "Conclusion — good health is largely the result of making informed lifestyle choices.\nSupport — good health correlates strongly with high educational levels, and education enables informed choices.\nThe flaw — the argument reads the correlation in one direction only, without ruling out something that produces both.\nWhy (D) is the flaw — wealth, for example, buys both schooling and healthcare. If one factor drives education and health alike, the correlation is explained without informed choices doing the work.\n(A) The argument does not need education to be the only route to informed choices; it only claims education enables them.\n(B) Inherited disease affecting some people does not touch a claim about what health is [[largely]] the result of.\n(C) Universal availability of informed choices is never assumed; the argument is about those who make them.\n(E) Exceptions in the other direction likewise do not undo a claim about the general pattern.",
         "level": "medium"
       },
       {
@@ -3857,8 +3857,8 @@ window.GMAT_SETS = [
           "does not specify precisely what percentage of red cars are involved in accidents",
           "makes an unsupported assumption that every automobile accident results in some loss of life"
         ],
-        "hint": "Support the conclusion by confirming its key link or ruling out an alternative.",
-        "expl": "Correct answer: C. C is correct. Red color cars have highest likelihood of accident -> Lives could be saved by banning red cars. (1) Is it possible that having a higher likelihood of having an accident impacts whether the car is red? This may seem implausible at first, but it actually makes a lot of sense.",
+        "hint": "The premium is based on a correlation with car colour. Ask what else red cars have in common.",
+        "expl": "Conclusion — banning red cars would undoubtedly save lives.\nSupport — a greater percentage of red cars are involved in accidents than cars of other colours.\nThe flaw — the argument treats the colour as what causes the accidents, so that removing the colour removes the risk.\nWhy (C) is the flaw — if reckless drivers prefer red cars, the colour is a marker for the driver, not a cause of the crash. Ban red cars and the same drivers simply crash cars of another colour.\n(A) The right to charge higher premiums is a side issue; the conclusion is about banning cars.\n(B) Repair costs bear on insurance pricing, not on lives saved.\n(D) The exact percentage does not matter, because the problem is the causal leap rather than the size of the effect.\n(E) The argument never needs every accident to be fatal, only that some are.",
         "level": "medium"
       }
     ]
@@ -4162,8 +4162,8 @@ window.GMAT_SETS = [
           "Whether illegal downloading has increased in recent years.",
           "Whether the threat of prosecution would deter other people from downloading illegally."
         ],
-        "hint": "Apply the extremes test: which answer's two extremes push the conclusion opposite ways?",
-        "expl": "If the threat of prosecution strongly deters others, the impact is large (weakens); if it deters no one, the impact is minimal (strengthens). (E)'s two extremes swing the argument opposite ways, so it tests the conclusion.\nAnswer: E.",
+        "hint": "Extremes test: which question's two answers push the conclusion opposite ways?",
+        "expl": "Conclusion — prosecuting a handful of downloaders will barely dent the [[overall]] number of people downloading illegally.\nSupport — the industry can only afford to prosecute a small number.\nThe test — the argument counts only the people actually sued. But a lawsuit can change the behaviour of people who are never sued. That is (E).\nBoth ways — if the threat deters others, a few prosecutions ripple outward and the impact is large; if it deters no one, the impact really is confined to the few defendants, and minimal. The two answers land on opposite sides, which is exactly what an Evaluate answer must do.\n(A) Whether the lawyers could work more efficiently attacks a premise rather than the reasoning, and no answer to it tells you whether downloading falls.\n(B) Whether downloaded songs get shared describes how piracy spreads, but neither answer says anything about the effect of suing people.\n(C) Faster identification technology is not the bottleneck — the argument's premise is a shortage of resources to [[prosecute]], not to find offenders.\n(D) The recent trend in downloading is the situation before the lawsuits; it does not measure what the lawsuits do to it.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -4179,8 +4179,8 @@ window.GMAT_SETS = [
           "Whether MillCo's competitors are also cutting staff.",
           "Whether employee morale will fall after the layoffs."
         ],
-        "hint": "Profit = revenue − cost; the plan cuts cost, so what about revenue?",
-        "expl": "If revenues fall enough to outweigh the savings, the plan fails (weakens); if they don't, it works (strengthens). (B) is the question whose two answers test the argument. (A) offers a different cost cut, irrelevant to THIS plan.\nAnswer: B.",
+        "hint": "Profit = revenue − cost. The plan cuts cost — so what happens to revenue?",
+        "expl": "Conclusion — the layoffs will [[increase profits]].\nSupport — the layoffs cut costs.\nThe gap — profit is revenue minus cost, so a cost cut only raises profit if revenue holds up. The employees are called \"nonessential,\" but that is the company's own label. That is (B).\nBoth ways — if revenues fall by more than the payroll saving, the plan backfires; if they hold, it works.\n(A) A bigger saving available somewhere else (health benefits) tells you another plan might be better, not whether [[this]] plan raises profits.\n(C) Whether the laid-off workers find new jobs concerns their welfare after they leave MillCo's books entirely.\n(D) What competitors do does not determine what happens to MillCo's own profit.\n(E) Morale is the vague cousin of (B): morale that never reaches revenue or costs leaves profit untouched. (B) asks the version of this question whose answer actually settles the case.\nAnswer: B.",
         "level": "medium"
       },
       {
@@ -4196,8 +4196,8 @@ window.GMAT_SETS = [
           "Will the rest of Company X's management team agree with the CFO's recommendation?",
           "Is there a way to reduce the cost to produce the flagship product?"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: E. Profits for a particular product have been going down and the CFO has determined that this is because, on the one hand, the cost to make the product has increased and, on the other, consumers won't pay more than the current price (recall that Profit = Revenues - Costs).",
+        "hint": "Profit = revenue − cost. Price is capped and cost has risen — is there a third lever?",
+        "expl": "Conclusion — Company X should stop making the flagship product.\nSupport — margins are falling because production cost has risen while surveyed consumers refuse to pay more than the current price, and the CEO only keeps products with rising margins.\nThe gap — margin is price minus cost. The CFO has shown that the [[price]] lever is stuck, then jumped straight to divesting — without checking the other lever. That is (E).\nBoth ways — if the cost of production can be reduced, the margin can start rising again and the product should be kept; if it cannot, the CFO is right and the product is unfixable.\n(A) Having a replacement product ready is about what to do [[after]] divesting; it does not tell you whether this product's margin can be restored.\n(B) The product's share of revenue tells you how much divesting would hurt, but the CEO's stated criterion is the direction of the margin, not the size of the line.\n(C) Added features is the closest trap — but the survey asked about the [[current]] product, and adding features adds cost as well as price, so neither answer settles whether the margin rises. (E) tests the one variable the CFO left unexamined.\n(D) Whether the rest of management agrees is office politics, not evidence about whether the recommendation is warranted.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -4213,8 +4213,8 @@ window.GMAT_SETS = [
           "Overall, how many book titles were nominated by these 10000 people?",
           "How many people chose 1984?"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: E. The correct answer choice is (E). The conclusion of the argument is the first sentence: George Orwell's book 1984 seems to have exercised a lot of influence on many intellectuals. The basis for this conclusion is that 1984 was the second most named book in a survey about influential books.",
+        "hint": "Second place is a rank. Does a rank tell you a number?",
+        "expl": "Conclusion — 1984 has influenced [[many]] intellectuals.\nSupport — among 10,000 surveyed readers of an intellectually demanding daily, 1984 was the second most-named \"most influential book,\" behind the Bible.\nThe gap — \"second most-named\" is a [[rank]], and a rank carries no count. If the votes scattered across thousands of titles, second place could be forty people — nowhere near \"many.\" That is (E).\nBoth ways — if 1984 drew 3,000 votes, the conclusion stands; if it drew 40, second place is an artefact of a fragmented field and the conclusion collapses.\n(A) Whether respondents had read their chosen book is nearly self-answering — they were asked which book most influenced their [[lives]] — and either way it leaves the ranking-versus-number problem untouched.\n(B) How many books each person had read measures reading habits, not how many people named 1984.\n(C) Whether people answered truthfully is a generic doubt about survey data; even perfectly honest answers leave \"second place\" uninformative about the count.\n(D) The number of distinct titles nominated circles the same worry indirectly but never settles it — even with few titles named, the Bible could have absorbed nearly all the votes. (E) asks for the decisive number outright.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -4230,8 +4230,8 @@ window.GMAT_SETS = [
           "Whether either the zinc gel or the lozenges contain ingredients that have an impact on the activity of the zinc",
           "Whether the zinc gel has an effect on the severity of cold symptoms, as well as on their duration"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: D. We're trying to figure out why the gel is more effective than the lozenge. The author's explanation focuses on where cold viruses congregate. In any argument in which an author is explaining a phenomenon, we should always wonder if there are any other viable explanations.",
+        "hint": "The author explains a difference by one cause. Could something else explain it?",
+        "expl": "Conclusion — the gel outperforms the lozenge [[because]] cold viruses concentrate in the nose rather than the mouth.\nSupport — both products deliver zinc in the same form and concentration, yet only the gel shortens colds.\nThe gap — this is a causal explanation, and the whole argument rests on the two products being identical except for where they are applied. If they differ in some other way, the location explanation is not established. That is (D).\nBoth ways — if one product contains an ingredient that boosts or blocks the zinc, the difference in results has a rival explanation and the argument fails; if neither does, location is the remaining candidate and the argument holds.\n(A) Whether zinc works against other viral diseases is outside an argument that is only about colds, and says nothing about nose versus mouth.\n(B) Non-zinc herbal remedies are a different treatment entirely; how they perform cannot explain why this zinc gel beats this zinc lozenge.\n(C) Zinc deficiency in frequent cold-catchers is about who catches colds, not about which delivery route treats them.\n(E) Whether the gel also reduces severity broadens the list of things the gel does; the question at issue is [[why]] it outperforms the lozenge, which both answers leave untouched.\nAnswer: D.",
         "level": "hard"
       },
       {
@@ -4247,8 +4247,8 @@ window.GMAT_SETS = [
           "Did the study continue to track the subjects beyond six months?",
           "Are most consumers aware of the different between whole grains and processed grains?"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: B. A caused B C didn't cause B strengthens C caused B weakens (A) The passage already shows that it is realistic to have whole grains 3 times a day. (C) We are not trying to find alternatives. (D) Out of context since the study is primarily concerned about lowering cholesterol by eating whole grains. (E) We do not care about awareness. The correct answer is B.",
+        "hint": "A study found a correlation. What else might differ between the two groups?",
+        "expl": "Conclusion — eating whole grains has an appreciable effect on cholesterol.\nSupport — people who ate three servings daily had significantly lower cholesterol after six months than people who did not, and the two groups started level.\nThe gap — the argument moves from a correlation to a cause. Equal starting cholesterol rules out one confound, but people who choose to eat three servings of whole grains a day tend to differ in [[other]] health habits too. That is (B).\nBoth ways — if the two groups were on the same exercise programme, diet is left as the explanation and the conclusion is supported; if the whole-grain group also exercised more, exercise is a rival cause and the conclusion is unsupported.\n(A) Whether the regimen is realistic to sustain is about the practicality of the advice, not about whether whole grains lowered cholesterol.\n(C) Whether medication achieves the same drop offers an alternative treatment; the claim is that grains work, not that they work best.\n(D) Tracking beyond six months would tell you about durability, but the conclusion claims only an appreciable effect, which the six months already reports.\n(E) Consumer awareness of the whole-versus-processed distinction is about public knowledge, not about what the grains do in the body.\nAnswer: B.",
         "level": "hard"
       },
       {
@@ -4264,8 +4264,8 @@ window.GMAT_SETS = [
           "Whether male rhinoceroses in the wild park lose their collar any more often than the park's female rhinoceroses do",
           "Whether radio collar is the only practical means that park rangers have for tracking the movements of rhinoceroses in the park."
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: C. Imagine there are 100 female rhinos: Scenario 1: In this case, the females are NEVER tranquilized for any reason other than re- collaring.",
+        "hint": "The comparison is collared vs un-collared. Is that the same as tranquilized vs not?",
+        "expl": "Conclusion — some substance in the tranquilizer inhibits fertility.\nSupport — frequently re-collared females have markedly lower fertility than un-collared females.\nThe gap — the evidence sorts rhinos by [[collars]], but the conclusion is about [[tranquilizer]]. That inference only works if un-collared females are also un-tranquilized. That is (C).\nBoth ways — if rangers rarely dart rhinos for any other reason, the two groups really do differ in tranquilizer exposure and the conclusion is supported; if un-collared females are darted just as often for medical checks or relocation, both groups get the drug, the drug cannot explain the fertility gap, and the conclusion falls apart.\n(A) The relative sizes of the collared and un-collared groups do not matter; the evidence is a comparison of fertility [[rates]].\n(B) How this tranquilizer compares with drugs used on other large mammals brings in species and compounds the argument never mentions.\n(D) Whether males lose collars more often than females says nothing about female fertility.\n(E) Whether collars are the only practical tracking method bears on whether the park should keep collaring, not on whether the drug causes infertility.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -4281,8 +4281,8 @@ window.GMAT_SETS = [
           "Before the reorganization, had sales representatives found it difficult to keep up with relevant developments in all types of businesses to which they are assigned?",
           "Has the economy in Greenville and the surrounding regions been growing rapidly over the last two years?"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: A. A. CORRECT. We don't care about the actual value of advertising-sales revenue … all we care about is that it increased … B. If the circulation has increased this could lead attract more advertisers and thereby lead to increased advertisement sales. In this case, the increased sales will not be because of reorganization. Therefore, B is definitely relevant.",
+        "hint": "EXCEPT: four of these bear on whether the reorganization caused the rise. Find the one that does not.",
+        "expl": "Conclusion under assessment — the rise in advertising sales was caused by the reorganization.\nSupport — sales fell for years, the sales force was reorganized by industry instead of by geography, and sales then rose.\nWhat matters — anything that supplies a rival cause for the rise, or that tests whether the reorganization's intended mechanism was real.\nWhy (A) is the exception — the actual sales figure from two years ago adds nothing. We are already told sales increased; putting a number on the starting point does not distinguish the reorganization from any other explanation of that increase.\n(B) Rising circulation is a rival cause — a bigger readership attracts advertisers on its own.\n(C) Substantial turnover in the sales force is a rival cause — new or more experienced representatives could account for the rise.\n(D) Whether representatives had struggled to keep up with many industries tests the reorganization's [[mechanism]]: if that was never a problem, fixing it cannot be what worked.\n(E) A rapidly growing regional economy is a rival cause — more business activity means more advertising regardless of how the sales force is organized.\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -4298,8 +4298,8 @@ window.GMAT_SETS = [
           "What proportion of the employees at the SaveAll store on the outskirts of Morganville will be drawn from Morganville?",
           "Do newly opened SaveAll stores ever lose money during their first five years of operation?"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: C. B is the most chosen wrong answer. Remember one thing: the shop that has the maximum numbers of customers may be the first to go bankrupt (imagine giving away things at 90% discount) … and the shop that has very few customers can be extremely profitable. So, this answer is PLAIN wrong.",
+        "hint": "More than a quarter went bankrupt — compared with what?",
+        "expl": "Conclusion — to keep its central shopping district healthy, Morganville should block the SaveAll.\nSupport — in other small towns, more than a quarter of central-district stores went bankrupt within five years of a SaveAll opening on the outskirts.\nThe gap — a statistic with no [[baseline]]. Small retail turns over constantly, so \"more than a quarter in five years\" might be entirely normal. That is (C).\nBoth ways — if healthy districts normally lose 5 percent of their stores in five years, the SaveAll towns are being hit hard and the activist is right; if healthy districts normally lose 30 percent, the SaveAll towns did better than average and the evidence evaporates.\n(A) Whether activists elsewhere won their campaigns is about political success, not about what SaveAll does to a shopping district.\n(B) Whether residents do almost all their shopping in town is the popular trap, but neither answer settles anything: a store can have crowds of customers and still fail, and few customers and still be profitable.\n(D) The share of SaveAll's employees drawn from Morganville concerns local jobs, not the survival of the district's stores.\n(E) Whether SaveAll stores themselves lose money early is about SaveAll's books; a store can be unprofitable and still take business away from its neighbours.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -4315,8 +4315,8 @@ window.GMAT_SETS = [
           "Are bluefin cod prone to any naturally occurring diseases that can cause fin deformities of the same kind as those displayed by the bluefin cod of Cod Bay?",
           "Are there gene-altering pollutants present in Cod Bay other than the chemical wastes that were dumped by the companies?"
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: C. The argument opens by presenting two premises: in the past chemical wastes were dumped into Cod Bay, and today 3 percent of the bluefin cod have deformed fins, which has caused consumers to stop buying the cod.",
+        "hint": "EXCEPT: four of these test the causal claim. Find the one that does not.",
+        "expl": "Claim under evaluation — the chemicals dumped into Cod Bay caused the fin deformities in bluefin cod.\nSupport — the chemicals were dumped between 1976 and 1985, they are known to cause genetic mutations, and 3 percent of today's bluefin cod have deformed fins.\nWhat matters — anything that checks whether the deformities existed anyway, or whether something else could have produced them.\nWhy (C) is the exception — whether eating the deformed fish has harmed people is a question about [[human health]]. However it is answered, it says nothing about what caused the fins to deform, which is the only claim on the table.\n(A) The deformity rate in unexposed cod is the baseline: if 3 percent is normal, the claim collapses.\n(B) The rate in Cod Bay before the dumping began is the before-and-after comparison the claim needs.\n(D) Naturally occurring diseases producing the same deformity would be an alternative cause.\n(E) Other gene-altering pollutants in the bay would be an alternative cause, and one the companies are not liable for.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -4332,8 +4332,8 @@ window.GMAT_SETS = [
           "whether the computer translation contains errors of grammar and usage that drastically alter the meaning of the text",
           "how the accuracy rate of computer translation programs compares with that of human translators in relation to the users' needs"
         ],
-        "hint": "Four of these could change your mind about the recommendation. Find the one that cannot.",
-        "expl": "Step 1 — The recommendation: for a long document needing a fast turnaround, use a computer program rather than several human translators.\nStep 2 — The whole case for the computer rests on speed plus [[stylistic uniformity]], since splitting the job across humans produces clashing styles.\nStep 3 — (C) asks whether different computer programs each have their own distinct style. That does not matter: a single document is run through a single program, so the output is uniform whatever that program's style happens to be. Resolving it changes nothing — so it is LEAST important.\nStep 4 — Each of the others matters. (A) would remove the human side's only disadvantage. (B) questions whether the 80 percent figure is even meaningful. (D) asks whether the 20 percent of errors distort meaning badly. (E) compares the two accuracy rates against what users actually need.\nAnswer: C.",
+        "hint": "LEAST important: four of these could change your mind about the recommendation. One cannot.",
+        "expl": "Recommendation — when a long document must be translated quickly, use a computer program rather than several human translators.\nSupport — splitting a rush job among human translators produces a clash of writing styles, while a program is faster and yields a stylistically uniform translation with 80 percent accuracy.\nWhat matters — anything bearing on the two pillars of the case (speed-plus-uniformity, and whether 80 percent accuracy is good enough), or on whether the human side's drawback could be removed.\nWhy (C) is least important — whether different programs each have a distinct style changes nothing. A document is run through [[one]] program, so the output comes back uniform whatever that program's style happens to be. The complaint against human translators was inconsistency [[within]] a single document, not the existence of styles.\n(A) Stylistic guidelines for human translators would remove the humans' only stated disadvantage — decisive.\n(B) If accuracy cannot meaningfully be reduced to a number, the 80 percent figure carries no weight at all.\n(D) Whether the errors drastically alter meaning determines how damaging that remaining 20 percent is.\n(E) Comparing the two accuracy rates against users' needs is the comparison the recommendation actually depends on.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -4349,8 +4349,8 @@ window.GMAT_SETS = [
           "there were any volcanic eruptions near China around the time of Mount Etna's eruption",
           "subsequent eruptions of Mount Etna were as powerful as the one in 44 B.C."
         ],
-        "hint": "Extremes test: the right question's two answers push the argument opposite ways.",
-        "expl": "Correct answer: D. Conclusion: If atmospheric volcanic ash caused China's weird weather in 43 B.C., then Mt. Etna's erupted ash must have spread over great distances Premise: There was weird weather in China the year after Mt. Etna erupted In order to assess assumptions/objections to arguments, we frequently assume the opposite of the conclusion.",
+        "hint": "The conclusion pins the ash on Etna. Could the ash have come from somewhere nearer?",
+        "expl": "Conclusion — [[if]] the Chinese frosts and dimmed sunlight were caused by volcanic ash, then Etna's ash must have travelled thousands of miles.\nSupport — Etna erupted powerfully in 44 B.C., and Chinese historians recorded the phenomena the following year.\nThe gap — the conclusion silently assumes the ash over China was [[Etna's]]. Grant that ash caused the weather, and there is still the possibility that a nearer volcano supplied it, in which case nothing had to travel far. That is (D).\nBoth ways — if no volcano erupted near China around that time, Etna is the only candidate and the great-distance conclusion follows; if one did, the ash had a local source and the conclusion loses its support.\n(A) Modern monitoring equipment cannot be pointed at the atmosphere of 44 B.C., so its capabilities decide nothing here.\n(B) How long the abnormal weather lasted tells you about the severity of the event, not about which volcano's ash caused it.\n(C) Sicily is next to Etna, so cold weather there is expected on any account and reveals nothing about how [[far]] the ash spread.\n(E) The power of later eruptions of Etna has no bearing on where the ash from the 44 B.C. eruption went.\nAnswer: D.",
         "level": "hard"
       }
     ]
@@ -4374,8 +4374,8 @@ window.GMAT_SETS = [
           "Merchandise for other shows sold well that year.",
           "The new time slot is later in the evening."
         ],
-        "hint": "Find a new fact that lets both facts (more viewers, fewer sales) be true at once.",
-        "expl": "Ending the deep discounts (B) raised prices, so more viewers can coincide with fewer units sold — both facts stand. The others don't connect audience growth to falling merchandise sales.\nAnswer: B.",
+        "hint": "Audience doubled, merchandise sales fell. Ask what else changed about the merchandise.",
+        "expl": "The puzzle — a bigger audience should mean more buyers, yet merchandise sales dropped sharply.\nWhy (B) resolves it — the producers had been running deep discounts to build the show's popularity and ended them six months ago. Cheap merchandise had been inflating sales; at full price fewer people buy, even from a larger audience.\n(A) Rising popularity raising prices is a general tendency, not something that happened here, and it does not explain a [[sharp]] fall.\n(C) A change of writers might affect the show's quality, but the audience grew, so it does not explain the merchandise drop.\n(D) Other shows' merchandise selling well makes the fall more puzzling, not less.\n(E) A later time slot is consistent with the audience doubling and says nothing about buying habits.",
         "level": "medium"
       },
       {
@@ -4391,8 +4391,8 @@ window.GMAT_SETS = [
           "Most car owners choose not to install the device.",
           "The device occasionally malfunctions."
         ],
-        "hint": "A selection effect: what kind of car tends to get the device?",
-        "expl": "If the device is installed mostly on the most theft-prone luxury cars (C), those cars are stolen more often despite the device lowering each car's individual risk — both facts hold.\nAnswer: C.",
+        "hint": "The device works, yet equipped cars are stolen more. Ask which cars get the device.",
+        "expl": "The puzzle — the device lowers the chance of theft, but cars fitted with it are stolen at a higher rate than cars without it.\nWhy (C) resolves it — the device is chosen mainly for expensive, highly desirable cars, which thieves target hardest. Those cars start from a much higher baseline risk, so even after the device cuts their risk they are still stolen more often than ordinary cars.\n(A) Low installation cost does not explain which cars end up with it.\n(B) Thieves avoiding equipped cars would make the theft rate [[lower]], deepening the puzzle.\n(D) How many owners decline the device says nothing about the rate among those who take it.\n(E) Occasional malfunction would blunt the effect but not reverse it into a higher rate.",
         "level": "medium"
       },
       {
@@ -4408,8 +4408,8 @@ window.GMAT_SETS = [
           "The pension was increased when the number of elderly Runagians below the poverty level reached an all-time high",
           "In Runagia children typically supplement the income of elderly parents, but only by enough to provide them with a comfortable living"
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: E. Summary: The government increased all the elderly people's pensions but, for some reason, the elderly people don't actually have any more money now. Our challenge is to find the \"some reason\" here. We need a reason why the increase will have NO EFFECT on the elderly people's income.",
+        "hint": "The pension rose. Ask what else changed at the same time.",
+        "expl": "The puzzle — pensions rose 20% with negligible inflation, yet many recipients are no better off.\nWhy (E) resolves it — children top up their parents' income only to the point of a comfortable living. When the state pension rises, the children give correspondingly less, and the pensioner's total income barely moves.\n(A) Relying entirely on the pension would make the rise matter [[more]], sharpening the puzzle.\n(B) A three-week delay in cashing a cheque affects timing, not the amount received over two years.\n(C) The passage stipulates that inflation has been negligible.\n(D) Why the increase was granted does not explain why it failed to help.",
         "level": "medium"
       },
       {
@@ -4425,8 +4425,8 @@ window.GMAT_SETS = [
           "expanding the commuter rail system will require the construction of dozens of miles of new railbed",
           "all people in favor of expanding the rail system reported less congestion during their highway commute as the primary benefit that they will experience once the expansion of the railway network is complete"
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: E. E. CORRECT. This indicates that all people taking the survey plan to use the highway even after the railways are expanded. Therefore, if all these people continued to drive to work, the congestion on the highway won't ease despite the expansion of the railways.",
+        "hint": "Almost everyone favours the expansion. Look at what they expect to get out of it.",
+        "expl": "The puzzle — residents overwhelmingly support expanding commuter rail to ease highway congestion, yet the poll itself suggests it will not work.\nWhy (E) completes it — everyone in favour named [[less congestion on their own highway commute]] as the benefit. They all intend to keep driving and expect other people to switch to rail. If nobody actually moves to the trains, the highways stay just as full.\n(A) Enabling suburb-to-suburb rail commuting would take some cars off the road, which helps rather than undermines the goal.\n(B) The composition of the minority who did not favour it is irrelevant to whether the plan works.\n(C) Worsening congestion explains why people want the expansion; it does not show it will fail.\n(D) New railbed is a construction cost, not a reason congestion would persist.",
         "level": "medium"
       },
       {
@@ -4442,8 +4442,8 @@ window.GMAT_SETS = [
           "The state tax rate varies considerably from state to state, but the federal tax is levied according to laws which apply to citizens of all the states.",
           "Unlike most federal tax delinquents, most state tax delinquents fail to pay state tax because of an oversight rather than a decision not to pay."
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: E. Summary: Fact 1: Federal government implemented a tax amnesty program. Fact 2: Tax amnesty program allows tax delinquents to pay all owed tax without added financial penalty. Prediction: This program will not be as effective for the federal government as it was for the state government. We need an option that supports this prediction: A.",
+        "hint": "Same programme, worse result federally. Ask how the two groups of delinquents differ.",
+        "expl": "The puzzle — economists expect the federal amnesty to recover a far smaller share of unpaid tax than equivalent state programmes did.\nWhy (E) resolves it — state delinquents mostly failed to pay through oversight, so an amnesty simply lets them settle up. Federal delinquents mostly [[chose]] not to pay, and people who deliberately evade tax are not brought in by waiving penalties.\n(A) Publicity is a condition of success for both kinds of programme equally.\n(B) Honest payers are not the people an amnesty targets.\n(C) Higher federal penalties make federal amnesty [[more]] attractive, which cuts the wrong way.\n(D) Variation in state rates does not bear on how much of what is owed gets collected.",
         "level": "medium"
       },
       {
@@ -4459,8 +4459,8 @@ window.GMAT_SETS = [
           "In addition to imposing a price freeze, the government encouraged doctors to prescribe generic versions of common drugs instead of the more expensive brand- name versions.",
           "After price increases were prohibited, some foreign manufacturers of expensive drugs ceased marketing them in Voronia."
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: C. If we introduce a new product at a very high price, we can't be accused of \"increasing\" the price … increase happens on an existing price. \"Per-capita expenditure\" is the total price paid for drugs (price per pill * # of pills) divided by the number of people.",
+        "hint": "Prices were frozen on existing products. Read that restriction closely.",
+        "expl": "The puzzle — existing drug prices were frozen and usage did not rise, yet per-capita spending kept climbing.\nWhy (C) resolves it — manufacturers changed the brand names and labels of most existing products. A renamed product is a [[new]] product, outside the freeze, and can be launched at a higher price. The freeze applied to a shrinking set of drugs nobody was buying any more.\n(A) Per-capita figures already divide by population, so population growth cannot explain them.\n(B) Maintaining profits through better manufacturing would keep prices down, not push spending up.\n(D) Encouraging cheap generics would reduce spending.\n(E) Withdrawing expensive drugs from the market would also reduce spending.",
         "level": "medium"
       },
       {
@@ -4476,8 +4476,8 @@ window.GMAT_SETS = [
           "All men who have prostate cancer around the world are older than the life expectancy for male inhabitants of Terland, whereas men live to a ripe old age in Rubaria owing to Rubaria's excellent healthcare system.",
           "Among men in Rubaria, the death rate from prostate cancer is significantly higher for those who do not take full advantage of Rubaria's health care system than for those who do."
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: D. This problem is an exact analogue of the real-world situation with such maladies as heart disease and breast/prostate cancer, which generally strike older individuals. There are often strikingly low rates of death from those maladies in countries with otherwise horrible public health (such as sub- Saharan African countries).",
+        "hint": "Prostate cancer strikes late in life. Compare how long men live in each country.",
+        "expl": "The puzzle — Terland has worse healthcare and higher death rates from most diseases, yet Rubaria has the higher prostate-cancer death rate.\nWhy (D) resolves it — prostate cancer only appears in men older than Terland's male life expectancy. Terlandic men die of other things first and never reach the age at which the disease strikes, while Rubarian men live long enough to get it.\n(A) Better treatment in Rubaria would [[lower]] its death rate, deepening the puzzle.\n(B) Ruling out a link between general health and risk removes one candidate explanation without supplying another.\n(C) Protective foods being more available in Rubaria would again make its rate lower.\n(E) A comparison within Rubaria does not explain the gap between the two countries.",
         "level": "medium"
       },
       {
@@ -4493,8 +4493,8 @@ window.GMAT_SETS = [
           "Farmers who wished to qualify for support payments could not use the cotton acreage that was withdrawn from production to grow any other crop.",
           "Depressed cotton prices meant operating losses for cotton farms, and the government lost revenue from taxes on farm profits, but by introducing the new plan, the government hopes that prices will go up again and, thus enabling the government to collect more taxes than it currently collects."
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: E. CORRECT option: E The government is giving away money (negative budget) to farmers who take 25% of their farms‟ acreage out of cotton. If the farmers have operating losses as of now, they are likely to have a lower income and hence they would pay less tax to the government (negative budget).",
+        "hint": "The programme pays farmers, yet is said to cost the budget nothing. Find the offsetting revenue.",
+        "expl": "The puzzle — the government pays farmers to idle a quarter of their cotton acreage, and yet the programme is expected to be no net burden on the budget.\nWhy (E) resolves it — depressed prices had farms running at a loss, so the government was collecting little tax from them. If the programme lifts prices back into profit, the recovered tax revenue can cover the support payments.\n(A) Production changes in other counties do not affect Q's budget.\n(B) A 5% fall in acreage describes the programme working, not how it pays for itself.\n(C) Lower per-acre payments to large farms reduces the cost somewhat but does not make the programme self-financing.\n(D) Barring other crops on idled land tightens the rules; it produces no revenue.",
         "level": "medium"
       },
       {
@@ -4510,8 +4510,8 @@ window.GMAT_SETS = [
           "Last year, the average dollar amount of merchandise orders placed was less for subscribers under age thirty-five than for those aged thirty-five or over.",
           "Last year many people who placed orders for merchandise in response to advertisements in Systems were not subscribers to the magazine."
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: E. The number of orders placed = those by subscribers + those by nonsubscribers If say 100 subscribers placed orders and 30 of them were below thirty-five. If there were 1000 nonsubscribers who placed orders, out of whom 900 were below thirty-five, we can reason thus: The total orders placed = 1100 and out of them 930 are from people below thirty-five.",
+        "hint": "Two surveys, two different populations. Notice who is counted in each.",
+        "expl": "The puzzle — only 30% of orders [[from subscribers]] came from under-35s, yet most orders overall came from under-35s.\nWhy (E) resolves it — the advertisers' figure covers everyone who responded to the ads, not just subscribers. If many non-subscribers ordered, and skewed young, both findings hold at once.\n(A) Subscribers who never ordered anything are outside both figures.\n(B) A change in the subscriber age mix does not reconcile two figures about the same year.\n(C) This simply restates one finding and contradicts the other.\n(D) Dollar amounts are irrelevant; both findings count orders, not value.",
         "level": "medium"
       },
       {
@@ -4527,8 +4527,8 @@ window.GMAT_SETS = [
           "The number of fossils found together indicates herds of dinosaurs so large that they would need to migrate to find a continual food supply.",
           "Experts on prehistoric climatic conditions believe that winter temperatures in the prehistoric northern arctic were not significantly different from what they are today."
         ],
-        "hint": "Find a new fact that lets both surprising facts be true at once.",
-        "expl": "Correct answer: D. Dinosaur fossils in northern arctic + Only warm-blooded animals can withstand arctic winters -> Some dinosaurs were warm-blooded. What are the gaps in this argument? For one, perhaps the winters may have been different when the dinosaurs were around.",
+        "hint": "The researchers assume the dinosaurs endured the arctic winter. Ask whether they were there for it.",
+        "expl": "The argument — only warm-blooded animals could have survived arctic winters, so arctic dinosaur fossils suggest warm-bloodedness.\nWhy (D) weakens it — herds large enough to need constant migration for food would have moved with the seasons. If the dinosaurs left before winter, they never faced the frigid temperatures, and the argument's central premise no longer applies to them.\n(A) Today's reptiles being confined to warm regions supports the researchers rather than undermining them.\n(B) Smaller body size does not bear on whether an animal is warm-blooded.\n(C) Cold-tolerant plants confirm the climate was harsh, strengthening the argument.\n(E) Confirming that arctic winters were as cold as today's likewise supports the researchers.",
         "level": "medium"
       }
     ]
@@ -4552,8 +4552,8 @@ window.GMAT_SETS = [
           "Delays from weather and other uncontrollable factors could have risen dramatically this year.",
           "Customers might not believe particular delays were caused by uncontrollable factors."
         ],
-        "hint": "A falling percentage of a whole needn't mean a falling count — the whole may have grown.",
-        "expl": "The argument treats a smaller percentage as a smaller number. If uncontrollable delays surged (D), the total grew, so the percentage from airline error could drop even while the count of preventable delays stayed the same or rose.\nAnswer: D.",
+        "hint": "A share of delays fell. That is not the same as a count of delays falling.",
+        "expl": "Conclusion — the number of preventable delays is decreasing.\nSupport — the [[percentage]] of delays caused by airline error fell significantly.\nThe flaw — the share of a total can drop simply because the total grew, with the underlying count unchanged or even higher.\nWhy (D) exposes it — if weather and other uncontrollable delays rose dramatically, the denominator swells, airline-error delays become a smaller slice, and yet there could be just as many of them as before.\n(A) Underreporting would make the airlines' figure unreliable, but it is a charge of dishonesty rather than the logical gap in the inference.\n(B), (C), (E) All concern complaints, which the argument never uses as evidence. Its premise is the delay statistic.",
         "level": "medium"
       },
       {
@@ -4569,8 +4569,8 @@ window.GMAT_SETS = [
           "treats a set of necessary conditions as sufficient.",
           "relies on an unrepresentative sample."
         ],
-        "hint": "The premise gives what's needed to avoid failure, not what guarantees success.",
-        "expl": "Water, sunlight and rich soil are stated as necessary (their absence guarantees failure). Having them doesn't guarantee productivity — the argument treats necessary conditions as sufficient.\nAnswer: D.",
+        "hint": "The first sentence lists what a garden cannot do without. That is not a recipe for success.",
+        "expl": "Conclusion — Patricia's garden will be productive.\nSupport — a garden without plenty of water, sunlight and rich soil will not be productive, and Patricia's garden has all three.\nThe flaw — the premise gives conditions that are [[necessary]]. Having them all does not guarantee productivity; pests, disease or poor planting could still ruin it.\nWhy (D) names it — the argument treats a set of necessary conditions as though they were jointly sufficient.\n(A) The vagueness of \"ideal\" is a quibble about wording, not the structural error.\n(B) No correlation is cited anywhere in the argument.\n(C) Nothing is reversed; the direction of causation is not at issue.\n(E) There is no sample here at all — the argument is about one garden and a stated rule.",
         "level": "medium"
       },
       {
@@ -4586,8 +4586,8 @@ window.GMAT_SETS = [
           "attempting to prove a claim on the basis of evidence that a number of people hold that claim to be true",
           "treating one of several plausible explanations of a phenomenon as the only possible explanation"
         ],
-        "hint": "Name the reasoning error - often a number/percentage, cause-effect, or scope gap.",
-        "expl": "Correct answer: E. We can think of the argument core as follows: No one orders the potato dish -> Our patrons prefer not to eat potatoes. Did you see a flaw when you read the argument initially? The author concludes that the patrons must not prefer potatoes, and the evidence he presents is that no one orders the potato dish.",
+        "hint": "One dish goes unordered. The manager settles on a single reason why.",
+        "expl": "Conclusion — the patrons prefer not to eat potatoes.\nSupport — of three new vegetarian dishes, nobody orders the potato one, even though it is the cheapest.\nThe flaw — plenty of other explanations fit the same fact: the dish may be unappealingly prepared, poorly described on the menu, or simply less interesting than a casserole. The manager picks one and treats it as the only possibility.\nWhy (E) names it — treating one of several plausible explanations as the only possible one.\n(A) No common cause is proposed; only one phenomenon is being explained.\n(B) The conclusion is unsupported, but it does not contradict any premise.\n(C) This gap is real in general, but the patrons' requests were for vegetarian dishes as a category, not for potatoes specifically.\n(D) Nobody's belief in the conclusion is offered as evidence for it.",
         "level": "hard"
       },
       {
@@ -4603,8 +4603,8 @@ window.GMAT_SETS = [
           "asserts that the rehabilitation of criminals is not a moral issue",
           "relies on evidence drawn from a sample that there is reason to believe is unrepresentative"
         ],
-        "hint": "Name the reasoning error - often a number/percentage, cause-effect, or scope gap.",
-        "expl": "Correct answer: E. (E) is correct. The conclusion that the surgery has \"a powerful rehabilitative effect\" contains a word that lets us know the author is asserting a causal relationship -\"effect.\" Does surgery truly cause lower rates of recidivism? Let's go to our checklist.",
+        "hint": "Ask how inmates were chosen for the surgery.",
+        "expl": "Conclusion — the surgery has a powerful rehabilitative effect.\nSupport — recipients are reconvicted at half the rate of the prison population as a whole.\nThe flaw — the surgery is a reward for inmates who behave particularly well. Those inmates were already the least likely to reoffend, surgery or no surgery.\nWhy (E) names it — the evidence comes from a sample there is clear reason to think unrepresentative of the prison population it is compared with.\n(A) The passage explicitly sets the moral issues aside before presenting the evidence.\n(B) It does not dismiss moral considerations as irrelevant; it postpones them.\n(C) Labelling the programme controversial is a stylistic choice, not a reasoning error.\n(D) The passage never claims rehabilitation is outside morality.",
         "level": "hard"
       },
       {
@@ -4620,8 +4620,8 @@ window.GMAT_SETS = [
           "the violent crime rates in Meadowbrook and Parkdale four years ago",
           "how Meadowbrook's expenditures for crime prevention over the past four years compare to Parkdale's expenditures"
         ],
-        "hint": "Name the reasoning error - often a number/percentage, cause-effect, or scope gap.",
-        "expl": "Correct answer: D. Crime Rate at Meadowbrook → 60% higher than 4 years ago Crime Rate at Parkdale → 10% higher than 4 years ago. The argument concludes that people of Meadowbrook are more likely to become victims due to 60% increase. This obviously fails to take into account the initial rate of crime 4 years ago.",
+        "hint": "Both figures are changes. Neither tells you where either town started.",
+        "expl": "Conclusion — Meadowbrook residents are now more likely to be victims of violent crime than Parkdale residents.\nSupport — Meadowbrook's violent crime rate rose 60% over four years; Parkdale's rose 10%.\nThe flaw — a large percentage rise on a tiny base can still leave you below a small rise on a large base. Meadowbrook could have started at 2 per 1,000 and reached 3.2, while Parkdale went from 20 to 22.\nWhy (D) names it — without the rates four years ago, the two current levels cannot be compared at all.\n(A) Population density does not enter a comparison of rates per 1,000 residents.\n(B) Population growth is already accounted for, since the figures are rates rather than counts.\n(C) The mix of violent and nonviolent crime is irrelevant to the violent rate itself.\n(E) Prevention spending might explain the trends but does not fix the missing baseline.",
         "level": "hard"
       }
     ]
@@ -4646,7 +4646,7 @@ window.GMAT_SETS = [
           "The first is an assumption; the second is a counterexample."
         ],
         "hint": "Find the claim everything else is there to support — that is the conclusion, whoever holds it.",
-        "expl": "Step 1 — Map the argument. The mayor's claim (traffic will ease) is what the critic is attacking, so it is not the critic's own conclusion.\nStep 2 — \"Therefore\" points at the critic's conclusion: the line will do little to reduce traffic. That is the [[second]] boldface.\nStep 3 — The [[first]] boldface — the line serves suburbs whose residents rarely use transit — is the reason offered for that conclusion, i.e. evidence.\nStep 4 — So the order is evidence → conclusion, which is (B). (A) reverses the two. (C) is wrong because the critic asserts the second, not rejects it. (D) misassigns the first to the mayor, who never said it. (E) calls the first an assumption, but it is stated outright, not assumed.\nAnswer: B.",
+        "expl": "The set-up — the critic is attacking the mayor's claim that the new line will ease traffic, so the mayor's claim is not the critic's own conclusion.\nSecond boldface — \"Therefore\" points straight at it: the line will do little to reduce traffic. That is what the critic is arguing for.\nFirst boldface — the line serves suburbs whose residents rarely use transit. That is the reason offered for the conclusion.\nSo — evidence first, conclusion second, which is (B).\n(A) Reverses them. The \"Therefore\" sits in front of the second boldface, not the first.\n(C) The critic asserts the second boldface; it is his own conclusion, not something he rejects.\n(D) The first boldface belongs to the critic, not the mayor — the mayor never said the suburbs rarely use transit.\n(E) The first is stated outright as a fact about the route, so it is a premise rather than an unstated assumption.\nAnswer: B.",
         "level": "medium"
       }
     ]
@@ -7399,8 +7399,8 @@ window.GMAT_SETS = [
           "denying that the drivers’ view of the road is relevant to the number of road accidents",
           "providing additional evidence to undermine the claim that safer driving does not necessarily reduce the number of road accidents"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Adam assumes that “enabling \\[drivers\\] to drive more safely” will “decrease the annual number of accidents.” That’s a reasonable assumption, but Aiesha points out an alternative outcome—clearer markings will actually make it easier for people to drive faster and closer to the edge of the road, behaviors that causes accidents. Aiesha is thus pointing out the sad fact that making it easier for people to drive safely will not necessarily ensure that people do so (C). Aiesha disagrees that reflecting posts will decrease accidents, but she doesn’t disagree that they will make the road edge easier to see (A), or that they are relevant to the number of accidents (D) (though she thinks they will increase, not decrease, that number). Although she disagrees with Adam, she doesn’t present an alternative suggestion (B).",
+        "hint": "Aiesha accepts that the posts work. What she doubts is what drivers do with them.",
+        "expl": "Adam — reflecting posts give drivers a clear view of the road edge, which lets them drive more safely, so accidents will fall.\nAiesha — on roads with posts, drivers in fact speed and hug the edge more often than on comparable roads without them.\nThe move — Adam slides from \"drivers are [[able]] to drive safely\" to \"drivers [[will]] drive more safely.\" Aiesha grants the first and attacks the second by reporting how drivers actually behave on posted roads. That is (C).\n(A) She never disputes that the posts make the edge visible — her whole point depends on drivers seeing the edge well enough to drive close to it.\n(B) She proposes no other way of reducing accidents; she only argues that Adam's way will not work.\n(D) She does not call the drivers' view irrelevant. She thinks the improved view changes behaviour — just in the wrong direction.\n(E) This runs backwards. \"Safer driving does not necessarily reduce accidents\" is closer to Aiesha's own position, and undermining it would help [[Adam]].\nAnswer: C.",
         "level": "medium"
       },
       {
@@ -7467,8 +7467,8 @@ window.GMAT_SETS = [
           "shifting perspective from safety with respect to consumers to safety with respect to producers",
           "pointing out an alternative way of obtaining an advantage claimed by the proponent without risking a particular disadvantage"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "What the proponent propounds is the subjecting of food to gamma irradiation which, he asserts, retards spoilage, doesn’t compromise nutrition or safety, and kills Salmonella. The opponent in effect says, hey, we should employ this chemical dip, which will not only kill Salmonella but will also avoid a disadvantage of irradiation (namely that irradiation both leaves botulism bacteria unscathed and eliminates a botulism warning). The above states in specific terms that which (E) asserts in abstract ones. Both arguments are quite concrete and leave no room for verbal ambiguity (A). That the opponent contradicts the proponent is not the same as saying that he proves a self- contradiction (B). Besides irradiation, the only other proposed remedy mentioned (C) is the chemical dip, about which the opponent establishes no undesirable consequences.",
+        "hint": "The opponent does not just object — notice what she offers instead.",
+        "expl": "Proponent — irradiate food: it stops spoilage, leaves no radiation, costs no more vitamins than cooking, and kills Salmonella.\nOpponent — irradiation leaves botulism bacteria alive while killing the odour-producing bacteria that would have warned consumers; and a safe chemical dip kills Salmonella [[and]] botulism bacteria.\nThe move — the opponent names a different method that delivers the proponent's own advertised benefit (killing Salmonella) while avoiding a specific hazard irradiation creates (a silent botulism risk). That is (E).\n(A) No term is shown to have two meanings; both sides use \"safety\" in the ordinary sense and disagree about the facts, not the vocabulary.\n(B) Contradicting the proponent is not the same as showing the proponent's own claims contradict each other, which is what a self-contradiction would require.\n(C) Only [[one]] remedy is charged with undesirable consequences. The chemical dip is presented as clean — that is the point of raising it.\n(D) Producers are never mentioned. Both speakers are talking about risks to consumers throughout.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -7484,8 +7484,8 @@ window.GMAT_SETS = [
           "providing a different explanation for the apparent advantages of bilingualism from the explanation suggested by the results of certain studies",
           "pointing out a methodological error in the technique used to obtain the purported evidence of a problem with bilingualism"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "“Abstracting” an argument means reducing each sentence to its purpose. We do it a lot in Parallel Reasoning, and it comes in handy in Method questions too. Sentence 1: allegation (studies show that bilingual kids have a reduced “conceptual map,” whatever that means; the important thing is that it sounds bad). Sentence 2: some detail about those studies (i.e., that which they “appear to show”). Sentence 3: author’s value judgment (the studies are flawed). Sentence 4: the truth behind the test results. Since the author’s overall purpose is clearly to discredit this rap at bilingualism—and since she does so by pointing out where the vocabulary tests went wrong—(E) must be the right answer.",
+        "hint": "Where exactly does the linguist say the studies went wrong?",
+        "expl": "The claim under attack — vocabulary tests show bilingual children know fewer words, which some read as evidence that bilingualism strains a child's capacity and shrinks the \"conceptual map.\"\nThe linguist's reply — those tests were administered in a single language, and dual-language testing shows the children often store a given concept in just one of their two languages. A one-language test therefore misses part of what the child knows.\nThe move — she does not dispute the results the tests produced; she attacks the [[way the tests were built]], which makes their evidence worthless for the claim it is used to support. That is (E).\n(A) She never claims bilingualism is an advantage — only that the alleged disadvantage has not been shown.\n(B) No inconsistency inside the opposing view is exposed. The view might be perfectly coherent; the problem is that the evidence for it was gathered badly.\n(C) Far too broad, and self-defeating: the linguist relies on a [[dual-language]] vocabulary test herself, so she cannot be undermining vocabulary tests in general. It is single-language testing that fails.\n(D) There are no \"apparent advantages of bilingualism\" anywhere in the passage; the studies alleged a deficit.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -7518,8 +7518,8 @@ window.GMAT_SETS = [
           "showing that P’s argument depends on the false assumption that compliance with any regulations that would have prevented last year’s fire would be useful",
           "pointing out a crucial distinction, overlooked by P, between potential benefits and actual benefits"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "So, what’s Q’s method of argument? You should have had a pretty good feel for this, whether or not you were able to prephrase it precisely. The best way to go here is probably to knock off the things she doesn’t do on our way to the choice that sounds like a reasonable description of her method. (A) sounds pretty darn reasonable—she does broaden the concept of utility by bringing up the money issue whereas P spoke only of preventing injuries. It makes it easier to debate P on the usefulness of the regulations when she extends the argument in this way. Let’s keep (A) on hold just to scan the rest of the choices to make sure they’re as wrong as they need to be: (B) Q doesn’t attack on this front—she never argues that the regulations would have prevented injuries from last year’s fire. Instead, she switches the focus to saving money.",
+        "hint": "P measures usefulness one way. What does Q do to the measuring stick?",
+        "expl": "P — complying with the new regulations is useless, because even in force they would not have prevented last year's fire or the injuries it caused.\nQ — regulations that can prevent money from being wasted are useful; these will prevent some accidents; and every accident wastes money even when nobody is hurt.\nThe move — P judged usefulness by a single standard, preventing that fire and its injuries. Q does not contest that standard; she [[adds another one]], money wasted, on which the regulations do score. That is (A).\n(B) Q says nothing at all about last year's fire. She lets P's account of it stand and changes the subject to a different kind of benefit.\n(C) Q gives no examples, and P never inferred anything about regulations in general — P's claim was about this one set.\n(D) Q attributes no false assumption to P. The assumption (C) describes — that preventing the fire would have made compliance useful — is one P would accept, and it is not what Q disputes.\n(E) Tempting because Q says \"potentially.\" But Q never accuses P of confusing potential with actual benefits; P denies both. Q's contribution is a [[new kind]] of benefit, not a new distinction within the old one.\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -7535,8 +7535,8 @@ window.GMAT_SETS = [
           "proposing a general theory as a way of explaining a specific market situation",
           "contending that the uses for one product are similar to the uses for another product"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "It’s Anna we’re concerned with here, as the stem helpfully points out—specifically, her method of argument. Only a gong or buzzer would state her opinion of Frankie’s plan more emphatically than does her first sentence—the plan’s a loser. Frankie believes that if it could be made worth their while for jellymakers to use cloudberries, cloudberry gatherers would make more money. But Anna rains on that parade by bringing up the subject of cacao, a product also once harvested in the wild. When demand for it rose, she claims, cacao began to be grown cheaply on farms, to the point where no commercial production of it relied on cacao gatherers.",
+        "hint": "Anna's cacao story is doing a specific job. What kind of job?",
+        "expl": "Frankie — give jelly makers incentives to use cloudberries and the gatherers' income will rise.\nAnna — cacao was once gathered wild too; when demand rose, gatherers could not keep up and farms took over, until no commercial chocolate used wild cacao at all. Cloudberries will go the same way.\nThe move — Anna forecasts what Frankie's plan will actually produce by setting it beside an earlier case that began the same way and ended badly for the gatherers. That is (C).\n(A) She argues the reverse: the plan would harm the very gatherers it is meant to help.\n(B) She does not reread Frankie's evidence. She brings in evidence of her own — the history of cacao, which Frankie never mentioned.\n(D) One historical parallel is not a general theory, and Anna proposes no rule that explains markets at large.\n(E) The comparison is between how the two crops came to be [[produced]] — wild-gathered, then farmed. What the products are used for never comes up.\nAnswer: C.",
         "level": "easy"
       },
       {
@@ -7552,8 +7552,8 @@ window.GMAT_SETS = [
           "citing a general rule that undermines the claim being opposed",
           "redefining a term in a way that is favorable to the argument’s conclusion"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The writer argues that blaming inhuman cold for the disappearance of the Norse from Greenland doesn’t work because another group, the Inuit, thrived there even as the Norse disappeared. In more generic terms, the author rejects the original conclusion (that cold killed off the Norse) after considering additional evidence (the survival of the Inuit during the same time period). This method of argument is described in (B). (A) The author doesn’t present an analogy to refute, so (A) cannot be the method of argument. An analogy is a likening of the mechanism of one phenomenon or event to another seemingly unrelated phenomenon or event; and no such thing happens here. (C) The author explicitly states that the inhuman-cold explanation doesn’t suffice, but then fails to offer an alternative explanation.",
+        "hint": "The author does not explain the disappearance. Watch what the Inuit fact is used for.",
+        "expl": "The claim opposed — falling temperatures wiped out the Norse settlements by making Greenland uninhabitable.\nThe author's reply — the Inuit were living in Greenland over the same centuries and went on thriving long after 1500.\nThe move — if Greenland had become too cold for people to live in, the Inuit could not have thrived there. The Inuit fact simply cannot be squared with the claim, so the claim is rejected. That is (B).\n(A) No analogy is offered and then set aside. The Inuit are actual contemporaneous residents of the same island, which is why their survival counts as direct evidence rather than a comparison.\n(C) The author supplies no rival account of why the Norse vanished. Showing an explanation fails is not the same as replacing it, and this argument stops at the failure.\n(D) Nothing general is invoked. The evidence is one specific historical fact about one group of people in one place.\n(E) No term is redefined. \"Too cold for human habitation\" keeps its plain meaning throughout — which is exactly why the Inuit case bites.\nAnswer: B.",
         "level": "medium"
       },
       {
@@ -7569,8 +7569,8 @@ window.GMAT_SETS = [
           "questioning an assumption",
           "abstracting a general principle from specific data"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Since we’re asked how the author puts together her argument, we need to identify the author’s Method of Argument. The argument proceeds in a linear fashion: Meteors came from either Mercury, Venus, or Mars. The source wasn’t Mercury (too close to the Sun), and it wasn’t Venus (gravity problems), and so, the author announces, the source must be Mars. We don’t learn anything else about Mars, but we don’t need to, as long as the only candidates are those three planets and the other two are out. So, the author came to her conclusion by eliminating the competing explanations, as (B) points out. (A) No particular examples are cited, and the author isn’t disputing one theory; she’s supporting a theory by debunking its alternatives. (C) What contrast? The story describes what must have been the case, based on what is known about the planets.",
+        "hint": "Three candidates, two knocked out. What is that pattern called?",
+        "expl": "The argument — the meteorites came from Mercury, Venus, or Mars. Mercury is out: dislodged material would be captured by the Sun. Venus is out: its gravity would hold the material down. Therefore Mars.\nThe move — the conclusion is reached by closing off every alternative until one is left standing. Nothing new is offered in favour of Mars itself. That is (B).\n(A) No counterexample appears. The author is building a case for a theory, not refuting one by producing an instance that violates it.\n(C) Nothing is contrasted across time. The comparison is among three planets as they are, not between past and present circumstances.\n(D) No assumption is questioned. The author reasons forward from stated facts about the Sun's pull and Venus's gravity.\n(E) This runs the wrong way. The argument narrows a general set of possibilities down to one specific source; abstracting a principle would mean generalizing [[up]] from data.\nAnswer: B.",
         "level": "medium"
       },
       {
@@ -7586,8 +7586,8 @@ window.GMAT_SETS = [
           "show that the land developer’s line of reasoning would lead to an unacceptable conclusion if applied to a different situation",
           "argue that there are problems that money, however judiciously spent, cannot solve"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The question stem alerts us to look for the method used by the environmentalist in objecting to the land developer’s position. That is, we want to know how the environmentalist argues, not what the argument is. The developer’s main point is that it’s a waste of money to try to preserve species that will soon become extinct anyway. How does the environmentalist argue against this point? The environmentalist responds by comparing this reasoning to not spending money on cancer research just because everyone must eventually die. The environmentalist strongly implies that it would be unheard of to take this position with respect to humans. The environmentalist brings up a totally different situation in order to show that it would be reprehensible to espouse the developer’s philosophy in other circumstances.",
+        "hint": "The environmentalist changes the subject to cancer. Why?",
+        "expl": "Land developer — preserving species that are doomed anyway is a waste of money, since extinction is the normal fate of every species over geological time.\nEnvironmentalist — by that logic we should not fund cancer research, since every human being dies anyway.\nThe move — the environmentalist takes the developer's reasoning unchanged, applies it to a different case, and lets the plainly unacceptable result there discredit it here. That is (D).\n(A) No dilemma is clarified. The developer poses no forced choice between two options; he makes a single recommendation.\n(B) The developer's character is never touched. The target is the [[shape]] of his reasoning, which is an argument about the argument, not about the man.\n(C) The complaint is not that evidence is thin. The environmentalist accepts the paleontological facts and rejects what the developer infers from them.\n(E) The environmentalist claims the opposite — the cancer parallel only works if research money is worth spending.\nAnswer: D.",
         "level": "medium"
       },
       {
@@ -7603,8 +7603,8 @@ window.GMAT_SETS = [
           "drawing a distinction between different kinds of economic activity",
           "seeking to show that the assumption that taxpayers would spend money that might be refunded to them is dubious"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The stem asks us to find the choice that describes how the argument proceeds, so this is another Method of Argument question. The spokesperson asserts that the tax refund will not result in a net increase in spending since other taxes would have to be raised or province employees must lose their jobs to compensate for the lost revenue. Even though the taxpayers received a refund, either all of the taxpayers must pay more taxes and won’t have the extra money to spend, or some province employees will lose their jobs and not have any money to spend. If one of these two scenarios must occur, as the spokesperson contends, then the refund will not result in more money being spent in the province. In both scenarios, the province offsets the refund by imposing a financial penalty on at least some of the people.",
+        "hint": "The spokesperson grants that the refund gets spent. So where does the stimulus go?",
+        "expl": "The proposal opposed — refund $600 million in provincial taxes; taxpayers will spend it and the economy will be stimulated.\nThe spokesperson's reply — the budget must balance, so the province must either raise other taxes (leaving taxpayers no better off) or dismiss provincial workers (who are residents too, and will now have less to spend). Either way, one group's new spending is matched by another group's lost spending, so there is no net increase.\nThe move — the predicted benefit is conceded and then shown to be cancelled by a cost that necessarily accompanies it. That is (B).\n(A) Nothing is redefined. \"Stimulate the economy\" keeps its ordinary sense; the argument turns on arithmetic, not on the meaning of a word.\n(C) Motives never come up. The spokesperson treats the opposition's proposal as sincere and attacks its consequences.\n(D) No distinction between kinds of economic activity is drawn — the argument works precisely by treating all the spending as the same and summing it.\n(E) The spokesperson explicitly grants that taxpayers \"could be expected to spend the money.\" That premise is needed for the argument, so it cannot be what is being doubted.\nAnswer: B.",
         "level": "medium"
       },
       {
@@ -7620,8 +7620,8 @@ window.GMAT_SETS = [
           "making clear the extent to which someone’s actions resulted in harm to others in order to support the claim that those actions were irresponsible",
           "demonstrating that two situations cannot both occur by showing that something necessary for one of those situations is incompatible with something necessary for the other situation"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Here the choices are ever so much denser than the situation, which is pretty simple. Damon cannot attend the recital and go out afterwards and finish the paper in time. The need for 100% uninterrupted effort to finish the paper is the necessary condition about which (E) is speaking. Because he must stay home, he cannot go out. (A) distorts the situation badly. Contrary to (A), the author doesn’t predict which choice Damon will make (to finish the paper or go to the recital); she simply argues that he cannot do both. (B) is an even more egregious distortion. No essential similarities between the work and family situations are described, and there’s no claim of similar responsibilities that needs “justifying.” (C) The author demonstrates no sympathy for Damon, and no interest whatsoever in excusing him. Damon’s dilemma is of his own making.",
+        "hint": "What does finishing the paper require, and what does the recital require?",
+        "expl": "The argument — the paper can still be finished, but only with an entire uninterrupted evening. The recital and the ice cream outing occupy that evening. Therefore Damon must choose between the two obligations.\nThe move — each course of action has a requirement, and the two requirements cannot both be met, so the two cannot both happen. That is (E).\n(A) The author predicts neither outcome. She does not say which one Damon will drop — only that he cannot keep both.\n(B) Nothing is likened to anything. The professional and family obligations are in [[conflict]] here, not held up as parallel cases.\n(C) There is no sympathy and no excuse-making. The passage goes out of its way to note that Damon had ample time and put the work off.\n(D) No harm to anyone is described or weighed, and the conclusion is about a forced choice, not about assigning blame for consequences.\nAnswer: E.",
         "level": "easy"
       },
       {
@@ -7637,8 +7637,8 @@ window.GMAT_SETS = [
           "presenting evidence indicating that the policy Alan argues in favor of would have damaging consequences that outweigh its positive consequences",
           "pointing out that Alan’s argument mistakenly identifies something as the cause of a trend when it is really an effect of that trend"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Alan concluded that subsidies are necessary to prevent a decline in agricultural output. He came to this conclusion based on two main premises: that soil erosion can’t be controlled without the implementation of new techniques and that farmers can’t implement the techniques without subsidies. In order to disprove this conclusion, Betty introduces a new factor, the hydroelectric dam. She claims that floods cause erosion, and that the dam will prevent the floods (and thus control the erosion). Thus, as (B) says, she uses new claims (the dam will end flooding) to undermine Alan’s premise that the new farming techniques are necessary to control soil erosion. (A) Betty doesn’t try to show an internal contradiction in Alan’s argument, but instead introduces an entirely new consideration.",
+        "hint": "Betty brings in a fact Alan never mentioned. Which of his steps does it break?",
+        "expl": "Alan — erosion can only be controlled with the new techniques; farmers cannot afford them alone; so without subsidies, output will inevitably decline.\nBetty — the erosion is caused by recurring floods, and the dam being built will end those floods next year; so output will hold steady with no subsidies at all.\nThe move — Betty introduces facts Alan never raised (the flood cause, the dam) and they knock out his premise that the new techniques are the only way to control erosion. That is (B).\n(A) She does not set two of Alan's own premises against each other. Nothing he said is inconsistent; her attack comes entirely from outside his argument.\n(C) She rejects his conclusion outright. He says output will inevitably decline without subsidies; she says it will stabilize without them.\n(D) She names no harm that subsidies would do. Her claim is only that they are unnecessary, which is a different objection from \"the cure is worse than the disease.\"\n(E) No cause and effect are swapped. She replaces Alan's account of what causes erosion rather than accusing him of reversing one.\nAnswer: B.",
         "level": "hard"
       },
       {
@@ -7671,8 +7671,8 @@ window.GMAT_SETS = [
           "claiming that what Whittaker says cannot be true because Whittaker acts as if it were false",
           "showing that Whittaker’s argument relies on analyzing an extreme and unrepresentative case"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Hudson does not respond directly to Whittaker’s argument. Instead, he applies Whittaker’s reasoning— “by your reasoning”—to an entirely different situation. A big clue that Hudson is applying Whittaker’s logic to a different situation is his use of the word “similarly.” Hudson claims, based on Whittaker’s reasoning, that it is inevitable that he will become rich because he cannot die before he has his first million dollars in the bank\\! Now, it’s certainly possible, if not likely, that you can die before you have your first million in the bank. And not having your first million in the bank is very unlikely to prevent you from dying. Thus, Hudson responds to Whittaker by making an analogy that leads to a silly conclusion— choice (A).",
+        "hint": "Hudson's millions have nothing to do with medical school. So why bring them up?",
+        "expl": "Whittaker — there can be no number of students who drop out before their second year, since a student who drops out never has a second year.\nHudson — on that reasoning I am certain to become rich, since there is likewise no such thing as my dying before my first million is banked.\nThe move — Hudson builds a second argument with the same shape as Whittaker's, in a domain where the conclusion is plainly false, and lets that expose the reasoning as bad. That is (A).\n(B) A counterexample would be an actual case that falsifies Whittaker's claim. Hudson supplies no case at all — he supplies an [[argument]], parallel in form.\n(C) Hudson never diagnoses Whittaker's error in those terms, or in any terms. He exhibits the problem rather than naming it.\n(D) Nothing is said about how Whittaker behaves. Charging someone with acting as if their own claim were false is a different manoeuvre entirely.\n(E) He calls his own case \"similar\" to Whittaker's — the opposite of dismissing Whittaker's as an unrepresentative extreme.\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -7705,8 +7705,8 @@ window.GMAT_SETS = [
           "providing an alternative reason for accepting the truth of Walter’s conclusion",
           "charging Walter with stopping short of recognizing the full implications of his position"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Walter’s conclusion is that tolerating an injustice is morally wrong and shortsighted. His evidence follows the colon (always pay attention to punctuation). Larissa also believes that allowing injustices is bad policy, but disagrees with Walter as to the reason. The key to understanding Larissa’s evidence is the phrase “not because . . . but because.” She disagrees with Walter’s reason for the conclusion and provides her own. Therefore, you’re looking for an answer choice, such as (D), which states that Larissa agrees with Walter’s conclusion but disagrees with his evidence (reason). (A) might have been tricky if you didn’t read the stimulus critically. Larissa agrees with Walter’s conclusion, she only disagrees with his reasoning.",
+        "hint": "Larissa says \"not because ... but because.\" What does she keep, and what does she replace?",
+        "expl": "Walter — tolerating injustice against the disadvantaged is wrong and shortsighted, because a system that will do it to them today can do it to the well-to-do tomorrow.\nLarissa — the wealthy and well-educated can in fact shield themselves from these injustices. Allowing the injustices to persist is still bad policy, but because it breeds social unrest.\nThe move — \"not because ... but because\" is the giveaway. Larissa keeps Walter's conclusion and swaps out his reason for one of her own. That is (D).\n(A) She never doubts the conclusion. She calls the same policy bad; the disagreement is entirely about why.\n(B) She draws no consequences from Walter's assumptions. She rejects one of them (that everyone faces equal risk) and moves on to different ground.\n(C) Walter's standing to speak is never mentioned. Attacking a person's authority instead of their argument would be a different move, and not one she makes.\n(E) The reverse of what she says. She thinks Walter's position claims too much, not that he has failed to follow it far enough.\nAnswer: D.",
         "level": "easy"
       },
       {
@@ -7722,8 +7722,8 @@ window.GMAT_SETS = [
           "criticizing a view on the grounds that the view is based on evidence that is in principle impossible to disconfirm",
           "attempting to cast doubt on a conclusion by claiming that the statistical sample on which the conclusion is based is too small to be dependable"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "An author will often proceed by pointing out a flaw in a position she opposes. Whenever the GMAT begins with the formulation “so-and-so claims that . . .” you should expect the author to contradict the claim somehow. After all, if they weren’t going to contradict a claim, they’d make it themselves, instead of pointing out who is responsible for such a ridiculous idea. This argument is no different. Gamba begins by outlining Muñoz’s claims: that the Hopewell Neighbors Association opposes the new water system, and that this means the city opposes it. She then goes on to shred Muñoz’s evidence for his claims. As Gamba tells us, it turns out that less than 10% of the 350-member Association even voted on the water system, and that even then the vote was pretty close—it came out 15 to 10 against the water system.",
+        "hint": "15 votes out of 350 members, out of a whole city. Which word describes the problem?",
+        "expl": "Muñoz's claim — the neighbourhood association overwhelmingly opposes the new water system, and that shows the city opposes it.\nGamba's reply — only 25 of the association's 350 members voted, 15 against and 10 for, and those 15 votes are far less than 1 percent of Hopeville's population.\nThe move — Gamba accepts the vote happened as reported and attacks the [[size]] of the group whose views are being generalized from. That is (E).\n(A) Turnout bias is a different objection. Gamba never suggests that opponents were more likely to show up; she says too few people showed up at all.\n(B) She does not claim statistics can be bent to any purpose — she relies on the statistics herself, and reads them straight.\n(C) Too abstract to be right, and inaccurate besides. Muñoz never claimed his premises guaranteed his conclusion, and Gamba's actual complaint is the specific one in (E), not a general point about entailment.\n(D) Nothing here resists checking. The membership roll and the vote tally are exactly the kind of evidence that can be confirmed, and Gamba confirms it.\nAnswer: E.",
         "level": "medium"
       },
       {
@@ -7739,8 +7739,8 @@ window.GMAT_SETS = [
           "showing that two different provisions of the proposed Factory Safety Act conflict and thus cannot apply to a particular situation",
           "pointing out that if a provision applies in a specific situation, it must apply in any analogous situation"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The correct answer to a Method of Argument question will be a 1:1 matchup between the stimulus and the answer choice. This question, which deals with a proposed Factory Safety Act, includes the most obvious Formal Logic statement of the entire section, with an “only-if” in the first sentence. We know from translating this statement that if a company operates an auto factory, it must register that facility as a “class B” factory. The second statement tells us that class B factories must have punctual inspections, and the argument concludes that the Factory Safety Act would prevent auto factories from postponing inspections. This is a classic Formal Logic formulation: If A, then B; If B, then C, therefore, if A, then C.",
+        "hint": "Auto factory → class B → punctual inspections. What kind of reasoning is that?",
+        "expl": "The argument — a company may operate an automobile factory only if that factory is registered class B; no factory can be class B without punctual inspections; therefore an automobile factory cannot postpone its inspections.\nThe move — two provisions are chained together, and what they jointly rule out is the conclusion. If A requires B and B requires C, then A requires C. That is (A).\n(B) No two readings of the Act are weighed. Each provision is taken in one sense, and the argument never pauses over what a phrase might mean.\n(C) Existing legislation is never mentioned. The Act is compared only with itself.\n(D) The provisions do not conflict — they cooperate. A conflict would block the conclusion; here their combination is what produces it.\n(E) No analogous situation appears. The conclusion is about automobile factories, reached from a rule that names automobile factories directly.\nAnswer: A.",
         "level": "medium"
       },
       {
@@ -7756,8 +7756,8 @@ window.GMAT_SETS = [
           "offering an alternate explanation of the correlation cited",
           "proving that governments must do what community organizations fail to do"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Remember the three classic alternatives to causal arguments. We know from the question stem that we’ll be dealing with a causal argument: X caused Y. You should immediately think of the three classic alternatives: Y caused X; Z caused Y and/or X; or the link was a coincidence. Here, the author is the one weakening a causal argument, so we’ll see if he uses one of these three. Sure enough, the last sentence, “the latter may indeed cause the former,” tells us that we’re looking for “Y caused X,” a reversal of the causal argument. We find this in (D). (A) contradicts the stimulus—the author tells us that the causal relationship is reversed, not nonexistent. (B) There is no counterexample cited. (C) “People’s motives for volunteering” are not part of the argument; we only know that fewer people are volunteering, not why.",
+        "hint": "Read the last clause carefully: which way is the arrow pointing?",
+        "expl": "The causal claim opposed — the decline in voluntary community organizations was caused by the growth of government services.\nThe editorial's reply — the two do move together, but \"the former does not necessarily cause the latter; the latter may indeed cause the former.\"\nThe move — the correlation is accepted and given a different reading: government stepped in [[because]] volunteering fell, rather than volunteering falling because government stepped in. That is (D).\n(A) The editorial does not deny that a causal link exists. It suggests the link runs the other way, which is a claim about direction, not existence.\n(B) No counterexample is offered. A counterexample would be a case where services grew and volunteering did not fall; the editorial disputes no data.\n(C) Motives for volunteering never come up, and \"proving that no generalization can be drawn\" is far stronger than the editorial's careful \"may not be true\" and \"may indeed.\"\n(E) Nothing is proved about what governments must do. The editorial raises a possibility about what happened, not a duty.\nAnswer: D.",
         "level": "medium"
       },
       {
@@ -7773,8 +7773,8 @@ window.GMAT_SETS = [
           "offers an explanation of the glowing lights different from Phoebe’s",
           "accuses Phoebe of introducing irrelevant information"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "In dialog-based Method of Argument questions, first read the part of the stimulus for which you are asked to find the method, especially if the two speakers’ remarks are about the same length. We must describe Quincy’s method of argument, and because Quincy says quite a lot, the odds are in our favor that we can predict the answer by reading Quincy’s remarks alone. If, by contrast, Quincy uttered only two or three lines, it would definitely be necessary to read both arguments. Quincy questions what is probably Phoebe’s conclusion, and, getting more specific, says that a theory (probably central to Phoebe’s argument) is “speculative,” or in other words, not proven. So, we can characterize his reasoning in general terms: he objects to Phoebe on the ground that she uses a dubious theory as her central support.",
+        "hint": "Quincy calls the theory speculative. Does he put anything in its place?",
+        "expl": "Phoebe — the strange lights clustered in time and place around three earthquake epicenters, so they were almost certainly earthquake lights produced by ground stresses.\nQuincy — the association may be coincidence, and the theory that ground stresses can produce lightning is extremely speculative.\nThe move — Quincy offers no findings of his own. He attacks Phoebe's explanation for resting on a theory that has not been established. That is (C).\n(A) Backwards. Phoebe is the one reading a cause into a correlation; Quincy is refusing to.\n(B) He does not dispute the sightings. He grants that the lights appeared where and when Phoebe says, and questions what that shows.\n(D) He supplies no rival explanation. Calling something a coincidence is declining to explain it, not explaining it differently.\n(E) He never says Phoebe brought in something irrelevant — the earthquake data is exactly on point, in his view; it is her theory about it that he doubts.\nAnswer: C.",
         "level": "medium"
       },
       {
@@ -7790,8 +7790,8 @@ window.GMAT_SETS = [
           "pointing out that the premises of Yang’s argument more strongly support a contrary conclusion",
           "calling into question the truth of the evidence presented in Yang’s argument"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "When the question stem asks about one of two speakers, define the important speaker’s objection before scanning the choices. Reading Campisi first, we see that Campisi thinks an “inference” Yang makes is unconvincing, and offers what appears to be an alternative. An inference is something that is unstated. Yang says people knew yeast was a leaven at least as early as 1200 B.C. because they used leavens at that time. Yang’s assumption, then, is that it was yeast that they were using, an assumption that Campisi challenges, which leads us to (B). (A) Campisi’s “alternative” isn’t a “set of evidence” nor does it “support Yang’s conclusion”—it works against Yang’s conclusion. (C) Campisi does consider the reason given and argues specifically that it fails to prove Yang’s point.",
+        "hint": "Yang's evidence is that leavens were used. His conclusion is about yeast. Mind the gap.",
+        "expl": "Yang — biblical evidence ties the use of leavens to 1200 B.C., so yeast must already have been known as a leaven then.\nCampisi — several leavens other than yeast could have been known in 1200 B.C.\nThe move — Yang's evidence is about [[leavens]] and his conclusion is about [[yeast]]. That step works only if the leaven in use was yeast, which he never states. Campisi attacks precisely that unstated presumption. That is (B).\n(A) Campisi presents no evidence, and what he raises works against Yang's conclusion rather than supporting it better.\n(C) He does engage the reason given. His objection is about the gap between Yang's evidence and Yang's conclusion, which means he has considered both.\n(D) He does not say Yang's premises point to a contrary conclusion. He says they point to no conclusion about yeast in particular.\n(E) He accepts the biblical evidence that leavens were in use. What he denies is what follows from it.\nAnswer: B.",
         "level": "easy"
       },
       {
@@ -7807,8 +7807,8 @@ window.GMAT_SETS = [
           "It supports one of Peter’s premises although it undermines Peter’s conclusion.",
           "It supports the conclusion of Peter’s argument by offering independent grounds for that conclusion."
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Peter’s argument is one for underwatering, which he implies makes leaves less desirable to insect predators than the less- tough leaves produced by abundant watering. “Indeed, in fact” signals Jennifer’s agreement with Peter’s conclusion that farmers should not overwater. But her evidence comes from a different but related place: She approvingly cites the greater likelihood that underwatered plants will develop poisons to kill insects. So, her point is the same as his, but she cites alternative evidence for it, and that’s (E). Jennifer can’t be supporting (A) or explaining (C) Peter’s claims because each person’s evidence focuses on a different factor. And as such, she can’t be supplying a missing premise (B) either.",
+        "hint": "\"Indeed. In fact\" — Jennifer agrees. Is her reason the same as Peter's?",
+        "expl": "Peter — mildly drought-stressed leaves are tougher, so insects prefer well-watered plants; therefore farmers should water only just enough.\nJennifer — agrees, and adds that a mildly drought-stressed plant diverts resources into producing pesticidal toxins, which abundantly watered plants do not.\nThe move — Jennifer arrives at Peter's conclusion by a different route. Toughness and insect preference are his mechanism; chemical defence is hers. That is (E).\n(A) It supports his conclusion, not each of his claims. Toxin production says nothing about leaf texture or about which leaves insects prefer.\n(B) Peter's argument stands without her point — toughness plus insect preference already carries him to his recommendation. A supplied premise would be one the argument [[cannot]] do without.\n(C) It explains none of his premises. Producing toxins is a separate mechanism from toughening, not an account of why leaves toughen.\n(D) It does not undermine his conclusion in any way; it gives him a second reason for it.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -7824,8 +7824,8 @@ window.GMAT_SETS = [
           "discrediting the moral principle on which the conservationist’s argument is based",
           "disputing the accuracy of the figures cited by the conservationist"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "“Counters . . . by” tells you to assess the approach or method. Why, according to the conservationist, is the wildlife refuge “therefore” no safety risk? Only 20 damaged planes in 10 years, and no passenger injuries. But the pilot sheds new light on those stats: Most of the 20 are extremely recent, and the bird population is skyrocketing. In other words, the context of the conservationists’ facts suggests that the refuge is not a place of safety, but a place of tragedy just waiting to happen. It all amounts to identifying a misleading use of statistics, (A). The most tempting wrong choice is (E), but note that the pilot accepts the accuracy of the statistics. He merely suggests that they have a very different meaning.",
+        "hint": "The pilot does not deny a single number. Look at what he adds around them.",
+        "expl": "Conservationist — in ten years only 20 planes have been damaged by bird collisions and no passenger has been hurt, so the refuge poses no safety risk.\nPilot — 17 of those 20 collisions happened in the past two years, and the bird population is climbing fast; as collisions multiply, so does the chance one injures passengers.\nThe move — the pilot accepts every figure and supplies the context the conservationist left out, showing that a ten-year total conceals an accelerating trend. That is (A).\n(B) No motives are questioned. The pilot argues about the numbers, not about why the conservationist wants a particular answer.\n(C) He asserts no general law that danger grows over time. His case rests on the specific, stated trend in bird numbers and recent collisions.\n(D) No moral principle appears on either side. Both are arguing about how much risk there is.\n(E) The tempting one — but the pilot never says a figure is wrong. He repeats the conservationist's own 20 and breaks it down. Disputing accuracy would mean claiming the count itself is mistaken.\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -7858,8 +7858,8 @@ window.GMAT_SETS = [
           "contending that the manager’s recommendation is sound but for reasons other than those given by the manager",
           "using the information cited by the manager to make an additional recommendation that would help achieve the goal"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "A short response most likely focuses on a narrow segment of the first argument; zero in on that narrow focus to paraphrase the answer. The mall manager is concerned by the large groups of teenagers congregating in his mall, and argues that their presence causes adults to spend less time shopping in the mall’s stores. He uses this information to conclude that merchants in the mall should discourage teenagers from congregating near their stores, giving as a reason the fact that the mall’s goal is to prevent a loss in sales. The merchant (perhaps one of those being told to kick the teenagers out?) counters that the teenagers themselves account for a significant percentage of the total sales in the stores. This response is short and to the point, so we can quickly figure out which part of the mall manager’s argument it responds to.",
+        "hint": "Note the manager's stated goal, then ask whether his fix actually serves it.",
+        "expl": "Manager — teenagers congregating make adults uncomfortable, so adults shop less; the mall's goal is to prevent a significant loss in overall sales; therefore merchants should drive the teenagers off.\nMerchant — spending by those same teenagers is a significant share of the total spent in those stores.\nThe move — the merchant leaves the manager's facts alone and points out that the recommended action would itself cost sales, so it may not serve the goal it was chosen to serve. That is (B).\n(A) She denies nothing the manager said. Adults may well be uncomfortable and shopping less; she adds a fact rather than contesting one.\n(C) She does not call the goal undesirable. Her point only carries weight [[because]] preventing a loss in sales matters.\n(D) She does not endorse the recommendation at all, for his reasons or any others — she casts doubt on it.\n(E) She makes no recommendation. She supplies one fact and leaves the conclusion to be redrawn.\nAnswer: B.",
         "level": "hard"
       },
       {
@@ -7875,8 +7875,8 @@ window.GMAT_SETS = [
           "attacking the anthropologist’s expertise by suggesting the anthropologist is ignorant of the analogy that can be drawn between animals and machines",
           "suggesting that the anthropologist’s argument relies on a misinterpretation of a key scientific term"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The anthropologist details an experiment he was a part of and the conclusions that experiment arrived at. In short, the experiment involved mapping out the hierarchy for a troupe of monkeys, then using that hierarchy to predict the behavior of the monkeys. But in making his predictions, the anthropologist informs us, he made one key assumption: that every monkey knew the hierarchy in the same way that the anthropologist did. He concludes that this assumption is correct from the fact that his predictions were correct. But the primatologist begs to differ, and does so by way of analogy. His analogy leads to the conclusion that bank cash machines really have desires, simply from the fact that we can predict their behavior by assuming that they have desires.",
+        "hint": "Cash machines are not monkeys. So which part of the anthropologist's argument is being borrowed?",
+        "expl": "Anthropologist — assuming each monkey knew the whole dominance hierarchy produced accurate predictions of group behaviour, so the assumption must be true.\nPrimatologist — we can predict cash machines by assuming they want to satisfy customers; that hardly shows cash machines have desires.\nThe move — the primatologist lifts one step out of the anthropologist's reasoning (\"the assumption worked, so it is true\"), runs it on a case where the conclusion is obviously false, and thereby discredits the step. That is (C).\n(A) The cash-machine case is not evidence about monkeys. No fact is offered that would be impossible if the anthropologist's conclusion held.\n(B) The second argument does not begin from the denial of the anthropologist's thesis. It begins from a premise about cash machines and [[shares]] his inference — that is what makes it damaging.\n(D) No expertise is attacked, and the primatologist is the one drawing the animal-machine comparison. He also explicitly grants that the assumption helped.\n(E) No scientific term is in dispute. \"Knowledge,\" \"desire\" and the rest are used consistently by both.\nAnswer: C.",
         "level": "easy"
       },
       {
@@ -7892,8 +7892,8 @@ window.GMAT_SETS = [
           "pointing out a fact that James, in drawing his conclusion, did not take into account",
           "point out that James’s premises are no more plausible than is his conclusion"
         ],
-        "hint": "Marta accepts every fact James gives. So her response cannot be an attack on his evidence.",
-        "expl": "Step 1 — James argues: rhodium can now be extracted from nuclear waste → rhodium makes catalytic converters → converters clean exhaust → therefore nuclear power is helping the environment.\nStep 2 — Marta grants every one of those facts. What she adds is that the technique is still experimental, so none of the rhodium in converters actually comes from nuclear waste yet.\nStep 3 — That is a fact James left out of account, and it undercuts his present-tense conclusion — (D).\nStep 4 — (A) is wrong because Marta disputes none of James's evidence. (B) is wrong: she never mentions nuclear-power advocates. (C) accuses him of circular reasoning, but his conclusion is nowhere among his premises. (E) claims his premises are no more plausible than his conclusion, but Marta treats the premises as true.\nAnswer: D.",
+        "hint": "Marta disputes nothing James said. What does she add?",
+        "expl": "James — rhodium can now be extracted from nuclear waste, rhodium makes catalytic converters, converters clean exhaust; therefore nuclear power is contributing to a cleaner environment.\nMarta — the extraction technique is still experimental, so none of the rhodium in today's converters comes from nuclear waste.\nThe move — Marta grants every fact James cites and supplies one he left out, which is enough to undercut his present-tense conclusion. That is (D).\n(A) She disputes the accuracy of nothing. She calls the technique \"effective\" in the same breath.\n(B) Nuclear-power advocates are never mentioned, and Marta says nothing about anyone's credibility.\n(C) Circular reasoning would mean James's conclusion sits among his premises. It does not — his premises are about chemistry and exhaust, his conclusion about the environmental record of nuclear power.\n(E) She treats his premises as true, so she cannot be calling them no more plausible than what they are meant to establish.\nAnswer: D.",
         "level": "medium"
       },
       {
@@ -7909,8 +7909,8 @@ window.GMAT_SETS = [
           "questioning the assumption that authorities are available who have special knowledge of the problem under discussion",
           "offering a counterexample in order to show that a particular general claim is too broadly stated"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "This question asks you to determine the way Anika’s response flows, and her statement “I disagree with your prediction” is a great clue. Inez’s prediction is that having antiques professionally appraised would make customers more willing to buy the antiques, because it would remove the possibility of getting suckered into purchasing fake items. Anika disagreeing with the prediction is a pretty blatant sign that she believes the opposite—this plan would not make customers more willing to buy the antiques. And the rest of her statement bears this out: the customers are already experts, so hiring a professional would only raise costs, causing people to buy fewer antiques. Pretty straightforward: Anika feels that Inez’s plan would have the opposite of the anticipated effect, which is (A) precisely. (B) is a half-right, half wrong choice.",
+        "hint": "Anika does not just dislike the plan — she says it would push the numbers the wrong way.",
+        "expl": "Inez — appraising the antiques and removing questionable ones would make customers more willing to buy.\nAnika — our customers are already experts, and appraisers would raise costs enough to force higher prices on everything.\nThe move — Anika predicts the plan would achieve the reverse of what Inez expects: no gain in confidence, plus higher prices, so people buy [[less]]. That is (A).\n(B) The classic half-right trap. It correctly names an undesirable consequence but concedes the plan would be \"effective,\" which is exactly what Anika denies — her first line is \"I disagree with your prediction.\"\n(C) She proposes no alternative plan. She only argues against this one.\n(D) She never doubts that qualified appraisers exist. Her point is that these customers have no use for them.\n(E) No counterexample is offered. She cites no instance, and Inez made a prediction about her own fair rather than a general claim to be refuted by a case.\nAnswer: A.",
         "level": "medium"
       },
       {
@@ -7926,8 +7926,8 @@ window.GMAT_SETS = [
           "He questions Sarah’s motives for advancing an argument against the school policy.",
           "He argues that a policy Sarah fails to consider could accomplish the same aim as the policy that Sarah considers."
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Next, we’re faced with another disagreeing pair, Sarah and Paul. And Paul is up front in his opposition as he flatly states “I disagree.” Paul disagrees with Sarah’s opinion that programs that require students to volunteer don’t succeed in producing people who like to volunteer because those students are forced to participate. Au contraire, says Paul: Some students enjoy their community service so much that they eventually decide to volunteer on their own. In other words, he brings up a situation which breaks down Sarah’s assumption that all volunteering is necessarily forced volunteering. Choice (C) gets the point.",
+        "hint": "Paul accepts Sarah's definition of volunteering. So what is he attacking?",
+        "expl": "Sarah — forced service is not volunteering, and the habit cannot have been fostered in someone who has never volunteered; so a mandatory-service policy cannot succeed on its own.\nPaul — some students forced into community service enjoy it so much that they later volunteer for something similar, and there the policy did foster the habit.\nThe move — Sarah's argument quietly rests on the idea that a compelled start cannot lead to genuine volunteering later. Paul produces cases where it does. That is (C).\n(A) He never charges her with assuming her conclusion. Her premises about the meaning of \"volunteered\" are separate claims, not a restatement of her conclusion about the policy.\n(B) The tempting one, but Paul [[accepts]] her definition. He agrees the required service is not volunteering; his cases turn on what the students do afterwards, freely.\n(D) Motives never come up. He engages her reasoning, not her reasons for offering it.\n(E) He considers no other policy. He defends the very one Sarah attacks.\nAnswer: C.",
         "level": "medium"
       },
       {
@@ -7943,8 +7943,8 @@ window.GMAT_SETS = [
           "attempting to undermine M’s hypothesis by making it appear absurd",
           "providing an alternative interpretation of evidence put forward by M"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "If, when two people are talking in a stimulus, you’re used to reading the second person first, simply seeing that P calls M’s hypothesis laughable might have caused you to stop right there and check out what M’s hypothesis is. The issue is, who invented the Greek alphabet? M’s idea is that it was someone who knew how to write Phoenician and wanted to record and preserve Homer’s cool (but orally transmitted in Greek) poetry. This idea is laughable, according to P, because the inventor of the Greek alphabet by definition must have been the only person who could read Homer in Greek; and since that particular guy already knew Homer by heart, why on earth would he bother to write it down? Anyway, M’s idea is ridiculous and self-contradictory, P implies—or “absurd,” as (D) has it.",
+        "hint": "P calls the hypothesis laughable. How does he try to earn that word?",
+        "expl": "M — the Greek alphabet was invented by someone who knew Phoenician writing and wanted to record the Homeric epics.\nP — on that hypothesis the inventor would already know the epics by heart and so would not need to read them, and nobody else could read them at all. So what would writing them down accomplish?\nThe move — P follows M's hypothesis out to its consequences and shows that they leave the inventor with no reason to do the thing the hypothesis says he did. That is (D).\n(A) The literary value of oral poetry is never in question. Both sides treat the epics as worth preserving.\n(B) He does attempt a refutation — the pair of consequences he draws out is the whole of his reply, not a bare statement of disagreement.\n(C) M's knowledge of Phoenician writing is not at issue. The hypothesis attributes that knowledge to the inventor, and P lets it stand.\n(E) Nothing is reinterpreted. M offered a hypothesis rather than evidence, and P rereads no data.\nAnswer: D.",
         "level": "medium"
       },
       {
@@ -7960,8 +7960,8 @@ window.GMAT_SETS = [
           "arguing that since two alternative developments exhaust all the plausible possibilities, one of those developments occurred and the other did not",
           "concluding that since the evidence concerning a supposed change is ambiguous, it is most likely that no change is actually taking place"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The issue at hand, we learn from sentence 1, is: What has been the effect of a region’s high unemployment on the employed people there? Rumor seems to have it that even the working folks have cut back on their spending, as if they too were in financial trouble. But the author rebuts that rumor: “Clearly,” he concludes, workers are spending as usual. What makes him think so is that workers’ savings accounts are about normal. He seems to think that if the working folks were cutting back on their spending, they’d be putting more money away in savings. And since they’re not saving more (see the contrapositive at work here?), they must not be cutting back on spending. This Method of Argument question wants us to translate that analysis into abstract terms. One way you might approach it is like so: If a certain thing were happening (e.g.",
+        "hint": "If people were cutting back, where would the money have gone?",
+        "expl": "The claim opposed — people who still have their jobs are cutting back on new purchases as though they too were in trouble.\nThe author's reply — there has been no unusual increase in the money those people hold in savings accounts, so their spending is undiminished.\nThe move — cutting back would have shown up as extra savings. The expected trace is missing, so the author concludes the cutting back never happened. That is (A).\n(B) This describes a different shape: one of two predictable consequences being observed. Here the author observes a consequence [[failing]] to appear, and there is no second consequence in play.\n(C) No principle about self-interest, misinformation, or error appears anywhere in the passage.\n(D) Nothing is presented as an exhaustive pair of possibilities, and the author does not reason by elimination.\n(E) The evidence is not called ambiguous. The savings figures are treated as settling the matter — which is precisely the argument's weak point, but not its method.\nAnswer: A.",
         "level": "easy"
       },
       {
@@ -7977,8 +7977,8 @@ window.GMAT_SETS = [
           "making a distinction between terms",
           "offering a counter example to a general claim"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Since we know from the stem that we’re looking for the method of argument, we can focus on how the astronomer makes her argument. The keyword “therefore” indicates the conclusion. It is possible to have well-lit streets and relatively dark skies. How does the author back up this claim? She notes that many people believe that interference from light is unfortunate but necessary, since people need bright lights for safe streets. “Here in Sandsville, however,” indicates that the example of Sandsville will be used to counter that claim. And it does. Sandville’s experience demonstrates that it is possible to have it both ways, so the astronomer does offer a counterexample to a general claim, (E). (A) What scientific authority? No one’s expertise is at issue.",
+        "hint": "A general claim says something is impossible. Sandsville is doing it.",
+        "expl": "The claim opposed — since streetlights are needed for safety, light interference with astronomy is inevitable.\nThe astronomer's reply — Sandsville restricted unnecessary lighting and installed lamps that throw all their light downward, and its observatory's view stays relatively clear; so streets can be well lit and skies relatively dark at once.\nThe move — one actual case of the thing the general claim says cannot happen is enough to defeat it. That is (E).\n(A) No authority is invoked. The astronomer argues from a case, not from anyone's say-so, and her own profession is not offered as the reason to believe her.\n(B) The opposing side's evidence — that streets need lighting for safety — is accepted, not questioned. Sandsville's streets stay well lit.\n(C) Nothing natural is being explained. The dispute is about what lighting policy can achieve, not about the cause of a phenomenon.\n(D) No terms are distinguished. \"Well-lighted streets\" and \"dark skies\" keep their ordinary meanings throughout — the argument turns on a fact about Sandsville, not on a definition.\nAnswer: E.",
         "level": "hard"
       },
       {
@@ -7994,8 +7994,8 @@ window.GMAT_SETS = [
           "It argues that Charles’s conclusion is true, although not for the reasons Charles gives to support that conclusion.",
           "It presents an argument showing that the premises in Charles’ s argument support an absurd conclusion that Charles has overlooked."
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Charles indicates that during recessions a greater percentage of people are out of work. The keyword “thus” signals the conclusion: During a recession air pollution caused by cars decreases. Why? The keyword “since” indicates supporting evidence follows: Fewer people are commuting, which means fewer cars and therefore less pollution. Darla then challenges the conclusion, but she doesn’t challenge Charles’ evidence. Instead, she brings up a competing consideration: If fewer people have jobs, then fewer people have new cars, which means more old cars are on the road. Old cars pollute more, which could mean more pollution. Generally speaking, Darla undermines Charles’ argument by introducing an additional consideration, (C). (A) Darla doesn’t contest Charles’ evidence; she just claims that it doesn’t justify his conclusion.",
+        "hint": "Darla accepts everything Charles said. What does she put beside it?",
+        "expl": "Charles — recessions raise unemployment, so fewer people commute by car, so auto pollution falls.\nDarla — in a recession fewer people can afford new cars, and cars pollute more as they age.\nThe move — Darla contests none of Charles's facts. She adds a second effect of the same recession that pushes pollution the other way, so his evidence no longer carries his conclusion. That is (C).\n(A) She questions no premise. Unemployment rising and commuting falling are both left standing.\n(B) Too strong. Older cars can pollute more [[and]] total pollution still fall, if the drop in commuting outweighs it. Her claim and his conclusion can both be true.\n(D) She does not accept his conclusion. She is arguing that it may well be wrong, not endorsing it on better grounds.\n(E) She derives nothing absurd from his premises. She introduces premises of her own.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -8011,8 +8011,8 @@ window.GMAT_SETS = [
           "arguing that an analysis of the consequences of certain legislation undermines the politician’s conclusion",
           "charging that the politician exaggerated the severity of a problem in order to justify a sweeping solution"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The issue is mandatory sentencing, which the politician esteems as a positive vehicle for justice, since (to him) it makes justice less subject to whether a judge happens to be strict or lenient. The advocate wants to see it repealed because of its effects on juries, who (she argues) may acquit not because they’re convinced the accused is not guilty, but because they feel the mandatory sentence would be too harsh. So, the advocate’s response, as (D) says, examines the consequences of the policy in an effort to show that mandatory sentencing doesn’t ensure, but rather perverts, justice. (A) would only be accurate if the advocate were accusing the politician of circular reasoning. But her point deals with the ramifications of the proposal, not the politician’s repeating himself.",
+        "hint": "The advocate looks at what the law actually did once it was in force.",
+        "expl": "Politician — mandatory sentences improved the integrity of justice by ending the split between lenient and severe judges.\nPublic advocate — with discretion gone there can be no leniency even where it fits, so juries now sometimes acquit purely to avoid a sentence they consider too harsh, which makes their verdicts on guilt inaccurate. Repeal the law.\nThe move — the advocate traces what the legislation has produced in practice and uses those consequences to overturn the politician's verdict on it. That is (D).\n(A) No charge of circularity. She never suggests his conclusion merely restates his evidence — she engages with what happened after the law took effect.\n(B) She does not call his evidence irrelevant. She grants that judicial disparity is gone and argues that a worse distortion replaced it.\n(C) She draws no such abstract distinction. \"Leniency\" means the same thing in her mouth as in his; her point is about who is now free to exercise it.\n(E) No exaggeration is alleged. The politician described a benefit rather than a problem, so there is no severity for him to have overstated.\nAnswer: D.",
         "level": "hard"
       },
       {
@@ -8028,8 +8028,8 @@ window.GMAT_SETS = [
           "conclude that members of two groups are likely to share a certain ability because of other characteristics they share",
           "demonstrate that a general rule applies in a particular case"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The issue here concerns the method by which female bats reunite with their “pups” amongst millions of bats in Bracken Cave. The only possible way to find one another is through bat calls (by way of the Bat Phone?), but the pups are clueless— they can’t tell mommy from a hole in the wall. But since the moms do hook up swiftly with their pups upon return, the author concludes that the mother bat must be able to recognize the call of her pup. What, in general terms, is the argument trying to do? It asserts a conclusion regarding a phenomenon by ruling out the only other possible explanation for the phenomenon.",
+        "hint": "Only two parties could be doing the recognizing. One of them is ruled out.",
+        "expl": "The argument — millions of bats share the cave and calls are the only way they find one another; a pup cannot pick its mother's call out from any other adult's; yet mothers and pups reunite swiftly. Therefore the mother must recognize her pup's call.\nThe move — of the two ways the reunion could work, one is closed off by the fact about pups, leaving only the other. The conclusion is reached by elimination. That is (B).\n(A) Nothing is generalized from a sample. The premises are about bats in this cave as a whole, and the conclusion is about the mothers in it, not an inference from a few to all.\n(C) No mechanism is described. The argument never says [[how]] a mother distinguishes her pup's call — only that she must.\n(D) No two groups are likened. Mothers and pups are contrasted here, and the conclusion rests on a difference between them, not a shared characteristic.\n(E) No general rule is invoked. Everything used is a specific fact about these bats.\nAnswer: B.",
         "level": "hard"
       },
       {
@@ -8045,8 +8045,8 @@ window.GMAT_SETS = [
           "It presents a consideration that undercuts an assumption on which Tom’s argument depends.",
           "It defends an alternative solution to the problem that Tom describes."
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Does Mary come right out and tell Tom that it’s a terrible idea? No. But she does introduce a new consideration that certainly puts a damper on his proposal. Tom believes that high school students should work part-time jobs to help prepare them for the work world, but what if these job opportunities simply aren’t available? He assumes that the opportunity for part-time work exists for high school students, but Mary strongly implies that this may not be the case. (D) describes her response perfectly: she presents a consideration (the lack of part-time job opportunities for high schoolers) that undercuts Tom’s basic assumption (that high-schoolers can get part-time work). (A) No, Mary never says “here’s a really bad thing that will happen if we require high school students to work part-time jobs.",
+        "hint": "Tom's plan needs something he never says out loud. What?",
+        "expl": "Tom — employers say graduates lack vocational skills, those skills are best learned on the job, so high school students should be required to work part-time.\nMary — there are already too few part-time jobs for the students who want them, and a requirement will not create any.\nThe move — Tom's plan silently takes for granted that the jobs are there to be had. Mary supplies a fact that knocks that support out. That is (D).\n(A) She names no bad outcome of the policy. Her point is that it cannot be carried out, not that carrying it out would do harm.\n(B) No trend is in question, so there is nothing for Tom to have wrongly called unavoidable.\n(C) Nothing she says contradicts a stated premise. Tom never asserts that part-time jobs are plentiful — that is precisely what makes it an [[assumption]] rather than a premise.\n(E) She proposes no alternative way of teaching vocational skills. She only shows this way will not work.\nAnswer: D.",
         "level": "easy"
       },
       {
@@ -8071,7 +8071,7 @@ window.GMAT_SETS = [
         "topic": "Boldface & method of reasoning",
         "correct": "B",
         "options": 5,
-        "text": "It is widely believed that eating chocolate can cause definition of knowledge acne. report Indeed, that, in many their own people experience, who are susceptible eating large to acne amounts of chocolate is invariably followed by an outbreak of that skin condition. However, it is likely that common wisdom has mistaken an effect for a cause. Several recent scientific studies indicate that hormonal changes associated with stress can cause acne and there is good evidence that people who are fond of chocolate tend to eat more chocolate when they are under stress. The argument employs which one of the following argumentative strategies?",
+        "text": "It is widely believed that eating chocolate can cause acne. Indeed, many people who are susceptible to acne report that, in their own experience, eating large amounts of chocolate is invariably followed by an outbreak of that skin condition. However, it is likely that common wisdom has mistaken an effect for a cause. Several recent scientific studies indicate that hormonal changes associated with stress can cause acne, and there is good evidence that people who are fond of chocolate tend to eat more chocolate when they are under stress. The argument employs which one of the following argumentative strategies?",
         "choices": [
           "It cites counterevidence that calls into question the accuracy of the evidence advanced in support of the position being challenged.",
           "It provides additional evidence that points to an alternative interpretation of the evidence offered in support of the position being challenged.",
@@ -8079,8 +8079,8 @@ window.GMAT_SETS = [
           "It demonstrates that the position being challenged is inconsistent with certain well-established facts.",
           "It provides counterexamples to show that, contrary to the assumption on which the commonly held position rests, causes do not always precede their effects."
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The author bolsters her belief as to the true cause + effect by citing scientific studies (the “additional evidence” of which (B) speaks), studies whose results question the sentence 2 evidence that people think supports the “widespread belief” of sentence 1. Each phrase of (B)’s has a parallel in the argument. All five choices look good without a prephrased idea of the right one. The author doesn’t “question the accuracy” of the chocolate/acne correlation; rather, she reinterprets that connection, so (A) distorts the logic. Since the author accepts the chocolate/acne correlation that is part of “everyday experience,” she is hardly “dismissing it out of hand” (C), nor is she relying on the mere authority of science over common sense. The chocolate/acne correlation is consistent with science’s view of the role of stress, so (D) is a 180.",
+        "hint": "The author accepts the chocolate-then-acne pattern. She disputes what it means.",
+        "expl": "The belief opposed — eating chocolate causes acne, supported by the reports of acne-prone people that heavy chocolate eating is always followed by an outbreak.\nThe author's reply — studies show that stress hormones can cause acne, and that people fond of chocolate eat more of it under stress. So stress produces both the chocolate and the acne.\nThe move — the reported correlation is accepted in full and given a different reading, backed by evidence the common view never considered. That is (B).\n(A) The accuracy of the reports is never questioned. The author needs the chocolate-then-acne pattern to be real, since her account has to explain it.\n(C) She does not dismiss everyday experience — she explains it. And her case rests on what the studies found, not on science outranking common opinion.\n(D) The common view is not shown to clash with established facts. The facts fit the correlation perfectly well; what they do not fit is the causal direction read into it.\n(E) No counterexample is given, and nothing suggests causes can follow effects. In the author's account stress still comes first, as a cause should.\nAnswer: B.",
         "level": "medium"
       },
       {
@@ -8096,8 +8096,8 @@ window.GMAT_SETS = [
           "drawing an analogy between well-understood phenomena and an unexplained phenomenon",
           "rejecting a possible alternative explanation for an observed phenomenon"
         ],
-        "hint": "Lydia names two candidate motives and then removes one of them.",
-        "expl": "Step 1 — Lydia narrows the squirrels' motive to two possibilities: water or sugar.\nStep 2 — She then rules out water, on the ground that water is easily available elsewhere and would not be worth chewing through bark for.\nStep 3 — With one of the two candidates eliminated, she concludes the other — sugar — is the motive. That is rejecting a possible alternative explanation, which is (E).\nStep 4 — (A) is wrong: she does not dismiss data, she reasons about which motive fits it. (B) cites no general rule. (C) never places the behaviour in a wider pattern. (D) draws no analogy.\nAnswer: E.",
+        "hint": "Two candidate motives. One gets knocked out.",
+        "expl": "The argument — maple sap is essentially water with a little sugar, so the squirrels are after water or sugar. Water is easy to get elsewhere and not worth chewing through bark for. Therefore sugar.\nThe move — Lydia narrows the field to two explanations, closes off one of them, and takes the survivor. That is (E).\n(A) No data is dismissed. She sets nothing aside as unreliable; she reasons about which motive best fits the facts she has.\n(B) No general rule appears for the conclusion to be an instance of. Her premises are specific facts about sap and about water availability.\n(C) The hole-chewing is never placed in a wider pattern of squirrel behaviour. It is the only behaviour discussed.\n(D) Nothing is likened to anything. There is no better-understood case being used as a model for this one.\nAnswer: E.",
         "level": "medium"
       },
       {
@@ -8113,8 +8113,8 @@ window.GMAT_SETS = [
           "arguing that, in assessing the severity of a violation, the reasoning motivating the violation needs to be considered",
           "reinterpreting a key phrase in the hospital auditor’s argument so as to undermine an assumption underlying that argument"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The administrator’s first word, “But,” hints that she is going to take issue with the auditor’s point of view, and so she does. But how? She believes that the money is in fact working to alleviate patient suffering, through the development of diagnostic tools that will minimize the suffering of patients who’d feel much worse if their disorder were discovered late rather than early. The choices here confound prephrasing a bit, because they indulge in a lot of confusing abstract verbiage. But wrestling the language down to the ground should lead you to (E). The “key phrase” that the administrator “reinterprets” in order to undermine the auditor’s assumption is as follows: “instead of letting that money flow directly to \\[the\\] patients.",
+        "hint": "The auditor reads the donors' condition one way. Does the administrator accept that reading?",
+        "expl": "Auditor — the funds were given to minimize patients' suffering, yet a fifth goes to diagnostic research instead of flowing directly to patients, so the terms are being violated.\nAdministrator — better diagnostics mean earlier diagnosis, and patients treated early suffer far less than those treated late.\nThe move — the auditor's case depends on reading \"used to minimize patients' suffering\" as money that reaches patients directly. The administrator reads the same phrase to cover anything that ends up reducing suffering, which dissolves the alleged violation. That is (E).\n(A) She does not accept his conclusion even in part. On her reading there is no violation at all, minor or otherwise.\n(B) Nothing is confused between what is and what ought to be. Both parties agree on the donors' condition and disagree about what satisfies it.\n(C) She does not argue that the stipulation left the method open to her. She argues that the research [[is]] minimizing suffering, which is a claim about the spending, not about who decides how.\n(D) She never concedes a violation and then excuses it by her good intentions. Her whole reply is that the terms are being met.\nAnswer: E.",
         "level": "easy"
       },
       {
@@ -8130,8 +8130,8 @@ window.GMAT_SETS = [
           "distinguishing a category of person for whom the reason presented in favor of a given course of action is more telling than the reasons cited against that course of action",
           "using evidence that a certain course of action would be appropriate under one set of conditions to arrive at a general conclusion about what would be appropriate in all cases"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Keywords help you navigate your way through Dillworth’s unusually lengthy diatribe. Situation: People are deciding against kids for two reasons: a lot of sacrifice is required, and the kids end up ungrateful, grumble grumble. Contrast Keyword “However”: He brings up another consideration that, in his mind, outweighs the first: the fact that kids are the best way of passing on one’s values. Conclusion Keyword “Therefore”: Dillworth’s point is that those who hold values should separate themselves from the pack mentioned in sentence 1, and have kids despite all the sacrifice and ingratitude. (D) puts all of that in abstract language. The “category” is people with deep values, the “given course of action” is having kids, and the “reasons cited against \\[it\\]” are the sacrifices and ingratitude.",
+        "hint": "Dillworth's conclusion is not about everybody. Notice who it is about.",
+        "expl": "Dillworth — people avoid parenthood because of the sacrifices and the ingratitude. But children are the best chance most people have of passing their values on. So for anyone with deeply held values, refusing parenthood out of that reluctance would probably be a mistake.\nThe move — he does not deny the drawbacks. He identifies a group for whom one particular benefit — the survival of their values — outweighs the drawbacks, and confines his conclusion to that group. That is (D).\n(A) He never says the sacrifices and ingratitude are not real drawbacks. He grants both and argues they are outweighed for certain people.\n(B) No motives are called morally suspect. He describes the choice as a probable mistake, which is an error of judgment, not a moral failing.\n(C) Nothing is established as obligatory or prohibited. His conclusion is deliberately hedged: it \"would probably be a mistake.\"\n(E) The reverse of what he does. He narrows from a general situation to one category of person rather than generalizing from one case to all.\nAnswer: D.",
         "level": "hard"
       },
       {
@@ -8147,8 +8147,8 @@ window.GMAT_SETS = [
           "undermining a claim by showing that the claim is self-contradictory",
           "using empirical evidence to support one definition of a key term of the argument over another"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Reading and analyzing a question stem carefully can render a question much easier than it might at first appear. The stem asks for “a” technique used by the philosopher, not “the” technique; and as soon as we read “An unnatural action is either...” we can see that he has employed technique (B): yes, he has defined that key term, namely “unnatural action.” No other understanding of the dense stimulus is required, solely because we noticed the “a” rather than “the.” (A) The only concept the author might be accused of undermining is the concept of “unnatural action.” But he does so not by alleging that it violates nature’s laws, but by arguing that no such action can exist, that neither definition of the concept makes any sense. (C) No statistical findings are offered.",
+        "hint": "Read the stem: it asks for “a” technique, not “the” technique.",
+        "expl": "The argument — it is absurd to say people must act a certain way merely because not doing so would be unnatural. An unnatural action is either a violation of the laws of nature or a statistical anomaly. Nobody can act as they cannot act, and the mere fact that something is unusual is no reason against it.\nThe move — the stem asks for [[a]] technique, not the whole strategy. The second sentence supplies a definition of the argument's key term, \"unnatural action,\" and everything after it works off that definition. That is (B).\n(A) Laws of nature appear inside the definition, not as a weapon. The philosopher never argues that accepting some concept would breach a natural law.\n(C) No statistical findings are cited. He mentions the [[idea]] of a statistical anomaly without offering any data.\n(D) Nothing is shown to contradict itself. He argues that neither branch of the definition can ground an obligation, which is a different objection from inconsistency.\n(E) No empirical evidence appears, and he is not choosing between rival definitions. He gives one two-part definition and reasons from it.\nAnswer: B.",
         "level": "hard"
       },
       {
@@ -8164,8 +8164,8 @@ window.GMAT_SETS = [
           "denying the truth of one of the stated premises of Zachary’s argument",
           "demonstrating the Zachary’s conclusion is not consistent with the premises he uses to support it"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Stephen is playing good GMAT test-taker in his response. Zachary’s argument concludes (“Therefore”) that to return the Sistine Chapel to what Michelangelo intended, it’s necessary to strip away “everything except” the original fresco work. The evidence for this is that later painters made additions. Stephen identifies the gap between evidence and conclusion: What if Michelangelo himself had made additions after his original work, in order to fulfill his intentions? (And it sounds as if he may well have done so.) If so, stripping away “everything except” the original work would not achieve Michelangelo’s intentions at all. Stephen is doing exactly what you should be doing on a large portion of Logical Reasoning questions: identifying the assumption (A).",
+        "hint": "Zachary says strip everything but the fresco. What does that take for granted?",
+        "expl": "Zachary — fresco is paint applied to wet plaster; later painters obscured Michelangelo's original fresco work; so restoring his intended appearance requires stripping away everything except the original fresco.\nStephen — painters of Michelangelo's era commonly added painted details to their own frescoes after the plaster dried.\nThe move — Zachary's plan works only if everything that is not fresco was added by someone else. Stephen's fact makes it likely that some of the non-fresco paint is Michelangelo's [[own]], which is exactly the assumption Zachary needs. That is (A).\n(B) He does not challenge the definition of \"fresco.\" He uses it precisely as Zachary set it out — that is what gives his point its force.\n(C) He draws no conclusion at all. He states a fact about the period's practice and leaves the consequence for Zachary to see.\n(D) He denies none of Zachary's premises. Later painters may well have made additions; his claim is about additions by the [[original]] painter.\n(E) He does not say the conclusion contradicts the premises. He says the premises leave a gap the conclusion jumps over.\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -8181,8 +8181,8 @@ window.GMAT_SETS = [
           "rejecting a conclusion because it is a proposition that cannot be experimentally tested",
           "pointing out that potentially unfavorable evidence has been systematically neglected"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The statistician argues from correlation to causation: the Sun’s luminosity correlates with Earth’s land temperatures, therefore the Sun’s luminosity determines Earth’s land temperatures. The meteorologist doesn’t attack this reasoning, as you might expect, but instead simply declares that the conclusion is impossible because it’s a recognized rule among meteorologists that in a complex system (like the Earth’s climate) no significant aspect (like land temperature) can be controlled by a single variable (like the Sun’s luminosity). As (A) says, the meteorologist invokes a relevant generalization (The above-mentioned rule) to draw a conclusion about this particular problem.",
+        "hint": "The meteorologist never mentions the Sun. What does he appeal to instead?",
+        "expl": "Statistician — the Sun's luminosity correlates extremely well with land temperatures on Earth, so luminosity essentially controls those temperatures.\nMeteorologist — in a system as complicated as the climate, no significant aspect can be controlled by a single variable.\nThe move — he brings in a general principle about complex systems and applies it to this case, which settles the matter without examining the correlation at all. That is (A).\n(B) No counterexample is offered — no instance of anything is cited. He argues from a generalization, which is the opposite manoeuvre.\n(C) He does not reread the correlation as two effects of one cause. He never engages the correlation; he simply rules the conclusion out.\n(D) He does not call the claim untestable. He says it is false, on general grounds about how complex systems work.\n(E) No neglected evidence is alleged. He does not accuse the statistician of leaving unfavourable data out.\nAnswer: A.",
         "level": "hard"
       },
       {
@@ -8198,8 +8198,8 @@ window.GMAT_SETS = [
           "basing a generalization on a representative group of instances",
           "showing that a measure claimed to be effective in achieving a certain effect would actually make achieving the effect more difficult"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Now we’re asked for the cold sufferer’s method of argument, so let’s check the choices against the argument until we find a match. Choice (A) has a few different parts, so let’s take it a bit at a time. Does the cold sufferer find a claim to be false? Sure; our grumpy cold sufferer is skeptical of the claim that the herbal mixture is an effective cold remedy, and in fact proceeds to pronounce this claim false. So far so good. But does the rest hold up? Yes: The cold sufferer denounces the claim because he feels that, if the claim were true, there would be consequences (almost everyone with a cold would be using it) that in fact are false (many people with colds don’t use it). All elements match up, so (A) fits the bill of the cold sufferer’s method of argument. (B) The cold sufferer denounces the claim; he doesn’t accept it.",
+        "hint": "Suppose it worked. What would follow, and is that what we see?",
+        "expl": "The claim opposed — the herbal mixture is an effective cold remedy.\nThe cold sufferer's reasoning — suppose it were effective. Since most people with colds want to recover quickly, almost everybody with a cold would be using it. But many people with colds do not use it. So it is not effective.\nThe move — assume the claim, derive what would follow from it, observe that this does not hold, and reject the claim. That is (A).\n(B) He accepts nothing on the strength of public opinion. He uses what people do as evidence, but the direction of the argument is rejection, not acceptance.\n(C) Backwards. He shows a consequence of the claim [[failing]] to hold, not that a condition for its truth has been met.\n(D) No generalization is built from a sample. He examines no group of instances; he reasons from what people would want.\n(E) He never suggests the mixture makes recovery harder. His charge is that it does nothing, not that it does damage.\nAnswer: A.",
         "level": "easy"
       },
       {
@@ -8215,8 +8215,8 @@ window.GMAT_SETS = [
           "putting disagreements cited by S in perspective by emphasizing similarities",
           "reasoning in a circle by accepting evidence only if it agrees with a desired conclusion"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "Since W draws no conclusion, the facts she cites make sense only in the context of S’s argument that we shouldn’t try to halt future global warming because scientists disagree all over the place; the evidence isn’t firm; global warming may not even be real. What W does is suggest that scientists don’t bother to argue when facts are established, and that scientists do accept one fact: global warming is happening, albeit within an uncertain 3°C range. W’s facts are the “similarities” among scientists to which (D) refers. (A) W and S are equally aware of the disagreements among scientists; it’s just that W denies those disagreements’ relevance to the global warming debate.",
+        "hint": "S's evidence is that scientists disagree. W does not deny it — she reframes it.",
+        "expl": "S — the warming trend may not be real, since scientists disagree, some predicting over twice as much warming as others, so their predictions cannot rest on firm evidence.\nW — scientists find settled ideas boring and prefer to argue about the unknown; and the International Science Council reports a consensus among reputable investigators on 1.5° to 4.5°C over the next century.\nThe move — W accepts that the disagreement exists and shows that it sits inside a substantial agreement, so it cannot carry the weight S puts on it. That is (D).\n(A) She denies no disagreement. Her explanation of why scientists argue takes the arguing for granted.\n(B) She does not accept S's conclusion. S concludes it would be premature to act; W's whole point is that the ground for that conclusion collapses.\n(C) She sets no rival authorities against S's. S cited no named authorities, and the Council reports on the very investigators S was referring to.\n(E) No circularity. She introduces an independent report rather than screening evidence for agreement with a conclusion she already wants.\nAnswer: D.",
         "level": "medium"
       },
       {
@@ -8232,8 +8232,8 @@ window.GMAT_SETS = [
           "questioning an assumption that the author attributes to the psychologists",
           "demonstrating that fewer people actually suffer from seasonal affective disorder than psychologists had previously thought"
         ],
-        "hint": "Summarize each speaker's point, then pick the answer that describes how the second speaker's argument works in relation to the first.",
-        "expl": "The stimulus begins with the psychologists’ claim that people are more susceptible to psychological problems in the winter than in the summer (seasonal affective disorder). The only support cited for this claim comes from the survey. The psychologists are assuming that the self-reported results of the survey are accurate. The author disagrees with this assumption and uses the word “however” to signal that she disputes the validity of the survey results because she does not believe that self-reported results about the past are accurate. The author, “therefore,” does not believe that the survey results support the existence of the disorder. The author disputes the psychologists’ conclusion by questioning their central assumption that the results of such a survey can be accurate—choice (D).",
+        "hint": "The evidence is people's recollections. What must be true for that evidence to work?",
+        "expl": "The claim opposed — many people are more susceptible to psychological problems in winter, a condition called seasonal affective disorder.\nThe support — surveys in which people recalled how they felt at various times in the past.\nThe author's reply — it is not clear that people can report accurately on their past psychological states, so these surveys cannot justify the claim.\nThe move — the psychologists' evidence works only if retrospective self-reports are reliable. The author names that requirement and disputes it. That is (D).\n(A) No alternative explanation is offered. The author says nothing about what might cause seasonal variation, and does not concede that any variation has been shown.\n(B) The label is not at issue. The dispute is over whether the pattern was ever established, not over whether it deserves to be called a disorder.\n(C) Not a complaint about who was surveyed. The objection concerns what respondents were asked to do — remember — not whether they represent the wider population.\n(E) Nothing is demonstrated about how many people are affected. The author's position is that the evidence settles nothing either way, not that the true number is lower.\nAnswer: D.",
         "level": "medium"
       }
     ]

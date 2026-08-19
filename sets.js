@@ -4679,8 +4679,8 @@ window.GMAT_SETS = [
           "compare the pollution profiles of two industrial cities",
           "warn that lichen-based monitoring is too crude to be scientifically useful"
         ],
-        "hint": "Look for the choice that captures the whole passage, not just one paragraph.",
-        "expl": "The passage traces lichen monitoring from early 'lichen desert' mapping to modern tissue analysis, noting strengths and limits at each stage — a description of how the method developed and was refined (C). (A) overstates: the passage says tissue analysis sacrifices cheapness and doesn't call for replacing all methods. (B) and (D) are details, not the main point. (E) contradicts the closing sentence, which affirms lichens are cost-effective monitors."
+        "hint": "Look for the choice that covers the whole passage, not just one paragraph.",
+        "expl": "The shape of the passage — paragraph 1 explains why lichens are sensitive to pollution, paragraph 2 covers the early \"lichen desert\" surveys and their crudeness, paragraph 3 covers modern tissue analysis and its critics.\nWhy (C) — that is a description of how the method developed and was refined, strengths and limits noted at each stage. It is the only choice that reaches all three paragraphs.\n(A) The passage never calls for replacing earlier methods; it reports that tissue analysis sacrifices the cheapness that made surveys attractive, and closes by defending lichens generally.\n(B) True but small. The comparison with rooted plants occupies two sentences of paragraph 1 and explains the premise, not the point.\n(D) The two cities appear in a single illustrative sentence. No actual pollution profiles are compared anywhere.\n(E) Contradicted by the last sentence: \"few dispute that lichens remain among the most cost-effective monitors available.\"\nAnswer: C."
       },
       {
         "n": 2,
@@ -4696,8 +4696,8 @@ window.GMAT_SETS = [
           "accumulate heavy metals faster than rooted plants do",
           "lack the ability to reproduce in contaminated soil"
         ],
-        "hint": "Find the sentence that explains why lichens can't filter contaminants.",
-        "expl": "Paragraph 1 states lichens 'absorb water and nutrients directly from the atmosphere across their entire surface' and so 'cannot filter out airborne contaminants' — choice B. The other options are not given as the reason for their vulnerability."
+        "hint": "Find the sentence that explains why lichens cannot filter contaminants.",
+        "expl": "Where to look — paragraph 1: lichens \"lack roots and absorb water and nutrients directly from the atmosphere across their entire surface,\" and so \"cannot filter out airborne contaminants the way rooted plants can.\"\nWhy (B) — that is the stated reason for their vulnerability, quoted almost word for word.\n(A) The passage says nothing about where lichens grow. Industrial areas are where they [[die]], which is the opposite point.\n(C) The passage does mention a photosynthetic partner that sulfur dioxide disrupts, but it never says the partner cannot be replaced, and that is not offered as the reason lichens are exposed in the first place.\n(D) Accumulation of heavy metals comes up in paragraph 3, as what makes tissue analysis possible — a use of lichens, not a cause of their vulnerability. No comparison with rooted plants is made on that score.\n(E) Soil is irrelevant to an organism the passage describes as rootless, and reproduction is never discussed.\nAnswer: B."
       },
       {
         "n": 3,
@@ -4714,7 +4714,7 @@ window.GMAT_SETS = [
           "overestimated the extent of contaminated zones"
         ],
         "hint": "Contrast what the early method could show with what the modern method adds.",
-        "expl": "Paragraph 2 says the early method 'said little about which pollutants were responsible,' and paragraph 3 credits tissue analysis with letting researchers 'distinguish among pollutants' — so the early surveys could not identify which pollutants were present (D). (A) is wrong: the early method needed no instruments. (B) is contradicted — it revealed severe pollution. (C) and (E) are not supported."
+        "expl": "Where to look — paragraph 2 says the early method \"said little about which pollutants were responsible or how concentrations varied over time\"; paragraph 3 credits tissue analysis with letting researchers \"distinguish among pollutants.\"\nWhy (D) — the thing the early surveys could not do is exactly the thing the new method supplies.\n(A) Backwards. The early method \"was inexpensive and required no instruments.\" The laboratory expense belongs to tissue analysis.\n(B) Contradicted. The surveys \"could reveal that pollution was severe\" — that is the one thing they did well.\n(C) The pollution killed the lichens; the surveys only mapped where they had already died.\n(E) Nothing suggests the mapped zones were too large. The complaint is about what the maps could not tell you, not about their accuracy.\nAnswer: D."
       },
       {
         "n": 4,
@@ -4730,8 +4730,8 @@ window.GMAT_SETS = [
           "introduce the chemical composition of lichen tissue",
           "question whether sulfur dioxide harms lichens"
         ],
-        "hint": "What point is that sentence supporting in its paragraph?",
-        "expl": "The sentence closes the paragraph on the early method's crudeness, giving a concrete example of what that method could not reveal — it illustrates a shortcoming (A). It is not an argument about who pollutes most (B), a claim that lichens are useless (C, contradicted later), an introduction to tissue analysis (D, next paragraph), or doubt about sulfur dioxide (E)."
+        "hint": "Ask what point that sentence is supporting in its own paragraph.",
+        "expl": "Where to look — the sentence closes paragraph 2, whose subject is how crude the early method was.\nWhy (A) — two cities with identical lichen deserts having different pollution profiles is a concrete case of what the method could not reveal. It illustrates the shortcoming just described.\n(B) The sentence makes no claim about who pollutes most. Both cities in the example are equally polluted by the only measure the method offered.\n(C) Too strong, and contradicted by the final sentence, which calls lichens among the most cost-effective monitors available.\n(D) Tissue analysis is introduced in the [[next]] paragraph. This sentence looks backward at the old method's limits, not forward to the new one's methods.\n(E) Sulfur dioxide's effect on lichens is stated as fact in paragraph 1 and never questioned.\nAnswer: A."
       },
       {
         "n": 5,
@@ -4748,7 +4748,7 @@ window.GMAT_SETS = [
           "nostalgia for older methods"
         ],
         "hint": "Weigh how the author balances the method's advantages against the critics' points.",
-        "expl": "The author credits tissue analysis with real refinements yet reports critics' concerns about site effects, lichen age, and lost cheapness — appreciation tempered by awareness of limitations (C). The balanced treatment rules out unqualified enthusiasm (A) and deep skepticism (B); the author is clearly engaged, not indifferent (D); and nothing expresses nostalgia (E)."
+        "expl": "Where to look — paragraph 3 credits tissue analysis with real refinements (distinguishing among pollutants, detecting invisible contaminants), then reports critics on lichen age, site peculiarities, and lost cheapness, then closes with \"Even so, few dispute…\".\nWhy (C) — that is appreciation with the limitations kept in view, which is precisely the shape of the paragraph.\n(A) The critics' paragraph rules out anything unqualified. The author reports their objections without brushing them aside.\n(B) Deep skepticism would require the author to doubt the method's value; instead the passage says few dispute that lichens are among the most cost-effective monitors available.\n(D) Indifference is ruled out by the effort spent laying out both the advances and the objections.\n(E) Nothing wistful is said about the old surveys. They are described as crude, and their cheapness is noted as a fact, not mourned.\nAnswer: C."
       }
     ]
   },
@@ -4780,8 +4780,8 @@ window.GMAT_SETS = [
           "describing how executives mistakenly predicted a productivity collapse",
           "comparing the pay of remote and in-office employees"
         ],
-        "hint": "The whole passage returns to one puzzle. What is it?",
-        "expl": "The passage sets up the puzzle that output rises modestly while promotions and retention fall, then explores two explanations — it examines why the two diverge (B). (A) and (C) overstate; the passage is careful and non-prescriptive. (D) is only the opening setup. (E) pay is never discussed."
+        "hint": "The whole passage keeps returning to one puzzle. Name it.",
+        "expl": "The puzzle — paragraph 1 sets it up: output per hour rises modestly for remote workers, yet promotions and retention fall. Paragraphs 2 and 3 each offer an explanation for that split.\nWhy (B) — examining why short-term output and long-term careers diverge is the only description that covers the setup and both explanations.\n(A) The output studies find modest [[gains]]. The passage never claims productivity drops, and it proves nothing.\n(C) No recommendation is made. The closing sentence deliberately leaves the debate open.\n(D) The executives' failed prediction is one clause of the opening setup, not the subject of the passage.\n(E) Pay is never mentioned. Promotion and retention are, and they are not the same thing.\nAnswer: B."
       },
       {
         "n": 2,
@@ -4797,8 +4797,8 @@ window.GMAT_SETS = [
           "steep declines",
           "results too inconsistent to summarize"
         ],
-        "hint": "Re-read the first paragraph's description of output studies.",
-        "expl": "Paragraph 1 says output studies 'generally find modest gains... on the order of a few percent' (A)."
+        "hint": "Re-read the first paragraph's description of the output studies.",
+        "expl": "Where to look — paragraph 1: studies that measure output per hour \"generally find modest gains for remote workers, on the order of a few percent.\"\nWhy (A) — that is the finding, stated in those words.\n(B) \"A few percent\" is explicitly modest. Twenty percent or more would be the large gain the enthusiasts forecast and the data did not deliver.\n(C) There is a measurable change; it is small but positive.\n(D) A decline is what the executives predicted. The passage's point is that the data did not bear that out.\n(E) The passage summarizes the output studies without hesitation. It is the [[career]] findings that pull the other way, and even those are stated plainly.\nAnswer: A."
       },
       {
         "n": 3,
@@ -4815,7 +4815,7 @@ window.GMAT_SETS = [
           "valued less by managers than routine work is"
         ],
         "hint": "The first explanation contrasts measurable routine work with the drivers of promotion.",
-        "expl": "The second paragraph says promotion-driving activities 'are often the hardest to measure' and 'depend on unplanned, face-to-face contact' — difficult to quantify and dependent on in-person contact (D). (A) reverses the contrast; (E) belongs to the second, management-focused explanation, not the first."
+        "expl": "Where to look — paragraph 2: promotion-driving activities \"are often the hardest to measure\" and \"depend on unplanned, face-to-face contact.\"\nWhy (D) — difficult to quantify and dependent on in-person contact restates both halves of that sentence.\n(A) Reverses the contrast. Routine work is what is easily quantified; the promotion drivers are the hard-to-measure ones.\n(B) The first explanation says remote workers do these activities [[less]], since remote work eliminates the unplanned contact they need.\n(C) The passage calls them the employee's \"most valuable contributions,\" which is the opposite of irrelevant.\n(E) That is the [[second]] explanation's charge — that managers reward presence over performance. The first explanation blames the nature of the work, not managers' values.\nAnswer: D."
       },
       {
         "n": 4,
@@ -4831,8 +4831,8 @@ window.GMAT_SETS = [
           "prove that hybrid schedules always outperform remote work",
           "dismiss the concerns raised in the second paragraph"
         ],
-        "hint": "How does paragraph 3 relate to paragraph 2's explanation?",
-        "expl": "Paragraph 3 opens with 'A competing explanation puts the burden on management,' offering an alternative to the task-nature account of paragraph 2 (C). It doesn't restate data (A), deny benefits (B), prove a universal claim — 'always' is too strong (D), or dismiss paragraph 2 (E)."
+        "hint": "Ask how paragraph 3 relates to paragraph 2's explanation.",
+        "expl": "Where to look — paragraph 3 opens \"A competing explanation puts the burden on management rather than on remote work itself.\"\nWhy (C) — it presents an alternative account, one that locates the problem in how firms manage rather than in the work.\n(A) No data is restated. The paragraph moves to a different kind of claim entirely.\n(B) The paragraph grants remote work real benefits — it says hybrid schedules could \"capture most of the flexibility of remote work.\"\n(D) \"Always\" is far stronger than the text, which says only that hybrid schedules and structured contact [[can]] restore visibility.\n(E) Paragraph 2's account is not dismissed. The closing sentence keeps both live: which effects are inherent and which are artifacts of management.\nAnswer: C."
       },
       {
         "n": 5,
@@ -4849,7 +4849,7 @@ window.GMAT_SETS = [
           "Hybrid workers report higher job satisfaction than fully remote workers."
         ],
         "hint": "The management view says the gap comes from how firms reward presence, not from remote work itself.",
-        "expl": "If firms that reward measured output rather than presence show no promotion gap, the disadvantage tracks management practices rather than remote work itself — supporting the management-focused view (B). (C) supports the first (task-nature) explanation. (A), (D), and (E) don't isolate management practice as the cause."
+        "expl": "What would separate them — the first explanation says the promotion gap is inherent in remote work; the second says it comes from managers rewarding visibility. A finding that removes the visibility bias and also removes the gap points to the second.\nWhy (B) — at firms promoting strictly by measured output there is no bias toward the people in the hallway. If the gap vanishes there, the gap was an artifact of management, not of remote work.\n(A) Shipping more code is the routine-output finding both explanations already accept. It does not touch promotion.\n(C) Supports the [[first]] explanation: it says the promotion-driving activity really does work worse remotely, which is an inherent effect.\n(D) Isolation as a reason for leaving explains attrition, and it fits either account — remote work may isolate inherently, or management may.\n(E) Higher satisfaction among hybrid workers says nothing about why remote workers are promoted less often.\nAnswer: B."
       }
     ]
   },
@@ -4881,8 +4881,8 @@ window.GMAT_SETS = [
           "state control of resources is superior to community management",
           "Elinor Ostrom proved that shared resources are never overused"
         ],
-        "hint": "The passage builds to Ostrom's reframing in the last paragraph.",
-        "expl": "The passage presents the classic 'tragedy' and then Ostrom's finding that depletion depends on whether users can self-govern — reframing an 'inevitable' outcome as contingent (C). (A) and (B) state the very view Ostrom challenges. (D) reverses her point. (E) overstates — she acknowledged many communities collapse."
+        "hint": "The passage builds toward Ostrom's reframing in the last paragraph.",
+        "expl": "The shape of the passage — the classic tragedy-of-the-commons argument and the privatize-or-regulate dichotomy it was used to justify; then Ostrom's counter-cases; then her narrower conclusion, that depletion depends on whether users can communicate, build trust, and enforce agreements.\nWhy (C) — the last paragraph says it outright: she \"reframed a supposedly inevitable outcome as a contingent one.\" That is where the passage lands.\n(A) This is the view the passage sets up in order to complicate. Ostrom's cases are communities that avoided depletion.\n(B) Also the challenged view. The whole point of the alpine pastures and irrigation networks is that they succeeded without privatization.\n(D) Reverses her point. She did not crown community management the winner; she showed the dichotomy was incomplete.\n(E) Overstates. The passage states plainly that \"many do collapse,\" and calls the narrowness of her claim its strength.\nAnswer: C."
       },
       {
         "n": 2,
@@ -4899,7 +4899,7 @@ window.GMAT_SETS = [
           "graduated sanctions that escalated for repeat offenders"
         ],
         "hint": "Find the sentence describing how violations were penalized.",
-        "expl": "Paragraph 2 says penalties came 'through graduated sanctions that began with small fines and escalated only for repeat offenders' (E)."
+        "expl": "Where to look — paragraph 2, the end of the list of rules the communities devised: penalties came \"typically through graduated sanctions that began with small fines and escalated only for repeat offenders.\"\nWhy (E) — that is the mechanism, quoted.\n(A) Privatization is one of the two options these communities are notable for [[not]] using.\n(B) Top-down regulation is the other option they avoided. Monitoring was arranged among the users themselves.\n(C) The opposite of graduated. The passage stresses that sanctions started small and escalated only on repetition.\n(D) Their rules governed who could harvest, how much, and when. A total ban would defeat the purpose of managing a productive resource.\nAnswer: E."
       },
       {
         "n": 3,
@@ -4915,8 +4915,8 @@ window.GMAT_SETS = [
           "are prevented by the state from communicating",
           "prefer state control to privatization"
         ],
-        "hint": "Why, on the traditional view, does each person overuse the resource?",
-        "expl": "The traditional argument has each individual pursue private benefit while cost is 'spread across all users,' with no mention of coordination — it assumes users act on individual incentives without coordinating (B). Ostrom's contribution was precisely to add coordination. (C) is the opposite of the model's premise — users bear only a fraction of the cost."
+        "hint": "Ask why, on the traditional view, each person overuses the resource.",
+        "expl": "Where to look — paragraph 1: each individual \"captures the full benefit of taking one more unit while bearing only a fraction of the cost, which is spread across all users.\"\nWhy (B) — that calculation only produces depletion if users act on their private incentives separately. Coordination is exactly what the model leaves out, and exactly what Ostrom put back in.\n(A) The traditional argument assumes the reverse. If users reliably devised protective rules, there would be no tragedy to name.\n(C) Contradicted by the model's own premise: users bear only a fraction of the cost, which is why they overuse.\n(D) The state appears in the traditional argument only as a proposed remedy, never as an obstacle to communication.\n(E) The argument offers privatization and state control as alternatives without attributing any preference to the users.\nAnswer: B."
       },
       {
         "n": 4,
@@ -4932,8 +4932,8 @@ window.GMAT_SETS = [
           "illustrate resources that have already collapsed",
           "explain why centralized control usually fails"
         ],
-        "hint": "What claim are these real cases marshaled to support?",
-        "expl": "They are cases Ostrom studied that 'had avoided depletion without either privatization or top-down regulation' — evidence that self-governance can succeed (A). They are not about geography (B), a universal claim (C), collapses (D — the opposite), or the failure of central control (E)."
+        "hint": "Ask what claim these real cases are marshalled to support.",
+        "expl": "Where to look — paragraph 2: Ostrom studied \"communities that had managed shared resources for generations\" and \"found many that had avoided depletion without either privatization or top-down regulation.\"\nWhy (A) — the three cases are the evidence that self-governance can work, which is what breaks the supposed dichotomy.\n(B) Two of the three are not European. The list spans Europe, Asia, and again Europe precisely to avoid looking parochial.\n(C) They show privatization was unnecessary in [[these]] cases. The passage is careful to add that many communities do collapse.\n(D) The opposite. These are the cases that avoided depletion; the collapses are mentioned separately and without examples.\n(E) Central control is not shown failing anywhere. These communities never tried it.\nAnswer: A."
       },
       {
         "n": 5,
@@ -4950,7 +4950,7 @@ window.GMAT_SETS = [
           "indifferent to its conclusions"
         ],
         "hint": "Note how the author frames the narrowness of her claim.",
-        "expl": "The author calls her point 'narrower and, for that reason, more powerful,' endorsing its careful, limited scope — approving of its measured scope (D). The passage is clearly favorable, ruling out dismissive (A), hostile (B), skeptical (C), or indifferent (E)."
+        "expl": "Where to look — paragraph 3: \"Her point was narrower and, for that reason, more powerful.\"\nWhy (D) — the author treats the limited scope of the claim as a virtue, which is approval of its measured scope rather than of a sweeping thesis.\n(A) Dismissal is impossible in a paragraph that calls the argument powerful and credits it with reframing the field.\n(B) Nothing hostile appears. The author's only qualification — that many communities collapse — is Ostrom's own.\n(C) The author raises no doubts. The limits noted are ones Ostrom stated herself, and the author presents them approvingly.\n(E) Indifference is ruled out by the closing sentence, which credits her with redirecting attention from ownership to institutions.\nAnswer: D."
       }
     ]
   },
@@ -4982,8 +4982,8 @@ window.GMAT_SETS = [
           "explain how to learn to improvise",
           "compare jazz with classical performance traditions"
         ],
-        "hint": "The first sentence names a popular view; what does the author do with it?",
-        "expl": "The passage rejects the 'pure spontaneity' image and reframes improvisation as fluent recombination of learned material — correcting a misconception (B). It is not a history (A), a value judgment against jazz (C), an instructional guide (D), or a genre comparison (E)."
+        "hint": "The first sentence names a popular view. What does the author do with it?",
+        "expl": "The shape of the passage — the romantic image of improvisation as pure spontaneity is called \"largely misleading,\" replaced with fluent recombination of practised material, defended by the language analogy, and held onto against the critics' objection.\nWhy (B) — correcting a common misconception is what the passage does from its second sentence to its last.\n(A) No history appears. Not a single date, era, or musician is named.\n(C) The author insists the reframing \"does not diminish the achievement.\" Nothing ranks jazz below composed music.\n(D) No instruction is offered. The passage explains what improvisation [[is]], not how to acquire it.\n(E) Classical performance never comes up. The comparison drawn is with ordinary speech.\nAnswer: B."
       },
       {
         "n": 2,
@@ -4999,8 +4999,8 @@ window.GMAT_SETS = [
           "argue that jazz should be studied like a foreign language",
           "show that grammar rules are as rigid as musical scales"
         ],
-        "hint": "What does the speaker-and-sentence comparison help the reader understand?",
-        "expl": "The analogy shows that a speaker, though bound by vocabulary and grammar, achieves fluency by deploying those constraints — clarifying that constrained improvisation is no less an achievement (C). It's not about shared origins (A), relative ease (B), pedagogy (D), or the rigidity of grammar (E)."
+        "hint": "Ask what the speaker-and-sentence comparison helps the reader understand.",
+        "expl": "Where to look — paragraph 2: a speaker composing a new sentence is \"constrained by vocabulary and grammar,\" and her fluency \"lies not in escaping those constraints but in deploying them so quickly and appropriately that the result feels effortless.\"\nWhy (C) — the analogy exists to show that working inside constraints is compatible with real fluency, so the reframing costs the soloist nothing.\n(A) No claim about origins is made. The comparison is functional, not historical.\n(B) Neither activity is called easier. The point is that both are hard in the same way.\n(D) Pedagogy is not the subject. The analogy explains a concept rather than proposing a curriculum.\n(E) Rigidity is beside the point — the paragraph is about what a fluent user does [[with]] rules, and it goes on to say the constraints are what make the freedom legible.\nAnswer: C."
       },
       {
         "n": 3,
@@ -5016,8 +5016,8 @@ window.GMAT_SETS = [
           "the soloist's years of practice",
           "the absence of any harmonic plan"
         ],
-        "hint": "Re-read the sentence about what makes freedom 'legible.'",
-        "expl": "Paragraph 2 says a listener recognizes a daring move 'only against the background of the conventions being bent' — appreciation depends on familiarity with those conventions (A). The other options are not what the passage ties recognition to."
+        "hint": "Re-read the sentence about what makes freedom “legible.”",
+        "expl": "Where to look — the last sentence of paragraph 2: a listener recognizes a daring substitution or an unexpected rhythmic displacement \"only against the background of the conventions being bent.\"\nWhy (A) — recognition is tied directly to knowing the conventions.\n(B) The passage requires familiarity with conventions in general, not with the particular tune. A listener who knows the idiom can hear a substitution in a tune they have never met.\n(C) The room's feel is raised in paragraph 3 as something that shapes the [[performer's]] phrase, not the listener's ability to notice a bold choice.\n(D) The soloist's practice is what makes the choice possible. What makes it audible as daring is what the listener brings.\n(E) There is always a harmonic plan here — the conventions of the tune. Their absence would leave nothing to bend.\nAnswer: A."
       },
       {
         "n": 4,
@@ -5033,8 +5033,8 @@ window.GMAT_SETS = [
           "grant that it has force while maintaining the central claim",
           "concede that spontaneity requires no preparation"
         ],
-        "hint": "Note the phrase 'The objection has force, but...'",
-        "expl": "The author writes 'The objection has force, but it does not overturn the central point' — granting the objection while maintaining the claim (D). This rules out outright rejection (A), abandonment (B), ignoring (C), and (E), which contradicts the passage's thesis."
+        "hint": "Note the phrase “The objection has force, but…”",
+        "expl": "Where to look — paragraph 3: \"The objection has force, but it does not overturn the central point.\"\nWhy (D) — the author concedes the objection's weight and then holds the thesis anyway, explaining that even the most responsive improvisation selects from possibilities already commanded.\n(A) The objection is credited with force in so many words, so it is not dismissed as meritless.\n(B) The analogy survives intact. Nothing in the paragraph withdraws it.\n(C) The objection is answered directly, in the sentence after it is raised, rather than sidestepped.\n(E) This states the misconception the whole passage exists to correct: spontaneity here \"is preparation made so thorough that it can be redirected instantly.\"\nAnswer: D."
       },
       {
         "n": 5,
@@ -5050,8 +5050,8 @@ window.GMAT_SETS = [
           "the harmonic conventions of the tune",
           "a fully written-out score of the solo"
         ],
-        "hint": "Four items are listed in paragraph 1; one contradicts the passage's whole point.",
-        "expl": "Paragraph 1 lists scales, phrases, rhythmic figures, and harmonic conventions as the soloist's reservoir. A 'fully written-out score of the solo' (E) is exactly what improvisation lacks — the EXCEPT answer."
+        "hint": "Four of these are listed in paragraph 1. One contradicts the passage's whole point.",
+        "expl": "Where to look — paragraph 1 names the soloist's reservoir: \"scales and their variations, characteristic phrases, rhythmic figures, and the harmonic conventions of the tune being played.\"\nWhy (E) — a fully written-out solo is the one thing improvisation cannot involve. The opening sentence describes improvisation as unburdened by score, and the passage never takes that back — what it revises is the idea that nothing is prepared.\n(A) Listed first among the learned materials.\n(B) Listed second.\n(C) Listed third.\n(D) Listed fourth, tied specifically to the tune being played.\nAnswer: E."
       }
     ]
   },
@@ -5084,7 +5084,7 @@ window.GMAT_SETS = [
           "comparing Mediterranean islands with tropical ones"
         ],
         "hint": "The passage offers explanations and then complicates them.",
-        "expl": "The passage lays out the 'island rule,' its leading explanations, and then a refinement (the convergence-to-optimum view) — presenting and refining explanations (C). (A) is contradicted by paragraph 3; (B), (D), and (E) are details or overstatements."
+        "expl": "The shape of the passage — the island rule as an observed pattern; the leading explanations (resource limitation, relaxed predation); then the cases that do not fit and the refined convergence-to-an-optimum view.\nWhy (C) — presenting explanations and then refining them tracks all three paragraphs.\n(A) Contradicted by paragraph 3, which supplies giant tortoises and oversized rodents as counter-cases.\n(B) The dwarf elephants are one example in the opening sentence, offered to establish the pattern, not to tell a story of discovery.\n(D) Predation is one of two factors named, and the passage calls the absence of predators \"complementary\" to resource limitation rather than the sole cause.\n(E) Only Mediterranean islands are named, and no comparison between island types is drawn.\nAnswer: C."
       },
       {
         "n": 2,
@@ -5101,7 +5101,7 @@ window.GMAT_SETS = [
           "predators prefer to hunt larger prey"
         ],
         "hint": "Look at the resource-limitation explanation.",
-        "expl": "Paragraph 2 states 'a smaller body requires less food to sustain,' which under scarcity favors smaller individuals (A)."
+        "expl": "Where to look — paragraph 2: islands support less prey and vegetation, \"and a smaller body requires less food to sustain,\" so under chronic scarcity selection should favour the smaller individuals.\nWhy (A) — that is the stated mechanism.\n(B) Reproductive rate is never mentioned, and slower reproduction would be a disadvantage, not a reason to be favoured.\n(C) Climate plays no part in the passage's account at all.\n(D) Swimming ability never appears. Colonization is described as stranding, not as an ongoing feat.\n(E) The passage says large size protects against predation, so if anything predators are described as being deterred by large prey — and in any case the relevant island fact is that the predators are [[absent]].\nAnswer: A."
       },
       {
         "n": 3,
@@ -5117,8 +5117,8 @@ window.GMAT_SETS = [
           "removes an advantage that had favored large body size",
           "causes prey populations to grow without limit"
         ],
-        "hint": "Big body size does what against predators? What happens when predators vanish?",
-        "expl": "Paragraph 2 says big size 'offers protection against being eaten'; removing predators 'relaxes' that pressure so the food-driven push toward smallness can win — it removes an advantage that had favored large size (D)."
+        "hint": "Big body size does what against predators — and what happens when the predators vanish?",
+        "expl": "Where to look — paragraph 2: on the mainland \"big body size offers protection against being eaten\"; remove the predators and \"that pressure toward large size relaxes, allowing the food-driven pressure toward small size to prevail.\"\nWhy (D) — losing the predators removes the advantage that had been holding body size up, so the food-driven push downward wins by default.\n(A) Predators are gone in this scenario; nothing is killing anything. The mechanism is selective, not lethal.\n(B) Vegetation is the [[other]] half of the explanation, and predators have no effect on how much of it there is.\n(C) Climate is not part of the passage's account.\n(E) Unlimited prey growth is not claimed, and it would cut against the scarcity that drives dwarfing.\nAnswer: D."
       },
       {
         "n": 4,
@@ -5134,8 +5134,8 @@ window.GMAT_SETS = [
           "explain why elephants shrank on islands",
           "demonstrate that islands lack vegetation"
         ],
-        "hint": "These are cases that don't fit the shrinking pattern. Why raise them?",
-        "expl": "The paragraph opens 'Not every case fits neatly' and cites species that grew larger — showing the rule doesn't apply uniformly (B) and motivating the refined 'optimal size' view."
+        "hint": "These are cases that do not fit the shrinking pattern. Ask why they are raised.",
+        "expl": "Where to look — paragraph 3 opens \"Not every case fits neatly,\" then names giant tortoises and oversized rodents as island species that grew.\nWhy (B) — they are counter-cases, and they are what motivates the refined convergence-to-an-optimum account that follows.\n(A) They cut against the simple resource-limitation story, which predicts shrinking. That is the point of citing them.\n(C) The passage never withdraws the predation factor. The refined view keeps mainland pressures in the picture, describing islands as stripping them away.\n(D) The elephants shrank because they started very large — an application of the refinement, not something these examples explain.\n(E) Vegetation is not the subject here, and paragraph 2 says islands have less of it, not none.\nAnswer: B."
       },
       {
         "n": 5,
@@ -5151,8 +5151,8 @@ window.GMAT_SETS = [
           "A predator that migrated from an island to the mainland",
           "Two island species—one starting large, one starting small—that both evolved toward the same middling size"
         ],
-        "hint": "The optimum view predicts both giants and dwarfs move toward one middle size.",
-        "expl": "The convergence view predicts that very large and very small colonizers both move toward a shared intermediate size. Two species converging on the same middling size from opposite starting points is exactly that prediction (E). (A) contradicts the view; the others are irrelevant to convergence."
+        "hint": "The optimum view predicts that both giants and dwarfs move toward one middle size.",
+        "expl": "What the view predicts — if islands strip away the mainland pressures that pushed species away from an optimal intermediate size, then colonizers should move toward that optimum from whichever side they start on.\nWhy (E) — two island species starting at opposite extremes and ending at the same middling size is that prediction observed directly, and it is something neither resource limitation nor relaxed predation alone would produce.\n(A) Contradicts the view. Continued growth without limit is movement away from an optimum, not toward one.\n(B) A mainland species being larger than any island species is consistent with plain dwarfing and says nothing about convergence.\n(C) An island with no vegetation supports no herbivores at all, so it tests nothing about body size.\n(D) A predator migrating from island to mainland reverses the direction the passage cares about and bears on neither account.\nAnswer: E."
       }
     ]
   },

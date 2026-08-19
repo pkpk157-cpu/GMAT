@@ -239,8 +239,9 @@
   .ai-status.ok { color: var(--good); }
   .ai-status.bad { color: var(--bad); }
   /* ---- Difficulty recalibrated from your own results ---- */
-  .lvl-recal { position: relative; border-style: dashed; }
-  .lvl-recal i { font-style: normal; font-size: 9px; margin-left: 3px; vertical-align: 1px; opacity: .8; }
+  /* A recalibrated level is marked with words, not a caret: a dashed outline
+     plus a "▾" read as a dropdown the user was meant to operate. */
+  .lvl-recal i { font-style: normal; font-weight: 700; margin-left: 4px; opacity: .72; }
   .recal { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px dashed color-mix(in srgb, var(--secc, var(--accent)) 38%, var(--line)); background: color-mix(in srgb, var(--secc, var(--accent)) 6%, var(--surface)); }
   .recal h4 { margin: 0 0 4px; font-size: 14px; font-weight: 800; color: color-mix(in srgb, var(--secc, var(--accent)) 60%, var(--ink)); }
   .recal p { margin: 0 0 9px; font-size: 13px; color: var(--ink-faint); line-height: 1.45; }
@@ -1119,7 +1120,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v80";
+  const APP_VERSION = "v81";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1461,7 +1462,7 @@
     if (!q || !q.level) return "";
     const p = personalLevel(section, q);
     if (!p.shifted) return `<span class="lvl lvl-${p.level}">${p.level}</span>`;
-    return `<span class="lvl lvl-${p.level} lvl-recal" title="${esc(p.why)}">${p.level}<i>${p.shifted < 0 ? "▼" : "▲"}</i></span>`;
+    return `<span class="lvl lvl-${p.level} lvl-recal" title="${esc(p.why)}">${p.level}<i>· for you</i></span>`;
   }
   // Per-section summary of every bucket your results disagree with.
   function recalSummary(secId) {
@@ -2695,7 +2696,7 @@
     h += `</div>`;
     if (revealed) {
       h += `<div class="feedback ${a.correct?"ok":"no"}">${a.correct?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
-      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
+      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>`;
       h += aiExplainHTML(cur.set, q, a.chosen);
       const last = rev.idx === n-1;
       h += `<div class="rn-nav"><span></span><button class="navbtn primary" data-rvnext>${last?"See results":"Next ›"}</button></div>`;
@@ -3178,7 +3179,7 @@
     if (revealed) {
       const ok = committed === q.correct;
       h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
-      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>`;
+      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>`;
       h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
     } else {
       if (q.hint) h += `<details class="expl hint-box"><summary>💡 Hint</summary><div class="ex">${esc(q.hint)}</div></details>`;
@@ -3218,7 +3219,7 @@
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
-        (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
+        (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · ${levelBadge(set.section, q)}`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
     h += `</div></div>`;
@@ -3479,7 +3480,7 @@
         LET.slice(0, nOpt).map(L => { let c = ""; if (L === q.correct) c = "correct"; else if (L === a.chosen && !a.correct) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div><span class="rev-time">⏱ ${fmtClock(a.ms)}</span><span class="rev-mark ${a.correct ? "ok" : "no"}">${a.correct ? "✓" : "✗"}</span></div>` +
         (q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
-        (q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${esc(q.expl)}</div></details>` : "") +
+        (q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>` : "") +
         `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}</div></div>`;
     });
     h += `</div></div><div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-sessagain="1">New session</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-sessclose="1">Done</button></div>`;

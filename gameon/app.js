@@ -5,18 +5,39 @@
   "use strict";
 
   var S = window.GO_STORE, K = window.GO_COMPUTE;
-  var ME_KEY = "go12.me";
-  var state = { view: "home", me: lsGet(ME_KEY), monthKey: null, seasonKey: null, group: 0, h2hComp: "UCL" };
+  var ME_KEY = "go12.me", THEME_KEY = "go12.theme";
+  var state = { view: "classic", me: lsGet(ME_KEY), monthKey: null, seasonKey: null, group: 0, h2hComp: "UCL" };
+
+  /* Minimal line icons (24px, currentColor). */
+  var ICONS = {
+    classic: '<path d="M6 4h12v3a6 6 0 0 1-12 0V4Z"/><path d="M6 5H4v1a3 3 0 0 0 3 3M18 5h2v1a3 3 0 0 1-3 3"/><path d="M12 13v3M9 20h6M10 20a2 2 0 0 1 4 0"/>',
+    monthly: '<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/><circle cx="8.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="13.5" r="1" fill="currentColor" stroke="none"/>',
+    lms: '<path d="M12 3s4 3.5 4 8a4 4 0 0 1-8 0c0-1.6.8-3 1.5-4"/><path d="M12 21a6 6 0 0 0 6-6c0-1-.2-2-.6-2.9"/><path d="M12 21a6 6 0 0 1-6-6"/>',
+    pyramid: '<path d="M12 4 4 19h16L12 4Z"/><path d="M7.7 12.5h8.6M6 16h12"/>',
+    h2h: '<circle cx="12" cy="12" r="8.5"/><path d="m12 7 3 2.2-1.1 3.5h-3.8L9 9.2 12 7Z"/><path d="m12 7 .0-3M9 9.2 6.2 7.6M14.9 9.2l2.9-1.6M13.9 12.7l1.9 2.5M10.1 12.7 8.2 15.2"/>',
+    person: '<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19"/>',
+    moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/>',
+    auto: '<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor" stroke="none"/>',
+    refresh: '<path d="M20 11a8 8 0 1 0-.6 4"/><path d="M20 4v5h-5"/>',
+    download: '<path d="M12 4v10m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/>',
+    upload: '<path d="M12 20V10m0 0 4 4m-4-4-4 4"/><path d="M5 5h14"/>',
+    book: '<path d="M5 4.5A2 2 0 0 1 7 3h11v15H7a2 2 0 0 0-2 2V4.5Z"/><path d="M5 18.5A2 2 0 0 0 7 21h11"/>',
+    gear: '<circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>',
+    close: '<path d="M6 6l12 12M18 6 6 18"/>'
+  };
+  function svg(name, size) {
+    return '<svg viewBox="0 0 24 24" width="' + (size || 24) + '" height="' + (size || 24) +
+      '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+      (ICONS[name] || "") + '</svg>';
+  }
 
   var TABS = [
-    { id: "home",     label: "Home" },
-    { id: "classic",  label: "Classic" },
-    { id: "monthly",  label: "Monthly" },
-    { id: "lms",      label: "Last Manager" },
-    { id: "h2h",      label: "Game On UCL" },
-    { id: "pyramid",  label: "Pyramid" },
-    { id: "rules",    label: "Rules" },
-    { id: "settings", label: "Settings" }
+    { id: "classic", label: "Classic", icon: "classic" },
+    { id: "monthly", label: "Monthly", icon: "monthly" },
+    { id: "lms",     label: "LMS",     icon: "lms" },
+    { id: "pyramid", label: "Pyramid", icon: "pyramid" },
+    { id: "h2h",     label: "UCL",     icon: "h2h" }
   ];
 
   /* ---- tiny DOM/util helpers ------------------------------------------- */
@@ -41,12 +62,95 @@
   }
   function closeModal() { $("#modalBack").classList.remove("show"); }
 
+  /* ---- profile sheet --------------------------------------------------- */
+  function openProfile() {
+    var ds = S.dataset();
+    var me = null;
+    if (ds && state.me) me = ds.managers.filter(function (m) { return +m.id === +state.me; })[0];
+    var freshness = ds
+      ? (ds.managers.length + " managers · GW " + (K.currentGw(ds) || "?") + " · updated " + new Date(ds.updatedAt).toLocaleDateString())
+      : "No data loaded yet";
+    var theme = getTheme();
+
+    var h = '';
+    h += '<div class="profile-hd"><div class="av">' + svg("person", 24) + '</div>' +
+      '<div><div class="who">' + esc(me ? me.entryName : "Your team") + '</div>' +
+      '<div class="sub">' + esc(me ? me.playerName : "Link your FPL entry to highlight yourself") + '</div></div></div>';
+
+    h += '<label class="field" style="margin-top:10px"><span class="lab">My team (FPL entry ID)</span>' +
+      '<div style="display:flex;gap:8px"><input class="in" id="pfMe" value="' + esc(state.me || "") + '" placeholder="e.g. 1234567" inputmode="numeric">' +
+      '<button class="btn" id="pfMeSave">Save</button></div></label>';
+
+    h += '<div class="menu"><div class="lab-sm">Appearance</div>' +
+      '<div class="seg" id="pfTheme">' +
+      segBtn("system", "auto", "System", theme) +
+      segBtn("light", "sun", "Light", theme) +
+      segBtn("dark", "moon", "Dark", theme) +
+      '</div></div>';
+
+    h += '<div class="menu">' +
+      menuItem("pfRefresh", "refresh", "Refresh from FPL") +
+      menuItem("pfRules", "book", "Rules & prize tables") +
+      menuItem("pfSettings", "gear", "League settings & admin") +
+      '<div class="divider"></div>' +
+      menuItem("pfExport", "download", "Export data file") +
+      menuItem("pfImport", "upload", "Import data file") +
+      '</div>';
+
+    h += '<div class="note" style="margin-top:14px;text-align:center">' + esc(freshness) + '</div>';
+
+    $("#profileBody").innerHTML = h;
+    $("#profileBack").classList.add("show");
+
+    $("#pfMeSave").addEventListener("click", function () {
+      var v = parseInt($("#pfMe").value, 10);
+      state.me = isNaN(v) ? null : v; lsSet(ME_KEY, state.me);
+      toast("Saved"); render(); openProfile();
+    });
+    $all("#pfTheme button").forEach(function (b) {
+      b.addEventListener("click", function () { applyTheme(b.getAttribute("data-th")); openProfile(); });
+    });
+    $("#pfRefresh").addEventListener("click", function () { closeProfile(); startRefresh(); });
+    $("#pfRules").addEventListener("click", function () { closeProfile(); location.hash = "rules"; });
+    $("#pfSettings").addEventListener("click", function () { closeProfile(); location.hash = "settings"; });
+    $("#pfExport").addEventListener("click", function () {
+      var bundle = S.exportBundle();
+      if (!bundle.dataset) { toast("Nothing to export — refresh first"); return; }
+      download("data.json", JSON.stringify(bundle)); toast("Exported data.json");
+    });
+    $("#pfImport").addEventListener("click", function () { importFile(function () { closeProfile(); }); });
+  }
+  function closeProfile() { $("#profileBack").classList.remove("show"); }
+  function segBtn(val, icon, label, cur) {
+    return '<button data-th="' + val + '" class="' + (cur === val ? "on" : "") + '">' + svg(icon, 16) + label + '</button>';
+  }
+  function menuItem(id, icon, label) {
+    return '<button id="' + id + '">' + svg(icon, 19) + esc(label) + '</button>';
+  }
+  function importFile(after) {
+    var inp = document.createElement("input");
+    inp.type = "file"; inp.accept = "application/json"; inp.style.display = "none";
+    inp.addEventListener("change", function (e) {
+      var f = e.target.files[0]; if (!f) return;
+      var rd = new FileReader();
+      rd.onload = function () {
+        try { S.importBundle(JSON.parse(rd.result)).then(function () { toast("Imported"); updateDataState(); render(); if (after) after(); }); }
+        catch (err) { toast("Invalid file"); }
+      };
+      rd.readAsText(f);
+    });
+    document.body.appendChild(inp); inp.click();
+    setTimeout(function () { document.body.removeChild(inp); }, 60000);
+  }
+
   /* ---- boot ------------------------------------------------------------ */
   function boot() {
-    buildTabs();
-    $("#btnRefresh").addEventListener("click", startRefresh);
+    buildNav();
+    $("#btnProfile").innerHTML = svg("person", 20);
+    $("#btnProfile").addEventListener("click", openProfile);
     $("#modalClose").addEventListener("click", closeModal);
     $("#modalBack").addEventListener("click", function (e) { if (e.target === $("#modalBack")) closeModal(); });
+    $("#profileBack").addEventListener("click", function (e) { if (e.target === $("#profileBack")) closeProfile(); });
     window.addEventListener("hashchange", syncFromHash);
 
     S.load().then(function () {
@@ -55,21 +159,22 @@
     });
   }
 
-  function buildTabs() {
-    var nav = $("#tabs");
+  function buildNav() {
+    var nav = $("#navbar");
     nav.innerHTML = TABS.map(function (t) {
-      return '<button class="tab" data-tab="' + t.id + '">' + esc(t.label) + '</button>';
+      return '<button class="navitem" data-tab="' + t.id + '">' + svg(t.icon) + '<span>' + esc(t.label) + '</span></button>';
     }).join("");
-    $all(".tab", nav).forEach(function (b) {
+    $all(".navitem", nav).forEach(function (b) {
       b.addEventListener("click", function () { location.hash = b.getAttribute("data-tab"); });
     });
   }
 
   function syncFromHash() {
-    var h = (location.hash || "#home").replace("#", "");
+    var h = (location.hash || "#classic").replace("#", "");
     var parts = h.split("/");
     var view = parts[0];
-    if (!TABS.some(function (t) { return t.id === view; })) view = "home";
+    var known = TABS.map(function (t) { return t.id; }).concat(["rules", "settings", "home"]);
+    if (known.indexOf(view) === -1) view = "classic";
     state.view = view;
     if (view === "monthly" && parts[1]) state.monthKey = parts[1];
     if (view === "pyramid" && parts[1]) state.seasonKey = parts[1];
@@ -77,19 +182,18 @@
   }
 
   function setActiveView() {
-    $all(".tab").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-tab") === state.view); });
+    $all(".navitem").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-tab") === state.view); });
     $all(".view").forEach(function (v) { v.classList.toggle("active", v.getAttribute("data-view") === state.view); });
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
   }
 
-  function updateDataState() {
-    var ds = S.dataset();
-    var el = $("#dataState");
-    if (!ds) { el.innerHTML = "No data · <b>tap ↻</b>"; return; }
-    var when = new Date(ds.updatedAt);
-    var gw = K.currentGw(ds);
-    el.innerHTML = "<b>" + ds.managers.length + "</b> managers · GW <b>" + (gw || "?") + "</b><br>" +
-      "updated " + when.toLocaleDateString() + " " + when.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  function updateDataState() { /* data freshness now lives in the profile sheet */ }
+
+  /* ---- theme ----------------------------------------------------------- */
+  function getTheme() { var t = lsGet(THEME_KEY); return (t === "light" || t === "dark") ? t : "system"; }
+  function applyTheme(pref) {
+    if (pref === "system") { document.documentElement.removeAttribute("data-theme"); localStorage.removeItem(THEME_KEY); }
+    else { document.documentElement.setAttribute("data-theme", pref); lsSet(THEME_KEY, pref); }
   }
 
   /* ---- render dispatch ------------------------------------------------- */

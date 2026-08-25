@@ -108,6 +108,26 @@
     return API.getJSON("/entry/" + entryId + "/history/");
   };
 
+  // All fixtures, or one gameweek's fixtures.
+  API.fixtures = function (gw) {
+    return API.getJSON("/fixtures/" + (gw ? ("?event=" + gw) : ""));
+  };
+
+  // Live per-player stats for a gameweek: { elements:[{ id, stats:{ minutes,... } }] }.
+  API.live = function (gw) {
+    return API.getJSON("/event/" + gw + "/live/");
+  };
+
+  // A single player's detailed history.
+  API.elementSummary = function (elementId) {
+    return API.getJSON("/element-summary/" + elementId + "/");
+  };
+
+  // A manager's squad for a gameweek: { picks:[{ element, multiplier, is_captain }], ... }.
+  API.entryPicks = function (entryId, gw) {
+    return API.getJSON("/entry/" + entryId + "/event/" + gw + "/picks/");
+  };
+
   API.entry = function (entryId) {
     return API.getJSON("/entry/" + entryId + "/");
   };

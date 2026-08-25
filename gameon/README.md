@@ -42,6 +42,19 @@ Everyone else's app loads `gameon/data.json` automatically (no live FPL calls),
 so it's fast and reliable for the whole league. They can still refresh live if
 they want the very latest.
 
+## Live gameweek (players played)
+
+While a gameweek is in progress the LMS tab shows a **Live** view with a
+**Played** column (e.g. `10/12`, captain counts twice) and highlights the
+bottom N managers in the **drop zone** in red. On refresh, for the in-progress
+GW the app pulls `event/{gw}/live/` (minutes) and each surviving manager's
+`entry/{id}/event/{gw}/picks/`, counting started players (weighted by
+multiplier) who have minutes. No API key is needed — all FPL endpoints are
+public. Endpoints used: `bootstrap-static`, `fixtures`, `event/{gw}/live`,
+`entry/{id}`, `entry/{id}/history`, `entry/{id}/event/{gw}/picks`,
+`element-summary/{id}`, `leagues-classic/{id}/standings`,
+`leagues-h2h/{id}/standings`.
+
 ## Custom rules & overrides
 
 The app auto-computes what it can and lets an admin lock the rest

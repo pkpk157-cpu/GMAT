@@ -214,6 +214,41 @@
         });
       })
       .then(function () {
+        // Live "players played" for the in-progress gameweek (LMS x/12 column).
+        // Uses event/{gw}/live (minutes) + entry/{id}/event/{gw}/picks. Only the
+        // LMS survivors are fetched, so the cost shrinks as the season goes on.
+        var liveEv = (ds.bootstrap.events || []).filter(function (e) {
+          return e.is_current && !(e.finished && e.data_checked);
+        })[0];
+        if (!liveEv) return;
+        var lg = liveEv.id;
+        report({ phase: "live", message: "Loading live gameweek…" });
+        return API.live(lg).then(function (live) {
+          var mins = {};
+          (live.elements || []).forEach(function (el) {
+            mins[el.id] = (el.stats && el.stats.minutes) || 0;
+          });
+          var targets;
+          try { targets = window.GO_COMPUTE.lms(ds).survivors.map(function (s) { return s.id; }); }
+          catch (e) { targets = ds.managers.map(function (m) { return m.id; }); }
+          report({ phase: "live", done: 0, total: targets.length, message: "Loading live squads…" });
+          return API.pool(targets, function (id) {
+            return API.entryPicks(id, lg).then(function (pk) {
+              var played = 0, total = 0;
+              (pk.picks || []).forEach(function (p) {
+                if (p.multiplier > 0) { total += p.multiplier; if ((mins[p.element] || 0) > 0) played += p.multiplier; }
+              });
+              if (!ds.history[id]) ds.history[id] = {};
+              if (!ds.history[id][lg]) ds.history[id][lg] = { p: 0, h: 0, b: 0, t: 0 };
+              ds.history[id][lg].pl = played;
+              ds.history[id][lg].plt = total || 12;
+            }).catch(function () {});
+          }, 5, function (done, total) {
+            report({ phase: "live", done: done, total: total, message: "Live squads " + done + "/" + total + "…" });
+          });
+        }).catch(function () { /* live is best-effort */ });
+      })
+      .then(function () {
         return STORE.setDataset(ds).then(function () {
           report({ phase: "done", message: "Done.", dataset: ds });
           return ds;

@@ -525,9 +525,10 @@
     if (!g) return '';
     opts = opts || {};
     var rows = (g.table || []).map(function (r) {
-      var nameCls = r.eliminated ? "who out-name" : "who";
+      var red = r.eliminated || r.atRisk;
+      var nameCls = red ? "who out-name" : "who";
       var played = (r.played == null) ? '<span class="note">—</span>' : (r.played + '/' + (r.playedTotal || 12));
-      return '<tr class="' + (r.eliminated ? "gone" : "") + (isMe(r.id) ? " me" : "") + '">' +
+      return '<tr class="' + (red ? "gone" : "") + (isMe(r.id) ? " me" : "") + '">' +
         '<td class="name"><span class="' + nameCls + '">' + esc(r.name) + '</span><div class="mgr">' + esc(r.player) + '</div></td>' +
         '<td class="num"><b>' + num(r.score) + '</b></td>' +
         '<td class="num">' + played + '</td>' +
@@ -535,7 +536,7 @@
         '<td class="num">' + num(r.bench) + '</td></tr>';
     }).join("");
     var caption = opts.live
-      ? g.sog + ' still in · Played is out of 12 (captain counts twice) · lowest first'
+      ? g.sog + ' still in · <span class="out-name">bottom ' + (g.need || 0) + ' in the drop zone (red)</span> · Played out of 12 · lowest first'
       : g.sog + ' in · <span class="out-name">' + g.eliminated.length + ' out (red)</span> · ' + g.eog + ' left · lowest first';
     return '<div class="note" style="margin-bottom:8px">' + caption + '</div>' +
       '<div class="freeze"><table class="t"><thead><tr><th>Team</th><th class="num">GW pts</th><th class="num">Played</th><th class="num">Hits</th><th class="num">Bench</th></tr></thead><tbody>' +
@@ -550,12 +551,6 @@
     var cfg = S.config();
     var h = titleBar("Game On UCL", "h2h", h2h.groups.length + " groups");
 
-    if (!h2h.groupsConfigured) {
-      h += '<div class="callout">Groups are <b>auto-seeded</b> by league rank (16 balanced groups). ' +
-        'To match your real draw, set the group rosters in <b>Settings → Admin → H2H groups</b>. ' +
-        'Group tables below follow FPL gameweek scores as the rules specify.</div>';
-    }
-
     // Group selector (dropdown)
     if (state.group >= h2h.groups.length) state.group = 0;
     h += '<div class="section-title"><h2>Group stage</h2><div class="rule"></div>' +
@@ -566,31 +561,11 @@
       }).join("") + '</select></label>';
     h += '<div id="grpPanel">' + groupPanel(h2h.groups[state.group] || h2h.groups[0], cfg) + '</div>';
 
-    // Knockouts
-    h += '<div class="section-title"><h2>Knockout stage</h2><div class="rule"></div></div>';
-    h += '<div class="card"><div class="bd">';
-    h += '<div class="note">Schedule: ' + h2h.schedule.map(function (r) {
-      return esc(r.name) + ' (GW' + r.gws.join("–") + (r.legs === 2 ? ", 2 legs" : "") + ')';
-    }).join(" → ") + '</div>';
-    h += '<div class="btnrow" style="margin-top:12px">' +
-      '<button class="btn" id="autoSeed">⚙︎ Auto-seed bracket from groups</button>' +
-      (h2h.bracket ? '<button class="btn ghost" id="editBracket">Edit bracket JSON</button>' : '') + '</div>';
-    if (h2h.bracket) {
-      h += renderBracket(ds, h2h.bracket, "UCL");
-      h += renderBracket(ds, h2h.bracket, "UEL");
-    } else {
-      h += '<div class="note" style="margin-top:12px">No bracket yet. Once the group stage completes, auto-seed to generate the R32 draw, then adjust in Admin.</div>';
-    }
-    h += '</div></div>';
-
     host.innerHTML = h;
     $("#grpSel", host).addEventListener("change", function () {
       state.group = +this.value;
       $("#grpPanel", host).innerHTML = groupPanel(h2h.groups[state.group], cfg);
     });
-    $("#autoSeed", host).addEventListener("click", function () { autoSeedBracket(ds); });
-    var eb = $("#editBracket", host);
-    if (eb) eb.addEventListener("click", function () { editOverrideJson("H2H bracket", ["h2h", "bracket"]); });
   }
 
   function groupPanel(g, cfg) {
@@ -685,19 +660,6 @@
     state.seasonKey = cur;
 
     var h = titleBar("The Pyramid Battle", "pyramid", "4 divisions · 3 mini-seasons");
-
-    // Pyramid visual
-    h += '<div class="card"><div class="bd"><div class="pyr">' +
-      '<div class="lvl elite">ELITE<small>promotion top · biggest prizes</small></div>' +
-      '<div class="lvl championship">CHAMPIONSHIP</div>' +
-      '<div class="lvl challenger">CHALLENGER</div>' +
-      '<div class="lvl conference">CONFERENCE<small>climb up · top 5 promoted, bottom 5 relegated</small></div>' +
-      '</div></div></div>';
-
-    if (pyr.autoInitial) {
-      h += '<div class="callout" style="margin-top:14px">Division rosters are <b>auto-assigned</b> by overall league rank (Elite = best ranks). ' +
-        'Set the real Season-1 rosters in <b>Settings → Admin → Pyramid rosters</b>; Seasons 2 & 3 then follow promotion/relegation automatically.</div>';
-    }
 
     var cfg = S.config();
     var divKeys = pyr.divisions.map(function (d) { return d.key; });
@@ -804,7 +766,7 @@
       { h: "Scoring", body: rule(3) },
       { h: "Eliminations", body: "Each gameweek the lowest scorers among the survivors are eliminated. The number out per GW is fixed (see the elimination grid). The last manager left standing is champion." },
       { h: "Tie breakers", body: rule(4) } ] };
-    if (topic === "pyramid") return { name: "The Pyramid Battle", back: "pyramid", extra: prizesBlock(pyramidPrizeCard(cfg)), blocks: [
+    if (topic === "pyramid") return { name: "The Pyramid Battle", back: "pyramid", extra: pyramidVisualCard() + prizesBlock(pyramidPrizeCard(cfg)), blocks: [
       { h: "Structure", body: "4 divisions — Elite, Championship, Challenger, Conference — across 3 mini-seasons: " +
         cfg.pyramid.seasons.map(function (s) { return "<b>" + esc(s.name) + "</b> (GW " + s.gws[0] + "–" + s.gws[s.gws.length - 1] + ")"; }).join(", ") + "." },
       { h: "Promotion & relegation", body: "Top " + cfg.pyramid.promoteCount + " of each division are promoted and the bottom " + cfg.pyramid.relegateCount + " are relegated for the next mini-season." },
@@ -819,6 +781,16 @@
 
   function prizesBlock(card) {
     return '<div class="section-title"><h2>Prizes</h2><div class="rule"></div></div>' + card;
+  }
+  function pyramidVisualCard() {
+    return '<div class="section-title"><h2>The pyramid</h2><div class="rule"></div></div>' +
+      '<div class="card"><div class="bd"><div class="pyr">' +
+      '<div class="lvl elite">ELITE<small>promotion top · biggest prizes</small></div>' +
+      '<div class="lvl championship">CHAMPIONSHIP</div>' +
+      '<div class="lvl challenger">CHALLENGER</div>' +
+      '<div class="lvl conference">CONFERENCE<small>climb up · top 5 promoted, bottom 5 relegated</small></div>' +
+      '</div><div class="note" style="margin-top:12px">Division rosters are auto-assigned by overall league rank at the start; the organiser can set the real Season-1 rosters in Settings → Admin. Seasons 2 & 3 then follow promotion / relegation automatically.</div>' +
+      '</div></div>';
   }
   function lmsGridCard(cfg) {
     var start = cfg.expectedManagers || 245, running = start, rows = [];

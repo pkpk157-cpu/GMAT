@@ -208,14 +208,17 @@
     var live = null;
     if (liveGw != null) {
       var aliveIds = Object.keys(alive).map(Number);
+      var need = elimGrid[liveGw] || 0;
       var ltable = aliveIds.map(function (id) {
         var hh = (ds.history[id] && ds.history[id][liveGw]) ? ds.history[id][liveGw] : null;
         return { id: id, name: nm(mm, id), player: pl(mm, id),
                  score: hh ? hh.p : 0, bench: hh ? hh.b : 0, hit: hh ? hh.h : 0,
                  played: (hh && hh.pl != null) ? hh.pl : null, playedTotal: (hh && hh.plt) ? hh.plt : 12,
-                 eliminated: false };
+                 eliminated: false, atRisk: false };
       }).sort(function (a, b) { return (a.score - b.score) || (a.bench - b.bench); });
-      live = { gw: liveGw, table: ltable, sog: aliveIds.length, eog: aliveIds.length, eliminated: [] };
+      // Bottom `need` are in the drop zone (would be eliminated if the GW ended now).
+      ltable.forEach(function (r, i) { r.atRisk = i < need; });
+      live = { gw: liveGw, table: ltable, sog: aliveIds.length, eog: aliveIds.length - need, need: need, eliminated: [] };
     }
 
     return {

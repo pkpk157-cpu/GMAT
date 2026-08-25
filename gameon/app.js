@@ -24,12 +24,22 @@
     upload: '<path d="M12 20V10m0 0 4 4m-4-4-4 4"/><path d="M5 5h14"/>',
     book: '<path d="M5 4.5A2 2 0 0 1 7 3h11v15H7a2 2 0 0 0-2 2V4.5Z"/><path d="M5 18.5A2 2 0 0 0 7 21h11"/>',
     gear: '<circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11.2v5M12 7.8h.01"/>',
+    back: '<path d="M15 5l-7 7 7 7"/>',
+    chev: '<path d="M6 9l6 6 6-6"/>',
     close: '<path d="M6 6l12 12M18 6 6 18"/>'
   };
   function svg(name, size) {
     return '<svg viewBox="0 0 24 24" width="' + (size || 24) + '" height="' + (size || 24) +
       '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
       (ICONS[name] || "") + '</svg>';
+  }
+
+  /* Section title with an info button that opens the competition's rules page. */
+  function titleBar(name, topic, chip) {
+    return '<div class="section-title"><h2>' + esc(name) + '</h2>' +
+      '<button class="infobtn" data-rules="' + topic + '" title="Rules" aria-label="' + esc(name) + ' rules">' + svg("info", 17) + '</button>' +
+      '<div class="rule"></div>' + (chip ? '<span class="chip">' + chip + '</span>' : '') + '</div>';
   }
 
   var TABS = [
@@ -151,6 +161,10 @@
     $("#modalClose").addEventListener("click", closeModal);
     $("#modalBack").addEventListener("click", function (e) { if (e.target === $("#modalBack")) closeModal(); });
     $("#profileBack").addEventListener("click", function (e) { if (e.target === $("#profileBack")) closeProfile(); });
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("[data-rules]") : null;
+      if (b) { location.hash = "rules/" + b.getAttribute("data-rules"); }
+    });
     window.addEventListener("hashchange", syncFromHash);
 
     S.load().then(function () {
@@ -178,6 +192,7 @@
     state.view = view;
     if (view === "monthly" && parts[1]) state.monthKey = parts[1];
     if (view === "pyramid" && parts[1]) state.seasonKey = parts[1];
+    state.rulesTopic = (view === "rules") ? (parts[1] || null) : state.rulesTopic;
     render();
   }
 
@@ -321,8 +336,7 @@
     var rows = K.classic(ds);
     var h = '';
 
-    h += '<div class="section-title"><h2>Classic League</h2><div class="rule"></div>' +
-      '<span class="chip">' + esc(ds.league && ds.league.name ? ds.league.name : "Overall") + '</span></div>';
+    h += titleBar("Classic League", "classic", esc(ds.league && ds.league.name ? ds.league.name : "Overall"));
 
     h += '<label class="field" style="margin-bottom:12px">' +
       '<input class="in" id="classicSearch" placeholder="Search manager or team…"></label>';
@@ -393,7 +407,7 @@
       : (active.length ? active[active.length - 1].key : months[0].key);
     state.monthKey = cur;
 
-    var h = '<div class="section-title"><h2>Monthly Winners</h2><div class="rule"></div></div>';
+    var h = titleBar("Monthly Winners", "monthly");
     h += '<label class="field"><span class="lab">Month</span><select class="in" id="monthSel">' +
       months.map(function (m) {
         var badge = m.complete ? " — final" : (m.played > 0 ? " — live" : " — upcoming");
@@ -442,8 +456,7 @@
     var cfg = S.config();
     var started = ds.managers.length;
 
-    var h = '<div class="section-title"><h2>Last Manager Standing</h2><div class="rule"></div>' +
-      '<span class="chip">Only 1 can stand</span></div>';
+    var h = titleBar("Last Manager Standing", "lms", "Only 1 can stand");
 
     h += '<div class="grid cols-4">' +
       stat(started, "Started") +
@@ -471,17 +484,14 @@
       }).join(" ") + '</div></div>';
     }
 
-    // Recent eliminations
-    var recent = lms.perGw.slice(-4).reverse();
-    if (recent.length) {
-      h += '<div class="section-title"><h2>Recent eliminations</h2><div class="rule"></div></div>';
-      recent.forEach(function (g) {
-        h += '<div class="card"><div class="hd"><h3>GW ' + g.gw + '</h3><span class="sub">' + g.eliminated.length + ' out</span></div><div class="bd">';
-        h += g.eliminated.length ? g.eliminated.map(function (e) {
-          return '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)">' +
-            '<span class="pill out">' + esc(e.name) + '</span><span class="note">' + num(e.score) + ' pts · bench ' + num(e.bench) + '</span></div>';
-        }).join("") : '<div class="note">No eliminations recorded.</div>';
-        h += '</div></div>';
+    // Gameweek results — one dropdown per GW, latest open, worst first.
+    var weeks = lms.perGw.slice().reverse();
+    if (weeks.length) {
+      h += '<div class="section-title"><h2>Gameweek results</h2><div class="rule"></div>' +
+        '<span class="chip">lowest first</span></div>';
+      h += '<div class="note" style="margin-bottom:10px">Each week\'s scores, worst first — the bottom faces elimination. <span class="out-name">Red</span> = eliminated that GW.</div>';
+      weeks.forEach(function (g, idx) {
+        h += gwAccordion(g, idx === 0);
       });
     }
 
@@ -507,14 +517,32 @@
     return '<div class="stat"><div class="k">' + money(amount) + '</div><div class="l">' + esc(label) + '</div></div>';
   }
 
+  function gwAccordion(g, open) {
+    var rows = (g.table || []).map(function (r) {
+      var nameCls = r.eliminated ? "who out-name" : "who";
+      var status = r.eliminated ? '<span class="pill out">Out</span>' : '<span class="pill live">Safe</span>';
+      return '<tr class="' + (r.eliminated ? "gone" : "") + (isMe(r.id) ? " me" : "") + '">' +
+        '<td class="name"><span class="' + nameCls + '">' + esc(r.name) + '</span><div class="mgr">' + esc(r.player) + '</div></td>' +
+        '<td class="num"><b>' + num(r.score) + '</b></td>' +
+        '<td class="num">' + (r.hit ? '−' + r.hit : '0') + '</td>' +
+        '<td class="num">' + num(r.bench) + '</td>' +
+        '<td>' + status + '</td></tr>';
+    }).join("");
+    return '<details class="gwacc"' + (open ? " open" : "") + '>' +
+      '<summary><span class="gw">GW ' + g.gw + '</span>' +
+      '<span class="meta">' + g.sog + ' in · <span class="out-name">' + g.eliminated.length + ' out</span> · ' + g.eog + ' left</span>' +
+      svg("chev", 16) + '</summary>' +
+      '<div class="tablewrap"><table class="t"><thead><tr><th>Team</th><th class="num">GW pts</th><th class="num">Hits</th><th class="num">Bench</th><th>Status</th></tr></thead><tbody>' +
+      rows + '</tbody></table></div></details>';
+  }
+
   /* ====================================================================== */
   /* H2H (Game On UCL)                                                      */
   /* ====================================================================== */
   function renderH2h(host, ds) {
     var h2h = K.h2h(ds);
     var cfg = S.config();
-    var h = '<div class="section-title"><h2>Game On UCL — H2H</h2><div class="rule"></div>' +
-      '<span class="chip">' + h2h.groups.length + ' groups</span></div>';
+    var h = titleBar("Game On UCL", "h2h", h2h.groups.length + " groups");
 
     // Prizes
     h += '<div class="grid cols-4">' +
@@ -658,8 +686,7 @@
       })();
     state.seasonKey = cur;
 
-    var h = '<div class="section-title"><h2>The Pyramid Battle</h2><div class="rule"></div>' +
-      '<span class="chip">4 divisions · 3 mini-seasons</span></div>';
+    var h = titleBar("The Pyramid Battle", "pyramid", "4 divisions · 3 mini-seasons");
 
     // Pyramid visual
     h += '<div class="card"><div class="bd"><div class="pyr">' +
@@ -725,32 +752,85 @@
   /* ====================================================================== */
   function renderRules(host) {
     var cfg = S.config();
+    var topic = state.rulesTopic;
+    if (topic && topic !== "all") {
+      var R = compRules(topic, cfg);
+      if (R) return renderCompRules(host, R);
+    }
+
+    // General overview (reached from the profile menu).
     var h = '<div class="section-title"><h2>General Rules</h2><div class="rule"></div>' +
       '<span class="chip">Fair play</span></div>';
     cfg.rules.forEach(function (r) {
       h += '<div class="card"><div class="hd"><h3>' + r.n + '. ' + esc(r.title) + '</h3></div>' +
         '<div class="bd"><div class="note" style="color:var(--ink-soft);font-size:13.5px;line-height:1.6">' + esc(r.body) + '</div></div></div>';
     });
+    h += '<div class="section-title"><h2>Monthly prizes</h2><div class="rule"></div></div>' + monthlyPrizeCard(cfg);
+    h += '<div class="section-title"><h2>Pyramid prizes (per mini-season)</h2><div class="rule"></div></div>' + pyramidPrizeCard(cfg);
+    host.innerHTML = h;
+  }
 
-    // Monthly prize reference
-    h += '<div class="section-title"><h2>Monthly prizes</h2><div class="rule"></div></div>';
-    h += '<div class="card"><div class="tablewrap"><table class="t"><thead><tr><th>Month</th><th class="num">1st</th><th class="num">2nd</th><th class="num">3rd</th><th>Gameweeks</th></tr></thead><tbody>';
-    cfg.months.forEach(function (m) {
-      h += '<tr><td>' + esc(m.name) + '</td><td class="num prize">' + money(m.prizes[1]) + '</td>' +
+  function renderCompRules(host, R) {
+    var h = '<div class="btnrow" style="margin-bottom:4px"><button class="btn ghost" id="rulesBack">' + svg("back", 16) + ' Back</button></div>';
+    h += '<div class="section-title"><h2>' + esc(R.name) + '</h2><div class="rule"></div><span class="chip">Rules</span></div>';
+    R.blocks.forEach(function (b) {
+      h += '<div class="card"><div class="hd"><h3>' + esc(b.h) + '</h3></div>' +
+        '<div class="bd"><div class="note" style="color:var(--ink-soft);font-size:13.5px;line-height:1.65">' + b.body + '</div></div></div>';
+    });
+    if (R.extra) { h += '<div class="section-title"><h2>Prizes</h2><div class="rule"></div></div>' + R.extra; }
+    host.innerHTML = h;
+    $("#rulesBack", host).addEventListener("click", function () { location.hash = R.back; });
+  }
+
+  function compRules(topic, cfg) {
+    function rule(n) { var r = cfg.rules.filter(function (x) { return x.n === n; })[0]; return r ? esc(r.body) : ""; }
+    var g = cfg.h2h.groupStageGws, kn = cfg.h2h.knockout;
+    if (topic === "classic") return { name: "Classic League", back: "classic", extra: prizeReferenceCard(), blocks: [
+      { h: "How it works", body: "Your overall Fantasy Premier League points across all " + cfg.totalGameweeks + " gameweeks. The season-long total is your league score — the highest total at the end wins." },
+      { h: "Prizes", body: "The top 45 managers are paid — see the full breakdown below." },
+      { h: "Tie breakers", body: rule(2) } ] };
+    if (topic === "monthly") return { name: "Monthly Winners", back: "monthly", extra: monthlyPrizeCard(cfg), blocks: [
+      { h: "How it works", body: "Each month scores only the gameweeks that fall in that month, and <b>includes hits</b>. The top 3 each month (August–May) win." },
+      { h: "Tie breakers", body: rule(7) } ] };
+    if (topic === "lms") return { name: "Last Manager Standing", back: "lms", extra: lmsPrizeCard(cfg), blocks: [
+      { h: "Scoring", body: rule(3) },
+      { h: "Eliminations", body: "Each gameweek the lowest scorers among the survivors are eliminated. The number out per GW is fixed (see the elimination grid). The last manager left standing is champion." },
+      { h: "Tie breakers", body: rule(4) } ] };
+    if (topic === "pyramid") return { name: "The Pyramid Battle", back: "pyramid", extra: pyramidPrizeCard(cfg), blocks: [
+      { h: "Structure", body: "4 divisions — Elite, Championship, Challenger, Conference — across 3 mini-seasons: " +
+        cfg.pyramid.seasons.map(function (s) { return "<b>" + esc(s.name) + "</b> (GW " + s.gws[0] + "–" + s.gws[s.gws.length - 1] + ")"; }).join(", ") + "." },
+      { h: "Promotion & relegation", body: "Top " + cfg.pyramid.promoteCount + " of each division are promoted and the bottom " + cfg.pyramid.relegateCount + " are relegated for the next mini-season." },
+      { h: "Scoring & tie breakers", body: rule(6) } ] };
+    if (topic === "h2h") return { name: "Game On UCL (H2H)", back: "h2h", extra: h2hPrizeCard(cfg), blocks: [
+      { h: "Group stage", body: cfg.h2h.groupCount + " groups of " + cfg.h2h.perGroup + ", GW " + g[0] + "–" + g[g.length - 1] +
+        ", round robin (" + cfg.h2h.pointsWin + "/" + cfg.h2h.pointsDraw + "/" + cfg.h2h.pointsLoss + "). Top 2 of each group advance to the UCL knockouts; 3rd & 4th drop to the UEL knockouts." },
+      { h: "Knockouts", body: kn.map(function (k) { return "<b>" + esc(k.name) + "</b> — GW " + k.gws.join("–") + (k.legs === 2 ? " (2 legs)" : " (1 leg)"); }).join("<br>") },
+      { h: "Tie breakers", body: rule(5) } ] };
+    return null;
+  }
+
+  function monthlyPrizeCard(cfg) {
+    var rows = cfg.months.map(function (m) {
+      return '<tr><td>' + esc(m.name) + '</td><td class="num prize">' + money(m.prizes[1]) + '</td>' +
         '<td class="num">' + money(m.prizes[2]) + '</td><td class="num">' + money(m.prizes[3]) + '</td>' +
         '<td class="note">GW ' + m.gws.join(", ") + '</td></tr>';
-    });
-    h += '</tbody></table></div></div>';
-
-    // Pyramid + H2H prize reference
-    h += '<div class="section-title"><h2>Pyramid prizes (per mini-season)</h2><div class="rule"></div></div>';
-    h += '<div class="card"><div class="tablewrap"><table class="t"><thead><tr><th>Division</th><th class="num">1st</th><th class="num">2nd</th><th class="num">3rd</th></tr></thead><tbody>';
-    cfg.pyramid.divisions.forEach(function (d) {
-      h += '<tr><td>' + esc(d.name) + '</td><td class="num prize">' + money(d.prizes[1]) + '</td><td class="num">' + money(d.prizes[2]) + '</td><td class="num">' + money(d.prizes[3]) + '</td></tr>';
-    });
-    h += '</tbody></table></div></div>';
-
-    host.innerHTML = h;
+    }).join("");
+    return '<div class="card"><div class="tablewrap"><table class="t"><thead><tr><th>Month</th><th class="num">1st</th><th class="num">2nd</th><th class="num">3rd</th><th>Gameweeks</th></tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+  }
+  function pyramidPrizeCard(cfg) {
+    var rows = cfg.pyramid.divisions.map(function (d) {
+      return '<tr><td>' + esc(d.name) + '</td><td class="num prize">' + money(d.prizes[1]) + '</td><td class="num">' + money(d.prizes[2]) + '</td><td class="num">' + money(d.prizes[3]) + '</td></tr>';
+    }).join("");
+    return '<div class="card"><div class="tablewrap"><table class="t"><thead><tr><th>Division</th><th class="num">1st</th><th class="num">2nd</th><th class="num">3rd</th></tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+  }
+  function lmsPrizeCard(cfg) {
+    var p = cfg.lms.prizes;
+    return '<div class="grid cols-3">' + prizeTile("🏆 Champion", p.champion) + prizeTile("🥈 Runner-up", p.runnerUp) + prizeTile("🥉 3rd place", p.third) + '</div>';
+  }
+  function h2hPrizeCard(cfg) {
+    var p = cfg.h2h.prizes;
+    return '<div class="grid cols-4">' + prizeTile("UCL Winner", p.ucl.winner) + prizeTile("UCL Runner-up", p.ucl.runnerUp) +
+      prizeTile("UEL Winner", p.uel.winner) + prizeTile("UEL Runner-up", p.uel.runnerUp) + '</div>';
   }
 
   /* ====================================================================== */

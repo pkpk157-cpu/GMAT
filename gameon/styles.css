@@ -178,6 +178,30 @@ a { color:var(--accent); text-decoration:none; }
 .section-title h2 { font-size:18px; font-weight:700; }
 .section-title .rule { flex:1; height:1px; background:var(--line-strong); }
 .section-title .chip { font-size:11px; color:var(--ink-soft); background:var(--chip); padding:3px 10px; border-radius:999px; }
+.infobtn {
+  flex:none; width:26px; height:26px; border-radius:50%; display:grid; place-items:center; padding:0;
+  border:1px solid var(--glass-border); background:var(--glass-2); color:var(--ink-soft); cursor:pointer;
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); box-shadow:inset 0 1px 0 var(--glass-hi);
+}
+.infobtn svg { width:17px; height:17px; }
+.infobtn:hover { color:var(--accent); border-color:var(--accent); }
+
+/* per-GW disclosure ("dropdown for each GW") */
+.out-name { color:var(--bad); font-weight:700; }
+.gwacc {
+  background:var(--glass); border:1px solid var(--glass-border); border-radius:var(--radius-s);
+  box-shadow:inset 0 1px 0 var(--glass-hi); margin-bottom:10px; overflow:hidden;
+  -webkit-backdrop-filter:blur(20px) saturate(180%); backdrop-filter:blur(20px) saturate(180%);
+}
+.gwacc > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:13px 15px; font-weight:700; }
+.gwacc > summary::-webkit-details-marker { display:none; }
+.gwacc > summary .gw { font-size:15px; }
+.gwacc > summary .meta { margin-left:auto; font-size:12px; color:var(--ink-faint); font-weight:500; }
+.gwacc > summary svg { flex:none; color:var(--ink-faint); transition:transform .2s; }
+.gwacc[open] > summary svg { transform:rotate(180deg); }
+.gwacc[open] > summary { border-bottom:1px solid var(--line); }
+.gwacc .tablewrap { max-height:60vh; overflow:auto; }
+.gwacc tr.gone td { background:var(--bad-wash); }
 
 /* ---------- cards ---------- */
 .card {

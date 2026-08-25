@@ -163,8 +163,17 @@
       var eog = Object.keys(alive).length;
 
       grid.push({ gw: gw, sog: sog, eliminated: eliminatedIds.length, expected: need, eog: eog });
+
+      // Full week table: every survivor at start of GW, scored, worst first.
+      var elimSet = {}; eliminatedIds.forEach(function (id) { elimSet[id] = 1; });
+      var table = contenders.map(function (c) {
+        var hh = (ds.history[c.id] && ds.history[c.id][gw]) ? ds.history[c.id][gw] : null;
+        return { id: c.id, name: nm(mm, c.id), player: pl(mm, c.id),
+                 score: c.score, bench: c.bench, hit: hh ? hh.h : 0, eliminated: !!elimSet[c.id] };
+      }).sort(function (a, b) { return (a.score - b.score) || (a.bench - b.bench); });
+
       perGw.push({
-        gw: gw, need: need,
+        gw: gw, need: need, sog: sog, eog: eog, table: table,
         eliminated: eliminatedIds.map(function (id) {
           var c = contenders.find(function (x) { return x.id === id; });
           return { id: id, name: nm(mm, id), score: c ? c.score : 0, bench: c ? c.bench : 0 };

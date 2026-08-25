@@ -474,34 +474,39 @@
         '<div class="note">The Last Manager Standing</div></div></div>';
     }
 
-    // Gameweek results — a single GW dropdown, latest selected, worst first.
-    var weeks = lms.perGw;
-    if (weeks.length) {
-      var latest = weeks[weeks.length - 1].gw;
-      var curGw = (state.lmsGw && weeks.some(function (w) { return w.gw === state.lmsGw; })) ? state.lmsGw : latest;
-      state.lmsGw = curGw;
-      h += '<div class="section-title"><h2>Gameweek results</h2><div class="rule"></div></div>';
+    // Gameweek results — a single GW dropdown (Live GW first, then finished),
+    // worst first. Elimination grid now lives on the info (rules) page.
+    var gwOpts = [];
+    if (lms.live) gwOpts.push({ key: "live", label: "GW " + lms.live.gw + " · Live", week: lms.live, live: true });
+    lms.perGw.slice().reverse().forEach(function (w) {
+      gwOpts.push({ key: String(w.gw), label: "GW " + w.gw, week: w, live: false });
+    });
+    if (gwOpts.length) {
+      var curKey = (state.lmsGw && gwOpts.some(function (o) { return o.key === state.lmsGw; })) ? state.lmsGw : gwOpts[0].key;
+      state.lmsGw = curKey;
+      var byKey = function (k) { return gwOpts.filter(function (o) { return o.key === k; })[0]; };
+      h += '<div class="section-title"><h2>Gameweek results</h2><div class="rule"></div>' +
+        '<button class="infobtn" data-rules="lms" title="LMS rules & elimination grid">' + svg("info", 17) + '</button></div>';
       h += '<label class="field"><span class="lab">Gameweek</span><select class="in" id="lmsGwSel">' +
-        weeks.slice().reverse().map(function (w) {
-          return '<option value="' + w.gw + '"' + (w.gw === curGw ? ' selected' : '') + '>GW ' + w.gw + '</option>';
+        gwOpts.map(function (o) {
+          return '<option value="' + o.key + '"' + (o.key === curKey ? ' selected' : '') + '>' + esc(o.label) + '</option>';
         }).join("") + '</select></label>';
-      h += '<div id="lmsGwPanel">' + lmsGwTable(weekByGw(weeks, curGw)) + '</div>';
+      var cur0 = byKey(curKey);
+      h += '<div id="lmsGwPanel">' + lmsGwTable(cur0.week, { live: cur0.live }) + '</div>';
+
+      host.innerHTML = h;
+      var sel = $("#lmsGwSel", host);
+      sel.addEventListener("change", function () {
+        state.lmsGw = this.value;
+        var o = byKey(this.value);
+        $("#lmsGwPanel", host).innerHTML = lmsGwTable(o.week, { live: o.live });
+      });
+      return;
     }
 
-    // Elimination grid (two columns, like the poster)
-    h += '<div class="section-title"><h2>Elimination grid</h2><div class="rule"></div>' +
-      '<span class="chip">SOG=start · EOG=end</span></div>';
-    var g = lms.grid, mid = Math.ceil(g.length / 2);
-    h += '<div class="lmsgrid">' + gridTable(g.slice(0, mid)) + gridTable(g.slice(mid)) + '</div>';
-
+    h += '<div class="callout">No gameweeks scored yet.</div>';
     host.innerHTML = h;
-    var sel = $("#lmsGwSel", host);
-    if (sel) sel.addEventListener("change", function () {
-      state.lmsGw = +this.value;
-      $("#lmsGwPanel", host).innerHTML = lmsGwTable(weekByGw(weeks, state.lmsGw));
-    });
   }
-  function weekByGw(weeks, gw) { return weeks.filter(function (w) { return w.gw === gw; })[0]; }
 
   function gridTable(rows) {
     var body = rows.map(function (r) {
@@ -516,20 +521,24 @@
     return '<div class="stat"><div class="k">' + money(amount) + '</div><div class="l">' + esc(label) + '</div></div>';
   }
 
-  function lmsGwTable(g) {
+  function lmsGwTable(g, opts) {
     if (!g) return '';
+    opts = opts || {};
     var rows = (g.table || []).map(function (r) {
       var nameCls = r.eliminated ? "who out-name" : "who";
-      var status = r.eliminated ? '<span class="pill out">Out</span>' : '<span class="pill live">Safe</span>';
+      var played = (r.played == null) ? '<span class="note">—</span>' : (r.played + '/' + (r.playedTotal || 12));
       return '<tr class="' + (r.eliminated ? "gone" : "") + (isMe(r.id) ? " me" : "") + '">' +
         '<td class="name"><span class="' + nameCls + '">' + esc(r.name) + '</span><div class="mgr">' + esc(r.player) + '</div></td>' +
         '<td class="num"><b>' + num(r.score) + '</b></td>' +
+        '<td class="num">' + played + '</td>' +
         '<td class="num">' + (r.hit ? '−' + r.hit : '0') + '</td>' +
-        '<td class="num">' + num(r.bench) + '</td>' +
-        '<td>' + status + '</td></tr>';
+        '<td class="num">' + num(r.bench) + '</td></tr>';
     }).join("");
-    return '<div class="note" style="margin-bottom:8px">' + g.sog + ' in · <span class="out-name">' + g.eliminated.length + ' out</span> · ' + g.eog + ' left · lowest first, red = eliminated</div>' +
-      '<div class="freeze"><table class="t"><thead><tr><th>Team</th><th class="num">GW pts</th><th class="num">Hits</th><th class="num">Bench</th><th>Status</th></tr></thead><tbody>' +
+    var caption = opts.live
+      ? g.sog + ' still in · Played is out of 12 (captain counts twice) · lowest first'
+      : g.sog + ' in · <span class="out-name">' + g.eliminated.length + ' out (red)</span> · ' + g.eog + ' left · lowest first';
+    return '<div class="note" style="margin-bottom:8px">' + caption + '</div>' +
+      '<div class="freeze"><table class="t"><thead><tr><th>Team</th><th class="num">GW pts</th><th class="num">Played</th><th class="num">Hits</th><th class="num">Bench</th></tr></thead><tbody>' +
       rows + '</tbody></table></div>';
   }
 
@@ -541,25 +550,20 @@
     var cfg = S.config();
     var h = titleBar("Game On UCL", "h2h", h2h.groups.length + " groups");
 
-    // Prizes
-    h += '<div class="grid cols-4">' +
-      prizeTile("🏆 UCL Winner", h2h.prizes.ucl.winner, "") +
-      prizeTile("🥈 UCL Runner-up", h2h.prizes.ucl.runnerUp, "") +
-      prizeTile("🏆 UEL Winner", h2h.prizes.uel.winner, "") +
-      prizeTile("🥈 UEL Runner-up", h2h.prizes.uel.runnerUp, "") + '</div>';
-
     if (!h2h.groupsConfigured) {
-      h += '<div class="callout" style="margin-top:14px">Groups are <b>auto-seeded</b> by league rank (16 balanced groups). ' +
+      h += '<div class="callout">Groups are <b>auto-seeded</b> by league rank (16 balanced groups). ' +
         'To match your real draw, set the group rosters in <b>Settings → Admin → H2H groups</b>. ' +
         'Group tables below follow FPL gameweek scores as the rules specify.</div>';
     }
 
-    // Group selector
+    // Group selector (dropdown)
+    if (state.group >= h2h.groups.length) state.group = 0;
     h += '<div class="section-title"><h2>Group stage</h2><div class="rule"></div>' +
       '<span class="chip">GW ' + h2h.groupGwsPlayed + '/' + h2h.groupGwsTotal + '</span></div>';
-    h += '<div class="subnav" id="grpNav">' + h2h.groups.map(function (g, i) {
-      return '<button class="tab' + (i === state.group ? ' active' : '') + '" data-g="' + i + '">' + esc(g.name) + '</button>';
-    }).join("") + '</div>';
+    h += '<label class="field"><span class="lab">Group</span><select class="in" id="grpSel">' +
+      h2h.groups.map(function (g, i) {
+        return '<option value="' + i + '"' + (i === state.group ? ' selected' : '') + '>' + esc(g.name) + '</option>';
+      }).join("") + '</select></label>';
     h += '<div id="grpPanel">' + groupPanel(h2h.groups[state.group] || h2h.groups[0], cfg) + '</div>';
 
     // Knockouts
@@ -580,12 +584,9 @@
     h += '</div></div>';
 
     host.innerHTML = h;
-    $all("[data-g]", host).forEach(function (b) {
-      b.addEventListener("click", function () {
-        state.group = +b.getAttribute("data-g");
-        $("#grpPanel", host).innerHTML = groupPanel(h2h.groups[state.group], cfg);
-        $all("[data-g]", host).forEach(function (x) { x.classList.toggle("active", x === b); });
-      });
+    $("#grpSel", host).addEventListener("change", function () {
+      state.group = +this.value;
+      $("#grpPanel", host).innerHTML = groupPanel(h2h.groups[state.group], cfg);
     });
     $("#autoSeed", host).addEventListener("click", function () { autoSeedBracket(ds); });
     var eb = $("#editBracket", host);
@@ -698,31 +699,41 @@
         'Set the real Season-1 rosters in <b>Settings → Admin → Pyramid rosters</b>; Seasons 2 & 3 then follow promotion/relegation automatically.</div>';
     }
 
-    h += '<div class="subnav">' + pyr.seasons.map(function (s) {
-      var badge = s.complete ? ' ●' : (s.played > 0 ? ' ○' : '');
-      return '<button class="tab' + (s.key === cur ? ' active' : '') + '" data-s="' + s.key + '">' + esc(s.name) + badge + '</button>';
-    }).join("") + '</div>';
-
-    var SEA = pyr.seasons.filter(function (s) { return s.key === cur; })[0];
-    var statusPill = SEA.complete ? '<span class="pill gold">Final</span>'
-      : SEA.played > 0 ? '<span class="pill live">GW ' + SEA.played + '/' + SEA.total + '</span>'
-      : '<span class="pill">Not started</span>';
-    h += '<div class="section-title"><h2>' + esc(SEA.name) + '</h2><div class="rule"></div>' +
-      '<span class="chip">GW ' + SEA.gws[0] + '–' + SEA.gws[SEA.gws.length - 1] + '</span></div>';
-    h += '<div class="note" style="margin-bottom:10px">' + statusPill + '</div>';
-
     var cfg = S.config();
-    SEA.divisions.forEach(function (div) {
-      h += divisionCard(div, cfg);
-    });
+    var divKeys = pyr.divisions.map(function (d) { return d.key; });
+    var curDiv = (state.pyrDiv && divKeys.indexOf(state.pyrDiv) >= 0) ? state.pyrDiv : divKeys[0];
+    state.pyrDiv = curDiv;
+
+    h += '<div class="selrow">' +
+      '<label class="field"><span class="lab">Mini season</span><select class="in" id="pyrSeason">' +
+        pyr.seasons.map(function (s) {
+          return '<option value="' + s.key + '"' + (s.key === cur ? ' selected' : '') + '>' + esc(s.name) + '</option>';
+        }).join("") + '</select></label>' +
+      '<label class="field"><span class="lab">Division</span><select class="in" id="pyrDiv">' +
+        pyr.divisions.map(function (d) {
+          return '<option value="' + d.key + '"' + (d.key === curDiv ? ' selected' : '') + '>' + esc(d.name) + '</option>';
+        }).join("") + '</select></label>' +
+      '</div>';
+
+    h += '<div id="pyrPanel"></div>';
 
     host.innerHTML = h;
-    $all("[data-s]", host).forEach(function (b) {
-      b.addEventListener("click", function () {
-        state.seasonKey = b.getAttribute("data-s");
-        location.hash = "pyramid/" + state.seasonKey;
-      });
-    });
+
+    function draw() {
+      var SEA = pyr.seasons.filter(function (s) { return s.key === state.seasonKey; })[0];
+      var div = SEA.divisions.filter(function (d) { return d.key === state.pyrDiv; })[0];
+      var statusPill = SEA.complete ? '<span class="pill gold">Final</span>'
+        : SEA.played > 0 ? '<span class="pill live">GW ' + SEA.played + '/' + SEA.total + '</span>'
+        : '<span class="pill">Upcoming</span>';
+      var p = '<div class="section-title" style="margin-top:8px"><h2>' + esc(div.name) + '</h2><div class="rule"></div>' +
+        '<span class="chip">' + esc(SEA.name) + ' · GW ' + SEA.gws[0] + '–' + SEA.gws[SEA.gws.length - 1] + '</span></div>';
+      p += '<div style="margin-bottom:10px">' + statusPill + '</div>';
+      p += divisionCard(div, cfg);
+      $("#pyrPanel", host).innerHTML = p;
+    }
+    $("#pyrSeason", host).addEventListener("change", function () { state.seasonKey = this.value; draw(); });
+    $("#pyrDiv", host).addEventListener("change", function () { state.pyrDiv = this.value; draw(); });
+    draw();
   }
 
   function divisionCard(div, cfg) {
@@ -738,10 +749,10 @@
         '<td class="num"><b>' + num(r.score) + '</b></td><td class="num">' +
         (r.prize ? '<span class="prize">' + money(r.prize) + '</span>' : '') + '</td></tr>';
     }).join("");
-    return '<div class="card"><div class="hd"><h3>' + esc(div.name) + '</h3>' +
-      '<span class="sub">' + div.size + ' managers · 1st ' + money(div.prizes[1]) + '</span></div>' +
-      (div.rows.length ? '<div class="tablewrap"><table class="t"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Points</th><th class="num">Prize</th></tr></thead><tbody>' + body + '</tbody></table></div>'
-        : '<div class="bd"><div class="note">No managers assigned to this division.</div></div>') + '</div>';
+    if (!div.rows.length) return '<div class="callout">No managers assigned to this division.</div>';
+    return '<div class="note" style="margin-bottom:8px">' + div.size + ' managers · 1st place ' + money(div.prizes[1]) +
+      ' · <span style="color:var(--good)">▲ top ' + cfg.pyramid.promoteCount + ' promoted</span> · <span style="color:var(--bad)">▼ bottom ' + cfg.pyramid.relegateCount + ' relegated</span></div>' +
+      '<div class="freeze"><table class="t"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Points</th><th class="num">Prize</th></tr></thead><tbody>' + body + '</tbody></table></div>';
   }
 
   /* ====================================================================== */
@@ -774,7 +785,7 @@
       h += '<div class="card"><div class="hd"><h3>' + esc(b.h) + '</h3></div>' +
         '<div class="bd"><div class="note" style="color:var(--ink-soft);font-size:13.5px;line-height:1.65">' + b.body + '</div></div></div>';
     });
-    if (R.extra) { h += '<div class="section-title"><h2>Prizes</h2><div class="rule"></div></div>' + R.extra; }
+    if (R.extra) { h += R.extra; }
     host.innerHTML = h;
     $("#rulesBack", host).addEventListener("click", function () { location.hash = R.back; });
   }
@@ -782,23 +793,23 @@
   function compRules(topic, cfg) {
     function rule(n) { var r = cfg.rules.filter(function (x) { return x.n === n; })[0]; return r ? esc(r.body) : ""; }
     var g = cfg.h2h.groupStageGws, kn = cfg.h2h.knockout;
-    if (topic === "classic") return { name: "Classic League", back: "classic", extra: prizeReferenceCard(), blocks: [
+    if (topic === "classic") return { name: "Classic League", back: "classic", extra: prizesBlock(prizeReferenceCard()), blocks: [
       { h: "How it works", body: "Your overall Fantasy Premier League points across all " + cfg.totalGameweeks + " gameweeks. The season-long total is your league score — the highest total at the end wins." },
       { h: "Prizes", body: "The top 45 managers are paid — see the full breakdown below." },
       { h: "Tie breakers", body: rule(2) } ] };
-    if (topic === "monthly") return { name: "Monthly Winners", back: "monthly", extra: monthlyPrizeCard(cfg), blocks: [
+    if (topic === "monthly") return { name: "Monthly Winners", back: "monthly", extra: prizesBlock(monthlyPrizeCard(cfg)), blocks: [
       { h: "How it works", body: "Each month scores only the gameweeks that fall in that month, and <b>includes hits</b>. The top 3 each month (August–May) win." },
       { h: "Tie breakers", body: rule(7) } ] };
-    if (topic === "lms") return { name: "Last Manager Standing", back: "lms", extra: lmsPrizeCard(cfg), blocks: [
+    if (topic === "lms") return { name: "Last Manager Standing", back: "lms", extra: prizesBlock(lmsPrizeCard(cfg)) + lmsGridCard(cfg), blocks: [
       { h: "Scoring", body: rule(3) },
       { h: "Eliminations", body: "Each gameweek the lowest scorers among the survivors are eliminated. The number out per GW is fixed (see the elimination grid). The last manager left standing is champion." },
       { h: "Tie breakers", body: rule(4) } ] };
-    if (topic === "pyramid") return { name: "The Pyramid Battle", back: "pyramid", extra: pyramidPrizeCard(cfg), blocks: [
+    if (topic === "pyramid") return { name: "The Pyramid Battle", back: "pyramid", extra: prizesBlock(pyramidPrizeCard(cfg)), blocks: [
       { h: "Structure", body: "4 divisions — Elite, Championship, Challenger, Conference — across 3 mini-seasons: " +
         cfg.pyramid.seasons.map(function (s) { return "<b>" + esc(s.name) + "</b> (GW " + s.gws[0] + "–" + s.gws[s.gws.length - 1] + ")"; }).join(", ") + "." },
       { h: "Promotion & relegation", body: "Top " + cfg.pyramid.promoteCount + " of each division are promoted and the bottom " + cfg.pyramid.relegateCount + " are relegated for the next mini-season." },
       { h: "Scoring & tie breakers", body: rule(6) } ] };
-    if (topic === "h2h") return { name: "Game On UCL (H2H)", back: "h2h", extra: h2hPrizeCard(cfg), blocks: [
+    if (topic === "h2h") return { name: "Game On UCL (H2H)", back: "h2h", extra: prizesBlock(h2hPrizeCard(cfg)), blocks: [
       { h: "Group stage", body: cfg.h2h.groupCount + " groups of " + cfg.h2h.perGroup + ", GW " + g[0] + "–" + g[g.length - 1] +
         ", round robin (" + cfg.h2h.pointsWin + "/" + cfg.h2h.pointsDraw + "/" + cfg.h2h.pointsLoss + "). Top 2 of each group advance to the UCL knockouts; 3rd & 4th drop to the UEL knockouts." },
       { h: "Knockouts", body: kn.map(function (k) { return "<b>" + esc(k.name) + "</b> — GW " + k.gws.join("–") + (k.legs === 2 ? " (2 legs)" : " (1 leg)"); }).join("<br>") },
@@ -806,6 +817,20 @@
     return null;
   }
 
+  function prizesBlock(card) {
+    return '<div class="section-title"><h2>Prizes</h2><div class="rule"></div></div>' + card;
+  }
+  function lmsGridCard(cfg) {
+    var start = cfg.expectedManagers || 245, running = start, rows = [];
+    for (var gw = 1; gw <= cfg.totalGameweeks; gw++) {
+      var exp = cfg.lms.elimPerGw[gw] || 0;
+      rows.push({ gw: gw, sog: running, eliminated: null, expected: exp, eog: running - exp });
+      running -= exp;
+    }
+    var mid = Math.ceil(rows.length / 2);
+    return '<div class="section-title"><h2>Elimination grid</h2><div class="rule"></div><span class="chip">SOG=start · EOG=end</span></div>' +
+      '<div class="lmsgrid">' + gridTable(rows.slice(0, mid)) + gridTable(rows.slice(mid)) + '</div>';
+  }
   function monthlyPrizeCard(cfg) {
     var rows = cfg.months.map(function (m) {
       return '<tr><td>' + esc(m.name) + '</td><td class="num prize">' + money(m.prizes[1]) + '</td>' +

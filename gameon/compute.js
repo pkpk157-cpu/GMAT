@@ -169,7 +169,9 @@
       var table = contenders.map(function (c) {
         var hh = (ds.history[c.id] && ds.history[c.id][gw]) ? ds.history[c.id][gw] : null;
         return { id: c.id, name: nm(mm, c.id), player: pl(mm, c.id),
-                 score: c.score, bench: c.bench, hit: hh ? hh.h : 0, eliminated: !!elimSet[c.id] };
+                 score: c.score, bench: c.bench, hit: hh ? hh.h : 0,
+                 played: (hh && hh.pl != null) ? hh.pl : null, playedTotal: (hh && hh.plt) ? hh.plt : 12,
+                 eliminated: !!elimSet[c.id] };
       }).sort(function (a, b) { return (a.score - b.score) || (a.bench - b.bench); });
 
       perGw.push({
@@ -199,6 +201,23 @@
       }
     }
 
+    // Live (in-progress) gameweek — the current GW that isn't finished yet.
+    // Shows the survivors' running scores + how many players have played.
+    var liveGw = null;
+    ds.bootstrap.events.forEach(function (e) { if (e.is_current && !(e.finished && e.data_checked)) liveGw = e.id; });
+    var live = null;
+    if (liveGw != null) {
+      var aliveIds = Object.keys(alive).map(Number);
+      var ltable = aliveIds.map(function (id) {
+        var hh = (ds.history[id] && ds.history[id][liveGw]) ? ds.history[id][liveGw] : null;
+        return { id: id, name: nm(mm, id), player: pl(mm, id),
+                 score: hh ? hh.p : 0, bench: hh ? hh.b : 0, hit: hh ? hh.h : 0,
+                 played: (hh && hh.pl != null) ? hh.pl : null, playedTotal: (hh && hh.plt) ? hh.plt : 12,
+                 eliminated: false };
+      }).sort(function (a, b) { return (a.score - b.score) || (a.bench - b.bench); });
+      live = { gw: liveGw, table: ltable, sog: aliveIds.length, eog: aliveIds.length, eliminated: [] };
+    }
+
     return {
       finishedCount: finished.length,
       survivors: survivors,
@@ -206,6 +225,7 @@
       eliminatedAt: eliminatedAt,
       grid: fullGrid,
       perGw: perGw,
+      live: live,
       champion: survivors.length === 1 ? survivors[0] : null,
       prizes: cfg().lms.prizes
     };

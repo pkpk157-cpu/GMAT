@@ -92,6 +92,7 @@ async function h2hAll(id) {
 
   console.log("Fetching manager histories…");
   const history = {};
+  const pastSeasons = {};
   const hist = await pool(managers, async (m) => {
     const h = await getJSON("/entry/" + m.id + "/history/");
     const gw = {};
@@ -99,6 +100,9 @@ async function h2hAll(id) {
       gw[c.event] = { p: c.points, h: c.event_transfers_cost || 0, b: c.points_on_bench || 0, t: c.total_points };
     });
     history[m.id] = gw;
+    if (h.past && h.past.length) {
+      pastSeasons[m.id] = h.past.map((p) => ({ season: p.season_name, rank: p.rank, total: p.total_points }));
+    }
   }, 6);
   console.log("  histories done, failed " + hist.failed);
 
@@ -134,7 +138,7 @@ async function h2hAll(id) {
   const dataset = {
     updatedAt: new Date().toISOString(), season: "Game On V12",
     bootstrap: { events }, league: { id: CLASSIC, name: name },
-    managers, history, h2h, _failed: hist.failed || 0
+    managers, history, h2h, pastSeasons: pastSeasons, _failed: hist.failed || 0
   };
   fs.writeFileSync("data.json", JSON.stringify({ generatedAt: dataset.updatedAt, dataset }));
   console.log("Wrote data.json — " + managers.length + " managers, " + H2H.length +

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>FPL Game On V12 — League Tracker</title>
+<meta name="description" content="Live tracker for the Game On V12 private FPL league — Classic standings, Monthly winners, Last Manager Standing, Game On UCL (H2H) and the Pyramid Battle." />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#120a22" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Game On V12" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="badge">⚽</div>
+      <div class="t">
+        <b>FPL GAME ON</b>
+        <span id="brandSub">V12 · League Tracker</span>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="datastate" id="dataState">No data yet</div>
+    <button class="iconbtn" id="btnRefresh" title="Refresh from FPL">↻</button>
+  </header>
+
+  <nav class="tabs" id="tabs"><!-- tabs injected --></nav>
+
+  <main class="wrap">
+    <section class="view" data-view="home"></section>
+    <section class="view" data-view="classic"></section>
+    <section class="view" data-view="monthly"></section>
+    <section class="view" data-view="lms"></section>
+    <section class="view" data-view="h2h"></section>
+    <section class="view" data-view="pyramid"></section>
+    <section class="view" data-view="rules"></section>
+    <section class="view" data-view="settings"></section>
+    <div class="foot">
+      FPL Game On V12 · community tracker · data © the Fantasy Premier League.<br>
+      Not affiliated with the Premier League or FPL. Refresh to update from the official API.
+    </div>
+  </main>
+
+  <div id="toast"></div>
+  <div class="modal-back" id="modalBack">
+    <div class="modal">
+      <div class="hd"><h3 id="modalTitle">—</h3><span class="x" id="modalClose">×</span></div>
+      <div class="bd" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="data.js"></script>
+  <script src="compute.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

@@ -263,9 +263,12 @@
     var finished = {}; C.finishedGws(ds).forEach(function (g) { finished[g] = true; });
     var over = (ov().pyramid && ov().pyramid.rosters) || {}; // { s1: { elite:[ids] } }
 
-    // Base S1 rosters.
+    // Base S1 rosters: admin override (ids) > named roster from config
+    // (resolved to entry ids) > auto split by rank.
     var rosters = {};
-    rosters[p.seasons[0].key] = over[p.seasons[0].key] || autoInitialRosters(ds, divisions);
+    var s1key = p.seasons[0].key;
+    var named = resolveNamedRosters(ds, p);
+    rosters[s1key] = over[s1key] || named || autoInitialRosters(ds, divisions);
 
     var seasonResults = [];
     p.seasons.forEach(function (season, si) {
@@ -301,6 +304,35 @@
     return { seasons: seasonResults, rosters: rosters, divisions: p.divisions,
              autoInitial: !over[p.seasons[0].key] };
   };
+
+  // Resolve config.pyramid.seasonOneRosterNames (manager names) to entry ids
+  // using the league roster's player names. Handles case/diacritics and
+  // hyphen/space splits via a spaceless fallback key. Returns null if unusable.
+  function resolveNamedRosters(ds, p) {
+    var named = p.seasonOneRosterNames;
+    if (!named) return null;
+    var norm = function (s) {
+      return (s || "").toString().normalize("NFD").replace(/[̀-ͯ]/g, "")
+        .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    };
+    var flat = function (s) { return norm(s).replace(/\s+/g, ""); };
+    var byName = {}, byFlat = {};
+    ds.managers.forEach(function (m) {
+      byName[norm(m.playerName)] = m.id;
+      byFlat[flat(m.playerName)] = m.id;
+    });
+    var out = {}, matched = 0;
+    Object.keys(named).forEach(function (div) {
+      out[div] = [];
+      named[div].forEach(function (nm) {
+        var id = byName[norm(nm)];
+        if (id == null) id = byFlat[flat(nm)];
+        if (id != null) out[div].push(id);
+      });
+      matched += out[div].length;
+    });
+    return matched > 0 ? out : null;
+  }
 
   function autoInitialRosters(ds, divisionKeys) {
     // Split managers by overall league rank into equal tiers (best -> Elite).
@@ -341,46 +373,62 @@
     var finished = {}; C.finishedGws(ds).forEach(function (g) { finished[g] = true; });
     var groupGws = h.groupStageGws.filter(function (g) { return finished[g]; });
 
-    var groupsCfg = (ov().h2h && ov().h2h.groups) || autoGroups(ds, h);
-    var groups = groupsCfg.map(function (grp, gi) {
-      var ids = grp.entries || [];
-      var table = ids.map(function (id) {
-        return { id: id, name: nm(mm, id), player: pl(mm, id),
-                 w: 0, d: 0, l: 0, pts: 0, sf: 0, sa: 0, gwPts: 0 };
-      });
-      var byId = {}; table.forEach(function (t) { byId[t.id] = t; });
-      // Round-robin: each pair compared once per group GW they both played,
-      // BUT a true round-robin plays each opponent once. We approximate the
-      // group table by comparing every pair across ALL played group GWs using
-      // their aggregate group-stage score (deterministic, ties = draw), which
-      // reproduces the same ordering FPL H2H tends to give.
-      for (var a = 0; a < ids.length; a++) {
-        for (var b = a + 1; b < ids.length; b++) {
-          var ta = byId[ids[a]], tb = byId[ids[b]];
-          var sa = sumGws(ds, ids[a], groupGws) || 0;
-          var sb = sumGws(ds, ids[b], groupGws) || 0;
-          if (sa > sb) { ta.w++; tb.l++; ta.pts += h.pointsWin; tb.pts += h.pointsLoss; }
-          else if (sb > sa) { tb.w++; ta.l++; tb.pts += h.pointsWin; ta.pts += h.pointsLoss; }
-          else { ta.d++; tb.d++; ta.pts += h.pointsDraw; tb.pts += h.pointsDraw; }
-        }
-      }
-      table.forEach(function (t) { t.gwPts = sumGws(ds, t.id, groupGws) || 0; });
-      table.sort(function (x, y) { return (y.pts - x.pts) || (y.gwPts - x.gwPts); });
-      table.forEach(function (t, i) {
-        t.pos = i + 1;
-        t.dest = (i < h.qualify.uclPerGroup) ? "UCL"
-               : (i < h.qualify.uclPerGroup + h.qualify.uelPerGroup) ? "UEL" : "";
-      });
-      return { name: grp.name || ("Group " + (gi + 1)), table: table,
-               played: groupGws.length, total: h.groupStageGws.length,
-               complete: h.groupStageGws.every(function (g) { return finished[g]; }) };
+    var leagueIds = cfg().h2hGroupLeagueIds || [];
+    var haveFetched = leagueIds.length && leagueIds.some(function (id) {
+      return ds.h2h && ds.h2h[id] && ds.h2h[id].results && ds.h2h[id].results.length;
     });
+    var complete = h.groupStageGws.every(function (g) { return finished[g]; });
+    var dest = function (i) {
+      return (i < h.qualify.uclPerGroup) ? "UCL"
+           : (i < h.qualify.uclPerGroup + h.qualify.uelPerGroup) ? "UEL" : "";
+    };
+    var groups;
 
-    // Knockout bracket (admin-managed; auto-seed offered from group results).
+    if (haveFetched) {
+      // Accurate: real FPL H2H standings for each group league (actual results).
+      groups = leagueIds.map(function (id, gi) {
+        var d = (ds.h2h && ds.h2h[id]) || {};
+        var res = (d.results || []).slice().sort(function (a, b) { return (a.rank || 999) - (b.rank || 999); });
+        var table = res.map(function (r, i) {
+          return { id: r.entry, name: r.entry_name, player: r.player_name,
+                   w: r.matches_won, d: r.matches_drawn, l: r.matches_lost,
+                   pts: r.total, gwPts: r.points_for, pos: i + 1, dest: dest(i) };
+        });
+        var gname = (d.league && d.league.name) ? d.league.name : ("Group " + String.fromCharCode(65 + gi));
+        return { name: gname, table: table, played: groupGws.length,
+                 total: h.groupStageGws.length, complete: complete };
+      });
+    } else {
+      // Fallback: build groups from GW scores (used before H2H data is pulled).
+      var groupsCfg = (ov().h2h && ov().h2h.groups) || autoGroups(ds, h);
+      groups = groupsCfg.map(function (grp, gi) {
+        var ids = grp.entries || [];
+        var table = ids.map(function (id) {
+          return { id: id, name: nm(mm, id), player: pl(mm, id), w: 0, d: 0, l: 0, pts: 0, gwPts: 0 };
+        });
+        var byId = {}; table.forEach(function (t) { byId[t.id] = t; });
+        for (var a = 0; a < ids.length; a++) {
+          for (var b = a + 1; b < ids.length; b++) {
+            var ta = byId[ids[a]], tb = byId[ids[b]];
+            var sa = sumGws(ds, ids[a], groupGws) || 0;
+            var sb = sumGws(ds, ids[b], groupGws) || 0;
+            if (sa > sb) { ta.w++; tb.l++; ta.pts += h.pointsWin; }
+            else if (sb > sa) { tb.w++; ta.l++; tb.pts += h.pointsWin; }
+            else { ta.d++; tb.d++; ta.pts += h.pointsDraw; tb.pts += h.pointsDraw; }
+          }
+        }
+        table.forEach(function (t) { t.gwPts = sumGws(ds, t.id, groupGws) || 0; });
+        table.sort(function (x, y) { return (y.pts - x.pts) || (y.gwPts - x.gwPts); });
+        table.forEach(function (t, i) { t.pos = i + 1; t.dest = dest(i); });
+        return { name: grp.name || ("Group " + String.fromCharCode(65 + gi)), table: table,
+                 played: groupGws.length, total: h.groupStageGws.length, complete: complete };
+      });
+    }
+
     var bracket = (ov().h2h && ov().h2h.bracket) || null;
 
-    return { groups: groups, groupsConfigured: !!(ov().h2h && ov().h2h.groups),
-             bracket: bracket, schedule: h.knockout, prizes: h.prizes,
+    return { groups: groups, groupsConfigured: haveFetched || !!(ov().h2h && ov().h2h.groups),
+             fromFpl: haveFetched, bracket: bracket, schedule: h.knockout, prizes: h.prizes,
              groupGwsPlayed: groupGws.length, groupGwsTotal: h.groupStageGws.length };
   };
 

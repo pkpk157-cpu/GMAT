@@ -39,8 +39,12 @@
        Fill these in Settings once. classicLeagueId drives the whole roster
        (all 245 managers). h2hGroupLeagueIds is one FPL H2H league id per
        group (16 of them) — optional; the H2H tab also works from GW scores. */
-    classicLeagueId: null,     // e.g. 314
-    h2hGroupLeagueIds: [],     // e.g. [111,222, ...] one per group (optional)
+    classicLeagueId: 478139,   // Game On V12 classic league
+    // One FPL H2H league id per group, in order Group A … Group P.
+    h2hGroupLeagueIds: [
+      831308, 831309, 831313, 831338, 831344, 831346, 831350, 831351,
+      831357, 831362, 831367, 831369, 831370, 831372, 831383, 831385
+    ],
     expectedManagers: 245,
     joiningFee: null,          // set if you want the pot shown on Home
 
@@ -122,7 +126,83 @@
         { key: "s3", name: "Mini Season 3", gws: range(27, 38) }
       ],
       promoteCount: 5,   // top 5 of each division go up next mini-season
-      relegateCount: 5   // bottom 5 of each division go down next mini-season
+      relegateCount: 5,  // bottom 5 of each division go down next mini-season
+      // Season-1 division rosters (from the league one-pager). Manager names
+      // are resolved to FPL entry ids against the classic-league roster.
+    seasonOneRosterNames: {
+      elite: [
+        "Aakriti Mehrotra", "Abhishek Thard", "ADWAIT BHATTACHARYA", "Akshay Surve",
+        "Aleston Fernandes", "Alson D'souza", "Aman Arora", "Amar Sarvaria",
+        "Amit Patil", "Amrish Sawe", "Anurag Red-dy", "Arjun Mahrishi",
+        "Arpan Sur", "Ashis Nayak", "Avishek Mitra", "Basil Sam",
+        "Bhavin Jatania", "Big Slick", "Bishisht Shome", "Cherag Ramnathan",
+        "Dane Pereira", "darrell b", "Devansh Khaitan", "Dhaval Budhdeo",
+        "Dhruv Patel", "Geordie Wilson", "Gopal Bhagtani", "hardik s",
+        "Harsh Garbyal", "Harsh Tripathi", "Ishaan Ganguly", "Jaidev Tripathy",
+        "Jayesh Pawar", "Joash P", "Joy Roychowdhury", "Karan Bhardwaj",
+        "Kunaal Dadwal", "LASIL DIAS", "Mahikaansh Reddy", "Neeraj Bhojani",
+        "Nehal Reddy", "Neol Goveas", "Niranjan Desai", "Nishit Reddy",
+        "Pradyumna Kodali", "Prathap Devadiga", "Rahil Mirchandani", "Ryan Godinho",
+        "Samson Baretto", "Sehaj Singh", "Shaun Lalkaka", "Shivamshu Prabhakar",
+        "Siddharth Shetty", "Sidharth Shanon", "Srikanth Polisetti", "Tadu Novin",
+        "tarakesh kilaru", "Tnmay P Gaude", "Varun Venkatesh", "Vedant Bihani",
+        "Viren Khanna"
+      ],
+      championship: [
+        "Abhinav Shankar", "Abhishek Yerra", "Adhitya Vohra", "Aditya Sood",
+        "Alimpan Barua", "Aman Mehra", "Aman Morarka", "Aman Sheth",
+        "Amit Lakhani", "Amol Varhadé", "Anirudh Kanga", "Ankit Agarwal",
+        "Anshul Mohan", "Avi Anand", "Avijeet Alagati", "Avinash Menon",
+        "Balraj Snehi", "Bharat Subramaniam", "Bharat Varma", "Chanakya Gupta",
+        "Chatanya Mahajan", "Dhruv Haria", "Himanshu Madan", "Himay Kotak",
+        "Imlikokba longkumer", "Jeet Shah", "Karan Singh", "Karthik MG",
+        "Krishna Moorthy", "Manav Malhotra", "Maryknoll Dsouza", "Nayaab Qamar",
+        "Nishant Gupta", "Parin Chheda", "Parth Poddar", "Parth Sanghvi",
+        "Rahil Puri", "RaHuL Iyer", "Rohan Devireddy", "Rohan Punjani",
+        "Rohit Reddy", "rohit tare", "Sachin Uppal", "Sahil Sankhe",
+        "Saptarsi Das", "Shantam Mehra", "Shashank Sabesan", "Shovik Banerjee",
+        "Shubham Khandelwal", "Shubham Nigam", "Shubranshu Prabhakar", "Sid Uttam",
+        "Sidhant Mankar", "Souradeep Chandra", "Sudarshan Kongbrai", "suraj penukonda",
+        "Udit Doshi", "Varun Sood", "Vibhu Anand", "Yash Sultania",
+        "Yash Tandon"
+      ],
+      challenger: [
+        "A V", "Aashish Chaube", "Abhijit Raja", "Abhishek Rania",
+        "Abhishek Varma", "Adwait Wajpe", "Ajay Rachakonda", "Akshay Kulkarni",
+        "Amitabh Gautam", "Anchit Singh", "Andy Swer", "Anil Singh",
+        "Arjun Shaji", "Arpit Roy", "Ashley Braganza", "Ashrant Kohli",
+        "Atif Hussain", "Chayan Mukhopadhyay", "Connel Coelho", "Danston Rodrigues",
+        "Dennis Figueiredo", "Falak Shah", "Gaurav Jethwani", "Harsh Bubna",
+        "Harsh Dattani", "Harshit Bhagat", "Heldon Dmello", "Himangshu Das",
+        "Hrushikesh Pingale", "Ishaan Dass", "Joshua DCosta", "Karan Seth",
+        "Kartik Manchanda", "Kartik Purohit", "Kaushal Bihani", "kushal Tiwari",
+        "Kyros Almeida", "Malay Bhagat", "Manoj B", "Mrinal Choudhary",
+        "Mukul Modi", "Nakul Moolji", "nihal shetty", "Nikunj Jain",
+        "Pranav Krishna", "Raghav Khurana", "Raghav Sanghi", "Rishi Sharma",
+        "Rohit Karna", "Shivam Singhal", "Sid Trivedi", "Siddhesh Owalekar",
+        "Sumedh Pahwa", "ujjvall lulla", "Uzair Patankar", "Varun Narula",
+        "Varun Shah", "Vasant rao", "Vishal Shah", "Yash Gawai",
+        "Zaid Sheikh"
+      ],
+      conference: [
+        "Aakash Subramanian", "Aayushi Sanghvi", "Abhimanyu Pathania", "Ahan Khanna",
+        "Akshay Ramachandran", "Albert Malngiang", "Allan Crasto", "Aman Ghai",
+        "AMAN RAJ", "Andrew solomon clement", "Aniket Mishra", "Ankit Kumar",
+        "Darayus Bhathena", "Delwyn Serrao", "Dexter Dias", "Dhruv Shanghvi",
+        "Dinesh Relwani", "Duane Pereira", "Durga Prasad Mishra", "Dwayne Fernandes",
+        "EDWIN SNEHAM", "Glen Pinto", "Heramb Kinjawadekar", "Inderpreet Singh",
+        "Ivaan Mehta", "Jenil Shah", "Jishnu Batabyal", "Joshua Alphonso",
+        "KARAN SHARDA", "Karan Shivhare", "Kushagr Singh", "manan mehta",
+        "MANAV SANGHVI", "Mayank Saraf", "Meet Doshi", "Mithun .",
+        "Mohit Modi", "Mudit Kapoor", "Murari Sharma", "Nanik Samtani",
+        "Nayant Parekh", "Niraj Jain", "Nishant Nagar", "Onkar Mistry",
+        "Prakul Tyagi", "Prateek Khubchandani", "Raghav Kapoor", "Raghav Rastogi",
+        "Rahul Mehta", "Rajeev Asija", "Rishabh Thakur", "Sags K",
+        "Sahil Parekh", "sahil vijan", "Shivek Jindal", "Shraman Nakhat",
+        "Siddharth Kewalramani", "Sunshine Khongwir", "V S", "Varghese John",
+        "Yash Shah", "Zarna Patel"
+      ]
+    },
     },
 
     /* ---- Game On UCL (H2H) ----------------------------------------------- */

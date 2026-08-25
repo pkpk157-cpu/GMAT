@@ -231,6 +231,12 @@ a { color:var(--accent); text-decoration:none; }
 }
 .stat .k { font-size:27px; font-weight:800; line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
 .stat .l { font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.8px; margin-top:8px; }
+/* four highlight cards always in one row (LMS) */
+.statrow { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.statrow .stat { padding:13px 6px; }
+.statrow .stat .k { font-size:23px; }
+.statrow .stat .l { font-size:9.5px; letter-spacing:.4px; margin-top:6px; }
+@media (max-width:360px){ .statrow .stat .k { font-size:20px; } }
 
 /* ---------- podium ---------- */
 .podium { display:grid; grid-template-columns:1fr 1.12fr 1fr; gap:12px; align-items:end; }

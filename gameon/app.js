@@ -60,6 +60,11 @@
   function lsGet(k) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   function ordinal(n) { var s = ["th","st","nd","rd"], v = n % 100; return n + (s[(v-20)%10] || s[v] || s[0]); }
+  function monthLabel(m) {
+    var late = { jan:1, feb:1, mar:1, apr:1, may:1, jun:1, jul:1 };
+    var yr = (S.config().seasonStartYear || 2025) + (late[m.key] ? 1 : 0);
+    return m.name.slice(0, 3) + "-" + ("0" + (yr % 100)).slice(-2);
+  }
 
   function toast(msg) {
     var t = $("#toast"); t.textContent = msg; t.classList.add("show");
@@ -410,8 +415,7 @@
     var h = titleBar("Monthly Winners", "monthly");
     h += '<label class="field"><span class="lab">Month</span><select class="in" id="monthSel">' +
       months.map(function (m) {
-        var badge = m.complete ? " — final" : (m.played > 0 ? " — live" : " — upcoming");
-        return '<option value="' + m.key + '"' + (m.key === cur ? " selected" : "") + '>' + esc(m.name + badge) + '</option>';
+        return '<option value="' + m.key + '"' + (m.key === cur ? " selected" : "") + '>' + esc(monthLabel(m)) + '</option>';
       }).join("") + '</select></label>';
 
     var M = months.filter(function (m) { return m.key === cur; })[0];
@@ -428,7 +432,7 @@
     if (!M) return '';
     var statusPill = M.complete ? '<span class="pill gold">Final</span>'
       : M.played > 0 ? '<span class="pill live">Live · GW ' + M.played + '/' + M.total + '</span>'
-      : '<span class="pill">Not started</span>';
+      : '<span class="pill">Upcoming</span>';
     var h = '<div class="section-title" style="margin-top:6px"><h2>' + esc(M.name) + '</h2><div class="rule"></div>' +
       '<span class="chip">GW ' + M.gws.join(", ") + '</span></div>';
     h += '<div style="margin-bottom:10px">' + statusPill + '</div>';
@@ -458,41 +462,30 @@
 
     var h = titleBar("Last Manager Standing", "lms", "Only 1 can stand");
 
-    h += '<div class="grid cols-4">' +
+    h += '<div class="statrow">' +
       stat(started, "Started") +
-      stat(lms.survivorsCount, "Still alive") +
-      stat(lms.finishedCount, "GWs played") +
-      stat(started - lms.survivorsCount, "Eliminated") + '</div>';
+      stat(lms.survivorsCount, "Alive") +
+      stat(lms.finishedCount, "GWs") +
+      stat(started - lms.survivorsCount, "Out") + '</div>';
 
     if (lms.champion) {
       h += '<div class="card" style="margin-top:14px;border-color:var(--gold)"><div class="bd" style="text-align:center">' +
         '<div style="font-size:34px">👑</div><h3 style="margin:6px 0">' + esc(lms.champion.name) + '</h3>' +
-        '<div class="note">The Last Manager Standing — ' + money(lms.prizes.champion) + '</div></div></div>';
+        '<div class="note">The Last Manager Standing</div></div></div>';
     }
 
-    // Prizes
-    h += '<div class="grid cols-3" style="margin-top:14px">' +
-      prizeTile("🏆 Champion", lms.prizes.champion, "g1") +
-      prizeTile("🥈 Runner-up", lms.prizes.runnerUp, "g2") +
-      prizeTile("🥉 3rd place", lms.prizes.third, "g3") + '</div>';
-
-    // Survivors
-    if (lms.survivorsCount > 1) {
-      h += '<div class="section-title"><h2>Survivors (' + lms.survivorsCount + ')</h2><div class="rule"></div></div>';
-      h += '<div class="card"><div class="bd">' + lms.survivors.map(function (s) {
-        return '<span class="pill live" style="margin:3px">' + esc(s.name) + '</span>';
-      }).join(" ") + '</div></div>';
-    }
-
-    // Gameweek results — one dropdown per GW, latest open, worst first.
-    var weeks = lms.perGw.slice().reverse();
+    // Gameweek results — a single GW dropdown, latest selected, worst first.
+    var weeks = lms.perGw;
     if (weeks.length) {
-      h += '<div class="section-title"><h2>Gameweek results</h2><div class="rule"></div>' +
-        '<span class="chip">lowest first</span></div>';
-      h += '<div class="note" style="margin-bottom:10px">Each week\'s scores, worst first — the bottom faces elimination. <span class="out-name">Red</span> = eliminated that GW.</div>';
-      weeks.forEach(function (g, idx) {
-        h += gwAccordion(g, idx === 0);
-      });
+      var latest = weeks[weeks.length - 1].gw;
+      var curGw = (state.lmsGw && weeks.some(function (w) { return w.gw === state.lmsGw; })) ? state.lmsGw : latest;
+      state.lmsGw = curGw;
+      h += '<div class="section-title"><h2>Gameweek results</h2><div class="rule"></div></div>';
+      h += '<label class="field"><span class="lab">Gameweek</span><select class="in" id="lmsGwSel">' +
+        weeks.slice().reverse().map(function (w) {
+          return '<option value="' + w.gw + '"' + (w.gw === curGw ? ' selected' : '') + '>GW ' + w.gw + '</option>';
+        }).join("") + '</select></label>';
+      h += '<div id="lmsGwPanel">' + lmsGwTable(weekByGw(weeks, curGw)) + '</div>';
     }
 
     // Elimination grid (two columns, like the poster)
@@ -502,7 +495,13 @@
     h += '<div class="lmsgrid">' + gridTable(g.slice(0, mid)) + gridTable(g.slice(mid)) + '</div>';
 
     host.innerHTML = h;
+    var sel = $("#lmsGwSel", host);
+    if (sel) sel.addEventListener("change", function () {
+      state.lmsGw = +this.value;
+      $("#lmsGwPanel", host).innerHTML = lmsGwTable(weekByGw(weeks, state.lmsGw));
+    });
   }
+  function weekByGw(weeks, gw) { return weeks.filter(function (w) { return w.gw === gw; })[0]; }
 
   function gridTable(rows) {
     var body = rows.map(function (r) {
@@ -517,7 +516,8 @@
     return '<div class="stat"><div class="k">' + money(amount) + '</div><div class="l">' + esc(label) + '</div></div>';
   }
 
-  function gwAccordion(g, open) {
+  function lmsGwTable(g) {
+    if (!g) return '';
     var rows = (g.table || []).map(function (r) {
       var nameCls = r.eliminated ? "who out-name" : "who";
       var status = r.eliminated ? '<span class="pill out">Out</span>' : '<span class="pill live">Safe</span>';
@@ -528,12 +528,9 @@
         '<td class="num">' + num(r.bench) + '</td>' +
         '<td>' + status + '</td></tr>';
     }).join("");
-    return '<details class="gwacc"' + (open ? " open" : "") + '>' +
-      '<summary><span class="gw">GW ' + g.gw + '</span>' +
-      '<span class="meta">' + g.sog + ' in · <span class="out-name">' + g.eliminated.length + ' out</span> · ' + g.eog + ' left</span>' +
-      svg("chev", 16) + '</summary>' +
-      '<div class="tablewrap"><table class="t"><thead><tr><th>Team</th><th class="num">GW pts</th><th class="num">Hits</th><th class="num">Bench</th><th>Status</th></tr></thead><tbody>' +
-      rows + '</tbody></table></div></details>';
+    return '<div class="note" style="margin-bottom:8px">' + g.sog + ' in · <span class="out-name">' + g.eliminated.length + ' out</span> · ' + g.eog + ' left · lowest first, red = eliminated</div>' +
+      '<div class="freeze"><table class="t"><thead><tr><th>Team</th><th class="num">GW pts</th><th class="num">Hits</th><th class="num">Bench</th><th>Status</th></tr></thead><tbody>' +
+      rows + '</tbody></table></div>';
   }
 
   /* ====================================================================== */
@@ -846,6 +843,7 @@
     h += field("Classic League ID", '<input class="in" id="cfgClassic" value="' + esc(cfg.classicLeagueId || "") + '" placeholder="e.g. 314" inputmode="numeric">');
     h += field("H2H group League IDs (comma-separated, optional)", '<input class="in" id="cfgH2h" value="' + esc((cfg.h2hGroupLeagueIds || []).join(", ")) + '" placeholder="one FPL H2H league id per group">');
     h += field("Joining fee (optional, for prize pool)", '<input class="in" id="cfgFee" value="' + esc(cfg.joiningFee || "") + '" inputmode="numeric">');
+    h += field("Season start year (for month labels, e.g. 2026)", '<input class="in" id="cfgYear" value="' + esc(cfg.seasonStartYear || "") + '" inputmode="numeric">');
     h += field("Highlight my team (entry ID)", '<input class="in" id="cfgMe" value="' + esc(state.me || "") + '" placeholder="your FPL entry id" inputmode="numeric">');
     h += '<div class="btnrow"><button class="btn primary" id="saveLeague">Save</button></div>';
     h += '</div></div>';
@@ -903,10 +901,12 @@
       var classic = parseInt($("#cfgClassic", host).value, 10);
       var h2h = $("#cfgH2h", host).value.split(",").map(function (s) { return parseInt(s.trim(), 10); }).filter(function (n) { return !isNaN(n); });
       var fee = parseInt($("#cfgFee", host).value, 10);
+      var year = parseInt($("#cfgYear", host).value, 10);
       S.saveConfig({
         classicLeagueId: isNaN(classic) ? null : classic,
         h2hGroupLeagueIds: h2h,
-        joiningFee: isNaN(fee) ? null : fee
+        joiningFee: isNaN(fee) ? null : fee,
+        seasonStartYear: isNaN(year) ? S.config().seasonStartYear : year
       });
       var me = parseInt($("#cfgMe", host).value, 10);
       state.me = isNaN(me) ? null : me; lsSet(ME_KEY, state.me);

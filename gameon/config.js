@@ -45,6 +45,9 @@
     joiningFee: null,          // set if you want the pot shown on Home
 
     totalGameweeks: 38,
+    // Calendar year the season starts in (Aug). Used for month labels like
+    // "Aug-26"; Jan–May roll over to the next year. Editable in Settings.
+    seasonStartYear: 2025,
 
     /* ---- Classic league prizes (rank -> amount) -------------------------- */
     classicPrizes: {

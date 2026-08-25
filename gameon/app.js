@@ -319,29 +319,19 @@
   /* ====================================================================== */
   function renderClassic(host, ds) {
     var rows = K.classic(ds);
-    var top3 = rows.slice(0, 3);
     var h = '';
 
     h += '<div class="section-title"><h2>Classic League</h2><div class="rule"></div>' +
       '<span class="chip">' + esc(ds.league && ds.league.name ? ds.league.name : "Overall") + '</span></div>';
 
-    // Podium
-    if (top3.length === 3) {
-      h += '<div class="podium">' +
-        podiumCard("g2", "🥈", top3[1], "2nd") +
-        podiumCard("g1", "🥇", top3[0], "1st") +
-        podiumCard("g3", "🥉", top3[2], "3rd") + '</div>';
-    }
+    h += '<label class="field" style="margin-bottom:12px">' +
+      '<input class="in" id="classicSearch" placeholder="Search manager or team…"></label>';
 
-    // Search + table
-    h += '<div class="section-title"><h2>Full standings</h2><div class="rule"></div></div>';
-    h += '<div class="card"><div class="hd"><input class="in" id="classicSearch" placeholder="Search manager or team…" style="max-width:280px"></div>' +
-      '<div class="tablewrap"><table class="t"><thead><tr>' +
+    h += '<div class="freeze"><table class="t"><thead><tr>' +
       '<th class="num">#</th><th>Team</th><th class="num">GW</th><th class="num">Total</th><th class="num">Move</th><th class="num">Prize</th>' +
-      '</tr></thead><tbody id="classicBody">' + classicRows(rows) + '</tbody></table></div></div>';
+      '</tr></thead><tbody id="classicBody">' + classicRows(rows) + '</tbody></table></div>';
 
-    // Prize reference
-    h += prizeReferenceCard();
+    h += '<div style="margin-top:14px">' + prizeReferenceCard() + '</div>';
 
     host.innerHTML = h;
     var search = $("#classicSearch", host);
@@ -404,57 +394,42 @@
     state.monthKey = cur;
 
     var h = '<div class="section-title"><h2>Monthly Winners</h2><div class="rule"></div></div>';
-    h += '<div class="subnav">' + months.map(function (m) {
-      var badge = m.complete ? ' ●' : (m.played > 0 ? ' ○' : '');
-      return '<button class="tab' + (m.key === cur ? ' active' : '') + '" data-m="' + m.key + '">' + esc(m.name) + badge + '</button>';
-    }).join("") + '</div>';
+    h += '<label class="field"><span class="lab">Month</span><select class="in" id="monthSel">' +
+      months.map(function (m) {
+        var badge = m.complete ? " — final" : (m.played > 0 ? " — live" : " — upcoming");
+        return '<option value="' + m.key + '"' + (m.key === cur ? " selected" : "") + '>' + esc(m.name + badge) + '</option>';
+      }).join("") + '</select></label>';
 
     var M = months.filter(function (m) { return m.key === cur; })[0];
     h += '<div id="monthPanel">' + monthPanel(M) + '</div>';
 
     host.innerHTML = h;
-    $all("[data-m]", host).forEach(function (b) {
-      b.addEventListener("click", function () {
-        state.monthKey = b.getAttribute("data-m");
-        location.hash = "monthly/" + state.monthKey;
-      });
+    $("#monthSel", host).addEventListener("change", function () {
+      state.monthKey = this.value;
+      location.hash = "monthly/" + this.value;
     });
   }
 
   function monthPanel(M) {
     if (!M) return '';
     var statusPill = M.complete ? '<span class="pill gold">Final</span>'
-      : M.played > 0 ? '<span class="pill live">In progress · GW ' + M.played + '/' + M.total + '</span>'
+      : M.played > 0 ? '<span class="pill live">Live · GW ' + M.played + '/' + M.total + '</span>'
       : '<span class="pill">Not started</span>';
-    var h = '<div class="card"><div class="hd"><h3>' + esc(M.name) + '</h3><span class="sub">GW ' + M.gws.join(", ") + ' &nbsp;' + statusPill + '</span></div><div class="bd">';
+    var h = '<div class="section-title" style="margin-top:6px"><h2>' + esc(M.name) + '</h2><div class="rule"></div>' +
+      '<span class="chip">GW ' + M.gws.join(", ") + '</span></div>';
+    h += '<div style="margin-bottom:10px">' + statusPill + '</div>';
 
-    if (!M.rows.length) { h += '<div class="empty note">No gameweeks scored yet for ' + esc(M.name) + '.</div></div></div>'; return h; }
+    if (!M.rows.length) { return h + '<div class="callout">No gameweeks scored yet for ' + esc(M.name) + '.</div>'; }
 
-    var top3 = M.rows.slice(0, 3);
-    if (top3.length >= 1) {
-      h += '<div class="podium">';
-      var order = [1, 0, 2], cls = { 0: "g1", 1: "g2", 2: "g3" }, medal = { 0: "🥇", 1: "🥈", 2: "🥉" };
-      order.forEach(function (i) {
-        if (!top3[i]) return;
-        var r = top3[i];
-        h += '<div class="p ' + cls[i] + '"><div class="medal">' + medal[i] + '</div>' +
-          '<div class="amt">' + money(r.prize) + '</div>' +
-          '<div class="who">' + esc(r.entryName) + '</div>' +
-          '<div class="sub">' + esc(r.playerName) + ' · ' + num(r.score) + ' pts</div></div>';
-      });
-      h += '</div>';
-    }
-    h += '</div>';
-
-    h += '<div class="tablewrap"><table class="t"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Points</th><th class="num">Bench</th><th class="num">Prize</th></tr></thead><tbody>';
-    h += M.rows.slice(0, 60).map(function (r) {
+    h += '<div class="freeze"><table class="t"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Points</th><th class="num">Bench</th><th class="num">Prize</th></tr></thead><tbody>';
+    h += M.rows.map(function (r) {
       var rc = r.pos <= 3 ? "rk" + r.pos : "";
       return '<tr' + (isMe(r.id) ? ' class="me"' : '') + '><td class="num"><span class="r ' + rc + '">' + r.pos + '</span></td>' +
         '<td class="name"><span class="who">' + esc(r.entryName) + '</span><div class="mgr">' + esc(r.playerName) + '</div></td>' +
         '<td class="num"><b>' + num(r.score) + '</b></td><td class="num">' + num(r.bench) + '</td>' +
         '<td class="num">' + (r.prize ? '<span class="prize">' + money(r.prize) + '</span>' : '') + '</td></tr>';
     }).join("");
-    h += '</tbody></table></div></div>';
+    h += '</tbody></table></div>';
     h += '<div class="note" style="margin-top:8px">Monthly score includes hits. Ties shown by bench points; deeper tie-breaks (goals/CS/assists) can be set in Admin.</div>';
     return h;
   }

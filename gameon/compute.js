@@ -87,12 +87,31 @@
   /* ---- 2. Monthly winners ---------------------------------------------- */
   C.monthly = function (ds) {
     var mm = managerMap(ds);
+    var conf = cfg();
     var finished = C.finishedGws(ds);
     var fset = {}; finished.forEach(function (g) { fset[g] = true; });
 
-    return cfg().months.map(function (month) {
-      var playedGws = month.gws.filter(function (g) { return fset[g]; });
-      var complete = month.gws.every(function (g) { return fset[g]; });
+    // Optionally derive each month's gameweeks from real fixture deadlines.
+    var monthNum = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+    var evDate = {};
+    if (ds.bootstrap) ds.bootstrap.events.forEach(function (e) { if (e.deadline_time) evDate[e.id] = new Date(e.deadline_time); });
+    var canDerive = conf.autoMonths !== false && Object.keys(evDate).length > 0;
+
+    return conf.months.map(function (month) {
+      var gws = month.gws, yearForLabel = null;
+      if (canDerive) {
+        var mn = monthNum[month.key];
+        var derived = Object.keys(evDate).map(Number).filter(function (gw) {
+          return (evDate[gw].getUTCMonth() + 1) === mn;
+        }).sort(function (a, b) { return a - b; });
+        if (derived.length) { gws = derived; yearForLabel = evDate[derived[0]].getUTCFullYear(); }
+      }
+      var late = { jan: 1, feb: 1, mar: 1, apr: 1, may: 1, jun: 1, jul: 1 };
+      var yr = (yearForLabel != null) ? yearForLabel : ((conf.seasonStartYear || 2025) + (late[month.key] ? 1 : 0));
+      var label = month.name.slice(0, 3) + "-" + ("0" + (yr % 100)).slice(-2);
+
+      var playedGws = gws.filter(function (g) { return fset[g]; });
+      var complete = gws.length > 0 && gws.every(function (g) { return fset[g]; });
       var rows = ds.managers.map(function (m) {
         return {
           id: m.id, entryName: m.entryName, playerName: m.playerName,
@@ -109,8 +128,8 @@
         r.prize = month.prizes[i + 1] || 0;
       });
       return {
-        key: month.key, name: month.name, gws: month.gws,
-        played: playedGws.length, total: month.gws.length,
+        key: month.key, name: month.name, label: label, gws: gws,
+        played: playedGws.length, total: gws.length,
         complete: complete, inProgress: playedGws.length > 0 && !complete,
         rows: rows, prizes: month.prizes
       };

@@ -350,8 +350,6 @@
       '<th class="num">#</th><th>Team</th><th class="num">GW</th><th class="num">Total</th><th class="num">Move</th><th class="num">Prize</th>' +
       '</tr></thead><tbody id="classicBody">' + classicRows(rows) + '</tbody></table></div>';
 
-    h += '<div style="margin-top:14px">' + prizeReferenceCard() + '</div>';
-
     host.innerHTML = h;
     var search = $("#classicSearch", host);
     search.addEventListener("input", function () {
@@ -415,7 +413,7 @@
     var h = titleBar("Monthly Winners", "monthly");
     h += '<label class="field"><span class="lab">Month</span><select class="in" id="monthSel">' +
       months.map(function (m) {
-        return '<option value="' + m.key + '"' + (m.key === cur ? " selected" : "") + '>' + esc(monthLabel(m)) + '</option>';
+        return '<option value="' + m.key + '"' + (m.key === cur ? " selected" : "") + '>' + esc(m.label || monthLabel(m)) + '</option>';
       }).join("") + '</select></label>';
 
     var M = months.filter(function (m) { return m.key === cur; })[0];

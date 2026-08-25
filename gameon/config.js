@@ -48,6 +48,10 @@
     // Calendar year the season starts in (Aug). Used for month labels like
     // "Aug-26"; Jan–May roll over to the next year. Editable in Settings.
     seasonStartYear: 2025,
+    // When true, each month's gameweeks are derived automatically from the
+    // real fixture deadline dates (bootstrap), so the monthly tab is correct
+    // without hand-entering the calendar. Set false to use the gws below.
+    autoMonths: true,
 
     /* ---- Classic league prizes (rank -> amount) -------------------------- */
     classicPrizes: {

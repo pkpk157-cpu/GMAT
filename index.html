@@ -264,6 +264,23 @@
     background: var(--secc, var(--accent)); color: #fff; margin-left: auto; }
   .gen-go[disabled] { opacity: .45; cursor: not-allowed; }
   .gen-note { font-size: 13px; color: var(--ink-faint); margin: 11px 0 0; line-height: 1.45; }
+  /* Progress & stats: one toggle instead of four dashboards on first load. */
+  .prog-toggle { display: flex; align-items: center; gap: 10px; width: 100%; margin: 0 0 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+  .prog-toggle:hover { border-color: color-mix(in srgb, var(--c-overall) 40%, var(--line)); }
+  .prog-toggle .t { font-weight: 700; font-size: 15px; }
+  .prog-toggle .s { flex: 1; color: var(--ink-faint); font-size: 13px; }
+  .prog-toggle .chev { flex: none; color: var(--ink-faint); transition: transform .2s; }
+  .prog-toggle.on .chev { transform: rotate(180deg); }
+  .prog-toggle:focus-visible { outline: 2px solid var(--c-overall); outline-offset: 1px; }
+
+  /* Sub-nav: one pane of a subject tab at a time. */
+  .subnav { display: flex; gap: 4px; margin: 0 0 14px; padding: 4px; background: var(--surface-2, color-mix(in srgb, var(--ink) 5%, var(--surface))); border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; scrollbar-width: none; }
+  .subnav::-webkit-scrollbar { display: none; }
+  .subnav-b { flex: 1 1 auto; min-width: max-content; padding: 8px 12px; border: 0; border-radius: 9px; background: transparent; color: var(--ink-faint); font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; white-space: nowrap; transition: background .15s, color .15s; }
+  .subnav-b:hover { color: var(--ink); }
+  .subnav-b.on { background: var(--surface); color: color-mix(in srgb, var(--secc, var(--accent)) 78%, var(--ink)); box-shadow: 0 1px 2px rgba(0,0,0,.09); }
+  .subnav-b:focus-visible { outline: 2px solid var(--secc, var(--accent)); outline-offset: 1px; }
+  .tabsec-head.plain .tabsec-meta { flex: none; align-self: flex-start; }
   .tabsec { scroll-margin-top: 70px; padding-top: 0; overflow: hidden; }
   .tabsec-head { display: flex; align-items: center; gap: 12px; margin: 0 -19px 16px; padding: 13px 17px; background: linear-gradient(135deg, color-mix(in srgb, var(--secc, var(--accent)) 20%, var(--surface)), color-mix(in srgb, var(--secc, var(--accent)) 8%, var(--surface))); border-bottom: 1px solid color-mix(in srgb, var(--secc, var(--accent)) 22%, var(--line)); }
   .tabsec-head[data-tabsec] { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
@@ -1104,7 +1121,7 @@
       ]},
     { id:"overall", nav:"Overall", color:"var(--c-overall)", icon:ICON.overall, dashboard:true,
       title:"Overall Progress",
-      blurb:"Your whole preparation at a glance — targets, accuracy, weak-spot focus areas, effort across the four practice areas, and recent activity." },
+      blurb:"Where you are and what to do next." },
     { id:"rc", nav:"RC", color:"var(--c-verbal)", icon:ICON.rc,
       title:"Reading Comprehension",
       blurb:"One of the two Verbal question types (Verbal is 45 min · 23 questions). Passages with question sets testing main idea, detail, inference, and structure.",
@@ -1120,7 +1137,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v82";
+  const APP_VERSION = "v83";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1136,7 +1153,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1335,7 +1352,13 @@
 
   // Numbered header for the standard sections on every subject tab.
   // `key` makes the whole section collapsible (tap the header to minimise/expand).
+  // Inside a sub-nav pane only one section is on screen and the sub-nav already
+  // names it, so the number chip and the collapse affordance are dropped.
+  let tabsecPlain = false;
   function tabSecHead(n, title, sub, metaHTML, key) {
+    if (tabsecPlain) {
+      return `<div class="tabsec-head plain"><div class="tabsec-h"><h3>${title}</h3><p>${sub}</p></div>${metaHTML ? `<span class="tabsec-meta">${metaHTML}</span>` : ""}</div>`;
+    }
     const chev = key ? `<span class="tabsec-chev">▾</span>` : "";
     return `<div class="tabsec-head"${key ? ` data-tabsec="${esc(key)}" role="button" tabindex="0" aria-expanded="${tsecCollapsed(key) ? "false" : "true"}"` : ""}><span class="tabsec-n">${n}</span><div class="tabsec-h"><h3>${title}</h3><p>${sub}</p></div>${metaHTML ? `<span class="tabsec-meta">${metaHTML}</span>` : ""}${chev}</div>`;
   }
@@ -1611,14 +1634,44 @@
       <p class="sec-exam">⏱ ${esc(EXAM[sec.id] || "")}</p>
       <div class="sec-stat"><span><b>${ag.d}</b> questions logged</span>${p!==null?`<span>Accuracy <b class="acc ${accClass(p)}">${p}%</b></span>`:""}${ag.ms>0?`<span>Avg <b>${fmtDur(ag.ms/ag.d)}</b>/q</span>`:""}<span><b>${sec.subjects.length}</b> areas</span></div>
     </div>`;
-    // Four clearly defined sections, in order.
-    h += conceptsPanelHTML(conceptsFor(sec.id), sec);         // Concepts & theory
-    h += flashcardsPanelHTML(sec.id, sec, ICON.flash);        // Flash cards
-    h += setsPanelHTML(setsFor(sec.id), { num: ICON.practice, sec }); // Practice sets
-    h += generatorPanelHTML(sec);                              // Generate practice
-    h += recalPanelHTML(sec);                                  // Difficulty vs. your results
-    h += questionsLoggedHTML(sec);                             // Questions logged
+    // One pane at a time. Stacking all six made a subject tab eight screens
+    // long; the sub-nav keeps everything reachable in a single tap.
+    h += subnavHTML(sec);
+    h += panePlain(() => paneHTML(sec, subtabOf(sec.id)));
     return h;
+  }
+
+  /* Sub-nav for the subject tabs */
+  const PANES = [
+    { id:"practice", label:"Practice" },
+    { id:"concepts", label:"Concepts" },
+    { id:"cards",    label:"Cards" },
+    { id:"build",    label:"Build" },
+    { id:"log",      label:"Log" }
+  ];
+  function subtabOf(secId) {
+    const v = state.subtab && state.subtab[secId];
+    return PANES.some(p => p.id === v) ? v : "practice";
+  }
+  function subnavHTML(sec) {
+    const cur = subtabOf(sec.id);
+    const btns = PANES.map(p =>
+      `<button class="subnav-b${p.id === cur ? " on" : ""}" data-subtab="${esc(p.id)}" aria-current="${p.id === cur ? "page" : "false"}">${esc(p.label)}</button>`
+    ).join("");
+    return `<div class="subnav" style="--secc:${sec.color}" role="tablist">${btns}</div>`;
+  }
+  // Renders a pane with the section headers in their plain (un-numbered,
+  // non-collapsible) form, restoring the flag even if the builder throws.
+  function panePlain(fn) {
+    tabsecPlain = true;
+    try { return fn(); } finally { tabsecPlain = false; }
+  }
+  function paneHTML(sec, pane) {
+    if (pane === "concepts") return conceptsPanelHTML(conceptsFor(sec.id), sec);
+    if (pane === "cards")    return flashcardsPanelHTML(sec.id, sec, ICON.flash);
+    if (pane === "build")    return generatorPanelHTML(sec);
+    if (pane === "log")      return recalPanelHTML(sec) + questionsLoggedHTML(sec);
+    return setsPanelHTML(setsFor(sec.id), { num: ICON.practice, sec });
   }
 
   function ring(pct, color) {
@@ -1656,6 +1709,32 @@
       h += `<div class="goals"><div class="goal goal-empty"><span class="gs">Set a <button class="link" data-open-profile="1">daily & weekly target</button> to track your pace.</span></div></div>`;
     }
 
+    // Jump back in: the sets already under way. The full catalogue lives on the
+    // subject tabs — listing all of it here made the dashboard eight screens long.
+    const wip = SETS.map(s => ({ s, run: getRun(s.id) }))
+      .filter(x => !x.run.submitted && Object.keys(x.run.ans).length > 0)
+      // Most recently touched first; runs started before `at` was recorded fall
+      // back to whichever has more answered.
+      .sort((a, b) => (b.run.at || 0) - (a.run.at || 0)
+                   || Object.keys(b.run.ans).length - Object.keys(a.run.ans).length)
+      .slice(0, 3);
+    if (wip.length) {
+      h += `<div class="panel"><h3>Jump back in</h3><p class="sub">Sets you have started but not finished.</p><div class="setlist">`;
+      wip.forEach(({ s, run }) => {
+        const sec = secById(s.section), answered = Object.keys(run.ans).length;
+        h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}</div>
+          <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span class="sstatus">${answered}/${s.questions.length} answered</span></div></div>
+          <div class="setbtns"><button class="go" data-runset="${esc(s.id)}">Resume</button></div></div>`;
+      });
+      h += `</div></div>`;
+    }
+
+    // Everything below is reference rather than action, so it sits behind one
+    // toggle instead of adding four dashboards to the first screen.
+    const po = !!state.progOpen;
+    h += `<button class="prog-toggle ${po ? "on" : ""}" data-progtoggle="1" aria-expanded="${po}"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""}${st>0?` · ${st}-day streak`:""}</span><span class="chev">▾</span></button>`;
+    if (!po) { h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`; return h; }
+
     // tiles
     h += `<div class="grid-stats">
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
@@ -1664,8 +1743,6 @@
       <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice sets"}</div></div>
       <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
-
-    h += setsPanelHTML(SETS);
 
     // focus areas (weak spots)
     const cand = [];
@@ -2075,6 +2152,9 @@
 
   /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
+    const sn = e.target.closest("[data-subtab]");
+    if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
+    const pg = e.target.closest("[data-progtoggle]"); if (pg) { state.progOpen = !state.progOpen; save(); renderView(); return; }
     const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
     const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
     const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
@@ -2815,7 +2895,7 @@
       else { status = "not started"; cls = "muted"; }
       const hasProgress = run.submitted || answered > 0;
       h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
-        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id)?`<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>`:""}</div></div>
+        <div class="sm">${opts.sec ? "" : `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>`}<span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id)?`<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>`:""}</div></div>
         <div class="setbtns">${hasProgress?`<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this set">↺</button>`:""}<button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div></div>`;
     });
     return h + `</div>${closeTag}`;
@@ -3288,6 +3368,7 @@
       const chosen = pendingL; pendingL = null;
       run.ans[String(q.n)] = chosen;
       if (firstTime) run.times[String(q.n)] = elapsed;
+      run.at = Date.now();   // orders "Jump back in" by most recently touched
       save();
       if (run.mode === "practice") {
         logOne(set, q, chosen === q.correct, run.times[q.n] || 0);

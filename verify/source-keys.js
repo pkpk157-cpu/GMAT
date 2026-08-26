@@ -118,5 +118,26 @@ module.exports = {
   "cr-700-misc": ["B", "D", "D", "E", "C", "B", "E", "C", "D", "A", "A", "A", "C", "A",
                   "A", "D", "B", "C", "B", "C", "B", "A", "A", "E", "C", "E", "D"],
 
+  /* CR 700-800 "Latest Collection" mixed-bag, part 3. Its printed key
+     is in the companion solutions volume. Kept, in source order:
+     2.A 3.A 5.A 6.D 7.C 8.D 9.C 10.B 13.B 14.B 16.E 17.A 18.A 19.E 20.D 21.B 22.E 23.A 24.C 25.C 26.E 27.B 28.E 29.A 30.C 31.E 32.C 33.D 34.C 35.B 37.D 38.D 39.E 40.A 41.B 43.E 44.B 45.A */
+  "cr-700-mixed3": ["A", "A", "A", "D", "C", "D", "C", "B", "B", "B", "E", "A", "A", "E",
+                    "D", "B", "E", "A", "C", "C", "E", "B", "E", "A", "C", "E", "C", "D",
+                    "C", "B", "D", "D", "E", "A", "B", "E", "B", "A"],
+
+  /* CR 700-800 "Latest Collection" mixed-bag, part 4. Its printed key
+     is in the companion solutions volume. Kept, in source order:
+     46.A 47.C 48.E 49.B 50.C 51.A 52.A 54.E 55.A 56.B 57.D 58.B 59.D 60.A 61.D 63.B 64.D 65.E 66.C 67.E 68.A 69.D 70.E 71.B 72.A 73.C 74.D 75.E 76.E 77.E 78.A 79.B 80.B 81.C 82.E 83.B 84.C 85.D */
+  "cr-700-mixed4": ["A", "C", "E", "B", "C", "A", "A", "E", "A", "B", "D", "B", "D", "A",
+                    "D", "B", "D", "E", "C", "E", "A", "D", "E", "B", "A", "C", "D", "E",
+                    "E", "E", "A", "B", "B", "C", "E", "B", "C", "D"],
+
+  /* CR 700-800 "Latest Collection" mixed-bag, part 5. Its printed key
+     is in the companion solutions volume. Kept, in source order:
+     86.D 87.A 88.A 90.E 91.D 92.A 93.E 94.B 95.D 96.D 99.C 100.B 101.C 102.B 103.B 105.E 107.A 108.A 109.C 110.B 111.A 113.D 114.C 115.A 118.C 119.B 120.C 121.B 122.B 124.C 125.B 127.C 128.B 130.B 133.E 134.D 137.B */
+  "cr-700-mixed5": ["D", "A", "A", "E", "D", "A", "E", "B", "D", "D", "C", "B", "C", "B",
+                    "B", "E", "A", "A", "C", "B", "A", "D", "C", "A", "C", "B", "C", "B",
+                    "B", "C", "B", "C", "B", "B", "E", "D", "B"],
+
   "di-ds-realexam": null
 };

@@ -625,3 +625,118 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-6b#19": {
+  steps: "Step 1 — For any real \\(k\\), \\(|k| > k\\) holds exactly when \\(k < 0\\). (If \\(k \\ge 0\\) then \\(|k| = k\\), so the strict inequality fails.)\n" +
+    "Step 2 — Applying that with \\(k = ab\\), the given condition is precisely \\(ab < 0\\). So statement III must be true.\n" +
+    "Step 3 — But \\(ab < 0\\) only says \\(a\\) and \\(b\\) have opposite signs; it does not name which one is negative.\n" +
+    "Step 4 — Statement I, \\(a < 0\\): take \\(a = 1\\), \\(b = -1\\). Then \\(ab = -1 < 0\\) ✓ while \\(a > 0\\) — [[not necessary]].\n" +
+    "Step 5 — Statement II, \\(b < 0\\): take \\(a = -1\\), \\(b = 1\\). Same conclusion — [[not necessary]].\n" +
+    "Step 6 — Only III must hold.",
+  fast: "Translate the premise once: \\(|k| > k\\) is just a disguised way of writing \\(k < 0\\). The condition therefore *is* statement III, restated.\n" +
+    "Then a single symmetric pair of counterexamples — \\((1, -1)\\) and \\((-1, 1)\\) — kills the two statements about individual signs.",
+  traps: "(E) and (D) accept a claim about \\(a\\) individually, which the premise cannot support: the product's sign says nothing about which factor is negative.\n" +
+    "(A) and (B) each pick one factor, and the symmetry of the situation makes both equally unjustified.\n" +
+    "The observation that unlocks the question is recognising \\(|k| > k\\) as a sign condition rather than a magnitude condition — many people start testing values instead.",
+  take: "\\(|k| > k\\) is equivalent to \\(k < 0\\); \\(|k| = k\\) to \\(k \\ge 0\\). A product's sign constrains the pair, never an individual factor."
+},
+
+"quant-live-6b#20": {
+  steps: "Step 1 — Complete the square on the left: \\(x^2 - 8x + 21 = (x^2 - 8x + 16) + 5 = (x-4)^2 + 5\\).\n" +
+    "Step 2 — Substitute \\(t = x - 4\\). The equation becomes \\(t^2 + 5 = |t| + 5\\), i.e. \\(t^2 = |t|\\).\n" +
+    "Step 3 — Since \\(t^2 = |t|^2\\), this is \\(|t|^2 - |t| = 0\\), i.e. \\(|t|\\big(|t| - 1\\big) = 0\\).\n" +
+    "Step 4 — So \\(|t| = 0\\) or \\(|t| = 1\\), giving \\(t = 0, 1, -1\\).\n" +
+    "Step 5 — Back-substitute: \\(x = 4, 5, 3\\).\n" +
+    "Step 6 — Those three values as side lengths make a 3–4–5 triangle, and \\(3^2 + 4^2 = 9 + 16 = 25 = 5^2\\).\n" +
+    "Step 7 — So the triangle is right-angled.",
+  fast: "Spot that \\(x^2 - 8x + 21\\) is \\((x-4)^2 + 5\\) and the \\(+5\\) on each side cancels, leaving the clean equation \\(t^2 = |t|\\). Everything else follows in one line.\n" +
+    "And once the sides come out as 3, 4, 5, the answer is the most familiar Pythagorean triple on the exam.",
+  traps: "(D) isosceles and (E) equilateral require repeated side lengths, but the three roots are distinct.\n" +
+    "(A) acute and (B) obtuse are the alternatives if you mis-solve and get sides that fail the Pythagorean relation — for example, missing \\(t = 0\\) and working with only two values.\n" +
+    "The step most often botched is \\(t^2 = |t|\\): it has three roots, not two, because \\(t = 0\\) satisfies it as well as \\(t = \\pm 1\\).\n" +
+    "Missing \\(x = 4\\) leaves only sides 3 and 5, and no triangle at all.",
+  take: "Complete the square to expose a substitution. \\(t^2 = |t|\\) has three solutions: \\(0\\), \\(1\\) and \\(-1\\)."
+},
+
+"quant-live-6b#21": {
+  steps: "Step 1 — Simplify the constant: \\(|3| = 3\\), so the condition is \\(\\dfrac{|x|}{3} > 1\\), i.e. \\(|x| > 3\\).\n" +
+    "Step 2 — That means \\(x > 3\\) or \\(x < -3\\) — two disjoint rays.\n" +
+    "Step 3 — Test each choice against *both* rays. (A) \\(x > 3\\) fails on the left ray (e.g. \\(x = -5\\)).\n" +
+    "Step 4 — (B) \\(x < 3\\) fails on the right ray (e.g. \\(x = 5\\)).\n" +
+    "Step 5 — (C) \\(x = 3\\) fails everywhere, since \\(|3| > 3\\) is false.\n" +
+    "Step 6 — (E) \\(x < -3\\) fails on the right ray.\n" +
+    "Step 7 — (D) \\(x \\ne 3\\) holds on both rays, since neither contains 3.",
+  fast: "\"Must be true\" means true for every solution, so the answer has to cover both rays. Only the weakest statement can do that — and \\(x \\ne 3\\) is deliberately weak.\n" +
+    "Testing one value from each ray, say \\(x = 5\\) and \\(x = -5\\), eliminates every other choice in two passes.",
+  traps: "(A) \\(x > 3\\) is the intuitive answer, and it describes half the solution set — but half is not all, and \"must be true\" tolerates no exceptions.\n" +
+    "(E) \\(x < -3\\) is the mirror-image half.\n" +
+    "(B) \\(x < 3\\) is true on the left ray only.\n" +
+    "The distractors reward solving the inequality correctly and then failing to check the statement against the *whole* solution set.\n" +
+    "A weak-looking choice like \\(x \\ne 3\\) is often the right answer to a \"must be true\" question precisely because it demands so little.",
+  take: "\"Must be true\" requires the statement to hold at every solution. When the solution set is two rays, only a statement covering both qualifies — often a deliberately weak one."
+},
+
+"quant-live-6b#22": {
+  steps: "Step 1 — The square root of a square is the absolute value: \\(\\sqrt{(x+4)^2} = |x + 4|\\).\n" +
+    "Step 2 — So the equation is \\(|x + 4| = 3\\), giving \\(x + 4 = 3\\) or \\(x + 4 = -3\\).\n" +
+    "Step 3 — Therefore \\(x = -1\\) or \\(x = -7\\).\n" +
+    "Step 4 — The question asks for \\(x - 4\\), not \\(x\\). Those values are \\(-1 - 4 = -5\\) and \\(-7 - 4 = -11\\).\n" +
+    "Step 5 — Of the two, only \\(-11\\) appears among the choices.",
+  fast: "The identity \\(\\sqrt{u^2} = |u|\\) is the whole first step — writing \\(\\sqrt{(x+4)^2} = x + 4\\) loses one of the two roots.\n" +
+    "Then subtract 4 from each root and scan the list. Since the question asks for \\(x - 4\\) rather than \\(x\\), doing the subtraction is not optional.",
+  traps: "(B) \\(-7\\) is a value of \\(x\\), not of \\(x - 4\\) — the trap for anyone who stops one step early.\n" +
+    "(D) \\(-3\\) is the right-hand side negated, and (E) 5 comes from solving \\(x + 4 = 3\\) as \\(x = 5\\)-style slips.\n" +
+    "(C) \\(-4\\) is the constant inside the parentheses.\n" +
+    "Note that the other legitimate answer, \\(-5\\), is deliberately absent from the choices — so finding only the root \\(x = -1\\) leaves you with nothing to pick and invites a guess.",
+  take: "\\(\\sqrt{u^2} = |u|\\), which yields two roots. Then re-read what expression the question wants evaluated — it is often not \\(x\\) itself."
+},
+
+"quant-live-6b#23": {
+  steps: "Step 1 — Solve the first equation: \\(|1 - x| = 6\\) gives \\(1 - x = 6\\) or \\(1 - x = -6\\), so \\(x = -5\\) or \\(x = 7\\).\n" +
+    "Step 2 — Solve the second: \\(|2y - 6| = 10\\) gives \\(2y - 6 = 10\\) or \\(2y - 6 = -10\\), so \\(2y = 16\\) or \\(2y = -4\\), i.e. \\(y = 8\\) or \\(y = -2\\).\n" +
+    "Step 3 — Form all four products: \\((-5)(8) = -40\\); \\((-5)(-2) = 10\\); \\((7)(8) = 56\\); \\((7)(-2) = -14\\).\n" +
+    "Step 4 — Compare with the choices: \\(-40\\), \\(-14\\), \\(10\\) and \\(56\\) are exactly the four listed values.\n" +
+    "Step 5 — Every listed value is achievable, so none of them is impossible — the answer is \"none of these\".",
+  fast: "Two absolute values give two roots each, so build the full \\(2 \\times 2\\) grid of products — four numbers — and check them against the list.\n" +
+    "The moment all four choices turn out to be reachable, the \"none of these\" option is forced. Computing every product is faster than testing each choice individually.",
+  traps: "(A) through (D) each look like plausible \"impossible\" values because the products are scattered in sign and size, and checking only two of the four combinations will make one of them look unreachable.\n" +
+    "The commonest incomplete approach is pairing only \\(x = -5\\) with \\(y = -2\\) and \\(x = 7\\) with \\(y = 8\\) — the \"matching sign\" pairs — which produces only 10 and 56 and makes \\(-40\\) and \\(-14\\) look impossible.\n" +
+    "All four cross-combinations are legitimate: the two equations are independent.",
+  take: "Independent absolute-value equations give a full grid of combinations. Enumerate all of them before deciding a value is unreachable."
+},
+
+"quant-live-6b#24": {
+  steps: "Step 1 — (A) \\(x|x| = 2x\\) rearranges to \\(x(|x| - 2) = 0\\), so \\(x = 0\\), \\(x = 2\\) or \\(x = -2\\) — three solutions.\n" +
+    "Step 2 — (B) \\(x + |x| = 2x\\) simplifies to \\(|x| = x\\), which holds for every \\(x \\ge 0\\) — infinitely many.\n" +
+    "Step 3 — (C) \\(2|x| = 2x\\) is the same condition \\(|x| = x\\) — infinitely many.\n" +
+    "Step 4 — (D) \\(2|x| = 2x - 1\\) becomes \\(|x| = x - \\tfrac12\\), which requires \\(|x| < x\\) — impossible, so no solutions.\n" +
+    "Step 5 — (E) \\(|x + 2| = -x\\): the right side must be non-negative, so \\(x \\le 0\\). The branch \\(x + 2 = -x\\) gives \\(x = -1\\), which satisfies \\(x \\le 0\\) ✓. The branch \\(-(x+2) = -x\\) reduces to \\(-2 = 0\\), impossible.\n" +
+    "Step 6 — So (E) has exactly one solution.",
+  fast: "Simplify each equation to a standard form before counting. Two of them collapse to \\(|x| = x\\), which is a whole ray rather than a point, and one collapses to an impossibility.\n" +
+    "Equations of the form \\(|f(x)| = -x\\) are the ones that typically yield a single solution, because the non-negativity requirement cuts the domain in half before the branches are even solved.",
+  traps: "(A) is the most attractive wrong answer: factoring \\(x(|x| - 2) = 0\\) is easy to do carelessly, and dropping the \\(x = 0\\) root leaves two solutions — still not one, but the miscount is common.\n" +
+    "(B) and (C) look like they should have isolated solutions because they are equations rather than inequalities; in fact each is satisfied by an entire half-line.\n" +
+    "(D) has none, which is easy to confuse with \"exactly one\" if the impossibility is not checked.\n" +
+    "The habit that resolves all five: reduce, then ask whether the solution set is a point, a ray or empty.",
+  take: "Reduce each absolute-value equation to standard form first. \\(|x| = x\\) is a ray, not a point; \\(|f(x)| = -x\\) restricts the domain before you solve."
+},
+
+"quant-live-6b#25": {
+  steps: "Step 1 — Split the double inequality into its two halves.\n" +
+    "Step 2 — \\(|5 - z| > 2\\) means \\(5 - z > 2\\) or \\(5 - z < -2\\), i.e. \\(z < 3\\) or \\(z > 7\\).\n" +
+    "Step 3 — \\(|5 - z| < 5\\) means \\(-5 < 5 - z < 5\\), i.e. \\(0 < z < 10\\).\n" +
+    "Step 4 — Intersect the two: \\(0 < z < 3\\) or \\(7 < z < 10\\).\n" +
+    "Step 5 — Test the choices. \\(z = 1\\) lies in \\((0, 3)\\) ✓.\n" +
+    "Step 6 — \\(z = 3\\) gives \\(|5-3| = 2\\), which is not strictly greater than 2 ✗. \\(z = 5\\) gives 0 ✗. \\(z = 7\\) gives 2 ✗. \\(z = 11\\) gives 6, not less than 5 ✗.",
+  fast: "Read \\(|5 - z|\\) as the distance from \\(z\\) to 5. The condition says that distance is more than 2 but less than 5 — so \\(z\\) sits in a ring around 5, between 2 and 5 units away on either side.\n" +
+    "That gives \\((0, 3)\\) and \\((7, 10)\\) at a glance, and testing the five choices takes seconds.",
+  traps: "(B) 3 and (D) 7 are exactly 2 units from 5, and the inequality is strict — they are the boundary values the question is built to catch.\n" +
+    "(C) 5 is the centre, where the distance is 0, failing the lower bound badly.\n" +
+    "(E) 11 is 6 units away, failing the upper bound.\n" +
+    "Every distractor is a boundary or centre value, so checking strictness is the entire exercise: the endpoints of both intervals are excluded.",
+  take: "\\(|a - z|\\) is the distance from \\(z\\) to \\(a\\); a two-sided bound describes an annulus of two intervals. Strict inequalities exclude the endpoints."
+}
+
+});

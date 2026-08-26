@@ -307,3 +307,151 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-5b#1": {
+  steps: "Step 1 — \"Neither event occurs\" is the complement of \"at least one occurs\": \\(P(\\text{neither}) = 1 - P(A \\cup B)\\).\n" +
+    "Step 2 — To make that as large as possible, make the union as small as possible.\n" +
+    "Step 3 — The union can never be smaller than the larger of the two events, since \\(B \\subseteq A \\cup B\\). So \\(P(A \\cup B) \\ge 0.68\\).\n" +
+    "Step 4 — That floor is attainable: put the whole of event \\(A\\) inside event \\(B\\), which is consistent because \\(0.54 \\le 0.68\\). Then \\(P(A \\cup B) = 0.68\\) exactly.\n" +
+    "Step 5 — \\(P(\\text{neither}) = 1 - 0.68 = 0.32\\).",
+  fast: "Maximum overlap means minimum union, and the minimum union is just the larger probability. So the answer is \\(1 - 0.68\\) — one subtraction, no formula.\n" +
+    "The companion bound is worth knowing at the same time: the union is at most \\(\\min(1,\\ 0.54 + 0.68) = 1\\), which would make \\(P(\\text{neither})\\) as small as 0.\n" +
+    "Note that the question says \"greatest possible\", which signals a bounding problem rather than a computation.",
+  traps: "(A) 0.22 is \\(1 - (0.54 + 0.68 - 0.68 \\times 0.54)\\)-flavoured — the answer under an *independence* assumption, which the question never grants and which \"greatest possible\" explicitly rules out.\n" +
+    "(D) 0.46 is \\(1 - 0.54\\), using the smaller event as the union.\n" +
+    "(C) 0.37 and (E) 0.63 come from adding or averaging the two probabilities.\n" +
+    "The habit worth building: when a probability question says \"greatest possible\" or \"least possible\", it is asking about the range of dependence structures, not about independent events.",
+  take: "For two events, \\(\\max(P_A, P_B) \\le P(A \\cup B) \\le \\min(1, P_A + P_B)\\). \"Greatest possible\" for the complement means minimising the union — maximum overlap."
+},
+
+"quant-live-5b#2": {
+  steps: "Step 1 — The probability wanted is \\(\\dfrac{\\text{number of elements of } T \\text{ that are} \\le 5}{|T|}\\). Both the numerator and the denominator are unknown.\n" +
+    "Step 2 — Statement (1): \\(|T| = 8\\). That fixes the denominator and says nothing about how many elements are at most 5 — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(T \\subseteq \\{1, 2, \\dots, 25\\}\\). That bounds the values but leaves both the size and the composition open — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(T\\) is an 8-element subset of \\(\\{1, \\dots, 25\\}\\). Take \\(T = \\{1,2,3,4,5,6,7,8\\}\\): five of the eight satisfy \\(x \\le 5\\), giving \\(\\tfrac58\\).\n" +
+    "Step 5 — Now take \\(T = \\{18, 19, \\dots, 25\\}\\): none satisfies it, giving \\(0\\).\n" +
+    "Step 6 — Two different probabilities from admissible sets — [[not sufficient]] even together.",
+  fast: "Write the probability as a fraction and check whether each statement pins the numerator, the denominator, or neither. Statement (1) gives only the denominator; statement (2) gives only a range for the values.\n" +
+    "Then produce two extreme sets — one clustered low, one clustered high — and you are done. Constructing counterexamples at the boundaries is almost always the fastest route on \"together still not sufficient\" questions.",
+  traps: "(C) is the natural guess: two statements that each fill a gap in the other *feel* like they should combine. But knowing the size and the value range still leaves the composition entirely free.\n" +
+    "(A) treats a fixed denominator as sufficient.\n" +
+    "(B) treats the value bound as if it forced a uniform spread across 1 to 25 — the set need not be spread at all.\n" +
+    "(D) is stronger than either.\n" +
+    "The lesson: a probability needs a numerator *and* a denominator, and a range constraint supplies neither.",
+  take: "A probability is a ratio; check whether the statements determine both parts. A bound on the possible values never determines how many elements actually fall in a sub-range."
+},
+
+"quant-live-5b#3": {
+  steps: "Step 1 — Count all ways to draw two animals from five: \\(\\binom{5}{2} = 10\\).\n" +
+    "Step 2 — Count matched pairs. Two doves: \\(\\binom{3}{2} = 3\\).\n" +
+    "Step 3 — Two rabbits: \\(\\binom{2}{2} = 1\\).\n" +
+    "Step 4 — Favourable total: \\(3 + 1 = 4\\).\n" +
+    "Step 5 — Probability \\(= \\dfrac{4}{10} = \\dfrac25\\).",
+  fast: "Sequential reasoning is just as quick: the second animal must match the first. If the first is a dove (probability \\(\\tfrac35\\)), 2 of the remaining 4 are doves; if it is a rabbit (\\(\\tfrac25\\)), 1 of the remaining 4 is a rabbit.\n" +
+    "That gives \\(\\tfrac35 \\cdot \\tfrac24 + \\tfrac25 \\cdot \\tfrac14 = \\tfrac{6}{20} + \\tfrac{2}{20} = \\tfrac25\\) — the same answer, and a useful cross-check.",
+  traps: "(B) \\(\\tfrac35\\) is the complement — the probability of a *mismatched* pair, which is \\(\\tfrac{6}{10}\\).\n" +
+    "(C) \\(\\tfrac15\\) counts only one of the two matching cases, typically the rabbits.\n" +
+    "(D) \\(\\tfrac12\\) comes from treating the two outcomes (match, no match) as equally likely.\n" +
+    "(E) \\(\\tfrac75\\) exceeds 1 and cannot be a probability at all — a free elimination worth taking.\n" +
+    "The two-case structure is the point: a matched pair can be doves *or* rabbits, and both must be counted.",
+  take: "Count favourable outcomes case by case when \"match\" can happen in more than one way. Any answer choice above 1 is not a probability."
+},
+
+"quant-live-5b#4": {
+  steps: "Step 1 — Count the pairs: \\(\\binom{4}{2} = 6\\) ways to choose two of the four expressions.\n" +
+    "Step 2 — The target form \\(x^2 - (by)^2\\) has no \\(xy\\) term and a leading coefficient of exactly 1 on \\(x^2\\). That is the difference-of-squares pattern, which requires a conjugate pair.\n" +
+    "Step 3 — Check each pair. \\((x+y)(x-y) = x^2 - y^2\\) ✓ with \\(b = 1\\).\n" +
+    "Step 4 — Any pair involving \\(5x - y\\) produces a leading \\(5x^2\\), which cannot match \\(x^2\\).\n" +
+    "Step 5 — \\((x + 5y)\\) has no conjugate \\((x - 5y)\\) in the list, so every pair containing it leaves an \\(xy\\) term: for example \\((x+5y)(x-y) = x^2 + 4xy - 5y^2\\).\n" +
+    "Step 6 — Exactly one of the six pairs works: probability \\(\\dfrac16\\).",
+  fast: "Scan for conjugates rather than multiplying. A product equals \\(x^2 - (by)^2\\) exactly when the two factors are \\(x + by\\) and \\(x - by\\) — same leading coefficient 1, opposite signs, matching \\(y\\) coefficients.\n" +
+    "Reading the list with that template in mind, only \\(x+y\\) and \\(x-y\\) pair up, and \\(5x - y\\) is disqualified on its leading coefficient alone.",
+  traps: "(B) \\(\\tfrac13\\) counts two successful pairs, usually by admitting \\((x+5y)(5x-y)\\) on the false grounds that the coefficients \"cancel\" — expanding gives \\(5x^2 + 24xy - 5y^2\\).\n" +
+    "(C) \\(\\tfrac14\\) uses a denominator of 4 (the number of expressions) rather than 6 (the number of pairs).\n" +
+    "(A) \\(\\tfrac12\\) treats half the pairs as successful.\n" +
+    "(D) \\(\\tfrac15\\) miscounts the pairs as 5.\n" +
+    "Two things to get right: the denominator is \\(\\binom42 = 6\\), and the required form fixes the \\(x^2\\) coefficient at 1.",
+  take: "\\((x + by)(x - by) = x^2 - (by)^2\\) requires a genuine conjugate pair. Check leading coefficients before expanding anything."
+},
+
+"quant-live-5b#5": {
+  steps: "Step 1 — \\(n\\) and \\(n+1\\) are consecutive, so one is even and one is odd, and they share no common factor.\n" +
+    "Step 2 — The odd one contributes no factor of 2 at all. So for the product to be divisible by \\(4 = 2^2\\), the even one must itself be a multiple of 4.\n" +
+    "Step 3 — That happens when \\(n \\equiv 0 \\pmod 4\\) (making \\(n\\) the multiple of 4) or \\(n \\equiv 3 \\pmod 4\\) (making \\(n+1\\) the multiple of 4).\n" +
+    "Step 4 — In 1 to 100 there are 25 integers with \\(n \\equiv 0\\) (namely \\(4, 8, \\dots, 100\\)) and 25 with \\(n \\equiv 3\\) (namely \\(3, 7, \\dots, 99\\)).\n" +
+    "Step 5 — That is 50 of 100, a probability of \\(\\dfrac12\\).",
+  fast: "Work modulo 4 and only four cases exist. \\(n \\equiv 0\\): works. \\(n \\equiv 1\\): \\(n+1 \\equiv 2\\), only one factor of 2 — fails. \\(n \\equiv 2\\): \\(n\\) itself has one factor of 2 — fails. \\(n \\equiv 3\\): \\(n+1 \\equiv 0\\) — works.\n" +
+    "Two of the four residues succeed, and since 100 is a multiple of 4 the residues are perfectly balanced, giving \\(\\tfrac12\\) immediately.",
+  traps: "(A) \\(\\tfrac14\\) counts only the case \\(n \\equiv 0\\), forgetting that \\(n+1\\) can be the multiple of 4 instead.\n" +
+    "(E) \\(\\tfrac34\\) counts every case where the product is even, which is when \\(n\\) is even or odd — that is, always — or counts three residues.\n" +
+    "(D) \\(\\tfrac23\\) and (B) \\(\\tfrac13\\) come from treating the divisibility as a one-in-three or two-in-three event.\n" +
+    "The crucial structural fact is that consecutive integers cannot both be even, so the two factors of 2 must come from a single term.",
+  take: "For consecutive integers, all factors of 2 come from one term. Classify \\(n\\) by residue modulo 4 and count how many residues succeed."
+},
+
+"quant-live-5b#6": {
+  steps: "Step 1 — Total ways to choose 2 apples from 5: \\(\\binom{5}{2} = 10\\).\n" +
+    "Step 2 — Count the selections containing the spoiled apple: fix it, then choose one of the 4 good apples — 4 ways.\n" +
+    "Step 3 — Probability \\(= \\dfrac{4}{10} = \\dfrac25\\).",
+  fast: "Think about it from the spoiled apple's point of view: 2 of the 5 apples are chosen, so the chance that any particular apple is among them is \\(\\tfrac25\\). No counting at all.\n" +
+    "That symmetry argument generalises: choosing \\(k\\) from \\(n\\) gives each specific item probability \\(k/n\\) of being selected.",
+  traps: "(A) \\(\\tfrac15\\) is the probability that a single randomly drawn apple is the spoiled one — the answer if only one apple were selected.\n" +
+    "(E) \\(\\tfrac35\\) is the complement, the chance the spoiled apple is *not* selected.\n" +
+    "(B) \\(\\tfrac3{10}\\) comes from counting 3 favourable pairs instead of 4.\n" +
+    "(D) \\(\\tfrac12\\) treats the two outcomes as equally likely.\n" +
+    "The \"simultaneously\" in the stem simply means order does not matter — it changes nothing about the answer, but it tells you to use combinations rather than sequences.",
+  take: "When \\(k\\) items are chosen from \\(n\\), any specific item is selected with probability \\(k/n\\). That symmetry shortcut beats counting."
+},
+
+"quant-live-5b#7": {
+  steps: "Step 1 — July 4 through July 8 inclusive is \\(8 - 4 + 1 = 5\\) days.\n" +
+    "Step 2 — Each day rains with probability \\(\\tfrac12\\), independently, so every one of the \\(2^5 = 32\\) rain/no-rain patterns is equally likely.\n" +
+    "Step 3 — Count the patterns with exactly 3 rainy days: choose which 3 of the 5 days rain, \\(\\binom{5}{3} = 10\\).\n" +
+    "Step 4 — Probability \\(= \\dfrac{10}{32} = \\dfrac{5}{16}\\).",
+  fast: "Because the probability is exactly \\(\\tfrac12\\), every pattern is equally likely and the whole question becomes a count: \\(\\binom53\\) out of \\(2^5\\).\n" +
+    "That shortcut only works at \\(p = \\tfrac12\\); for any other \\(p\\) you would need \\(\\binom53 p^3 (1-p)^2\\).",
+  traps: "(A) \\(\\tfrac1{32}\\) is the probability of one specific pattern, with the \\(\\binom53\\) count of arrangements never applied. This is the central trap.\n" +
+    "(E) \\(\\tfrac34\\) has no basis in the count and simply reads as \"quite likely\".\n" +
+    "(B) \\(\\tfrac2{25}\\) and (D) \\(\\tfrac8{25}\\) use a denominator of 25, from \\(5^2\\) rather than \\(2^5\\).\n" +
+    "The inclusive date count is the other place to slip: July 4 to July 8 is five days, not four.",
+  take: "Binomial probability multiplies the count of arrangements by the probability of one arrangement. At \\(p = \\tfrac12\\) it reduces to \\(\\binom nk / 2^n\\)."
+},
+
+"quant-live-5b#8": {
+  steps: "Step 1 — Convert everything to working probabilities. Engine one fails with probability \\(\\tfrac13\\), so it works with probability \\(\\tfrac23\\). Engine two works with probability \\(\\tfrac34\\). Engine three works with probability \\(\\tfrac12\\).\n" +
+    "Step 2 — The plane crashes when fewer than two engines work — that is, zero or exactly one.\n" +
+    "Step 3 — All three fail: \\(\\tfrac13 \\times \\tfrac14 \\times \\tfrac12 = \\tfrac1{24}\\).\n" +
+    "Step 4 — Exactly one works, taking each engine in turn as the survivor:\n" +
+    "engine one only: \\(\\tfrac23 \\times \\tfrac14 \\times \\tfrac12 = \\tfrac2{24}\\);\n" +
+    "engine two only: \\(\\tfrac13 \\times \\tfrac34 \\times \\tfrac12 = \\tfrac3{24}\\);\n" +
+    "engine three only: \\(\\tfrac13 \\times \\tfrac14 \\times \\tfrac12 = \\tfrac1{24}\\).\n" +
+    "Step 5 — Those sum to \\(\\tfrac6{24}\\).\n" +
+    "Step 6 — Total crash probability: \\(\\tfrac1{24} + \\tfrac6{24} = \\tfrac7{24}\\).",
+  fast: "Put everything over a denominator of 24 from the start — \\(\\tfrac13, \\tfrac14, \\tfrac12\\) multiply to \\(\\tfrac1{24}\\), and every case is a small multiple of that. Then each scenario is just a numerator: 1, 2, 3, 1.\n" +
+    "The engines have *different* reliabilities, so the four crash scenarios must be enumerated separately — there is no binomial shortcut here.",
+  traps: "(E) \\(\\tfrac{17}{24}\\) is the complement, the probability the plane stays airborne.\n" +
+    "(B) \\(\\tfrac14\\) is \\(\\tfrac6{24}\\), counting only the \"exactly one works\" cases and forgetting the total failure.\n" +
+    "(A) \\(\\tfrac7{12}\\) doubles the answer, from a denominator slip.\n" +
+    "(C) \\(\\tfrac12\\) is a guess anchored on engine three.\n" +
+    "The two conversions to watch: \"a \\(\\tfrac13\\) chance engine one fails\" is a *failure* probability while \"75% probability engine two works\" is a success probability — the stem deliberately mixes the two framings.",
+  take: "Convert every stated probability into the same direction (all failures or all successes) before combining. With unequal probabilities, enumerate the qualifying cases individually."
+},
+
+"quant-live-5b#9": {
+  steps: "Step 1 — Find the fleet size. The 40 air-conditioned cars are \\(80\\%\\) of the total, so the total is \\(40 \\div 0.80 = 50\\).\n" +
+    "Step 2 — The customer will buy a car that is a convertible *or* has air conditioning, so we want the size of the union.\n" +
+    "Step 3 — Inclusion–exclusion: \\(|AC \\cup \\text{convertible}| = 40 + 15 - 14\\), subtracting the 14 cars counted in both groups.\n" +
+    "Step 4 — That is \\(41\\).\n" +
+    "Step 5 — Probability \\(= \\dfrac{41}{50}\\).",
+  fast: "Add the two groups and subtract the overlap once: \\(40 + 15 - 14 = 41\\). Equivalently, the 40 air-conditioned cars plus the single convertible that lacks air conditioning — \\(15 - 14 = 1\\) — gives 41 directly, which is the quicker mental route.\n" +
+    "The fleet size comes from one division: 40 is \\(\\tfrac45\\) of 50.",
+  traps: "(B) \\(\\tfrac{31}{50}\\) subtracts the overlap twice (\\(40 + 15 - 14 - 10\\)-style), or uses \\(40 - 14 + 5\\).\n" +
+    "(C) \\(\\tfrac{37}{50}\\) and (A) \\(\\tfrac{21}{50}\\) come from mis-sizing the fleet — for instance treating 40 as the total or as \\(80\\%\\) of 40.\n" +
+    "(E) \\(\\tfrac{47}{50}\\) adds the two groups without subtracting the overlap at all: \\(40 + 15 = 55\\) exceeds the fleet, which should immediately signal a double count.\n" +
+    "The sanity check that catches most of these: the answer must be at least \\(\\tfrac{40}{50}\\), since every air-conditioned car qualifies.",
+  take: "\"Either A or B\" is the union: \\(|A| + |B| - |A \\cap B|\\). Recover a total from a percentage by dividing, and check the union against the group sizes."
+}
+
+});

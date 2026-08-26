@@ -74,5 +74,25 @@ module.exports = {
                     "D", "E", "B", "D", "C", "B", "A", "B", "D", "D", "D", "D", "E",
                     "B", "E", "D", "D", "E", "A", "B", "A", "B", "D", "B", "E"],
 
+  /* CR 700-800 Level Latest Questions — mixed bag, part 1. The source
+     prints its key at the head of the section. Kept, in source order:
+     1.D 2.C 3.E 4.E 5.D 6.E 7.B 8.C 9.B 10.E 11.D 13.C 14.E 15.E 16.A 17.D 18.E 19.E 20.C 21.D 22.A 23.C 26.B 28.D 29.E 30.A 31.B 32.E 33.C 35.C 36.E 37.D 38.C 39.C 40.A 41.D 42.A 43.B 44.D 45.B 46.B 47.E 48.A 49.D 50.D 51.C 52.C 53.C 54.B 55.D 56.D 57.A 59.B 60.D 61.B 62.C 63.B 64.E 65.E 66.E 67.D 68.D 69.B 70.E 71.A 72.B
+     Its #27 was dropped as unsettleable; five more were duplicates. */
+  "cr-700-mixed1": ["D", "C", "E", "E", "D", "E", "B", "C", "B", "E", "D", "C", "E", "E",
+                     "A", "D", "E", "E", "C", "D", "A", "C", "B", "D", "E", "A", "B", "E",
+                     "C", "C", "E", "D", "C", "C", "A", "D", "A", "B", "D", "B", "B", "E",
+                     "A", "D", "D", "C", "C", "C", "B", "D", "D", "A", "B", "D", "B", "C",
+                     "B", "E", "E", "E", "D", "D", "B", "E", "A", "B"],
+
+  /* CR 700-800 Level Latest Questions — mixed bag, part 2. The source
+     prints its key at the head of the section. Kept, in source order:
+     1.D 2.C 3.E 4.A 5.A 6.E 7.D 8.B 9.E 10.E 11.A 12.D 13.C 14.D 15.B 16.B 17.C 18.A 19.C 20.B 21.B 22.A 23.B 24.E 25.C 26.C 27.A 28.C 29.B 30.E 31.C 32.A 33.B 34.B 35.E 36.B 37.C 38.A 39.E 40.B 41.D 42.A 43.D 45.D 46.A 47.E 48.D 49.E 50.C 51.D 52.B 53.A 54.B 56.E 57.A 58.E 60.C 61.B 62.B 63.E 64.A 65.A 66.B 67.C 68.E
+     Three of its 68 were duplicates of questions already in the bank. */
+  "cr-700-mixed2": ["D", "C", "E", "A", "A", "E", "D", "B", "E", "E", "A", "D", "C", "D",
+                     "B", "B", "C", "A", "C", "B", "B", "A", "B", "E", "C", "C", "A", "C",
+                     "B", "E", "C", "A", "B", "B", "E", "B", "C", "A", "E", "B", "D", "A",
+                     "D", "D", "A", "E", "D", "E", "C", "D", "B", "A", "B", "E", "A", "E",
+                     "C", "B", "B", "E", "A", "A", "B", "C", "E"],
+
   "di-ds-realexam": null
 };

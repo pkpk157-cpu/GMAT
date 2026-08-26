@@ -23,6 +23,29 @@ sets, because that is the level at which a printed answer key exists.
     node verify/ui/state.js          # what saved progress does across upgrades
     sh verify/ui/run-all.sh          # all of the above plus the UI sweep
 
+## The explanation layer
+
+The rewritten explanations live in `expl-*.js` at the repo root, keyed
+`setId#n` and merged over the questions at load. The question files themselves
+are never touched, so everything above still checks the data exactly as it was
+transcribed and verified.
+
+Each record has four parts — `steps` (the full method), `fast` (the route that
+fits inside GMAT time), `traps` (what each wrong choice is built to catch) and
+`take` (the transferable rule). Two checks guard them:
+
+`explain.js` reads the source. A key that matches no question would silently do
+nothing, so it reports those; it also catches a `steps` block that announces a
+different letter from the verified key, a `traps` block that discusses the
+correct answer or names a choice the question does not have, unbalanced `\( \)`
+or `[[bold]]` markers, and sections too short to be doing their job.
+
+`ui/expl-render.js` reads the screen: it renders every block through the app's
+own escape → bold → KaTeX pipeline and fails on a literal backslash reaching the
+reader, an unconverted `[[` marker, or a formula KaTeX could not parse. It
+exists because `\$` is correct inside a `\( … \)` span and wrong outside one —
+a distinction invisible in the source and obvious to anyone reading the page.
+
 `ui/deep.js` is the broad net: it opens every pane, clicks every control on it,
 and after each click scans what is on screen for the signatures of a broken
 template — `undefined`, `NaN`, `[object Object]`, an unexpanded `${`, escaped

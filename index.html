@@ -805,6 +805,16 @@
   .expl summary::before { content: "▸  "; }
   .expl[open] summary::before { content: "▾  "; }
   .expl .ex { padding: 0 13px 13px; font-size: 15px; line-height: 1.55; color: var(--ink-soft); white-space: pre-line; }
+  /* The fast route and the trap list read as different kinds of thing from the
+     worked solution, so they are coloured rather than stacked identically. */
+  .expl.fast-box { border-color: color-mix(in srgb, var(--good) 45%, var(--line)); background: color-mix(in srgb, var(--good) 6%, var(--paper)); }
+  .expl.fast-box > summary { color: var(--good); }
+  .expl.trap-box { border-color: color-mix(in srgb, var(--bad) 35%, var(--line)); }
+  .expl.trap-box > summary { color: var(--bad); }
+  .take-box { margin-top: 12px; padding: 11px 13px; border-radius: 10px; font-size: 14.5px; line-height: 1.55;
+              color: var(--ink-soft); background: color-mix(in srgb, var(--accent) 7%, var(--paper));
+              border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line)); white-space: pre-line; }
+  .take-box b { color: var(--accent); font-weight: 800; letter-spacing: .02em; text-transform: uppercase; font-size: 12px; display: block; margin-bottom: 3px; }
 
   /* Concept reader */
   .cn-hdr { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
@@ -1169,6 +1179,12 @@
 <script src="sets-cr-700d.js"></script>
 <script src="sets-rc-700.js"></script>
 <script src="sets-di4.js"></script>
+<!-- Rewritten explanations: merged over the transcribed questions at load -->
+<script src="expl-quant-percent.js"></script>
+<script src="expl-quant-speed.js"></script>
+<script src="expl-quant-interest.js"></script>
+<script src="expl-quant-average.js"></script>
+<script src="expl-quant-ratio.js"></script>
 <script src="generator.js"></script>
 <script src="concepts.js"></script>
 <script src="flashcards.js"></script>
@@ -1260,7 +1276,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v99";
+  const APP_VERSION = "v100";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2507,6 +2523,34 @@
     // Whole new sets (e.g. new RC passages in sets-rc.js) are appended as-is.
     (window.GMAT_SETS_NEW || []).forEach(s => { if (s && Array.isArray(s.questions) && s.questions.length && !base.some(b => b.id === s.id)) base.push(s); });
   })();
+  /* ===== The explanation layer =====
+     A transcribed question carries whatever explanation its source gave, which
+     is usually the algebra and nothing else. The rewritten explanations live in
+     their own files, keyed "setId#n", and are merged over the top here. Keeping
+     them separate means the question files stay exactly as transcribed — the
+     thing the answer-key verification is run against — while an explanation can
+     be rewritten without touching a single answer.
+
+     Four parts, because a worked solution alone does not get you through a
+     45-minute section:
+       steps — the full method, and why each move is legal
+       fast  — how to get the same answer in well under two minutes
+       traps — what each wrong choice was built to catch
+       take  — the one line worth carrying into the next question */
+  (function () {
+    const ex = window.GMAT_EXPL || {};
+    (window.GMAT_SETS || []).forEach(set => {
+      (set.questions || []).forEach(q => {
+        const rec = ex[set.id + "#" + q.n];
+        if (!rec) return;
+        if (rec.steps) q.expl = rec.steps;
+        if (rec.fast)  q.fast = rec.fast;
+        if (rec.traps) q.traps = rec.traps;
+        if (rec.take)  q.take = rec.take;
+        if (rec.hint)  q.hint = rec.hint;
+      });
+    });
+  })();
   // Sets the user generated on this device live in state, so they survive a
   // reload and their runs are tracked exactly like a hand-authored set's.
   (function () {
@@ -3065,6 +3109,8 @@
       "CORRECT ANSWER: " + q.correct,
       "THE STUDENT CHOSE: " + chosen,
       q.expl ? "\nTHE EXPLANATION THEY HAVE ALREADY READ:\n" + q.expl : "",
+      q.fast ? "\nTHE SHORTCUT THEY HAVE ALREADY READ (do not just repeat it):\n" + q.fast : "",
+      q.traps ? "\nWHAT EACH WRONG CHOICE IS BUILT TO CATCH:\n" + q.traps : "",
       "",
       "Write at most 120 words, addressed to the student as \"you\". Do not restate why " + q.correct + " is correct — they have read that.",
       "Instead: name the specific trap in " + chosen + " that would make it look right, say what in the question should have caught it, and give one concrete habit that prevents this class of error next time.",
@@ -3296,7 +3342,7 @@
     h += `</div>`;
     if (revealed) {
       h += `<div class="feedback ${a.correct?"ok":"no"}">${a.correct?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
-      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>`;
+      h += explBlocksHTML(q);
       h += aiExplainHTML(cur.set, q, a.chosen);
       const last = rev.idx === n-1;
       h += `<div class="rn-nav"><span></span><button class="navbtn primary" data-rvnext>${last?"See results":"Next ›"}</button></div>`;
@@ -3850,6 +3896,21 @@
     return `<div class="di-chart">${c.title ? `<div class="di-chart-title">${esc(c.title)}</div>` : ""}<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(c.title || "chart")}">${g}${ax}${ay}</svg></div>`;
   }
 
+  /* The explanation, in the order it is useful after you have answered: the
+     method first, then the route that would have been quick enough on test day,
+     then what the wrong choices were built to catch, then the line to remember.
+     `inline` is the compact form used in the end-of-run review lists. */
+  function explBlocksHTML(q, inline) {
+    if (!q) return "";
+    let h = "";
+    const pad = inline ? ' style="margin:6px 0 0 44px"' : "";
+    if (q.expl) h += `<details class="expl"${inline ? pad : " open"}><summary>${q.fast ? "Full solution" : "Explanation"}</summary><div class="ex">${rich(q.expl)}</div></details>`;
+    if (q.fast) h += `<details class="expl fast-box"${inline ? pad : " open"}><summary>⚡ The fast way</summary><div class="ex">${rich(q.fast)}</div></details>`;
+    if (q.traps) h += `<details class="expl trap-box"${inline ? pad : ""}><summary>🎣 What each wrong answer catches</summary><div class="ex">${rich(q.traps)}</div></details>`;
+    if (q.take) h += `<div class="take-box"${inline ? ' style="margin:6px 0 0 44px"' : ""}><b>Remember</b> ${rich(q.take)}</div>`;
+    return h;
+  }
+
   let passageOpen = false;
   /* A topic gathers questions from many sources, so the passage travels with
      the question; a source set that still carries one is the fallback. */
@@ -4177,7 +4238,7 @@
       const ok = committed === q.correct;
       h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
       if (!ok) h += missReasonHTML(set.id, q.n);
-      if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>`;
+      h += explBlocksHTML(q);
       h += aiExplainHTML(set, q, committed);
       h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
     } else {
@@ -4218,7 +4279,7 @@
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
-        (q && q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>` : "") +
+        explBlocksHTML(q, true) +
         `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · ${levelBadge(set.section, q)}`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
     h += `</div></div>`;
@@ -4644,7 +4705,7 @@
         LET.slice(0, nOpt).map(L => { let c = ""; if (L === q.correct) c = "correct"; else if (L === a.chosen && !a.correct) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div><span class="rev-time">⏱ ${fmtClock(a.ms)}</span><span class="rev-mark ${a.correct ? "ok" : "no"}">${a.correct ? "✓" : "✗"}</span></div>` +
         (q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
-        (q.expl ? `<details class="expl" style="margin:6px 0 0 44px"><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>` : "") +
+        explBlocksHTML(q, true) +
         `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}</div></div>`;
     });
     h += `</div></div><div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-sessagain="1">New session</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-sessclose="1">Done</button></div>`;

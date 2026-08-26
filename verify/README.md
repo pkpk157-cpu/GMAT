@@ -1,15 +1,19 @@
 # Answer verification
 
 Every question in the bank has had its answer checked. This directory holds
-the parts of that check that are repeatable; the Critical Reasoning and
-Reading Comprehension questions were verified by hand, since their answers
-cannot be computed.
+the parts of that check that are repeatable. Critical Reasoning and Reading
+Comprehension answers cannot be computed, so those were checked against the
+answer key printed in the source document and, separately, re-derived by hand
+from the argument or passage before that key was consulted; where the two
+disagreed the question was dropped rather than guessed.
 
 ## Runnable checks
 
     node verify/run.js               # re-derives 407 answers independently
-    node verify/check-source-keys.js # 124 answers vs the printed source keys
-    node verify/coverage.js          # what run.js does and does not cover
+    node verify/check-source-keys.js # answers vs the printed source keys
+    python3 verify/di4-derive.py     # re-derives the non-DS Data Insights answers
+    node verify/coverage.js          # what those checks do and do not cover
+    sh verify/ui/run-all.sh          # all of the above plus the UI sweep
 
 `answers.js` recomputes each answer from the numbers in the question. It never
 reads the stored key or the stored explanation, so agreement is real evidence
@@ -26,9 +30,14 @@ filled in from memory.
 
 | Section | Questions | How verified |
 |---|---|---|
-| Quant + Data Insights | 569 | 407 re-derived here, 124 against printed source keys, 38 by the derivation recorded in the question's own explanation |
-| Critical Reasoning | 154 | by hand — each answer re-derived from the argument before consulting the key |
-| Reading Comprehension | 107 | by hand — each answer re-derived from the passage before consulting the key |
+| Quant + Data Insights | 707 | 407 re-derived by `answers.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
+| Critical Reasoning | 528 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
+| Reading Comprehension | 155 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
+
+`di4-derive.py` covers the four non-Data-Sufficiency Data Insights types. Those
+questions have no printed letter key — the real exam poses them as Yes/No
+triplets and drop-down completions — so each answer is computed straight from
+the table, chart or scenario the question is built on.
 
 ## What the sweep found
 

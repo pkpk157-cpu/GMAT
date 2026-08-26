@@ -624,6 +624,13 @@
   .reset-set:hover { color: var(--bad); border-color: var(--bad); }
   .q-reset { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 14px; text-decoration: underline; }
   .q-reset:hover { color: var(--bad); }
+  /* "Explain my mistake" — a second opinion on the choice the user actually made */
+  .ai-expl-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; }
+  .ai-expl-bar .q-reset { margin: 0; }
+  .ai-expl-bar .q-reset[disabled] { opacity: .55; text-decoration: none; }
+  .ai-err { font-size: 13.5px; color: var(--bad); }
+  .expl.ai-expl { margin-top: 10px; border-left: 3px solid var(--accent); }
+  .expl.ai-expl > summary { color: var(--accent); }
   .badge { font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; padding: 2px 8px; border-radius: 20px; background: color-mix(in srgb, var(--sc) 15%, transparent); color: var(--sc); }
   .lvl { font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
   .lvl-easy { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
@@ -1144,6 +1151,7 @@
 <script src="sets-cr-700c.js"></script>
 <script src="sets-cr-700d.js"></script>
 <script src="sets-rc-700.js"></script>
+<script src="sets-di4.js"></script>
 <script src="generator.js"></script>
 <script src="concepts.js"></script>
 <script src="flashcards.js"></script>
@@ -1235,7 +1243,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v94";
+  const APP_VERSION = "v96";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2784,8 +2792,109 @@
   function reviewDueCount() { return reviewPool().length; }
   function srsScheduledCount() { const t = dkey(); return Object.values(state.srs || {}).filter(e => e && (!e.due || e.due <= t)).length; }
 
-  function aiExplainHTML() { return ""; }   // AI tutor (implemented below); stub keeps review self-contained
-  function aiExplainRun() {}
+  /* ===== "Explain my mistake" — a second opinion on one wrong answer =====
+     The stored explanation says why the credited choice is right. This asks
+     Claude why the choice you actually picked looked right, which is the part
+     a written explanation cannot know in advance. It reuses the API key already
+     saved for the question generator, so it costs the user's own account and
+     appears only once a key exists. Answers are cached in memory for the
+     session — long enough to survive re-renders, short enough not to grow
+     localStorage. */
+  const aiExpl = {};                      // "setId#n#chosen" -> {state, text}
+  const aiKey = (setId, n, chosen) => setId + "#" + n + "#" + chosen;
+
+  function aiExplainHTML(set, q, chosen) {
+    if (!set || !q || !chosen || chosen === q.correct) return "";
+    if (!(window.GMAT_GEN && window.GMAT_GEN.ai && window.GMAT_GEN.ai.hasKey())) return "";
+    const k = aiKey(set.id, q.n, chosen), rec = aiExpl[k];
+    if (rec && rec.state === "done") {
+      return `<details class="expl ai-expl" open><summary>🤖 Why ${esc(chosen)} looked right</summary><div class="ex">${rich(rec.text)}</div></details>`;
+    }
+    if (rec && rec.state === "error") {
+      return `<div class="ai-expl-bar"><span class="ai-err">${esc(rec.text)}</span> <button class="q-reset" data-aiexplain="${esc(k)}">Try again</button></div>`;
+    }
+    const busy = rec && rec.state === "loading";
+    return `<div class="ai-expl-bar"><button class="q-reset" data-aiexplain="${esc(k)}" ${busy ? "disabled" : ""}>${busy ? "Thinking…" : "🤖 Explain my mistake"}</button></div>`;
+  }
+
+  function aiFindQ(setId, n) {
+    const set = SETS.find(s => s.id === setId);
+    if (!set) return null;
+    const q = set.questions.find(x => String(x.n) === String(n));
+    return q ? { set, q } : null;
+  }
+
+  async function aiExplainRun(btn) {
+    const k = btn.getAttribute("data-aiexplain") || "";
+    const parts = k.split("#");
+    if (parts.length !== 3) return;
+    const found = aiFindQ(parts[0], parts[1]);
+    if (!found) return;
+    const { set, q } = found, chosen = parts[2];
+    aiExpl[k] = { state: "loading" };
+    aiRefresh();
+    const letters = ["A", "B", "C", "D", "E"];
+    const choiceList = (q.choices || []).map((c, i) => letters[i] + ") " + c).join("\n");
+    const prompt = [
+      "You are a GMAT tutor. A student answered a " + ((SECTIONS.find(x => x.id === set.section) || {}).title || "GMAT") + " question wrongly.",
+      "",
+      set.passage && set.passage.paras ? "PASSAGE:\n" + set.passage.paras.join("\n\n") + "\n" : "",
+      "QUESTION:\n" + q.text,
+      "",
+      "CHOICES:\n" + choiceList,
+      "",
+      "CORRECT ANSWER: " + q.correct,
+      "THE STUDENT CHOSE: " + chosen,
+      q.expl ? "\nTHE EXPLANATION THEY HAVE ALREADY READ:\n" + q.expl : "",
+      "",
+      "Write at most 120 words, addressed to the student as \"you\". Do not restate why " + q.correct + " is correct — they have read that.",
+      "Instead: name the specific trap in " + chosen + " that would make it look right, say what in the question should have caught it, and give one concrete habit that prevents this class of error next time.",
+      "Plain prose, no headings, no bullet lists, no preamble."
+    ].filter(Boolean).join("\n");
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-api-key": window.GMAT_GEN.ai.getKey(),
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true"
+        },
+        body: JSON.stringify({
+          model: window.GMAT_GEN.ai.MODEL,
+          max_tokens: 700,
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+      if (!res.ok) {
+        let detail = "";
+        try { const j = await res.json(); detail = (j.error && j.error.message) || ""; } catch (e) {}
+        let msg = "The API returned " + res.status + ".";
+        if (res.status === 401) msg = "That API key was rejected — re-save it in your profile.";
+        else if (res.status === 429) msg = "Rate limited — wait a moment and try again.";
+        else if (res.status === 400 && /credit|balance/i.test(detail)) msg = "Your Anthropic account is out of credit.";
+        aiExpl[k] = { state: "error", text: msg };
+        aiRefresh(); return;
+      }
+      const data = await res.json();
+      const block = (data.content || []).find(b => b.type === "text");
+      const text = block && block.text ? block.text.trim() : "";
+      aiExpl[k] = text ? { state: "done", text } : { state: "error", text: "No explanation came back." };
+    } catch (e) {
+      aiExpl[k] = { state: "error", text: "Couldn't reach the Claude API — check your connection." };
+    }
+    aiRefresh();
+  }
+
+  /* The button lives in two places — the practice runner and the review queue —
+     and each has its own re-render. Refresh whichever one is on screen. */
+  function aiRefresh() {
+    const runner = document.getElementById("runner");
+    if (runner && !runner.hidden) { renderRunner(); return; }
+    const review = document.getElementById("review");
+    if (review && !review.hidden) { renderReview(); return; }
+    render();
+  }
 
   /* ===== Notifications, reminders & focus timer ===== */
   function notifyReady() { return ("Notification" in window) && Notification.permission === "granted"; }
@@ -3692,6 +3801,7 @@
       h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
       if (!ok) h += missReasonHTML(set.id, q.n);
       if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>`;
+      h += aiExplainHTML(set, q, committed);
       h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
     } else {
       if (q.hint) h += `<details class="expl hint-box"><summary>💡 Hint</summary><div class="ex">${esc(q.hint)}</div></details>`;
@@ -3813,6 +3923,7 @@
     if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; jumperLevel = null; openJumper(); return; }
     const mr = e.target.closest("[data-miss]");
     if (mr) { const [sid, n, r] = mr.getAttribute("data-miss").split("|"); setMissReason(sid, +n, r); renderRunner(); return; }
+    const aib = e.target.closest("[data-aiexplain]"); if (aib) { aiExplainRun(aib); return; }
     const rq = e.target.closest("[data-resetq]"); if (rq) { resetQuestion(set, rq.getAttribute("data-resetq")); renderRunner(); return; }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }

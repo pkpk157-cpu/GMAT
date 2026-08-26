@@ -354,3 +354,148 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-2#23": {
+  steps: "Step 1 — Measure the job in technician-hours: six technicians for 10 hours is \\(60\\) technician-hours.\n" +
+    "Step 2 — From 11:00 a.m. to 5:00 p.m. is 6 hours with 6 technicians: \\(36\\) technician-hours done, leaving \\(24\\).\n" +
+    "Step 3 — 5:00–6:00 p.m., seven technicians: \\(7\\) done. Remaining \\(17\\).\n" +
+    "Step 4 — 6:00–7:00 p.m., eight technicians: \\(8\\) done. Remaining \\(9\\).\n" +
+    "Step 5 — 7:00–8:00 p.m., nine technicians: \\(9\\) done. Remaining \\(0\\).\n" +
+    "Step 6 — The job finishes exactly at 8:00 p.m.",
+  fast: "Convert everything to technician-hours and the problem becomes bookkeeping: 60 needed, 36 banked by 5 p.m., then 7, 8 and 9 in the following hours. Those three add to 24 — precisely the shortfall — so the finish lands on the hour.\n" +
+    "Running total from 5 p.m.: 7, 15, 24. The moment the running total reaches 24 is the answer.",
+  traps: "(C) 7:20 p.m. and (A) 6:40 p.m. are what you get by assuming a fractional hour is needed at the end. Here the arithmetic works out exactly, so any answer with minutes attached should prompt a recheck of the running total.\n" +
+    "(B) 7:00 p.m. stops one hour early — at that point only 51 of the 60 technician-hours are done.\n" +
+    "(E) 8:15 p.m. adds a quarter hour that the totals do not call for.\n" +
+    "The detail to read precisely is \"one technician per hour is added beginning at 5:00 p.m.\", meaning the 5–6 hour already has seven working, not six.",
+  take: "Express the job as worker-hours, then tally the contribution of each hour as the crew changes. The finish is when the running total first reaches the job size."
+},
+
+"quant-live-2#24": {
+  steps: "Step 1 — Let Pascal's current speed be \\(s\\) mph over the remaining 96 miles.\n" +
+    "Step 2 — Reduced by 4 mph, the time is \\(\\dfrac{96}{s - 4}\\).\n" +
+    "Step 3 — Increased by \\(50\\%\\), the speed is \\(1.5s\\) and the time is \\(\\dfrac{96}{1.5s}\\).\n" +
+    "Step 4 — The slower option takes 16 hours longer: \\(\\dfrac{96}{s-4} - \\dfrac{96}{1.5s} = 16\\).\n" +
+    "Step 5 — Test the choices. With \\(s = 8\\): \\(\\dfrac{96}{4} - \\dfrac{96}{12} = 24 - 8 = 16\\) ✓.\n" +
+    "Step 6 — Current speed is 8 mph.",
+  fast: "Back-solve — the algebraic route leads to a quadratic, while each choice takes about ten seconds to test, and 96 divides cleanly by most of the candidate values.\n" +
+    "Start from the small end: a 16-hour gap over just 96 miles implies a very slow cyclist, since faster speeds compress all the times. That reasoning points at the smallest plausible choices first.",
+  traps: "(E) 6 gives \\(\\dfrac{96}{2} - \\dfrac{96}{9} = 48 - 10.67 \\approx 37\\) hours — far too large a gap.\n" +
+    "(B) 10 gives \\(16 - 6.4 = 9.6\\) hours, (C) 12 gives \\(12 - 5.33 \\approx 6.7\\), and (D) 16 gives \\(8 - 4 = 4\\). The gap shrinks steadily as the speed rises, so only one choice can produce 16.\n" +
+    "The setup error to avoid is reading \"increased his speed by 50%\" as \\(s + 50\\) or as \\(1.5(s-4)\\); both changes are measured from the *current* speed.",
+  take: "When answer choices are the unknown and the algebra leads to a quadratic, substitute instead. Check that each stated change is measured from the original value."
+},
+
+"quant-live-2#25": {
+  steps: "Step 1 — Car A starts half an hour earlier and they meet a quarter hour after Car B starts, so Car A has been driving \\(0.5 + 0.25 = 0.75\\) hours and Car B \\(0.25\\) hours.\n" +
+    "Step 2 — Let Car B's speed be \\(b\\); Car A's is \\(b + 8\\).\n" +
+    "Step 3 — Between them they cover the whole 62 miles: \\(0.75(b + 8) + 0.25b = 62\\).\n" +
+    "Step 4 — Expand: \\(0.75b + 6 + 0.25b = 62\\), so \\(b = 56\\).\n" +
+    "Step 5 — Car B drove \\(0.25 \\times 56 = 14\\) miles.\n" +
+    "Step 6 — Check: Car A drove \\(0.75 \\times 64 = 48\\) miles, and \\(48 + 14 = 62\\) ✓.",
+  fast: "The \\(b\\) terms collapse because \\(0.75 + 0.25 = 1\\): the equation reduces to \\(b + 6 = 62\\) in a single line. Notice that before expanding and the algebra is trivial.\n" +
+    "The structural point is that the two cars' distances must sum to the full 62 miles — that is what \"met\" means on a single road.",
+  traps: "(E) 8 is the speed *difference* from the stem, recycled as a distance.\n" +
+    "(B) 12 and (C) 10 come from giving Car A only a quarter hour as well, which would make the meeting point closer to the middle.\n" +
+    "(D) 9 arises from computing Car B's speed correctly but then multiplying by the wrong time.\n" +
+    "The two details that decide the question are the unequal driving times (0.75 versus 0.25 hours) and that the answer wants *miles driven*, not the speed 56.",
+  take: "In head-on meeting problems the two distances add to the total gap. Give each traveller its own elapsed time when their start times differ."
+},
+
+"quant-live-2#26": {
+  steps: "Step 1 — Two objects moving directly toward each other close the gap at the sum of their speeds: \\(5 + 10 = 15\\) km/h.\n" +
+    "Step 2 — One minute is \\(\\tfrac1{60}\\) hour.\n" +
+    "Step 3 — In that time they close \\(15 \\times \\tfrac1{60} = \\tfrac{15}{60} = \\tfrac14\\) km.\n" +
+    "Step 4 — So one minute before impact they are \\(\\tfrac14\\) km apart.",
+  fast: "Work backwards from the collision: the distance remaining is exactly the distance the pair will cover in that final minute, at their combined 15 km/h. Nothing else about the journey matters — not where they started, not how long they have been sailing.\n" +
+    "\\(15\\) km/h is \\(\\tfrac14\\) km per minute, which answers the question in one conversion.",
+  traps: "(B) \\(\\tfrac16\\) is \\(10/60\\) — using only the faster boat's speed.\n" +
+    "(A) \\(\\tfrac1{12}\\) is \\(5/60\\), using only the slower boat.\n" +
+    "(E) \\(\\tfrac12\\) doubles the answer, from treating the minute as two minutes or the closing rate as 30.\n" +
+    "(D) \\(\\tfrac13\\) is \\(20/60\\), from adding the speeds incorrectly.\n" +
+    "The question deliberately withholds the starting distance to see whether you realise it is irrelevant — a hallmark of relative-speed problems.",
+  take: "Head-on closing speed is the sum of the speeds. To find the separation \\(t\\) before impact, multiply that closing speed by \\(t\\) — the rest of the journey is irrelevant."
+},
+
+"quant-live-2#27": {
+  steps: "Step 1 — Work in rates of the *task*. Together: \\(\\tfrac1{24}\\) task per minute. Printer A alone: \\(\\tfrac1{60}\\).\n" +
+    "Step 2 — Printer B's rate: \\(\\tfrac1{24} - \\tfrac1{60}\\). Over 120ths: \\(\\tfrac5{120} - \\tfrac2{120} = \\tfrac3{120} = \\tfrac1{40}\\).\n" +
+    "Step 3 — So B alone would take 40 minutes.\n" +
+    "Step 4 — Now bring in pages. If the task is \\(N\\) pages, A prints \\(\\tfrac{N}{60}\\) pages per minute and B prints \\(\\tfrac{N}{40}\\).\n" +
+    "Step 5 — B prints 5 more pages per minute: \\(\\dfrac{N}{40} - \\dfrac{N}{60} = 5\\).\n" +
+    "Step 6 — \\(\\dfrac{3N - 2N}{120} = 5\\), so \\(\\dfrac{N}{120} = 5\\) and \\(N = 600\\).",
+  fast: "Two stages, each one subtraction. First subtract rates to get B's solo time of 40 minutes; then subtract page-rates to get \\(\\tfrac{N}{120} = 5\\).\n" +
+    "The \\(\\tfrac1{120}\\) appears twice because 120 is the least common multiple of 24, 60 and 40 — choosing it as the working denominator from the outset makes both subtractions instant.",
+  traps: "(D) 1200 doubles the answer, from using \\(\\tfrac{N}{60}\\) as B's rate or from a factor-of-two slip in the least common denominator.\n" +
+    "(B) 800 and (C) 1000 come from mis-deriving B's solo time — 30 or 48 minutes instead of 40 — usually by subtracting the times \\(60 - 24\\) rather than the rates.\n" +
+    "(E) 1500 arises from treating the 5-page difference as applying over the whole 24-minute task rather than per minute.\n" +
+    "The general rule this question tests twice: rates subtract, times do not.",
+  take: "Solve rate problems in two layers when a second quantity (pages) is involved: first find the missing time from the rates, then convert to the second quantity."
+},
+
+"quant-live-2#28": {
+  steps: "Step 1 — The pay rule has two regimes: at or below 36 items, \\(X\\) per item; above 36, \\(36X\\) plus \\(1.5X\\) for each item beyond 36. The question wants last week's count.\n" +
+    "Step 2 — Statement (1): a total of 480 dollars. With \\(X = 15\\) and 32 items, the pay is 480. With \\(X = 10\\) and 44 items, the pay is \\(360 + 15(8) = 480\\). Two different counts — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): two extra items brought 30 dollars more, so those two items paid 15 each. That means either \\(X = 15\\) with both extra items below the threshold, or \\(1.5X = 15\\) (so \\(X = 10\\)) with both above it. No count at all — [[not sufficient]].\n" +
+    "Step 4 — Together: the pair \\(X = 15\\), 32 items satisfies both — 32 and 34 are both at or below 36, so the extra two pay 15 each. So does \\(X = 10\\), 44 items — items 45 and 46 pay \\(1.5 \\times 10 = 15\\) each.\n" +
+    "Step 5 — Two consistent scenarios with counts 32 and 44 survive both statements — [[not sufficient]].",
+  fast: "The trap is structural, not arithmetic: a marginal payment of 15 dollars per item is consistent with *either* regime, because \\(X = 15\\) below the threshold and \\(1.5X = 15\\) above it produce the same marginal rate. Once you spot that ambiguity, statement (2) can never resolve the regime, and statement (1) alone never fixed it either.\n" +
+    "Construct one example in each regime and you are done — 32 items at 15, and 44 items at 10.",
+  traps: "(B) is the most tempting wrong answer: statement (2) yields the crisp figure \"15 dollars per extra item\", which feels like it pins \\(X\\). It pins only the *marginal* rate, and two different \\(X\\) values produce it.\n" +
+    "(C) assumes two ambiguous statements must combine into certainty. They do not here, because both ambiguities point the same way.\n" +
+    "(A) treats one total as enough to determine both \\(X\\) and the count — two unknowns, one equation.\n" +
+    "(D) is stronger still.\n" +
+    "The discipline for piecewise-pay questions is to test each regime separately before concluding anything.",
+  take: "With a piecewise rate, always check whether a given fact is consistent with more than one regime. Two statements that share the same ambiguity do not resolve each other."
+},
+
+"quant-live-2#29": {
+  steps: "Step 1 — Call the least populated district \\(L\\). The rule caps every other district at \\(1.1L\\).\n" +
+    "Step 2 — Minimising \\(L\\) means loading as much population as possible into the other ten districts, so set each of them to exactly \\(1.1L\\).\n" +
+    "Step 3 — Total: \\(L + 10(1.1L) = L + 11L = 12L\\).\n" +
+    "Step 4 — \\(12L = 132{,}000\\), so \\(L = 11{,}000\\).\n" +
+    "Step 5 — Check the configuration: one district of 11,000 and ten of 12,100 sums to \\(11{,}000 + 121{,}000 = 132{,}000\\) ✓, and \\(12{,}100 = 1.1 \\times 11{,}000\\) exactly meets the cap.",
+  fast: "The coefficient is the whole calculation: \\(1 + 10(1.1) = 12\\), so the answer is \\(132{,}000 / 12\\). Both numbers are chosen to make that division clean.\n" +
+    "A quick bound before computing: the average district holds \\(132{,}000/11 = 12{,}000\\), and the smallest must lie below it but within \\(10\\%\\) of the largest — so 11,000 is exactly where the constraint binds.",
+  traps: "(E) 11,100 is what you get by allowing the other districts to exceed \\(1.1L\\), which the rule forbids — it is the answer to a looser constraint.\n" +
+    "(A) 10,700, (B) 10,800 and (C) 10,900 all sit below \\(132{,}000/12\\) and would each require some district to be more than \\(10\\%\\) above the smallest.\n" +
+    "The phrase to translate precisely is \"more than 10 percent greater than\": the cap is \\(1.1L\\), not \\(L + 10\\), and it binds between the smallest and the largest.",
+  take: "To minimise one member of a fixed-sum group, push every other member to its permitted maximum. Then read the resulting coefficient off the setup."
+},
+
+"quant-live-2#30": {
+  steps: "Step 1 — Each class needs its own multiplier. Class A: \\(3k\\) boys, \\(4k\\) girls. Class B: \\(4m\\) boys, \\(5m\\) girls.\n" +
+    "Step 2 — Boys in B are one fewer than in A: \\(4m = 3k - 1\\).\n" +
+    "Step 3 — Girls in B are two fewer than in A: \\(5m = 4k - 2\\).\n" +
+    "Step 4 — Multiply the first by 5 and the second by 4 to eliminate \\(m\\): \\(20m = 15k - 5\\) and \\(20m = 16k - 8\\).\n" +
+    "Step 5 — Setting them equal: \\(15k - 5 = 16k - 8\\), so \\(k = 3\\), and then \\(m = 2\\).\n" +
+    "Step 6 — Class A has \\(3(3) = 9\\) boys and \\(4(3) = 12\\) girls; Class B has 8 boys and 10 girls.\n" +
+    "Step 7 — Verify with the combined ratio: \\(17\\) boys to \\(22\\) girls ✓.",
+  fast: "The combined ratio \\(17 : 22\\) is a gift — it says the two classes together hold 17 boys and 22 girls in the smallest case. Splitting 17 as \\(9 + 8\\) and 22 as \\(12 + 10\\) satisfies both the \\(3:4\\) and \\(4:5\\) requirements and both the \"one less / two less\" conditions, so you can read the answer off almost by inspection.\n" +
+    "If you prefer algebra, eliminating \\(m\\) between the two equations takes one line.",
+  traps: "(B) 9 is the number of boys in Class A; (C) 10 is the girls in Class B; (A) 8 is the boys in Class B. Three of the five choices are true quantities from the solved system, so the last step is really a reading-comprehension step.\n" +
+    "(D) 11 comes from using a single multiplier for both classes, which produces an inconsistent system and a near answer.\n" +
+    "Two classes with different ratios must have independent scaling factors — that is the structural point.",
+  take: "Different ratios need different multipliers. Use any extra condition (here the combined ratio) as a check, or as a shortcut into the smallest consistent case."
+},
+
+"quant-live-2#31": {
+  steps: "Step 1 — Chain Bag A's ratios through white, the colour they share. Red : white \\(= 1 : 3 = 2 : 6\\); white : blue \\(= 2 : 3 = 6 : 9\\).\n" +
+    "Step 2 — So Bag A is red : white : blue \\(= 2 : 6 : 9\\). Writing its scale as \\(a\\), Bag A holds \\(2a\\) red and \\(6a\\) white.\n" +
+    "Step 3 — Bag B is red : white \\(= 1 : 4\\); with scale \\(b\\) it holds \\(4b\\) white.\n" +
+    "Step 4 — Total whites: \\(6a + 4b = 30\\), i.e. \\(3a + 2b = 15\\).\n" +
+    "Step 5 — Positive integer solutions: \\((a, b) = (1, 6)\\) and \\((3, 3)\\). (\\(a = 5\\) forces \\(b = 0\\), leaving Bag B with no marbles.)\n" +
+    "Step 6 — Bag A's red count is \\(2a\\): either \\(2\\) or \\(6\\).\n" +
+    "Step 7 — Only \\(6\\) appears among the choices.",
+  fast: "\"Could be\" signals a divisibility question. Reduce \\(6a + 4b = 30\\) to \\(3a + 2b = 15\\) and note that \\(a\\) must be odd for \\(2b\\) to come out even — so \\(a \\in \\{1, 3\\}\\) and the red count is \\(2a \\in \\{2, 6\\}\\). Two candidates, one of which is offered.\n" +
+    "The step that must be right is the chaining: scale the ratios to match on white, never add them.",
+  traps: "(B) 3 and (E) 8 come from taking Bag A's white count as a multiple of 3 (from red : white alone) instead of a multiple of 6 — the white : blue ratio tightens that requirement, and skipping it admits values that do not exist.\n" +
+    "(C) 4 arises from reading the red : white ratio as \\(1 : 3\\) applied to a white count of 12, which the second ratio forbids.\n" +
+    "(A) 1 takes the ratio numbers themselves as counts.\n" +
+    "Both of Bag A's ratios must hold simultaneously; each alone permits configurations the other rules out.",
+  take: "Chain ratios by scaling to a common shared term, then read off the divisibility conditions. On \"could be\" questions, enumerate the few integer solutions."
+}
+
+});

@@ -17,6 +17,8 @@ module.exports = {
               16.D 17.A 18.C 19.C 20.E 21.A 22.C 23.E 24.C 25.A 26.B 27.B 28.B 29.D
      Fifteen of its questions already existed in the bank and stayed in their
      topic sets; quant-live-1 holds the thirteen that were new. */
+  "quant-700-arith": ["E", "C", "B", "E", "D", "D", "B", "B", "B", "E", "A", "B", "E", "B", "B", "C", "D", "A", "E", "A", "A", "D", "E", "C", "D", "C", "D", "D", "C", "A", "A", "B", "D", "B", "C", "E", "E", "D", "D", "B", "E", "A", "E", "E", "E", "C", "A", "C", "D"],
+  "quant-700-rates": ["B", "E", "D", "B", "D", "E", "D", "E", "A", "D", "E", "A", "D", "C", "D"],
   "di-ds-traps": ["A", "D", "D", "A", "A", "B", "C", "D", "C", "E", "E", "B", "C", "D", "B", "B", "B", "E", "E"],
   "di-ds-extra": ["C", "A", "E", "D", "C", "C", "E", "C", "E", "C", "E", "D", "D", "C", "C", "C", "B", "A", "D", "A", "B", "B", "C", "A", "D", "B", "E", "C", "A"],
   "quant-live-1": ["D","B","E","C","D","D","E","C","E","E","B","D","B"],

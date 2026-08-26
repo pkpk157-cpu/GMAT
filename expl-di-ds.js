@@ -129,3 +129,169 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-ds-extra#9": {
+  steps: "Step 1 — Statement (1): if the median sits at the 15th position of an ordered list, the list has \\(2(15) - 1 = 29\\) entries. That locates the median but names no salary — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): the salaries total \\(600{,}000\\). A sum never determines a median; the same total can be distributed in countless ways — [[not sufficient]].\n" +
+    "Step 3 — Together: 29 distinct salaries summing to \\(600{,}000\\).\n" +
+    "Step 4 — Make them nearly equal, all clustered around \\(20{,}690\\), and the median is about \\(20{,}690\\).\n" +
+    "Step 5 — Or make fourteen of them tiny and the top fifteen large: the 15th salary can be pushed far above or far below that figure while the total stays fixed.\n" +
+    "Step 6 — The median is not determined — [[not sufficient]].",
+  fast: "A sum constrains the *mean*, never the median, and the two are independent once the values are free to move. So the moment you see a total offered against a median question, expect it to fail.\n" +
+    "Statement (1) is worth decoding — the 15th position implies \\(n = 29\\) — but a position without values is still nothing.",
+  traps: "(C) is the standard trap: a count and a total feel like a complete description, but a list is not determined by its length and its sum.\n" +
+    "(A) mistakes locating the median for knowing it.\n" +
+    "(B) mistakes a total for an average, and an average for a median.\n" +
+    "(D) is stronger than either.\n" +
+    "The distinctness condition in the stem is a red herring here — it rules out ties but does nothing to pin the middle value.",
+  take: "A sum determines the mean, not the median. Knowing which position is the median tells you the list length, not the value sitting there."
+},
+
+"di-ds-extra#10": {
+  steps: "Step 1 — Let \\(a\\) and \\(b\\) be the class sizes. Each A student handed in 7 assignments and each B student 5.\n" +
+    "Step 2 — Statement (1): \\(7a + 5b = 85\\). This is one equation in two unknowns, but both must be non-negative integers, so the solutions are limited.\n" +
+    "Step 3 — Those solutions include \\((a, b) = (5, 10)\\) and \\((10, 3)\\), which give different answers — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): \\(b = 10\\) says nothing about \\(a\\) — [[not sufficient]].\n" +
+    "Step 5 — Together: \\(7a + 5(10) = 85\\), so \\(7a = 35\\) and \\(a = 5\\) — [[sufficient]].",
+  fast: "The integrality is the reason statement (1) deserves a second look rather than instant dismissal — a single Diophantine equation sometimes has a unique non-negative solution.\n" +
+    "Here it does not: since \\(7 \\times 5 = 35\\) and \\(5 \\times 7 = 35\\), you can trade 5 A-students for 7 B-students and stay at 85. Finding that trade is the quickest way to prove insufficiency.",
+  traps: "(A) is the trap for anyone who assumes one equation in two unknowns is automatically insufficient *or* automatically sufficient once integers are involved — the honest approach is to hunt for a second solution.\n" +
+    "(B) treats one class size as determining the other.\n" +
+    "(D) requires each alone to work.\n" +
+    "(E) understates the pair.\n" +
+    "Note the trade structure: whenever the two coefficients are \\(m\\) and \\(n\\), swapping \\(n\\) of one for \\(m\\) of the other preserves the total, so multiple solutions are the norm.",
+  take: "A single equation with integer unknowns may still have several solutions — look for the trade that preserves the total (swap \\(n\\) of one for \\(m\\) of the other) before ruling either way."
+},
+
+"di-ds-extra#11": {
+  steps: "Step 1 — The quantity wanted is \\(50 - |F \\cup P|\\), so the question reduces to finding the size of the union.\n" +
+    "Step 2 — Statement (1): \\(|F \\cup P| < 50\\). An inequality, so \"neither\" could be anything from 1 to 50 — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): the overlap is 15. Inclusion–exclusion gives \\(|F \\cup P| = |F| + |P| - 15\\), and neither individual total is known — [[not sufficient]].\n" +
+    "Step 4 — Together: the union is at least 15 (it contains the overlap) and less than 50.\n" +
+    "Step 5 — With a union of 20, \"neither\" is 30; with a union of 45, \"neither\" is 5. Both are consistent with an overlap of 15 — [[not sufficient]].",
+  fast: "Rewrite the target as \\(50 - |F \\cup P|\\) and the question becomes \"do the statements determine the union?\". Statement (1) bounds it and statement (2) constrains only the overlap, so neither gives a number.\n" +
+    "The overlap is the least useful single piece of set information: it appears in inclusion–exclusion alongside two unknown totals.",
+  traps: "(C) is the natural pairing, but a bound plus an overlap still leaves the union free across a wide range.\n" +
+    "(B) treats the overlap as though it determined the union.\n" +
+    "(A) treats a strict inequality as a value — the most it yields is \"at least one household owns neither\".\n" +
+    "(D) is stronger still.\n" +
+    "Compare this with the cats-and-dogs question in the same set, where the *union* is given directly; that is the piece of information this question deliberately withholds.",
+  take: "\"Neither\" = total − union. The overlap alone never determines the union; you need it alongside both group totals, or the union itself."
+},
+
+"di-ds-extra#12": {
+  steps: "Step 1 — With principal \\(P\\) and a fixed \\(4\\%\\) compounded annually, the interest earned in year 1 is \\(0.04P\\).\n" +
+    "Step 2 — By year 3 the balance has grown to \\(P(1.04)^2\\), so that year's interest is \\(0.04P(1.04)^2\\).\n" +
+    "Step 3 — The difference is \\(0.04P\\big[(1.04)^2 - 1\\big]\\), which depends only on \\(P\\). So the question reduces to finding the principal.\n" +
+    "Step 4 — Statement (1): the balance entering year 2 is \\(1.04P = 4160\\), so \\(P = 4000\\) — [[sufficient]].\n" +
+    "Step 5 — Statement (2): the balance entering year 3 is \\((1.04)^2 P = 4326.40\\). Since \\((1.04)^2 = 1.0816\\), \\(P = 4326.40 / 1.0816 = 4000\\) — [[sufficient]].\n" +
+    "Step 6 — Each statement alone pins the principal, so each alone answers the question.",
+  fast: "Reduce the target first: with the rate fixed, every year's interest is a known multiple of \\(P\\), so the whole question is \"what is the principal?\".\n" +
+    "Then each statement is a balance at a known point in the compounding schedule, and dividing back by the appropriate power of 1.04 recovers \\(P\\). You never need to compute the difference itself.",
+  traps: "(C) is the reflex answer when both statements describe the same investment at different times. Each is independently invertible.\n" +
+    "(A) and (B) reject one statement, usually (2), because dividing by \\(1.0816\\) looks laborious. Laborious is not insufficient.\n" +
+    "(E) misses that a balance plus a known rate determines the principal.\n" +
+    "The efficiency point is that Data Sufficiency asks only whether the value is determined — computing \\(P = 4000\\) is optional and computing the final difference is a waste of time.",
+  take: "When a rate is fixed, any single balance determines the principal and therefore every other year's figure. Reduce the target to its one unknown before reading the statements."
+},
+
+"di-ds-extra#13": {
+  steps: "Step 1 — Write the total: parts \\(50\\), labour \\(L\\), and \\(6\\%\\) tax on both. Total \\(= 50 + L + 0.06(50 + L)\\).\n" +
+    "Step 2 — Everything depends on the single unknown \\(L\\), so the question is whether each statement pins it.\n" +
+    "Step 3 — Statement (1): the tax on labour alone is \\(9.60\\), so \\(0.06L = 9.60\\) and \\(L = 160\\). The total is \\(210 + 12.60 = 222.60\\) — [[sufficient]].\n" +
+    "Step 4 — Statement (2): the total tax is \\(12.60\\), so \\(0.06(50 + L) = 12.60\\), giving \\(50 + L = 210\\) and \\(L = 160\\) — the same value, [[sufficient]].\n" +
+    "Step 5 — Each alone determines the total charge.",
+  fast: "Statement (2) is the quicker of the two: dividing the total tax by the tax rate gives the pre-tax subtotal directly (\\(12.60 / 0.06 = 210\\)), and the total charge is that subtotal plus the tax.\n" +
+    "Once you see that the parts charge is already given, the only missing quantity is labour — and any tax figure recovers it.",
+  traps: "(C) is the standard over-caution when two statements happen to agree.\n" +
+    "(B) rejects statement (1), perhaps on the grounds that it covers only part of the tax; but the parts charge is already known, so labour tax is exactly the missing piece.\n" +
+    "(A) rejects statement (2) for the mirror-image reason.\n" +
+    "(E) misses that a tax amount and a tax rate together give a base amount.\n" +
+    "The one genuine arithmetic risk is treating the \\(6\\%\\) as applying to the total *including* tax; the stem is explicit that it applies to parts plus labour.",
+  take: "A tax amount divided by the tax rate recovers the taxed base. Identify the single unknown in the target expression before evaluating any statement."
+},
+
+"di-ds-extra#14": {
+  steps: "Step 1 — The donation is \\(p\\%\\) of profits, with \\(p\\) the same in every year. To answer, we need both \\(p\\) and last year's profits.\n" +
+    "Step 2 — Statement (1): two years ago, \\(15{,}000\\) was donated out of \\(3\\) million, so \\(p = \\dfrac{15{,}000}{3{,}000{,}000} = 0.5\\%\\). But last year's profits are unknown, and the donation could be above or below \\(10{,}000\\) — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): last year's profits were \\(2.5\\) million, but \\(p\\) is unknown — a rate of \\(0.1\\%\\) gives \\(2{,}500\\) and a rate of \\(1\\%\\) gives \\(25{,}000\\) — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(0.5\\%\\) of \\(2.5\\) million is \\(12{,}500\\).\n" +
+    "Step 5 — That exceeds \\(10{,}000\\), so the answer is a definite yes — [[sufficient]].",
+  fast: "A percentage question needs the rate and the base; each statement supplies exactly one, so C is the shape to expect and the only job is confirming the arithmetic falls decisively on one side of the threshold.\n" +
+    "\\(0.5\\%\\) of \\(2.5\\) million is a half-percent of two and a half million — \\(12{,}500\\), comfortably above \\(10{,}000\\), so there is no borderline worry.",
+  traps: "(A) uses the rate with the wrong year's profits — the \\(15{,}000\\) figure belongs to two years ago and says nothing directly about last year.\n" +
+    "(B) uses the base without a rate.\n" +
+    "(D) accepts either alone.\n" +
+    "(E) is the answer if you doubt that a yes/no question can be settled by a computed value; it can, and here the value clears the threshold decisively.\n" +
+    "The phrase doing the work is \"in each of the last five years\" — that is what licenses carrying \\(p\\) from two years ago into last year.",
+  take: "A percentage question needs both the rate and the base. Check whether the stem lets you carry a rate between years, then confirm the result clears the threshold."
+},
+
+"di-ds-extra#15": {
+  steps: "Step 1 — Set up the line: \\(f\\) people in front of Adam, then Adam, then \\(m\\) people between, then Beth, then \\(b\\) people behind Beth.\n" +
+    "Step 2 — The stem gives \\(f + b = 18\\), and the line's total length is \\(f + m + b + 2\\).\n" +
+    "Step 3 — Statement (1): the line has 32 people, so \\(f + m + b = 30\\). Subtracting the stem's \\(f + b = 18\\) gives \\(m = 12\\). But \\(b\\) is still free — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): the people behind Adam are the \\(m\\) between, Beth herself, and the \\(b\\) behind her: \\(m + 1 + b = 23\\), so \\(m + b = 22\\). Two unknowns remain — [[not sufficient]].\n" +
+    "Step 5 — Together: \\(m = 12\\) and \\(m + b = 22\\) give \\(b = 10\\) — [[sufficient]].",
+  fast: "Draw the line as five blocks — \\(f\\), Adam, \\(m\\), Beth, \\(b\\) — and every statement becomes one linear equation. Counting Adam and Beth themselves is the only place to slip.\n" +
+    "\"Behind Adam\" includes Beth, so it is \\(m + 1 + b\\), not \\(m + b\\); that single \\(+1\\) is what statement (2) is testing.",
+  traps: "(A) stops at \\(m = 12\\) and mistakes it for the answer to a question about \\(b\\).\n" +
+    "(B) treats \\(m + b = 22\\) as enough, which it is not without a second relation.\n" +
+    "(D) accepts either alone.\n" +
+    "(E) understates the pair; two independent equations plus the stem's third close the system.\n" +
+    "The recurring counting error is forgetting to include Adam and Beth in the line's total — the length is \\(f + m + b + 2\\), not \\(f + m + b\\).",
+  take: "Model a queue as blocks separated by the named people, and remember to count those people themselves. \"Behind X\" includes everyone after X, named individuals included."
+},
+
+"di-ds-extra#16": {
+  steps: "Step 1 — \"At least one cat or at least one dog, but not both\" is the exactly-one region: \\(|C \\cup D| - |C \\cap D|\\).\n" +
+    "Step 2 — Statement (1): the overlap is 4. Without the union, exactly-one is unknown — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): 14 households have neither, so the union is \\(50 - 14 = 36\\). But the overlap is unknown, so exactly-one could be 36 (no overlap) or 20 (overlap 16) — [[not sufficient]].\n" +
+    "Step 4 — Together: union \\(= 36\\) and overlap \\(= 4\\).\n" +
+    "Step 5 — Exactly one \\(= 36 - 4 = 32\\) — [[sufficient]].",
+  fast: "Translate the wording into regions before touching the statements: \"or but not both\" is the union minus the intersection. Then the question needs exactly two numbers, and the statements supply one each.\n" +
+    "\"Neither\" converts to the union in one subtraction from the total, which is why statement (2) is more useful than it first looks.",
+  traps: "(B) treats the union as the answer, forgetting the \"but not both\" clause that removes the overlap.\n" +
+    "(A) gives only the overlap.\n" +
+    "(D) accepts either alone.\n" +
+    "(E) misses that \"neither\" and the total together give the union.\n" +
+    "Contrast this with the fax-and-printer question in the same set: there the union was only bounded, so no number emerged. Here it is pinned exactly, which is the whole difference.",
+  take: "\"A or B but not both\" = union − intersection. \"Neither\" plus the total gives the union, so those two statements together supply exactly what is needed."
+},
+
+"di-ds-extra#17": {
+  steps: "Step 1 — The pricing has two regimes: a flat \\(92\\) for a job of 4 hours or less, and \\(23\\) per hour for a job over 4 hours. The two jobs together took 7 hours.\n" +
+    "Step 2 — Statement (1): one job was charged \\(92\\), so it took 4 hours or less — but the exact time is not fixed.\n" +
+    "Step 3 — If that job took 4 hours, the other took 3, also under the threshold and also \\(92\\): total \\(184\\).\n" +
+    "Step 4 — If that job took 1 hour, the other took 6, which is over the threshold and costs \\(6 \\times 23 = 138\\): total \\(230\\). Two totals — [[not sufficient]].\n" +
+    "Step 5 — Statement (2): one job was charged \\(138\\). That can only be hourly billing, and \\(138 / 23 = 6\\) hours — consistent, since 6 exceeds 4.\n" +
+    "Step 6 — The other job then took \\(7 - 6 = 1\\) hour, under the threshold, so it cost \\(92\\).\n" +
+    "Step 7 — Total \\(138 + 92 = 230\\), a single value — [[sufficient]].",
+  fast: "The two statements differ in how much they reveal. A charge of \\(92\\) is a flat fee that hides the duration; a charge of \\(138\\) is an hourly bill that reveals it exactly.\n" +
+    "That asymmetry is the whole question: dividing \\(138\\) by \\(23\\) recovers 6 hours, which fixes the second job at 1 hour and therefore at the flat rate.",
+  traps: "(D) accepts statement (1), which is the intended trap: a known charge feels like a known job. But the flat fee covers a whole range of durations, and the *other* job's cost depends on which duration it was.\n" +
+    "(A) inverts the two statements.\n" +
+    "(C) is over-cautious; statement (2) alone closes it.\n" +
+    "(E) misses that hourly billing is invertible.\n" +
+    "Check the consistency in Step 5: a charge of \\(138\\) must correspond to more than 4 hours, and 6 does — had the arithmetic given 3 hours, the statement would have been self-contradictory.",
+  take: "A flat fee hides the underlying quantity; a per-unit charge reveals it. Verify that a recovered value is consistent with the regime that produced it."
+},
+
+"di-ds-extra#18": {
+  steps: "Step 1 — The question compares two rates of return, so it needs a rate for each type.\n" +
+    "Step 2 — Statement (1): type J returns \\(115\\) per \\(1{,}000\\), a rate of \\(11.5\\%\\). Type K returns \\(300\\) per \\(2{,}500\\), a rate of \\(\\dfrac{300}{2500} = 12\\%\\).\n" +
+    "Step 3 — \\(12\\% > 11.5\\%\\), so type K has the greater rate — a definite answer, [[sufficient]].\n" +
+    "Step 4 — Statement (2): type K returns \\(12\\%\\), but nothing at all is said about type J — [[not sufficient]].",
+  fast: "Convert both figures to rates before comparing; the raw dollar returns are misleading because they apply to different investment sizes.\n" +
+    "\\(300\\) on \\(2{,}500\\) is easiest as \\(\\tfrac{3}{25} = \\tfrac{12}{100}\\), and \\(115\\) on \\(1{,}000\\) is \\(11.5\\%\\) by inspection.",
+  traps: "(D) accepts statement (2), which supplies one rate and leaves the comparison open — a comparison always needs both sides.\n" +
+    "(C) is over-cautious: statement (1) already gives both rates, and statement (2) merely repeats one of them.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses that (1) is complete.\n" +
+    "The trap inside statement (1) is the raw dollar figures: \\(300\\) exceeds \\(115\\), which might suggest K wins on size alone — true here, but only because the rate comparison happens to agree. Always divide by the investment.",
+  take: "Compare rates, not dollar returns, when the investment sizes differ. A comparison question needs information about both sides."
+}
+
+});

@@ -401,3 +401,179 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-700-arith#27": {
+  steps: "Step 1 — The formula is \\(u = \\dfrac{8d}{h^2}\\). Track what each change does to \\(u\\) as a multiplier.\n" +
+    "Step 2 — Doubling \\(d\\) multiplies the numerator by 2, so \\(u\\) is multiplied by 2.\n" +
+    "Step 3 — Halving \\(h\\) makes \\(h^2\\) one quarter of what it was. Dividing by a quarter multiplies \\(u\\) by 4.\n" +
+    "Step 4 — The two effects compound: \\(u\\) becomes \\(2 \\times 4 = 8\\) times its original value.\n" +
+    "Step 5 — A factor of 8 is an increase of 7 times the original, i.e. a \\(700\\%\\) increase.",
+  fast: "Read the exponents off the formula: \\(u\\) scales as \\(d^1\\) and as \\(h^{-2}\\). So doubling \\(d\\) gives \\(2^1 = 2\\), halving \\(h\\) gives \\(\\left(\\tfrac12\\right)^{-2} = 4\\), and the product is 8. Then the one step that decides the question — a factor of 8 is a \\(700\\%\\) increase, not \\(800\\%\\).",
+  traps: "(E) 800% is the trap the whole question is built around: the new value is \\(800\\%\\) *of* the old, but the *increase* is \\(700\\%\\). Whenever a question says \"percentage increase\", subtract 1 from the factor before converting.\n" +
+    "(A) 300% and (B) 400% come from missing the square on \\(h\\) — halving \\(h\\) would then double \\(u\\), giving a factor of 4.\n" +
+    "(C) 600% is the near-miss produced by combining the two effects additively (\\(100\\% + 300\\%\\) then adjusting) rather than multiplicatively.\n" +
+    "Note the direction of the exponent too: \\(h\\) is in the denominator, so shrinking \\(h\\) *increases* \\(u\\).",
+  take: "Scale a formula by applying each variable's exponent to its multiplier, and multiply the results. Then convert: a factor of \\(k\\) is an increase of \\((k-1) \\times 100\\%\\)."
+},
+
+"quant-700-arith#28": {
+  steps: "Step 1 — Store A: \\(20\\%\\) above the \\(60\\) MSRP is \\(60 \\times 1.20 = 72\\).\n" +
+    "Step 2 — Store B regular price: \\(60 \\times 1.30 = 78\\). On sale at \\(10\\%\\) less: \\(78 \\times 0.90 = 70.20\\).\n" +
+    "Step 3 — Sales tax multiplies both by \\(1.05\\). Store A: \\(72 \\times 1.05 = 75.60\\). Store B: \\(70.20 \\times 1.05 = 73.71\\).\n" +
+    "Step 4 — Subtract B from A: \\(75.60 - 73.71 = 1.89\\).",
+  fast: "Tax applies identically at both stores, so factor it out and compare pre-tax prices first: \\(72\\) against \\(70.20\\), a gap of \\(1.80\\). Then apply the tax once to the gap: \\(1.80 \\times 1.05 = 1.89\\). One multiplication instead of four.",
+  traps: "(C) 1.80 is exactly that pre-tax gap with the tax never applied — the most attractive wrong answer, and the reason the shortcut has to be finished rather than abandoned halfway.\n" +
+    "(A) 0 assumes a \\(30\\%\\) markup followed by a \\(10\\%\\) discount returns to a \\(20\\%\\) markup. It does not: \\(1.3 \\times 0.9 = 1.17\\), not \\(1.20\\).\n" +
+    "(E) 2.10 comes from computing Store B's discount off the MSRP rather than off its own regular price.\n" +
+    "(B) 0.63 is a decimal slip on the tax step.\n" +
+    "Note also the direction of the subtraction: the question asks for A minus B, and reversing it would give a negative number that appears nowhere in the choices.",
+  take: "A factor common to both sides of a comparison can be pulled out and applied once at the end. And \\(+30\\%\\) then \\(-10\\%\\) is \\(\\times 1.17\\), never \\(+20\\%\\)."
+},
+
+"quant-700-arith#29": {
+  steps: "Step 1 — Year one: \\(1000\\) grows by \\(100\\) in interest to \\(1100\\).\n" +
+    "Step 2 — Year two: the balance increases by \\(10\\%\\), and \\(10\\%\\) of \\(1100\\) is \\(110\\).\n" +
+    "Step 3 — Ending balance: \\(1100 + 110 = 1210\\).\n" +
+    "Step 4 — The question compares against the *initial deposit* of \\(1000\\), not against last year's balance.\n" +
+    "Step 5 — Increase: \\(\\dfrac{1210 - 1000}{1000} = 0.21\\), i.e. \\(21\\%\\).",
+  fast: "This is compounding in disguise: \\(1.10 \\times 1.10 = 1.21\\). Two years of \\(10\\%\\) is always \\(21\\%\\), never \\(20\\%\\) — the extra \\(1\\%\\) is the interest earned on the first year's interest, and that single fact answers the question without touching the dollar amounts.",
+  traps: "(B) 20% is the trap: adding \\(10\\% + 10\\%\\) and ignoring that the second year's growth applies to a larger balance.\n" +
+    "(A) 19% and (D) 22% are the near-misses on either side, from mis-computing \\(10\\%\\) of 1100 as 100 or 120.\n" +
+    "(E) 25% comes from measuring the second year's gain against the original 1000 and compounding that error.\n" +
+    "The wording to watch is \"from his initial deposit\": the base for the percentage is 1000, and using 1100 would give a different figure.",
+  take: "Two successive \\(r\\%\\) increases give \\((1+r)^2 - 1\\), which always exceeds \\(2r\\). Identify the base the question compares against before dividing."
+},
+
+"quant-700-arith#30": {
+  steps: "Step 1 — Represent each change as a multiplier on the original price.\n" +
+    "Step 2 — A \\(20\\%\\) increase is \\(\\times 1.20\\).\n" +
+    "Step 3 — A \\(15\\%\\) decrease is \\(\\times 0.85\\).\n" +
+    "Step 4 — Combined: \\(1.20 \\times 0.85 = 1.02\\).\n" +
+    "Step 5 — The final price is \\(102\\%\\) of the original.",
+  fast: "\\(1.2 \\times 0.85\\) is easiest as \\(1.2 \\times 0.85 = 1.02\\) via \\(0.85 + 0.2(0.85) = 0.85 + 0.17\\). The order does not matter, and the small surplus over 100% is the signature of a percentage rise beating a slightly smaller percentage fall applied to a bigger base.",
+  traps: "(B) 105% comes from subtracting the percentages (\\(20 - 15 = 5\\)) and adding that to 100 — the classic additive error.\n" +
+    "(C) 120% ignores the second year entirely.\n" +
+    "(D) 135% and (E) 140% come from adding the two changes (\\(20 + 15\\)) as though both were increases.\n" +
+    "The question asks what percent of the original the final price *is*, not by what percent it changed — so the answer is the factor itself, 102%, not 2%.",
+  take: "Chain percent changes multiplicatively. \"What percent of the original\" wants the factor (102%); \"percent change\" wants the factor minus 1 (2%)."
+},
+
+"quant-700-arith#31": {
+  steps: "Step 1 — Let the shop's original cost be \\(c\\).\n" +
+    "Step 2 — The collector paid \\(20\\%\\) more: \\(1.2c\\).\n" +
+    "Step 3 — The shop bought it back at \\(50\\%\\) of what the collector paid: \\(0.5 \\times 1.2c = 0.6c\\).\n" +
+    "Step 4 — The difference between the original cost and the buy-back price is \\(c - 0.6c = 0.4c\\), and that is 100 dollars.\n" +
+    "Step 5 — So \\(c = 250\\), and the buy-back price is \\(0.6 \\times 250 = 150\\).\n" +
+    "Step 6 — The shop then sold at an \\(80\\%\\) profit on the buy-back price: \\(150 \\times 1.80 = 270\\).",
+  fast: "Keep every price as a multiple of \\(c\\) and only substitute at the end: \\(c \\to 1.2c \\to 0.6c \\to 1.08c\\). The final sale is \\(1.8 \\times 0.6c = 1.08c\\), and since \\(0.4c = 100\\) gives \\(c = 250\\), the answer is \\(1.08 \\times 250 = 270\\) in one multiplication.",
+  traps: "(B) 250 is the shop's original cost — the first quantity you solve for, and the answer to a different question.\n" +
+    "(E) 200 and (D) 220 come from applying the \\(80\\%\\) profit to the wrong base, usually to the collector's price of 300 or to the original cost.\n" +
+    "(C) 240 is \\(1.2 \\times 200\\)-flavoured, from taking the buy-back as \\(50\\%\\) of the original cost rather than of what the collector paid.\n" +
+    "Every percentage in this problem has a different base — original cost, collector's price, buy-back price — and naming the base at each step is the entire discipline.",
+  take: "Carry one variable through every transaction as a multiplier chain, and state which base each percentage applies to. Solve for the variable only at the end."
+},
+
+"quant-700-arith#32": {
+  steps: "Step 1 — Note that \\(x\\) plays two roles: it is both a percentage and the school's total population. That is deliberate, and it is what makes one equation enough.\n" +
+    "Step 2 — Boys make up \\(40\\%\\) of the school: \\(0.40x\\) boys.\n" +
+    "Step 3 — 90 students are \\(x\\) percent of the boys: \\(90 = \\dfrac{x}{100} \\times 0.40x\\).\n" +
+    "Step 4 — Simplify: \\(90 = 0.004x^2\\), so \\(x^2 = 22500\\).\n" +
+    "Step 5 — \\(x = 150\\) (the negative root is meaningless for a population).\n" +
+    "Step 6 — Check: the school has 150 students, 60 of them boys, and \\(150\\%\\) of 60 is 90 ✓.",
+  fast: "Recognise \\(22500\\) as \\(225 \\times 100\\), so its square root is \\(15 \\times 10 = 150\\) — no calculator moment needed. Alternatively test the choices: with \\(x = 150\\), boys \\(= 60\\) and \\(150\\%\\) of 60 is 90, which lands immediately.",
+  traps: "(D) 250 and (E) 500 come from dropping the \\(\\tfrac1{100}\\) that converts \"\\(x\\) percent\" into a multiplier, which turns the equation into \\(90 = 0.4x\\) and gives 225.\n" +
+    "(C) 225 is exactly that error's output — the most common wrong answer here.\n" +
+    "(A) 125 comes from solving \\(90 = 0.4x \\times \\tfrac{x}{100}\\) with an arithmetic slip on \\(22500\\).\n" +
+    "The oddity that unsettles people is the same symbol appearing as both a percent and a count; treat them as the same number and the algebra behaves normally.",
+  take: "\"\\(x\\) percent of\" means \\(\\frac{x}{100} \\times\\). When one symbol serves two roles, write both meanings out explicitly and let the quadratic appear."
+},
+
+"quant-700-arith#33": {
+  steps: "Step 1 — The sale price is \\(15\\%\\) off, so it is \\(85\\%\\) of the original.\n" +
+    "Step 2 — \\(0.85 \\times \\text{original} = 68\\), so the original price is \\(68 \\div 0.85 = 80\\).\n" +
+    "Step 3 — The store then raises the *sale* price by \\(25\\%\\): \\(68 \\times 1.25 = 85\\).\n" +
+    "Step 4 — Difference between original and final: \\(85 - 80 = 5\\) dollars.",
+  fast: "Both conversions are friendly fractions: \\(85\\%\\) is \\(\\tfrac{17}{20}\\), so \\(68 = \\tfrac{17}{20} \\times 80\\) makes the original 80; and \\(+25\\%\\) is \\(\\times \\tfrac54\\), so \\(68 \\times \\tfrac54 = 85\\). Two mental steps, no decimals.",
+  traps: "(A) 0 assumes a \\(15\\%\\) cut and a \\(25\\%\\) rise cancel; they cannot, since \\(0.85 \\times 1.25 = 1.0625\\).\n" +
+    "(E) 6.80 is \\(10\\%\\) of 68, the sort of figure produced by applying the \\(25\\%\\) rise to the original price rather than to the sale price.\n" +
+    "(C) 3.40 is \\(5\\%\\) of 68, from a similar base confusion.\n" +
+    "(B) 1.00 comes from computing the original as 85 and the final as 84-ish — that is, from dividing 68 by 0.8 instead of 0.85.\n" +
+    "The base for the \\(25\\%\\) increase is the *new* price; that is what the phrase \"raises the new price\" specifies.",
+  take: "Read which price each percentage acts on. A drop of \\(a\\%\\) followed by a rise of \\(b\\%\\) never returns to the start unless \\((1-a)(1+b) = 1\\)."
+},
+
+"quant-700-arith#34": {
+  steps: "Step 1 — Let Jennifer have \\(J\\). Brian has \\(J - 60\\).\n" +
+    "Step 2 — Jennifer gives away \\(\\tfrac15\\) of her money, so she keeps \\(\\tfrac{4J}{5}\\).\n" +
+    "Step 3 — Brian receives \\(\\tfrac{J}{5}\\), so he then has \\(J - 60 + \\tfrac{J}{5} = \\tfrac{6J}{5} - 60\\).\n" +
+    "Step 4 — \"Brian would have 25% less than Jennifer would then have\" means Brian \\(= 0.75 \\times \\tfrac{4J}{5} = \\tfrac{3J}{5}\\).\n" +
+    "Step 5 — Set them equal: \\(\\tfrac{6J}{5} - 60 = \\tfrac{3J}{5}\\).\n" +
+    "Step 6 — \\(\\tfrac{3J}{5} = 60\\), so \\(J = 100\\).\n" +
+    "Step 7 — Check: Jennifer 100, Brian 40. She gives 20; she has 80, he has 60, and 60 is \\(25\\%\\) less than 80 ✓.",
+  fast: "Notice that \\(0.75 \\times \\tfrac45 = \\tfrac35\\), so after the transfer Brian holds exactly \\(\\tfrac{3J}{5}\\) — a clean fraction of Jennifer's original amount. Everything then collapses to \\(\\tfrac{6J}{5} - 60 = \\tfrac{3J}{5}\\), a one-line solve.\n" +
+    "Testing the choices is also fast here: each candidate takes about ten seconds to check forwards, and only one works.",
+  traps: "(A) 40 is Brian's original amount, not Jennifer's — a natural mix-up given that the equation is written around \\(J\\).\n" +
+    "(C) 120 and (D) 140 come from applying the \\(25\\%\\) comparison to Jennifer's *original* amount rather than her amount after the transfer.\n" +
+    "(E) 180 arises from reading \"1/5 of her money\" as one fifth of the difference, or from adding the 60 on the wrong side.\n" +
+    "The two conditions to keep distinct: the 60-dollar gap is *before* the transfer, and the \\(25\\%\\) comparison is *after* it.",
+  take: "Set the variable to the person the question asks about, apply the transfer to both sides, and note that \"25% less than\" means \\(\\times 0.75\\) of the other's post-transfer amount."
+},
+
+"quant-700-arith#35": {
+  steps: "Step 1 — Three years ago the price was \\(80\\%\\) of today's: \\(0.80 \\times 700 = 560\\).\n" +
+    "Step 2 — The rise over the three years is \\(700 - 560 = 140\\).\n" +
+    "Step 3 — Percent increase divides by the *starting* value, 560, not by 700.\n" +
+    "Step 4 — \\(\\dfrac{140}{560} = \\dfrac14 = 25\\%\\).",
+  fast: "Skip the dollars: if the old price is \\(\\tfrac45\\) of the new, the new is \\(\\tfrac54\\) of the old, which is a \\(25\\%\\) increase. Inverting the fraction is the whole calculation, and it works for any pair of this shape.",
+  traps: "(B) 20% is the trap: it is the \\(20\\%\\) gap read as though the base were today's price. Going down \\(20\\%\\) and coming back up are not the same percentage, because the bases differ.\n" +
+    "(E) 80% repeats the given figure.\n" +
+    "(A) 15% and (D) 50% come from mis-dividing \\(140\\) — by \\(700\\times\\!\\) something, or by \\(280\\).\n" +
+    "The habit that prevents this permanently: percent increase always divides by where you started, percent decrease also divides by where you started.",
+  take: "If the old value is \\(\\tfrac ab\\) of the new, the increase is \\(\\tfrac ba - 1\\). Always divide the change by the earlier value."
+},
+
+"quant-700-arith#36": {
+  steps: "Step 1 — Adding 300 gallons increases the current amount by \\(30\\%\\), so \\(300\\) is \\(30\\%\\) of the current amount.\n" +
+    "Step 2 — Current amount \\(= 300 \\div 0.30 = 1000\\) gallons.\n" +
+    "Step 3 — After the addition the pool holds \\(1000 + 300 = 1300\\) gallons.\n" +
+    "Step 4 — That 1300 is \\(80\\%\\) of the pool's capacity.\n" +
+    "Step 5 — Capacity \\(= 1300 \\div 0.80 = 1625\\) gallons.",
+  fast: "Two divisions, each undoing a percentage: \\(300/0.3 = 1000\\), then \\(1300/0.8 = 1625\\). The order matters — the \\(30\\%\\) refers to the water already present, and the \\(80\\%\\) to the pool's capacity, so you must reach 1300 before the second division.\n" +
+    "Dividing by \\(0.8\\) is the same as multiplying by \\(1.25\\): \\(1300 \\times 1.25 = 1625\\).",
+  traps: "(C) 1300 is the water after the addition — the second-to-last quantity, and the most-chosen wrong answer.\n" +
+    "(A) 1000 is the water before the addition.\n" +
+    "(B) 1250 is \\(1000 \\div 0.8\\), applying the capacity percentage to the pre-addition amount.\n" +
+    "(D) 1600 is a rounding of 1625, tempting if you estimate \\(1300 \\div 0.8\\) rather than compute it.\n" +
+    "Three of the five choices are legitimate intermediate values, which is the standard shape of a multi-step percent problem — always ask which quantity the final sentence names.",
+  take: "To undo \"is \\(p\\%\\) of\", divide by \\(p/100\\). Track which quantity each percentage refers to, and check the final sentence against the value you are about to submit."
+},
+
+"quant-700-arith#37": {
+  steps: "Step 1 — \"0.35 is what percent of 0.007\" means \\(\\dfrac{0.35}{0.007} \\times 100\\%\\).\n" +
+    "Step 2 — Clear the decimals by multiplying both by 1000: \\(\\dfrac{350}{7} = 50\\).\n" +
+    "Step 3 — So 0.35 is 50 times 0.007.\n" +
+    "Step 4 — Fifty times means \\(5000\\%\\).",
+  fast: "Before any arithmetic, notice that 0.35 is far *larger* than 0.007 — so the answer must exceed \\(100\\%\\), which eliminates three choices instantly. Then \\(350/7 = 50\\) settles it between the remaining two.",
+  traps: "(A) 0.05%, (B) 0.5% and (C) 5% all describe a number smaller than 0.007, so each is impossible before you compute anything — they exist to catch a reversed ratio, \\(0.007/0.35\\).\n" +
+    "(D) 500% is the one-decimal-place slip: it treats the ratio as 5 rather than 50, which happens when the decimals are cleared inconsistently (multiplying 0.35 by 100 but 0.007 by 1000).\n" +
+    "The safe technique is to scale both numbers by the same power of ten before dividing.",
+  take: "\"A is what percent of B\" is \\(\\frac AB \\times 100\\). Check the direction first — if A exceeds B the answer is over 100% — then clear decimals on both numbers by the same factor."
+},
+
+"quant-700-arith#38": {
+  steps: "Step 1 — Translate the proportionality: rate \\(\\propto \\dfrac{A^2}{B}\\).\n" +
+    "Step 2 — Increasing \\(B\\) by \\(100\\%\\) doubles it, which halves the rate.\n" +
+    "Step 3 — To restore the original rate, \\(A^2\\) must double.\n" +
+    "Step 4 — If \\(A^2\\) doubles then \\(A\\) is multiplied by \\(\\sqrt2 \\approx 1.414\\).\n" +
+    "Step 5 — That is an increase of about \\(41.4\\%\\), and the closest choice is a \\(40\\%\\) increase.\n" +
+    "Step 6 — Note the direction: \\(B\\) rising pushes the rate down, so \\(A\\) must rise to compensate — a decrease would push the rate down further.",
+  fast: "Because \\(A\\) enters squared, any change in \\(B\\) needs only the *square root* of that change in \\(A\\). \\(B\\) doubles, so \\(A\\) scales by \\(\\sqrt2 \\approx 1.41\\) — roughly a \\(40\\%\\) rise. Knowing \\(\\sqrt2 \\approx 1.414\\) turns this into a five-second question.",
+  traps: "(A), (B) and (C) are all decreases, and every one of them moves the rate the wrong way: \\(B\\) has already halved the rate, so shrinking \\(A\\) compounds the problem instead of fixing it. Deciding the *direction* first eliminates three choices before any arithmetic.\n" +
+    "(E) 50% increase is the trap of matching the \\(100\\%\\) rise in \\(B\\) with a proportional-feeling half — but the square root of 2 is 1.41, not 1.5, and \\(1.5^2 = 2.25\\) would overshoot the rate.\n" +
+    "This question's printed source key reads \"40% decrease\", which cannot be right for exactly the reason above; the stored answer is the derived one.",
+  take: "For rate \\(\\propto A^n / B^m\\), a change in \\(B\\) requires the \\(n\\)-th root of the compensating change in \\(A\\). Settle the direction of the change before computing its size."
+}
+
+});

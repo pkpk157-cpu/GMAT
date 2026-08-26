@@ -600,3 +600,135 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-5b#19": {
+  steps: "Step 1 — Convert both givens into the probabilities of the events themselves. A \\(10\\%\\) chance it *won't* snow means \\(P(\\text{snow}) = 0.9\\). A \\(20\\%\\) chance schools are *not* closed means \\(P(\\text{closed}) = 0.8\\).\n" +
+    "Step 2 — The intersection of two events can never exceed either one, since it sits inside both: \\(P(A \\cap B) \\le \\min(0.9,\\ 0.8) = 0.8\\).\n" +
+    "Step 3 — That ceiling is attainable: let the school-closure event lie entirely inside the snow event, which is consistent because \\(0.8 \\le 0.9\\).\n" +
+    "Step 4 — Then \\(P(\\text{snow and closed}) = 0.8\\), i.e. \\(80\\%\\).",
+  fast: "Flip both complements first — that is where the errors happen — then the maximum overlap of two events is simply the smaller probability.\n" +
+    "The companion bound is the minimum: \\(P(A) + P(B) - 1 = 0.9 + 0.8 - 1 = 0.7\\), so the overlap is confined to \\([0.7,\\ 0.8]\\).",
+  traps: "(D) 72% is \\(0.9 \\times 0.8\\) — the answer under an independence assumption. The question asks for the greatest possible value, which means choosing the most favourable dependence, not assuming none.\n" +
+    "(C) 70% is the *minimum* possible overlap, the answer to the mirror-image question.\n" +
+    "(B) 60% and (A) 55% come from subtracting the two complement percentages from 100 in various ways.\n" +
+    "The complement flip is the first trap: reading the givens as \\(P = 0.1\\) and \\(P = 0.2\\) sends the whole computation the wrong way.",
+  take: "\\(\\max(0, P_A + P_B - 1) \\le P(A \\cap B) \\le \\min(P_A, P_B)\\). Convert \"chance it won't\" into the event's own probability before applying either bound."
+},
+
+"quant-live-5b#20": {
+  steps: "Step 1 — \\(P(\\text{neither}) = 1 - P(\\text{brown} \\cup \\text{blue})\\), so the range of the answer is set by the range of the union.\n" +
+    "Step 2 — The union is smallest when the smaller group sits entirely inside the larger: \\(P(\\cup) = 0.7\\). Then \\(P(\\text{neither}) = 0.3\\) — the maximum.\n" +
+    "Step 3 — The union is largest when the overlap is as small as possible. Since \\(0.4 + 0.7 = 1.1 > 1\\), the two groups must overlap by at least \\(0.1\\), and the union caps at \\(1\\). Then \\(P(\\text{neither}) = 0\\) — the minimum.\n" +
+    "Step 4 — The difference between the maximum and minimum is \\(0.3 - 0 = 0.3\\).",
+  fast: "Both extremes come from the standard union bounds, and the arithmetic is trivial once you write them down: \\(\\max(0.4, 0.7) = 0.7\\) and \\(\\min(1,\\ 1.1) = 1\\).\n" +
+    "Since the percentages sum to more than 100, the minimum \"neither\" is exactly zero — there is no room for anyone to be outside both groups when the groups are pushed apart.",
+  traps: "(C) 0.4 and (E) 0.7 simply restate one of the given percentages.\n" +
+    "(A) 0.2 comes from taking the maximum union as \\(1.1\\) without capping it at 1, which would give a negative minimum for \"neither\".\n" +
+    "(D) 0.6 is \\(1 - 0.4\\), the answer if only the brown-hair group is considered.\n" +
+    "The cap at 1 is the step most often missed: a union of two events can never exceed the whole population, however small the overlap.",
+  take: "The union ranges from \\(\\max(P_A, P_B)\\) to \\(\\min(1,\\ P_A + P_B)\\). When the sum exceeds 1, \"neither\" can be driven all the way to zero."
+},
+
+"quant-live-5b#21": {
+  steps: "Step 1 — The \\(60\\%\\) is a share of *all* couples: those who order both dessert and coffee.\n" +
+    "Step 2 — The \\(20\\%\\) is a share of the *dessert-ordering* couples, so \\(80\\%\\) of dessert orderers also order coffee.\n" +
+    "Step 3 — Therefore \\(0.80 \\times P(\\text{dessert}) = 0.60\\).\n" +
+    "Step 4 — \\(P(\\text{dessert}) = \\dfrac{0.60}{0.80} = 0.75\\).\n" +
+    "Step 5 — \\(P(\\text{no dessert}) = 1 - 0.75 = 0.25\\), i.e. \\(25\\%\\).",
+  fast: "Sixty percent is four-fifths of the dessert group, so the dessert group is \\(60 \\times \\tfrac54 = 75\\%\\) and the answer is the remaining quarter. One multiplication, one subtraction.\n" +
+    "The whole question is the distinction between a percentage of the whole population and a percentage of a subgroup — identify which each given is before writing anything.",
+  traps: "(E) 75% is the dessert-ordering share itself — the question asks for its complement, and this is the most-chosen wrong answer.\n" +
+    "(D) 60% and (A) 20% are the two numbers handed to you in the stem, recycled.\n" +
+    "(C) 40% is \\(100 - 60\\), which would be right only if the \\(60\\%\\) covered every dessert order rather than the dessert-and-coffee overlap.\n" +
+    "Three of the four distractors are numbers lifted straight from the question — always a sign to check whether real work has been done.",
+  take: "A percentage \"of the couples who order dessert\" scales the subgroup, not the population. Solve for the subgroup, then answer the question asked — often the complement."
+},
+
+"quant-live-5b#22": {
+  steps: "Step 1 — Factor: \\(210 = 2 \\times 3 \\times 5 \\times 7\\), four distinct primes each to the first power.\n" +
+    "Step 2 — The number of factors is \\((1+1)^4 = 16\\), so there are 16 balls.\n" +
+    "Step 3 — A factor of 210 is a multiple of \\(42 = 2 \\times 3 \\times 7\\) only if it contains all three of those primes.\n" +
+    "Step 4 — The only freedom left is whether the factor also contains 5. That gives two possibilities: \\(42\\) and \\(42 \\times 5 = 210\\).\n" +
+    "Step 5 — Probability \\(= \\dfrac{2}{16} = \\dfrac18\\).",
+  fast: "The factors of \\(210\\) that are multiples of \\(42\\) correspond exactly to the factors of \\(210/42 = 5\\), of which there are 2. That correspondence — divide out the required part and count the factors of what remains — is the general shortcut.\n" +
+    "So the probability is \\(\\dfrac{d(5)}{d(210)} = \\dfrac{2}{16}\\).",
+  traps: "(E) \\(\\tfrac14\\) counts 4 favourable factors, typically by including \\(21\\) and \\(105\\) — but those omit the factor 2 and so are not multiples of 42.\n" +
+    "(D) \\(\\tfrac3{16}\\) adds one extra, often \\(84\\), which is a multiple of 42 but not a factor of 210.\n" +
+    "(A) \\(\\tfrac1{16}\\) counts only 210 itself, forgetting that 42 is its own multiple.\n" +
+    "(B) \\(\\tfrac5{42}\\) uses 42 as a denominator, which has no role here.\n" +
+    "The two conditions must hold together: the ball must show a *factor of 210* that is also a *multiple of 42*.",
+  take: "Factors of \\(n\\) that are multiples of \\(d\\) correspond one-to-one with the factors of \\(n/d\\). Count with the exponent formula \\(\\prod(e_i + 1)\\)."
+},
+
+"quant-live-5b#23": {
+  steps: "Step 1 — The pool of 15 is two-thirds men: 10 men and 5 women.\n" +
+    "Step 2 — Total juries: \\(\\binom{15}{12} = \\binom{15}{3} = 455\\).\n" +
+    "Step 3 — \"At least \\(\\tfrac23\\) men\" on a 12-person jury means at least 8 men.\n" +
+    "Step 4 — Count by the number of men, remembering only 10 men and 5 women exist:\n" +
+    "8 men, 4 women: \\(\\binom{10}{8}\\binom54 = 45 \\times 5 = 225\\).\n" +
+    "Step 5 — 9 men, 3 women: \\(\\binom{10}{9}\\binom53 = 10 \\times 10 = 100\\).\n" +
+    "Step 6 — 10 men, 2 women: \\(\\binom{10}{10}\\binom52 = 1 \\times 10 = 10\\).\n" +
+    "Step 7 — Favourable total \\(225 + 100 + 10 = 335\\), so the probability is \\(\\dfrac{335}{455} = \\dfrac{67}{91}\\).",
+  fast: "Compute \\(\\binom{15}{12}\\) as \\(\\binom{15}{3} = 455\\) — using the smaller index saves real time.\n" +
+    "Then note the range is short: a 12-person jury drawn from 10 men and 5 women must contain at least 7 men, so only the cases 7 through 10 exist and just the top three qualify. Counting the complement (7 men) would also work: \\(\\binom{10}{7}\\binom55 = 120\\), and \\(455 - 120 = 335\\).",
+  traps: "(A) \\(\\tfrac{24}{91}\\) is close to the complement \\(\\tfrac{120}{455} = \\tfrac{24}{91}\\) — the probability of *fewer* than two-thirds men.\n" +
+    "(C) \\(\\tfrac23\\) simply repeats the fraction in the question.\n" +
+    "(B) \\(\\tfrac{45}{91}\\) and (E) \\(\\tfrac{84}{91}\\) come from including or omitting one of the three cases.\n" +
+    "The constraint people miss is that there are only 5 women, so juries with fewer than 7 men are impossible — the natural-looking cases below 7 do not exist.",
+  take: "Use \\(\\binom nk = \\binom n{n-k}\\) to keep the arithmetic small, and check which cases are even possible given the group sizes. Consider the complement when it has fewer cases."
+},
+
+"quant-live-5b#24": {
+  steps: "Step 1 — Work out the family structure. Four people each have exactly one sibling present, which means they form two sibling pairs.\n" +
+    "Step 2 — Three people each have exactly two siblings present, which means those three form one sibling trio.\n" +
+    "Step 3 — Count the sibling pairs that could be drawn. Each of the two pairs contributes 1, and the trio contributes \\(\\binom32 = 3\\).\n" +
+    "Step 4 — That is \\(1 + 1 + 3 = 5\\) sibling pairs.\n" +
+    "Step 5 — Total pairs of people: \\(\\binom72 = 21\\).\n" +
+    "Step 6 — \\(P(\\text{not siblings}) = 1 - \\dfrac{5}{21} = \\dfrac{16}{21}\\).",
+  fast: "Decode the sibling counts into group sizes first — \"exactly one sibling\" means a pair, \"exactly two siblings\" means a trio — and the rest is a small combination count.\n" +
+    "Then compute the complement: it is much easier to count the 5 sibling pairs than the 16 non-sibling ones.",
+  traps: "(A) \\(\\tfrac5{21}\\) is the probability that the two *are* siblings — the complement, and the natural slip when you have just computed 5.\n" +
+    "(C) \\(\\tfrac47\\) and (D) \\(\\tfrac57\\) come from working with individual people rather than pairs.\n" +
+    "(B) \\(\\tfrac37\\) is \\(\\tfrac9{21}\\), from counting the trio as contributing 6 ordered pairs instead of 3 unordered ones.\n" +
+    "The structural decoding is the real difficulty: it is tempting to read \"3 people have exactly 2 siblings\" as three separate families rather than one trio.",
+  take: "Translate \"has exactly \\(k\\) siblings present\" into a group of size \\(k+1\\). Count within-group pairs as \\(\\binom{k+1}{2}\\) and take the complement."
+},
+
+"quant-live-5b#25": {
+  steps: "Step 1 — Two dice give \\(6 \\times 6 = 36\\) equally likely ordered outcomes, with sums from 2 to 12.\n" +
+    "Step 2 — List the primes in that range: 2, 3, 5, 7, 11. (Note 9 is not prime.)\n" +
+    "Step 3 — Count the ways to make each. Sum 2: only \\((1,1)\\) — 1 way.\n" +
+    "Step 4 — Sum 3: \\((1,2), (2,1)\\) — 2 ways.\n" +
+    "Step 5 — Sum 5: \\((1,4), (2,3), (3,2), (4,1)\\) — 4 ways.\n" +
+    "Step 6 — Sum 7: \\((1,6)\\) through \\((6,1)\\) — 6 ways.\n" +
+    "Step 7 — Sum 11: \\((5,6), (6,5)\\) — 2 ways.\n" +
+    "Step 8 — Total \\(1 + 2 + 4 + 6 + 2 = 15\\), so the probability is \\(\\dfrac{15}{36} = \\dfrac5{12}\\).",
+  fast: "Know the two-dice frequency table by heart — the counts for sums 2 through 12 run 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 — and then just add the entries at the prime positions: \\(1 + 2 + 4 + 6 + 2 = 15\\).\n" +
+    "That table turns any \"sum of two dice\" question into a lookup.",
+  traps: "(E) \\(\\tfrac49\\) is \\(\\tfrac{16}{36}\\), one extra outcome — usually from counting 9 as prime, which would add 4, or from a miscount on sum 5.\n" +
+    "(D) \\(\\tfrac7{18}\\) is \\(\\tfrac{14}{36}\\), one short.\n" +
+    "(B) \\(\\tfrac1{12}\\) counts only the sums 2 and 3.\n" +
+    "(A) 0 is there for anyone who concludes no sum can be prime.\n" +
+    "The two facts to keep straight: 2 is prime (so \\((1,1)\\) counts) and 9 is not.",
+  take: "Memorise the two-dice sum frequencies 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 for sums 2 through 12, then add the entries matching the condition."
+},
+
+"quant-live-5b#26": {
+  steps: "Step 1 — Four independent throws, each succeeding with probability \\(\\tfrac15\\) and failing with probability \\(\\tfrac45\\).\n" +
+    "Step 2 — \"At least 3\" means exactly 3 or exactly 4.\n" +
+    "Step 3 — Exactly 3: \\(\\binom43 \\left(\\tfrac15\\right)^3 \\left(\\tfrac45\\right) = 4 \\times \\dfrac{1}{125} \\times \\dfrac45 = \\dfrac{16}{625}\\).\n" +
+    "Step 4 — Exactly 4: \\(\\left(\\tfrac15\\right)^4 = \\dfrac{1}{625}\\).\n" +
+    "Step 5 — Total: \\(\\dfrac{16}{625} + \\dfrac{1}{625} = \\dfrac{17}{625}\\).",
+  fast: "Put everything over \\(5^4 = 625\\) from the start. Exactly 4 successes is 1 outcome; exactly 3 successes is \\(\\binom43 = 4\\) arrangements each worth \\(1^3 \\times 4 = 4\\), so 16. Total 17.\n" +
+    "Counting numerators over a fixed denominator avoids fraction arithmetic entirely and makes the answer obvious.",
+  traps: "(C) \\(\\tfrac{16}{625}\\) is the exactly-3 term with the exactly-4 case never added — the classic \"at least\" omission.\n" +
+    "(A) \\(\\tfrac1{625}\\) is the exactly-4 term alone.\n" +
+    "(B) \\(\\tfrac3{625}\\) drops the \\(\\binom43\\) coefficient.\n" +
+    "(E) \\(\\tfrac{19}{625}\\) adds a spurious extra term, usually from also counting some 2-success outcomes.\n" +
+    "Note which side is the low-probability one here: success is only \\(\\tfrac15\\), so the answer should be small — any choice near \\(\\tfrac12\\) would be implausible.",
+  take: "\"At least \\(k\\)\" sums the binomial terms from \\(k\\) upward. Work over a common denominator of \\(n^{\\text{trials}}\\) to keep the arithmetic to whole numbers."
+}
+
+});

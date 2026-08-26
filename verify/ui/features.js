@@ -33,15 +33,17 @@ const problems = [];
   });
   await page.waitForTimeout(500);
 
-  // Answer through several sets so the score estimate clears its threshold.
-  const sets = [[4, 'cr-method-reasoning'], [4, 'cr-assumption'], [0, 'quant-percentage-ex'], [1, 'di-ds-extra']];
-  for (const [tab, id] of sets) {
+  // Answer through several topic sets so the score estimate clears its
+  // threshold. Sets are picked by position on the tab rather than by id —
+  // practice is filed by syllabus topic, so the ids depend on the taxonomy.
+  const sets = [[4, 0], [4, 1], [0, 0], [1, 0]];
+  for (const [tab, nth] of sets) {
     await page.evaluate(i => document.querySelectorAll('#botnav .bn')[i].click(), tab);
     await page.waitForTimeout(300);
     await page.evaluate(() => document.querySelector('[data-subtab="practice"]')?.click());
     await page.waitForTimeout(300);
-    const ok = await page.evaluate(x => { const b = document.querySelector(`[data-runset="${x}"]`); if (!b) return false; b.click(); return true; }, id);
-    if (!ok) { problems.push('set not found: ' + id); continue; }
+    const ok = await page.evaluate(k => { const b = document.querySelectorAll('#view [data-runset]')[k]; if (!b) return false; b.click(); return true; }, nth);
+    if (!ok) { problems.push('no topic set at position ' + nth + ' on tab ' + tab); continue; }
     await page.waitForTimeout(400);
     await page.evaluate(() => document.querySelector('#runner [data-mode="practice"]')?.click());
     await page.waitForTimeout(300);

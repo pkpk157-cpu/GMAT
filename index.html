@@ -622,6 +622,23 @@
   .setrow .go.done { background: var(--surface); color: var(--accent); }
   .reset-set { border: 1px solid var(--line); background: var(--surface); color: var(--ink-faint); width: 34px; height: 34px; border-radius: 9px; font-size: 15px; flex: none; transition: .12s; }
   .reset-set:hover { color: var(--bad); border-color: var(--bad); }
+  /* Difficulty picker on the topic's start screen */
+  .lvlpick-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 2px; }
+  .lvlpick { flex: 1 1 0; min-width: 74px; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px; border-radius: 12px;
+             border: 1.5px solid var(--line); background: var(--card); color: var(--ink); font-size: 14px; font-weight: 800; cursor: pointer; }
+  .lvlpick i { font-style: normal; font-size: 12.5px; font-weight: 700; color: var(--ink-faint); }
+  .lvlpick.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+  .lvlpick.on i { color: var(--accent); }
+  .lvlpick.lvl-easy.on { border-color: var(--good); background: color-mix(in srgb, var(--good) 13%, transparent); color: var(--good); }
+  .lvlpick.lvl-easy.on i { color: var(--good); }
+  .lvlpick.lvl-hard.on { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 13%, transparent); color: var(--bad); }
+  .lvlpick.lvl-hard.on i { color: var(--bad); }
+  /* Subject heading between topic groups in the practice pane */
+  .tsub { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 18px 0 8px; }
+  .tsub:first-child { margin-top: 4px; }
+  .tsub h4 { margin: 0; font-size: 14.5px; font-weight: 850; letter-spacing: .01em; }
+  .tsub span { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); white-space: nowrap; }
+  .sm.slvl { margin-top: 4px; gap: 5px; }
   .q-reset { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 14px; text-decoration: underline; }
   .q-reset:hover { color: var(--bad); }
   /* "Explain my mistake" — a second opinion on the choice the user actually made */
@@ -1211,7 +1228,7 @@
         { name:"Arithmetic & Number Properties", topics:["Integers, factors & multiples","Prime numbers & factorization","LCM & GCD","Divisibility & remainders","Odd / even & sign rules","Fractions & decimals","Absolute value"] },
         { name:"Percentages, Ratios & Proportions", topics:["Percentages & percent change","Ratios & proportions","Profit, loss & discount","Simple & compound interest"] },
         { name:"Powers, Roots & Exponents", topics:["Exponent rules","Roots & radicals","Scientific notation & estimation"] },
-        { name:"Algebra", topics:["Linear equations","Systems of equations","Quadratic equations","Inequalities & absolute value","Functions & custom symbols","Expressions & factoring","Sequences & series"] },
+        { name:"Algebra", topics:["Linear equations","Systems of equations","Quadratic equations","Inequalities & absolute value","Functions & custom symbols","Expressions & factoring","Sequences & series","Coordinate geometry"] },
         { name:"Word Problems", topics:["Speed, distance & time","Work & rate","Mixtures & solutions","Overlapping sets (Venn)","Age & number problems"] },
         { name:"Statistics, Counting & Probability", topics:["Mean, median & mode","Range & standard deviation","Weighted averages","Permutations & combinations","Probability"] }
       ]},
@@ -1240,10 +1257,10 @@
       blurb:"The other Verbal question type. Short arguments testing your reasoning — assumptions, strengthen / weaken, flaws, paradoxes, and structure.",
       subjects:[
         { name:"Foundations", topics:["Deconstructing arguments","Finding the conclusion","Spotting assumptions"] },
-        { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
+        { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v96";
+  const APP_VERSION = "v97";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1259,7 +1276,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1801,7 +1818,7 @@
     if (pane === "cards")    return flashcardsPanelHTML(sec.id, sec, ICON.flash);
     if (pane === "build")    return generatorPanelHTML(sec);
     if (pane === "log")      return recalPanelHTML(sec) + questionsLoggedHTML(sec);
-    return setsPanelHTML(setsFor(sec.id), { num: ICON.practice, sec });
+    return topicsPanelHTML(sec, ICON.practice);
   }
 
   function ring(pct, color) {
@@ -1847,8 +1864,9 @@
       h += `<div class="goals"><div class="goal goal-empty"><span class="gs">Set a <button class="link" data-open-profile="1">daily & weekly target</button> to track your pace.</span></div></div>`;
     }
 
-    // Jump back in: the sets already under way. The full catalogue lives on the
-    // subject tabs — listing all of it here made the dashboard eight screens long.
+    // Jump back in: the topics already under way. The full catalogue lives on
+    // the subject tabs — listing all of it here made the dashboard eight
+    // screens long.
     const wip = SETS.map(s => ({ s, run: getRun(s.id) }))
       .filter(x => !x.run.submitted && Object.keys(x.run.ans).length > 0)
       // Most recently touched first; runs started before `at` was recorded fall
@@ -1857,7 +1875,7 @@
                    || Object.keys(b.run.ans).length - Object.keys(a.run.ans).length)
       .slice(0, 3);
     if (wip.length) {
-      h += `<div class="panel"><h3>Jump back in</h3><p class="sub">Sets you have started but not finished.</p><div class="setlist">`;
+      h += `<div class="panel"><h3>Jump back in</h3><p class="sub">Topics you have started but not finished.</p><div class="setlist">`;
       wip.forEach(({ s, run }) => {
         const sec = secById(s.section), answered = Object.keys(run.ans).length;
         h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}</div>
@@ -2309,7 +2327,7 @@
     const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
     const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
-    const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this set added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
+    const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this topic added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
     const gt = e.target.closest("[data-gentopic]"); if (gt) {
       const [secId, topId] = gt.getAttribute("data-gentopic").split("|");
@@ -2456,9 +2474,137 @@
       if (gs && Array.isArray(gs.questions) && gs.questions.length && !base.some(b => b.id === gs.id)) base.push(gs);
     });
   })();
-  const SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
+  /* ===== Practice is organised by topic, not by source document =====
+     The question files are named after the documents they were transcribed
+     from, which is useful for tracing an answer back to its source but useless
+     when you sit down to practise: nobody wants to drill "Mixed Bag 3". Every
+     authored question is therefore filed under one topic of its section's
+     syllabus, and those topic groups — not the source files — are what the app
+     offers. Questions carry their own passage, table or chart, so a topic drill
+     shows the right source material even when its questions came from a dozen
+     different passages.
+
+     A handful of question files use a synonym for a syllabus topic. Aliases are
+     resolved here rather than by rewriting the data files, which stay faithful
+     to what was transcribed. */
+  const TOPIC_ALIAS = {
+    quant: {
+      "Combinatorics": "Permutations & combinations",
+      "Inequalities": "Inequalities & absolute value",
+      "Number properties": "Integers, factors & multiples",
+      "Interest & growth": "Simple & compound interest",
+      "Functions & symbols": "Functions & custom symbols",
+      "Percentages": "Percentages & percent change",
+      "Statistics": "Mean, median & mode",
+      "Sets & overlapping groups": "Overlapping sets (Venn)",
+      "Algebra & word problems": "Linear equations",
+      "Mixtures & concentration": "Mixtures & solutions"
+    },
+    rc: {
+      "Function / purpose of detail": "Function of a detail or paragraph",
+      "Tone / attitude": "Author's tone & attitude"
+    }
+  };
+  const OTHER_SUBJECT = "Other topics";
+
+  /* A question's topic string -> the syllabus topic it belongs under, as
+     { subject, topic }. Falls back to the question's own label under "Other
+     topics" so nothing can ever be filed out of reach. */
+  function topicHome(secId, raw) {
+    const sec = SECTIONS.find(s => s.id === secId);
+    const name = ((TOPIC_ALIAS[secId] || {})[raw]) || raw || "Untagged";
+    if (sec && sec.subjects) {
+      for (const su of sec.subjects) for (const t of su.topics) if (t === name) return { subject: su.name, topic: t };
+      const low = String(name).toLowerCase();
+      for (const su of sec.subjects) for (const t of su.topics) {
+        const tl = t.toLowerCase();
+        if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return { subject: su.name, topic: t };
+      }
+    }
+    return { subject: OTHER_SUBJECT, topic: name };
+  }
+  const topicSetId = (secId, topic) => "t::" + secId + "::" + topic;
+
+  /* Group every authored question by topic. Source order is preserved inside a
+     group, so questions that shared a passage stay next to each other. */
+  function buildTopicSets(src) {
+    const byId = {}, order = [];
+    src.forEach(set => {
+      (set.questions || []).forEach(q => {
+        const home = topicHome(set.section, q.topic);
+        const id = topicSetId(set.section, home.topic);
+        if (!byId[id]) {
+          byId[id] = { id, title: home.topic, section: set.section, topic: true,
+                       subject: home.subject, source: "By topic, drawn from every source in the bank",
+                       questions: [] };
+          order.push(id);
+        }
+        const t = byId[id];
+        // The question keeps its own source material and a pointer back to
+        // where it came from, so nothing is lost by dissolving the source set.
+        const copy = Object.assign({}, q, { n: t.questions.length + 1, srcSet: set.id, srcN: q.n });
+        if (set.passage && !copy.passage) copy.passage = set.passage;
+        t.questions.push(copy);
+      });
+    });
+    return order.map(id => byId[id]);
+  }
+
+  const RAW_SETS = (window.GMAT_SETS || []).filter(s => s && Array.isArray(s.questions) && s.questions.length);
+  const AUTHORED = RAW_SETS.filter(s => !s.generated);
+  // Generated sets stay whole: they are the user's own, are deleted by id, and
+  // are meant to be practised as the batch they were generated as.
+  const SETS = buildTopicSets(AUTHORED).concat(RAW_SETS.filter(s => s.generated));
   const LET = ["A","B","C","D","E","F","G","H"];
   const setsFor = (secId) => SETS.filter(s => s.section === secId);
+  const topicSetsFor = (secId) => SETS.filter(s => s.section === secId && s.topic);
+
+  /* Progress was keyed by source-set id before practice moved to topics. Remap
+     it once so nothing a user has already answered, flagged or scheduled is
+     lost; a question's new home is found from the srcSet/srcN it carries. */
+  (function migrateToTopics() {
+    if (state.topicsV1) return;
+    const where = {};                              // "srcSet#srcN" -> [topicSetId, n]
+    SETS.forEach(s => { if (s.topic) s.questions.forEach(q => { where[q.srcSet + "#" + q.srcN] = [s.id, q.n]; }); });
+    const runs = state.runs || {}, flags = state.flags || {}, srs = state.srs || {}, miss = state.miss || {};
+    const nRuns = {}, nFlags = {}, nSrs = {}, nMiss = {};
+    const carry = (fromId, n, put) => { const w = where[fromId + "#" + n]; if (w) put(w[0], w[1]); };
+    Object.keys(runs).forEach(sid => {
+      const r = runs[sid]; if (!r) return;
+      if (!AUTHORED.some(s => s.id === sid)) { nRuns[sid] = r; return; }   // generated set: leave alone
+      ["ans", "logged", "times", "elim"].forEach(field => {
+        Object.keys(r[field] || {}).forEach(n => carry(sid, n, (tid, tn) => {
+          const t = nRuns[tid] = nRuns[tid] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{}, elim:{} };
+          t[field][tn] = r[field][n];
+        }));
+      });
+    });
+    Object.keys(flags).forEach(sid => Object.keys(flags[sid] || {}).forEach(n => {
+      if (!flags[sid][n]) return;
+      carry(sid, n, (tid, tn) => { (nFlags[tid] = nFlags[tid] || {})[tn] = true; });
+    }));
+    Object.keys(srs).forEach(k => {
+      const at = k.lastIndexOf("#"); if (at < 0) return;
+      carry(k.slice(0, at), k.slice(at + 1), (tid, tn) => { nSrs[tid + "#" + tn] = srs[k]; });
+    });
+    Object.keys(miss).forEach(k => {
+      const at = k.lastIndexOf("#"); if (at < 0) return;
+      carry(k.slice(0, at), k.slice(at + 1), (tid, tn) => { nMiss[tid + "#" + tn] = miss[k]; });
+    });
+    // A migrated run has answers but no score; recompute so results still read.
+    Object.keys(nRuns).forEach(tid => {
+      const set = SETS.find(s => s.id === tid), r = nRuns[tid];
+      if (!set || !r.ans) return;
+      const answered = Object.keys(r.ans);
+      if (answered.length === set.questions.length) {
+        r.submitted = true; r.total = set.questions.length;
+        r.score = answered.filter(n => { const q = set.questions.find(x => String(x.n) === String(n)); return q && r.ans[n] === q.correct; }).length;
+      }
+    });
+    state.runs = nRuns; state.flags = nFlags; state.srs = nSrs; state.miss = nMiss;
+    state.topicsV1 = true;
+    save();
+  })();
 
   /* ===== Concept guides (theory) ===== */
   const CONCEPTS = (window.GMAT_CONCEPTS || []).filter(g => g && Array.isArray(g.parts) && g.parts.length);
@@ -2728,21 +2874,20 @@
     renderConcept(); window.scrollTo({ top:0 });
   }
 
+  /* Which syllabus topic's accuracy record a question feeds. Same rule that
+     files the question into a practice topic, so the two never drift apart. */
   function resolveTopic(secId, name) {
-    const sec = secById(secId); if (!sec || !sec.subjects) return null;
-    for (const su of sec.subjects) for (const t of su.topics) if (t === name) return topicId(secId, su.name, t);
-    const low = String(name || "").toLowerCase();
-    for (const su of sec.subjects) for (const t of su.topics) { const tl = t.toLowerCase(); if (tl === low || tl.indexOf(low) >= 0 || low.indexOf(tl) >= 0) return topicId(secId, su.name, t); }
-    return null;
+    const home = topicHome(secId, name);
+    return home.subject === OTHER_SUBJECT ? null : topicId(secId, home.subject, home.topic);
   }
-  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, logged: r.logged || {}, times: r.times || {}, elim: r.elim || {} } : { ans: {}, submitted: false, idx: 0, mode: null, logged: {}, times: {}, elim: {} }; }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, lvl: r.lvl || null, logged: r.logged || {}, times: r.times || {}, elim: r.elim || {} } : { ans: {}, submitted: false, idx: 0, mode: null, lvl: null, logged: {}, times: {}, elim: {} }; }
   // Flagged-for-review questions, kept per set (persist across resets).
   function flagsFor(id) { if (!state.flags) state.flags = {}; if (!state.flags[id]) state.flags[id] = {}; return state.flags[id]; }
   function isFlagged(id, n) { return !!(state.flags && state.flags[id] && state.flags[id][n]); }
   function toggleFlag(id, n) { const f = flagsFor(id); if (f[n]) delete f[n]; else f[n] = true; save(); }
   function flaggedCount(id) { return (state.flags && state.flags[id]) ? Object.keys(state.flags[id]).length : 0; }
   function setRun(id, run) { state.runs[id] = run; save(); }
-  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{}, elim:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; r.elim = r.elim || {}; state.runs[id] = r; return r; }
+  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, lvl:null, logged:{}, times:{}, elim:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; r.elim = r.elim || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
   // Topic count and daily count move together — never bump one without the other.
   /* ===== Spaced-repetition review queue (Leitner) ===== */
@@ -2838,7 +2983,7 @@
     const prompt = [
       "You are a GMAT tutor. A student answered a " + ((SECTIONS.find(x => x.id === set.section) || {}).title || "GMAT") + " question wrongly.",
       "",
-      set.passage && set.passage.paras ? "PASSAGE:\n" + set.passage.paras.join("\n\n") + "\n" : "",
+      (() => { const p = q.passage || set.passage; return p && p.paras ? "PASSAGE:\n" + p.paras.join("\n\n") + "\n" : ""; })(),
       "QUESTION:\n" + q.text,
       "",
       "CHOICES:\n" + choiceList,
@@ -3017,7 +3162,7 @@
     const cur = rev.pool[rev.idx], q = cur.q, sec = secById(cur.set.section), nOpt = q.options || 5;
     const a = rev.answered[rev.idx], revealed = !!a, pend = rev.pending, elim = rev.elim[rev.idx] || {};
     let h = `<div class="rn-prog"><i style="width:${Math.round(rev.idx/n*100)}%"></i></div><div class="rn-sub">${rev.idx+1} of ${n} · spaced review</div>`;
-    h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(cur.set.section, q)}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
+    h += `<div class="qcard">${passageHTML(cur.set, q)}<div class="qtop"><span class="qnum">Review</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(cur.set.section, q)}<span class="rv-src">${cur.src==="flag"?"⚑ flagged":"↻ box "+cur.box}</span></div>`;
     h += `<div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
@@ -3401,10 +3546,13 @@
     state.runs[set.id] = { ans:{}, submitted:false, idx:0, mode: mode, logged:{}, times:{}, elim:{} };
     runIndex = 0; save();
   }
-  function scoreRun(set, run) {
+  /* Scores the slice that was actually run: a hard-only run of a topic is out
+     of the hard questions, not out of everything the topic holds. */
+  function scoreRun(set, run, qs) {
+    const list = qs && qs.length ? qs : set.questions;
     let score = 0; const per = [];
-    set.questions.forEach(q => { const your = run.ans[q.n] || null, ok = !!your && your === q.correct; if (ok) score++; per.push({ n:q.n, your, correct:q.correct, ok, topic:q.topic, flag:!!q.flag, options:q.options||5 }); });
-    return { score, total: set.questions.length, per };
+    list.forEach(q => { const your = run.ans[q.n] || null, ok = !!your && your === q.correct; if (ok) score++; per.push({ n:q.n, your, correct:q.correct, ok, topic:q.topic, flag:!!q.flag, options:q.options||5 }); });
+    return { score, total: list.length, per };
   }
   function logBatch(entries) {
     if (!entries.length) return;
@@ -3413,33 +3561,67 @@
     state.daily[k] = Math.max(0, (state.daily[k] || 0) + add); save();
   }
 
-  function setsPanelHTML(list, opts) {
+  /* The practice pane: every topic of the section's syllabus that has questions,
+     grouped under its subject. Level counts are shown here so you can see what
+     is available before opening; the level you actually want is chosen on the
+     next screen, alongside the practice/exam mode. */
+  function setRowHTML(s, opts) {
     opts = opts || {};
-    const secc = opts.sec ? opts.sec.color : "var(--accent)";
-    // On a subject tab we render the numbered section-2 header; on the Overall
-    // dashboard we keep the plain "Practice sets" heading.
-    const key = opts.num ? tsecKey(opts.sec.id, "practice") : null;
-    const openTag = opts.num
-      ? `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-practice" style="--secc:${secc}">${tabSecHead(opts.num, "Practice sets", "Open a set, answer, and it scores you and logs each question into the right topic.", `${list.length} set${list.length===1?"":"s"}`, key)}<div class="tabsec-body">`
-      : `<div class="panel"><h3>Practice sets</h3>`;
-    const closeTag = opts.num ? `</div></section>` : `</div>`;
-    if (!list.length) return openTag + `<p class="${opts.num?"footnote":"sub"}" style="margin:0;text-align:left">No sets here yet. Send your question documents in the chat — I'll tag every question and they'll appear here, ready to score.</p>${closeTag}`;
-    let h = openTag;
-    if (!opts.num) h += `<p class="sub">Open a set, enter your answers, and it scores you and logs each question into the right topic.</p>`;
-    h += `<div class="setlist">`;
-    list.forEach(s => {
-      const sec = secById(s.section), run = getRun(s.id), answered = Object.keys(run.ans).length;
-      let status, cls;
-      if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
-      else if (answered) { status = `${answered}/${s.questions.length} answered`; cls = ""; }
-      else { status = "not started"; cls = "muted"; }
-      const hasProgress = run.submitted || answered > 0;
-      h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample?' <span style="color:var(--ink-faint);font-weight:600">· sample</span>':''}</div>
-        <div class="sm">${opts.sec ? "" : `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>`}<span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id)?`<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>`:""}</div></div>
-        <div class="setbtns">${hasProgress?`<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this set">↺</button>`:""}<button class="go ${run.submitted?"done":""}" data-runset="${esc(s.id)}">${run.submitted?"Review":answered?"Resume":"Start"}</button></div></div>`;
-    });
-    return h + `</div>${closeTag}`;
+    const sec = secById(s.section), run = getRun(s.id), answered = Object.keys(run.ans).length;
+    let status, cls;
+    // A run can be narrowed to one difficulty, so say which slice the status is of.
+    const slice = run.lvl ? ` · ${run.lvl} only` : "";
+    if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%${slice}`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
+    else if (answered) { status = `${answered}/${s.questions.length} answered${slice}`; cls = ""; }
+    else { status = "not started"; cls = "muted"; }
+    const lc = levelCounts(s);
+    const lvls = opts.levels === false ? "" :
+      ["easy", "medium", "hard"].filter(L => lc[L]).map(L => `<span class="lvl lvl-${L}">${lc[L]} ${L}</span>`).join("");
+    const hasProgress = run.submitted || answered > 0;
+    return `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample ? ' <span style="color:var(--ink-faint);font-weight:600">· sample</span>' : ""}</div>
+      <div class="sm">${opts.secBadge ? `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>` : ""}<span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id) ? `<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>` : ""}</div>
+      ${lvls ? `<div class="sm slvl">${lvls}</div>` : ""}</div>
+      <div class="setbtns">${hasProgress ? `<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this topic">↺</button>` : ""}<button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(s.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
   }
+
+  function topicsPanelHTML(sec, num) {
+    const list = topicSetsFor(sec.id);
+    const gen = SETS.filter(s => s.section === sec.id && s.generated);
+    const qs = list.reduce((a, s) => a + s.questions.length, 0);
+    const key = tsecKey(sec.id, "practice");
+    const head = tabSecHead(num, "Practice by topic",
+      "Every question in the bank, filed under the topic it tests. Pick a topic, then a difficulty.",
+      `${list.length} topic${list.length === 1 ? "" : "s"} · ${qs} Qs`, key);
+    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-practice" style="--secc:${sec.color}">${head}<div class="tabsec-body">`;
+    if (!list.length && !gen.length) {
+      return h + `<p class="footnote" style="margin:0;text-align:left">No questions here yet. Send your question documents in the chat — I'll tag every question into its topic and they'll appear here, ready to score.</p></div></section>`;
+    }
+    // Subject order comes from the syllabus; anything unrecognised falls to the end.
+    const order = (sec.subjects || []).map(su => su.name).concat([OTHER_SUBJECT]);
+    const seen = {};
+    order.forEach(name => {
+      const rows = list.filter(s => s.subject === name);
+      if (!rows.length) return;
+      rows.forEach(s => { seen[s.id] = true; });
+      const n = rows.reduce((a, s) => a + s.questions.length, 0);
+      h += `<div class="tsub"><h4>${esc(name)}</h4><span>${rows.length} topic${rows.length === 1 ? "" : "s"} · ${n} Qs</span></div><div class="setlist">`;
+      rows.forEach(s => { h += setRowHTML(s); });
+      h += `</div>`;
+    });
+    const rest = list.filter(s => !seen[s.id]);
+    if (rest.length) {
+      h += `<div class="tsub"><h4>${esc(OTHER_SUBJECT)}</h4><span>${rest.length} topics</span></div><div class="setlist">`;
+      rest.forEach(s => { h += setRowHTML(s); });
+      h += `</div>`;
+    }
+    if (gen.length) {
+      h += `<div class="tsub"><h4>Generated on this device</h4><span>${gen.length} set${gen.length === 1 ? "" : "s"}</span></div><div class="setlist">`;
+      gen.forEach(s => { h += setRowHTML(s); });
+      h += `</div>`;
+    }
+    return h + `</div></section>`;
+  }
+
 
   let runSetId = null, runIndex = 0, qStart = 0, qAccum = 0, qPaused = false, qTimer = null, pendingL = null, timedFor = null;
   // Reading-comprehension passage panel (shared by the runner and the session).
@@ -3501,9 +3683,12 @@
   }
 
   let passageOpen = false;
-  function passageHTML(set) {
-    if (!set || !set.passage) return "";
-    const p = set.passage, paras = (p.paras || []).map(t => `<p>${rich(t)}</p>`).join("");
+  /* A topic gathers questions from many sources, so the passage travels with
+     the question; a source set that still carries one is the fallback. */
+  function passageHTML(set, q) {
+    const p = (q && q.passage) || (set && set.passage);
+    if (!p) return "";
+    const paras = (p.paras || []).map(t => `<p>${rich(t)}</p>`).join("");
     const title = p.title ? `<div class="rc-ptitle">${esc(p.title)}</div>` : "";
     const tables = (p.tables || []).map(diTableHTML).join("");
     const charts = (p.charts || []).map(diChartHTML).join("");
@@ -3717,13 +3902,13 @@
     document.addEventListener("scroll", onScroll, { passive: true, capture: true });
   })();
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
-  function goto(i, set) { const total = set.questions.length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
+  function goto(i, set) { const total = runQs(set).length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
 
   let jumperFlaggedOnly = false, jumperLevel = null;
   function openJumper() {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const run = getRun(set.id), practice = run.mode === "practice", fc = flaggedCount(set.id), lc = levelCounts(set);
-    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${set.questions.length} questions${practice?" · green = right, red = wrong":""}</div>`;
+    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${runQs(set).length} questions${practice?" · green = right, red = wrong":""}</div>`;
     h += `<div class="jfilters">`;
     h += `<button class="jchip ${jumperLevel===null?"on":""}" data-levelfilter="all">All</button>`;
     if (lc.easy) h += `<button class="jchip lvl-easy ${jumperLevel==="easy"?"on":""}" data-levelfilter="easy">Easy ${lc.easy}</button>`;
@@ -3731,7 +3916,7 @@
     if (lc.hard) h += `<button class="jchip lvl-hard ${jumperLevel==="hard"?"on":""}" data-levelfilter="hard">Hard ${lc.hard}</button>`;
     if (fc > 0) h += `<button class="jchip flag ${jumperFlaggedOnly?"on":""}" data-flagfilter>⚑ Flagged ${fc}</button>`;
     h += `</div>`;
-    let list = set.questions.map((q, i) => ({ q, i }));
+    let list = runQs(set).map((q, i) => ({ q, i }));
     if (jumperLevel) list = list.filter(x => x.q.level === jumperLevel);
     if (jumperFlaggedOnly) list = list.filter(x => isFlagged(set.id, x.q.n));
     if (!list.length) { h += `<p class="mode-note" style="margin:8px 0 16px">No questions match this filter.</p>`; }
@@ -3753,16 +3938,36 @@
   function closeJumper() { document.getElementById("jumper").hidden = true; }
 
   function levelCounts(set) { const c = { easy:0, medium:0, hard:0 }; set.questions.forEach(q => { if (c[q.level] != null) c[q.level]++; }); return c; }
+  /* The questions this run is actually working through. A topic holds every
+     difficulty; picking one narrows the run without touching what has already
+     been answered, so you can switch level and keep your progress. */
+  function runQs(set) {
+    if (!set) return [];
+    const lvl = getRun(set.id).lvl;
+    if (!lvl) return set.questions;
+    const out = set.questions.filter(q => q.level === lvl);
+    return out.length ? out : set.questions;
+  }
   function modeChooserHTML(set, sec, total) {
     const lc = levelCounts(set);
-    const diff = (lc.easy||lc.medium||lc.hard) ? `<div class="diff-bar"><span class="lvl lvl-easy">${lc.easy} easy</span><span class="lvl lvl-medium">${lc.medium} medium</span><span class="lvl lvl-hard">${lc.hard} hard</span></div>` : "";
-    const answered = Object.keys(getRun(set.id).ans).length;
-    const resume = answered > 0 ? `<p class="mode-note" style="margin:0 0 10px"><b>You've answered ${answered} of ${total}.</b> Pick a mode to pick up where you left off.</p>` : "";
-    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} questions</div>${diff}
-      <div class="qcard"><div class="mode-h">How do you want to run this set?</div>${resume}
+    const run = getRun(set.id), cur = run.lvl || "";
+    // Difficulty first: a topic holds every level, and how hard you want to
+    // work is a separate decision from how you want to be scored.
+    const chip = (v, label, n) => n
+      ? `<button class="lvlpick ${cur === v ? "on" : ""} ${v ? "lvl-" + v : ""}" data-setlvl="${v}">${label}<i>${n}</i></button>`
+      : "";
+    // "All" is the whole topic, including anything the source left untagged.
+    const all = set.questions.length;
+    const picker = `<div class="lvlpick-row">${chip("", "All", all)}${chip("easy", "Easy", lc.easy)}${chip("medium", "Medium", lc.medium)}${chip("hard", "Hard", lc.hard)}</div>`;
+    const answered = Object.keys(run.ans).length;
+    const resume = answered > 0 ? `<p class="mode-note" style="margin:0 0 10px"><b>You've answered ${answered} of ${all}.</b> Pick a mode to pick up where you left off.</p>` : "";
+    const scope = cur ? `the ${total} ${cur} question${total === 1 ? "" : "s"}` : `all ${total} questions`;
+    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} question${total === 1 ? "" : "s"}${cur ? " · " + cur : ""}</div>
+      <div class="qcard"><div class="mode-h">Which difficulty?</div>${picker}
+      <div class="mode-h" style="margin-top:18px">How do you want to run ${scope}?</div>${resume}
       <button class="modebtn" data-mode="practice"><b>Practice mode</b><span>Tells you correct or incorrect right after each answer, with an explanation. Best for learning.</span></button>
       <button class="modebtn" data-mode="test"><b>Test mode</b><span>Answer all ${total} first, then get your score and full solutions at the end.</span></button>
-      <p class="mode-note">Either way, every answer is logged into your Quant &amp; Overall progress for today.</p></div>`;
+      <p class="mode-note">Either way, every answer is logged into your ${esc(sec.nav)} &amp; Overall progress for today.</p></div>`;
   }
 
   function questionHTML(set, run, sec, qs, total) {
@@ -3780,7 +3985,7 @@
     const flagged = isFlagged(set.id, q.n);
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard">${passageHTML(set)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(set.section, q)}</div>
+    h += `<div class="qcard" id="qcard">${passageHTML(set, q)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(set.section, q)}</div>
       <div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
@@ -3827,7 +4032,7 @@
   }
 
   function resultsHTML(set, run, sec, qs) {
-    const res = scoreRun(set, run), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
+    const res = scoreRun(set, run, qs), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
     const byN = {}; qs.forEach(q => byN[q.n] = q);
     const tgt = paceMs(set.section);
     const tvals = qs.map(q => run.times[q.n]).filter(v => v != null && v > 0);
@@ -3852,7 +4057,7 @@
   function renderRunner() {
     stopTimer();
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const sec = secById(set.section), run = getRun(set.id), qs = set.questions, total = qs.length;
+    const sec = secById(set.section), run = getRun(set.id), qs = runQs(set), total = qs.length;
     // A one-question set has nothing to choose between: go straight into it in
     // practice mode (question → hint → answer + explanation).
     const single = total === 1;
@@ -3875,7 +4080,10 @@
 
   document.getElementById("runner").addEventListener("click", (e) => {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); modePrompt = false; runIndex = run.idx || 0; save(); renderRunner(); window.scrollTo({ top:0 }); return; }
+    // Difficulty: narrows the run and starts it from the top of that slice.
+    const lv = e.target.closest("[data-setlvl]");
+    if (lv) { const run = ensureRun(set.id); run.lvl = lv.getAttribute("data-setlvl") || null; run.idx = 0; runIndex = 0; pendingL = null; save(); renderRunner(); return; }
+    const md = e.target.closest("[data-mode]"); if (md) { const run = ensureRun(set.id); run.mode = md.getAttribute("data-mode"); modePrompt = false; runIndex = Math.min(run.idx || 0, Math.max(0, runQs(set).length - 1)); save(); renderRunner(); window.scrollTo({ top:0 }); return; }
     if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderRunner(); return; }  // RC passage expand / collapse
     if (e.target.closest("[data-toggle-timer]")) { toggleTimer(); return; }   // tap the timer to pause / resume
     if (e.target.closest("[data-reset-timer]")) { resetQTimer(); return; }     // ↺ resets this question's timer
@@ -3883,7 +4091,7 @@
     // Cross out / restore an option (GMAT elimination). Kept per question.
     const elb = e.target.closest("[data-elim]"); if (elb) {
       const run = ensureRun(set.id); if (run.submitted) return;
-      const q = set.questions[runIndex];
+      const q = runQs(set)[runIndex];
       if (run.mode === "practice" && run.ans[q.n]) return; // no changes once answered in practice
       const key = String(q.n); run.elim[key] = run.elim[key] || {};
       const L = elb.getAttribute("data-elim");
@@ -3893,7 +4101,7 @@
     // Step 1: pick highlights the option (no commit) — guards against misclicks.
     const pick = e.target.closest("[data-pick]"); if (pick) {
       const run = ensureRun(set.id); if (run.submitted) return;
-      const q = set.questions[runIndex];
+      const q = runQs(set)[runIndex];
       if (run.mode === "practice" && run.ans[q.n]) return; // locked once answered in practice
       const L = pick.getAttribute("data-pick");
       if (run.elim[String(q.n)]) delete run.elim[String(q.n)][L]; // choosing an option un-crosses it
@@ -3904,7 +4112,7 @@
     if (e.target.closest("[data-confirm]")) {
       if (pendingL == null) return;
       const run = ensureRun(set.id); if (run.submitted) return;
-      const q = set.questions[runIndex];
+      const q = runQs(set)[runIndex];
       const firstTime = !run.ans[q.n];
       const elapsed = elapsedMs();
       const chosen = pendingL; pendingL = null;
@@ -3917,7 +4125,7 @@
         nicoReact(chosen === q.correct);
         renderRunner(); window.scrollTo({ top:0 }); return;
       }
-      if (runIndex < set.questions.length - 1) { runIndex++; saveIdx(); } // advance in test mode
+      if (runIndex < runQs(set).length - 1) { runIndex++; saveIdx(); } // advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
     if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; jumperLevel = null; openJumper(); return; }
@@ -3929,9 +4137,10 @@
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }
     if (e.target.closest("[data-finish]")) {
       const run = ensureRun(set.id), answered = Object.keys(run.ans).length;
-      if (run.mode !== "practice" && answered < set.questions.length && !confirm(`You've answered ${answered} of ${set.questions.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
-      set.questions.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct, run.times[q.n] || 0); });
-      const res = scoreRun(set, run); run.submitted = true; run.score = res.score; run.total = res.total; save();
+      const scope = runQs(set);
+      if (run.mode !== "practice" && answered < scope.length && !confirm(`You've answered ${answered} of ${scope.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
+      scope.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct, run.times[q.n] || 0); });
+      const res = scoreRun(set, run, scope); run.submitted = true; run.score = res.score; run.total = res.total; save();
       markActivity("set");
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
@@ -4158,7 +4367,7 @@
     }
     h += `</div>`;
     const elim = sess.elim[sess.idx] || {}, pend = sess.pending;
-    h += `<div class="qcard">${passageHTML(cur.set)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
+    h += `<div class="qcard">${passageHTML(cur.set, q)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
     h += `<div class="qtext">${rich(q.text || ("Question " + q.n))}</div>${qTableHTML(q)}${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
@@ -4354,7 +4563,7 @@
     if (vis("runner")) {
       const run = runSetId ? getRun(runSetId) : null;
       if (run && run.mode === "test" && !run.submitted) {
-        if (confirm("Exit test mode? Your answers are saved — you can resume this set later.")) closeRunner();
+        if (confirm("Exit test mode? Your answers are saved — you can resume this topic later.")) closeRunner();
       } else closeRunner();          // practice / results → straight back to the section page
       return true;
     }

@@ -22,7 +22,7 @@ const server=http.createServer((q,r)=>{let p=q.url.split('?')[0];if(p==='/')p='/
  // Answer enough to clear the score threshold.
  await p.evaluate(()=>document.querySelectorAll('#botnav .bn')[4].click()); await p.waitForTimeout(300);
  await p.evaluate(()=>document.querySelector('[data-subtab="practice"]')?.click()); await p.waitForTimeout(300);
- await p.evaluate(()=>document.querySelector('[data-runset="cr-method-reasoning"]')?.click()); await p.waitForTimeout(400);
+ await p.evaluate(()=>document.querySelector('#view [data-runset]')?.click()); await p.waitForTimeout(400);
  await p.evaluate(()=>document.querySelector('#runner [data-mode="practice"]')?.click()); await p.waitForTimeout(300);
  for(let i=0;i<30;i++){
    const ok=await p.evaluate(()=>{const x=document.querySelector('#runner [data-pick="A"]');if(!x)return false;x.click();return true;});

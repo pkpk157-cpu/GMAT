@@ -117,24 +117,32 @@ const note = (k, m) => problems.push(`[${k}] ${step}: ${m}`);
     });
     await page.waitForTimeout(400);
     const total0 = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('gmat_tracker_v2')).daily || {}).reduce((a, b) => a + b, 0));
-    // 3-question CR set, test mode, answer all, submit, then submit again via retake+submit.
+    // Smallest CR topic, test mode, answer all, submit, then submit again via retake+submit.
     await page.evaluate(() => document.querySelectorAll('#botnav .bn')[4].click());
     await page.waitForTimeout(300);
     await page.evaluate(() => document.querySelector('[data-subtab="practice"]')?.click());
     await page.waitForTimeout(300);
-    await page.evaluate(() => document.querySelector('[data-runset="cr-conditional"]').click());
+    const setId = await page.evaluate(() => {
+      const rows = [...document.querySelectorAll('#view .setrow')]
+        .map(r => ({ btn: r.querySelector('[data-runset]'), n: parseInt(r.querySelector('.sm span')?.textContent || '999', 10) || 999 }))
+        .filter(x => x.btn).sort((a, b) => a.n - b.n);
+      rows[0].btn.click();
+      return rows[0].btn.getAttribute('data-runset');
+    });
     await page.waitForTimeout(400);
     await page.evaluate(() => document.querySelector('#runner [data-mode="test"]')?.click());
     await page.waitForTimeout(300);
-    for (let i = 0; i < 3; i++) {
-      await page.evaluate(() => document.querySelector('#runner [data-pick="A"]')?.click());
-      await page.waitForTimeout(150);
+    for (let i = 0; i < 60; i++) {
+      const picked = await page.evaluate(() => { const b = document.querySelector('#runner [data-pick="A"]'); if (!b) return false; b.click(); return true; });
+      if (!picked) break;
+      await page.waitForTimeout(120);
       await page.evaluate(() => document.querySelector('#runner [data-confirm]')?.click());
-      await page.waitForTimeout(150);
-      await page.evaluate(() => document.querySelector('#runner [data-next]')?.click());
-      await page.waitForTimeout(150);
+      await page.waitForTimeout(120);
+      const nx = await page.evaluate(() => { const b = document.querySelector('#runner [data-next]'); if (!b) return false; b.click(); return true; });
+      if (!nx) break;
+      await page.waitForTimeout(120);
     }
-    const answered = await page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('gmat_tracker_v2')).runs['cr-conditional'].ans).length);
+    const answered = await page.evaluate(id => Object.keys(JSON.parse(localStorage.getItem('gmat_tracker_v2')).runs[id].ans).length, setId);
 
     await page.evaluate(() => document.querySelector('#runner [data-finish]')?.click());
     await page.waitForTimeout(600);

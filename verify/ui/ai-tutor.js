@@ -56,30 +56,41 @@ const REPLY = 'You picked B because it repeats a phrase from the passage, which 
   });
   await page.waitForTimeout(400);
 
-  // Open a CR set and deliberately pick a wrong choice.
+  // Open a CR topic and answer until a pick actually misses. Practice is filed
+  // by syllabus topic, so set ids follow the taxonomy and are not hard-coded
+  // here; whether a choice was wrong is read off the runner's own feedback.
   await page.evaluate(() => document.querySelectorAll('#botnav .bn')[4].click());
   await page.waitForTimeout(300);
   await page.evaluate(() => document.querySelector('[data-subtab="practice"]')?.click());
   await page.waitForTimeout(300);
   const opened = await page.evaluate(() => {
-    const b = document.querySelector('[data-runset="cr-method-reasoning"]'); if (!b) return false; b.click(); return true;
+    const b = document.querySelector('#view [data-runset]'); if (!b) return false; b.click(); return true;
   });
-  if (!opened) problems.push('could not open cr-method-reasoning');
+  if (!opened) problems.push('could not open a CR topic set');
   await page.waitForTimeout(400);
   await page.evaluate(() => document.querySelector('#runner [data-mode="practice"]')?.click());
   await page.waitForTimeout(300);
 
-  const wrongPicked = await page.evaluate(() => {
-    const correct = window.GMAT_SETS.find(s => s.id === 'cr-method-reasoning').questions[0].correct;
-    const btns = [...document.querySelectorAll('#runner [data-pick]')];
-    const wrong = btns.find(b => b.getAttribute('data-pick') !== correct);
-    if (!wrong) return null;
-    wrong.click();
-    return wrong.getAttribute('data-pick');
-  });
-  if (!wrongPicked) problems.push('no wrong choice available to pick');
-  await page.evaluate(() => document.querySelector('#runner [data-confirm]')?.click());
-  await page.waitForTimeout(300);
+  const answerWrongly = async () => {
+    for (let i = 0; i < 8; i++) {
+      const picked = await page.evaluate(k => {
+        const btns = [...document.querySelectorAll('#runner [data-pick]')];
+        if (!btns.length) return null;
+        const b = btns[k % btns.length]; b.click(); return b.getAttribute('data-pick');
+      }, i);
+      if (!picked) return null;
+      await page.evaluate(() => document.querySelector('#runner [data-confirm]')?.click());
+      await page.waitForTimeout(300);
+      if (await page.evaluate(() => !!document.querySelector('#runner .feedback.no'))) return picked;
+      const nx = await page.evaluate(() => { const n = document.querySelector('#runner [data-next]'); if (!n) return false; n.click(); return true; });
+      if (!nx) return null;
+      await page.waitForTimeout(250);
+    }
+    return null;
+  };
+
+  const wrongPicked = await answerWrongly();
+  if (!wrongPicked) problems.push('could not land on a wrong answer');
 
   const hasButton = await page.evaluate(() => !!document.querySelector('#runner [data-aiexplain]'));
   if (!hasButton) problems.push('"Explain my mistake" button did not appear on a wrong answer');
@@ -113,13 +124,8 @@ const REPLY = 'You picked B because it repeats a phrase from the passage, which 
   const advanced = await page.evaluate(() => { const n = document.querySelector('#runner [data-next]'); if (!n) return false; n.click(); return true; });
   if (advanced) {
     await page.waitForTimeout(250);
-    await page.evaluate(() => {
-      const correct = window.GMAT_SETS.find(s => s.id === 'cr-method-reasoning').questions[1].correct;
-      const wrong = [...document.querySelectorAll('#runner [data-pick]')].find(b => b.getAttribute('data-pick') !== correct);
-      if (wrong) wrong.click();
-    });
-    await page.evaluate(() => document.querySelector('#runner [data-confirm]')?.click());
-    await page.waitForTimeout(250);
+    const missedAgain = await answerWrongly();
+    if (!missedAgain) problems.push('could not land on a second wrong answer');
     await page.evaluate(() => document.querySelector('#runner [data-aiexplain]')?.click());
     await page.waitForTimeout(700);
     const err = await page.evaluate(() => {

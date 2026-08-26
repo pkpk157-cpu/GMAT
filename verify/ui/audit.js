@@ -58,6 +58,23 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
 
   const run = async (name, fn) => { step = name; try { await fn(); } catch (e) { note('THREW', e.message); } };
 
+  /* Practice is filed by syllabus topic, so set ids follow the taxonomy rather
+     than the documents questions came from. Open the shortest topic on the tab
+     — a full pass through it stays quick. */
+  const openSmallestSet = async (nth) => {
+    const ok = await P.evaluate(k => {
+      const rows = [...document.querySelectorAll('#view .setrow')]
+        .map(r => ({ btn: r.querySelector('[data-runset]'), n: parseInt(r.querySelector('.sm span')?.textContent || '999', 10) || 999 }))
+        .filter(x => x.btn).sort((a, b) => a.n - b.n);
+      const row = rows[k] || rows[0];
+      if (!row) return false;
+      row.btn.scrollIntoView({ block: 'center' }); row.btn.click(); return true;
+    }, nth || 0);
+    if (!ok) note('MISSING', 'no topic set to open on this tab');
+    await wait(300);
+    return ok;
+  };
+
   await P.goto(`http://127.0.0.1:${port}/index.html`);
   await wait(1000);
 
@@ -92,18 +109,30 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
   }
 
   /* ---- practice runner, practice mode ---- */
+  let finishedPass = false;
   await run('runner: practice mode full pass', async () => {
     await tab(4);
     await click('[data-subtab="practice"]');
-    await click('[data-runset="cr-conditional"]');       // 3 questions — quick full pass
+    await openSmallestSet();
     if (!(await visible('runner'))) throw new Error('runner did not open');
+    // Narrow to the smallest difficulty so a full pass is a handful of questions.
+    await P.evaluate(() => {
+      const chips = [...document.querySelectorAll('#runner [data-setlvl]')].filter(c => c.getAttribute('data-setlvl'));
+      const best = chips.map(c => ({ c, n: parseInt(c.querySelector('i')?.textContent || '999', 10) || 999 })).sort((a, b) => a.n - b.n)[0];
+      if (best) best.c.click();
+    });
+    await wait(300);
     await click('#runner [data-mode="practice"]');
     // hint
     await click('#runner .hint-box summary', { optional: true });
     // eliminate then restore
     await click('#runner [data-elim="A"]', { optional: true });
     await click('#runner [data-elim="A"]', { optional: true });
-    for (let q = 0; q < 3; q++) {
+    const scope = await P.evaluate(() => {
+      const m = /of\s+(\d+)/.exec(document.querySelector('#runner .qnum')?.textContent || '');
+      return m ? parseInt(m[1], 10) : 0;
+    });
+    for (let q = 0; q < Math.min(scope || 3, 40); q++) {
       step = `runner practice Q${q + 1}`;
       const picked = await click('#runner [data-pick="B"]', { optional: true });
       if (!picked) await click('#runner [data-pick="A"]', { optional: true });
@@ -113,6 +142,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
       const nx = await click('#runner [data-next]', { optional: true });
       if (!nx) { await click('#runner [data-finish]', { optional: true }); break; }
     }
+    finishedPass = scope > 0 && scope <= 40;
     await wait(400);
   });
 
@@ -121,6 +151,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
       const fin = await click('#runner [data-finish]', { optional: true });
       if (fin) await wait(400);
     }
+    if (!finishedPass) { skipped.push(step + ' :: run was longer than the walk'); return; }
     const t = await text('#runner');
     if (t && !/score|correct|result|%/i.test(t)) note('SHAPE', 'results screen has no score text');
   });
@@ -136,7 +167,8 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
   /* ---- test mode + jumper ---- */
   await run('runner: test mode + jumper', async () => {
     await tab(4);
-    await click('[data-runset="cr-flaw"]');
+    await click('[data-subtab="practice"]');
+    await openSmallestSet(1);
     await click('#runner [data-mode="test"]');
     await click('#runner [data-pick="A"]', { optional: true });
     await click('#runner [data-confirm]', { optional: true });
@@ -158,7 +190,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
   await run('runner: RC passage toggle', async () => {
     await tab(3);
     await click('[data-subtab="practice"]');
-    await click('[data-runset="rc-science-lichen"]');
+    await openSmallestSet();
     await click('#runner [data-mode="practice"]', { optional: true });
     await click('#runner [data-passtoggle]', { optional: true });
     await click('#runner [data-passtoggle]', { optional: true });

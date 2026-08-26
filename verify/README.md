@@ -7,6 +7,12 @@ answer key printed in the source document and, separately, re-derived by hand
 from the argument or passage before that key was consulted; where the two
 disagreed the question was dropped rather than guessed.
 
+Set ids used here — `cr-assumption`, `quant-percentage-ex` and the rest — are
+the *source* sets: one per document a batch of questions was transcribed from.
+The app no longer practises those directly; at load it re-files every question
+under the syllabus topic it tests. These checks deliberately stay on the source
+sets, because that is the level at which a printed answer key exists.
+
 ## Runnable checks
 
     node verify/run.js               # re-derives 407 answers independently

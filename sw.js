@@ -20,6 +20,8 @@ const ASSETS = [
   "./sets-rc-700.js",
   "./sets-di4.js",
   "./expl-quant-percent.js",
+  "./expl-quant-700rates.js",
+  "./expl-quant-live1.js",
   "./expl-quant-stats.js",
   "./expl-quant-algebra.js",
   "./expl-quant-quadfn.js",

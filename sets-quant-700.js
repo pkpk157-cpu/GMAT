@@ -330,7 +330,7 @@
         "Clock 1 runs at \\(\\tfrac{45}{60}\\) of real time.\nClock 2 runs at \\(\\tfrac{75}{60}\\) of Clock 1, Clock 3 at \\(\\tfrac{40}{60}\\) of Clock 2, Clock 4 at \\(\\tfrac{80}{60}\\) of Clock 3.\nMultiplying: \\(\\tfrac{45}{60}\\cdot\\tfrac{75}{60}\\cdot\\tfrac{40}{60}\\cdot\\tfrac{80}{60} = \\tfrac56\\).\nIn 6 real hours Clock 4 advances 5 hours, showing 5:00.\nAnswer: A."),
       Q(10, "Speed, distance & time", "D",
         "At exactly what time past 7:00 will the minute and hour hands of an accurate working clock be precisely perpendicular to each other for the first time?",
-        ["20 13/21 minutes past 7:00", "20 13/17 minutes past 7:00", "21 3/23 minutes past 7:00", "21 9/11 minutes past 7:00", "22 4/9 minutes past 7:00 Page 13"],
+        ["20 13/21 minutes past 7:00", "20 13/17 minutes past 7:00", "21 3/23 minutes past 7:00", "21 9/11 minutes past 7:00", "22 4/9 minutes past 7:00"],
         "The minute hand gains on the hour hand at a fixed rate.",
         "At 7:00 the hour hand is at 210°, the minute hand at 0°.\nThe minute hand gains \\(6 - 0.5 = 5.5\\) degrees per minute.\nThe first perpendicular comes when the gap has closed from 210° to 90°: \\(\\tfrac{120}{5.5} = \\tfrac{240}{11} = 21\\tfrac9{11}\\) minutes.\nAnswer: D."),
       Q(11, "Simple & compound interest", "E",

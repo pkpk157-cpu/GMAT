@@ -1,5 +1,5 @@
 /* GMAT Prep Tracker — service worker (network-first, auto-updating) */
-const CACHE = "gmat-prep-v83";
+const CACHE = "gmat-prep-v84";
 const ASSETS = [
   "./",
   "./index.html",
@@ -69,18 +69,21 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // Same-origin static assets (icons, manifest): network-first, cache fallback,
-  // so refreshed assets also come through while still working offline.
+  // Same-origin static assets (the question bank, KaTeX, icons): cache-first.
+  // These change only on a release, and a release bumps CACHE — which installs
+  // a fresh copy of everything and deletes the old cache — so the cache can
+  // never serve assets from a different version than the page. Network-first
+  // here meant re-downloading ~1.1 MB of question bank on every single open.
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
     e.respondWith(
-      fetch(req)
-        .then((res) => {
+      caches.match(req).then((hit) => hit || fetch(req).then((res) => {
+        if (res && res.ok) {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
-          return res;
-        })
-        .catch(() => caches.match(req))
+        }
+        return res;
+      }))
     );
   }
 });

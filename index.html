@@ -208,7 +208,10 @@
 
   /* Goals rings */
   .goals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-  .goal { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 15px; display: flex; align-items: center; gap: 14px; }
+  /* min-width:0 — without it a grid item refuses to shrink below its content
+     and the two rings push the page into a horizontal scroll on small phones. */
+  .goal { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 15px; display: flex; align-items: center; gap: 14px; min-width: 0; }
+  .goal .gt { min-width: 0; }
   .ring-wrap { position: relative; width: 66px; height: 66px; flex: none; }
   .ring { width: 66px; height: 66px; transform: rotate(-90deg); }
   .ring-bg { fill: none; stroke: var(--surface-2); stroke-width: 7; }
@@ -274,8 +277,9 @@
   .prog-toggle:focus-visible { outline: 2px solid var(--c-overall); outline-offset: 1px; }
 
   /* Sub-nav: one pane of a subject tab at a time. */
-  .subnav { display: flex; gap: 4px; margin: 0 0 14px; padding: 4px; background: var(--surface-2, color-mix(in srgb, var(--ink) 5%, var(--surface))); border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; scrollbar-width: none; }
-  .subnav::-webkit-scrollbar { display: none; }
+  /* Wraps rather than scrolls: five labels do not fit one row on a 320px phone,
+     and a row that scrolls sideways hides the last tab with no affordance. */
+  .subnav { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 14px; padding: 4px; background: var(--surface-2, color-mix(in srgb, var(--ink) 5%, var(--surface))); border: 1px solid var(--line); border-radius: 12px; }
   .subnav-b { flex: 1 1 auto; min-width: max-content; padding: 8px 12px; border: 0; border-radius: 9px; background: transparent; color: var(--ink-faint); font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; white-space: nowrap; transition: background .15s, color .15s; }
   .subnav-b:hover { color: var(--ink); }
   .subnav-b.on { background: var(--surface); color: color-mix(in srgb, var(--secc, var(--accent)) 78%, var(--ink)); box-shadow: 0 1px 2px rgba(0,0,0,.09); }
@@ -879,6 +883,11 @@
     .goal { padding: 13px; gap: 11px; }
     .topic { gap: 7px; }
   }
+  /* Below ~380px two goal rings side by side leave no room for their numbers. */
+  @media (max-width: 380px) {
+    .goals { grid-template-columns: 1fr; }
+    .ring-wrap { width: 56px; height: 56px; }
+  }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
@@ -1137,7 +1146,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v83";
+  const APP_VERSION = "v84";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1158,11 +1167,35 @@
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
 
+  // Saved state can be damaged — a half-finished sync, a hand-edited backup, an
+  // older build. Merging it in blind used to hand the app a string where it
+  // expected an object and white-screen it with no way to reach Restore, so
+  // every field is coerced back to the shape its default declares.
+  function sanitize(p) {
+    const out = JSON.parse(JSON.stringify(defaults));
+    if (!p || typeof p !== "object" || Array.isArray(p)) return out;
+    const isObj = (v) => v && typeof v === "object" && !Array.isArray(v);
+    Object.keys(defaults).forEach(k => {
+      const want = defaults[k], got = p[k];
+      if (got === undefined || got === null) return;
+      if (Array.isArray(want)) { if (Array.isArray(got)) out[k] = got; return; }
+      if (isObj(want)) { if (isObj(got)) out[k] = Object.assign({}, want, got); return; }
+      if (typeof got === typeof want) out[k] = got;
+    });
+    // Keys the defaults don't declare (syncedAt, celebrated, …) are carried
+    // through untouched — dropping them would reset sync and re-fire achievements.
+    Object.keys(p).forEach(k => { if (!(k in defaults)) out[k] = p[k]; });
+    // genSets entries drive the same render path as real sets, so drop any that
+    // could not be run.
+    out.genSets = out.genSets.filter(g => g && typeof g === "object" && g.id && Array.isArray(g.questions) && g.questions.length);
+    if (!SECTIONS.some(s => s.id === out.active)) out.active = defaults.active;
+    return out;
+  }
+
   function load() {
-    try { const raw = localStorage.getItem(KEY); if (raw) { const p = JSON.parse(raw);
-      return Object.assign({}, defaults, p, { targets: Object.assign({}, defaults.targets, p.targets || {}) }); } } catch (e) {}
+    try { const raw = localStorage.getItem(KEY); if (raw) return sanitize(JSON.parse(raw)); } catch (e) {}
     try { const old = JSON.parse(localStorage.getItem("gmat_tracker_v1") || "null");
-      if (old) return Object.assign({}, defaults, { name: old.name || "", examDate: old.examDate || "", daily: old.daily || {} }); } catch (e) {}
+      if (old) return sanitize({ name: old.name || "", examDate: old.examDate || "", daily: old.daily || {} }); } catch (e) {}
     return JSON.parse(JSON.stringify(defaults));
   }
   function saveRaw() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
@@ -1956,8 +1989,8 @@
         const p = JSON.parse(reader.result);
         if (!p || typeof p !== "object" || !("counts" in p) || !("daily" in p)) throw new Error("shape");
         if (!confirm("Restore this backup? It replaces your current data on this device.")) return;
-        state = Object.assign({}, defaults, p, { targets: Object.assign({}, defaults.targets, p.targets||{}) });
-        save(); renderProfile(); renderTop(); renderBotnav();
+        state = sanitize(p);
+        save(); renderProfile(); render();
       } catch (e) { alert("That doesn't look like a GMAT Prep backup file."); }
     };
     reader.readAsText(file);
@@ -2064,7 +2097,9 @@
     m.reminder = lww("reminder", defaults.reminder);
     m.targets  = Object.assign({}, defaults.targets, lww("targets", defaults.targets));
     m.syncedAt = Math.max(lt, ct);
-    return m;
+    // Cloud data comes from another device or a hand-edited gist, so it is the
+    // likeliest source of a wrong-shaped field.
+    return sanitize(m);
   }
 
   async function pull(silent) {

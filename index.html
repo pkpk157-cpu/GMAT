@@ -267,6 +267,42 @@
     background: var(--secc, var(--accent)); color: #fff; margin-left: auto; }
   .gen-go[disabled] { opacity: .45; cursor: not-allowed; }
   .gen-note { font-size: 13px; color: var(--ink-faint); margin: 11px 0 0; line-height: 1.45; }
+  /* Error log: one tap after a miss records why, not just that. */
+  .missbox { margin: 12px 0 0; padding: 12px 14px; background: color-mix(in srgb, var(--bad) 7%, var(--surface)); border: 1px solid color-mix(in srgb, var(--bad) 22%, var(--line)); border-radius: 12px; }
+  .miss-q { font-size: 14px; font-weight: 700; margin-bottom: 9px; }
+  .miss-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .miss-chip { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-soft); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .miss-chip:hover { border-color: var(--bad); color: var(--ink); }
+  .miss-chip.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+  .miss-note { font-size: 12.5px; color: var(--ink-faint); margin: 9px 0 0; line-height: 1.45; }
+  .mlog { display: grid; gap: 8px; margin-top: 12px; }
+  .mlog-row { display: grid; grid-template-columns: 96px 1fr 28px; align-items: center; gap: 10px; font-size: 14px; }
+  .ml-bar { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; }
+  .ml-bar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .ml-v { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* Time vs accuracy: four cases, four different fixes. */
+  .quad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .qd { padding: 12px; border: 1px solid var(--line); border-left: 3px solid var(--qc, var(--line)); border-radius: 11px; background: var(--surface); }
+  .qd-good { --qc: var(--good); } .qd-mid { --qc: var(--gold); }
+  .qd-low  { --qc: #e08b2e; }     .qd-bad { --qc: var(--bad); }
+  .qd-n { font-family: var(--serif); font-size: 25px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .qd-l { font-size: 13px; font-weight: 700; margin-top: 4px; }
+  .qd-p { font-size: 12px; color: var(--ink-faint); }
+  .qd-a { font-size: 12.5px; color: var(--ink-soft); margin-top: 7px; line-height: 1.45; }
+
+  /* Score estimate */
+  .scorebig { display: flex; align-items: baseline; gap: 10px; margin: 14px 0 4px; }
+  .scorebig .sv { font-family: var(--serif); font-size: 42px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; color: var(--c-overall); }
+  .scorebig .sl { font-size: 13px; color: var(--ink-faint); }
+  .scorebox { display: grid; gap: 9px; margin-top: 12px; }
+  .sc-row { display: grid; grid-template-columns: 104px 1fr 34px; align-items: center; gap: 10px; font-size: 14px; }
+  .sc-n { font-weight: 600; }
+  .sc-bar { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; }
+  .sc-bar i { display: block; height: 100%; background: var(--c-overall); border-radius: 999px; }
+  .sc-v { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .sc-need { grid-column: 2 / -1; font-size: 12.5px; color: var(--ink-faint); }
+
   /* Progress & stats: one toggle instead of four dashboards on first load. */
   .prog-toggle { display: flex; align-items: center; gap: 10px; width: 100%; margin: 0 0 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
   .prog-toggle:hover { border-color: color-mix(in srgb, var(--c-overall) 40%, var(--line)); }
@@ -1147,7 +1183,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v84";
+  const APP_VERSION = "v85";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1163,7 +1199,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, targets:{ daily:20, weekly:120 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, miss:{}, targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1769,6 +1805,11 @@
     h += `<button class="prog-toggle ${po ? "on" : ""}" data-progtoggle="1" aria-expanded="${po}"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""}${st>0?` · ${st}-day streak`:""}</span><span class="chev">▾</span></button>`;
     if (!po) { h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`; return h; }
 
+    h += scorePanelHTML();
+    h += quadrantPanelHTML();
+    h += errorLogPanelHTML();
+    h += flaggedPanelHTML();
+
     // tiles
     h += `<div class="grid-stats">
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
@@ -1888,7 +1929,9 @@
       <div class="tgt-prog"><div class="tgt-bar"><i style="width:${dT?Math.min(100,Math.round(today/dT*100)):0}%"></i></div><div class="tgt-cap"><span>Today</span><span>${today} / ${dT||"—"}</span></div></div>
       <div class="tgt-row"><div class="tgt-info"><div class="tgt-k">Weekly target</div><div class="tgt-s">questions this week (Mon–Sun)</div></div>
         <div class="stepper"><button class="step minus" data-tgt="weekly" data-d="-10">−</button><span class="tgt-val">${wT}</span><button class="step" data-tgt="weekly" data-d="10">+</button></div></div>
-      <div class="tgt-prog"><div class="tgt-bar"><i style="width:${wT?Math.min(100,Math.round(week/wT*100)):0}%;background:var(--gold)"></i></div><div class="tgt-cap"><span>This week</span><span>${week} / ${wT||"—"}</span></div></div></section>`;
+      <div class="tgt-prog"><div class="tgt-bar"><i style="width:${wT?Math.min(100,Math.round(week/wT*100)):0}%;background:var(--gold)"></i></div><div class="tgt-cap"><span>This week</span><span>${week} / ${wT||"—"}</span></div></div>
+      <div class="tgt-row"><div class="tgt-info"><div class="tgt-k">Target score</div><div class="tgt-s">205–805, in steps of 10</div></div>
+        <div class="stepper"><button class="step minus" data-tgt="score" data-d="-10">−</button><span class="tgt-val">${state.targets.score || "—"}</span><button class="step" data-tgt="score" data-d="10">+</button></div></div></section>`;
 
     h += `<section class="panel"><h3>Activity calendar</h3><p class="sub">Every day you log questions, coloured by how close you got to your daily target.</p>${calendarHTML()}</section>`;
 
@@ -2251,7 +2294,12 @@
 
   /* Events — profile */
   document.getElementById("profile").addEventListener("click", (e) => {
-    const tgt = e.target.closest("[data-tgt]"); if (tgt) { const k=tgt.getAttribute("data-tgt"); state.targets[k]=Math.max(0,(state.targets[k]||0)+parseInt(tgt.getAttribute("data-d"),10)); save(); renderProfile(); return; }
+    const tgt = e.target.closest("[data-tgt]"); if (tgt) { const k=tgt.getAttribute("data-tgt");
+      const step = parseInt(tgt.getAttribute("data-d"),10);
+      // The score target lives on the published 205-805 scale, so it clamps there
+      // and starts from a sensible mid-range value rather than from zero.
+      if (k === "score") { const cur = state.targets.score || (step > 0 ? 595 : 615); state.targets.score = Math.max(205, Math.min(805, cur + step)); }
+      else state.targets[k]=Math.max(0,(state.targets[k]||0)+step); save(); renderProfile(); return; }
     if (e.target.closest("[data-save-details]")) { state.name=document.getElementById("pf-name").value.trim(); state.examDate=document.getElementById("pf-date").value||""; save(); renderTop(); renderProfile(); return; }
     const th = e.target.closest("[data-theme-set]"); if (th) { setTheme(th.getAttribute("data-theme-set")); renderProfile(); return; }
     const cal = e.target.closest("[data-cal]"); if (cal) { calCursor.setMonth(calCursor.getMonth()+parseInt(cal.getAttribute("data-cal"),10)); renderProfile(); return; }
@@ -2839,6 +2887,247 @@
     renderReview(); window.scrollTo({ top:0 });
   }
 
+  /* ===== Score estimate =====
+     GMAT Focus reports each section on 60-90 and the total on 205-805 in
+     10-point steps. The real scoring is adaptive and item-calibrated, which
+     nothing offline can reproduce; this maps difficulty-weighted accuracy onto
+     the published scales so the number moves for the right reasons. It is a
+     progress signal, not a predicted score, and the UI says so. */
+  const SEC_MIN = 60, SEC_MAX = 90;
+  const LEVEL_WEIGHT = { easy: 0.7, medium: 1.0, hard: 1.45 };
+  // Enough questions before a section score is worth showing at all.
+  const SCORE_MIN_N = 25;
+
+  function sectionScore(secId) {
+    let w = 0, wc = 0, n = 0;
+    SETS.filter(s => s.section === secId).forEach(set => {
+      const run = state.runs[set.id];
+      if (!run || !run.logged) return;
+      set.questions.forEach(q => {
+        const L = run.logged[q.n];
+        if (!L) return;
+        const wt = LEVEL_WEIGHT[q.level] || 1;
+        w += wt; if (L.correct) wc += wt; n++;
+      });
+    });
+    if (n < SCORE_MIN_N) return { n: n, score: null };
+    const p = wc / w;                       // difficulty-weighted accuracy
+    // 40% weighted accuracy sits at the floor, 95% at the ceiling; between
+    // those the curve is close to linear, which matches how the published
+    // percentile tables behave through the middle of the range.
+    const t = Math.max(0, Math.min(1, (p - 0.40) / 0.55));
+    const raw = SEC_MIN + t * (SEC_MAX - SEC_MIN);
+    return { n: n, score: Math.round(raw), acc: Math.round(p * 100) };
+  }
+
+  // Verbal is one scored section built from the RC and CR banks together.
+  function scoreParts() {
+    const quant = sectionScore("quant"), data = sectionScore("data");
+    let w = 0, wc = 0, n = 0;
+    ["rc", "cr"].forEach(secId => {
+      SETS.filter(s => s.section === secId).forEach(set => {
+        const run = state.runs[set.id];
+        if (!run || !run.logged) return;
+        set.questions.forEach(q => {
+          const L = run.logged[q.n];
+          if (!L) return;
+          const wt = LEVEL_WEIGHT[q.level] || 1;
+          w += wt; if (L.correct) wc += wt; n++;
+        });
+      });
+    });
+    let verbal = { n: n, score: null };
+    if (n >= SCORE_MIN_N) {
+      const p = wc / w, t = Math.max(0, Math.min(1, (p - 0.40) / 0.55));
+      verbal = { n: n, score: Math.round(SEC_MIN + t * (SEC_MAX - SEC_MIN)), acc: Math.round(p * 100) };
+    }
+    return { quant, data, verbal };
+  }
+
+  function totalScore() {
+    const p = scoreParts(), have = [p.quant, p.data, p.verbal].filter(x => x.score !== null);
+    if (!have.length) return { total: null, parts: p, ready: 0 };
+    // Each section contributes equally. Sections with too little data fall back
+    // to the average of the ones that have enough, so a partial picture still
+    // produces a number rather than nothing.
+    const avg = have.reduce((a, x) => a + x.score, 0) / have.length;
+    const sum = [p.quant, p.data, p.verbal].reduce((a, x) => a + (x.score === null ? avg : x.score), 0);
+    // 3 x 60 = 180 maps to 205 and 3 x 90 = 270 maps to 805.
+    const t = (sum - 180) / 90;
+    const total = Math.round((205 + t * 600) / 10) * 10;
+    return { total: Math.max(205, Math.min(805, total)), parts: p, ready: have.length };
+  }
+
+  /* ===== Error log =====
+     Topic accuracy tells you where you are missing; it never tells you why.
+     One tap after a miss records the reason, and the reasons aggregate into
+     advice that differs from "practise more percentages". */
+  const MISS_REASONS = [
+    { id:"careless",  label:"Careless",     note:"I knew this and slipped" },
+    { id:"concept",   label:"Concept gap",  note:"I did not know the method" },
+    { id:"misread",   label:"Misread",      note:"I answered the wrong question" },
+    { id:"time",      label:"Out of time",  note:"I rushed or guessed to stay on pace" },
+    { id:"guessed",   label:"Guessed",      note:"No real basis for the pick" }
+  ];
+  const missKey = (setId, n) => setId + "#" + n;
+  function missReasonOf(setId, n) { return (state.miss || {})[missKey(setId, n)] || null; }
+  function setMissReason(setId, n, reason) {
+    if (!state.miss) state.miss = {};
+    const k = missKey(setId, n);
+    if (state.miss[k] && state.miss[k].r === reason) delete state.miss[k];
+    else state.miss[k] = { r: reason, day: dkey() };
+    save();
+  }
+  function missReasonHTML(setId, n) {
+    const cur = missReasonOf(setId, n);
+    const chips = MISS_REASONS.map(r =>
+      `<button class="miss-chip${cur && cur.r === r.id ? " on" : ""}" data-miss="${esc(setId)}|${n}|${r.id}" title="${esc(r.note)}">${esc(r.label)}</button>`
+    ).join("");
+    return `<div class="missbox"><div class="miss-q">Why did this one go wrong?</div><div class="miss-chips">${chips}</div>${
+      cur ? "" : `<p class="miss-note">One tap. Over a week these add up to a pattern that topic accuracy cannot show you.</p>`}</div>`;
+  }
+  // Reason tallies over the whole error log, most common first.
+  function missTally(days) {
+    const cut = days ? addDaysKey(-days) : null, out = {};
+    MISS_REASONS.forEach(r => { out[r.id] = 0; });
+    let total = 0;
+    Object.values(state.miss || {}).forEach(m => {
+      if (!m || !out.hasOwnProperty(m.r)) return;
+      if (cut && m.day && m.day < cut) return;
+      out[m.r]++; total++;
+    });
+    return { counts: out, total };
+  }
+
+  /* ===== Time x correctness =====
+     Right-and-slow, wrong-and-fast, wrong-and-slow and right-and-fast need
+     four different fixes, and topic accuracy shows them all the same way. */
+  function quadrantData() {
+    const q = { fastRight:[], slowRight:[], fastWrong:[], slowWrong:[] };
+    SETS.forEach(set => {
+      const run = state.runs[set.id];
+      if (!run || !run.logged) return;
+      const tgt = paceMs(set.section);
+      Object.keys(run.logged).forEach(n => {
+        const L = run.logged[n];
+        if (!L || !L.ms) return;                    // untimed answers cannot be placed
+        const slow = L.ms > tgt;
+        const bucket = L.correct ? (slow ? "slowRight" : "fastRight") : (slow ? "slowWrong" : "fastWrong");
+        q[bucket].push({ setId: set.id, n: +n, ms: L.ms, section: set.section });
+      });
+    });
+    return q;
+  }
+  const QUAD_META = {
+    fastRight: { label:"Right, on pace",  cls:"good", advice:"Mastered. Keep it warm, spend your time elsewhere." },
+    slowRight: { label:"Right, but slow", cls:"mid",  advice:"Fragile. You can get there but not in exam time — drill the method until it is automatic." },
+    fastWrong: { label:"Wrong, quickly",  cls:"low",  advice:"Careless. You are moving before you have read it — slow down on the setup, not the arithmetic." },
+    slowWrong: { label:"Wrong, and slow", cls:"bad",  advice:"A real gap. Go back to the concept rather than doing more questions." }
+  };
+
+  /* ===== Panels for the dashboard ===== */
+  function scorePanelHTML() {
+    const t = totalScore(), p = t.parts, tgt = state.targets.score || 0;
+    const row = (name, s, secLabel) =>
+      `<div class="sc-row"><span class="sc-n">${name}</span>${
+        s.score === null
+          ? `<span class="sc-need">${s.n} of ${SCORE_MIN_N} logged</span>`
+          : `<span class="sc-bar"><i style="width:${Math.round((s.score-SEC_MIN)/(SEC_MAX-SEC_MIN)*100)}%"></i></span><span class="sc-v">${s.score}</span>`
+      }</div>`;
+    let h = `<div class="panel"><h3>Score estimate</h3>`;
+    if (t.total === null) {
+      h += `<p class="sub">Log about ${SCORE_MIN_N} questions in any one section and an estimate appears here.</p>`;
+      h += `<div class="scorebox">${row("Quant", p.quant)}${row("Data Insights", p.data)}${row("Verbal", p.verbal)}</div>`;
+      return h + `</div>`;
+    }
+    const gap = tgt ? t.total - tgt : null;
+    h += `<p class="sub">Difficulty-weighted accuracy mapped onto the published 205–805 scale. A progress signal, not a predicted score — the real exam is adaptive and item-calibrated.</p>`;
+    h += `<div class="scorebig"><div class="sv">${t.total}</div><div class="sl">estimated total${t.ready < 3 ? ` · from ${t.ready} of 3 sections` : ""}</div></div>`;
+    h += `<div class="scorebox">${row("Quant", p.quant)}${row("Data Insights", p.data)}${row("Verbal", p.verbal)}</div>`;
+    if (tgt) {
+      h += `<p class="sub" style="margin:12px 0 0">Target <b style="color:var(--ink)">${tgt}</b> — ${
+        gap >= 0 ? `you are <b style="color:var(--good)">${gap} above</b> it on this measure.`
+                 : `<b style="color:var(--bad)">${-gap} to go</b>.`}</p>`;
+    } else {
+      h += `<p class="sub" style="margin:12px 0 0">Set a <button class="link" data-open-profile="1">target score</button> to track the gap.</p>`;
+    }
+    return h + `</div>`;
+  }
+
+  function quadrantPanelHTML() {
+    const q = quadrantData();
+    const total = q.fastRight.length + q.slowRight.length + q.fastWrong.length + q.slowWrong.length;
+    let h = `<div class="panel"><h3>Time vs. accuracy</h3>`;
+    if (!total) {
+      h += `<p class="sub">Answer some questions with the timer running and they will be sorted here into the four cases, each of which needs a different fix.</p>`;
+      return h + `</div>`;
+    }
+    h += `<p class="sub">Every timed question you have answered, against the pace target for its section. Each quadrant calls for something different.</p><div class="quad">`;
+    ["fastRight", "slowRight", "fastWrong", "slowWrong"].forEach(k => {
+      const m = QUAD_META[k], n = q[k].length, pct = Math.round(n / total * 100);
+      h += `<div class="qd qd-${m.cls}"><div class="qd-n">${n}</div><div class="qd-l">${esc(m.label)}</div><div class="qd-p">${pct}%</div><div class="qd-a">${esc(m.advice)}</div></div>`;
+    });
+    h += `</div>`;
+    const worst = q.slowWrong.length >= q.fastWrong.length ? "slowWrong" : "fastWrong";
+    if (q[worst].length) h += `<p class="sub" style="margin:12px 0 0">Biggest bucket among your misses: <b style="color:var(--ink)">${esc(QUAD_META[worst].label.toLowerCase())}</b>.</p>`;
+    return h + `</div>`;
+  }
+
+  function errorLogPanelHTML() {
+    const all = missTally(null), wk = missTally(7);
+    let h = `<div class="panel"><h3>Why you are missing them</h3>`;
+    if (!all.total) {
+      h += `<p class="sub">After a wrong answer, tap one of the reason chips. Once a few are logged, the pattern shows up here — and "40% of your misses were careless" is a different instruction from "62% in Percentages".</p>`;
+      return h + `</div>`;
+    }
+    h += `<p class="sub">${all.total} miss${all.total === 1 ? "" : "es"} tagged${wk.total ? ` · ${wk.total} in the last 7 days` : ""}.</p><div class="mlog">`;
+    MISS_REASONS.slice().sort((a, b) => all.counts[b.id] - all.counts[a.id]).forEach(r => {
+      const n = all.counts[r.id], pct = Math.round(n / all.total * 100);
+      h += `<div class="mlog-row"><span class="ml-l">${esc(r.label)}</span><span class="ml-bar"><i style="width:${pct}%"></i></span><span class="ml-v">${n}</span></div>`;
+    });
+    h += `</div>`;
+    const top = MISS_REASONS.slice().sort((a, b) => all.counts[b.id] - all.counts[a.id])[0];
+    const FIX = {
+      careless: "Read the question stem twice before you touch the choices, and write the thing being asked for on your noteboard.",
+      concept:  "More questions will not fix this one. Work the concept guide for the topic, then come back.",
+      misread:  "Underline what is actually being asked — 'how many more', 'which cannot', 'EXCEPT'.",
+      time:     "Practise picking a cut-off. A deliberate guess at 2:30 costs less than a rushed pass over the next three questions.",
+      guessed:  "Eliminate on paper before you pick. Even two crossed-out options turn a blind guess into a coin flip."
+    };
+    if (all.counts[top.id]) h += `<p class="sub" style="margin:12px 0 0"><b style="color:var(--ink)">Most common: ${esc(top.label.toLowerCase())}.</b> ${esc(FIX[top.id])}</p>`;
+    return h + `</div>`;
+  }
+
+  // Everything flagged, across every set — the app could only show flags inside
+  // the set you were already in.
+  function flaggedAll() {
+    const out = [];
+    SETS.forEach(set => {
+      const f = (state.flags || {})[set.id];
+      if (!f) return;
+      Object.keys(f).forEach(n => { if (f[n]) out.push({ set, n: +n }); });
+    });
+    return out;
+  }
+  function flaggedPanelHTML() {
+    const all = flaggedAll();
+    let h = `<div class="panel"><h3>Flagged questions</h3>`;
+    if (!all.length) {
+      h += `<p class="sub">Flag a question while you practise (the ⚑ in the runner) and every flag across every set collects here.</p>`;
+      return h + `</div>`;
+    }
+    h += `<p class="sub">${all.length} flagged across ${new Set(all.map(x => x.set.id)).size} set${new Set(all.map(x => x.set.id)).size === 1 ? "" : "s"}. They also feed the review queue.</p><div class="setlist">`;
+    const bySet = {};
+    all.forEach(x => { (bySet[x.set.id] = bySet[x.set.id] || { set: x.set, ns: [] }).ns.push(x.n); });
+    Object.values(bySet).forEach(({ set, ns }) => {
+      const sec = secById(set.section);
+      h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">⚑</span><div class="si"><div class="st">${esc(set.title)}</div>
+        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${ns.length} flagged</span><span class="sstatus muted">Q ${ns.sort((a,b)=>a-b).join(", ")}</span></div></div>
+        <div class="setbtns"><button class="go" data-runset="${esc(set.id)}">Open</button></div></div>`;
+    });
+    return h + `</div></div>`;
+  }
+
   function logOne(set, q, correct, ms) {
     const run = ensureRun(set.id);
     if (run.logged[q.n]) { return; }
@@ -3295,6 +3584,7 @@
     if (revealed) {
       const ok = committed === q.correct;
       h += `<div class="feedback ${ok?"ok":"no"}">${ok?"✓ Correct":("✗ Incorrect — correct answer: "+q.correct)}</div>`;
+      if (!ok) h += missReasonHTML(set.id, q.n);
       if (q.expl) h += `<details class="expl" open><summary>Explanation</summary><div class="ex">${rich(q.expl)}</div></details>`;
       h += `<button class="q-reset" data-resetq="${q.n}">↺ Reset this question</button>`;
     } else {
@@ -3415,6 +3705,8 @@
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
     if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; jumperLevel = null; openJumper(); return; }
+    const mr = e.target.closest("[data-miss]");
+    if (mr) { const [sid, n, r] = mr.getAttribute("data-miss").split("|"); setMissReason(sid, +n, r); renderRunner(); return; }
     const rq = e.target.closest("[data-resetq]"); if (rq) { resetQuestion(set, rq.getAttribute("data-resetq")); renderRunner(); return; }
     if (e.target.closest("[data-prev]")) { goto(runIndex-1, set); return; }
     if (e.target.closest("[data-next]")) { goto(runIndex+1, set); return; }

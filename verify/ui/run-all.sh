@@ -9,4 +9,5 @@ echo "--- UI walkthrough ---";       node "$d/audit.js" | tail -5
 echo "--- resilience ---";           node "$d/robust.js" | tail -5
 echo "--- narrow layout ---";        node "$d/overflow.js"
 echo "--- service worker ---";       node "$d/sw-test.js"
+echo "--- new features ---";       node "$d/features.js" | tail -3
 echo "--- performance ---";          node "$d/perf.js"

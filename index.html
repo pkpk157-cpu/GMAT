@@ -267,6 +267,45 @@
     background: var(--secc, var(--accent)); color: #fff; margin-left: auto; }
   .gen-go[disabled] { opacity: .45; cursor: not-allowed; }
   .gen-note { font-size: 13px; color: var(--ink-faint); margin: 11px 0 0; line-height: 1.45; }
+  /* Section mock launcher */
+  .mocks { margin: 0 0 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  .mocks-h { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); }
+  .mocks-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .mockbtn { display: flex; flex-direction: column; gap: 3px; padding: 11px 8px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; text-align: center; }
+  .mockbtn:hover { border-color: var(--c-overall); }
+  .mockbtn b { font-size: 14px; }
+  .mockbtn span { font-size: 11.5px; color: var(--ink-faint); }
+  .mocks-note { font-size: 12.5px; color: var(--ink-faint); margin: 10px 0 0; line-height: 1.45; }
+  .bookmark { display: block; width: 100%; margin-top: 14px; padding: 11px; border: 1px dashed var(--line); border-radius: 11px; background: transparent; color: var(--ink-faint); font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
+  .bookmark.on { border-style: solid; border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, var(--surface)); color: var(--ink); }
+
+  /* End-of-section review with the three-edit budget */
+  .mockrev-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .mr-h { font-family: var(--serif); font-size: 21px; font-weight: 600; }
+  .mr-s { font-size: 13px; color: var(--ink-faint); }
+  .mr-budget { margin-left: auto; flex: none; padding: 6px 11px; border-radius: 999px; background: color-mix(in srgb, var(--gold) 18%, var(--surface)); color: var(--ink); font-size: 13px; font-weight: 700; }
+  .mr-budget.spent { background: color-mix(in srgb, var(--bad) 14%, var(--surface)); color: var(--bad); }
+  .mr-group { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin: 16px 0 8px; }
+  .mr-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
+  .mr-q { flex: 1; min-width: 0; display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-soft); }
+  .mr-q .qn { flex: none; font-weight: 700; color: var(--ink); }
+  .mr-star { flex: none; color: var(--gold); }
+  .mr-t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mr-opts { flex: none; display: flex; gap: 4px; }
+  .mr-o { width: 27px; height: 27px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink-faint); font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+  .mr-o.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .mr-o[disabled] { opacity: .35; cursor: not-allowed; }
+
+  /* Mental-math drill */
+  .mm-top { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 700; }
+  .mm-score { color: var(--ink-faint); }
+  .mm-clock { font-variant-numeric: tabular-nums; color: var(--c-overall); }
+  .mm-q { font-family: var(--serif); font-size: 30px; font-weight: 600; text-align: center; margin: 26px 0; line-height: 1.3; }
+  .mm-in { width: 100%; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); font: inherit; font-size: 20px; text-align: center; font-variant-numeric: tabular-nums; }
+  .mm-in:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .mm-final { font-family: var(--serif); font-size: 56px; font-weight: 600; line-height: 1; color: var(--c-overall); }
+  .mm-final-l { font-size: 14px; color: var(--ink-faint); margin-top: 6px; }
+
   /* Error log: one tap after a miss records why, not just that. */
   .missbox { margin: 12px 0 0; padding: 12px 14px; background: color-mix(in srgb, var(--bad) 7%, var(--surface)); border: 1px solid color-mix(in srgb, var(--bad) 22%, var(--line)); border-radius: 12px; }
   .miss-q { font-size: 14px; font-weight: 700; margin-bottom: 9px; }
@@ -1080,6 +1119,11 @@
 
 <!-- Custom adaptive practice session -->
 <div class="scrim" id="sess-config" hidden><div class="modal" id="sess-config-card"></div></div>
+<div class="profile" id="mm" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Mental-math drill</h2><button class="pf-close" id="mm-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="mm-body"></div>
+</div>
+
 <div class="profile" id="session" hidden>
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="ss-title">Practice session</h2><button class="pf-close" id="ss-close" title="End session">✕</button></div></div>
   <div class="pf-body" id="ss-body"></div>
@@ -1183,7 +1227,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument"] }
       ]}
   ];
-  const APP_VERSION = "v85";
+  const APP_VERSION = "v86";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1199,7 +1243,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, miss:{}, targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1766,6 +1810,14 @@
       h += `<button class="cta-review" data-review-open="1"><span class="ico">↻</span><div><div class="t">Review ${due} question${due===1?"":"s"}</div><div class="s">Your missed &amp; flagged questions, resurfaced on a spaced schedule. Clear them to lock in what you learn.</div></div><span class="cta-badge">${due}</span></button>`;
     }
 
+    // exam-shaped section mocks
+    h += `<div class="mocks"><div class="mocks-h">Section mock — real conditions</div><div class="mocks-row">` +
+      Object.keys(MOCK).map(k => `<button class="mockbtn" data-mock="${k}"><b>${esc(MOCK[k].label.split(" ")[0])}</b><span>${MOCK[k].count} Qs · ${MOCK[k].mins} min</span></button>`).join("") +
+      `</div><p class="mocks-note">The exam's own question count and clock, with the Focus rule: bookmark anything, then change at most ${MOCK_EDITS} answers at the end.</p></div>`;
+
+    // mental-math drill — Focus Quant gives you no calculator
+    h += `<button class="cta-focus" data-mm-open="1"><span class="ico">🧮</span><div><div class="t">Mental-math drill</div><div class="s">60 seconds of the arithmetic Focus Quant expects without a calculator${mmBest() ? ` · best ${mmBest()}` : ""}</div></div><span class="cn-chev">›</span></button>`;
+
     // focus timer entry
     h += `<button class="cta-focus" data-focus-open="1"><span class="ico">🍅</span><div><div class="t">Focus timer</div><div class="s">Pomodoro deep-work blocks with a break reminder${focusTodayCount()>0?` · ${focusTodayCount()} today`:""}</div></div><span class="cn-chev">›</span></button>`;
 
@@ -1805,6 +1857,7 @@
     h += `<button class="prog-toggle ${po ? "on" : ""}" data-progtoggle="1" aria-expanded="${po}"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""}${st>0?` · ${st}-day streak`:""}</span><span class="chev">▾</span></button>`;
     if (!po) { h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`; return h; }
 
+    snapshotScore();
     h += scorePanelHTML();
     h += quadrantPanelHTML();
     h += errorLogPanelHTML();
@@ -2233,6 +2286,8 @@
   document.getElementById("view").addEventListener("click", (e) => {
     const sn = e.target.closest("[data-subtab]");
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
+    const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
+    if (e.target.closest("[data-mm-open]")) { openMM(); return; }
     const pg = e.target.closest("[data-progtoggle]"); if (pg) { state.progOpen = !state.progOpen; save(); renderView(); return; }
     const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
     const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
@@ -3048,10 +3103,53 @@
       h += `<p class="sub" style="margin:12px 0 0">Target <b style="color:var(--ink)">${tgt}</b> — ${
         gap >= 0 ? `you are <b style="color:var(--good)">${gap} above</b> it on this measure.`
                  : `<b style="color:var(--bad)">${-gap} to go</b>.`}</p>`;
+      h += readinessHTML(t.total, tgt);
     } else {
       h += `<p class="sub" style="margin:12px 0 0">Set a <button class="link" data-open-profile="1">target score</button> to track the gap.</p>`;
     }
     return h + `</div>`;
+  }
+
+  /* Readiness: where the estimate has moved recently, against how long is left.
+     A weekly snapshot is taken the first time the dashboard renders each week,
+     so the trend is real history rather than a guess from today's number. */
+  function snapshotScore() {
+    const t = totalScore();
+    if (t.total === null) return;
+    if (!state.scoreHist) state.scoreHist = [];
+    const wk = weekKey();
+    const last = state.scoreHist[state.scoreHist.length - 1];
+    if (last && last.w === wk) { last.s = t.total; save(); return; }
+    state.scoreHist.push({ w: wk, s: t.total, d: dkey() });
+    if (state.scoreHist.length > 26) state.scoreHist.shift();
+    save();
+  }
+  function weekKey() {
+    const d = new Date(); d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() - ((d.getDay() + 6) % 7));      // Monday of this week
+    return dkey(d);
+  }
+  function readinessHTML(now, tgt) {
+    const dl = daysLeft();
+    const hist = state.scoreHist || [];
+    if (dl === null) return `<p class="sub" style="margin:8px 0 0">Set an exam date and this becomes a projection.</p>`;
+    if (dl <= 0) return "";
+    const weeks = Math.max(1, dl / 7);
+    const need = tgt - now;
+    if (need <= 0) return `<p class="sub" style="margin:8px 0 0">You are at or above target with <b style="color:var(--ink)">${dl} day${dl === 1 ? "" : "s"}</b> left. Hold the level and keep every area warm.</p>`;
+    const perWeek = Math.ceil(need / weeks / 10) * 10;
+    let trend = "";
+    if (hist.length >= 2) {
+      const first = hist[0], last = hist[hist.length - 1];
+      const spanWeeks = Math.max(1, hist.length - 1);
+      const rate = (last.s - first.s) / spanWeeks;
+      trend = rate > 0
+        ? ` You have been moving about <b style="color:var(--ink)">${Math.round(rate)}</b> points a week, so ${rate >= perWeek ? "that pace gets you there" : "you would need to pick the pace up"}.`
+        : ` Your estimate has not risen over the last ${hist.length} week${hist.length === 1 ? "" : "s"} — change what you are practising rather than how much.`;
+    } else {
+      trend = " A second week of data will turn this into a trend.";
+    }
+    return `<p class="sub" style="margin:8px 0 0">With <b style="color:var(--ink)">${dl} day${dl === 1 ? "" : "s"}</b> left that is about <b style="color:var(--ink)">${perWeek} points a week</b>.${trend}</p>`;
   }
 
   function quadrantPanelHTML() {
@@ -3788,12 +3886,124 @@
     const tier = avail.filter(x => Math.abs(lvlIdx(x.lvl) - li) === bestD);
     return tier[Math.floor(Math.random() * tier.length)];
   }
-  function startSession() {
+  /* ===== Mental-math drill =====
+     Focus Quant gives you no calculator, so the arithmetic has to be fast and
+     automatic. Sixty seconds of the operations that actually come up: percents
+     of a number, fraction-to-percent, squares, and one-step ratio work. */
+  let mm = null;
+  const MM_SECONDS = 60;
+  function mmBest() { return (state.mmBest || 0) || null; }
+  function mmMake() {
+    const r = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+    const kinds = ["pct", "frac", "sq", "ratio", "incdec"];
+    const k = kinds[r(0, kinds.length - 1)];
+    if (k === "pct") {
+      const p = [5, 10, 15, 20, 25, 30, 40, 50, 60, 75][r(0, 9)], n = r(2, 40) * 10;
+      return { q: `${p}% of ${n}`, a: p * n / 100 };
+    }
+    if (k === "frac") {
+      const f = [[1,2,50],[1,4,25],[3,4,75],[1,5,20],[2,5,40],[3,5,60],[1,8,12.5],[3,8,37.5],[1,3,33.3],[2,3,66.7],[1,6,16.7],[5,6,83.3]][r(0, 11)];
+      return { q: `\\(\\tfrac{${f[0]}}{${f[1]}}\\) as a percent`, a: f[2], tol: 0.15 };
+    }
+    if (k === "sq") {
+      const n = r(11, 30);
+      return { q: `\\(${n}^2\\)`, a: n * n };
+    }
+    if (k === "ratio") {
+      const per = [2, 3, 4, 5, 6][r(0, 4)], tot = per * r(3, 14);
+      return { q: `${tot} split in the ratio 1 : ${per - 1} — the smaller share`, a: tot / per };
+    }
+    const base = r(2, 20) * 10, chg = [10, 20, 25, 50][r(0, 3)], up = r(0, 1) === 1;
+    return { q: `${base} ${up ? "increased" : "decreased"} by ${chg}%`, a: up ? base * (1 + chg / 100) : base * (1 - chg / 100) };
+  }
+  function openMM() {
+    mm = { cur: mmMake(), score: 0, wrong: 0, endsAt: Date.now() + MM_SECONDS * 1000, timer: null, over: false, entry: "" };
+    document.getElementById("mm").hidden = false;
+    document.body.style.overflow = "hidden";
+    renderMM();
+    mm.timer = setInterval(() => {
+      if (!mm) return;
+      if (Date.now() >= mm.endsAt && !mm.over) { mmEnd(); return; }
+      const el = document.getElementById("mm-clock");
+      if (el) el.textContent = Math.max(0, Math.ceil((mm.endsAt - Date.now()) / 1000)) + "s";
+    }, 250);
+  }
+  function mmEnd() {
+    if (!mm) return;
+    mm.over = true;
+    if (mm.timer) { clearInterval(mm.timer); mm.timer = null; }
+    if (mm.score > (state.mmBest || 0)) { state.mmBest = mm.score; save(); }
+    renderMM();
+  }
+  function closeMM() {
+    if (mm && mm.timer) clearInterval(mm.timer);
+    mm = null;
+    document.getElementById("mm").hidden = true;
+    document.body.style.overflow = "";
+    renderView();
+  }
+  function mmSubmit() {
+    if (!mm || mm.over) return;
+    const v = parseFloat(mm.entry);
+    if (isNaN(v)) return;
+    const tol = mm.cur.tol || 0.001;
+    if (Math.abs(v - mm.cur.a) <= tol) mm.score++; else mm.wrong++;
+    mm.cur = mmMake(); mm.entry = "";
+    renderMM();
+  }
+  function renderMM() {
+    const body = document.getElementById("mm-body");
+    if (!body || !mm) return;
+    if (mm.over) {
+      const best = state.mmBest || 0;
+      body.innerHTML = `<div class="qcard" style="text-align:center"><div class="mm-final">${mm.score}</div>` +
+        `<div class="mm-final-l">correct in ${MM_SECONDS} seconds${mm.wrong ? ` · ${mm.wrong} missed` : ""}</div>` +
+        `<p class="sub" style="margin:14px 0 0">${mm.score >= best && mm.score > 0 ? "That is your best yet." : `Your best is ${best}.`} On the exam this arithmetic sits underneath every Quant question — the faster it is, the more of your two minutes goes on the actual reasoning.</p>` +
+        `<div class="rn-foot" style="justify-content:center"><button class="btn-soft" style="flex:none;padding:11px 20px" data-mm-again="1">Go again</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-mm-close="1">Done</button></div></div>`;
+      return;
+    }
+    body.innerHTML = `<div class="qcard"><div class="mm-top"><span class="mm-score">${mm.score} correct</span><span class="mm-clock" id="mm-clock">${Math.ceil((mm.endsAt - Date.now()) / 1000)}s</span></div>` +
+      `<div class="mm-q">${mm.cur.q}</div>` +
+      `<input class="mm-in" id="mm-in" inputmode="decimal" autocomplete="off" value="${esc(mm.entry)}" placeholder="answer" />` +
+      `<button class="btn-primary" style="margin-top:14px" data-mm-go="1">Enter</button>` +
+      `<p class="mode-note" style="text-align:center">Press Enter or tap. Fractions-as-percents accept one decimal place.</p></div>`;
+    typeset(body);
+    const inp = document.getElementById("mm-in");
+    if (inp) {
+      inp.focus();
+      inp.oninput = () => { mm.entry = inp.value; };
+      inp.onkeydown = (e) => { if (e.key === "Enter") { mm.entry = inp.value; mmSubmit(); } };
+    }
+  }
+
+  /* ===== Section mock =====
+     Real Focus-Edition conditions: the exam's own question count and 45-minute
+     clock for one section, plus the rule that makes the section a skill in its
+     own right — you may bookmark anything, and at the end change at most three
+     answers. Meeting that constraint for the first time on test day is a bad
+     plan, so it is rehearsable here. */
+  const MOCK = {
+    quant: { label:"Quantitative Reasoning", count:21, mins:45, secs:["quant"] },
+    data:  { label:"Data Insights",          count:20, mins:45, secs:["data"] },
+    verbal:{ label:"Verbal Reasoning",       count:23, mins:45, secs:["rc","cr"] }
+  };
+  const MOCK_EDITS = 3;
+
+  function startMock(which) {
+    const m = MOCK[which]; if (!m) return;
+    if (!cfg) cfg = { sets: new Set(SETS.map(s => s.id)), count: 10, time: 0 };
+    cfg.sets = new Set(SETS.filter(s => m.secs.includes(s.section)).map(s => s.id));
+    cfg.count = m.count; cfg.time = m.mins;
+    startSession(which);
+  }
+
+  function startSession(mockKey) {
     const pool = [];
     SETS.forEach(s => { if (!cfg.sets.has(s.id)) return; s.questions.forEach(q => pool.push({ set: s, q, lvl: LEVELS.includes(q.level) ? q.level : "medium", key: s.id + "#" + q.n })); });
     if (!pool.length) return;
     const count = Math.min(cfg.count, pool.length);
-    sess = { pool, count, order: [], idx: 0, answers: {}, elim: {}, pending: null, curLevel: "medium", used: new Set(), timeMs: cfg.time * 60000, endsAt: cfg.time ? Date.now() + cfg.time * 60000 : 0, timer: null, qStart: 0, submitted: false, logged: false, timeUp: false };
+    sess = { pool, count, order: [], idx: 0, answers: {}, elim: {}, pending: null, curLevel: "medium", used: new Set(), timeMs: cfg.time * 60000, endsAt: cfg.time ? Date.now() + cfg.time * 60000 : 0, timer: null, qStart: 0, submitted: false, logged: false, timeUp: false,
+             mock: mockKey || null, marks: {}, editsLeft: mockKey ? MOCK_EDITS : 0, reviewing: false };
     const first = sessPick(); if (first) { sess.order.push(first); sess.used.add(first.key); }
     closeSessionConfig();
     document.getElementById("session").hidden = false;
@@ -3810,13 +4020,14 @@
     const rem = Math.max(0, sess.endsAt - Date.now());
     const el = document.getElementById("ss-timer");
     if (el) { el.textContent = "⏱ " + fmtClock(rem); el.className = "ss-timer" + (rem <= 60000 ? " low" : ""); }
-    if (rem <= 0 && !sess.submitted) finishSession(true);
+    if (rem <= 0 && !sess.submitted) { sess.reviewing = false; finishSession(true); }
   }
 
   function renderSession() {
     if (!sess) return;
     const body = document.getElementById("ss-body");
     if (sess.submitted) { body.innerHTML = sessResultsHTML(); typeset(body); return; }
+    if (sess.reviewing) { body.innerHTML = sessReviewHTML(); typeset(body); return; }
     const cur = sess.order[sess.idx], q = cur.q, sec = secById(cur.set.section), nOpt = q.options || 5;
     let h = `<div class="ss-top"><span class="ss-prog">Question ${sess.idx + 1} of ${sess.count}</span>`;
     if (sess.timeMs) h += `<span class="ss-timer" id="ss-timer">⏱ ${fmtClock(Math.max(0, sess.endsAt - Date.now()))}</span>`;
@@ -3837,9 +4048,45 @@
     });
     h += `</div>`;
     const last = sess.idx === sess.count - 1;
-    h += `<button class="btn-primary" style="margin-top:16px" data-sessnext ${pend ? "" : "disabled"}>${last ? "Finish session" : "Next question ›"}</button>`;
-    h += `<p class="mode-note" style="text-align:center">${pend ? "Locked in — tap to continue." : "Pick an option to continue. No going back — just like the real test."}</p></div>`;
+    if (sess.mock) {
+      const on = !!sess.marks[sess.idx];
+      h += `<button class="bookmark${on ? " on" : ""}" data-sessmark="1">${on ? "★ Bookmarked" : "☆ Bookmark for review"}</button>`;
+    }
+    h += `<button class="btn-primary" style="margin-top:16px" data-sessnext ${pend ? "" : "disabled"}>${last ? (sess.mock ? "Go to review" : "Finish session") : "Next question ›"}</button>`;
+    h += `<p class="mode-note" style="text-align:center">${pend ? "Locked in — tap to continue." : (sess.mock ? "Pick an option to continue. Bookmark anything you want to come back to." : "Pick an option to continue. No going back — just like the real test.")}</p></div>`;
     body.innerHTML = h; typeset(body);
+  }
+
+  /* The end-of-section review: bookmarked questions first, three edits allowed. */
+  function sessReviewHTML() {
+    const marked = [], rest = [];
+    sess.order.forEach((o, i) => (sess.marks[i] ? marked : rest).push({ o, i }));
+    let h = `<div class="qcard"><div class="mockrev-top"><div><div class="mr-h">Review &amp; edit</div><div class="mr-s">${esc(MOCK[sess.mock].label)} · ${sess.count} questions answered</div></div><div class="mr-budget ${sess.editsLeft ? "" : "spent"}">${sess.editsLeft} edit${sess.editsLeft === 1 ? "" : "s"} left</div></div>`;
+    h += `<p class="mode-note" style="text-align:left;margin:0 0 14px">On the real exam you may change at most ${MOCK_EDITS} answers per section, and the clock is still running. Change one by tapping a different letter.</p>`;
+    const rows = (list, title) => {
+      if (!list.length) return "";
+      let r = `<div class="mr-group">${esc(title)}</div>`;
+      list.forEach(({ o, i }) => {
+        const a = sess.answers[i], nOpt = o.q.options || 5;
+        r += `<div class="mr-row"><div class="mr-q"><span class="qn">Q${i + 1}</span>${sess.marks[i] ? `<span class="mr-star">★</span>` : ""}<span class="mr-t">${esc(String(o.q.text || "").replace(/\s+/g, " ").slice(0, 70))}…</span></div><div class="mr-opts">` +
+          LET.slice(0, nOpt).map(L =>
+            `<button class="mr-o${a && a.chosen === L ? " on" : ""}" data-sessedit="${i}|${L}"${(!sess.editsLeft && (!a || a.chosen !== L)) ? " disabled" : ""}>${L}</button>`
+          ).join("") + `</div></div>`;
+      });
+      return r;
+    };
+    h += rows(marked, "Bookmarked");
+    h += rows(rest, marked.length ? "Everything else" : "All questions");
+    h += `<button class="btn-primary" style="margin-top:18px" data-sessdone="1">Submit section</button></div>`;
+    return h;
+  }
+  function sessEdit(i, L) {
+    if (!sess || !sess.reviewing) return;
+    const a = sess.answers[i];
+    if (!a || a.chosen === L || !sess.editsLeft) return;
+    a.chosen = L; a.correct = (L === sess.order[i].q.correct); a.edited = true;
+    sess.editsLeft--;
+    renderSession();
   }
 
   function sessCommitAndAdvance() {
@@ -3849,7 +4096,10 @@
     sess.answers[sess.idx] = { chosen: sess.pending, correct, ms, level: cur.lvl };
     sess.pending = null;
     sess.curLevel = LEVELS[Math.max(0, Math.min(2, lvlIdx(sess.curLevel) + (correct ? 1 : -1)))];
-    if (sess.idx >= sess.count - 1) { finishSession(false); return; }
+    if (sess.idx >= sess.count - 1) {
+      if (sess.mock) { sess.reviewing = true; renderSession(); window.scrollTo({ top: 0 }); return; }
+      finishSession(false); return;
+    }
     const nxt = sessPick(); if (!nxt) { finishSession(false); return; }
     sess.order.push(nxt); sess.used.add(nxt.key); sess.idx++; sess.qStart = Date.now(); passageOpen = false;
     renderSession(); window.scrollTo({ top: 0 });
@@ -3914,6 +4164,10 @@
   });
   document.getElementById("session").addEventListener("click", (e) => {
     if (e.target.closest("[data-sessclose]")) { closeSession(true); return; }
+    if (e.target.closest("[data-sessmark]")) { sess.marks[sess.idx] = !sess.marks[sess.idx]; renderSession(); return; }
+    const se = e.target.closest("[data-sessedit]");
+    if (se) { const [i, L] = se.getAttribute("data-sessedit").split("|"); sessEdit(+i, L); return; }
+    if (e.target.closest("[data-sessdone]")) { sess.reviewing = false; finishSession(false); return; }
     if (e.target.closest("[data-sessagain]")) { closeSession(true); openSessionConfig(); return; }
     if (!sess || sess.submitted) return;
     if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderSession(); return; }
@@ -3924,6 +4178,12 @@
   document.getElementById("ss-close").onclick = () => closeSession(false);
 
   /* Events — flash cards */
+  document.getElementById("mm-close").onclick = closeMM;
+  document.getElementById("mm").addEventListener("click", (e) => {
+    if (e.target.closest("[data-mm-go]")) { mmSubmit(); return; }
+    if (e.target.closest("[data-mm-again]")) { closeMM(); openMM(); return; }
+    if (e.target.closest("[data-mm-close]")) { closeMM(); return; }
+  });
   document.getElementById("fc-close").onclick = closeFlash;
 
   /* Events — focus timer */

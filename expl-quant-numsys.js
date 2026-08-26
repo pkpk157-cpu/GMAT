@@ -241,8 +241,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Fold backwards from the last remainder: \\(7 \\to 6(7)+4 = 46 \\to 5(46)+3 = 233\\). Then three quick divisions. A useful check before you even start: the reversed remainders must be legal for their new divisors, so the first one must be under 8, the second under 6, the third under 5.",
   traps: "(A) 7, 4, 3 is the original list of remainders simply written backwards — the single most common answer here, and it ignores that the actual divisions change completely.\n" +
     "(B) 5, 3, 4 and (C) 2, 5, 4 come from building \\(N\\) in the wrong direction or dividing in the wrong order.\n" +
-    "(E) is a bare number where a triple is required, so it cannot answer the question as asked.\n" +
-    "Apply the legality check: any triple whose first entry is 8 or more, or whose last entry is 5 or more, is impossible on sight.",
+    "(E) tempts anyone whose reconstruction produced a triple not on the list, which almost always means the folding order went wrong rather than the arithmetic.\n" +
+    "All four numeric triples happen to be legal for the divisors 8, 6, 5, so no shortcut screens them — the only defence is to rebuild 233 and divide it properly.",
   take: "Reversing the divisors does not reverse the remainders — rebuild the number and divide again. Each new remainder must be smaller than its own divisor."
 },
 
@@ -370,6 +370,217 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "(A) 2, (B) 3 and (E) 6 come from mis-adding the digits, usually by dropping the 0 or by reading 6709 as 6079.\n" +
     "Always finish by checking the digit sum of your result: 6705 gives 18, which settles it in two seconds.",
   take: "To make a number divisible by 9, subtract (digit sum mod 9) or add its complement to 9. The digit-sum shortcut replaces the division entirely."
+}
+
+});
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-numbersystem-2-2#29": {
+  steps: "Step 1 — Work from the innermost bracket outward. \\(3.6 - 1.5 = 2.1\\).\n" +
+    "Step 2 — Inside the braces, multiplication comes before addition and subtraction: \\(6.3 \\times 2.1 = 13.23\\).\n" +
+    "Step 3 — Now finish the braces left to right: \\(2.8 - 13.23 + 15.6 = 5.17\\).\n" +
+    "Step 4 — Multiply: \\(7.9 \\times 5.17 = 40.843\\).\n" +
+    "Step 5 — Add the leading term: \\(2.002 + 40.843 = [[42.845]]\\).",
+  fast: "Estimate before you compute. The braces are roughly \\(2.8 - 13 + 15.6 \\approx 5\\), so the product is about \\(7.9 \\times 5 \\approx 40\\), and adding 2 puts the answer in the low 40s. That single pass already separates the choices; the exact decimals are only needed to confirm.\n" +
+    "Also track decimal places rather than digits: \\(7.9\\) (one place) times \\(5.17\\) (two places) gives three places, and adding \\(2.002\\) keeps three.",
+  traps: "(C) 40.843 is the single most likely wrong answer — it is the correct product, with the leading \\(2.002\\) never added. Whenever a choice equals your second-to-last line, suspect exactly this.\n" +
+    "(B) 4.2845 is the right answer with the decimal point moved, which happens when the three decimal places get miscounted.\n" +
+    "(A) 2.002 is what you write down if you decide the braces come out to zero and give up.\n" +
+    "(E) 45.130 is a near-miss from a sign slip inside the braces, close enough to survive a rushed check — which is why the braces must be fully resolved before the multiplication happens.",
+  take: "Innermost bracket first, then multiplication, then left-to-right addition and subtraction. Estimate the size first, and beware of choices that match an intermediate line."
+},
+
+"quant-numbersystem-2-2#30": {
+  steps: "Step 1 — \"Of\" means multiply, and it binds before the \\(+\\) and \\(-\\). So this is \\(9 - \\left(1\\tfrac29 \\times 3\\tfrac3{11}\\right) + \\left(5\\tfrac17 \\times \\tfrac79\\right)\\).\n" +
+    "Step 2 — Convert the mixed numbers: \\(1\\tfrac29 = \\tfrac{11}{9}\\), \\(3\\tfrac3{11} = \\tfrac{36}{11}\\), \\(5\\tfrac17 = \\tfrac{36}{7}\\).\n" +
+    "Step 3 — First product: \\(\\dfrac{11}{9} \\times \\dfrac{36}{11} = \\dfrac{36}{9} = 4\\) — the 11s cancel outright.\n" +
+    "Step 4 — Second product: \\(\\dfrac{36}{7} \\times \\dfrac{7}{9} = \\dfrac{36}{9} = 4\\) — the 7s cancel outright.\n" +
+    "Step 5 — \\(9 - 4 + 4 = [[9]]\\).",
+  fast: "The whole question is built so that both products cancel to the same clean number. \\(1\\tfrac29\\) has denominator 9 and \\(3\\tfrac3{11}\\) has numerator 36 over 11 — the 11s vanish; the second pair does the same with 7s. Convert, cancel, and you get \\(4\\) twice, so the \\(-4\\) and \\(+4\\) annihilate and the expression is just the leading 9.",
+  traps: "(C) \\(8\\tfrac{32}{81}\\) carries a denominator of 81, which can only come from a mixed-number conversion that left a stray ninth — a sure sign that \\(1\\tfrac29\\) was turned into something other than \\(\\tfrac{11}{9}\\).\n" +
+    "(B) 8 and (E) \\(7\\tfrac12\\) come from mishandling the order: reading the expression as \\(9 - \\left(\\text{first product} + \\text{second product}\\right)\\), or subtracting where the sign is plus.\n" +
+    "(A) \\(\\tfrac54\\) is what a full order-of-operations collapse produces — treating \"of\" as though it applied to the running total \\(9 - 1\\tfrac29\\).\n" +
+    "The guard is to compute each \"of\" product on its own line before touching the \\(+\\) and \\(-\\).",
+  take: "\"Of\" is multiplication and binds tighter than \\(+\\) or \\(-\\). Convert mixed numbers to improper fractions first, then look for cancellations before multiplying anything out."
+},
+
+"quant-numbersystem-2-2#31": {
+  steps: "Step 1 — Successive division by 4 then 5 with remainders 1 and 4 means \\(N = 4a + 1\\) and \\(a = 5b + 4\\).\n" +
+    "Step 2 — Smallest case \\(b = 0\\) gives \\(a = 4\\), so \\(N = 4 \\times 4 + 1 = 17\\).\n" +
+    "Step 3 — Now divide successively by 5 then 4:\n" +
+    "\\(17 = 5 \\times 3 + 2\\) → remainder [[2]], quotient 3.\n" +
+    "\\(3 = 4 \\times 0 + 3\\) → remainder [[3]].\n" +
+    "Step 4 — Reversed remainders: 2, 3.\n" +
+    "Step 5 — The general \\(N\\) is \\(20b + 17\\); check \\(N = 37\\): \\(37 \\div 5 = 7\\) r2, \\(7 \\div 4 = 1\\) r3 — same pair, as it must be.",
+  fast: "Build \\(N\\) by folding back — \\(4 \\times 4 + 1 = 17\\) — then two divisions finish it. Note that the second quotient is 0 here, so the second remainder is just the first quotient itself; that happens whenever the number is small relative to the divisors, and it is easy to mis-handle.",
+  traps: "(D) 4, 1 is the original pair of remainders written backwards — the reflex answer, and it is wrong because reversing the divisors changes the arithmetic completely, not just the order of the output.\n" +
+    "(C) 3, 2 is the correct pair reversed, produced by reporting the divisions bottom-up.\n" +
+    "(A) 1, 2 mixes one remainder from each list.\n" +
+    "(E) is for anyone whose reconstruction of \\(N\\) went wrong and produced a pair not on the list.",
+  take: "Reversing the order of successive divisors gives genuinely different remainders. Rebuild the smallest number and redo the divisions — never just reverse the given list."
+},
+
+"quant-numbersystem-2-2#32": {
+  steps: "Step 1 — Subtracting 79 a total of \\(k\\) times means removing \\(79k\\), so \\(5 \\times 10^4 - 79k = 43759\\).\n" +
+    "Step 2 — Rearrange: \\(79k = 50000 - 43759 = 6241\\).\n" +
+    "Step 3 — Divide: \\(k = 6241 \\div 79\\).\n" +
+    "Step 4 — Recognise that \\(79^2 = 6241\\), so \\(k = [[79]]\\).\n" +
+    "Step 5 — Check: \\(79 \\times 79 = 79 \\times 80 - 79 = 6320 - 79 = 6241\\). ✓",
+  fast: "Two lines: the gap is \\(50000 - 43759 = 6241\\), and the question is how many 79s fit in it. Since \\(80^2 = 6400\\) and the gap is a little under that, the answer is a little under 80 — and \\(79 \\times 80 = 6320\\), \\(6320 - 79 = 6241\\), so it is exactly 79.",
+  traps: "The distractors are 77, 78, 80 and 81 — all within two of the right value, so estimation alone will not finish this question. You must land the division exactly.\n" +
+    "(D) 80 is the trap of rounding: \\(6241\\) is close to \\(6400 = 80^2\\), and stopping at \"about 80\" gives it.\n" +
+    "(A) 77 and (B) 78 come from an off-by-one or off-by-two in the long division, or from mis-subtracting \\(50000 - 43759\\).\n" +
+    "(E) 81 overshoots — \\(79 \\times 81 = 6399\\), which would take you below 43759.",
+  take: "\"How many times must \\(d\\) be subtracted\" is just \\((\\text{start} - \\text{end}) \\div d\\). Anchor the division with a nearby square or round multiple, then correct exactly."
+},
+
+"quant-numbersystem-2-2#33": {
+  steps: "Step 1 — The product of the first sixty positive integers is \\(60!\\).\n" +
+    "Step 2 — Count the factor 2 in \\(60!\\) with Legendre's method — add up how many multiples of each power of 2 there are:\n" +
+    "\\(\\lfloor 60/2 \\rfloor = 30\\), \\(\\lfloor 60/4 \\rfloor = 15\\), \\(\\lfloor 60/8 \\rfloor = 7\\), \\(\\lfloor 60/16 \\rfloor = 3\\), \\(\\lfloor 60/32 \\rfloor = 1\\), \\(\\lfloor 60/64 \\rfloor = 0\\).\n" +
+    "Step 3 — Total power of 2: \\(30 + 15 + 7 + 3 + 1 = 56\\). So \\(2^{56}\\) divides \\(60!\\) but \\(2^{57}\\) does not.\n" +
+    "Step 4 — Since \\(8 = 2^3\\), \\(8^n = 2^{3n}\\), and we need \\(3n \\le 56\\).\n" +
+    "Step 5 — \\(n = \\lfloor 56/3 \\rfloor = [[18]]\\) (since \\(3 \\times 18 = 54 \\le 56\\) but \\(3 \\times 19 = 57 > 56\\)).",
+  fast: "Two mechanical steps and no arithmetic beyond division: sum the floors \\(60/2, 60/4, 60/8, \\dots\\) to get 56, then divide by 3 and take the floor. The only place people lose the question is forgetting to convert 8 into \\(2^3\\).",
+  traps: "(B) 19 is what you get from \\(56 \\div 3 = 18.67\\) rounded the wrong way. The exponent must be floored — \\(8^{19} = 2^{57}\\) needs one more 2 than \\(60!\\) contains.\n" +
+    "(E) 20 comes from dropping a term in the floor sum, or from dividing 60 by 3 somewhere.\n" +
+    "(C) 17 and (D) 16 are undercounts — usually from stopping the sum at \\(\\lfloor 60/8 \\rfloor\\) or \\(\\lfloor 60/16 \\rfloor\\) instead of running it until the terms hit zero.\n" +
+    "Run the sum all the way down to a zero term every time; the tail is small but it is exactly what separates 17, 18 and 19.",
+  take: "Power of a prime \\(p\\) in \\(n!\\) is \\(\\lfloor n/p \\rfloor + \\lfloor n/p^2 \\rfloor + \\lfloor n/p^3 \\rfloor + \\dots\\). For a composite base like 8, convert to \\(2^3\\) and divide the total by 3, flooring."
+},
+
+"quant-numbersystem-2-2#34": {
+  steps: "Step 1 — Find the units digit of \\(7^{95}\\). Powers of 7 cycle 7, 9, 3, 1 with period 4. \\(95 = 4 \\times 23 + 3\\), so it sits at position 3: the units digit is 3.\n" +
+    "Step 2 — Find the units digit of \\(3^{58}\\). Powers of 3 cycle 3, 9, 7, 1 with period 4. \\(58 = 4 \\times 14 + 2\\), position 2: the units digit is 9.\n" +
+    "Step 3 — Now subtract. \\(7^{95}\\) is astronomically larger than \\(3^{58}\\), so the difference is positive and the subtraction is genuine.\n" +
+    "Step 4 — The units column is \\(3 - 9\\), which requires a borrow: \\(13 - 9 = [[4]]\\).\n" +
+    "Step 5 — So the difference ends in 4.",
+  fast: "Both cycles have period 4, so reduce both exponents mod 4: \\(95 \\to 3\\) and \\(58 \\to 2\\), giving units digits 3 and 9. The only real skill left is the borrow — write it as \\(13 - 9\\), not \\(3 - 9\\).",
+  traps: "(C) 6 is the trap the whole question is built around: \\(|3 - 9| = 6\\). Taking the absolute value instead of borrowing is the single most common error in units-digit subtraction.\n" +
+    "(A) 0 assumes the two units digits are equal, which happens if you reduce both exponents to the same cycle position.\n" +
+    "(D) 7 is the units digit of \\(3^{58}\\)'s neighbour in its cycle — an off-by-one in \\(58 \\bmod 4\\).\n" +
+    "(E) 9 is simply the units digit of the subtrahend, copied across.\n" +
+    "Before borrowing, confirm the difference really is positive: \\(7^{95}\\) dwarfs \\(3^{58}\\), so it is.",
+  take: "For a difference of units digits, borrow rather than take the absolute value: if the top digit is smaller, compute \\((\\text{top} + 10) - \\text{bottom}\\). And check which term is larger first."
+},
+
+"quant-numbersystem-2-2#35": {
+  steps: "Step 1 — The product of the first forty positive integers is \\(40!\\).\n" +
+    "Step 2 — Count the factor 5 by adding the floors: \\(\\lfloor 40/5 \\rfloor = 8\\), \\(\\lfloor 40/25 \\rfloor = 1\\), \\(\\lfloor 40/125 \\rfloor = 0\\).\n" +
+    "Step 3 — Total: \\(8 + 1 = [[9]]\\).\n" +
+    "Step 4 — So \\(5^9\\) divides \\(40!\\) and \\(5^{10}\\) does not.\n" +
+    "Step 5 — Sense-check the extra 1: among \\(1..40\\) the multiples of 5 are \\(5, 10, 15, 20, 25, 30, 35, 40\\) — eight numbers — and 25 alone contributes a second 5, making nine.",
+  fast: "Count the multiples of 5 (eight of them), then add one for each multiple of 25 (just 25 itself). Eight plus one is nine. The \\(\\lfloor n/25 \\rfloor\\) term is the whole point of the question.",
+  traps: "(A) 8 is the answer for anyone who counts the multiples of 5 and stops — it forgets that \\(25 = 5^2\\) contributes two factors of 5, not one. This is by far the most common miss.\n" +
+    "(C) 10 double-counts: it adds an extra 5 for a number that does not have one (perhaps 40 or 35 treated as a higher power).\n" +
+    "(D) 7 undercounts the multiples of 5 themselves.\n" +
+    "(E) 11 comes from adding a \\(\\lfloor 40/125 \\rfloor\\)-style term that is actually zero.",
+  take: "Multiples of \\(p^2\\), \\(p^3\\), … each contribute an extra factor. Always run the floor sum past the first term until it reaches zero."
+},
+
+"quant-numbersystem-2-2#36": {
+  steps: "Step 1 — Spot the relationship between the numbers: \\(55 + 17 = 72\\).\n" +
+    "Step 2 — So the expression has the form \\(a^3 + b^3 - (a+b)^3\\) with \\(a = 55\\), \\(b = 17\\).\n" +
+    "Step 3 — Expand \\((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\\), so \\(a^3 + b^3 - (a+b)^3 = -3a^2b - 3ab^2 = -3ab(a+b)\\).\n" +
+    "Step 4 — Substitute: \\(-3 \\times 55 \\times 17 \\times 72\\).\n" +
+    "Step 5 — Its prime factors are \\(3\\) (from the \\(-3\\) and again from 72), \\(5\\) and \\(11\\) (from 55), \\([[17]]\\) (from 17), and \\(2^3 \\times 3^2\\) (from 72).\n" +
+    "Step 6 — So the expression is divisible by [[3 and 17]] — and 7 and 13 appear nowhere in that list.",
+  fast: "The identity \\(a^3 + b^3 - (a+b)^3 = -3ab(a+b)\\) turns a three-cube monster into a product you can read the factors straight off. Once you notice \\(55 + 17 = 72\\), the answer is visible without multiplying anything: the factorisation contains 3, 5, 11, 17 and the factors of 72.",
+  traps: "(A) 13, (B) 7, (D) 7 and 13, (E) 13 — every wrong choice smuggles in 7 or 13, and neither divides \\(3 \\times 55 \\times 17 \\times 72\\). Neither 7 nor 13 divides any of 3, 55, 17 or 72.\n" +
+    "The design is that each distractor pairs one true factor with one false one, so checking only the first-listed factor and accepting the pair is fatal — verify both.\n" +
+    "Cubing the numbers out by hand is the other trap: it costs three minutes and invites arithmetic errors, when the identity settles it in one line.",
+  take: "When the third number is the sum of the first two, use \\(a^3 + b^3 - (a+b)^3 = -3ab(a+b)\\). Then read the prime factors off the product — and check every factor a choice claims, not just the first."
+},
+
+"quant-numbersystem-2-2#37": {
+  steps: "Step 1 — Successive division by 3, 4, 7 with remainders 2, 1, 4 means \\(N = 3a + 2\\), \\(a = 4b + 1\\), \\(b = 7c + 4\\).\n" +
+    "Step 2 — Take \\(c = 0\\), so \\(b = 4\\).\n" +
+    "Step 3 — Then \\(a = 4 \\times 4 + 1 = 17\\).\n" +
+    "Step 4 — Then \\(N = 3 \\times 17 + 2 = 53\\).\n" +
+    "Step 5 — The combined divisor is \\(3 \\times 4 \\times 7 = 84\\), which is exactly what the question asks about, and \\(53 < 84\\), so the remainder is [[53]] itself.\n" +
+    "Step 6 — General form: \\(N = 84c + 53\\), so every such number leaves 53 on division by 84 — the answer does not depend on the choice of \\(c\\).",
+  fast: "The product of the three divisors is 84, the very number in the question — that is the signal. Rebuild the smallest \\(N\\) by folding back (\\(4 \\to 17 \\to 53\\)) and it *is* the remainder, because it is already below 84.",
+  traps: "(E) 92 is impossible on sight: a remainder must be smaller than its divisor, and \\(92 > 84\\). That check costs one second and removes a choice.\n" +
+    "(A) 80 and (B) 76 come from folding the remainders in the wrong order — using \\(3 \\to 4 \\to 7\\) forwards instead of rebuilding from the last remainder backwards.\n" +
+    "(C) 41 drops one step of the reconstruction, typically the final \\(+2\\) or the multiplication by 3.\n" +
+    "Always verify your rebuilt number against all three original divisions before trusting it: \\(53 \\div 3 = 17\\) r2 ✓, \\(17 \\div 4 = 4\\) r1 ✓, \\(4 \\div 7 = 0\\) r4 ✓.",
+  take: "When the divisor asked about equals the product of the successive divisors, the smallest rebuilt number is the remainder. And a remainder is always smaller than its divisor."
+},
+
+"quant-numbersystem-2-2#38": {
+  steps: "Step 1 — Pick a convenient total. The denominators are 5, 4 and 3, so take the stadium to hold 60 seats.\n" +
+    "Step 2 — Lower deck: \\(\\tfrac14 \\times 60 = 15\\) seats.\n" +
+    "Step 3 — Sold in the lower deck: \\(\\tfrac45 \\times 15 = 12\\), so [[3]] lower-deck seats went unsold.\n" +
+    "Step 4 — Sold in the stadium: \\(\\tfrac23 \\times 60 = 40\\), so [[20]] seats in total went unsold.\n" +
+    "Step 5 — The question asks what fraction of the *unsold* seats sat in the lower deck: \\(\\dfrac{3}{20}\\).",
+  fast: "Choose the total as the lcm of the denominators — 60 — and every quantity becomes a whole number you can hold in your head: 15 lower-deck seats, 3 of them unsold, 20 unsold overall. The answer is \\(3/20\\) with no fraction arithmetic at all.\n" +
+    "The one thing to read twice is the denominator the question wants: *of the unsold seats*, not of the lower deck and not of the stadium.",
+  traps: "This question's four distractors are all correct answers to slightly different questions — which is exactly why the final sentence must be read carefully.\n" +
+    "(C) \\(\\tfrac15\\) is \\(3/15\\): the fraction of the *lower deck* that went unsold.\n" +
+    "(E) \\(\\tfrac1{20}\\) is \\(3/60\\): unsold lower-deck seats as a fraction of the *whole stadium*.\n" +
+    "(D) \\(\\tfrac13\\) is \\(20/60\\): the fraction of the whole stadium that went unsold, ignoring the lower deck entirely.\n" +
+    "(B) \\(\\tfrac16\\) is \\(\\tfrac14 \\times \\tfrac23\\) — multiplying the two given stadium fractions together without asking what that product would mean.",
+  take: "Set the total to the lcm of the denominators. Then identify the exact numerator and denominator the question names — in overlapping-group questions the distractors are the other three plausible ratios."
+},
+
+"quant-numbersystem-2-2#39": {
+  steps: "Step 1 — \\(18 = 2 \\times 9\\), and 2 and 9 are coprime, so test both.\n" +
+    "Step 2 — Divisibility by 2: the last digit \\(B\\) must be even.\n" +
+    "Step 3 — Divisibility by 9: the digit sum must be a multiple of 9. The known digits are \\(4+5+7+1+2+0+3 = 22\\), so we need \\(A + B + 22\\) to be a multiple of 9.\n" +
+    "Step 4 — That gives \\(A + B = 5\\) or \\(A + B = 14\\) (the next option, 23, is impossible for two digits).\n" +
+    "Step 5 — Check the offered pairs: \\(8+4 = 12\\) ✗, \\(6+8 = 14\\) ✓, \\(4+6 = 10\\) ✗, \\(6+6 = 12\\) ✗.\n" +
+    "Step 6 — And \\(B = 8\\) is even ✓, so \\(A = 6,\\ B = 8\\).\n" +
+    "Step 7 — Verify: \\(645712038\\) has digit sum 36, a multiple of 9, and ends in 8. ✓",
+  fast: "Add the seven known digits once — they come to 22 — and then the whole question is \"which offered pair makes \\(A + B\\) equal 5 or 14?\" One addition per choice, and only one lands on a valid total. You never write the nine-digit number out.",
+  traps: "(A) 8, 4 sums to 12, (C) 4, 6 sums to 10 and (D) 6, 6 sums to 12 — none of these makes \\(A+B+22\\) a multiple of 9, so all three fail the 9 test regardless of the parity of \\(B\\).\n" +
+    "(C) is the sharpest of the three because it is the right pair with the digits swapped into each other's slots; note that it also fails on its own terms, since \\(4 + 6 = 10\\).\n" +
+    "(E) is only right if no pair works, and one does.\n" +
+    "The trap the question is set for is checking only that \\(B\\) is even and stopping — three of the four pairs have an even \\(B\\).",
+  take: "For 18, test 2 and 9 separately. Sum the known digits once, then ask what the unknowns must add to; the required total is fixed modulo 9."
+},
+
+"quant-numbersystem-2-2#40": {
+  steps: "Step 1 — The numbers wanted have the form \\(7k + 3\\). The smallest two-digit one is \\(10\\) (\\(=7+3\\)); the largest is \\(94\\) (\\(=91+3\\)), since \\(101\\) is three digits.\n" +
+    "Step 2 — So the list is \\(10, 17, 24, \\dots, 94\\) — an arithmetic sequence with common difference 7.\n" +
+    "Step 3 — Count the terms: \\(\\dfrac{94 - 10}{7} + 1 = \\dfrac{84}{7} + 1 = 12 + 1 = 13\\).\n" +
+    "Step 4 — Sum an arithmetic sequence as (number of terms) × (average of first and last): \\(13 \\times \\dfrac{10 + 94}{2} = 13 \\times 52\\).\n" +
+    "Step 5 — \\(13 \\times 52 = [[676]]\\).",
+  fast: "An arithmetic list's sum is always (count) × (middle term). With 13 terms the middle one is the 7th, \\(10 + 6 \\times 7 = 52\\), so the sum is \\(13 \\times 52 = 676\\) — and \\(13 \\times 52 = 13 \\times 13 \\times 4 = 169 \\times 4\\) if you prefer that route.\n" +
+    "The two places to be careful are the endpoints: 10 is the first two-digit member, and 94 the last.",
+  traps: "(B) 666 and (D) 683 bracket the right answer and come from getting an endpoint wrong — starting at 17 instead of 10, or running past 94 to 101.\n" +
+    "(E) 777 is the sum you would get with an extra term or two tacked on; it is also suspiciously \"neat\", which on this question is a warning sign rather than a reassurance.\n" +
+    "(A) 0 is there for anyone who concludes no two-digit number qualifies — 10 itself does.\n" +
+    "The count is where this question is won or lost: \\(\\frac{\\text{last} - \\text{first}}{\\text{difference}} + 1\\), and the \\(+1\\) is not optional.",
+  take: "Sum of an evenly spaced list = (count) × (average of first and last). Count = \\(\\frac{\\text{last} - \\text{first}}{d} + 1\\) — and pin the true first and last terms before anything else."
+},
+
+"quant-numbersystem-2-2#41": {
+  steps: "Step 1 — Four \"cannot be\" claims are made. A single counterexample destroys any one of them, and the cheapest counterexamples use \\(x = 2\\), the one even prime.\n" +
+    "Step 2 — Take \\(x = 2\\), \\(y = 6\\) (composite). Then \\(y - x = 4\\), which is even — so the claim that \\(y - x\\) cannot be even is false.\n" +
+    "Step 3 — Same values: \\(xy = 12\\), which is even — so the claim that \\(xy\\) cannot be even is false.\n" +
+    "Step 4 — Same values: \\(\\dfrac{x+y}{x} = \\dfrac{8}{2} = 4\\), which is even — so that claim is false too.\n" +
+    "Step 5 — Now take \\(x = 2\\), \\(y = 9\\) (composite). Then \\(x + y = 11\\), which is odd — so the claim that \\(x+y\\) cannot be odd is false.\n" +
+    "Step 6 — All four \"cannot\" statements are refuted, so [[none of them is true]].",
+  fast: "On any \"cannot be\" question, hunt for the one value that breaks the pattern — and in prime questions that value is almost always \\(x = 2\\), the only even prime. With \\(x = 2\\) and \\(y = 6\\), three of the four claims fall to a single pair of numbers; swapping to \\(y = 9\\) kills the fourth.",
+  traps: "(A), (B) and (C) all feel right if you unconsciously assume primes are odd — which is true of every prime except 2, and 2 is precisely what the question is testing.\n" +
+    "(D) survives a little longer because \\(x + y\\) with two odd numbers is even; but \\(y\\) need not be odd either (\\(y = 6\\) is composite) and \\(x\\) need not be odd, so both parities are reachable.\n" +
+    "The structural trap is treating \"cannot\" as \"usually is not\". A claim of impossibility falls to one example, so spend the time finding one rather than reasoning about the typical case.",
+  take: "2 is the only even prime, and composites include both parities. To refute a \"cannot be\" claim, produce one counterexample — start with the boundary cases \\(x = 2\\) and \\(y = 4\\) or \\(9\\)."
+},
+
+"quant-numbersystem-2-2#42": {
+  steps: "Step 1 — Simplify the surd: \\(\\sqrt{24} = \\sqrt{4 \\times 6} = 2\\sqrt6\\).\n" +
+    "Step 2 — Rewrite the fraction entirely in terms of \\(\\sqrt6\\): \\(\\dfrac{2\\sqrt6 + \\sqrt6}{2\\sqrt6 - \\sqrt6}\\).\n" +
+    "Step 3 — Combine like terms: numerator \\(= 3\\sqrt6\\), denominator \\(= \\sqrt6\\).\n" +
+    "Step 4 — Cancel: \\(\\dfrac{3\\sqrt6}{\\sqrt6} = [[3]]\\).\n" +
+    "Step 5 — Numerical check: \\(\\sqrt{24} \\approx 4.899\\), \\(\\sqrt6 \\approx 2.449\\), so the fraction is \\(\\dfrac{7.348}{2.450} \\approx 3\\). ✓",
+  fast: "Both surds are multiples of \\(\\sqrt6\\), so treat \\(\\sqrt6\\) as a single unit \\(u\\): the expression is \\(\\dfrac{2u + u}{2u - u} = \\dfrac{3u}{u} = 3\\). No rationalising, no conjugates — the moment you write \\(\\sqrt{24}\\) as \\(2\\sqrt6\\) the question is over.",
+  traps: "(A) 2 is the ratio \\(\\sqrt{24}/\\sqrt6\\) on its own — you simplified the surds and then answered a different question.\n" +
+    "(C) 4 comes from squaring somewhere, usually from multiplying top and bottom by the conjugate and then mishandling the result.\n" +
+    "(D) 5 and (E) 6 come from adding the coefficients (\\(2+3\\)) or from carrying the 6 inside the radical out as the answer.\n" +
+    "Rationalising the denominator with a conjugate does work here, but it is three times the labour and three times the chance of a slip — always reduce the radicals first and look for a common unit.",
+  take: "Reduce every radical to its simplest form first: \\(\\sqrt{24} = 2\\sqrt6\\). If all terms share the same surd, treat it as a variable and cancel it — no rationalising needed."
 }
 
 });

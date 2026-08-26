@@ -5,8 +5,11 @@
    Insights table / graphics / multi-source context) shown above the question.
 
    Documented repairs to transcribed choices (the stored key is unchanged):
-     - quant-numbersystem-2-2 #22: choice (E) was the fragment "8", which is
-       not a digit pair at all; restored to "None of these".
+     - quant-numbersystem-2-2 #18, #22, #31, #39: choice (E) was a stray bare
+       number ("9", "8", "5", "10") where the other four options are digit
+       pairs or triples — a PDF-extraction artifact. Each is now "None of
+       these", which the set already uses elsewhere and which is false in all
+       four cases because a correct option is present.
      - quant-numbersystem-2-2 #24: choices (A) "7 and 11", (B) "11 and 13" and
        (D) "3, 7 and 13" were all true of a six-times-repeated digit, so four
        options were simultaneously correct. Each now carries one false factor,
@@ -303,7 +306,7 @@ window.GMAT_SETS = [
           "5, 3, 4",
           "2, 5, 4",
           "1, 5, 4",
-          "9"
+          "None of these"
         ],
         "hint": "Build the actual number from the remainders, then re-divide in reverse order.",
         "expl": "Step 1 — Build \\(N\\): \\(8\\cdot0+7=7;\\ 6\\times7+4=46;\\ 5\\times46+3=233\\).\nStep 2 — Reverse \\((\\div8,\\div6,\\div5)\\) on 233: \\(233\\to r1;\\ 29\\to r5;\\ 4\\to r4\\).\nStep 3 — Remainders: 1, 5, 4.\nAnswer: 1, 5, 4 (D).",
@@ -508,7 +511,7 @@ window.GMAT_SETS = [
           "2, 3",
           "3, 2",
           "4, 1",
-          "5"
+          "None of these"
         ],
         "hint": "Build the smallest number, then divide it in the reversed order.",
         "expl": "Step 1 — Build \\(N=4\\times4+1=17\\).\nStep 2 — \\(17\\div5=3\\ r2;\\ 3\\div4=0\\ r3\\).\nStep 3 — Remainders: 2, 3.\nAnswer: 2, 3 (B).",
@@ -644,7 +647,7 @@ window.GMAT_SETS = [
           "6, 8",
           "4, 6",
           "6, 6",
-          "10"
+          "None of these"
         ],
         "hint": "\\(18=2\\times9\\): use the even rule for \\(B\\) and the digit-sum rule for 9.",
         "expl": "Step 1 — \\(18=2\\times9\\); \\(B\\) even for \\(\\div2\\).\nStep 2 — Digit sum \\(=A+B+22\\) divisible by 9 \\(\\Rightarrow A+B=5\\) or 14.\nStep 3 — With \\(B\\) even, \\(A=6,B=8\\) (sum 14).\nAnswer: 6, 8 (B).",

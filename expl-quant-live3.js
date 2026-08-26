@@ -326,3 +326,166 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-3#21": {
+  steps: "Step 1 — Consecutive integers are evenly spaced with a gap of 1, so the pattern of deviations from the mean depends only on how many terms there are.\n" +
+    "Step 2 — Shifting the whole set — starting at 5 instead of 100 — adds a constant to every element, which never changes the standard deviation.\n" +
+    "Step 3 — Statement (1) gives the count, 21. That fixes the shape of the set completely up to a shift, so the standard deviation is determined — [[sufficient]].\n" +
+    "Step 4 — Statement (2) gives the median, 20, which locates the set but says nothing about its size. Three consecutive integers around 20 and 101 of them have very different spreads — [[not sufficient]].",
+  fast: "For a set of consecutive integers, the standard deviation is a function of the count alone. Once you state that principle, statement (1) is obviously sufficient and statement (2) obviously is not — no computation required.\n" +
+    "The underlying reason is that adding a constant to every value leaves all deviations unchanged.",
+  traps: "(B) picks the statement that names a concrete value, a persistent Data Sufficiency temptation. A median tells you where the set sits, not how far it stretches.\n" +
+    "(C) is the answer of someone who thinks you need to know the actual members. You do not — spread is shift-invariant.\n" +
+    "(D) would require the median alone to work.\n" +
+    "(E) understates (1).\n" +
+    "Compare with the mean: the mean of these sets *would* need statement (2), and the mean of an evenly spaced set equals its median. Different quantities need different information.",
+  take: "Standard deviation is unchanged by shifting all values. For consecutive integers it depends only on the number of terms; the mean depends only on the centre."
+},
+
+"quant-live-3#22": {
+  steps: "Step 1 — Let \\(x\\) be the number of 40-ounce bottles, so \\(48 - x\\) are 20-ounce bottles.\n" +
+    "Step 2 — The total volume is \\(20(48 - x) + 40x\\).\n" +
+    "Step 3 — The average is 35 ounces across 48 bottles, so the total is \\(35 \\times 48 = 1680\\).\n" +
+    "Step 4 — \\(960 - 20x + 40x = 1680\\), so \\(20x = 720\\).\n" +
+    "Step 5 — \\(x = 36\\).",
+  fast: "Use the weighted-average lever. The average of 35 sits 15 above the 20-ounce size and 5 below the 40-ounce size, so the two groups are in the ratio \\(5 : 15 = 1 : 3\\) — one small bottle for every three large ones.\n" +
+    "With 48 bottles in a \\(1 : 3\\) split, the large group is \\(\\tfrac34 \\times 48 = 36\\). No equation needed.",
+  traps: "(A) 12 is the number of *20-ounce* bottles — the complement, and the most likely wrong answer since the lever ratio produces it just as readily.\n" +
+    "(C) 24 splits the stock evenly, which would give an average of 30, not 35.\n" +
+    "(B) 18 and (D) 30 come from inverting the lever arms — using \\(15 : 5\\) instead of \\(5 : 15\\), which puts the larger group on the wrong side.\n" +
+    "The check that catches all of these: 35 is much closer to 40 than to 20, so most bottles must be the 40-ounce ones.",
+  take: "In a two-value weighted average, the group sizes are inversely proportional to their distances from the average. The larger group sits nearer the average."
+},
+
+"quant-live-3#23": {
+  steps: "Step 1 — Read the constraint precisely: \\(y^4\\) is a two-digit positive odd integer. Nothing says \\(y\\) itself is an integer — only \\(n\\) is declared to be one.\n" +
+    "Step 2 — Since \\(n\\) is divisible by \\(y^2\\), the quantity \\(y^2\\) must be a positive integer. And \\(y^4 = (y^2)^2\\), so \\(y^4\\) is the square of that integer.\n" +
+    "Step 3 — So we need integers whose squares are two-digit and odd: \\(5^2 = 25\\), \\(7^2 = 49\\), \\(9^2 = 81\\). Hence \\(y^2 \\in \\{5, 7, 9\\}\\).\n" +
+    "Step 4 — Now test each digit sum, free to choose whichever \\(y^2\\) helps. I, digit sum 1: take \\(y^2 = 5\\) and \\(n = 10\\), which is divisible by 5 ✓.\n" +
+    "Step 5 — II, digit sum 9: take \\(y^2 = 9\\) and \\(n = 9\\) ✓ (or \\(y^2 = 5\\), \\(n = 45\\)).\n" +
+    "Step 6 — III, digit sum 17: take \\(y^2 = 5\\) and \\(n = 890 = 5 \\times 178\\), whose digits sum to \\(8 + 9 + 0 = 17\\) ✓.\n" +
+    "Step 7 — All three sums are achievable.",
+  fast: "The whole question turns on one reading: \\(y\\) is never said to be an integer. Squaring backwards from \\(y^4\\), the admissible values of \\(y^2\\) are 5, 7 and 9 — and once 5 and 7 are on the table, the digit-sum restriction that comes with 9 disappears.\n" +
+    "Then each statement needs only one example, and multiples of 5 are the easiest to build digit sums with.",
+  traps: "(B) II only is where you land by assuming \\(y\\) must be an integer. That forces \\(y^4 = 81\\) and \\(y^2 = 9\\), and multiples of 9 have digit sums that are multiples of 9 — so 1 and 17 would both be impossible. It is a coherent chain of reasoning built on an assumption the question never made.\n" +
+    "(A) and (D) admit one of the two \"non-multiple-of-9\" sums but not the other, which no consistent reading produces.\n" +
+    "(C) rules out a digit sum of 1, perhaps on the feeling that only powers of 10 have that sum — which is true, and \\(10\\) itself is a multiple of 5.\n" +
+    "The habit worth building: list exactly which quantities a question declares to be integers.",
+  take: "Only assume integrality where the question states it. \"\\(n\\) is divisible by \\(y^2\\)\" makes \\(y^2\\) an integer, not \\(y\\)."
+},
+
+"quant-live-3#24": {
+  steps: "Step 1 — \"Even\" applies only to integers, and the question never says \\(x\\) is one. That is the crux.\n" +
+    "Step 2 — Statement (1): \\(7x\\) is even. Take \\(x = 2\\): \\(7x = 14\\), even, and \\(x\\) is even. Take \\(x = \\tfrac27\\): \\(7x = 2\\), even, but \\(x\\) is not an integer at all — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(5x\\) is even. Take \\(x = 2\\) or \\(x = \\tfrac25\\), by the same argument — [[not sufficient]].\n" +
+    "Step 4 — Together: both \\(7x\\) and \\(5x\\) are even integers, so their difference \\(7x - 5x = 2x\\) is an even integer. An even integer \\(2x\\) means \\(x\\) is an integer.\n" +
+    "Step 5 — Now \\(5x\\) even with \\(x\\) an integer forces \\(x\\) to be even, because 5 is odd and an odd number times an odd number is odd.\n" +
+    "Step 6 — So together the answer is a definite yes — [[sufficient]].",
+  fast: "Ask first whether \\(x\\) is even guaranteed to be an integer. It is not, and a single fractional counterexample — \\(x = \\tfrac27\\) — dispatches statement (1) instantly, with \\(\\tfrac25\\) doing the same for (2).\n" +
+    "Combining them, subtract to get \\(2x\\) as an even integer, which forces integrality; then the odd multiplier 5 preserves parity.",
+  traps: "(D) is the trap for anyone who silently assumes \\(x\\) is an integer. Under that assumption each statement alone *would* be sufficient, since 7 and 5 are both odd — which is exactly why the assumption has to be checked.\n" +
+    "(A) and (B) make the same assumption for one statement only.\n" +
+    "(E) misses that the two statements together pin \\(x\\) down completely.\n" +
+    "The general caution: parity, divisibility and \"even/odd\" language all presuppose integers, and GMAT Data Sufficiency questions routinely omit that word on purpose.",
+  take: "Parity arguments require integers. If the question does not state that a variable is an integer, test a fraction before concluding anything."
+},
+
+"quant-live-3#25": {
+  steps: "Step 1 — Apply the definition to each input. \\(9\\) is odd, so \\([9] = 3 \\times 9 = 27\\).\n" +
+    "Step 2 — \\(6\\) is even, so \\([6] = \\tfrac12 \\times 6 = 3\\).\n" +
+    "Step 3 — The product is \\(27 \\times 3 = 81\\).\n" +
+    "Step 4 — Now evaluate each choice and look for 81. \\([81] = 3 \\times 81 = 243\\) (81 is odd). \\([54] = \\tfrac12 \\times 54 = 27\\). \\([36] = 18\\). \\([27] = 3 \\times 27 = 81\\) ✓. \\([18] = 9\\).\n" +
+    "Step 5 — So \\([9] \\times [6] = [27]\\).",
+  fast: "Compute the target value first — 81 — then run down the choices applying the rule, and stop at the first match. Each evaluation is a single multiplication or halving.\n" +
+    "The parity check is the only place to slip: 27 and 81 are both odd (so they triple), while 54, 36 and 18 are even (so they halve).",
+  traps: "(A) \\([81]\\) is the trap of matching the *value* 81 to the symbol's input rather than its output. The bracket must be applied, and \\([81] = 243\\).\n" +
+    "(B) \\([54]\\) equals 27, which is \\([9]\\) — the first factor, not the product.\n" +
+    "(E) \\([18]\\) equals 9, the original input.\n" +
+    "(C) \\([36]\\) equals 18.\n" +
+    "Custom-symbol questions almost always place the untransformed number among the choices; always evaluate before matching.",
+  take: "With a custom operator, evaluate both sides fully before comparing. A choice containing your target number is usually the trap, not the answer."
+},
+
+"quant-live-3#26": {
+  steps: "Step 1 — \"To the left of 0\" means \\(n < 0\\).\n" +
+    "Step 2 — \\(n^2 < \\tfrac1{100}\\) means \\(|n| < \\tfrac1{10}\\).\n" +
+    "Step 3 — Combining, \\(-\\tfrac1{10} < n < 0\\): \\(n\\) is a small negative number.\n" +
+    "Step 4 — Taking reciprocals reverses the inequality for negatives. Since \\(n\\) is between \\(-\\tfrac1{10}\\) and 0, its reciprocal is more negative than \\(-10\\).\n" +
+    "Step 5 — So \\(\\dfrac1n < -10\\).\n" +
+    "Step 6 — Check with a value: \\(n = -0.05\\) gives \\(\\tfrac1n = -20\\), which is indeed less than \\(-10\\) ✓.",
+  fast: "Test one number rather than manipulating inequalities. Pick \\(n = -0.01\\): it is negative and its square is \\(0.0001 < 0.01\\) ✓, and its reciprocal is \\(-100\\). Any choice not containing \\(-100\\) is out, and only one survives.\n" +
+    "The principle behind it: the reciprocal of a number close to zero is large in magnitude, and it keeps the sign.",
+  traps: "(E) greater than 10 gets the magnitude right and the sign wrong — the reciprocal of a negative number is negative.\n" +
+    "(B) and (C) place the reciprocal *between* small values, which is backwards: it is \\(n\\) that lies near zero, and its reciprocal that flies out to large magnitude.\n" +
+    "(D) is stated as \"between 0 and \\(-\\tfrac1{30}\\)\", a range that is not even ordered consistently and in any case describes a number near zero.\n" +
+    "The reliable defence on inequality questions is to substitute an actual value that satisfies every stated condition.",
+  take: "Squaring and reciprocals both distort ranges: \\(n^2 < c\\) bounds \\(|n|\\), and for \\(n\\) near zero the reciprocal is large in magnitude with the same sign. Test a concrete value."
+},
+
+"quant-live-3#27": {
+  steps: "Step 1 — Put every tick on a common denominator. Fifths and sevenths both fit into thirty-fifths.\n" +
+    "Step 2 — The fifths land at \\(\\tfrac7{35}, \\tfrac{14}{35}, \\tfrac{21}{35}, \\tfrac{28}{35}\\).\n" +
+    "Step 3 — The sevenths land at \\(\\tfrac5{35}, \\tfrac{10}{35}, \\tfrac{15}{35}, \\tfrac{20}{35}, \\tfrac{25}{35}, \\tfrac{30}{35}\\).\n" +
+    "Step 4 — Merge and sort the numerators: \\(5, 7, 10, 14, 15, 20, 21, 25, 28, 30\\).\n" +
+    "Step 5 — Look for the smallest consecutive difference: \\(14\\) and \\(15\\) differ by 1, as do \\(20\\) and \\(21\\).\n" +
+    "Step 6 — So the least distance is \\(\\tfrac1{35}\\).",
+  fast: "Converting to a common denominator turns a geometry question into a list of integers, and the answer is the smallest gap in that list.\n" +
+    "You can shortcut further: \\(\\tfrac25\\) and \\(\\tfrac37\\) are \\(\\tfrac{14}{35}\\) and \\(\\tfrac{15}{35}\\), a difference of \\(\\tfrac1{35}\\) — and since 35 is the common denominator, no two distinct ticks can be closer than that.",
+  traps: "(C) \\(\\tfrac2{35}\\) is the next gap up (for instance between \\(\\tfrac5{35}\\) and \\(\\tfrac7{35}\\)) and is what you get by checking only the ticks near the ends of the segment.\n" +
+    "(A) \\(\\tfrac17\\), (D) \\(\\tfrac27\\) and (E) \\(\\tfrac37\\) are spacings within a single subdivision, ignoring that the two systems interleave.\n" +
+    "The insight the question is testing is that \\(\\tfrac1{35}\\) is the finest resolution available once both denominators are present — a fact that generalises to any pair of coprime divisions.",
+  take: "Convert competing subdivisions to their least common denominator; the minimum gap between distinct ticks is one unit of that denominator when the two divisors are coprime."
+},
+
+"quant-live-3#28": {
+  steps: "Step 1 — \\(\\sqrt{p^2}\\) is an integer greater than 1 means \\(|p|\\) is an integer at least 2.\n" +
+    "Step 2 — Statement I. \\(p^2\\) is a perfect square, and a perfect square is precisely a number with an odd number of positive factors (every divisor pairs with its cofactor except the square root, which pairs with itself). So I [[must be true]].\n" +
+    "Step 3 — Statement II. If \\(p\\) has \\(k\\) prime factors counted with multiplicity, then \\(p^2\\) has exactly \\(2k\\) — always an even number. So II is not merely unreliable, it is never true. Example: \\(36 = 2 \\times 2 \\times 3 \\times 3\\), four prime factors.\n" +
+    "Step 4 — Statement III. \\(p\\) has an even number of factors unless \\(p\\) is itself a perfect square. Take \\(p = 4\\), whose factors are \\(1, 2, 4\\) — three of them, an odd count. So III [[can fail]].\n" +
+    "Step 5 — Only I must be true.",
+  fast: "One fact settles statement I: a positive integer has an odd number of factors exactly when it is a perfect square, and \\(p^2\\) always is.\n" +
+    "The same fact dispatches statement III from the other direction — \\(p\\) itself may be a perfect square, and then its factor count is odd.\n" +
+    "Statement II falls to the counting argument: squaring doubles the multiplicity of every prime, so the total is always even.",
+  traps: "(D) accepts II, which is tempting because the word \"always\" in the statement invites a quick nod — but doubling every exponent guarantees an *even* total, so II is never true rather than sometimes true.\n" +
+    "(C) and (E) accept III by assuming that \\(p\\), not being a square by hypothesis, must have an even factor count. Nothing forbids \\(p = 4\\) or \\(p = 9\\).\n" +
+    "(B) rejects I, usually by conflating \"number of factors\" with \"number of prime factors\".\n" +
+    "Keep the two counts distinct: 36 has 9 divisors but 4 prime factors with multiplicity.",
+  take: "A positive integer has an odd number of divisors iff it is a perfect square. Squaring a number doubles its count of prime factors with multiplicity, so that count is always even."
+},
+
+"quant-live-3#29": {
+  steps: "Step 1 — A greatest common divisor of two numbers must divide both of them. That is the test to apply to each choice.\n" +
+    "Step 2 — Consider \\(20x\\). For it to be a common divisor it would have to divide \\(35x\\), but \\(\\dfrac{35x}{20x} = \\dfrac{7}{4}\\), which is never an integer for any positive \\(x\\).\n" +
+    "Step 3 — So \\(20x\\) cannot even be a common divisor, let alone the greatest one.\n" +
+    "Step 4 — Each of the others is achievable. With \\(x = y = 1\\), \\(\\gcd(35, 20) = 5\\) ✓.\n" +
+    "Step 5 — With \\(x = 3, y = 2\\): \\(\\gcd(105, 40) = 5 = 5(x - y)\\) ✓.\n" +
+    "Step 6 — With \\(x = 4y\\): \\(\\gcd(140y, 20y) = 20y\\) ✓. And with \\(x = 4, y = 7\\): \\(\\gcd(140, 140) = 140 = 35x\\) ✓.",
+  fast: "Do not compute any gcd — just ask whether each expression can divide both numbers. \\(20x\\) fails on \\(35x\\) because the ratio \\(\\tfrac74\\) is fixed and non-integral, independently of \\(x\\).\n" +
+    "That is the tell: an expression whose ratio to one of the two numbers is a constant non-integer can never be a common divisor, no matter how the variables are chosen.",
+  traps: "(D) \\(20y\\) and (E) \\(35x\\) look structurally identical to the impossible one, and that resemblance is the trap — each of them divides its own number automatically and can be made to divide the other by choosing the variables appropriately.\n" +
+    "(B) \\(5(x-y)\\) looks unlikely because it can be zero or negative, but for suitable \\(x > y\\) it is a genuine value.\n" +
+    "(A) 5 is the easiest to realise and is rarely chosen.\n" +
+    "The question asks what CANNOT be — so a single valid example eliminates a choice, and only an impossibility argument selects one.",
+  take: "A gcd must divide both numbers. If an expression's ratio to one of them reduces to a constant non-integer, it can never be a common divisor."
+},
+
+"quant-live-3#30": {
+  steps: "Step 1 — \"Length\" counts prime factors with multiplicity, so it is maximised by using the smallest prime, 2, as many times as possible. Any \\(x\\) of the form \\(2^a\\) has length \\(a\\).\n" +
+    "Step 2 — The constraint is \\(x + 3y < 1000\\). Note that \\(y\\) costs three times as much room as \\(x\\) does, so there is a trade-off.\n" +
+    "Step 3 — Take \\(x = 2^a\\) and \\(y = 2^b\\) and test the useful values of \\(b\\).\n" +
+    "Step 4 — \\(b = 6\\) gives \\(y = 64\\) and \\(3y = 192\\), leaving \\(x < 808\\), so \\(a = 9\\) (\\(512\\)). Total length \\(15\\).\n" +
+    "Step 5 — \\(b = 7\\) gives \\(y = 128\\) and \\(3y = 384\\), leaving \\(x < 616\\), and \\(512 < 616\\) so \\(a = 9\\) still fits. Total length \\(16\\).\n" +
+    "Step 6 — \\(b = 8\\) gives \\(3y = 768\\), leaving \\(x < 232\\), so \\(a = 7\\) only. Total length \\(15\\) — worse.\n" +
+    "Step 7 — The maximum is \\(16\\), achieved by \\(x = 512\\), \\(y = 128\\): \\(512 + 384 = 896 < 1000\\) ✓.",
+  fast: "Two observations do the work. First, only powers of 2 matter, since any other prime buys fewer factors per unit of size. Second, \\(y\\) is charged triple, so pushing \\(y\\) up is worthwhile only while \\(x\\) can stay at \\(2^9 = 512\\).\n" +
+    "That gives a single question: how large can \\(y\\) be while \\(3y < 1000 - 512 = 488\\)? The answer is \\(y = 128\\), and \\(9 + 7 = 16\\).",
+  traps: "(C) 15 is what you get by stopping at \\(y = 64\\), the first configuration that feels balanced — it is a real total, just not the maximum.\n" +
+    "(E) 18 comes from ignoring the factor of 3 on \\(y\\) and treating the constraint as \\(x + y < 1000\\), which would allow \\(512 + 256\\) and a length of 17, or from double-counting a power.\n" +
+    "(A) 5 and (B) 6 treat \"length\" as the number of *distinct* prime factors rather than the count with multiplicity — the definition in the stem is explicit that repeats count.\n" +
+    "The trade-off is the whole problem: it is not enough to maximise \\(x\\) alone or \\(y\\) alone.",
+  take: "To maximise a count of prime factors under a size budget, use powers of 2. When variables carry different coefficients in the constraint, test the boundary configurations rather than assuming symmetry."
+}
+
+});

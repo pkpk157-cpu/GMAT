@@ -29,6 +29,12 @@ template — `undefined`, `NaN`, `[object Object]`, an unexpanded `${`, escaped
 markup, a pane that rendered nothing. It then drives the runner at every
 difficulty on every section and checks the topic counts add up.
 
+`ui/wakelock.js` stubs the Screen Wake Lock API and checks the policy rather
+than the device: the screen is held awake exactly while a question is open and
+the setting is on, one lock and no more, released the moment the question
+closes. A lock that outlives the question is the failure that matters — it would
+sit there draining the battery with nothing on screen.
+
 `ui/state.js` is the narrow one: it seeds saved progress from an older build and
 checks it survives, that a difficulty-filtered run scores out of its own slice,
 that restoring an old backup refiles it, and that rebuilding your stats does not

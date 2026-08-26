@@ -1260,7 +1260,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v98";
+  const APP_VERSION = "v99";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1276,7 +1276,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -2055,6 +2055,17 @@
       ${rem.on&&perm==="granted"?`<button class="btn-soft" style="width:100%;margin-top:10px" data-rem-test="1">Send a test notification</button>`:""}
       <p class="footnote" style="margin:10px 0 0;text-align:left">Reminders fire while the app is installed. On iPhone/iPad, add the app to your Home Screen first, and keep in mind iOS only delivers reminders reliably when the app has been opened recently — a nudge always shows next time you open it.</p></section>`;
 
+    // Screen wake lock
+    const wakeOk = wakeSupported(), wakeOn = wakeSetting();
+    const wakeStatus = !wakeOk
+      ? "Your browser can't hold the screen awake. On iPhone/iPad this needs iOS 16.4 or later."
+      : wakeOn
+        ? "On — the screen stays lit while a question is in front of you, and dims as usual everywhere else."
+        : "Off — your device dims and locks on its normal schedule, even mid-question.";
+    h += `<section class="panel"><h3>Screen</h3><p class="sub">${esc(wakeStatus)}</p>
+      <label class="pf-toggle"><span>Keep the screen awake while answering</span><input type="checkbox" id="wake-on" ${wakeOn&&wakeOk?"checked":""} ${wakeOk?"":"disabled"}></label>
+      <p class="footnote" style="margin:10px 0 0;text-align:left">Applies to practice, the review queue and section mocks — a question you are working out on paper can sit on screen for minutes. It is released the moment you close the question, so it costs nothing while you are reading a concept guide or looking at your progress.</p></section>`;
+
     h += `<section class="panel"><h3>Fix out-of-sync stats</h3><p class="sub">If your daily / weekly totals disagree with the subject tabs, rebuild your topic totals and daily activity from everything you have answered.</p><button class="btn-soft" style="width:100%" data-rebuild="1">Re-sync my stats</button></section>`;
 
     h += `<section class="panel"><h3>App</h3><p class="sub">Version ${APP_VERSION}. If a new feature isn't showing, tap refresh to pull the latest.</p><button class="btn-soft" style="width:100%" data-refresh="1">🔄 Check for updates &amp; refresh</button></section>`;
@@ -2252,6 +2263,7 @@
     m.fcMode   = lww("fcMode", "flip");
     m.collapsed = lww("collapsed", {});
     m.reminder = lww("reminder", defaults.reminder);
+    m.wake     = lww("wake", true);
     m.targets  = Object.assign({}, defaults.targets, lww("targets", defaults.targets));
     m.syncedAt = Math.max(lt, ct);
     // Cloud data comes from another device or a hand-edited gist, so it is the
@@ -2462,6 +2474,7 @@
       } else { state.reminder.on = false; save(); applyReminder(); renderProfile(); }
       return;
     }
+    if (e.target.id === "wake-on") { state.wake = !!e.target.checked; save(); syncWakeLock(); renderProfile(); return; }
     if (e.target.id === "rem-time") { state.reminder.time = e.target.value || "19:00"; state.reminder.nudged = ""; save(); applyReminder(); renderProfile(); return; }
   });
 
@@ -3102,6 +3115,51 @@
     render();
   }
 
+  /* ===== Keep the screen awake while you are answering =====
+     A hard question sits on screen for two or three minutes while you work it
+     out on paper, which is long enough for a phone to dim and lock. The Screen
+     Wake Lock API holds that off — but only while a question is actually in
+     front of you. One function decides: the lock is held when a question
+     surface is open and the setting is on, and dropped the instant it is not,
+     so the screen never stays lit because something was left open in the
+     background. The browser drops the lock itself when the tab is hidden, so
+     it is re-taken on the way back. */
+  const WAKE_SURFACES = ["runner", "session", "review"];
+  const wakeSupported = () => { try { return "wakeLock" in navigator; } catch (e) { return false; } };
+  const wakeSetting = () => state.wake !== false;          // on unless turned off
+  let wakeLock = null, wakeBusy = false, wakeAgain = false;
+  function wakeWanted() {
+    if (!wakeSetting() || document.visibilityState !== "visible") return false;
+    return WAKE_SURFACES.some(id => { const el = document.getElementById(id); return el && !el.hidden; });
+  }
+  async function syncWakeLock() {
+    if (!wakeSupported()) return;
+    // Taking and releasing are both async, and the question can be closed while
+    // a request is still in flight. Dropping that call would leave the lock held
+    // with nothing on screen, so it is remembered and re-checked instead.
+    if (wakeBusy) { wakeAgain = true; return; }
+    wakeBusy = true;
+    try {
+      let guard = 0;
+      do {
+        wakeAgain = false;
+        const want = wakeWanted();
+        if (want === !!wakeLock) continue;
+        try {
+          if (want) {
+            wakeLock = await navigator.wakeLock.request("screen");
+            // Released by the browser on tab switch, screen lock, or low battery.
+            wakeLock.addEventListener("release", () => { wakeLock = null; });
+          } else {
+            const l = wakeLock; wakeLock = null;
+            if (l) await l.release();
+          }
+        } catch (e) { wakeLock = null; break; }   // refused (background tab, power saving) — not worth surfacing
+      } while (wakeAgain && ++guard < 5);
+    } finally { wakeBusy = false; }
+  }
+  document.addEventListener("visibilitychange", () => { syncWakeLock(); });
+
   /* ===== Notifications, reminders & focus timer ===== */
   function notifyReady() { return ("Notification" in window) && Notification.permission === "granted"; }
   function fmtTime12(hhmm) { const p = String(hhmm || "19:00").split(":"), h = +p[0]||0, m = +p[1]||0; const ap = h < 12 ? "AM" : "PM"; return (((h + 11) % 12) + 1) + ":" + String(m).padStart(2,"0") + " " + ap; }
@@ -3206,10 +3264,10 @@
     rev = { pool, idx:0, answered:{}, elim:{}, pending:null, correct:0, graduated:0 };
     passageOpen = false;
     document.getElementById("review").hidden = false; document.body.style.overflow = "hidden";
-    renderReview(); window.scrollTo({ top:0 });
+    renderReview(); window.scrollTo({ top:0 }); syncWakeLock();
     if (window.gtrack) gtrack("review-open");
   }
-  function closeReview() { rev = null; document.getElementById("review").hidden = true; document.body.style.overflow = ""; render(); }
+  function closeReview() { rev = null; document.getElementById("review").hidden = true; syncWakeLock(); document.body.style.overflow = ""; render(); }
   function renderReview() {
     if (!rev) return;
     const body = document.getElementById("rv-body"), n = rev.pool.length;
@@ -3829,8 +3887,8 @@
   // submitted, in which case we go straight to the results). Answers and
   // position are preserved, so re-choosing simply resumes where you left off.
   let modePrompt = false;
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("practice-set-open"); }
-  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; runSetId = null; pendingL = null; document.body.style.overflow = ""; document.body.classList.remove("nico-stay"); render(); }
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); syncWakeLock(); if (window.gtrack) gtrack("practice-set-open"); }
+  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; syncWakeLock(); runSetId = null; pendingL = null; document.body.style.overflow = ""; document.body.classList.remove("nico-stay"); render(); }
 
   // Nico reacts to a graded answer: nod + happy hop when right, head-shake when wrong.
   const NICO_MOVES = ["jump", "flip", "spin", "bounce", "wiggle", "nod"];
@@ -4453,7 +4511,7 @@
     document.getElementById("session").hidden = false;
     document.body.style.overflow = "hidden";
     sess.qStart = Date.now();
-    renderSession(); startSessTimer(); window.scrollTo({ top: 0 });
+    renderSession(); startSessTimer(); window.scrollTo({ top: 0 }); syncWakeLock();
     if (window.gtrack) gtrack("adaptive-session-start");
   }
 
@@ -4595,7 +4653,7 @@
   function closeSession(force) {
     if (sess && !sess.submitted && !force && !confirm("End this practice session? Answers so far won't be saved to your stats.")) return false;
     stopSessTimer(); sess = null;
-    document.getElementById("session").hidden = true;
+    document.getElementById("session").hidden = true; syncWakeLock();
     document.body.style.overflow = "";
     render(); return true;
   }

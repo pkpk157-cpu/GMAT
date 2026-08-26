@@ -1,5 +1,5 @@
 /* GMAT Prep Tracker — service worker (network-first, auto-updating) */
-const CACHE = "gmat-prep-v91";
+const CACHE = "gmat-prep-v92";
 const ASSETS = [
   "./",
   "./index.html",
@@ -15,6 +15,7 @@ const ASSETS = [
   "./sets-cr-2person.js",
   "./sets-cr-700a.js",
   "./sets-cr-700b.js",
+  "./sets-cr-700c.js",
   "./generator.js",
   "./concepts.js",
   "./flashcards.js",

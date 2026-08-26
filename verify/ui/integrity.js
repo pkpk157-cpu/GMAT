@@ -1,7 +1,7 @@
 /* Static integrity audit of the question bank and set metadata. */
 global.window = {};
 ['./sets.js', './sets-extra.js', './sets-rc.js', './sets-di.js', './sets-di2.js', './sets-di3.js',
- './sets-quant-live.js', './sets-quant-live2.js', './sets-quant-700.js', './sets-cr-2person.js', './sets-cr-700a.js', './sets-cr-700b.js'].forEach(f => {
+ './sets-quant-live.js', './sets-quant-live2.js', './sets-quant-700.js', './sets-cr-2person.js', './sets-cr-700a.js', './sets-cr-700b.js', './sets-cr-700c.js'].forEach(f => {
   try { require(require('path').join(__dirname, '..', '..', f.slice(2))); } catch (e) { console.log('LOAD FAIL', f, e.message); }
 });
 

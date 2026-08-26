@@ -94,5 +94,29 @@ module.exports = {
                      "D", "D", "A", "E", "D", "E", "C", "D", "B", "A", "B", "E", "A", "E",
                      "C", "B", "B", "E", "A", "A", "B", "C", "E"],
 
+  /* CR 700-800 Level Latest Questions — Assumption Latest Questions. The section
+     ends with its own printed key. Kept, in source order:
+     2.D 3.C 5.C 6.A 7.A 8.E 9.C 10.A 12.D 13.A 16.C 17.D 20.E 21.E 22.E 24.C 25.E 26.C 27.E 29.D 30.B 31.A 32.C 33.A 35.E 36.D 37.C 39.E */
+  "cr-700-assumption": ["D", "C", "C", "A", "A", "E", "C", "A", "D", "A", "C", "D", "E", "E",
+                        "E", "C", "E", "C", "E", "D", "B", "A", "C", "A", "E", "D", "C", "E"],
+
+  /* CR 700-800 Level Latest Questions — Boldface Latest. The section
+     ends with its own printed key. Kept, in source order:
+     42.E 43.D 44.C 45.D 46.D 47.B 49.B 50.B 51.B 52.C 53.B 54.A 55.A 56.E 57.D 58.D 59.B 62.E 63.D 64.E 65.D 66.C */
+  "cr-700-boldface": ["E", "D", "C", "D", "D", "B", "B", "B", "B", "C", "B", "A", "A", "E",
+                      "D", "D", "B", "E", "D", "E", "D", "C"],
+
+  /* CR 700-800 Level Latest Questions — Evaluate Latest. The section
+     ends with its own printed key. Kept, in source order:
+     73.E 74.C 75.A 76.E 77.A 78.C 79.C 80.C 82.A 83.D 84.E 85.C 86.B 88.C 94.D */
+  "cr-700-evaluate": ["E", "C", "A", "E", "A", "C", "C", "C", "A", "D", "E", "C", "B", "C",
+                      "D"],
+
+  /* CR 700-800 Level Latest Questions — Miscellaneous Latest. The section
+     ends with its own printed key. Kept, in source order:
+     95.B 96.D 97.D 98.E 99.C 100.B 101.E 102.C 104.D 105.A 106.A 107.A 108.C 109.A 111.A 112.D 113.B 115.C 117.B 118.C 119.B 120.A 121.A 122.E 123.C 124.E 126.D */
+  "cr-700-misc": ["B", "D", "D", "E", "C", "B", "E", "C", "D", "A", "A", "A", "C", "A",
+                  "A", "D", "B", "C", "B", "C", "B", "A", "A", "E", "C", "E", "D"],
+
   "di-ds-realexam": null
 };

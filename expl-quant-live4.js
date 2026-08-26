@@ -180,3 +180,170 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-4#12": {
+  steps: "Step 1 — The square runs from \\(x = -2\\) to \\(x = 6\\) and \\(y = -2\\) to \\(y = 6\\): side 8, area 64. The pivot point \\((0, 4)\\) lies inside it.\n" +
+    "Step 2 — Every admissible line passes through that pivot, so the shaded area is a function of the slope alone. Find its extremes.\n" +
+    "Step 3 — The upper end. As the slope becomes steeply negative, the line plunges from high on the left to low on the right, and the shaded region approaches the whole part of the square with \\(x > 0\\) — a \\(6 \\times 8\\) rectangle of area 48. That limit is approached but never reached by any finite slope, so \\(A < 48\\).\n" +
+    "Step 4 — The lower end. For positive slopes the shaded region is a triangle in the top-left corner. With slope \\(m\\) between \\(\\tfrac13\\) and 3 its legs are \\(2 + 2m\\) and \\(2 + \\tfrac2m\\), giving area \\(\\dfrac{2(1+m)^2}{m}\\).\n" +
+    "Step 5 — That expression is minimised at \\(m = 1\\), where it equals \\(8\\) — the triangle with vertices \\((-2, 2)\\), \\((-2, 6)\\), \\((2, 6)\\). Since \\(m = 1\\) is a legitimate slope, this minimum is attained.\n" +
+    "Step 6 — The area varies continuously with the slope, so it takes every value from 8 up to (but not including) 48: \\(8 \\le A < 48\\).",
+  fast: "Test the extremes rather than the middle. Two limiting behaviours bracket the answer: near-vertical with a negative slope gives almost the whole right half (48), and the balanced slope \\(m = 1\\) cuts the smallest corner triangle (8).\n" +
+    "Then decide the endpoints: 48 needs an actual vertical line, which is excluded, so it is open; 8 comes from a real slope, so it is closed. That endpoint reasoning is what separates the choices.",
+  traps: "(C) \\(24 \\le A < 48\\) and (E) \\(24 < A \\le 32\\) both take 24 or 32 as the floor — those are the areas at slope \\(-\\tfrac12\\) and slope \\(-1\\), and they are genuine values, just not the smallest.\n" +
+    "(A) \\(8 \\le A \\le 16\\) treats 16 (the horizontal-line case) as the ceiling, missing that negative slopes push the area far higher.\n" +
+    "(D) \\(8 < A \\le 32\\) makes the lower endpoint open, but slope 1 is an allowed line and delivers exactly 8.\n" +
+    "The two endpoint decisions — open at 48, closed at 8 — are the whole question; the choices differ mainly in those brackets.",
+  take: "For a pivot-line problem, find the extreme configurations and then decide each endpoint separately: attained values give closed brackets, limits of excluded cases give open ones."
+},
+
+"quant-live-4#13": {
+  steps: "Step 1 — Rearrange: \\(4|y| = 55 - 5x = 5(11 - x)\\).\n" +
+    "Step 2 — The left side is a non-negative multiple of 4, so \\(5(11-x)\\) must be divisible by 4. Since 5 and 4 share no factor, \\(11 - x\\) itself must be a multiple of 4.\n" +
+    "Step 3 — Also \\(4|y| \\ge 0\\) forces \\(x \\le 11\\), and the stem gives \\(x > 0\\).\n" +
+    "Step 4 — So \\(11 - x \\in \\{0, 4, 8\\}\\), giving \\(x = 11, 7, 3\\).\n" +
+    "Step 5 — \\(x = 3\\): \\(4|y| = 40\\), so \\(|y| = 10\\) and \\(y = \\pm 10\\) — two pairs.\n" +
+    "Step 6 — \\(x = 7\\): \\(4|y| = 20\\), so \\(|y| = 5\\) and \\(y = \\pm 5\\) — two pairs.\n" +
+    "Step 7 — \\(x = 11\\): \\(4|y| = 0\\), so \\(y = 0\\) — one pair only, since \\(+0\\) and \\(-0\\) are the same integer.\n" +
+    "Step 8 — Total: \\(2 + 2 + 1 = 5\\) pairs.",
+  fast: "Two constraints do all the filtering: \\(11 - x\\) must be a multiple of 4, and \\(x\\) must be positive and at most 11. That leaves three values of \\(x\\) to check.\n" +
+    "Then count *pairs*, not \\(x\\) values — each non-zero \\(|y|\\) supplies two, and \\(y = 0\\) supplies one. That asymmetry at zero is the crux.",
+  traps: "(A) 3 counts the values of \\(x\\) and forgets that each non-zero \\(|y|\\) yields two ordered pairs.\n" +
+    "(B) 6 counts \\(y = 0\\) twice, treating \\(+0\\) and \\(-0\\) as distinct — the single most common error on absolute-value counting questions.\n" +
+    "(D) 4 drops one of the three \\(x\\) values, usually \\(x = 11\\) because it makes \\(y\\) vanish.\n" +
+    "(E) Infinitely many ignores that the equation pins \\(x\\) to a short list.\n" +
+    "The habit worth keeping: after solving \\(|y| = k\\), ask whether \\(k\\) is zero before doubling.",
+  take: "\\(|y| = k\\) gives two solutions when \\(k > 0\\) and one when \\(k = 0\\). Use coprimality to turn a divisibility condition into a short list of candidates."
+},
+
+"quant-live-4#14": {
+  steps: "Step 1 — The question \\((6 \\wedge 2) \\wedge 4 = 6 \\wedge (2 \\wedge 4)\\) is asking whether the operation is associative.\n" +
+    "Step 2 — Addition and multiplication are associative. Subtraction and division are not: \\((6-2)-4 = 0\\) but \\(6-(2-4) = 8\\); \\((6 \\div 2) \\div 4 = 0.75\\) but \\(6 \\div (2 \\div 4) = 12\\).\n" +
+    "Step 3 — So the answer is yes exactly when the operation is \\(+\\) or \\(\\times\\).\n" +
+    "Step 4 — Statement (1): \\(3 \\wedge 2 > 3\\). Addition gives 5 ✓, multiplication gives 6 ✓, subtraction gives 1 ✗, division gives 1.5 ✗. So the operation is \\(+\\) or \\(\\times\\) — a definite yes, [[sufficient]].\n" +
+    "Step 5 — Statement (2): \\(3 \\wedge 1 = 3\\). Addition gives 4 ✗, subtraction gives 2 ✗, multiplication gives 3 ✓, division gives 3 ✓. So the operation is \\(\\times\\) or \\(\\div\\) — the first gives yes, the second gives no, [[not sufficient]].",
+  fast: "Reframe the question as \"is the operation associative?\" and the two associative operations are \\(+\\) and \\(\\times\\). Then each statement is just a filter: run all four operations through it and see whether the survivors agree on the answer.\n" +
+    "Statement (1) leaves exactly the associative pair; statement (2) leaves one from each camp.",
+  traps: "(D) treats statement (2) as decisive because it pins the operation down to two candidates — but sufficiency requires the surviving candidates to give the *same* answer, not merely to be few.\n" +
+    "(B) inverts the two statements.\n" +
+    "(C) misses that (1) alone already settles it.\n" +
+    "(E) dismisses both.\n" +
+    "The general technique for \"the symbol is one of these operations\" questions: tabulate all four against each statement, then check whether the survivors agree.",
+  take: "Reduce the question to a property (here associativity), then use each statement to filter the candidate operations. Sufficiency means all survivors give the same answer."
+},
+
+"quant-live-4#15": {
+  steps: "Step 1 — Statement I, commutativity: \\(a * b = a + b - ab\\) and \\(b * a = b + a - ba\\). Both addition and multiplication are commutative, so the two expressions are identical. [[True]].\n" +
+    "Step 2 — Statement II, identity: \\(a * 0 = a + 0 - a(0) = a\\). [[True]] for every integer \\(a\\).\n" +
+    "Step 3 — Statement III, associativity: expand the left side. \\((a * b) * c = (a + b - ab) + c - (a + b - ab)c\\).\n" +
+    "Step 4 — That is \\(a + b - ab + c - ac - bc + abc = a + b + c - ab - ac - bc + abc\\).\n" +
+    "Step 5 — Now the right side: \\(a * (b * c) = a + (b + c - bc) - a(b + c - bc) = a + b + c - bc - ab - ac + abc\\).\n" +
+    "Step 6 — The two expansions are the same expression, so [[III is true]].\n" +
+    "Step 7 — All three statements hold.",
+  fast: "Expand one side of III and notice the result is fully symmetric in \\(a\\), \\(b\\) and \\(c\\): \\(a+b+c-ab-ac-bc+abc\\). A symmetric expression cannot change when the grouping changes, so associativity follows without expanding the second side.\n" +
+    "The elegant reason: \\(a * b = 1 - (1-a)(1-b)\\), so \\(1 - (a*b*c) = (1-a)(1-b)(1-c)\\) — ordinary multiplication in disguise, which is both commutative and associative.",
+  traps: "(D) I and III only rejects the identity property, perhaps expecting the identity element to be 1 rather than 0 — but the \\(-ab\\) term vanishes at \\(b = 0\\), leaving \\(a\\).\n" +
+    "(A) and (B) accept only the properties that can be checked at a glance and reject III without expanding it. Associativity looks unlikely for an operation with a product term, which is exactly why it is worth the thirty seconds of algebra.\n" +
+    "(C) III only rejects the two easy ones.\n" +
+    "Test with numbers if the algebra feels risky: \\(a=2, b=3, c=4\\) gives \\((2*3)*4 = (-1)*4 = -1+4+4 = 7\\) and \\(2*(3*4) = 2*(-5) = 2-5+10 = 7\\) ✓.",
+  take: "For custom operations, expand fully and look for symmetry. \\(a + b - ab = 1-(1-a)(1-b)\\) is multiplication in disguise, hence commutative and associative."
+},
+
+"quant-live-4#16": {
+  steps: "Step 1 — Set the operation to zero: \\(a + b - ab = 0\\).\n" +
+    "Step 2 — Solve for \\(a\\): group the \\(a\\) terms as \\(a(1 - b) = -b\\).\n" +
+    "Step 3 — So \\(a = \\dfrac{-b}{1 - b} = \\dfrac{b}{b - 1}\\), which is defined for every \\(b\\) except \\(b = 1\\).\n" +
+    "Step 4 — Check \\(b = 1\\) directly: the equation becomes \\(a + 1 - a = 0\\), i.e. \\(1 = 0\\), which is false for every \\(a\\). So \\(b = 1\\) is impossible.\n" +
+    "Step 5 — Confirm the others are reachable: \\(b = 2 \\Rightarrow a = 2\\); \\(b = 0 \\Rightarrow a = 0\\); \\(b = -1 \\Rightarrow a = \\tfrac12\\); \\(b = 3 \\Rightarrow a = \\tfrac32\\).",
+  fast: "Isolating \\(a\\) exposes the answer immediately: the coefficient of \\(a\\) is \\(1 - b\\), and the only way to lose a solution is for that coefficient to vanish while the constant term does not. That happens exactly at \\(b = 1\\).\n" +
+    "Substituting \\(b = 1\\) makes the \\(a\\) terms cancel and leaves \\(1 = 0\\) — a contradiction you can see in one line.",
+  traps: "(C) 0 looks suspicious because zero often breaks formulas, but here \\(a = 0, b = 0\\) satisfies the equation perfectly.\n" +
+    "(D) \\(-1\\) attracts the same instinct; it gives \\(a = \\tfrac12\\), and the stem says \"for any numbers\", so non-integers are allowed.\n" +
+    "(A) 2 and (E) 3 both produce clean values of \\(a\\).\n" +
+    "The reason \\(b = 1\\) is special: it is the value that makes the operation collapse, since \\(a * 1 = a + 1 - a = 1\\) for every \\(a\\) — the operation always returns 1, never 0.",
+  take: "When solving for one variable, watch for values that make its coefficient zero. If the constant term survives, that value admits no solution at all."
+},
+
+"quant-live-4#17": {
+  steps: "Step 1 — The perpendicular bisector meets \\(RP\\) at right angles and passes through its midpoint. Use both facts.\n" +
+    "Step 2 — The given line \\(y = 4 - 2x\\) has slope \\(-2\\), so \\(RP\\) has slope \\(\\tfrac12\\) (the negative reciprocal).\n" +
+    "Step 3 — Through \\(R(4, 1)\\) with slope \\(\\tfrac12\\): \\(y - 1 = \\tfrac12(x - 4)\\), i.e. \\(y = \\tfrac12 x - 1\\).\n" +
+    "Step 4 — Find where the two lines meet: \\(\\tfrac12 x - 1 = 4 - 2x\\), so \\(\\tfrac52 x = 5\\) and \\(x = 2\\), giving \\(y = 0\\). The midpoint is \\(M(2, 0)\\).\n" +
+    "Step 5 — \\(M\\) is the midpoint of \\(RP\\), so \\(P = 2M - R = (4 - 4,\\ 0 - 1) = (0, -1)\\).\n" +
+    "Step 6 — Check: the midpoint of \\((4,1)\\) and \\((0,-1)\\) is \\((2, 0)\\) ✓, which lies on \\(y = 4 - 2x\\) since \\(4 - 4 = 0\\) ✓.",
+  fast: "Three moves, each mechanical: negative reciprocal for the slope, solve two equations for the midpoint, then reflect using \\(P = 2M - R\\).\n" +
+    "The reflection formula is worth memorising — it saves you from re-deriving the midpoint relation every time, and it is the step people most often get backwards.",
+  traps: "(C) \\((0, 1)\\) has the right \\(x\\) but reflects only the \\(x\\)-coordinate, leaving \\(y\\) unchanged.\n" +
+    "(D) \\((-4, 1)\\) reflects across the \\(y\\)-axis rather than across the given line.\n" +
+    "(B) \\((-2, 2)\\) and (E) \\((2, 7)\\) come from using the perpendicular line's slope as \\(-2\\) or \\(2\\) instead of \\(\\tfrac12\\).\n" +
+    "The quickest check on any candidate: its midpoint with \\(R\\) must lie on \\(y = 4 - 2x\\). Only one choice passes.",
+  take: "Reflecting a point across a line: drop a perpendicular, find the intersection \\(M\\), then use \\(P = 2M - R\\). Verify by checking the midpoint lies on the line."
+},
+
+"quant-live-4#18": {
+  steps: "Step 1 — The question \\((5 * 6) * 2 = 5 * (6 * 2)\\) asks whether the operation is associative — true for \\(+\\) and \\(\\times\\), false for \\(-\\) and \\(\\div\\).\n" +
+    "Step 2 — Statement (1): \\(5 * 6 = 6 * 5\\), i.e. the operation is commutative on this pair. Addition gives \\(11 = 11\\) ✓; multiplication gives \\(30 = 30\\) ✓; subtraction gives \\(-1\\) versus \\(1\\) ✗; division gives \\(\\tfrac56\\) versus \\(\\tfrac65\\) ✗.\n" +
+    "Step 3 — So the operation is \\(+\\) or \\(\\times\\), and both are associative — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Statement (2): \\(2 * 0 = 2\\). Addition gives 2 ✓; subtraction gives 2 ✓; multiplication gives 0 ✗; division by zero is undefined ✗.\n" +
+    "Step 5 — So the operation is \\(+\\) or \\(-\\). Addition is associative (yes), subtraction is not: \\((5-6)-2 = -3\\) while \\(5-(6-2) = 1\\) (no) — [[not sufficient]].",
+  fast: "Both statements are filters; the only question is whether the survivors agree. Commutativity and associativity happen to select the same two operations among these four, which is why (1) works.\n" +
+    "Statement (2) is engineered to leave one operation from each camp — addition and subtraction — so it cannot decide.",
+  traps: "(D) is the trap for anyone who stops once a statement narrows the field to two operations. Two candidates are fine if they agree, fatal if they disagree.\n" +
+    "(B) picks the statement that eliminates multiplication and division, which feels like more progress but leaves the crucial ambiguity intact.\n" +
+    "(C) misses that (1) alone is decisive.\n" +
+    "Note the subtlety in statement (2): division is excluded not because \\(2 \\div 0 \\ne 2\\) but because it is undefined — a legitimate elimination.",
+  take: "Among \\(+, -, \\times, \\div\\), commutativity and associativity both hold for exactly \\(+\\) and \\(\\times\\). A statement is sufficient only if every surviving operation gives the same answer."
+},
+
+"quant-live-4#19": {
+  steps: "Step 1 — Write \\(d\\) with its digits: tenths, hundredths, thousandths, and so on. The question asks about the hundredths digit.\n" +
+    "Step 2 — Statement (1): the tenths digit of \\(10d\\) is 7. Multiplying by 10 slides every digit one place to the left, so what was the hundredths digit of \\(d\\) becomes the tenths digit of \\(10d\\).\n" +
+    "Step 3 — Therefore the hundredths digit of \\(d\\) is 7, which is greater than 5 — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Statement (2): the thousandths digit of \\(d/10\\) is 7. Dividing by 10 slides every digit one place to the right, so the hundredths digit of \\(d\\) becomes the thousandths digit of \\(d/10\\).\n" +
+    "Step 5 — Again the hundredths digit of \\(d\\) is 7 — [[sufficient]].\n" +
+    "Step 6 — Each statement alone answers the question.",
+  fast: "Both statements say exactly the same thing in different disguises. Track the direction of the slide: multiplying by 10 moves a digit one place *left* in the place-value names (hundredths becomes tenths), dividing by 10 moves it one place *right* (hundredths becomes thousandths).\n" +
+    "Write \\(d = 0.a\\,b\\,c\\) and the identification is immediate: \\(10d = a.b\\,c\\) and \\(d/10 = 0.0\\,a\\,b\\,c\\), so \\(b\\) is the digit named in both cases.",
+  traps: "(A) and (B) each accept one statement and reject the other, usually by getting the direction of one slide backwards — the two operations move digits in opposite directions, so it is easy to check one correctly and mirror the other.\n" +
+    "(C) treats the two statements as partial information that must be combined, when each is already complete.\n" +
+    "(E) rejects both, typically from the worry that \\(d\\) might have digits beyond the thousandths place. It may — but those digits never affect which digit sits in the hundredths position.\n" +
+    "The safe method is to write a concrete example, say \\(d = 0.373\\), and confirm both statements hold.",
+  take: "Multiplying by 10 shifts each digit one place-value to the left, dividing by 10 one place to the right. Write \\(d = 0.abc\\) and read the digits off directly."
+},
+
+"quant-live-4#20": {
+  steps: "Step 1 — Write \\(r\\) with digit places: \\(\\dots\\) thousands, hundreds, tens, units. The question asks for the tens digit.\n" +
+    "Step 2 — Statement (1): the tens digit of \\(r/10\\) is 3. Dividing by 10 shifts every digit one place to the right, so the tens digit of \\(r/10\\) is the *hundreds* digit of \\(r\\).\n" +
+    "Step 3 — That tells us \\(r\\)'s hundreds digit is 3 and says nothing about its tens digit — \\(r = 1{,}340\\) and \\(r = 1{,}350\\) both qualify with different tens digits — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): the hundreds digit of \\(10r\\) is 6. Multiplying by 10 shifts every digit one place to the left, so the hundreds digit of \\(10r\\) is the *tens* digit of \\(r\\).\n" +
+    "Step 5 — Therefore \\(r\\)'s tens digit is 6 — [[sufficient]].",
+  fast: "Same slide rule as the previous question, applied to whole numbers: \\(\\times 10\\) moves a digit one place up in significance, \\(\\div 10\\) one place down.\n" +
+    "Take \\(r = \\overline{\\dots h\\,t\\,u}\\). Then \\(10r = \\overline{\\dots h\\,t\\,u\\,0}\\), whose hundreds digit is \\(t\\) — the digit asked for. And \\(r/10 = \\overline{\\dots h\\,t}.u\\), whose tens digit is \\(h\\) — the wrong one.",
+  traps: "(D) accepts both, which requires getting one of the two shifts backwards.\n" +
+    "(A) accepts only the statement that describes the hundreds digit — an easy slip, because \"tens digit of \\(r/10\\)\" contains the words \"tens digit\" and looks like it is talking about the right place.\n" +
+    "(C) tries to combine them; but (1) constrains a different digit entirely and adds nothing.\n" +
+    "(E) rejects (2), which is decisive.\n" +
+    "Writing out a concrete number such as \\(r = 1{,}364\\) and computing \\(10r = 13{,}640\\) and \\(r/10 = 136.4\\) settles the directions in seconds.",
+  take: "Multiplying by 10 promotes each digit one place; dividing by 10 demotes it. Name the place a statement refers to in terms of the *original* number before judging sufficiency."
+},
+
+"quant-live-4#21": {
+  steps: "Step 1 — Statement (1): rounding \\(x\\) to the nearest thousandth gives 0.455, so \\(x\\) lies in \\([0.4545,\\ 0.4555)\\).\n" +
+    "Step 2 — Round that range to the nearest hundredth. Values from \\(0.4545\\) up to \\(0.45499\\dots\\) round to \\(0.45\\); values from \\(0.455\\) up round to \\(0.46\\).\n" +
+    "Step 3 — Two different results are possible, so (1) alone is [[not sufficient]].\n" +
+    "Step 4 — Statement (2): the thousandths digit of \\(x\\) is 5. That says nothing about the tenths or hundredths digits — \\(x\\) could be \\(0.115\\) or \\(0.995\\) — [[not sufficient]].\n" +
+    "Step 5 — Together: within \\([0.4545,\\ 0.4555)\\), the thousandths digit is 4 for \\(x < 0.455\\) and 5 for \\(x \\ge 0.455\\). Statement (2) therefore restricts \\(x\\) to \\([0.455,\\ 0.4555)\\).\n" +
+    "Step 6 — Every value in that interval rounds to \\(0.46\\) at the hundredth — [[sufficient]].",
+  fast: "Convert each statement into an interval and see whether the interval sits entirely on one side of the rounding boundary, which here is \\(0.455\\).\n" +
+    "Statement (1) gives an interval straddling that boundary; statement (2) trims away the part below it. The combination lands wholly above, so the rounding is determined.",
+  traps: "(A) is the most common wrong answer: 0.455 \"looks like\" it rounds to 0.46, and it does — but the statement says \\(x\\) *rounds to* 0.455, not that \\(x\\) equals it, and the pre-image of that rounding straddles the next boundary.\n" +
+    "(B) treats a single digit as informative about the whole number.\n" +
+    "(D) accepts both individually.\n" +
+    "(E) misses that the two intervals intersect in a region entirely above 0.455.\n" +
+    "The habit that resolves all rounding questions: write the exact interval a rounding statement implies, endpoints included or excluded as appropriate.",
+  take: "Translate \"rounds to \\(v\\)\" into the half-open interval it implies, then check whether that interval lies wholly on one side of the next rounding boundary."
+}
+
+});

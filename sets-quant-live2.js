@@ -187,7 +187,7 @@
         "Commutativity and associativity are not the same property — but here they happen to pick out the same two operations.",
         "Step 1 — (1): only addition and multiplication are commutative, and both are also associative, so the answer is a definite yes — sufficient.\nStep 2 — (2) \\(2 * 0 = 2\\): addition ✓ and subtraction ✓; multiplication gives 0 ✗ and division is undefined ✗. Addition is associative (yes) but subtraction is not — \\((5-6)-2 = -3\\) while \\(5-(6-2) = 1\\) (no). Insufficient.\nAnswer: A.", "hard"),
       D(19, "Number properties", "D",
-        "Is the hundredths digit of the decimal d greater than 5?",
+        "Is the hundredths digit of the decimal d greater than 5?\n(1) The tenths digit of \\(10d\\) is 7.\n(2) The thousandths digit of \\(d/10\\) is 7.",
         "Multiplying or dividing by 10 just slides the decimal point one place — track which digit ends up where.",
         "Step 1 — (1) \"the tenths digit of \\(10d\\) is 7\": multiplying by 10 shifts every digit one place left, so the tenths digit of \\(10d\\) is the hundredths digit of d. That digit is 7 > 5 — a definite yes, sufficient.\nStep 2 — (2) \"the thousandths digit of \\(d/10\\) is 7\": dividing by 10 shifts every digit one place right, so the thousandths digit of \\(d/10\\) is again the hundredths digit of d, namely 7 — sufficient.\nAnswer: D.", "medium"),
       D(20, "Number properties", "B",

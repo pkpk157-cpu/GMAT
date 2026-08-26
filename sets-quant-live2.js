@@ -521,7 +521,7 @@
         "Step 1 — I: \\(x = 4, y = 1.5, z = 1\\) gives \\(4 > 2.25 > 1\\) ✓ and \\(4 > 1.5 > 1\\) ✓.\nStep 2 — II: take everything between 0 and 1, where higher powers shrink. \\(x = 0.3\\), \\(y = 0.5\\), \\(z = 0.6\\): \\(0.3 > 0.25 > 0.1296\\) ✓, and \\(0.6 > 0.5 > 0.3\\) ✓.\nStep 3 — III: \\(x = 4, y = -1.5, z = 1\\) gives \\(4 > 2.25 > 1\\) ✓ and \\(4 > 1 > -1.5\\) ✓.\nStep 4 — All three orderings are achievable.\nAnswer: E.", "hard"),
       P(15, "Inequalities", "D",
         "If x is positive, which of the following could be the correct ordering of \\(\\tfrac1x\\), \\(2x\\) and \\(x^{2}\\)?\nI. \\(x^{2} < 2x < \\tfrac1x\\)\nII. \\(x^{2} < \\tfrac1x < 2x\\)\nIII. \\(2x < x^{2} < \\tfrac1x\\)",
-        ROMAN3,
+        ["I only", "II only", "III only", "I and II only", "I, II and III"],
         "Test one small x, one x near 1, and one large x.",
         "Step 1 — I: \\(x = 0.5\\) gives \\(0.25 < 1 < 2\\) ✓.\nStep 2 — II: \\(x = 0.9\\) gives \\(0.81 < 1.11 < 1.8\\) ✓.\nStep 3 — III would need \\(2x < x^{2}\\), i.e. \\(x > 2\\), but then \\(x^{2} > 4 > \\tfrac1x\\) — the chain breaks. Impossible.\nAnswer: D.", "hard"),
       P(16, "Inequalities", "A",

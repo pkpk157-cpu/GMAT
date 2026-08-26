@@ -1120,9 +1120,9 @@
 </div>
 <input type="file" id="restore-input" accept="application/json,.json" hidden />
 
-<!-- Practice-set runner -->
+<!-- Practice runner -->
 <div class="profile" id="runner" hidden>
-  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="rn-title">Practice set</h2><button class="pf-close" id="rn-close" title="Close">✕</button></div></div>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="rn-title">Practice</h2><button class="pf-close" id="rn-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="rn-body"></div>
 </div>
 
@@ -1260,7 +1260,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v97";
+  const APP_VERSION = "v98";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1276,7 +1276,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
   let sheet = null; // { id, a, c }
@@ -1381,7 +1381,7 @@
       { icon:"🎯", label:"Hit today's question target", sub:tgt>0?`${Math.min(q,tgt)} / ${tgt} questions`:"set a daily target in your profile", done:tgt>0&&q>=tgt, prog:tgt>0?q/tgt:0 },
       { icon:"📖", label:"Study a concept guide", done:!!a.concept },
       { icon:"🗂", label:"Review a flash-card deck", done:!!a.flash },
-      { icon:"✎", label:"Do some practice", sub:"a set or an adaptive session", done:(a.session||0)+(a.set||0)>0 },
+      { icon:"✎", label:"Do some practice", sub:"a topic or an adaptive session", done:(a.session||0)+(a.set||0)>0 },
     ];
   }
   function weeklyTasks(){
@@ -1537,7 +1537,7 @@
             <button class="mk right" data-mk="${esc(id)}" data-c="1" aria-label="Log one correct">✓</button>
             <button class="mk wrong" data-mk="${esc(id)}" data-c="0" aria-label="Log one wrong">✗</button>
           </div>
-          <button class="tstat" data-edit="${esc(id)}" title="Log a set or edit">
+          <button class="tstat" data-edit="${esc(id)}" title="Log a batch or edit">
             <span class="td ${r.d===0?"zero":""}">${r.d}</span>
             ${p2!==null?`<span class="tacc ${accClass(p2)}">${p2}%</span>`:`<span class="tacc" style="color:var(--ink-faint)">—</span>`}
             ${r.ms>0&&r.d>0?`<span class="ttime">⏱ ${fmtDur(r.ms/r.d)}</span>`:""}
@@ -1547,6 +1547,19 @@
       h += `</div></section>`;
     });
     return h + `</div></div></section>`;
+  }
+
+  /* Forget a generated set completely. Deleting the run alone used to leave its
+     flags, review cards and miss reasons behind: invisible, because every panel
+     looks the set up first, but still stored and still synced to other devices. */
+  function dropGenSet(gone) {
+    if (!gone || !gone.id) return;
+    delete state.runs[gone.id];
+    delete state.flags[gone.id];
+    const pre = gone.id + "#";
+    Object.keys(state.srs || {}).forEach(k => { if (k.indexOf(pre) === 0) delete state.srs[k]; });
+    Object.keys(state.miss || {}).forEach(k => { if (k.indexOf(pre) === 0) delete state.miss[k]; });
+    const at = SETS.findIndex(x => x.id === gone.id); if (at >= 0) SETS.splice(at, 1);
   }
 
   // Build a set, persist it, splice it into the live SETS array (so the runner
@@ -1559,12 +1572,8 @@
     const set = G.makeSet(genPicked(secId), count);
     if (!set || !set.questions.length) { alert("Couldn't build a set from those topics — try picking another one."); return; }
     state.genSets = (state.genSets || []).concat([set]);
-    // Keep the newest 20 generated sets; drop the oldest along with its run.
-    while (state.genSets.length > 20) {
-      const gone = state.genSets.shift();
-      delete state.runs[gone.id];
-      const at = SETS.findIndex(x => x.id === gone.id); if (at >= 0) SETS.splice(at, 1);
-    }
+    // Keep the newest 20 generated sets; drop the oldest along with its state.
+    while (state.genSets.length > 20) dropGenSet(state.genSets.shift());
     SETS.push(set);
     save(); renderView();
     openRunner(set.id);
@@ -1600,7 +1609,9 @@
         if (!rec || typeof rec.correct !== "boolean") return;
         const q = set.questions.find(x => String(x.n) === String(n));
         if (!q || !q.level || !q.topic) return;
-        const k = set.section + "::" + q.topic + "::" + q.level;
+        // Keyed by the syllabus topic, not the source's wording, so two names
+        // for the same topic pool their evidence instead of each staying short.
+        const k = set.section + "::" + topicHome(set.section, q.topic).topic + "::" + q.level;
         const b = buckets[k] || (buckets[k] = { n: 0, c: 0 });
         b.n++; if (rec.correct) b.c++;
       });
@@ -1615,11 +1626,12 @@
   function personalLevel(section, q) {
     const lvl = q && q.level;
     if (!lvl || LEVEL_ORDER.indexOf(lvl) < 0) return { level: lvl, shifted: 0, why: "" };
-    const b = recalBuckets()[section + "::" + q.topic + "::" + lvl];
+    const home = topicHome(section, q.topic).topic;
+    const b = recalBuckets()[section + "::" + home + "::" + lvl];
     if (!b || b.n < RECAL_MIN_SAMPLE) return { level: lvl, shifted: 0, why: "" };
     const acc = b.c / b.n, base = LEVEL_BASELINE[lvl];
     const at = LEVEL_ORDER.indexOf(lvl);
-    const pctTxt = Math.round(acc * 100) + "% on " + b.n + " " + lvl + " " + q.topic + " questions";
+    const pctTxt = Math.round(acc * 100) + "% on " + b.n + " " + lvl + " " + home + " questions";
     if (acc >= base + RECAL_MARGIN && at > 0)
       return { level: LEVEL_ORDER[at - 1], shifted: -1, why: "Marked " + lvl + ", but you're at " + pctTxt + " — easier for you." };
     if (acc <= base - RECAL_MARGIN && at < LEVEL_ORDER.length - 1)
@@ -1680,11 +1692,7 @@
     try {
       const out = await AI.generate({ section: secId, count: count, label: sec ? sec.nav : secId });
       state.genSets = (state.genSets || []).concat([out.set]);
-      while (state.genSets.length > 20) {
-        const gone = state.genSets.shift();
-        delete state.runs[gone.id];
-        const at = SETS.findIndex(x => x.id === gone.id); if (at >= 0) SETS.splice(at, 1);
-      }
+      while (state.genSets.length > 20) dropGenSet(state.genSets.shift());
       SETS.push(out.set);
       save();
       genBusy = false;
@@ -1902,7 +1910,7 @@
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
       <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
       <div class="stat"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
-      <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice sets"}</div></div>
+      <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice"}</div></div>
       <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
 
@@ -2047,7 +2055,7 @@
       ${rem.on&&perm==="granted"?`<button class="btn-soft" style="width:100%;margin-top:10px" data-rem-test="1">Send a test notification</button>`:""}
       <p class="footnote" style="margin:10px 0 0;text-align:left">Reminders fire while the app is installed. On iPhone/iPad, add the app to your Home Screen first, and keep in mind iOS only delivers reminders reliably when the app has been opened recently — a nudge always shows next time you open it.</p></section>`;
 
-    h += `<section class="panel"><h3>Fix out-of-sync stats</h3><p class="sub">If your daily / weekly totals disagree with the subject tabs, rebuild your topic totals and daily activity from your saved practice-set attempts.</p><button class="btn-soft" style="width:100%" data-rebuild="1">Re-sync my stats</button></section>`;
+    h += `<section class="panel"><h3>Fix out-of-sync stats</h3><p class="sub">If your daily / weekly totals disagree with the subject tabs, rebuild your topic totals and daily activity from everything you have answered.</p><button class="btn-soft" style="width:100%" data-rebuild="1">Re-sync my stats</button></section>`;
 
     h += `<section class="panel"><h3>App</h3><p class="sub">Version ${APP_VERSION}. If a new feature isn't showing, tap refresh to pull the latest.</p><button class="btn-soft" style="width:100%" data-refresh="1">🔄 Check for updates &amp; refresh</button></section>`;
 
@@ -2121,6 +2129,9 @@
         if (!p || typeof p !== "object" || !("counts" in p) || !("daily" in p)) throw new Error("shape");
         if (!confirm("Restore this backup? It replaces your current data on this device.")) return;
         state = sanitize(p);
+        // A backup can predate the move to topic-based practice, in which case
+        // its progress is keyed by source-set ids that no longer exist.
+        migrateToTopics();
         save(); renderProfile(); render();
       } catch (e) { alert("That doesn't look like a GMAT Prep backup file."); }
     };
@@ -2204,6 +2215,16 @@
     ks.forEach(k => { const x = (a || {})[k], y = (b || {})[k]; out[k] = (x && y) ? (cloudNewer ? y : x) : (x || y); });
     return out;
   }
+  // Session answers are events, not counters: union them by id, keeping the
+  // most recent ones if the two sides together exceed the cap.
+  function mergeAnswers(a, b) {
+    const out = [], seen = {};
+    (Array.isArray(a) ? a : []).concat(Array.isArray(b) ? b : []).forEach(x => {
+      if (!x || !x.i || seen[x.i]) return; seen[x.i] = 1; out.push(x);
+    });
+    out.sort((p, q) => String(p.d || "").localeCompare(String(q.d || "")));
+    return out.slice(-EXTRA_ANSWER_CAP);
+  }
   function mergeState(local, cloud) {
     local = local || {}; cloud = cloud || {};
     const lt = local.syncedAt || 0, ct = cloud.syncedAt || 0, cloudNewer = ct > lt;
@@ -2218,6 +2239,11 @@
     m.read     = mergeNestedUnion(local.read, cloud.read);
     m.runs     = mergeRuns(local.runs, cloud.runs);
     m.srs      = mergeSrs(local.srs, cloud.srs, cloudNewer);
+    // The ledger of work done outside a practice run is cumulative like counts:
+    // taking one side wholesale would lose the other device's sessions.
+    m.extra    = { counts:  mergeCounts((local.extra||{}).counts, (cloud.extra||{}).counts),
+                   daily:   mergeMaxNum((local.extra||{}).daily,  (cloud.extra||{}).daily),
+                   answers: mergeAnswers((local.extra||{}).answers, (cloud.extra||{}).answers) };
     m.fcsrs    = mergeSrs(local.fcsrs, cloud.fcsrs, cloudNewer);
     m.celebrated = Object.assign({}, local.celebrated, cloud.celebrated);   // union: never re-congratulate
     m.name     = lww("name", "");
@@ -2243,6 +2269,9 @@
     if (f.truncated && f.raw_url) { content = await (await fetch(f.raw_url)).text(); }
     const cloud = JSON.parse(content);
     state = mergeState(state, cloud);
+    // The other device may still be on a build that keyed progress by source
+    // set, so anything that arrived that way is refiled before it is used.
+    migrateToTopics();
     save();
     render(); renderTop(); renderBotnav();
     if (!document.getElementById("profile").hidden) renderProfile();
@@ -2342,8 +2371,7 @@
       const gs = (state.genSets || []).find(x => x.id === id);
       if (gs && confirm(`Delete "${gs.title}"?\n\nThe questions are gone for good, but anything you already logged from it stays in your totals.`)) {
         state.genSets = state.genSets.filter(x => x.id !== id);
-        delete state.runs[id];
-        const at = SETS.findIndex(x => x.id === id); if (at >= 0) SETS.splice(at, 1);
+        dropGenSet(gs);
         save(); renderView();
       }
       return;
@@ -2409,7 +2437,7 @@
     }
     if (e.target.closest("[data-backup]")) { backup(); return; }
     if (e.target.closest("[data-restore]")) { document.getElementById("restore-input").click(); return; }
-    if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from your saved practice-set attempts?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }
+    if (e.target.closest("[data-rebuild]")) { if (confirm("Rebuild your topic totals and daily activity from everything you have answered?\n\n(Questions logged manually with the +/✓ buttons are not included.)")) { rebuildStats(); renderProfile(); renderTop(); renderBotnav(); } return; }
     if (e.target.closest("[data-refresh]")) { try { if (navigator.serviceWorker && navigator.serviceWorker.getRegistration) navigator.serviceWorker.getRegistration().then(r => { if (r) r.update(); }); } catch (e) {} location.reload(); return; }
     if (e.target.closest("[data-install]")) { const p=window.__gmatInstall; if (p) { p.prompt(); p.userChoice.finally(()=>{ window.__gmatInstall=null; renderProfile(); }); } return; }
     if (e.target.closest("[data-sync-link]")) {
@@ -2525,18 +2553,32 @@
   }
   const topicSetId = (secId, topic) => "t::" + secId + "::" + topic;
 
+  /* Identity of a question, ignoring formatting: a handful appear in two source
+     documents, and once the documents are dissolved those become the same
+     question asked twice. The passage is part of the identity because RC stems
+     ("The primary purpose of the passage is to") repeat across passages. */
+  const flatten = (s) => String(s == null ? "" : s).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  function questionKey(set, q) {
+    const p = q.passage || set.passage;
+    return flatten(q.text) + "|" + (q.choices || []).map(flatten).join("|")
+         + "|" + flatten(p && p.paras ? p.paras.join(" ") : "").slice(0, 160);
+  }
+
   /* Group every authored question by topic. Source order is preserved inside a
      group, so questions that shared a passage stay next to each other. */
   function buildTopicSets(src) {
-    const byId = {}, order = [];
+    const byId = {}, order = [], seen = {};
     src.forEach(set => {
       (set.questions || []).forEach(q => {
+        // A second copy of a question already in the bank is dropped, but the
+        // place it came from is remembered so old progress still finds a home.
+        const key = questionKey(set, q), first = seen[key];
+        if (first) { first.dupSrc = (first.dupSrc || []).concat([[set.id, q.n]]); return; }
         const home = topicHome(set.section, q.topic);
         const id = topicSetId(set.section, home.topic);
         if (!byId[id]) {
           byId[id] = { id, title: home.topic, section: set.section, topic: true,
-                       subject: home.subject, source: "By topic, drawn from every source in the bank",
-                       questions: [] };
+                       subject: home.subject, questions: [] };
           order.push(id);
         }
         const t = byId[id];
@@ -2545,6 +2587,7 @@
         const copy = Object.assign({}, q, { n: t.questions.length + 1, srcSet: set.id, srcN: q.n });
         if (set.passage && !copy.passage) copy.passage = set.passage;
         t.questions.push(copy);
+        seen[key] = copy;
       });
     });
     return order.map(id => byId[id]);
@@ -2560,41 +2603,56 @@
   const topicSetsFor = (secId) => SETS.filter(s => s.section === secId && s.topic);
 
   /* Progress was keyed by source-set id before practice moved to topics. Remap
-     it once so nothing a user has already answered, flagged or scheduled is
-     lost; a question's new home is found from the srcSet/srcN it carries. */
-  (function migrateToTopics() {
-    if (state.topicsV1) return;
+     it so nothing a user has already answered, flagged or scheduled is lost; a
+     question's new home is found from the srcSet/srcN it carries.
+
+     Idempotent on purpose. It runs at load, but also after a restore from a
+     backup file and after a sync pull, either of which can hand the app data
+     saved before the move; anything already keyed by a topic (or by a generated
+     set) is passed through untouched, so running it again changes nothing. */
+  const AUTHORED_IDS = new Set(AUTHORED.map(s => s.id));
+  function migrateToTopics() {
+    let moved = !state.topicsV1;                   // did anything actually change hands?
     const where = {};                              // "srcSet#srcN" -> [topicSetId, n]
-    SETS.forEach(s => { if (s.topic) s.questions.forEach(q => { where[q.srcSet + "#" + q.srcN] = [s.id, q.n]; }); });
+    SETS.forEach(s => { if (!s.topic) return; s.questions.forEach(q => {
+      where[q.srcSet + "#" + q.srcN] = [s.id, q.n];
+      (q.dupSrc || []).forEach(d => { where[d[0] + "#" + d[1]] = [s.id, q.n]; });
+    }); });
     const runs = state.runs || {}, flags = state.flags || {}, srs = state.srs || {}, miss = state.miss || {};
     const nRuns = {}, nFlags = {}, nSrs = {}, nMiss = {};
-    const carry = (fromId, n, put) => { const w = where[fromId + "#" + n]; if (w) put(w[0], w[1]); };
+    const carry = (fromId, n, put) => { const w = where[fromId + "#" + n]; if (w) { moved = true; put(w[0], w[1]); } };
+    const splitKey = (k) => { const at = k.lastIndexOf("#"); return at < 0 ? null : [k.slice(0, at), k.slice(at + 1)]; };
     Object.keys(runs).forEach(sid => {
       const r = runs[sid]; if (!r) return;
-      if (!AUTHORED.some(s => s.id === sid)) { nRuns[sid] = r; return; }   // generated set: leave alone
+      if (!AUTHORED_IDS.has(sid)) { nRuns[sid] = r; return; }   // already a topic, or a generated set
       ["ans", "logged", "times", "elim"].forEach(field => {
         Object.keys(r[field] || {}).forEach(n => carry(sid, n, (tid, tn) => {
-          const t = nRuns[tid] = nRuns[tid] || { ans:{}, submitted:false, idx:0, mode:null, logged:{}, times:{}, elim:{} };
+          const t = nRuns[tid] = nRuns[tid] || { ans:{}, submitted:false, idx:0, mode:null, lvl:null, logged:{}, times:{}, elim:{} };
           t[field][tn] = r[field][n];
         }));
       });
     });
-    Object.keys(flags).forEach(sid => Object.keys(flags[sid] || {}).forEach(n => {
-      if (!flags[sid][n]) return;
-      carry(sid, n, (tid, tn) => { (nFlags[tid] = nFlags[tid] || {})[tn] = true; });
-    }));
+    Object.keys(flags).forEach(sid => {
+      if (!AUTHORED_IDS.has(sid)) { nFlags[sid] = Object.assign({}, nFlags[sid], flags[sid]); return; }
+      Object.keys(flags[sid] || {}).forEach(n => {
+        if (!flags[sid][n]) return;
+        carry(sid, n, (tid, tn) => { (nFlags[tid] = nFlags[tid] || {})[tn] = true; });
+      });
+    });
     Object.keys(srs).forEach(k => {
-      const at = k.lastIndexOf("#"); if (at < 0) return;
-      carry(k.slice(0, at), k.slice(at + 1), (tid, tn) => { nSrs[tid + "#" + tn] = srs[k]; });
+      const p = splitKey(k); if (!p) return;
+      if (!AUTHORED_IDS.has(p[0])) { nSrs[k] = srs[k]; return; }
+      carry(p[0], p[1], (tid, tn) => { nSrs[tid + "#" + tn] = srs[k]; });
     });
     Object.keys(miss).forEach(k => {
-      const at = k.lastIndexOf("#"); if (at < 0) return;
-      carry(k.slice(0, at), k.slice(at + 1), (tid, tn) => { nMiss[tid + "#" + tn] = miss[k]; });
+      const p = splitKey(k); if (!p) return;
+      if (!AUTHORED_IDS.has(p[0])) { nMiss[k] = miss[k]; return; }
+      carry(p[0], p[1], (tid, tn) => { nMiss[tid + "#" + tn] = miss[k]; });
     });
     // A migrated run has answers but no score; recompute so results still read.
     Object.keys(nRuns).forEach(tid => {
       const set = SETS.find(s => s.id === tid), r = nRuns[tid];
-      if (!set || !r.ans) return;
+      if (!set || !r.ans || r.submitted) return;
       const answered = Object.keys(r.ans);
       if (answered.length === set.questions.length) {
         r.submitted = true; r.total = set.questions.length;
@@ -2603,8 +2661,11 @@
     });
     state.runs = nRuns; state.flags = nFlags; state.srs = nSrs; state.miss = nMiss;
     state.topicsV1 = true;
-    save();
-  })();
+    return moved;
+  }
+  // Only write on the load that actually refiles something: saving on every
+  // open would push a pointless revision to the sync gist each time.
+  if (migrateToTopics()) save();
 
   /* ===== Concept guides (theory) ===== */
   const CONCEPTS = (window.GMAT_CONCEPTS || []).filter(g => g && Array.isArray(g.parts) && g.parts.length);
@@ -3199,6 +3260,7 @@
     if (correct && wasBox >= 5) rev.graduated++;
     // a review rep counts toward today's activity & streak (not first-attempt accuracy)
     const day = dkey(); state.daily[day] = Math.max(0, (state.daily[day] || 0) + 1);
+    logExtraDay(1);
     markActivity("review"); save();
     nicoReact(correct);
     renderReview(); window.scrollTo({ top:0 });
@@ -3217,6 +3279,10 @@
 
   function sectionScore(secId) {
     let w = 0, wc = 0, n = 0;
+    extraAnswers().forEach(a => {
+      if (a.s !== secId) return;
+      const wt = LEVEL_WEIGHT[a.l] || 1; w += wt; if (a.c) wc += wt; n++;
+    });
     SETS.filter(s => s.section === secId).forEach(set => {
       const run = state.runs[set.id];
       if (!run || !run.logged) return;
@@ -3241,6 +3307,10 @@
   function scoreParts() {
     const quant = sectionScore("quant"), data = sectionScore("data");
     let w = 0, wc = 0, n = 0;
+    extraAnswers().forEach(a => {
+      if (a.s !== "rc" && a.s !== "cr") return;
+      const wt = LEVEL_WEIGHT[a.l] || 1; w += wt; if (a.c) wc += wt; n++;
+    });
     ["rc", "cr"].forEach(secId => {
       SETS.filter(s => s.section === secId).forEach(set => {
         const run = state.runs[set.id];
@@ -3321,6 +3391,12 @@
      four different fixes, and topic accuracy shows them all the same way. */
   function quadrantData() {
     const q = { fastRight:[], slowRight:[], fastWrong:[], slowWrong:[] };
+    extraAnswers().forEach(a => {
+      if (!a.ms) return;
+      const slow = a.ms > paceMs(a.s);
+      q[a.c ? (slow ? "slowRight" : "fastRight") : (slow ? "slowWrong" : "fastWrong")]
+        .push({ setId: null, n: 0, ms: a.ms, section: a.s });
+    });
     SETS.forEach(set => {
       const run = state.runs[set.id];
       if (!run || !run.logged) return;
@@ -3473,10 +3549,10 @@
     const all = flaggedAll();
     let h = `<div class="panel"><h3>Flagged questions</h3>`;
     if (!all.length) {
-      h += `<p class="sub">Flag a question while you practise (the ⚑ in the runner) and every flag across every set collects here.</p>`;
+      h += `<p class="sub">Flag a question while you practise (the ⚑ in the runner) and every flag across every topic collects here.</p>`;
       return h + `</div>`;
     }
-    h += `<p class="sub">${all.length} flagged across ${new Set(all.map(x => x.set.id)).size} set${new Set(all.map(x => x.set.id)).size === 1 ? "" : "s"}. They also feed the review queue.</p><div class="setlist">`;
+    h += `<p class="sub">${all.length} flagged across ${new Set(all.map(x => x.set.id)).size} topic${new Set(all.map(x => x.set.id)).size === 1 ? "" : "s"}. They also feed the review queue.</p><div class="setlist">`;
     const bySet = {};
     all.forEach(x => { (bySet[x.set.id] = bySet[x.set.id] || { set: x.set, ns: [] }).ns.push(x.n); });
     Object.values(bySet).forEach(({ set, ns }) => {
@@ -3509,6 +3585,11 @@
   // attempts. Fixes any drift between the dashboard and the subject tabs.
   function rebuildStats() {
     const counts = {}, daily = {};
+    // Start from the work that has no run behind it — sessions and review reps
+    // — so rebuilding repairs the run-derived totals without erasing those.
+    const x = extraLedger();
+    Object.keys(x.counts).forEach(id => { const r = x.counts[id]; counts[id] = { d:r.d||0, c:r.c||0, ms:r.ms||0 }; });
+    Object.keys(x.daily).forEach(d => { daily[d] = x.daily[d] || 0; });
     Object.keys(state.runs || {}).forEach(sid => {
       const run = state.runs[sid]; if (!run || !run.logged) return;
       const set = SETS.find(s => s.id === sid);
@@ -3554,12 +3635,41 @@
     list.forEach(q => { const your = run.ans[q.n] || null, ok = !!your && your === q.correct; if (ok) score++; per.push({ n:q.n, your, correct:q.correct, ok, topic:q.topic, flag:!!q.flag, options:q.options||5 }); });
     return { score, total: list.length, per };
   }
-  function logBatch(entries) {
-    if (!entries.length) return;
-    const k = dkey(); let add = 0;
-    entries.forEach(e => { const r = getRec(e.id); r.d += 1; if (e.correct) r.c += 1; setRec(e.id, r); add++; });
-    state.daily[k] = Math.max(0, (state.daily[k] || 0) + add); save();
+  /* Work done outside a practice run — adaptive sessions and review-queue reps
+     — has no run to rebuild from, so it is mirrored here as well. Without this
+     ledger "Rebuild stats" silently deleted every session and every review rep
+     the moment it recomputed the totals from the runs alone. */
+  function extraLedger() {
+    if (!state.extra || typeof state.extra !== "object") state.extra = { counts:{}, daily:{} };
+    if (!state.extra.counts) state.extra.counts = {};
+    if (!state.extra.daily) state.extra.daily = {};
+    return state.extra;
   }
+  function logExtraTopic(id, correct, ms) {
+    const x = extraLedger(), r = x.counts[id] || { d:0, c:0, ms:0 };
+    r.d += 1; if (correct) r.c += 1; r.ms += Math.max(0, ms || 0);
+    x.counts[id] = r;
+  }
+  function logExtraDay(n) {
+    const x = extraLedger(), k = dkey();
+    x.daily[k] = Math.max(0, (x.daily[k] || 0) + n);
+  }
+  /* One record per question answered in an adaptive session or section mock.
+     The score estimate and the time/accuracy quadrant are built from practice
+     runs, and a session creates no run — so a full 21-question Quant mock used
+     to leave the readiness panel still reading "0 of 25 logged". Each record
+     carries an id so two devices can merge their sessions without double
+     counting; the log is capped so it cannot grow without bound. */
+  const EXTRA_ANSWER_CAP = 2000;
+  function logExtraAnswer(section, level, correct, ms) {
+    const x = extraLedger();
+    if (!Array.isArray(x.answers)) x.answers = [];
+    x.answers.push({ i: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+                     s: section, l: LEVELS.indexOf(level) >= 0 ? level : "medium",
+                     c: !!correct, ms: Math.max(0, ms || 0), d: dkey() });
+    if (x.answers.length > EXTRA_ANSWER_CAP) x.answers.splice(0, x.answers.length - EXTRA_ANSWER_CAP);
+  }
+  const extraAnswers = () => { const a = (state.extra || {}).answers; return Array.isArray(a) ? a : []; };
 
   /* The practice pane: every topic of the section's syllabus that has questions,
      grouped under its subject. Level counts are shown here so you can see what
@@ -3907,8 +4017,12 @@
   let jumperFlaggedOnly = false, jumperLevel = null;
   function openJumper() {
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
-    const run = getRun(set.id), practice = run.mode === "practice", fc = flaggedCount(set.id), lc = levelCounts(set);
-    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${runQs(set).length} questions${practice?" · green = right, red = wrong":""}</div>`;
+    // Counts describe the run you are in, not the whole topic: when the run is
+    // narrowed to one difficulty, chips for the others would filter to nothing.
+    const run = getRun(set.id), practice = run.mode === "practice", scope = runQs(set);
+    const lc = levelCounts({ questions: scope });
+    const fc = scope.filter(q => isFlagged(set.id, q.n)).length;
+    let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${scope.length} questions${practice?" · green = right, red = wrong":""}</div>`;
     h += `<div class="jfilters">`;
     h += `<button class="jchip ${jumperLevel===null?"on":""}" data-levelfilter="all">All</button>`;
     if (lc.easy) h += `<button class="jchip lvl-easy ${jumperLevel==="easy"?"on":""}" data-levelfilter="easy">Easy ${lc.easy}</button>`;
@@ -3916,7 +4030,7 @@
     if (lc.hard) h += `<button class="jchip lvl-hard ${jumperLevel==="hard"?"on":""}" data-levelfilter="hard">Hard ${lc.hard}</button>`;
     if (fc > 0) h += `<button class="jchip flag ${jumperFlaggedOnly?"on":""}" data-flagfilter>⚑ Flagged ${fc}</button>`;
     h += `</div>`;
-    let list = runQs(set).map((q, i) => ({ q, i }));
+    let list = scope.map((q, i) => ({ q, i }));
     if (jumperLevel) list = list.filter(x => x.q.level === jumperLevel);
     if (jumperFlaggedOnly) list = list.filter(x => isFlagged(set.id, x.q.n));
     if (!list.length) { h += `<p class="mode-note" style="margin:8px 0 16px">No questions match this filter.</p>`; }
@@ -4058,9 +4172,11 @@
     stopTimer();
     const set = SETS.find(s => s.id === runSetId); if (!set) return;
     const sec = secById(set.section), run = getRun(set.id), qs = runQs(set), total = qs.length;
-    // A one-question set has nothing to choose between: go straight into it in
-    // practice mode (question → hint → answer + explanation).
-    const single = total === 1;
+    // A one-question topic has nothing to choose between: go straight into it in
+    // practice mode (question → hint → answer + explanation). Judged on the
+    // whole topic, not the current slice — a difficulty that happens to hold one
+    // question must still leave you a way back to the picker.
+    const single = set.questions.length === 1;
     if (single && run.mode !== "practice") { run.mode = "practice"; setRun(set.id, run); }
     const h = run.submitted ? resultsHTML(set, run, sec, qs) : ((!single && (modePrompt || !run.mode)) ? modeChooserHTML(set, sec, total) : questionHTML(set, run, sec, qs, total));
     // In practice mode Nico stays on screen the whole time as your study buddy.
@@ -4444,11 +4560,14 @@
     sess.order.forEach((o, i) => {
       const a = sess.answers[i]; if (!a) return;
       const id = resolveTopic(o.set.section, o.q.topic);
-      if (id) { const rec = getRec(id); rec.d += 1; if (a.correct) rec.c += 1; rec.ms += a.ms || 0; setRec(id, rec); add++; }
+      if (id) { const rec = getRec(id); rec.d += 1; if (a.correct) rec.c += 1; rec.ms += a.ms || 0; setRec(id, rec); logExtraTopic(id, a.correct, a.ms); add++; }
       else console.warn("GMAT session: no topic match for", o.set.section, "/", o.q.topic);
+      // Recorded whether or not the topic resolved: the score estimate cares
+      // about the section and the level, not about which topic bucket it lands in.
+      logExtraAnswer(o.set.section, o.q.level, a.correct, a.ms);
       srsOnAnswer(o.set.id, o.q.n, a.correct);
     });
-    if (add) state.daily[k] = Math.max(0, (state.daily[k] || 0) + add);
+    if (add) { state.daily[k] = Math.max(0, (state.daily[k] || 0) + add); logExtraDay(add); }
     save();
   }
   function sessResultsHTML() {

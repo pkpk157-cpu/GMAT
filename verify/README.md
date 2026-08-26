@@ -19,7 +19,21 @@ sets, because that is the level at which a printed answer key exists.
     node verify/check-source-keys.js # answers vs the printed source keys
     python3 verify/di4-derive.py     # re-derives the non-DS Data Insights answers
     node verify/coverage.js          # what those checks do and do not cover
+    node verify/ui/deep.js           # clicks every control on every surface
+    node verify/ui/state.js          # what saved progress does across upgrades
     sh verify/ui/run-all.sh          # all of the above plus the UI sweep
+
+`ui/deep.js` is the broad net: it opens every pane, clicks every control on it,
+and after each click scans what is on screen for the signatures of a broken
+template — `undefined`, `NaN`, `[object Object]`, an unexpanded `${`, escaped
+markup, a pane that rendered nothing. It then drives the runner at every
+difficulty on every section and checks the topic counts add up.
+
+`ui/state.js` is the narrow one: it seeds saved progress from an older build and
+checks it survives, that a difficulty-filtered run scores out of its own slice,
+that restoring an old backup refiles it, and that rebuilding your stats does not
+erase work done in adaptive sessions. Each check there was written against a bug
+that was live at the time, so each one fails if that bug comes back.
 
 `answers.js` recomputes each answer from the numbers in the question. It never
 reads the stored key or the stored explanation, so agreement is real evidence

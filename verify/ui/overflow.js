@@ -49,5 +49,34 @@ const server = http.createServer((req, res) => {
     });
     if (bad.length) { console.log('== ' + label + ' (vw=320)'); bad.forEach(b => console.log('   ', JSON.stringify(b))); }
   }
+
+  // The difficulty picker and a live question are the widest things the app
+  // draws, and neither is on a tab, so check them explicitly.
+  const overflowing = () => page.evaluate(() => {
+    const vw = document.documentElement.clientWidth, out = [];
+    document.querySelectorAll('#runner *').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      if (r.right > vw + 0.5 || r.left < -0.5) out.push({ tag: el.tagName.toLowerCase(), cls: (el.className || '').toString().slice(0, 50), w: Math.round(r.width), txt: (el.textContent || '').trim().slice(0, 34) });
+    });
+    return out.filter(o => !out.some(p => p !== o && p.w > o.w && o.txt && p.txt.includes(o.txt))).slice(0, 6);
+  });
+  for (const [i, label] of [[0, 'Quant'], [1, 'Data'], [3, 'RC'], [4, 'CR']]) {
+    await page.evaluate(k => document.querySelectorAll('#botnav .bn')[k].click(), i);
+    await page.waitForTimeout(300);
+    await page.evaluate(() => document.querySelector('[data-subtab="practice"]')?.click());
+    await page.waitForTimeout(300);
+    const ok = await page.evaluate(() => { const b = document.querySelector('#view [data-runset]'); if (!b) return false; b.click(); return true; });
+    if (!ok) continue;
+    await page.waitForTimeout(350);
+    let bad = await overflowing();
+    if (bad.length) { console.log('== ' + label + ' difficulty picker (vw=320)'); bad.forEach(b => console.log('   ', JSON.stringify(b))); }
+    await page.evaluate(() => document.querySelector('#runner [data-mode="practice"]')?.click());
+    await page.waitForTimeout(300);
+    bad = await overflowing();
+    if (bad.length) { console.log('== ' + label + ' question (vw=320)'); bad.forEach(b => console.log('   ', JSON.stringify(b))); }
+    await page.evaluate(() => { const r = document.getElementById('runner'); if (r) { r.hidden = true; document.body.style.overflow = ''; } });
+    await page.waitForTimeout(150);
+  }
   await browser.close(); server.close();
 })();

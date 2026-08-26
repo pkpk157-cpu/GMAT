@@ -179,3 +179,178 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-2#12": {
+  steps: "Step 1 — Driving time is distance divided by speed, so track what happens to each.\n" +
+    "Step 2 — Distance falls by \\(20\\%\\): a factor of \\(0.80\\).\n" +
+    "Step 3 — Speed rises by \\(25\\%\\): a factor of \\(1.25\\).\n" +
+    "Step 4 — New time factor: \\(\\dfrac{0.80}{1.25} = 0.64\\).\n" +
+    "Step 5 — The time is \\(64\\%\\) of what it was, so the reduction is \\(100 - 64 = 36\\%\\).",
+  fast: "Both factors are friendly fractions: \\(0.8 = \\tfrac45\\) and \\(1.25 = \\tfrac54\\). Dividing gives \\(\\tfrac45 \\times \\tfrac45 = \\tfrac{16}{25} = 0.64\\) — the two changes happen to compound into a clean square. Read the reduction as \\(1 - 0.64\\).",
+  traps: "(C) 37% is a decoy for anyone who estimates rather than computes; the true figure is exactly 36, and the near-miss punishes rounding.\n" +
+    "(D) 45% comes from adding the two percentages (\\(20 + 25\\)) — the standard additive error with multiplicative changes.\n" +
+    "(A) 16% comes from reporting \\(0.8 \\times 1.25 = 1.0\\)-style arithmetic gone slightly wrong, or from \\(1 - 0.84\\).\n" +
+    "(E) 56% overshoots, typically from computing \\(1 - 0.8 \\times 0.55\\) or from dividing the wrong way round.\n" +
+    "The direction matters too: a higher speed *reduces* time, so speed belongs in the denominator.",
+  take: "Time = distance ÷ speed, so combine the change factors as a quotient. A resulting factor of \\(k\\) means a reduction of \\((1-k)\\), not of \\(k\\)."
+},
+
+"quant-live-2#13": {
+  steps: "Step 1 — Work in rates, in widgets per hour. Let \\(a\\) and \\(b\\) be the two machines' rates.\n" +
+    "Step 2 — Together they make 1 widget in 3 hours: \\(a + b = \\tfrac13\\).\n" +
+    "Step 3 — With A doubled, 1 widget takes 2 hours: \\(2a + b = \\tfrac12\\).\n" +
+    "Step 4 — Subtract the first equation from the second: \\(a = \\tfrac12 - \\tfrac13 = \\tfrac16\\).\n" +
+    "Step 5 — A rate of \\(\\tfrac16\\) widget per hour means A alone takes \\(6\\) hours.",
+  fast: "Doubling A's rate adds exactly one more \\(a\\) to the combined rate, so the *increase* in combined rate is \\(a\\) itself: \\(\\tfrac12 - \\tfrac13 = \\tfrac16\\). One subtraction gives A's rate directly, and the reciprocal gives the time.\n" +
+    "That is the general move: whenever a problem doubles one worker, the change in the joint rate is that worker's rate.",
+  traps: "(B) 2 and (C) 3 are the two times quoted in the stem, repeated as answers — always suspect a choice that simply restates a given.\n" +
+    "(A) \\(\\tfrac12\\) is A's rate mistaken for a time, or the reciprocal taken at the wrong moment.\n" +
+    "(D) 5 comes from working in times rather than rates: subtracting \\(3 - 2 = 1\\) and building from there, which is invalid because times do not add.\n" +
+    "The single rule that prevents all of these: rates add, times do not.",
+  take: "Convert every work statement into a rate before combining. Doubling one worker's rate raises the joint rate by exactly that worker's original rate."
+},
+
+"quant-live-2#14": {
+  steps: "Step 1 — Rates per hour: Tom \\(\\tfrac16\\), Peter \\(\\tfrac13\\), John \\(\\tfrac12\\).\n" +
+    "Step 2 — Hour 1, Tom alone: \\(\\tfrac16\\) of the room is painted.\n" +
+    "Step 3 — Hour 2, Tom and Peter: they add \\(\\tfrac16 + \\tfrac13 = \\tfrac12\\). Running total \\(\\tfrac16 + \\tfrac12 = \\tfrac23\\).\n" +
+    "Step 4 — The remaining \\(\\tfrac13\\) is done by all three at \\(\\tfrac16 + \\tfrac13 + \\tfrac12 = 1\\) room per hour, which takes \\(\\tfrac13\\) hour.\n" +
+    "Step 5 — Peter worked in hour 2 and in that final \\(\\tfrac13\\) hour: \\(1 + \\tfrac13 = \\tfrac43\\) hours.\n" +
+    "Step 6 — Peter's share: \\(\\tfrac43 \\times \\tfrac13 = \\tfrac49\\) of the job.",
+  fast: "The three rates sum to exactly 1 room per hour, which makes the final stage trivial — the leftover \\(\\tfrac13\\) takes \\(\\tfrac13\\) hour. Spot that first and the timeline collapses.\n" +
+    "Then the question is only about Peter: hours worked times his rate. Do not compute anyone else's share.",
+  traps: "(C) \\(\\tfrac13\\) is Peter's hourly rate, mistaken for his fraction of the job — the most natural slip.\n" +
+    "(D) \\(\\tfrac7{18}\\) is what you get by giving Peter only the second hour plus a mis-sized slice of the final stage.\n" +
+    "(B) \\(\\tfrac16\\) is Tom's rate, and (A) \\(\\tfrac19\\) is a fraction of the last stage alone.\n" +
+    "The two things to track carefully are *how long* Peter worked (\\(\\tfrac43\\) hours, not 1 and not 2) and the fact that his share is rate × time, not time ÷ total time.",
+  take: "Build a stage-by-stage timeline, then compute the person's share as their rate times the hours they actually worked."
+},
+
+"quant-live-2#15": {
+  steps: "Step 1 — The question is a yes/no: are the two rates equal, i.e. is \\(a = b\\)? Both \\(a\\) and \\(b\\) are even integers.\n" +
+    "Step 2 — Statement (1): noon to 4:48 p.m. is \\(4.8 = \\tfrac{24}{5}\\) hours, so \\(\\tfrac1a + \\tfrac1b = \\tfrac{5}{24}\\).\n" +
+    "Step 3 — Equal rates would require \\(\\tfrac2a = \\tfrac5{24}\\), i.e. \\(a = 9.6\\) — not an integer, let alone an even one. So the answer is a definite [[no]].\n" +
+    "Step 4 — For completeness, the even-integer pairs that do work are \\((6, 24)\\) and \\((8, 12)\\) with their reverses, and in every one the rates differ. Statement (1) is [[sufficient]].\n" +
+    "Step 5 — Statement (2): \\((a+b)^2 = 400\\) gives \\(a + b = 20\\) (times are positive). That allows \\(a = b = 10\\) — rates equal, answer yes — and \\(a = 8, b = 12\\) — rates unequal, answer no. Both are even integers, so [[not sufficient]].",
+  fast: "For a yes/no question you do not need to find \\(a\\) and \\(b\\) — you only need to know whether \"equal\" is possible. Test the equal case directly: if \\(a = b\\) then \\(\\tfrac2a = \\tfrac5{24}\\), giving \\(a = 9.6\\), which the even-integer condition forbids. Statement (1) is settled in one line.\n" +
+    "Statement (2) falls to one counterexample pair, and \\(10 + 10\\) versus \\(8 + 12\\) is the obvious pair to try.",
+  traps: "(B) inverts the two statements, and it is tempting because (2) looks more algebraic and (1) looks like mere scheduling detail.\n" +
+    "(C) is the answer of someone who insists on finding \\(a\\) and \\(b\\) uniquely — but a yes/no question needs only a consistent answer, not unique values. Statement (1) never pins down which pair it is, and it does not have to.\n" +
+    "(D) would require (2) to work alone, and the pair \\((10,10)\\) versus \\((8,12)\\) kills it.\n" +
+    "(E) understates (1).\n" +
+    "The \"even integers\" constraint is not decoration — it is what makes 9.6 inadmissible and turns (1) into a definite no.",
+  take: "A definite \"no\" is just as sufficient as a definite \"yes\". Test the equality case directly instead of solving for the variables, and use every stated constraint on the domain."
+},
+
+"quant-live-2#16": {
+  steps: "Step 1 — Measure the job in machine-days. Six machines for 12 days is \\(6 \\times 12 = 72\\) machine-days of work.\n" +
+    "Step 2 — To finish in 8 days you need \\(72 \\div 8 = 9\\) machines.\n" +
+    "Step 3 — You already have 6, so you need \\(9 - 6 = 3\\) additional machines.",
+  fast: "Machines and days are inversely proportional for a fixed job, so cutting the time from 12 days to 8 — a factor of \\(\\tfrac23\\) — requires multiplying the machines by \\(\\tfrac32\\): \\(6 \\times \\tfrac32 = 9\\). Then subtract the six you have.\n" +
+    "The machine-days product \\(6 \\times 12 = 72\\) is the same idea and is worth writing down; it stays constant.",
+  traps: "(D) 6 is the total number of machines you would need if you doubled the fleet, and also just the given count repeated.\n" +
+    "(C) 4 comes from computing \\(12 - 8 = 4\\) — subtracting days and reporting the result as machines, which mixes units.\n" +
+    "(E) 7 and (A) 2 come from arithmetic slips in \\(72 \\div 8\\).\n" +
+    "The word that decides this question is \"additional\": 9 is the total needed, and 3 is the answer. Whenever a work question asks for \"how many more\", finish with the subtraction.",
+  take: "For a fixed job, (machines) × (days) is constant. Solve for the total needed, then subtract what you already have if the question says \"additional\"."
+},
+
+"quant-live-2#17": {
+  steps: "Step 1 — Convert each pair's time into a combined rate (tanks per hour):\n" +
+    "\\(a + b = \\dfrac{1}{6/5} = \\dfrac56\\); \\(a + c = \\dfrac{1}{3/2} = \\dfrac23\\); \\(b + c = \\dfrac12\\).\n" +
+    "Step 2 — Add all three equations. Each pump appears in exactly two of them, so the sum is \\(2(a + b + c)\\).\n" +
+    "Step 3 — Right side: \\(\\tfrac56 + \\tfrac23 + \\tfrac12 = \\tfrac{5 + 4 + 3}{6} = \\tfrac{12}{6} = 2\\).\n" +
+    "Step 4 — So \\(2(a + b + c) = 2\\), giving \\(a + b + c = 1\\) tank per hour.\n" +
+    "Step 5 — Time for all three together: \\(1 \\div 1 = 1\\) hour.",
+  fast: "Never solve for the individual rates. Adding the three pair-rates counts every pump twice, so halving the sum gives the three-pump rate immediately. That trick works for any \"three pairs, find the trio\" problem.\n" +
+    "Here the sum is exactly 2, so the trio's rate is exactly 1 — the numbers were chosen to make the final division disappear.",
+  traps: "(B) \\(\\tfrac12\\) is the *rate* halved rather than the sum halved — that is, \\(a+b+c\\) computed as \\(\\tfrac12 \\times\\) something, or the reciprocal taken twice.\n" +
+    "(A) \\(\\tfrac13\\) and (C) \\(\\tfrac23\\) come from averaging the three given times (\\(\\tfrac65, \\tfrac32, 2\\)) instead of adding rates — times never average like that.\n" +
+    "(D) \\(\\tfrac56\\) is the rate of pumps A and B, quoted as a time.\n" +
+    "The unit slip to guard against: \\(\\tfrac65\\) hours corresponds to a rate of \\(\\tfrac56\\), and mixing the two up flows through the whole problem.",
+  take: "Sum the pair-rates and halve: \\((a{+}b) + (a{+}c) + (b{+}c) = 2(a{+}b{+}c)\\). Convert times to rates before combining anything."
+},
+
+"quant-live-2#18": {
+  steps: "Step 1 — Work out loads per machine over the 2 hours. A large machine takes 30 minutes per load, so it does \\(4\\) loads. A small one takes 20 minutes, so it does \\(6\\).\n" +
+    "Step 2 — Total loads \\(= 4m + 6n\\).\n" +
+    "Step 3 — Factor it: \\(4m + 6n = 2(2m + 3n)\\). The total depends only on the combination \\(2m + 3n\\).\n" +
+    "Step 4 — Statement (2) gives \\(2m + 3n = 55\\) exactly, so the total is \\(110\\) — [[sufficient]], with no need to know \\(m\\) or \\(n\\) individually.\n" +
+    "Step 5 — Statement (1) gives \\(n = 3m\\), a ratio only. With \\(m = 1\\) the total is \\(4 + 18 = 22\\); with \\(m = 2\\) it is \\(44\\) — [[not sufficient]].",
+  fast: "Write the target expression and factor it *before* looking at the statements. Once you see \\(4m + 6n = 2(2m+3n)\\), statement (2) is visibly the exact quantity you need, doubled.\n" +
+    "This is the recurring Data Sufficiency pattern: you rarely need each variable, only the specific combination the question asks about.",
+  traps: "(A) picks the statement that looks like it relates the machines, but a ratio alone can never fix a total.\n" +
+    "(C) is the trap for anyone who tries to solve for \\(m\\) and \\(n\\) individually — the two statements together do give \\(m = 5, n = 15\\), but that is far more than the question needs.\n" +
+    "(D) would require the ratio alone to work.\n" +
+    "(E) understates (2).\n" +
+    "The habit worth building: ask \"what expression do I actually need?\" and check whether a statement hands you that expression whole.",
+  take: "Factor the target expression first. A statement that supplies the needed *combination* of variables is sufficient even when neither variable is determined."
+},
+
+"quant-live-2#19": {
+  steps: "Step 1 — Machine X's rate is \\(\\tfrac19\\) job per hour.\n" +
+    "Step 2 — In its first 3 hours alone, X completes \\(3 \\times \\tfrac19 = \\tfrac13\\) of the job.\n" +
+    "Step 3 — The remaining \\(\\tfrac23\\) is done by both machines in 4 hours, so their combined rate is \\(\\dfrac{2/3}{4} = \\dfrac16\\).\n" +
+    "Step 4 — Y's rate is the difference: \\(\\tfrac16 - \\tfrac19\\).\n" +
+    "Step 5 — Over eighteenths: \\(\\tfrac3{18} - \\tfrac2{18} = \\tfrac1{18}\\).\n" +
+    "Step 6 — A rate of \\(\\tfrac1{18}\\) means Y alone would take \\(18\\) hours.",
+  fast: "Two subtractions carry the whole problem: work remaining (\\(1 - \\tfrac13\\)) and rate remaining (\\(\\tfrac16 - \\tfrac19\\)). Take eighteenths as your working denominator from the start — X is \\(\\tfrac2{18}\\), the pair is \\(\\tfrac3{18}\\), so Y is \\(\\tfrac1{18}\\) by inspection.\n" +
+    "Note the sanity check: Y is slower than X, so its solo time must exceed 9 hours.",
+  traps: "(D) \\(4\\tfrac12\\) and (E) \\(3\\tfrac23\\) are both *shorter* than X's 9 hours, which is impossible — the pair together takes 6 hours' worth of rate, so Y must be the slower machine. That single observation eliminates two choices instantly.\n" +
+    "(C) \\(7\\tfrac15\\) is the time for the two machines working together on the whole job from the start, a genuine quantity but not the one asked.\n" +
+    "(B) \\(13\\tfrac12\\) comes from computing the joint rate as \\(\\tfrac23 \\div 4\\) but then subtracting times rather than rates.\n" +
+    "Rates subtract; times never do.",
+  take: "Joint rate minus known rate gives the unknown rate. Sanity-check the direction: if the pair is only slightly faster than one machine, the other must be much slower."
+},
+
+"quant-live-2#20": {
+  steps: "Step 1 — Let Tom take \\(t\\) hours to type 20 pages, so his rate is \\(\\tfrac{20}{t}\\) pages per hour. Jack takes \\(t + 2\\) hours, a rate of \\(\\tfrac{20}{t+2}\\).\n" +
+    "Step 2 — Together they type 25 pages in 3 hours, a combined rate of \\(\\tfrac{25}{3}\\) pages per hour.\n" +
+    "Step 3 — So \\(\\dfrac{20}{t} + \\dfrac{20}{t+2} = \\dfrac{25}{3}\\).\n" +
+    "Step 4 — Test \\(t = 4\\): \\(\\tfrac{20}{4} + \\tfrac{20}{6} = 5 + \\tfrac{10}{3} = \\tfrac{25}{3}\\) ✓.\n" +
+    "Step 5 — Jack's time is \\(t + 2 = 6\\) hours.\n" +
+    "Step 6 — Check the rates: Tom 5 pages/hour, Jack \\(\\tfrac{10}{3}\\); together \\(\\tfrac{25}{3}\\), and \\(3 \\times \\tfrac{25}{3} = 25\\) pages ✓.",
+  fast: "The answer choices *are* Jack's time, so back-solve rather than expanding the quadratic. Take (A) 6: Jack does \\(\\tfrac{20}{6}\\) pages an hour, Tom takes 4 hours and does 5 — together \\(\\tfrac{25}{3}\\), which is 25 pages in 3 hours. First candidate, done.\n" +
+    "Clearing the denominators algebraically leads to \\(5t^2 - 14t - 24 = 0\\), which is solvable but slower than one substitution.",
+  traps: "(C) 8 and (D) 10 assume a much slower Jack; testing either shows the pair could not reach 25 pages in 3 hours.\n" +
+    "(E) 5 is Tom's *rate* in pages per hour, not a time — a units confusion the numbers invite.\n" +
+    "(B) 7 comes from solving the quadratic with a sign slip, giving \\(t = 5\\).\n" +
+    "The other frequent error is answering with Tom's time, 4 hours, which is not offered — a reminder to check whose time the question wants before scanning the list.",
+  take: "When the choices are the unknown itself, substitute them into the rate equation rather than solving. Confirm whose time or rate the question asks for."
+},
+
+"quant-live-2#21": {
+  steps: "Step 1 — The question wants the total time for 400 km.\n" +
+    "Step 2 — Statement (1) covers only the first 200 km, in 2.5 hours. The second 200 km could take any amount of time, so the total is unknown — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): let the actual time be \\(t\\), so the average speed is \\(\\tfrac{400}{t}\\). A speed 20 km/h greater would give a time of \\(t - 1\\): \\(\\dfrac{400}{t} + 20 = \\dfrac{400}{t - 1}\\).\n" +
+    "Step 4 — Multiply through by \\(t(t-1)\\): \\(400(t-1) + 20t(t-1) = 400t\\), which simplifies to \\(20t^2 - 20t - 400 = 0\\), i.e. \\(t^2 - t - 20 = 0\\).\n" +
+    "Step 5 — Factor: \\((t - 5)(t + 4) = 0\\). Time must be positive, so \\(t = 5\\) hours — [[sufficient]].",
+  fast: "You do not have to solve the quadratic to answer a Data Sufficiency question — you only have to know it has exactly one positive root. A quadratic with a negative constant term has roots of opposite signs, so precisely one is admissible. That reasoning settles (2) in seconds.\n" +
+    "Statement (1) fails on an even simpler observation: it describes half the journey and says nothing about the other half.",
+  traps: "(A) treats a partial-journey speed as though it applied throughout — the stem never says the speed was constant.\n" +
+    "(C) is the cautious choice of someone who does not trust (2) to pin a unique value. It does: the negative root is inadmissible for a time.\n" +
+    "(D) would need (1) alone to work.\n" +
+    "(E) understates (2).\n" +
+    "The general caution runs the other way too — a quadratic yielding two *positive* roots would be insufficient, so always check the signs rather than assuming uniqueness.",
+  take: "For Data Sufficiency, establishing that an equation has exactly one admissible solution is enough — you need not compute it. Check the signs of a quadratic's roots against the physical domain."
+},
+
+"quant-live-2#22": {
+  steps: "Step 1 — Average speed for the round trip is total distance ÷ total time, so you need the return speed, not the distance.\n" +
+    "Step 2 — Statement (1): the return took \\(50\\%\\) longer over the same distance, so the return time is \\(1.5\\) times the outbound time and the return speed is \\(\\tfrac{40}{1.5} = \\tfrac{80}{3}\\) mph.\n" +
+    "Step 3 — Let the one-way distance be \\(d\\). Outbound time \\(\\tfrac{d}{40}\\); return time \\(\\tfrac{1.5d}{40}\\); total \\(\\tfrac{2.5d}{40}\\).\n" +
+    "Step 4 — Average \\(= \\dfrac{2d}{2.5d/40} = \\dfrac{80}{2.5} = 32\\) mph. The \\(d\\) cancels, so no distance is needed — [[sufficient]].\n" +
+    "Step 5 — Statement (2) gives the distance, 165 miles, but nothing about the return speed or time — [[not sufficient]].",
+  fast: "Average speed over a there-and-back trip depends only on the two speeds, never on the distance. Once you see that, statement (1) — which fixes the return speed relative to the outbound one — must be sufficient, and statement (2) — which fixes only the distance — cannot be.\n" +
+    "You never have to compute the 32 mph to answer the question.",
+  traps: "(B) picks the statement that supplies a concrete number, which is a persistent Data Sufficiency temptation; a distance alone tells you nothing about how fast the return leg was driven.\n" +
+    "(C) is the trap for anyone who believes the distance is needed to compute an average speed. It cancels — try it with \\(d = 60\\) and \\(d = 120\\) and you get 32 mph both times.\n" +
+    "(D) would require the distance alone to work.\n" +
+    "(E) understates (1).\n" +
+    "The related trap inside statement (1) is answering \\(\\tfrac{40 + 80/3}{2}\\) — averaging the two speeds gives about 33.3, not 32, because the legs take different times.",
+  take: "Round-trip average speed depends only on the two leg speeds; the distance always cancels. And it is the harmonic mean, never the arithmetic mean, of those speeds."
+}
+
+});

@@ -323,3 +323,156 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-6b#1": {
+  steps: "Step 1 — Look at the sign of each term on the left. \\(x^2 \\ge 0\\) for every real \\(x\\).\n" +
+    "Step 2 — \\(5|x| \\ge 0\\), since an absolute value is never negative.\n" +
+    "Step 3 — The constant is \\(+6\\).\n" +
+    "Step 4 — So the left side is at least \\(0 + 0 + 6 = 6\\) for every real \\(x\\), with the minimum reached at \\(x = 0\\).\n" +
+    "Step 5 — A quantity that is always at least 6 can never equal 0, so there are no solutions — integer or otherwise.",
+  fast: "Scan the signs before doing any algebra. Every term is non-negative and one of them is a positive constant, so the sum is bounded below by 6 and the equation is unsatisfiable.\n" +
+    "The trap is to reach for the quadratic formula: \\(x^2 + 5x + 6 = (x+2)(x+3)\\) has roots \\(-2\\) and \\(-3\\), but the absolute value makes the middle term non-negative, so those roots do not survive.",
+  traps: "(B) 2 is what you get by dropping the absolute value bars and factoring \\(x^2 + 5x + 6 = 0\\) to find \\(x = -2\\) and \\(x = -3\\). Substituting either back into the original gives \\(4 + 10 + 6 = 20 \\ne 0\\).\n" +
+    "(A) 4 comes from also solving \\(x^2 - 5x + 6 = 0\\) for the negative branch and collecting all four roots without checking any of them.\n" +
+    "(C) 3 and (D) 1 are partial versions of the same error.\n" +
+    "Always substitute candidate roots back when absolute values are present — the case analysis produces extraneous solutions.",
+  take: "Check the sign of every term first. A sum of non-negative terms plus a positive constant can never be zero, whatever the algebra suggests."
+},
+
+"quant-live-6b#2": {
+  steps: "Step 1 — The right-hand side is \\(x\\), and the left is an absolute value, hence non-negative. So any root must satisfy \\(x \\ge 0\\).\n" +
+    "Step 2 — Case \\(x^2 - 2 \\ge 0\\): the equation is \\(x^2 - 2 = x\\), i.e. \\(x^2 - x - 2 = 0\\), which factors as \\((x-2)(x+1) = 0\\).\n" +
+    "Step 3 — That gives \\(x = 2\\) or \\(x = -1\\). Only \\(x = 2\\) survives the sign condition and the case condition.\n" +
+    "Step 4 — Case \\(x^2 - 2 < 0\\): the equation is \\(2 - x^2 = x\\), i.e. \\(x^2 + x - 2 = 0\\), which factors as \\((x+2)(x-1) = 0\\).\n" +
+    "Step 5 — That gives \\(x = 1\\) or \\(x = -2\\). Only \\(x = 1\\) survives (and \\(1^2 = 1 < 2\\) ✓).\n" +
+    "Step 6 — The roots are 1 and 2, so their range is \\(2 - 1 = 1\\).",
+  fast: "The observation that saves the most time is \\(x \\ge 0\\), which comes free from the equation's shape and discards half the candidate roots immediately.\n" +
+    "Then two small quadratics, each factoring cleanly, and the answer is the spread of the survivors — not their count, not their sum.",
+  traps: "(C) 2 is the *number* of roots rather than their range — a natural confusion when both quantities are small integers.\n" +
+    "(A) 4 is the range of all four candidate roots \\(-2, -1, 1, 2\\), obtained by never checking them against the case conditions.\n" +
+    "(B) 3 is the range \\(2 - (-1)\\), keeping one extraneous negative root.\n" +
+    "(E) 0 would mean a single root.\n" +
+    "Every wrong choice here comes from skipping the verification step, which is exactly what absolute-value case analysis requires.",
+  take: "An equation \\(|f(x)| = x\\) forces \\(x \\ge 0\\). Solve both cases, discard roots that violate their own case condition, then answer the question actually asked."
+},
+
+"quant-live-6b#3": {
+  steps: "Step 1 — \\(|x| + |y| \\le 2\\) is the filled diamond with vertices \\((\\pm 2, 0)\\) and \\((0, \\pm 2)\\). Its diagonals are 4 each, so its area is \\(\\tfrac12(4)(4) = 8\\).\n" +
+    "Step 2 — The second condition \\(|x| \\ge 1\\) keeps only the parts with \\(x \\ge 1\\) or \\(x \\le -1\\), cutting away the central band.\n" +
+    "Step 3 — Take the right-hand piece. At \\(x = 1\\) the diamond allows \\(|y| \\le 1\\), and at \\(x = 2\\) it narrows to the single point \\((2, 0)\\).\n" +
+    "Step 4 — So the piece is a triangle with vertices \\((1, 1)\\), \\((1, -1)\\) and \\((2, 0)\\): a base of 2 running along \\(x = 1\\) and a height of 1.\n" +
+    "Step 5 — Its area is \\(\\tfrac12(2)(1) = 1\\).\n" +
+    "Step 6 — By symmetry the left-hand piece is congruent, so the total area is \\(2\\).",
+  fast: "Sketch the diamond and the two vertical cut lines; the leftover pieces are the two end-caps, each an obvious triangle.\n" +
+    "Reading the triangle's base off the diamond is the only computation: at \\(x = 1\\), \\(|y| \\le 2 - 1 = 1\\), so the base is 2 and the apex sits one unit away at \\((2,0)\\).",
+  traps: "(B) 1 counts only one of the two end-caps — the condition \\(|x| \\ge 1\\) is symmetric and keeps both.\n" +
+    "(E) 4 comes from computing the area of the removed middle band (which is 6) incorrectly, or from treating each cap as a square.\n" +
+    "(D) 3 and (A) \\(\\tfrac12\\) come from mis-reading the triangle's dimensions — the base is 2, not 1, because \\(y\\) runs from \\(-1\\) to \\(1\\).\n" +
+    "The absolute value on \\(x\\) is what doubles the answer; treating \\(|x| \\ge 1\\) as \\(x \\ge 1\\) halves it.",
+  take: "\\(|x| + |y| \\le k\\) is a filled diamond of area \\(2k^2\\). A condition \\(|x| \\ge c\\) keeps two symmetric pieces, not one."
+},
+
+"quant-live-6b#4": {
+  steps: "Step 1 — Substitute \\(X = x - 1\\) and \\(Y = y + 2\\). The equation becomes \\(|X| + |Y| = 3\\).\n" +
+    "Step 2 — That is the standard diamond centred at the origin in \\((X, Y)\\), with vertices 3 units out along each axis.\n" +
+    "Step 3 — Translating back simply moves the centre to \\((1, -2)\\); a translation never changes area.\n" +
+    "Step 4 — Both diagonals measure \\(2 \\times 3 = 6\\).\n" +
+    "Step 5 — Area of a rhombus \\(= \\tfrac12 d_1 d_2 = \\tfrac12(6)(6) = 18\\).",
+  fast: "Recognise the family: \\(|x - h| + |y - k| = r\\) is always a square rotated \\(45^\\circ\\), centred at \\((h, k)\\), with diagonals \\(2r\\) and area \\(2r^2\\). Here \\(r = 3\\), so the area is \\(2(9) = 18\\).\n" +
+    "The shifts \\(h\\) and \\(k\\) are pure decoration for an area question — they move the figure without resizing it.",
+  traps: "(D) 36 treats 6 as the side length rather than the diagonal. The actual side is \\(3\\sqrt2\\), and \\((3\\sqrt2)^2 = 18\\).\n" +
+    "(B) 9 is \\(r^2\\), the area of one quadrant's triangle times two, or simply the square of the constant.\n" +
+    "(A) 4.5 is the area of a single quadrant triangle (\\(\\tfrac12 \\cdot 3 \\cdot 3\\)), with the other three forgotten.\n" +
+    "(E) 42 has no geometric basis.\n" +
+    "The recurring confusion is diagonal versus side — for a tilted square, the axis-aligned measurements are the diagonals.",
+  take: "\\(|x-h| + |y-k| = r\\) is a tilted square centred at \\((h,k)\\) with diagonals \\(2r\\) and area \\(2r^2\\). Translations never change area."
+},
+
+"quant-live-6b#5": {
+  steps: "Step 1 — With only seven candidates, direct substitution is faster than case analysis. Test each integer.\n" +
+    "Step 2 — \\(x = 2\\): \\(|0| - |{-1}| = -1\\), while \\(|{-3}| = 3\\) ✗.\n" +
+    "Step 3 — \\(x = 3\\): \\(1 - 0 = 1\\), while \\(|{-2}| = 2\\) ✗.\n" +
+    "Step 4 — \\(x = 4\\): \\(2 - 1 = 1\\), while \\(|{-1}| = 1\\) ✓.\n" +
+    "Step 5 — \\(x = 5\\): \\(3 - 2 = 1\\), while \\(|0| = 0\\) ✗.\n" +
+    "Step 6 — \\(x = 6\\): \\(4 - 3 = 1\\), while \\(|1| = 1\\) ✓.\n" +
+    "Step 7 — \\(x = 7\\): \\(5 - 4 = 1\\) versus 2 ✗; \\(x = 8\\): \\(6 - 5 = 1\\) versus 3 ✗.\n" +
+    "Step 8 — Two integers work: 4 and 6.",
+  fast: "Notice the structure: for \\(x \\ge 3\\) the left side is always exactly 1, because \\(|x-2| - |x-3| = (x-2) - (x-3) = 1\\). So the equation reduces to \\(|x - 5| = 1\\), giving \\(x = 4\\) and \\(x = 6\\) at once.\n" +
+    "That observation replaces seven substitutions with one line, and it also explains why the answer is a symmetric pair around 5.",
+  traps: "(C) 3 and (D) 4 come from testing sloppily and accepting \\(x = 5\\) or \\(x = 3\\), where the two sides differ.\n" +
+    "(A) 1 stops after finding the first solution.\n" +
+    "(E) 5 counts every integer where the left side equals 1, forgetting that the right side must match it.\n" +
+    "The \"between 2 and 8\" wording does not affect the count here, since both solutions sit strictly inside the range either way.",
+  take: "For \\(x\\) beyond both breakpoints, \\(|x-a| - |x-b|\\) is the constant \\(b - a\\). Spotting that collapses the equation to a single absolute value."
+},
+
+"quant-live-6b#6": {
+  steps: "Step 1 — Solve for \\(x\\): \\(x - \\tfrac92 = \\pm\\tfrac52\\) gives \\(x = 7\\) or \\(x = 2\\). One is odd and one is even, so \\(x\\)'s parity is not fixed.\n" +
+    "Step 2 — \\(p\\) is odd, so a set of \\(p\\) consecutive integers has a middle element, and \\(y\\) is that element — an integer, but of unspecified parity.\n" +
+    "Step 3 — Statement I, \\(xyp\\) odd: this requires all three factors to be odd. Taking \\(x = 2\\) makes the product even, so I is [[not guaranteed]].\n" +
+    "Step 4 — Statement II, \\(xy(p^2 + p)\\) even: factor \\(p^2 + p = p(p+1)\\). That is a product of two consecutive integers, so it is always even.\n" +
+    "Step 5 — Any integer multiplied by an even number is even, so \\(xy \\cdot p(p+1)\\) is even regardless of \\(x\\), \\(y\\) and \\(p\\) — II is [[always true]].\n" +
+    "Step 6 — Statement III, \\(x^2y^2p^2\\) even: this requires at least one of \\(x, y, p\\) to be even. Take \\(x = 7\\), \\(p = 3\\), and the set \\(\\{2,3,4\\}\\) so \\(y = 3\\). Then \\(49 \\times 9 \\times 9\\) is odd — III is [[not guaranteed]].\n" +
+    "Step 7 — Only statement II must be true.",
+  fast: "The whole question rests on one identity: \\(p^2 + p = p(p+1)\\) is a product of consecutive integers and therefore always even. That single factor makes statement II unconditional.\n" +
+    "For the other two, one counterexample each suffices — and the two values of \\(x\\) (7 and 2) conveniently supply opposite parities, so each statement can be broken by choosing the unhelpful one.",
+  traps: "(A) I only is the natural answer if you notice that \\(x\\) can be odd and stop there — but \"must be true\" requires it for *both* values of \\(x\\), and \\(x = 2\\) breaks it.\n" +
+    "(D) and (E) accept statement III, usually by assuming the median \\(y\\) of consecutive integers must be even. It need not be: any integer can be a median.\n" +
+    "(C) III only rejects the one statement that actually holds.\n" +
+    "The source document's printed key for this question is \"I only\", which contradicts its own reasoning; the stored answer is the derived one.",
+  take: "\\(n^2 + n = n(n+1)\\) is always even. \"Must be true\" fails to a single counterexample, so test every value a variable can take."
+},
+
+"quant-live-6b#7": {
+  steps: "Step 1 — Decode the two conditions into signs. \\(|a| = -a\\) means \\(a \\le 0\\), and since \\(a\\) is non-zero, \\(a < 0\\).\n" +
+    "Step 2 — \\(|ab| = ab\\) means \\(ab \\ge 0\\), and since both are non-zero, \\(ab > 0\\).\n" +
+    "Step 3 — With \\(a < 0\\) and \\(ab > 0\\), it follows that \\(b < 0\\).\n" +
+    "Step 4 — Now remove the first absolute value. Since \\(b < 0\\), \\(b - 4 < 0\\), so \\(|b - 4| = 4 - b\\).\n" +
+    "Step 5 — And the second: \\(ab > 0\\) while \\(-b > 0\\), so \\(ab - b > 0\\) and \\(|ab - b| = ab - b\\).\n" +
+    "Step 6 — Add: \\((4 - b) + (ab - b) = ab - 2b + 4\\).",
+  fast: "Establish both signs first — that is the entire difficulty — and then each absolute value unwraps mechanically.\n" +
+    "A concrete check is quicker than trusting the algebra: take \\(a = -1\\), \\(b = -2\\). Then \\(|b-4| = 6\\) and \\(|ab - b| = |2 + 2| = 4\\), summing to 10. And \\(ab - 2b + 4 = 2 + 4 + 4 = 10\\) ✓. Only one choice matches.",
+  traps: "(E) \\(4 - ab\\) and (A) \\(ab - 4\\) drop the \\(b\\) terms entirely, which happens if you unwrap \\(|b - 4|\\) as \\(b - 4\\).\n" +
+    "(B) \\(2b - ab - 4\\) is the negative of the answer, from getting both signs backwards.\n" +
+    "(C) \\(ab + 4\\) unwraps \\(|ab - b|\\) as \\(ab + b\\) or loses a term.\n" +
+    "Substituting a legal pair of values eliminates all four in about fifteen seconds — always worth doing when the choices are algebraic expressions.",
+  take: "\\(|u| = -u\\) means \\(u \\le 0\\); \\(|u| = u\\) means \\(u \\ge 0\\). Fix every sign first, then unwrap. Verify with concrete legal values."
+},
+
+"quant-live-6b#8": {
+  steps: "Step 1 — Work outward. \\(\\big||x-3| - 5\\big| = 3\\) means \\(|x - 3| - 5 = 3\\) or \\(|x - 3| - 5 = -3\\).\n" +
+    "Step 2 — So \\(|x - 3| = 8\\) or \\(|x - 3| = 2\\). Both are non-negative, so both are legitimate.\n" +
+    "Step 3 — \\(|x - 3| = 8\\) gives \\(x = 11\\) or \\(x = -5\\).\n" +
+    "Step 4 — \\(|x - 3| = 2\\) gives \\(x = 5\\) or \\(x = 1\\).\n" +
+    "Step 5 — Sort the four roots: \\(-5, 1, 5, 11\\).\n" +
+    "Step 6 — With an even count, the median is the average of the two middle values: \\(\\dfrac{1 + 5}{2} = 3\\).",
+  fast: "Peel the absolute values one layer at a time and expect four roots from a doubly nested equation.\n" +
+    "There is also a symmetry shortcut: every root satisfies \\(|x - 3| \\in \\{2, 8\\}\\), so the roots are symmetric about 3 — and a symmetric set has its median at the centre of symmetry, which is 3.",
+  traps: "(D) 5 and (A) 1 are individual roots mistaken for the median.\n" +
+    "(E) 6 is the average of \\(1\\) and \\(11\\), or the mean of all four roots computed carelessly — the actual mean is \\(\\tfrac{-5+1+5+11}{4} = 3\\), which happens to agree, but the arithmetic must still be done.\n" +
+    "(B) 2 comes from finding only the inner roots \\(1\\) and \\(5\\)... and then mis-averaging, or from solving only one of the two outer branches.\n" +
+    "The commonest structural error is solving only \\(|x-3| = 8\\) and stopping, since the \\(-3\\) branch is easy to overlook.",
+  take: "A nested absolute value splits twice, giving up to four roots. Roots of \\(|x - c| = k\\) are symmetric about \\(c\\), so their median is \\(c\\)."
+},
+
+"quant-live-6b#9": {
+  steps: "Step 1 — Two absolute values mean four sign cases, but the equations themselves narrow it quickly.\n" +
+    "Step 2 — Suppose \\(y \\ge 0\\). Then \\(|y| = y\\) and the second equation becomes \\(x + y - y = x = 6\\).\n" +
+    "Step 3 — Substituting into the first: \\(6 + |6| + y = 7\\), so \\(12 + y = 7\\) and \\(y = -5\\) — contradicting \\(y \\ge 0\\). So \\(y < 0\\).\n" +
+    "Step 4 — With \\(y < 0\\), \\(|y| = -y\\) and the second equation becomes \\(x - 2y = 6\\).\n" +
+    "Step 5 — Now suppose \\(x < 0\\). Then \\(|x| = -x\\) and the first equation becomes \\(x - x + y = y = 7\\), contradicting \\(y < 0\\). So \\(x \\ge 0\\).\n" +
+    "Step 6 — With \\(x \\ge 0\\), the first equation is \\(2x + y = 7\\). Solving alongside \\(x - 2y = 6\\): substitute \\(y = 7 - 2x\\) to get \\(x - 14 + 4x = 6\\), so \\(5x = 20\\) and \\(x = 4\\), \\(y = -1\\).\n" +
+    "Step 7 — Both sign assumptions hold (\\(x = 4 \\ge 0\\), \\(y = -1 < 0\\)), so \\(x + y = 3\\).",
+  fast: "Each equation is engineered to collapse under one sign assumption: if \\(y \\ge 0\\) the second reduces to \\(x = 6\\), and if \\(x < 0\\) the first reduces to \\(y = 7\\). Testing those two assumptions first eliminates two of the four cases in a line each.\n" +
+    "What remains is an ordinary two-by-two linear system.",
+  traps: "(D) 6 is the value of \\(x\\) from the discarded case \\(y \\ge 0\\) — a real intermediate result that fails its own assumption.\n" +
+    "(E) 9 comes from adding \\(x = 4\\) to \\(|y| = 1\\) plus a stray term, or from keeping \\(y = 7\\) from the other discarded case.\n" +
+    "(B) 4 is \\(x\\) alone.\n" +
+    "(C) 5 comes from a sign slip in \\(x - 2y = 6\\).\n" +
+    "The essential discipline is to check the solution against the sign assumptions that produced it — a case can yield clean numbers and still be invalid.",
+  take: "Split on the sign of each absolute value, and prefer the assumption that makes an equation collapse. Always verify the solution satisfies the assumptions of its own case."
+}
+
+});

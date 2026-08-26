@@ -5,6 +5,18 @@
    answer key, and every key entry below was re-derived computationally before
    the question was accepted (case analysis for Data Sufficiency, exhaustive
    enumeration or simulation for the rest).
+
+   Corrections applied while writing the in-depth explanations:
+     - quant-live-4 #19: the two Data Sufficiency statements were missing from
+       the stem (they survived only inside the explanation); restored.
+     - quant-live-6a #15: choice (D) came from the shared ROMAN3 list and read
+       "I and III only", but statement II is the achievable one and III is
+       impossible. Given its own choice list ending "I and II only"; the stored
+       key D is unchanged and now matches.
+     - quant-live-6b #6: the stored key read A ("I only") while the question's
+       own explanation shows I and III both fail and II always holds. Key
+       corrected to B ("II only"). This is the only answer changed.
+
    Appends to window.GMAT_SETS_NEW, which index.html merges into GMAT_SETS. */
 (function () {
   var DS = [
@@ -584,11 +596,11 @@
         ["1", "2", "3", "4", "5"],
         "For integers this small, testing them one at a time is faster than case analysis.",
         "Step 1 — Test each integer from 2 to 8.\nStep 2 — \\(x=2\\): \\(0-1=-1\\) vs 3 ✗. \\(x=3\\): \\(1-0=1\\) vs 2 ✗. \\(x=4\\): \\(2-1=1\\) vs 1 ✓. \\(x=5\\): \\(3-2=1\\) vs 0 ✗. \\(x=6\\): \\(4-3=1\\) vs 1 ✓. \\(x=7\\): \\(5-4=1\\) vs 2 ✗. \\(x=8\\): \\(6-5=1\\) vs 3 ✗.\nStep 3 — Two solutions: 4 and 6.\nAnswer: B."),
-      P(6, "Absolute value", "A",
+      P(6, "Absolute value", "B",
         "If \\(\\left|x - \\tfrac92\\right| = \\tfrac52\\), and if y is the median of a set of p consecutive integers where p is odd, which of the following must be true?\nI. \\(xyp\\) is odd\nII. \\(xy(p^{2} + p)\\) is even\nIII. \\(x^{2}y^{2}p^{2}\\) is even",
         ROMAN3,
         "Solve for x first — one of the two values is even and the other odd.",
-        "Step 1 — \\(x - \\tfrac92 = \\pm\\tfrac52\\) gives \\(x = 7\\) or \\(x = 2\\).\nStep 2 — With p odd, the median of p consecutive integers is itself one of the integers, so y is an integer of unknown parity.\nStep 3 — I fails when \\(x = 2\\). III fails when \\(x = 7\\), y odd and p odd.\nStep 4 — II always holds: \\(p^{2} + p = p(p+1)\\) is the product of consecutive integers, hence always even.\nAnswer: A.", "hard"),
+        "Step 1 — \\(x - \\tfrac92 = \\pm\\tfrac52\\) gives \\(x = 7\\) or \\(x = 2\\).\nStep 2 — With p odd, the median of p consecutive integers is itself one of the integers, so y is an integer of unknown parity.\nStep 3 — I fails when \\(x = 2\\). III fails when \\(x = 7\\), y odd and p odd.\nStep 4 — II always holds: \\(p^{2} + p = p(p+1)\\) is the product of consecutive integers, hence always even.\nAnswer: B.", "hard"),
       P(7, "Absolute value", "D",
         "For any non-zero a and b that satisfy \\(|ab| = ab\\) and \\(|a| = -a\\), what is the value of \\(|b - 4| + |ab - b|\\)?",
         ["\\(ab - 4\\)", "\\(2b - ab - 4\\)", "\\(ab + 4\\)", "\\(ab - 2b + 4\\)", "\\(4 - ab\\)"],

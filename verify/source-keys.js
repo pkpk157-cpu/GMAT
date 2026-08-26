@@ -139,5 +139,24 @@ module.exports = {
                     "B", "E", "A", "A", "C", "B", "A", "D", "C", "A", "C", "B", "C", "B",
                     "B", "C", "B", "C", "B", "B", "E", "D", "B"],
 
+  /* RC Latest 700-800 Level Questions. The companion solutions volume marks
+     the credited choice CORRECT and explains every option; the letters below
+     are those markings. Question numbers are the source's own, so a gap means
+     that question was already in the bank and is not repeated here. */
+  "rc-700-housework": ["A", "C", "D"],   /* source page 2: 1.A 2.C 3.D */
+  "rc-700-partnerships": ["C", "E", "B", "E"],   /* source page 3: 1.C 2.E 3.B 4.E */
+  "rc-700-skus": ["C", "E", "D"],   /* source page 4: 1.C 2.E 3.D */
+  "rc-700-phocids": ["A", "E", "E"],   /* source page 5: 1.A 3.E 4.E */
+  "rc-700-sanandreas": ["A", "B", "D"],   /* source page 6: 1.A 2.B 3.D */
+  "rc-700-tawahka": ["D", "C", "A", "D"],   /* source page 7: 1.D 2.C 3.A 4.D */
+  "rc-700-travel": ["E", "C", "D"],   /* source page 8: 1.E 2.C 3.D */
+  "rc-700-downsizing": ["E", "D", "B"],   /* source page 9: 1.E 3.D 4.B */
+  "rc-700-seamstresses": ["B", "A", "D", "A"],   /* source page 10: 1.B 2.A 3.D 4.A */
+  "rc-700-hopi": ["E", "C", "D"],   /* source page 11: 1.E 2.C 3.D */
+  "rc-700-lepidoptera": ["B", "A", "C", "D"],   /* source page 12: 1.B 2.A 3.C 4.D */
+  "rc-700-birds": ["C", "D"],   /* source page 13: 2.C 3.D */
+  "rc-700-episodic": ["B", "C", "C", "A"],   /* source page 14: 1.B 2.C 3.C 4.A */
+  "rc-700-labor-myths": ["A", "D", "B", "A", "E"],   /* source page 15: 1.A 2.D 3.B 4.A 5.E */
+
   "di-ds-realexam": null
 };

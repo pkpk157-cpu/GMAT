@@ -3,6 +3,14 @@
    question: { n, topic, correct:"A".."E", options, text, choices[], hint, expl, note? }
    Some sets carry a shared `passage` (Reading Comprehension, and Data
    Insights table / graphics / multi-source context) shown above the question.
+
+   Documented repairs to transcribed choices (the stored key is unchanged):
+     - quant-numbersystem-2-2 #22: choice (E) was the fragment "8", which is
+       not a digit pair at all; restored to "None of these".
+     - quant-numbersystem-2-2 #24: choices (A) "7 and 11", (B) "11 and 13" and
+       (D) "3, 7 and 13" were all true of a six-times-repeated digit, so four
+       options were simultaneously correct. Each now carries one false factor,
+       leaving (C) "7, 11 and 13" as the only true statement.
 */
 window.GMAT_SETS = [
   {
@@ -363,7 +371,7 @@ window.GMAT_SETS = [
           "0, 4",
           "2, 0",
           "4, 4",
-          "8"
+          "None of these"
         ],
         "hint": "Use the \\(\\div5\\) rule to fix \\(\\$\\) first, then the \\(\\div8\\) rule for \\(*\\).",
         "expl": "Step 1 — Divisible by 5 means the last digit is 0 or 5; divisible by 8 means the number is even, so the last digit must be 0.\nStep 2 — Divisibility by 8 depends only on the last three digits, here \\(4{*}0\\). Testing: 400 ✓, 420 ✗, 440 ✓, 480 ✓.\nStep 3 — Of the pairs offered, only \\(*=4,\\ \\$=0\\) gives a last-three of 440, which 8 divides.\nAnswer: A.",
@@ -393,10 +401,10 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "There is one number which is formed by writing one digit 6 times (e.g. 111111, 444444, etc.). Such a number is always divisible by:",
         "choices": [
-          "7 and 11",
-          "11 and 13",
+          "7 and 17",
+          "11 and 19",
           "7, 11 and 13",
-          "3, 7 and 13",
+          "3, 9 and 13",
           "None of these"
         ],
         "hint": "A digit repeated six times equals that digit \\(\\times\\,111111\\) — factor 111111.",

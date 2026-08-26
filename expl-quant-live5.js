@@ -165,3 +165,145 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-5a#11": {
+  steps: "Step 1 — With no restriction, six people can line up in \\(6! = 720\\) ways.\n" +
+    "Step 2 — In any one of those lines, exactly one of two things is true: Frankie stands somewhere behind Joey, or Frankie stands somewhere ahead of him. There is no third case, since no two people share a position.\n" +
+    "Step 3 — Swapping Frankie and Joey turns any line of the first kind into a line of the second kind, and vice versa. That is a perfect pairing between the two groups.\n" +
+    "Step 4 — So the two groups are equal in size, each holding half the total.\n" +
+    "Step 5 — \\(720 \\div 2 = 360\\).",
+  fast: "A symmetry argument replaces all the counting: for any two named people, exactly half of all arrangements put one before the other. Compute \\(6!\\) and halve it.\n" +
+    "The same reasoning generalises — with three people required in a fixed relative order, the fraction is \\(\\tfrac1{3!}\\), and so on.",
+  traps: "(E) 720 is the unrestricted total, chosen by anyone who reads the condition as automatically satisfied.\n" +
+    "(C) 120 is \\(5!\\), which treats Frankie and Joey as a glued pair — but the condition says \"somewhere behind\", not \"immediately behind\", so the other four people may stand between them.\n" +
+    "(B) 24 is \\(4!\\), removing both men from the count entirely.\n" +
+    "(A) 6 counts something much smaller still.\n" +
+    "The word \"somewhere\" is what rules out the adjacency reading and licenses the clean halving.",
+  take: "For any two people, exactly half of all arrangements place one before the other. \"Somewhere behind\" is an ordering condition, not an adjacency condition."
+},
+
+"quant-live-5a#12": {
+  steps: "Step 1 — After discarding, Sammy has \\(x - y\\) flavours, and the number of 10-flavour bags is \\(\\binom{x-y}{10}\\). So the question needs only the difference \\(x - y\\).\n" +
+    "Step 2 — Statement (1): discarding two more would leave \\(x - y - 2\\) flavours and \\(\\binom{x-y-2}{10} = 3003\\).\n" +
+    "Step 3 — \\(\\binom{15}{10} = \\binom{15}{5} = 3003\\), and \\(\\binom{n}{10}\\) is strictly increasing in \\(n\\), so \\(x - y - 2 = 15\\) and \\(x - y = 17\\) — [[sufficient]].\n" +
+    "Step 4 — Statement (2): \\(x = y + 17\\) says exactly that \\(x - y = 17\\) — [[sufficient]].\n" +
+    "Step 5 — Each alone determines the difference, and hence \\(\\binom{17}{10}\\).",
+  fast: "Identify the quantity the answer depends on — here the single difference \\(x - y\\), not \\(x\\) and \\(y\\) separately. Both statements deliver it, one directly and one through a strictly increasing binomial.\n" +
+    "You never need \\(\\binom{17}{10}\\) itself; sufficiency is about determinacy, not about the number.",
+  traps: "(C) is the answer of someone trying to find \\(x\\) and \\(y\\) individually. Neither statement does that, and neither needs to — the two statements even say the same thing.\n" +
+    "(A) and (B) reject one statement, usually (1), on the grounds that a binomial equation might have several solutions. For a fixed lower index it cannot.\n" +
+    "(E) rejects both.\n" +
+    "The framing move is Step 1: writing the target as \\(\\binom{x-y}{10}\\) makes the shared dependence obvious.",
+  take: "Express the target in terms of the smallest set of unknowns first. Here it depends on \\(x - y\\) alone, so any statement fixing that difference is sufficient."
+},
+
+"quant-live-5a#13": {
+  steps: "Step 1 — The noun template is C V C V C: three consonant slots and two vowel slots, in that fixed order.\n" +
+    "Step 2 — Nothing forbids reusing a letter, so each slot is filled independently.\n" +
+    "Step 3 — Each consonant slot has 3 options and each vowel slot has 2.\n" +
+    "Step 4 — Multiply: \\(3 \\times 2 \\times 3 \\times 2 \\times 3 = 3^3 \\times 2^2\\).\n" +
+    "Step 5 — \\(27 \\times 4 = 108\\).",
+  fast: "Group the slots by type: \\(3^3\\) for the consonants and \\(2^2\\) for the vowels, so \\(27 \\times 4 = 108\\). Writing it that way is faster than multiplying five factors in sequence and makes the structure visible.\n" +
+    "The assumption doing the work is that letters may repeat — the question describes a template, not a selection.",
+  traps: "(D) 72 comes from treating one slot as having fewer options, typically by forbidding a repeat somewhere.\n" +
+    "(C) 36 is \\(3 \\times 2 \\times 3 \\times 2\\), dropping the final consonant slot — an easy miscount of a five-letter template.\n" +
+    "(B) 12 and (A) 9 count only part of the pattern, or count \\(3 \\times 2\\) and \\(3^2\\).\n" +
+    "If repetition were forbidden the count would be \\(3 \\times 2 \\times 2 \\times 1 \\times 1 = 12\\), which is exactly why (B) is offered — but the language has only three consonants and five slots to fill across two of the letters' types, so repetition must be allowed.",
+  take: "Fixed-pattern counting multiplies the options at each slot. Group identical slot types as powers, and check whether repetition is permitted."
+},
+
+"quant-live-5a#14": {
+  steps: "Step 1 — Count all seatings of the seven people: \\(7!\\).\n" +
+    "Step 2 — Now count the forbidden ones, in which all three men occupy adjacent seats.\n" +
+    "Step 3 — Treat the three men as a single block. That block plus the four women makes 5 items to arrange in the row: \\(5!\\) ways.\n" +
+    "Step 4 — Within the block the three men can be ordered in \\(3!\\) ways.\n" +
+    "Step 5 — So the forbidden count is \\(5! \\times 3!\\).\n" +
+    "Step 6 — The answer is \\(7! - 5!\\,3!\\).",
+  fast: "The glue-them-together technique is the standard move for adjacency: \\(k\\) people who must sit together become one item, so \\(n\\) people become \\(n - k + 1\\) items, arranged in \\((n-k+1)!\\) ways with \\(k!\\) internal orders.\n" +
+    "Here \\(7 - 3 + 1 = 5\\), giving \\(5!\\,3!\\) — and the question wants the complement, so subtract from \\(7!\\).",
+  traps: "(B) \\(7! - 4!\\,3!\\) uses 4 items instead of 5 — it forgets that the block itself counts as one of the items alongside the four women.\n" +
+    "(A) and (E) use \\(2!\\,3!\\,2!\\), which counts arrangements within some other grouping entirely.\n" +
+    "(D) multiplies rather than subtracts, giving a count of forbidden seatings scaled by 7.\n" +
+    "The check is a quick sanity comparison: \\(5!\\,3! = 720\\) out of \\(7! = 5040\\), so about a seventh of all seatings are forbidden — plausible for three specific people out of seven landing together.",
+  take: "For \\(k\\) people who must be adjacent among \\(n\\), the count is \\((n-k+1)!\\,k!\\). Subtract from \\(n!\\) when the condition is that they must *not* be adjacent."
+},
+
+"quant-live-5a#15": {
+  steps: "Step 1 — Count the distinct codes. Ten letters with the letter I repeated twice give \\(\\dfrac{10!}{2!}\\) distinguishable arrangements, since swapping the two I's changes nothing.\n" +
+    "Step 2 — Count the favourable codes, where the two I's are adjacent. Glue them into one unit.\n" +
+    "Step 3 — That leaves 9 units, all distinct, arranged in \\(9!\\) ways. No division by 2 is needed here, because the two I's inside the glued unit are identical and their order does not create a new code.\n" +
+    "Step 4 — Probability \\(= \\dfrac{9!}{10!/2!} = \\dfrac{2 \\times 9!}{10!} = \\dfrac{2}{10} = \\dfrac15\\).",
+  fast: "Skip the factorials entirely with a positional argument: place the eight other letters and the pair, or simply note that among the 10 positions the two I's occupy a random 2-subset, of which \\(\\binom{10}{2} = 45\\) exist and 9 are adjacent — \\(\\tfrac9{45} = \\tfrac15\\).\n" +
+    "That version is faster and avoids the repeated-letter division altogether.",
+  traps: "(A) \\(\\tfrac1{10}\\) comes from dividing 9 adjacent pairs by 90 ordered pairs instead of 45 unordered ones — a double-count in the denominator.\n" +
+    "(E) \\(\\tfrac12\\) and (D) \\(\\tfrac14\\) come from forgetting the \\(2!\\) in the total or applying it twice.\n" +
+    "(B) \\(\\tfrac18\\) is a near-miss from counting 8 adjacent positions rather than 9.\n" +
+    "The repeated letter is the trap: it divides the total count by 2 but does *not* divide the glued count, and skipping either adjustment gives a wrong ratio.",
+  take: "With one repeated letter, total arrangements are \\(n!/2!\\) but glued arrangements are \\((n-1)!\\). Or bypass both: the pair occupies a random 2-subset of positions, and \\(n-1\\) of the \\(\\binom n2\\) subsets are adjacent."
+},
+
+"quant-live-5a#16": {
+  steps: "Step 1 — There are five people and five seats: two in front (one of which is the driver's) and three across the back.\n" +
+    "Step 2 — A parent must drive: 2 choices. The other four people fill the remaining four seats in \\(4! = 24\\) ways, giving \\(2 \\times 24 = 48\\) arrangements before the restriction.\n" +
+    "Step 3 — Identify the adjacent seat pairs. The two front seats are adjacent, and in the back row the left–middle and middle–right pairs are adjacent.\n" +
+    "Step 4 — The daughters cannot occupy the front pair, since one of those seats is the driver's and a parent is in it. So only the two back-row pairs are forbidden.\n" +
+    "Step 5 — Count the bad arrangements: 2 forbidden pairs \\(\\times\\) 2 orders for the daughters \\(\\times\\) 2 ways to seat the remaining parent and the son in the leftover seats \\(= 8\\), and that is per driver choice, so \\(8 \\times 2 = 16\\).\n" +
+    "Step 6 — \\(48 - 16 = 32\\).",
+  fast: "Fix the driver first — it is the most constrained seat — and everything downstream is a small permutation. Then note that the front pair is automatically safe, so only two adjacent pairs matter.\n" +
+    "Counting the bad cases (16) is quicker than counting the good ones directly, because the daughters' forbidden placements are so few.",
+  traps: "(C) 48 is the unrestricted total, forgetting the daughters' condition entirely.\n" +
+    "(A) 28 subtracts too much, usually by counting the front pair as a third forbidden adjacency — but a daughter cannot sit in the driver's seat, so that pair can never hold both.\n" +
+    "(D) 60 and (E) 120 ignore the driver restriction and use \\(5!\\)-scale counts.\n" +
+    "The seat geometry matters: three back seats give two adjacent pairs, not three, since the left and right seats are not neighbours.",
+  take: "Seat the most constrained person first, then count forbidden adjacencies against the actual seat layout. A row of \\(k\\) seats has \\(k-1\\) adjacent pairs."
+},
+
+"quant-live-5a#17": {
+  steps: "Step 1 — \"At least one letter repeated\" is much easier to count as a complement.\n" +
+    "Step 2 — Total passwords with repetition allowed: each of the 4 positions has 6 choices, so \\(6^4 = 1296\\).\n" +
+    "Step 3 — Passwords with all four letters distinct: \\(6 \\times 5 \\times 4 \\times 3 = 360\\).\n" +
+    "Step 4 — Subtract: \\(1296 - 360 = 936\\).",
+  fast: "\"At least one\" almost always signals complementary counting — compute everything, subtract the case where nothing repeats. Two short products and one subtraction.\n" +
+    "Direct counting here would require splitting into exactly-one-pair, two-pairs, three-of-a-kind and four-of-a-kind cases, which is far more work and far more error-prone.",
+  traps: "(E) 1,296 is the unrestricted total, the answer if you forget to subtract.\n" +
+    "(A) 720 is \\(6!\\), which counts arrangements of all six letters rather than four-letter passwords.\n" +
+    "(B) 864 and (C) 900 come from subtracting a wrong distinct-letter count, such as \\(6^4 - 6 \\times 5 \\times 4 \\times 4\\) or \\(1296 - 396\\).\n" +
+    "The distinct count must be a falling product \\(6 \\times 5 \\times 4 \\times 3\\); using \\(\\binom64\\) instead would count sets rather than ordered passwords.",
+  take: "\"At least one repeat\" = (all arrangements) − (all distinct). Passwords are ordered, so the distinct count is the falling product \\(n(n-1)(n-2)\\dots\\), not a combination."
+},
+
+"quant-live-5a#18": {
+  steps: "Step 1 — Handle the positive requirement first. Jeong must sit next to Leila, so glue them into one unit.\n" +
+    "Step 2 — That leaves 5 units to arrange: \\(5! = 120\\) orders, times \\(2\\) for Jeong and Leila's internal order — \\(240\\) arrangements satisfying the Jeong–Leila condition.\n" +
+    "Step 3 — From those, remove the ones in which Gita and Inge are also adjacent.\n" +
+    "Step 4 — Glue both pairs: now 4 units, arranged in \\(4! = 24\\) ways, times 2 for the Jeong–Leila order and 2 for the Gita–Inge order: \\(24 \\times 2 \\times 2 = 96\\).\n" +
+    "Step 5 — Subtract: \\(240 - 96 = 144\\).",
+  fast: "Apply the must-sit-together condition first to shrink the universe, then subtract the must-not cases from *that* smaller universe — not from \\(6!\\). Getting the order of operations right is the whole technique.\n" +
+    "Each gluing step reduces the item count by one and multiplies in a factor of 2 for the internal order.",
+  traps: "(B) 240 stops after the Jeong–Leila condition and never applies the Gita–Inge restriction.\n" +
+    "(A) 288 comes from subtracting a Gita–Inge count computed against all \\(6!\\) arrangements rather than against the 240 that already satisfy the first condition.\n" +
+    "(D) 120 forgets the factor of 2 for Jeong and Leila's internal order.\n" +
+    "(E) 96 reports the subtracted quantity itself.\n" +
+    "The disciplined phrasing is: within the set where JL are together, how many also have GI together? That framing prevents mixing universes.",
+  take: "Impose the \"must be together\" condition first to define the universe, then subtract the \"must not be together\" cases computed inside that same universe."
+},
+
+"quant-live-5a#19": {
+  steps: "Step 1 — Count the distinct outfits: \\(3\\) shirts \\(\\times\\ 2\\) sweaters \\(\\times\\ 4\\) hats \\(= 24\\).\n" +
+    "Step 2 — He starts wearing them the day after Tuesday, so day 1 is Wednesday.\n" +
+    "Step 3 — The 24th distinct outfit is worn on day 24, which is \\(23\\) days after Wednesday.\n" +
+    "Step 4 — \\(23 = 3 \\times 7 + 2\\), so day 24 falls two weekdays past Wednesday: Friday.\n" +
+    "Step 5 — On the following day he has no unused combination left, so the first day he must repeat is Saturday.",
+  fast: "Two small computations: \\(3 \\times 2 \\times 4 = 24\\) outfits, and \\(24 \\bmod 7 = 3\\). Starting Wednesday, 24 days later brings you to Wednesday \\(+\\) 3 \\(=\\) Saturday — which is exactly the day the supply runs out.\n" +
+    "That shortcut works because day \\(n+1\\) after a Wednesday start is Wednesday shifted by \\(n\\), and \\(n = 24\\) here.",
+  traps: "(D) Friday is the last day he can still wear a *new* outfit — the off-by-one the question is built around. Read the question as asking for the first day he cannot.\n" +
+    "(B) Wednesday takes the start day as the answer.\n" +
+    "(A) Tuesday is the purchase day, explicitly before he starts.\n" +
+    "(C) Thursday comes from a second off-by-one in the modular arithmetic.\n" +
+    "Two separate off-by-ones lurk here: whether day 1 is Tuesday or Wednesday, and whether the answer is the 24th day or the 25th.",
+  take: "Multiply independent wardrobe choices for the outfit count, then reduce the day offset modulo 7 — and check carefully which day the question calls day one and whether it wants the last success or the first failure."
+}
+
+});

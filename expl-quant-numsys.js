@@ -584,3 +584,236 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-numbersystem-2-2#43": {
+  steps: "Step 1 — You cannot compare powers with different bases and different exponents directly. Rewrite all three over the same base, and 2 is the natural choice because 4 and 16 are both powers of 2.\n" +
+    "Step 2 — \\(4^{38} = (2^2)^{38} = 2^{76}\\).\n" +
+    "Step 3 — \\(16^{19} = (2^4)^{19} = 2^{76}\\).\n" +
+    "Step 4 — So \\(4^{38}\\) and \\(16^{19}\\) are not merely close — they are [[exactly equal]], both being \\(2^{76}\\).\n" +
+    "Step 5 — And \\(2^{76} > 2^{57}\\), since with a common base above 1 the larger exponent wins.\n" +
+    "Step 6 — Descending order: \\(4^{38} = 16^{19} > 2^{57}\\).",
+  fast: "Multiply base-exponent pairs in your head: \\(4^{38}\\) is \"2 twice, 38 times\" \\(= 2^{76}\\); \\(16^{19}\\) is \"2 four times, 19 times\" \\(= 2^{76}\\). Both give 76. The instant you see the two products coincide, only one option can be right — the one containing an equals sign.",
+  traps: "(A), (C), (D) and (E) all impose a strict ordering on \\(4^{38}\\) and \\(16^{19}\\), and no strict inequality between two identical numbers can be true. Noticing \\(2 \\times 38 = 4 \\times 19\\) eliminates four choices in one stroke.\n" +
+    "(E) is the most tempting of them because it gets the relationship with \\(2^{57}\\) right and only errs on the equality — a reminder to check every relation in an ordering choice, not just the first.\n" +
+    "(A) inverts the comparison entirely, which is what happens if you compare the exponents 57, 38 and 19 without first converting to a common base.",
+  take: "Convert powers to a common base and compare exponents. Watch for exponent products that coincide — the answer may be an equality rather than a strict order."
+},
+
+"quant-numbersystem-2-2#44": {
+  steps: "Step 1 — The exponents 10000, 3000, 6000 and 4000 share the factor 1000, so rewrite everything as something to the power 1000.\n" +
+    "Step 2 — \\(2^{10000} = (2^{10})^{1000} = 1024^{1000}\\).\n" +
+    "Step 3 — \\(10^{3000} = (10^3)^{1000} = 1000^{1000}\\).\n" +
+    "Step 4 — \\(3^{6000} = (3^6)^{1000} = 729^{1000}\\).\n" +
+    "Step 5 — \\(7^{4000} = (7^4)^{1000} = 2401^{1000}\\).\n" +
+    "Step 6 — With one common positive exponent, the order is decided entirely by the bases: \\(729 < 1000 < 1024 < 2401\\).\n" +
+    "Step 7 — Ascending: \\(3^{6000} < 10^{3000} < 2^{10000} < 7^{4000}\\).",
+  fast: "Take the gcd of the exponents — 1000 — and divide every exponent by it. You are left comparing \\(2^{10}, 10^3, 3^6, 7^4\\), which are 1024, 1000, 729 and 2401: four numbers you already know or can get in one step. The two to keep straight are \\(2^{10} = 1024\\) and \\(10^3 = 1000\\), which are famously close but not equal.",
+  traps: "The whole question turns on \\(1024 > 1000\\). (C) and (E) both place \\(10^{3000}\\) below \\(2^{10000}\\) correctly in one spot and wrong in another — read the full chain, not the first pair.\n" +
+    "(B) and (D) put \\(7^{4000}\\) at the small end, which comes from ranking by exponent size (4000 is the second smallest) rather than by the converted base. The largest exponent does not mean the largest number when the bases differ.\n" +
+    "(C) also puts \\(3^{6000}\\) above \\(10^{3000}\\), reversing \\(729 < 1000\\).\n" +
+    "Read the question's direction too: it asks for *ascending* order, and reversing a correct chain is the last easy way to lose this one.",
+  take: "Reduce all exponents by their gcd, then compare the resulting bases. \\(2^{10} = 1024\\) just beats \\(10^3 = 1000\\) — a comparison that shows up constantly."
+},
+
+"quant-numbersystem-2-2#45": {
+  steps: "Step 1 — Convert each fraction to a decimal; that is faster and safer than cross-multiplying six values.\n" +
+    "\\(\\tfrac35 = 0.600\\), \\(\\tfrac18 = 0.125\\), \\(\\tfrac8{11} \\approx 0.727\\), \\(\\tfrac49 \\approx 0.444\\), \\(\\tfrac27 \\approx 0.286\\), \\(\\tfrac5{12} \\approx 0.417\\).\n" +
+    "Step 2 — Sort them descending: \\(0.727 > 0.600 > 0.444 > 0.417 > 0.286 > 0.125\\).\n" +
+    "Step 3 — In fraction form that is \\(\\tfrac8{11} > \\tfrac35 > \\tfrac49 > \\tfrac5{12} > \\tfrac27 > \\tfrac18\\).\n" +
+    "Step 4 — Counting from the largest, the third value is [[4/9]].",
+  fast: "You do not need the full ordering — only the top three. Two fractions clearly exceed a half (\\(\\tfrac8{11}\\) and \\(\\tfrac35\\)), and of the four below a half the largest is the one closest to it. Compare \\(\\tfrac49\\) with \\(\\tfrac5{12}\\) by cross-multiplying: \\(4 \\times 12 = 48\\) against \\(5 \\times 9 = 45\\), so \\(\\tfrac49\\) is bigger. Third place settled in two comparisons.",
+  traps: "(D) \\(\\tfrac8{11}\\) is the largest of the six — the answer if you miscount the position, or if you read \"third\" as \"first\".\n" +
+    "(C) \\(\\tfrac5{12}\\) is fourth, and it loses to \\(\\tfrac49\\) by the narrowest margin in the list (0.417 versus 0.444), so a sloppy decimal conversion puts it in third place.\n" +
+    "(A) \\(\\tfrac18\\) is the smallest — third from the *bottom* is a different question, and \"descending\" is the word that decides it.\n" +
+    "(E) \\(\\tfrac28\\) is not one of the six fractions listed at all, so it cannot occupy any position in their ordering.",
+  take: "Convert to decimals to sort fractions, but only compute as far as the question needs. Cross-multiply to settle the one close pair, and check whether the count runs from the top or the bottom."
+},
+
+"quant-numbersystem-2-2#46": {
+  steps: "Step 1 — Comparing sums of surds directly is hopeless; square them instead, since all four are positive and squaring preserves order.\n" +
+    "Step 2 — \\((\\sqrt a + \\sqrt b)^2 = a + b + 2\\sqrt{ab}\\).\n" +
+    "Step 3 — Notice that every pair sums to the same thing: \\(8+5 = 7+6 = 10+3 = 11+2 = 13\\). So the \\(a+b\\) part is identical in all four and cancels out of the comparison.\n" +
+    "Step 4 — The order is therefore decided entirely by \\(ab\\): \\(8 \\times 5 = 40\\), \\(7 \\times 6 = 42\\), \\(10 \\times 3 = 30\\), \\(11 \\times 2 = 22\\).\n" +
+    "Step 5 — Smallest product is 22, so the smallest sum is \\(\\sqrt{11} + \\sqrt2\\).",
+  fast: "All four pairs sum to 13, so this is really the classic fact that for a fixed sum, the product is largest when the numbers are close together and smallest when they are far apart. \\(11\\) and \\(2\\) are the most spread-out pair, so they give the smallest product and hence the smallest sum of roots — no squaring or arithmetic required.",
+  traps: "(B) \\(\\sqrt7 + \\sqrt6\\) is the *largest* of the four, because 7 and 6 are the closest pair. Anyone who gets the fixed-sum principle backwards lands here, and it is the most common wrong answer.\n" +
+    "(A) \\(\\sqrt8 + \\sqrt5\\) is second largest, chosen by the same reversed reasoning one step less far.\n" +
+    "(C) \\(\\sqrt{10} + \\sqrt3\\) is genuinely close to the answer — products 30 versus 22 — so a rough decimal estimate can easily swap them; the exact products settle it.\n" +
+    "(E) is refuted by the products alone: they differ, so the sums differ.",
+  take: "For a fixed sum \\(a + b\\), the product \\(ab\\) — and therefore \\(\\sqrt a + \\sqrt b\\) — is largest when \\(a\\) and \\(b\\) are closest and smallest when they are furthest apart."
+},
+
+"quant-numbersystem-2-2#47": {
+  steps: "Step 1 — The roots have indices 2, 4, 3 and 3, plus 6 in the last option. Raise every value to the power that clears all of them: the lcm of 2, 3, 4 and 6 is 12.\n" +
+    "Step 2 — \\((\\sqrt2)^{12} = 2^6 = 64\\).\n" +
+    "Step 3 — \\((\\sqrt[4]{3})^{12} = 3^3 = 27\\).\n" +
+    "Step 4 — \\((\\sqrt[3]{3})^{12} = 3^4 = 81\\).\n" +
+    "Step 5 — \\((\\sqrt[3]{2})^{12} = 2^4 = 16\\).\n" +
+    "Step 6 — \\((\\sqrt[6]{5})^{12} = 5^2 = 25\\).\n" +
+    "Step 7 — Raising to a positive power preserves order for positive numbers, so the least value corresponds to the least result: 16, i.e. \\(\\sqrt[3]{2}\\).",
+  fast: "Rewrite each as a fractional exponent and put them over a common denominator: \\(2^{1/2}, 3^{1/4}, 3^{1/3}, 2^{1/3}, 5^{1/6}\\) become \\(2^{6/12}, 3^{3/12}, 3^{4/12}, 2^{4/12}, 5^{2/12}\\). Now compare only the numerators-as-powers — 64, 27, 81, 16, 25 — and pick the smallest.\n" +
+    "A quicker filter: between two roots of the same number, the larger index gives the smaller value, so \\(\\sqrt[3]2 < \\sqrt2\\) and \\(\\sqrt[4]3 < \\sqrt[3]3\\) immediately, leaving only two real candidates.",
+  traps: "(B) \\(\\sqrt[4]{3}\\) is the runner-up at 27 and the most attractive wrong answer, because a fourth root \"feels\" smaller than a cube root — but the base matters too, and 3 is larger than 2.\n" +
+    "(C) \\(\\sqrt[3]{3}\\) and (A) \\(\\sqrt2\\) are each beaten by a sibling with the same base, so both fall to the one-line filter above.\n" +
+    "(E) \\(\\sqrt[6]{5}\\) has the largest index of all and looks like the natural winner, but its base of 5 pushes it to 25 — larger than the answer. Index alone never decides it.",
+  take: "To compare radicals, raise everything to the lcm of the indices, or write them as fractional exponents over a common denominator. A larger index shrinks a value, but only when the base is the same."
+},
+
+"quant-numbersystem-2-2#49": {
+  steps: "Step 1 — Rationalise the first fraction. Group \\((\\sqrt2 + \\sqrt3) - \\sqrt5\\) and multiply top and bottom by \\((\\sqrt2 + \\sqrt3) + \\sqrt5\\).\n" +
+    "Step 2 — The denominator becomes \\((\\sqrt2+\\sqrt3)^2 - 5 = (2 + 3 + 2\\sqrt6) - 5 = 2\\sqrt6\\).\n" +
+    "Step 3 — So the first term is \\(\\dfrac{\\sqrt2+\\sqrt3+\\sqrt5}{2\\sqrt6}\\).\n" +
+    "Step 4 — For the second fraction, group \\(\\sqrt2 - (\\sqrt3 + \\sqrt5)\\) and multiply by \\(\\sqrt2 + (\\sqrt3+\\sqrt5)\\). The denominator becomes \\(2 - (\\sqrt3+\\sqrt5)^2 = 2 - (8 + 2\\sqrt{15}) = -6 - 2\\sqrt{15}\\), and the term is \\(\\dfrac{\\sqrt2+\\sqrt3+\\sqrt5}{-6-2\\sqrt{15}}\\).\n" +
+    "Step 5 — Both terms share the numerator \\(\\sqrt2+\\sqrt3+\\sqrt5\\). Combining and simplifying, the \\(\\sqrt2\\) and \\(\\sqrt5\\) contributions cancel and what remains is \\(\\dfrac{\\sqrt3}{\\sqrt6}\\).\n" +
+    "Step 6 — \\(\\dfrac{\\sqrt3}{\\sqrt6} = \\dfrac{1}{\\sqrt2}\\).\n" +
+    "Step 7 — Numerical check: the denominators are \\(0.910\\) and \\(-2.554\\), giving \\(1.0987 - 0.3916 = 0.7071 = \\dfrac{1}{\\sqrt2}\\). ✓",
+  fast: "Do not rationalise at all — evaluate. \\(\\sqrt2 \\approx 1.414\\), \\(\\sqrt3 \\approx 1.732\\), \\(\\sqrt5 \\approx 2.236\\), so the denominators are about \\(0.91\\) and \\(-2.55\\), and the sum is about \\(1.10 - 0.39 = 0.71\\). Every option is a different number, and \\(0.71\\) matches exactly one of them. On a question whose choices are all simple constants, approximation beats algebra every time.",
+  traps: "(D) 0 is what you expect if you assume the two terms are conjugates that must cancel — they are not, because the second denominator is far larger in size, so the two terms have very different magnitudes.\n" +
+    "(E) \\(-\\tfrac1{\\sqrt2}\\) has the right size but the wrong sign: the positive term dominates, since the smaller denominator gives the bigger fraction.\n" +
+    "(B) \\(\\sqrt2 \\approx 1.414\\) is the reciprocal of the answer — a slip in the final \\(\\dfrac{\\sqrt3}{\\sqrt6}\\) step.\n" +
+    "(A) 1 is a rough estimate that stops after the first term (\\(\\approx 1.10\\)) and never subtracts the second.",
+  take: "When every choice is a plain constant, substitute decimal values for the surds — an approximate answer identifies the exact one. Rationalise only if the choices are too close to separate numerically."
+},
+
+"quant-numbersystem-2-2#51": {
+  steps: "Step 1 — Each bounce multiplies the height by \\(\\tfrac34\\), so after \\(k\\) bounces the height is \\(32 \\times \\left(\\tfrac34\\right)^k\\).\n" +
+    "Step 2 — The third bounce means \\(k = 3\\): height \\(= 32 \\times \\left(\\tfrac34\\right)^3\\).\n" +
+    "Step 3 — \\(\\left(\\tfrac34\\right)^3 = \\tfrac{27}{64}\\).\n" +
+    "Step 4 — \\(32 \\times \\tfrac{27}{64} = \\tfrac{27}{2} = 13.5\\).\n" +
+    "Step 5 — So the ball rises \\(13\\tfrac12\\) m.\n" +
+    "Step 6 — Cross-check bounce by bounce: \\(32 \\to 24 \\to 18 \\to 13.5\\). ✓",
+  fast: "Just walk the three bounces: three-quarters of 32 is 24, of 24 is 18, of 18 is 13.5. Three halvings-and-adjustments are quicker than cubing a fraction, and they double as their own check.\n" +
+    "The one judgement call is what counts as the third bounce — the ball is dropped, so the first rise after hitting the ground is bounce one, and three multiplications is right.",
+  traps: "(D) 12 is \\(32 \\times \\tfrac38\\)-flavoured — the result of multiplying by \\(\\tfrac34\\) once too few times combined with a slip, or of taking three-eighths rather than three-quarters cubed.\n" +
+    "(A) 13 m and (C) \\(14\\tfrac12\\) m bracket the answer and catch anyone who rounds an intermediate height (24 or 18) or drops the half.\n" +
+    "(E) is unnecessary — the exact value is on the list.\n" +
+    "The real trap is off-by-one on the bounce count: 18 m is the second bounce and 24 m the first, so decide up front that the drop itself is not a bounce.",
+  take: "Repeated proportional change is \\( \\text{start} \\times r^k\\). For small \\(k\\), stepping through the values is faster and self-checking — but pin down what counts as step one."
+},
+
+"quant-numbersystem-2-2#52": {
+  steps: "Step 1 — Add the coloured fractions over a common denominator of 600:\n" +
+    "\\(\\tfrac1{10} = \\tfrac{60}{600}\\), \\(\\tfrac1{20} = \\tfrac{30}{600}\\), \\(\\tfrac1{30} = \\tfrac{20}{600}\\), \\(\\tfrac1{40} = \\tfrac{15}{600}\\), \\(\\tfrac1{50} = \\tfrac{12}{600}\\), \\(\\tfrac1{60} = \\tfrac{10}{600}\\).\n" +
+    "Step 2 — Sum: \\(60 + 30 + 20 + 15 + 12 + 10 = 147\\), so the coloured part is \\(\\tfrac{147}{600}\\).\n" +
+    "Step 3 — The green part is \\(1 - \\tfrac{147}{600} = \\tfrac{453}{600}\\).\n" +
+    "Step 4 — That green part measures 12.08 m, so the whole pole is \\(12.08 \\times \\dfrac{600}{453}\\).\n" +
+    "Step 5 — \\(12.08 \\times 600 = 7248\\), and \\(7248 \\div 453 = 16\\).\n" +
+    "Step 6 — The pole is 16 m long.",
+  fast: "The green fraction is a shade over three-quarters (\\(453/600 = 0.755\\)), so the pole is a little over \\(12.08 \\div 0.755 \\approx 16\\) — and only one choice is anywhere near that. The exact division is worth doing once to confirm, but the estimate alone picks the answer.",
+  traps: "(B) 18, (C) 20, (D) 30 and (E) 32 are all far too long: the green portion is more than three-quarters of the pole, so the total cannot be much above 16 when green measures 12.08.\n" +
+    "(D) 30 and (E) 32 in particular come from inverting the ratio — multiplying by \\(\\tfrac{600}{147}\\) or by \\(\\tfrac{453}{600}\\) instead of dividing by the green fraction.\n" +
+    "(C) 20 is roughly \\(12.08 \\div 0.6\\), the answer if the coloured fractions were mis-added into a much larger total.\n" +
+    "Sanity-check the direction every time: the pole must be longer than its green section, but not by much.",
+  take: "Add the parts over one common denominator, subtract from 1 for the remainder, then divide the known length by that fraction. Estimate the fraction first so the size of the answer is never in doubt."
+},
+
+"quant-numbersystem-2-2#53": {
+  steps: "Step 1 — Pick a bucket size that makes both bottle counts whole: the lcm of 4 and 7 is 28.\n" +
+    "Step 2 — The bucket fills four large bottles, so a large bottle holds \\(28 \\div 4 = 7\\) units.\n" +
+    "Step 3 — The bucket fills seven small bottles, so a small bottle holds \\(28 \\div 7 = 4\\) units.\n" +
+    "Step 4 — Pouring from a full large bottle to fill one small bottle uses 4 units, leaving \\(7 - 4 = 3\\) units.\n" +
+    "Step 5 — The question asks what fraction of the large bottle's fluid is left: \\(\\dfrac{3}{7}\\).",
+  fast: "Set the bucket to 28 and the two bottle sizes read straight off as 7 and 4. A small bottle is therefore \\(\\tfrac47\\) of a large one, so \\(\\tfrac37\\) of the large one survives the pour — one subtraction from 1.",
+  traps: "(C) \\(\\tfrac47\\) is the fraction *used up*, not the fraction left over. Read the last clause of the question before answering; these two are the standard pair.\n" +
+    "(A) \\(\\tfrac27\\) and (D) \\(\\tfrac57\\) come from setting the bottle sizes the wrong way round — treating the large bottle as \\(\\tfrac1 4\\) of the bucket in units of small bottles, which inverts the ratio.\n" +
+    "(E) \\(\\tfrac17\\) is what you get by subtracting the counts (\\(7 - 4 = 3\\)) and then dividing by the wrong thing, or by comparing bottle counts rather than volumes.\n" +
+    "Note that more large bottles fit than small ones is impossible — four large equals seven small, so a large bottle is the bigger one; keeping that straight prevents the inversions.",
+  take: "Set the shared total to the lcm of the counts, and every part becomes a whole number. Then re-read which quantity the fraction is *of* — used or left, part or whole."
+},
+
+"quant-numbersystem-2-2#54": {
+  steps: "Step 1 — Let the dinner have 15 people (a convenient multiple of 5 and 3). French men: \\(\\tfrac15 \\times 15 = 3\\).\n" +
+    "Step 2 — \"The number of French women was \\(\\tfrac23\\) greater than the number of French men\" means women \\(=\\) men \\(\\times \\left(1 + \\tfrac23\\right) = 3 \\times \\tfrac53 = 5\\).\n" +
+    "Step 3 — Total French: \\(3 + 5 = 8\\) out of 15.\n" +
+    "Step 4 — Not French: \\(15 - 8 = 7\\), a fraction of \\(\\dfrac{7}{15}\\).\n" +
+    "Step 5 — In fractions: French women are \\(\\tfrac15 \\times \\tfrac53 = \\tfrac13\\) of the dinner, French total \\(\\tfrac15 + \\tfrac13 = \\tfrac8{15}\\), non-French \\(\\tfrac7{15}\\).",
+  fast: "Take the total as 15 and the whole problem becomes small whole numbers: 3 French men, 5 French women, 8 French, 7 not. The only wording to get right is \"\\(\\tfrac23\\) greater than\", which means multiply by \\(\\tfrac53\\) — not by \\(\\tfrac23\\).",
+  traps: "(E) \\(\\tfrac35\\) is what you get by treating French women as \\(\\tfrac23\\) *of* the men rather than \\(\\tfrac23\\) greater: that gives 2 women, 5 French, 10 non-French. This is the trap the question is built on.\n" +
+    "(B) \\(\\tfrac25\\) comes from stopping at the French women count and never adding the men, or from \\(1 - \\tfrac35\\).\n" +
+    "(A) \\(\\tfrac15\\) simply repeats the given fraction of French men.\n" +
+    "(C) \\(\\tfrac23\\) copies the comparison fraction straight out of the question, which is never the answer to \"what fraction of the whole\".",
+  take: "\"\\(x\\) greater than\" means multiply by \\((1+x)\\); \"\\(x\\) of\" means multiply by \\(x\\). Choose a total equal to the lcm of the denominators so every group is a whole number."
+},
+
+"quant-numbersystem-2-2#55": {
+  steps: "Step 1 — Forward algebra here needs three nested variables. Work backwards from the 3 apples left instead.\n" +
+    "Step 2 — The third customer took \\(\\tfrac15\\) of what was there plus 1, leaving \\(\\tfrac45\\) of it minus 1. If \\(x\\) was there: \\(\\tfrac45 x - 1 = 3\\), so \\(\\tfrac45 x = 4\\) and \\(x = 5\\).\n" +
+    "Step 3 — The second customer left \\(\\tfrac23 y - 1 = 5\\), so \\(\\tfrac23 y = 6\\) and \\(y = 9\\).\n" +
+    "Step 4 — The first customer left \\(\\tfrac12 z - 1 = 9\\), so \\(\\tfrac12 z = 10\\) and \\(z = 20\\).\n" +
+    "Step 5 — He started with 20 apples.\n" +
+    "Step 6 — Check forwards: \\(20 \\to\\) sells \\(10+1 = 11\\), leaving 9 \\(\\to\\) sells \\(3+1 = 4\\), leaving 5 \\(\\to\\) sells \\(1+1 = 2\\), leaving 3. ✓",
+  fast: "Reverse each step with a single rule: add the 1 back, then divide by the fraction that remained. \\((3+1) \\div \\tfrac45 = 5\\); \\((5+1) \\div \\tfrac23 = 9\\); \\((9+1) \\div \\tfrac12 = 20\\). Three lines, no variables.\n" +
+    "If reversing feels risky, just test the choices forwards — five candidates, three short steps each, and only one ends on 3.",
+  traps: "(A) 15 and (B) 18 are what you get from working backwards but forgetting to restore the \"+1\" at one of the stages — the single most common slip in this classic problem type.\n" +
+    "(D) 25 and (E) 28 come from adding the 1 in the wrong order: dividing first and then adding, instead of adding then dividing.\n" +
+    "The order matters because the customer takes the fraction *first* and the extra apple *after*, so reversing means undoing the apple before undoing the fraction.\n" +
+    "Every one of these is caught by the forward check, which costs fifteen seconds.",
+  take: "Undo \"a fraction plus a constant\" in reverse order: add the constant back, then divide by the fraction that was left. Always verify by running the story forwards."
+},
+
+"quant-numbersystem-2-2#56": {
+  steps: "Step 1 — Break the 320 km into the three fare bands.\n" +
+    "Step 2 — First 60 km at Rs 4 per km: \\(60 \\times 4 = 240\\).\n" +
+    "Step 3 — Next 60 km at Rs 5 per km: \\(60 \\times 5 = 300\\). That accounts for 120 km.\n" +
+    "Step 4 — Remaining \\(320 - 120 = 200\\) km at Rs 8 per 5 km: \\(\\dfrac{200}{5} \\times 8 = 40 \\times 8 = 320\\).\n" +
+    "Step 5 — Total fare: \\(240 + 300 + 320 = 860\\).\n" +
+    "Step 6 — The money left over is one-fourth of what he paid: \\(\\tfrac14 \\times 860 = 215\\).\n" +
+    "Step 7 — He started with fare plus balance: \\(860 + 215 = 1075\\).",
+  fast: "The third band is the one to simplify: Rs 8 per 5 km is Rs 1.60 per km, so 200 km costs 320. Then the last line is the whole question — he still holds a quarter of the fare, so his initial money is \\(\\tfrac54\\) of the fare: \\(860 \\times 1.25 = 1075\\).",
+  traps: "(D) 860 is the fare itself — the answer to \"how much did the ride cost\", not \"how much did he start with\". It is the most likely wrong answer because it is the number you compute last but one.\n" +
+    "(B) 1255 and (C) 1540 come from treating the balance as one-fourth of the *initial* amount rather than of the fare, or from adding a whole fare instead of a quarter.\n" +
+    "(E) is unnecessary once the bands are added correctly.\n" +
+    "Watch the third band's units too: Rs 8 for every 5 km is not Rs 8 per km, and reading it that way inflates the fare by 1280.",
+  take: "Split tiered rates band by band and check each band's units. Then read the final relationship carefully: a fraction \"of what he paid\" is not a fraction of what he started with."
+},
+
+"quant-numbersystem-2-2#57": {
+  steps: "Step 1 — The exponents 34, 51 and 17 share the factor 17, so rewrite all three with exponent 17.\n" +
+    "Step 2 — \\(3^{34} = (3^2)^{17} = 9^{17}\\).\n" +
+    "Step 3 — \\(2^{51} = (2^3)^{17} = 8^{17}\\).\n" +
+    "Step 4 — \\(7^{17}\\) is already there.\n" +
+    "Step 5 — With a common positive exponent, the larger base gives the larger value: \\(9^{17} > 8^{17} > 7^{17}\\).\n" +
+    "Step 6 — Greatest to least: \\(3^{34} > 2^{51} > 7^{17}\\).",
+  fast: "Divide every exponent by their gcd of 17: \\(34/17 = 2\\), \\(51/17 = 3\\), \\(17/17 = 1\\). That leaves \\(3^2 = 9\\), \\(2^3 = 8\\) and \\(7^1 = 7\\) — three single-digit numbers you can order at a glance.",
+  traps: "(E) ranks \\(2^{51}\\) first, which is what happens if you compare exponents (51 is the biggest) instead of converting to a common one. The largest exponent means nothing when the bases differ.\n" +
+    "(B) reverses the whole chain, putting the smallest first — the answer to \"least to greatest\" rather than the order the question asks for.\n" +
+    "(C) gets \\(3^{34}\\) right at the top but then swaps the other two, which is what happens if you compare \\(7^{17}\\) with \\(2^{51}\\) by size of base alone.\n" +
+    "(D) refers to \\(25^{51}\\), a quantity that appears nowhere in the question, so it cannot be an ordering of the three given values.",
+  take: "Divide the exponents by their gcd to reach a common exponent, then compare the bases. Never rank powers by exponent size when the bases differ."
+},
+
+"quant-numbersystem-2-2#58": {
+  steps: "Step 1 — The product of the first fifty positive integers is \\(50!\\).\n" +
+    "Step 2 — Count the factor 7 with the floor sum: \\(\\lfloor 50/7 \\rfloor = 7\\).\n" +
+    "Step 3 — Then the next power: \\(\\lfloor 50/49 \\rfloor = 1\\), because 49 contributes a second 7.\n" +
+    "Step 4 — And \\(\\lfloor 50/343 \\rfloor = 0\\), so the sum stops.\n" +
+    "Step 5 — Total: \\(7 + 1 = 8\\), so the largest \\(n\\) is 8.\n" +
+    "Step 6 — Check by listing. The multiples of 7 up to 50 are \\(7, 14, 21, 28, 35, 42, 49\\) — seven numbers. Six of them supply one factor of 7 each, and \\(49 = 7^2\\) supplies two, so \\(6 + 2 = 8\\). ✓",
+  fast: "Count the multiples of 7 up to 50 — there are 7 — then add one for the single multiple of 49. Eight. The \\(\\lfloor 50/49 \\rfloor\\) term is the entire difficulty of the question.",
+  traps: "(A) 7 counts only the multiples of 7 and misses that \\(49 = 7^2\\) supplies a second factor. This is the intended trap and the closest wrong answer.\n" +
+    "(D) 5 undercounts the multiples themselves, usually by stopping the list at 35 or 42.\n" +
+    "(C) 10 and (E) 12 overcount, typically by adding a \\(\\lfloor 50/343 \\rfloor\\) term that is zero, or by counting 7 as contributing more than once.\n" +
+    "The discipline that prevents all of these: write the floor sum out in full, term by term, until a term hits zero.",
+  take: "Power of prime \\(p\\) in \\(n!\\) is \\(\\lfloor n/p \\rfloor + \\lfloor n/p^2 \\rfloor + \\dots\\). Squares of the prime inside the range are what separate the right answer from the obvious one."
+},
+
+"quant-numbersystem-2-2#59": {
+  steps: "Step 1 — Let the number be \\(N\\). The correct result is \\(N \\times \\tfrac7{19}\\); the mistaken one is \\(N \\div \\tfrac7{19} = N \\times \\tfrac{19}{7}\\).\n" +
+    "Step 2 — The mistake exceeded the correct answer by 624: \\(N\\left(\\dfrac{19}{7} - \\dfrac{7}{19}\\right) = 624\\).\n" +
+    "Step 3 — Combine the fractions: \\(\\dfrac{19^2 - 7^2}{133} = \\dfrac{361 - 49}{133} = \\dfrac{312}{133}\\).\n" +
+    "Step 4 — So \\(N = 624 \\times \\dfrac{133}{312}\\). Since \\(624 = 2 \\times 312\\), this is \\(2 \\times 133 = 266\\).\n" +
+    "Step 5 — The question asks for the digit sum: \\(2 + 6 + 6 = 14\\).\n" +
+    "Step 6 — Check: \\(266 \\times \\tfrac7{19} = 98\\) and \\(266 \\times \\tfrac{19}{7} = 722\\), and \\(722 - 98 = 624\\). ✓",
+  fast: "Use the difference of squares: \\(\\dfrac{19}{7} - \\dfrac{7}{19} = \\dfrac{19^2 - 7^2}{7 \\times 19} = \\dfrac{12 \\times 26}{133} = \\dfrac{312}{133}\\). Then spot that \\(624\\) is exactly twice 312, so \\(N = 2 \\times 133 = 266\\) with no long division at all.\n" +
+    "Notice too that \\(N\\) must be divisible by 133 for the results to be whole — that alone nearly pins it.",
+  traps: "Every distractor is a plausible digit sum, so there is no way to screen them without finding \\(N\\) — which means the arithmetic has to be right rather than approximate.\n" +
+    "(B) 11 is the digit sum of 722, the mistaken *result* rather than the original number — the trap of answering with the last number you computed.\n" +
+    "(A) 10 and (C) 13 come from an error in \\(\\dfrac{19}{7} - \\dfrac{7}{19}\\), most often subtracting numerators and denominators separately.\n" +
+    "(E) 15 is the digit sum you would report for a value like 456 or 168, both of which arise from dividing 624 by the wrong factor.\n" +
+    "And read the final question: it asks for the digit sum, not for \\(N\\) itself.",
+  take: "\\(\\dfrac ab - \\dfrac ba = \\dfrac{a^2-b^2}{ab}\\) — the difference of squares turns this whole family of \"multiplied instead of divided\" problems into one line. Then answer the question actually asked."
+}
+
+});

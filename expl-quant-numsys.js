@@ -381,7 +381,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — Inside the braces, multiplication comes before addition and subtraction: \\(6.3 \\times 2.1 = 13.23\\).\n" +
     "Step 3 — Now finish the braces left to right: \\(2.8 - 13.23 + 15.6 = 5.17\\).\n" +
     "Step 4 — Multiply: \\(7.9 \\times 5.17 = 40.843\\).\n" +
-    "Step 5 — Add the leading term: \\(2.002 + 40.843 = [[42.845]]\\).",
+    "Step 5 — Add the leading term: \\(2.002 + 40.843\\) = [[42.845]].",
   fast: "Estimate before you compute. The braces are roughly \\(2.8 - 13 + 15.6 \\approx 5\\), so the product is about \\(7.9 \\times 5 \\approx 40\\), and adding 2 puts the answer in the low 40s. That single pass already separates the choices; the exact decimals are only needed to confirm.\n" +
     "Also track decimal places rather than digits: \\(7.9\\) (one place) times \\(5.17\\) (two places) gives three places, and adding \\(2.002\\) keeps three.",
   traps: "(C) 40.843 is the single most likely wrong answer — it is the correct product, with the leading \\(2.002\\) never added. Whenever a choice equals your second-to-last line, suspect exactly this.\n" +
@@ -396,7 +396,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — Convert the mixed numbers: \\(1\\tfrac29 = \\tfrac{11}{9}\\), \\(3\\tfrac3{11} = \\tfrac{36}{11}\\), \\(5\\tfrac17 = \\tfrac{36}{7}\\).\n" +
     "Step 3 — First product: \\(\\dfrac{11}{9} \\times \\dfrac{36}{11} = \\dfrac{36}{9} = 4\\) — the 11s cancel outright.\n" +
     "Step 4 — Second product: \\(\\dfrac{36}{7} \\times \\dfrac{7}{9} = \\dfrac{36}{9} = 4\\) — the 7s cancel outright.\n" +
-    "Step 5 — \\(9 - 4 + 4 = [[9]]\\).",
+    "Step 5 — \\(9 - 4 + 4\\) = [[9]].",
   fast: "The whole question is built so that both products cancel to the same clean number. \\(1\\tfrac29\\) has denominator 9 and \\(3\\tfrac3{11}\\) has numerator 36 over 11 — the 11s vanish; the second pair does the same with 7s. Convert, cancel, and you get \\(4\\) twice, so the \\(-4\\) and \\(+4\\) annihilate and the expression is just the leading 9.",
   traps: "(C) \\(8\\tfrac{32}{81}\\) carries a denominator of 81, which can only come from a mixed-number conversion that left a stray ninth — a sure sign that \\(1\\tfrac29\\) was turned into something other than \\(\\tfrac{11}{9}\\).\n" +
     "(B) 8 and (E) \\(7\\tfrac12\\) come from mishandling the order: reading the expression as \\(9 - \\left(\\text{first product} + \\text{second product}\\right)\\), or subtracting where the sign is plus.\n" +
@@ -425,7 +425,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "Step 1 — Subtracting 79 a total of \\(k\\) times means removing \\(79k\\), so \\(5 \\times 10^4 - 79k = 43759\\).\n" +
     "Step 2 — Rearrange: \\(79k = 50000 - 43759 = 6241\\).\n" +
     "Step 3 — Divide: \\(k = 6241 \\div 79\\).\n" +
-    "Step 4 — Recognise that \\(79^2 = 6241\\), so \\(k = [[79]]\\).\n" +
+    "Step 4 — Recognise that \\(79^2 = 6241\\), so \\(k\\) = [[79]].\n" +
     "Step 5 — Check: \\(79 \\times 79 = 79 \\times 80 - 79 = 6320 - 79 = 6241\\). ✓",
   fast: "Two lines: the gap is \\(50000 - 43759 = 6241\\), and the question is how many 79s fit in it. Since \\(80^2 = 6400\\) and the gap is a little under that, the answer is a little under 80 — and \\(79 \\times 80 = 6320\\), \\(6320 - 79 = 6241\\), so it is exactly 79.",
   traps: "The distractors are 77, 78, 80 and 81 — all within two of the right value, so estimation alone will not finish this question. You must land the division exactly.\n" +
@@ -441,7 +441,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(\\lfloor 60/2 \\rfloor = 30\\), \\(\\lfloor 60/4 \\rfloor = 15\\), \\(\\lfloor 60/8 \\rfloor = 7\\), \\(\\lfloor 60/16 \\rfloor = 3\\), \\(\\lfloor 60/32 \\rfloor = 1\\), \\(\\lfloor 60/64 \\rfloor = 0\\).\n" +
     "Step 3 — Total power of 2: \\(30 + 15 + 7 + 3 + 1 = 56\\). So \\(2^{56}\\) divides \\(60!\\) but \\(2^{57}\\) does not.\n" +
     "Step 4 — Since \\(8 = 2^3\\), \\(8^n = 2^{3n}\\), and we need \\(3n \\le 56\\).\n" +
-    "Step 5 — \\(n = \\lfloor 56/3 \\rfloor = [[18]]\\) (since \\(3 \\times 18 = 54 \\le 56\\) but \\(3 \\times 19 = 57 > 56\\)).",
+    "Step 5 — \\(n = \\lfloor 56/3 \\rfloor\\) = [[18]] (since \\(3 \\times 18 = 54 \\le 56\\) but \\(3 \\times 19 = 57 > 56\\)).",
   fast: "Two mechanical steps and no arithmetic beyond division: sum the floors \\(60/2, 60/4, 60/8, \\dots\\) to get 56, then divide by 3 and take the floor. The only place people lose the question is forgetting to convert 8 into \\(2^3\\).",
   traps: "(B) 19 is what you get from \\(56 \\div 3 = 18.67\\) rounded the wrong way. The exponent must be floored — \\(8^{19} = 2^{57}\\) needs one more 2 than \\(60!\\) contains.\n" +
     "(E) 20 comes from dropping a term in the floor sum, or from dividing 60 by 3 somewhere.\n" +
@@ -454,7 +454,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "Step 1 — Find the units digit of \\(7^{95}\\). Powers of 7 cycle 7, 9, 3, 1 with period 4. \\(95 = 4 \\times 23 + 3\\), so it sits at position 3: the units digit is 3.\n" +
     "Step 2 — Find the units digit of \\(3^{58}\\). Powers of 3 cycle 3, 9, 7, 1 with period 4. \\(58 = 4 \\times 14 + 2\\), position 2: the units digit is 9.\n" +
     "Step 3 — Now subtract. \\(7^{95}\\) is astronomically larger than \\(3^{58}\\), so the difference is positive and the subtraction is genuine.\n" +
-    "Step 4 — The units column is \\(3 - 9\\), which requires a borrow: \\(13 - 9 = [[4]]\\).\n" +
+    "Step 4 — The units column is \\(3 - 9\\), which requires a borrow: \\(13 - 9\\) = [[4]].\n" +
     "Step 5 — So the difference ends in 4.",
   fast: "Both cycles have period 4, so reduce both exponents mod 4: \\(95 \\to 3\\) and \\(58 \\to 2\\), giving units digits 3 and 9. The only real skill left is the borrow — write it as \\(13 - 9\\), not \\(3 - 9\\).",
   traps: "(C) 6 is the trap the whole question is built around: \\(|3 - 9| = 6\\). Taking the absolute value instead of borrowing is the single most common error in units-digit subtraction.\n" +
@@ -468,7 +468,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 "quant-numbersystem-2-2#35": {
   steps: "Step 1 — The product of the first forty positive integers is \\(40!\\).\n" +
     "Step 2 — Count the factor 5 by adding the floors: \\(\\lfloor 40/5 \\rfloor = 8\\), \\(\\lfloor 40/25 \\rfloor = 1\\), \\(\\lfloor 40/125 \\rfloor = 0\\).\n" +
-    "Step 3 — Total: \\(8 + 1 = [[9]]\\).\n" +
+    "Step 3 — Total: \\(8 + 1\\) = [[9]].\n" +
     "Step 4 — So \\(5^9\\) divides \\(40!\\) and \\(5^{10}\\) does not.\n" +
     "Step 5 — Sense-check the extra 1: among \\(1..40\\) the multiples of 5 are \\(5, 10, 15, 20, 25, 30, 35, 40\\) — eight numbers — and 25 alone contributes a second 5, making nine.",
   fast: "Count the multiples of 5 (eight of them), then add one for each multiple of 25 (just 25 itself). Eight plus one is nine. The \\(\\lfloor n/25 \\rfloor\\) term is the whole point of the question.",
@@ -484,7 +484,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — So the expression has the form \\(a^3 + b^3 - (a+b)^3\\) with \\(a = 55\\), \\(b = 17\\).\n" +
     "Step 3 — Expand \\((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\\), so \\(a^3 + b^3 - (a+b)^3 = -3a^2b - 3ab^2 = -3ab(a+b)\\).\n" +
     "Step 4 — Substitute: \\(-3 \\times 55 \\times 17 \\times 72\\).\n" +
-    "Step 5 — Its prime factors are \\(3\\) (from the \\(-3\\) and again from 72), \\(5\\) and \\(11\\) (from 55), \\([[17]]\\) (from 17), and \\(2^3 \\times 3^2\\) (from 72).\n" +
+    "Step 5 — Its prime factors are \\(3\\) (from the \\(-3\\) and again from 72), \\(5\\) and \\(11\\) (from 55), [[17]] (from 17), and \\(2^3 \\times 3^2\\) (from 72).\n" +
     "Step 6 — So the expression is divisible by [[3 and 17]] — and 7 and 13 appear nowhere in that list.",
   fast: "The identity \\(a^3 + b^3 - (a+b)^3 = -3ab(a+b)\\) turns a three-cube monster into a product you can read the factors straight off. Once you notice \\(55 + 17 = 72\\), the answer is visible without multiplying anything: the factorisation contains 3, 5, 11, 17 and the factors of 72.",
   traps: "(A) 13, (B) 7, (D) 7 and 13, (E) 13 — every wrong choice smuggles in 7 or 13, and neither divides \\(3 \\times 55 \\times 17 \\times 72\\). Neither 7 nor 13 divides any of 3, 55, 17 or 72.\n" +
@@ -545,7 +545,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — So the list is \\(10, 17, 24, \\dots, 94\\) — an arithmetic sequence with common difference 7.\n" +
     "Step 3 — Count the terms: \\(\\dfrac{94 - 10}{7} + 1 = \\dfrac{84}{7} + 1 = 12 + 1 = 13\\).\n" +
     "Step 4 — Sum an arithmetic sequence as (number of terms) × (average of first and last): \\(13 \\times \\dfrac{10 + 94}{2} = 13 \\times 52\\).\n" +
-    "Step 5 — \\(13 \\times 52 = [[676]]\\).",
+    "Step 5 — \\(13 \\times 52\\) = [[676]].",
   fast: "An arithmetic list's sum is always (count) × (middle term). With 13 terms the middle one is the 7th, \\(10 + 6 \\times 7 = 52\\), so the sum is \\(13 \\times 52 = 676\\) — and \\(13 \\times 52 = 13 \\times 13 \\times 4 = 169 \\times 4\\) if you prefer that route.\n" +
     "The two places to be careful are the endpoints: 10 is the first two-digit member, and 94 the last.",
   traps: "(B) 666 and (D) 683 bracket the right answer and come from getting an endpoint wrong — starting at 17 instead of 10, or running past 94 to 101.\n" +
@@ -573,7 +573,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "Step 1 — Simplify the surd: \\(\\sqrt{24} = \\sqrt{4 \\times 6} = 2\\sqrt6\\).\n" +
     "Step 2 — Rewrite the fraction entirely in terms of \\(\\sqrt6\\): \\(\\dfrac{2\\sqrt6 + \\sqrt6}{2\\sqrt6 - \\sqrt6}\\).\n" +
     "Step 3 — Combine like terms: numerator \\(= 3\\sqrt6\\), denominator \\(= \\sqrt6\\).\n" +
-    "Step 4 — Cancel: \\(\\dfrac{3\\sqrt6}{\\sqrt6} = [[3]]\\).\n" +
+    "Step 4 — Cancel: \\(\\dfrac{3\\sqrt6}{\\sqrt6}\\) = [[3]].\n" +
     "Step 5 — Numerical check: \\(\\sqrt{24} \\approx 4.899\\), \\(\\sqrt6 \\approx 2.449\\), so the fraction is \\(\\dfrac{7.348}{2.450} \\approx 3\\). ✓",
   fast: "Both surds are multiples of \\(\\sqrt6\\), so treat \\(\\sqrt6\\) as a single unit \\(u\\): the expression is \\(\\dfrac{2u + u}{2u - u} = \\dfrac{3u}{u} = 3\\). No rationalising, no conjugates — the moment you write \\(\\sqrt{24}\\) as \\(2\\sqrt6\\) the question is over.",
   traps: "(A) 2 is the ratio \\(\\sqrt{24}/\\sqrt6\\) on its own — you simplified the surds and then answered a different question.\n" +

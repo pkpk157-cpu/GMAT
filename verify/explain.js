@@ -9,6 +9,8 @@
      - an explanation that names a letter the question does not have, or that
        announces a different answer from the verified key
      - unbalanced LaTeX or [[bold]] markers, which render as raw text
+     - a [[bold]] marker nested inside a \( \) math span, which stops KaTeX
+       from rendering that span at all
      - a section that is empty, or so short it cannot be doing its job
      - a "traps" block that never mentions any of the wrong choices
 
@@ -63,6 +65,12 @@ Object.keys(EXPL).forEach(k => {
     // delimiter to some renderers and swallows the rest of the line.
     const spans = v.match(/\\\([\s\S]*?\\\)/g) || [];
     spans.forEach(sp => { if (/(^|[^\\])\$/.test(sp)) bad(k, `${name} has a bare $ inside math`); });
+    // A [[bold]] marker inside a math span becomes a <b> element before KaTeX
+    // runs, which splits the \( \) across element boundaries — KaTeX then skips
+    // the span and the raw backslashes end up on screen.
+    spans.forEach(sp => {
+      if (sp.includes("[[") || sp.includes("]]")) bad(k, `${name} has a [[bold]] marker inside a math span — move it outside \\( \\)`);
+    });
   });
 
   if (!rec.steps) bad(k, "no steps — a rewrite with no worked solution");

@@ -455,3 +455,148 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-5b#10": {
+  steps: "Step 1 — The three picks are independent, each from \\(\\{1, 2, 3, 4\\}\\), so there are \\(4^3 = 64\\) equally likely ordered triples.\n" +
+    "Step 2 — Three lengths form a triangle exactly when the two shorter ones sum to *more* than the longest — equality gives a flat, degenerate figure, not a triangle.\n" +
+    "Step 3 — Work through the multisets that fail, with the number of ordered triples each represents:\n" +
+    "\\(\\{1,1,2\\}\\) (3), \\(\\{1,1,3\\}\\) (3), \\(\\{1,1,4\\}\\) (3) — the two 1s can never reach the third side.\n" +
+    "Step 4 — \\(\\{1,2,3\\}\\) (6) and \\(\\{1,3,4\\}\\) (6) fail on equality: \\(1+2 = 3\\) and \\(1+3 = 4\\).\n" +
+    "Step 5 — \\(\\{1,2,4\\}\\) (6) fails outright, and \\(\\{2,2,4\\}\\) (3) fails on equality.\n" +
+    "Step 6 — Total failures: \\(3+3+3+6+6+6+3 = 30\\).\n" +
+    "Step 7 — Probability \\(= \\dfrac{30}{64} = \\dfrac{15}{32}\\).",
+  fast: "Enumerate by multiset, not by ordered triple — there are only twenty multisets, and each carries a multiplicity of 1, 3 or 6 depending on how many of its entries repeat.\n" +
+    "Then apply one test per multiset: does the sum of the two smaller entries exceed the largest? The equality cases (\\(1{+}2{=}3\\), \\(1{+}3{=}4\\), \\(2{+}2{=}4\\)) are where this question is won, since they *fail*.",
+  traps: "(B) \\(\\tfrac{13}{32}\\) counts 26 failures — it treats the three equality cases as valid triangles, which is the intended trap. A degenerate \"triangle\" with zero area is not a triangle.\n" +
+    "(D) \\(\\tfrac{17}{32}\\) and (E) \\(\\tfrac{19}{32}\\) overcount, usually by mishandling the multiplicities: a triple with all three entries distinct represents 6 ordered outcomes, not 3.\n" +
+    "(A) \\(\\tfrac{11}{32}\\) misses one of the failing multisets.\n" +
+    "Note also that the three bags are separate, so repeats are allowed — \\(\\{1,1,2\\}\\) is a legitimate outcome.",
+  take: "The triangle inequality is strict: \\(a + b > c\\), with equality failing. Enumerate multisets and weight each by its number of ordered arrangements (1, 3 or 6 for three picks)."
+},
+
+"quant-live-5b#11": {
+  steps: "Step 1 — Among the integers 1 to 100 there are exactly 50 odd and 50 even, so each chosen integer is odd or even with probability \\(\\tfrac12\\).\n" +
+    "Step 2 — Condition on the operation, each with probability \\(\\tfrac12\\).\n" +
+    "Step 3 — If they are added, the sum is even exactly when the two parities match — both even or both odd. That is \\(\\tfrac14 + \\tfrac14 = \\tfrac12\\).\n" +
+    "Step 4 — If they are multiplied, the product is odd only when both are odd, which happens with probability \\(\\tfrac14\\). So the product is even with probability \\(\\tfrac34\\).\n" +
+    "Step 5 — Combine: \\(\\tfrac12 \\times \\tfrac12 + \\tfrac12 \\times \\tfrac34 = \\tfrac14 + \\tfrac38 = \\tfrac58\\).",
+  fast: "Reduce everything to parity — the actual values are irrelevant, and 1 to 100 splits evenly. Then it is a two-branch weighted average of \\(\\tfrac12\\) and \\(\\tfrac34\\).\n" +
+    "Since the two operations are equally likely, the answer is simply the midpoint of \\(\\tfrac12\\) and \\(\\tfrac34\\), which is \\(\\tfrac58\\) — no arithmetic beyond averaging.",
+  traps: "(E) \\(\\tfrac78\\) comes from taking the product branch as \"even unless both odd\" and then adding rather than averaging the two branches.\n" +
+    "(B) \\(\\tfrac12\\) uses only the addition branch, which is the more familiar parity rule.\n" +
+    "(D) \\(\\tfrac23\\) and (A) \\(\\tfrac13\\) come from treating the parity outcomes as three equally likely cases (both odd, both even, mixed) — but \"mixed\" is twice as likely as either pure case.\n" +
+    "The parity table is the safeguard: odd+odd and even+even are each \\(\\tfrac14\\), while mixed pairs total \\(\\tfrac12\\).",
+  take: "Parity questions reduce to a four-cell table of (odd, even) pairs, each with probability \\(\\tfrac14\\). Weight the branches by the probability of each operation."
+},
+
+"quant-live-5b#12": {
+  steps: "Step 1 — She splits her money into three equal thirds, so losing \"no more than \\(\\tfrac13\\)\" means at most one investment becomes worthless.\n" +
+    "Step 2 — Each investment survives with probability \\(0.8\\) and fails with probability \\(0.2\\), independently.\n" +
+    "Step 3 — None fails: \\(0.8^3 = 0.512\\).\n" +
+    "Step 4 — Exactly one fails: choose which one (3 ways), times \\(0.2 \\times 0.8^2 = 0.2 \\times 0.64 = 0.128\\), giving \\(3 \\times 0.128 = 0.384\\).\n" +
+    "Step 5 — Total: \\(0.512 + 0.384 = 0.896\\), approximately \\(90\\%\\).",
+  fast: "Translate the money condition into a count first — equal thirds means \"at most one failure\" — and the rest is a two-term binomial.\n" +
+    "For a rough check, the expected number of failures is \\(0.6\\), so two or more failures should be fairly unlikely; the complement \\(3(0.04)(0.8) + 0.008 = 0.104\\) confirms about \\(10\\%\\), leaving \\(90\\%\\).",
+  traps: "(B) 80% is \\(0.8\\) itself — the survival probability of a single investment, mistaken for the portfolio outcome.\n" +
+    "(D) 60% and (C) 70% come from counting only the \"none fails\" case (\\(51\\%\\)) and rounding upward, or from a partial binomial.\n" +
+    "(E) 40% has no basis in the computation.\n" +
+    "The step people misread is the money-to-count translation: losing exactly \\(\\tfrac13\\) is *allowed* by \"no more than \\(\\tfrac13\\)\", so the one-failure case must be included.",
+  take: "Convert a fractional-loss condition into a count of failures, then sum the binomial terms. \"No more than\" is inclusive."
+},
+
+"quant-live-5b#13": {
+  steps: "Step 1 — Let \\(u\\) be the number of up days out of 5; the other \\(5 - u\\) are down days.\n" +
+    "Step 2 — The net change is \\(u - (5 - u) = 2u - 5\\) dollars.\n" +
+    "Step 3 — Set that equal to 3: \\(2u - 5 = 3\\), so \\(u = 4\\).\n" +
+    "Step 4 — Count the paths with exactly 4 up days: \\(\\binom{5}{4} = 5\\).\n" +
+    "Step 5 — All \\(2^5 = 32\\) up/down paths are equally likely, so the probability is \\(\\dfrac{5}{32}\\).",
+  fast: "The net-change equation \\(2u - n\\) is the key: with 5 steps of \\(\\pm 1\\), the reachable net changes are \\(-5, -3, -1, 1, 3, 5\\), and \\(+3\\) corresponds to 4 ups. Then it is \\(\\binom54 / 2^5\\).\n" +
+    "Notice that the parity of the net change must match the parity of the number of steps — with 5 steps you can never end up an even number of dollars from where you started.",
+  traps: "(A) \\(\\tfrac1{16}\\) is \\(2/32\\), and (B) \\(\\tfrac18\\) is \\(4/32\\) — both from miscounting \\(\\binom54\\), which is 5, not 2 or 4.\n" +
+    "(D) \\(\\tfrac9{32}\\) and (E) \\(\\tfrac38\\) come from solving for the wrong \\(u\\), usually \\(u = 3\\) (which gives a net of \\(+1\\), not \\(+3\\)) — \\(\\binom53 = 10\\), giving \\(\\tfrac{10}{32}\\).\n" +
+    "The equation \\(2u - 5 = 3\\) is what prevents that: \"up by 3\" does not mean \"3 up days\".",
+  take: "With \\(n\\) steps of \\(\\pm 1\\), the net displacement is \\(2u - n\\). Solve for \\(u\\) first, then count \\(\\binom nu\\) out of \\(2^n\\)."
+},
+
+"quant-live-5b#14": {
+  steps: "Step 1 — Total reassignments of 4 keys to 4 locks: \\(4! = 24\\), all equally likely.\n" +
+    "Step 2 — For exactly two keys to fit, choose which two are correct: \\(\\binom{4}{2} = 6\\) ways.\n" +
+    "Step 3 — The remaining two keys must *both* be wrong. With two items there is exactly one way for neither to be in its own place — they swap.\n" +
+    "Step 4 — So the favourable count is \\(6 \\times 1 = 6\\).\n" +
+    "Step 5 — Probability \\(= \\dfrac{6}{24} = \\dfrac14\\).",
+  fast: "\"Exactly \\(k\\) correct\" always factors as (choose which \\(k\\) are correct) × (derangements of the rest). Here the second factor is the number of derangements of 2, which is 1.\n" +
+    "Knowing the small derangement values — \\(D_1 = 0\\), \\(D_2 = 1\\), \\(D_3 = 2\\), \\(D_4 = 9\\) — makes every question of this family a ten-second computation.",
+  traps: "(D) \\(\\tfrac38\\) counts 9 favourable outcomes, which is \\(\\binom42 \\times\\) something larger — it comes from allowing the other two keys to be assigned freely (\\(2! = 2\\) ways), which double-counts the case where all four are correct.\n" +
+    "(E) \\(\\tfrac12\\) is the same over-count taken one step further, treating half of all reassignments as favourable.\n" +
+    "(A) \\(\\tfrac18\\) and (B) \\(\\tfrac16\\) come from miscounting the total as 16 or from using \\(\\binom42\\) alone over 24.\n" +
+    "The word \"exactly\" is what forces the derangement condition on the remaining keys — \"at least two\" would be a different count.",
+  take: "\"Exactly \\(k\\) fixed points\" = \\(\\binom nk \\times D_{n-k}\\). The small derangement numbers are \\(D_2 = 1\\), \\(D_3 = 2\\), \\(D_4 = 9\\)."
+},
+
+"quant-live-5b#15": {
+  steps: "Step 1 — The 99 uniform numbers and the exact identities of the first four players are irrelevant. Condition on *which* four players leave first — whatever that set is, the argument is the same.\n" +
+    "Step 2 — Those four players leave in some order, and all \\(4! = 24\\) orders are equally likely because the whole run-off is uniformly random.\n" +
+    "Step 3 — Exactly one of those 24 orders lists them by increasing uniform number.\n" +
+    "Step 4 — Probability \\(= \\dfrac{1}{24}\\).",
+  fast: "Conditioning on the set is the whole technique: once you fix which four players are involved, their relative order is uniform over \\(4!\\) possibilities, and precisely one is increasing.\n" +
+    "Because the answer is the same for every possible set of four, it is the answer overall — the 99 never enters the calculation.",
+  traps: "(E) \\(\\tfrac1{16}\\) is \\(\\tfrac1{2^4}\\), from treating each of four comparisons as an independent coin flip. The comparisons are not independent.\n" +
+    "(A) \\(\\tfrac1{64}\\) is \\(\\tfrac1{4^3}\\) or \\(\\tfrac1{2^6}\\), from a related over-counting.\n" +
+    "(B) \\(\\tfrac1{48}\\) and (C) \\(\\tfrac1{36}\\) come from mixing \\(4!\\) with an extra factor.\n" +
+    "The instinct to fight is the feeling that 99 players must matter. They do not — only the relative order of the four who happen to leave first.",
+  take: "For \\(k\\) randomly ordered items, the probability they appear in one specific order is \\(1/k!\\). Condition on the set to make the population size irrelevant."
+},
+
+"quant-live-5b#16": {
+  steps: "Step 1 — Option one wins with probability \\(p\\).\n" +
+    "Step 2 — Option two wins if he makes at least 2 of 3: \\(3p^2(1-p) + p^3 = 3p^2 - 3p^3 + p^3 = 3p^2 - 2p^3\\).\n" +
+    "Step 3 — Three throws is better when \\(3p^2 - 2p^3 > p\\). Divide by \\(p\\) (positive): \\(3p - 2p^2 > 1\\).\n" +
+    "Step 4 — Rearrange: \\(2p^2 - 3p + 1 < 0\\), which factors as \\((2p - 1)(p - 1) < 0\\).\n" +
+    "Step 5 — That holds exactly when \\(\\tfrac12 < p < 1\\). So the answer to the question is yes precisely on that interval.\n" +
+    "Step 6 — Statement (1): \\(p < 0.7\\) allows \\(p = 0.3\\) (answer no) and \\(p = 0.6\\) (answer yes) — [[not sufficient]].\n" +
+    "Step 7 — Statement (2): \\(p > 0.6\\) places \\(p\\) above the \\(\\tfrac12\\) threshold, so for any genuine shooting percentage the answer is yes — [[sufficient]].",
+  fast: "Do the algebra once and the whole question becomes \"is \\(p\\) above \\(\\tfrac12\\)?\". The factorisation \\((2p-1)(p-1) < 0\\) makes the threshold visible without any case testing.\n" +
+    "Then each statement is a single comparison against \\(0.5\\): \\(p < 0.7\\) straddles it, \\(p > 0.6\\) clears it.",
+  traps: "(A) inverts the statements — \\(p < 0.7\\) is the one that straddles the threshold and so decides nothing.\n" +
+    "(C) is the answer of someone who solves the inequality but then insists on narrowing \\(p\\) to a single value; a yes/no question needs only a consistent answer.\n" +
+    "(D) accepts (1) as well.\n" +
+    "(E) rejects both.\n" +
+    "One technical note on the upper end: at \\(p = 1\\) the two options are exactly equal rather than one being better, which is why the interval is open at 1. The question treats \\(p\\) as a genuine shooting percentage below certainty, so statement (2) resolves it.",
+  take: "Turn a comparison of two probability expressions into a single inequality and factor it. The threshold, not the value of \\(p\\), is what each statement must clear."
+},
+
+"quant-live-5b#17": {
+  steps: "Step 1 — Let there be \\(n\\) stones, with \\(\\tfrac{2n}{3}\\) diamonds and \\(\\tfrac n3\\) rubies. \\(n\\) must be a multiple of 3.\n" +
+    "Step 2 — The chance of drawing two diamonds without replacement is \\(\\dfrac{\\binom{2n/3}{2}}{\\binom n2}\\), and we are told it equals \\(\\tfrac5{12}\\).\n" +
+    "Step 3 — Test the small multiples of 3. \\(n = 6\\) gives \\(\\dfrac{\\binom42}{\\binom62} = \\dfrac{6}{15} = \\tfrac25\\) — too big.\n" +
+    "Step 4 — \\(n = 9\\) gives \\(\\dfrac{\\binom62}{\\binom92} = \\dfrac{15}{36} = \\dfrac5{12}\\) ✓.\n" +
+    "Step 5 — So the bag holds 6 diamonds and 3 rubies.\n" +
+    "Step 6 — Two rubies: \\(\\dfrac{\\binom32}{\\binom92} = \\dfrac{3}{36} = \\dfrac1{12}\\).",
+  fast: "Sequential probabilities are quicker than binomials here: \\(\\tfrac{2}{3} \\times \\tfrac{2n/3 - 1}{n - 1} = \\tfrac{5}{12}\\) forces \\(\\tfrac{2n/3 - 1}{n-1} = \\tfrac58\\), and \\(n = 9\\) satisfies it.\n" +
+    "Testing \\(n = 6, 9, 12\\) takes about twenty seconds and is more reliable than solving the quadratic — and the without-replacement structure means the answer really does depend on \\(n\\), not just on the two-thirds ratio.",
+  traps: "(A) \\(\\tfrac5{36}\\) and (B) \\(\\tfrac5{24}\\) carry the 5 from the given probability, as though the ruby answer were a simple rescaling of the diamond one. It is not — the counts enter quadratically.\n" +
+    "(D) \\(\\tfrac16\\) is \\(\\left(\\tfrac13\\right)^2 \\times \\tfrac32\\)-flavoured, or the *with*-replacement answer \\(\\left(\\tfrac13\\right)^2 = \\tfrac19\\) adjusted.\n" +
+    "(E) \\(\\tfrac14\\) is \\(\\tfrac13 \\times \\tfrac34\\)-style arithmetic.\n" +
+    "The reason \\(n\\) must be found at all is the \"without replacement\": with replacement the answer would be \\(\\tfrac49\\) regardless of bag size, and \\(\\tfrac5{12} \\ne \\tfrac49\\) is precisely the clue that the bag is small.",
+  take: "Without replacement, probabilities depend on the actual counts, not just the ratio. Use the given probability to pin the bag size, then recompute for the other colour."
+},
+
+"quant-live-5b#18": {
+  steps: "Step 1 — Factor the quadratic: \\(p^2 - 13p + 40 = (p - 5)(p - 8)\\), since \\(5 \\times 8 = 40\\) and \\(5 + 8 = 13\\).\n" +
+    "Step 2 — A product of two factors is negative exactly when they have opposite signs, which for \\((p-5)(p-8)\\) happens strictly between the roots.\n" +
+    "Step 3 — So \\(q < 0\\) exactly when \\(5 < p < 8\\).\n" +
+    "Step 4 — The integers strictly between 5 and 8 are 6 and 7 — two values.\n" +
+    "Step 5 — \\(p\\) ranges over the 10 integers from 1 to 10, so the probability is \\(\\dfrac{2}{10} = \\dfrac15\\).",
+  fast: "An upward parabola is negative only between its roots, so factoring is the entire calculation: roots at 5 and 8, and the integers in between are 6 and 7.\n" +
+    "There is no need to evaluate \\(q\\) for any value of \\(p\\) — the sign chart does it all.",
+  traps: "(C) \\(\\tfrac25\\) counts four values, typically by including the roots 5 and 8 themselves. At those points \\(q = 0\\), which is not less than zero.\n" +
+    "(E) \\(\\tfrac3{10}\\) counts three, usually by including one endpoint.\n" +
+    "(D) \\(\\tfrac35\\) counts the values *outside* the roots, where the parabola is positive.\n" +
+    "(A) \\(\\tfrac1{10}\\) finds only one qualifying integer.\n" +
+    "The strictness of \\(q < 0\\) is what excludes the endpoints — a boundary check worth making explicitly.",
+  take: "An upward parabola is negative strictly between its roots. Factor, mark the roots, and count the integers inside — excluding the roots when the inequality is strict."
+}
+
+});

@@ -476,3 +476,152 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-live-6b#10": {
+  steps: "Step 1 — In a geometric progression the middle term squared equals the product of its neighbours: \\(b^2 = ac\\). With \\(b = 10\\), that gives \\(ac = 100\\).\n" +
+    "Step 2 — The sum condition \\(|a + 10 + c| = 15\\) means \\(a + c = 5\\) or \\(a + c = -25\\).\n" +
+    "Step 3 — Test \\(a + c = 5\\) with \\(ac = 100\\): the quadratic \\(t^2 - 5t + 100 = 0\\) has discriminant \\(25 - 400 < 0\\), so there are no real values. Reject.\n" +
+    "Step 4 — Test \\(a + c = -25\\): \\(t^2 + 25t + 100 = 0\\) gives \\(t = \\dfrac{-25 \\pm 15}{2}\\), i.e. \\(-5\\) and \\(-20\\).\n" +
+    "Step 5 — Since \\(a > c\\), we have \\(a = -5\\) and \\(c = -20\\). Check the median: sorted, the three terms are \\(-20, -5, 10\\), so the median is \\(-5 = a\\) ✓.\n" +
+    "Step 6 — The progression is \\(-5, 10, -20\\), with common ratio \\(-2\\), so the fourth term is \\(40\\).\n" +
+    "Step 7 — Product: \\((-5)(10)(-20)(40) = 40{,}000\\).",
+  fast: "Two relations pin everything: \\(ac = b^2 = 100\\) and \\(a + c\\) from the absolute value. That turns the problem into a quadratic whose roots are \\(a\\) and \\(c\\), and only one of the two sign branches has real roots.\n" +
+    "For the final product, note that the four terms are \\(a, ar, ar^2, ar^3\\), so their product is \\(a^4 r^6\\) — but here multiplying the four numbers directly is quicker.",
+  traps: "(A) 8,000 is the product of just the first three terms in absolute value, or \\(20^3\\) — it stops before the fourth term.\n" +
+    "(C) 32,000 and (E) 48,000 come from a wrong common ratio, usually \\(+2\\), which would break the sum condition.\n" +
+    "(B) 16,000 arises from taking the fourth term as \\(20\\) rather than \\(40\\).\n" +
+    "The two conditions people skip are the median check (which confirms \\(a = -5\\) rather than \\(-20\\)) and the sign of the ratio — a negative ratio is what makes the terms alternate and the sum come out to \\(-15\\).",
+  take: "For three consecutive geometric terms, \\(b^2 = ac\\). Combine with the sum to get a quadratic in the outer terms, and check which sign branch has real roots."
+},
+
+"quant-live-6b#11": {
+  steps: "Step 1 — Peel the outer absolute value: \\(6 - |x+2| = 10\\) or \\(6 - |x+2| = -10\\).\n" +
+    "Step 2 — First branch: \\(|x + 2| = -4\\). An absolute value is never negative, so this branch has no solutions at all.\n" +
+    "Step 3 — Second branch: \\(|x + 2| = 16\\), which gives \\(x + 2 = 16\\) or \\(x + 2 = -16\\).\n" +
+    "Step 4 — So \\(x = 14\\) or \\(x = -18\\).\n" +
+    "Step 5 — The stem requires \\(x\\) to be a non-negative integer, so \\(x = -18\\) is excluded.\n" +
+    "Step 6 — Exactly one value works: \\(x = 14\\).",
+  fast: "Check each branch for feasibility before solving it. One branch demands a negative absolute value and dies immediately, which halves the work.\n" +
+    "Then apply the domain restriction — \"non-negative integer\" — as the last filter. Nested absolute values normally produce four candidates; here the structure and the domain cut it to one.",
+  traps: "(C) 2 keeps \\(x = -18\\), ignoring the non-negativity requirement stated in the stem.\n" +
+    "(E) 4 comes from solving both branches as though \\(|x+2| = -4\\) had solutions \\(x = 2\\) and \\(x = -6\\) — it has none.\n" +
+    "(A) 0 concludes the whole equation is unsatisfiable, which happens if you drop the \\(-10\\) branch.\n" +
+    "(D) 3 mixes the errors.\n" +
+    "The two filters that matter are feasibility of each branch and the stated domain, applied in that order.",
+  take: "Discard any branch requiring an absolute value to be negative. Apply domain restrictions such as \"non-negative integer\" only after finding all algebraic roots."
+},
+
+"quant-live-6b#12": {
+  steps: "Step 1 — Simplify the expression: \\(|-1 - x| = |-(1 + x)| = |x + 1|\\).\n" +
+    "Step 2 — So the condition is \\(|x + 1| \\le 3\\), which unfolds to \\(-3 \\le x + 1 \\le 3\\).\n" +
+    "Step 3 — Subtract 1 throughout: \\(-4 \\le x \\le 2\\).\n" +
+    "Step 4 — The stem says \\(x\\) is a positive integer, so the candidates are \\(1\\) and \\(2\\).\n" +
+    "Step 5 — The smallest is \\(1\\).",
+  fast: "The absolute value of a negation is the absolute value, so \\(|-1-x|\\) is just \\(|x+1|\\) — that rewrite removes all the sign confusion in one step.\n" +
+    "Then the inequality gives a range, and the words \"positive integer\" pick the answer off its left end.",
+  traps: "(A) \\(-5\\) is not even in the solution range, and (B) \\(-4\\) is the smallest value satisfying the *inequality* — but neither is a positive integer, which the stem explicitly requires.\n" +
+    "(D) 3 and (E) 4 sit outside the range entirely: \\(|3 + 1| = 4 > 3\\).\n" +
+    "The distractors are built so that solving the inequality correctly but ignoring the domain lands you on (B). Read the constraint on \\(x\\) before scanning the choices.",
+  take: "\\(|-a| = |a|\\), so rewrite \\(|-1-x|\\) as \\(|x+1|\\) immediately. Then apply the stated domain — \"positive integer\" excludes zero and every negative."
+},
+
+"quant-live-6b#13": {
+  steps: "Step 1 — Examine choice (A): \\(a^2 + b^2 - 2|ab|\\). Since \\(a^2 = |a|^2\\) and \\(b^2 = |b|^2\\) and \\(|ab| = |a||b|\\), this is \\(|a|^2 - 2|a||b| + |b|^2\\).\n" +
+    "Step 2 — That factors as \\((|a| - |b|)^2\\), a perfect square, which is never negative. So (A) cannot be negative ✓.\n" +
+    "Step 3 — Now confirm the others can be. (B) \\(|a+b| - |a-b|\\) at \\(a = 1, b = -1\\): \\(0 - 2 = -2\\).\n" +
+    "Step 4 — (C) \\(|a+b| - |a|\\) at \\(a = 2, b = -2\\): \\(0 - 2 = -2\\).\n" +
+    "Step 5 — (D) \\(|2a+b| - |a+b|\\) at \\(a = -1, b = 3\\): \\(|1| - |2| = -1\\).\n" +
+    "Step 6 — (E) \\(|a^3 + b^3| - a - b\\) at \\(a = b = 0.5\\): \\(0.25 - 1 = -0.75\\).",
+  fast: "Look for a hidden perfect square. Rewriting \\(a^2 + b^2 - 2|ab|\\) with \\(|a|\\) and \\(|b|\\) exposes \\((|a| - |b|)^2\\), and a square settles the question with no test values at all.\n" +
+    "For the remaining choices, opposite-signed values are the productive test: they collapse \\(|a+b|\\) to zero while leaving the subtracted term large.",
+  traps: "(B) is the most tempting rival, because \\(|a+b|\\) and \\(|a-b|\\) look symmetric — but they are not: when \\(a\\) and \\(b\\) have opposite signs, \\(|a-b|\\) is the larger of the two.\n" +
+    "(E) looks safe because the leading term is an absolute value, but the trailing \\(-a - b\\) is not inside it and can dominate for small positive values.\n" +
+    "(C) and (D) both subtract an unprotected absolute value, so opposite signs break them easily.\n" +
+    "The general method: recognise a square if one exists, otherwise hunt for a counterexample with mixed signs or with values inside \\((0,1)\\).",
+  take: "\\(a^2 + b^2 - 2|ab| = (|a| - |b|)^2 \\ge 0\\). To break an expression involving \\(|a+b|\\), give \\(a\\) and \\(b\\) opposite signs."
+},
+
+"quant-live-6b#14": {
+  steps: "Step 1 — The equation is \\(|n|^n = n^2\\), with \\(n\\) a non-zero integer.\n" +
+    "Step 2 — \\(n = 1\\): \\(1^1 = 1\\) and \\(1^2 = 1\\) ✓.\n" +
+    "Step 3 — \\(n = 2\\): \\(2^2 = 4\\) and \\(2^2 = 4\\) ✓.\n" +
+    "Step 4 — \\(n = -1\\): \\(|-1|^{-1} = 1^{-1} = 1\\) and \\((-1)^2 = 1\\) ✓.\n" +
+    "Step 5 — \\(n = 3\\): \\(3^3 = 27\\) but \\(3^2 = 9\\) ✗, and for larger \\(n\\) the gap only widens, since \\(n^n\\) outgrows \\(n^2\\).\n" +
+    "Step 6 — \\(n \\le -2\\): a negative exponent makes \\(|n|^n\\) a fraction below 1, while \\(n^2 \\ge 4\\) ✗.\n" +
+    "Step 7 — Exactly three integers work: \\(-1\\), \\(1\\) and \\(2\\).",
+  fast: "Only a handful of small integers can possibly work, so test them and then argue that the two sides separate permanently. For \\(n \\ge 3\\) the left side grows far faster; for \\(n \\le -2\\) the left side collapses below 1.\n" +
+    "The case worth pausing on is \\(n = -1\\): the base becomes \\(|-1| = 1\\), and 1 raised to any power stays 1, matching \\((-1)^2\\).",
+  traps: "(C) 2 misses \\(n = -1\\), which is easy to overlook because a negative exponent usually kills a solution — here the base is 1, so it does not.\n" +
+    "(B) 1 finds only \\(n = 2\\), treating \\(n = 1\\) as trivial or excluded.\n" +
+    "(E) more than 3 comes from expecting a family of negative solutions by symmetry; \\(n = -2\\) already fails, since \\(2^{-2} = \\tfrac14 \\ne 4\\).\n" +
+    "The structural point is that \\(n\\) appears both as an exponent and inside the base, so the two sides scale completely differently and can only agree at small values.",
+  take: "When the variable appears in both the base and the exponent, test small integers and then argue divergence. A base of 1 makes any exponent harmless."
+},
+
+"quant-live-6b#15": {
+  steps: "Step 1 — Look at the denominator: \\(-x^2 - 3 = -(x^2 + 3)\\). Since \\(x^2 \\ge 0\\), this is at most \\(-3\\), so it is always negative and never zero.\n" +
+    "Step 2 — The numerator \\(|3x - 5|\\) is always non-negative.\n" +
+    "Step 3 — A non-negative number divided by a negative number is non-positive, so \\(y \\le 0\\) for every \\(x\\).\n" +
+    "Step 4 — The greatest possible value of \\(y\\) is therefore \\(0\\), and it is achieved exactly when the numerator vanishes.\n" +
+    "Step 5 — \\(|3x - 5| = 0\\) when \\(3x = 5\\), i.e. \\(x = \\tfrac53\\).",
+  fast: "Establish the sign of the whole expression before computing anything: the denominator can never be positive, so \\(y\\) can never be positive either. Maximising a non-positive quantity means driving it to zero.\n" +
+    "Then the only question is where the numerator vanishes — one linear equation.",
+  traps: "(C) 0 is the value of \\(x\\) that minimises the denominator's magnitude, which feels like it should extremise \\(y\\). It gives \\(y = \\tfrac{5}{-3} \\approx -1.67\\), not the maximum.\n" +
+    "(A) \\(-5\\) makes the numerator large, which pushes \\(y\\) far *below* zero — the opposite of what is wanted.\n" +
+    "(D) \\(\\tfrac35\\) is the reciprocal of the answer's fraction, a transposition slip on \\(3x = 5\\).\n" +
+    "(B) \\(-\\tfrac35\\) adds a sign error to that.\n" +
+    "The instinct to fight is treating \"greatest\" as \"largest in magnitude\" — for a non-positive quantity the greatest value is the one closest to zero.",
+  take: "Determine the sign of an expression before optimising it. To maximise a quantity that is never positive, make it zero — set the numerator to zero."
+},
+
+"quant-live-6b#16": {
+  steps: "Step 1 — Since \\(x^2 = |x|^2\\), substitute \\(t = |x|\\), where \\(t \\ge 0\\). The equation becomes \\(t^2 - 11t - 60 = 0\\).\n" +
+    "Step 2 — Factor: we need two numbers multiplying to \\(-60\\) and summing to \\(-11\\), namely \\(-15\\) and \\(+4\\). So \\((t - 15)(t + 4) = 0\\).\n" +
+    "Step 3 — The roots are \\(t = 15\\) and \\(t = -4\\).\n" +
+    "Step 4 — But \\(t = |x| \\ge 0\\), so \\(t = -4\\) is inadmissible.\n" +
+    "Step 5 — \\(|x| = 15\\) gives \\(x = 15\\) and \\(x = -15\\).\n" +
+    "Step 6 — Exactly 2 real solutions.",
+  fast: "The substitution \\(t = |x|\\) works because \\(x^2 = |x|^2\\) — it turns an absolute-value equation into an ordinary quadratic in one move.\n" +
+    "Then each admissible positive \\(t\\) contributes two values of \\(x\\), and each negative \\(t\\) contributes none. One root survives, so the answer is 2.",
+  traps: "(A) 4 counts two \\(x\\) values for each root of the quadratic, forgetting that \\(t = -4\\) is impossible for an absolute value.\n" +
+    "(D) 1 counts only the positive \\(x\\), overlooking \\(x = -15\\).\n" +
+    "(B) 3 mixes the two errors.\n" +
+    "(E) 0 comes from mis-factoring and finding no non-negative root.\n" +
+    "The count of solutions follows a fixed rule: a positive \\(t\\) gives two \\(x\\), \\(t = 0\\) gives one, and a negative \\(t\\) gives none.",
+  take: "Substitute \\(t = |x|\\) with \\(t \\ge 0\\) to linearise an \\(x^2\\)-and-\\(|x|\\) equation. Discard negative roots, then double each surviving positive one."
+},
+
+"quant-live-6b#17": {
+  steps: "Step 1 — Solve the linear equation for \\(y\\): \\(y = 12 - 2x\\).\n" +
+    "Step 2 — Substitute into the constraint: \\(|12 - 2x| \\le 12\\).\n" +
+    "Step 3 — Unfold: \\(-12 \\le 12 - 2x \\le 12\\).\n" +
+    "Step 4 — Subtract 12 throughout: \\(-24 \\le -2x \\le 0\\).\n" +
+    "Step 5 — Divide by \\(-2\\), reversing both inequalities: \\(0 \\le x \\le 12\\).\n" +
+    "Step 6 — Every integer \\(x\\) in that range gives \\(y = 12 - 2x\\), automatically an integer. The integers from 0 to 12 inclusive number \\(12 - 0 + 1 = 13\\).",
+  fast: "Reduce to a single variable first, then the whole question is an integer count on an interval. The \\(+1\\) in \\(12 - 0 + 1\\) is where this question is usually lost.\n" +
+    "Note also that \\(y = 12 - 2x\\) is an integer whenever \\(x\\) is, so no extra divisibility check is needed.",
+  traps: "(C) 12 forgets the \\(+1\\) in the inclusive count — the classic fencepost error.\n" +
+    "(A) 17 counts the integer values of \\(y\\) instead: \\(y\\) ranges over the even numbers from \\(-12\\) to \\(12\\), which is 13 values, so 17 comes from counting all integers in \\([-12, 12]\\) with a further slip.\n" +
+    "(E) 14 adds an endpoint that is not there, and (B) 10 drops several.\n" +
+    "Watch the sign reversal in Step 5 too: dividing an inequality chain by \\(-2\\) flips both comparisons.",
+  take: "Substitute to reduce to one variable, solve the inequality (reversing when dividing by a negative), then count inclusively with \\(b - a + 1\\)."
+},
+
+"quant-live-6b#18": {
+  steps: "Step 1 — Setting the two expressions for \\(y\\) equal gives \\(|x - 1| = 3x + 3\\).\n" +
+    "Step 2 — Branch \\(x \\ge 1\\): the equation is \\(x - 1 = 3x + 3\\), so \\(-4 = 2x\\) and \\(x = -2\\). That contradicts \\(x \\ge 1\\), so reject it.\n" +
+    "Step 3 — Branch \\(x < 1\\): the equation is \\(1 - x = 3x + 3\\), so \\(-2 = 4x\\) and \\(x = -\\tfrac12\\). That satisfies \\(x < 1\\) ✓.\n" +
+    "Step 4 — Check the right-hand side is non-negative, as it must be to equal an absolute value: \\(3(-\\tfrac12) + 3 = 1.5 \\ge 0\\) ✓.\n" +
+    "Step 5 — Only one value survives, so the sum of all possible values is \\(-\\tfrac12\\).",
+  fast: "Two branches, each a one-line solve, followed by the check that each root satisfies its own branch condition. Half the candidate roots typically fail that check.\n" +
+    "The extra safeguard for \\(|f(x)| = g(x)\\) is that \\(g(x)\\) must be non-negative — worth confirming even when the branch check already passed.",
+  traps: "(A) \\(-\\tfrac52\\) is the sum of both candidate roots, \\(-2\\) and \\(-\\tfrac12\\), obtained by never checking them against their branch conditions. The phrase \"sum of all possible values\" is designed to reward that shortcut.\n" +
+    "(B) \\(-2\\) is the rejected root on its own.\n" +
+    "(D) \\(\\tfrac12\\) and (E) 2 come from sign slips in solving either branch.\n" +
+    "Note that \\(x = -2\\) genuinely fails: \\(|-2 - 1| = 3\\) but \\(3(-2) + 3 = -3\\), and an absolute value cannot be negative.",
+  take: "Solve both branches of \\(|f(x)| = g(x)\\), then discard roots that violate their branch condition or make \\(g(x)\\) negative. \"Sum of all values\" rewards checking, not collecting."
+}
+
+});

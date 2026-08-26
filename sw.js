@@ -7,6 +7,7 @@ const ASSETS = [
   "./sets-extra.js",
   "./sets-rc.js",
   "./sets-di.js",
+  "./sets-di2.js",
   "./sets-quant-live.js",
   "./sets-quant-live2.js",
   "./generator.js",

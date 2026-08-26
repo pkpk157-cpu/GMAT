@@ -17,6 +17,7 @@ module.exports = {
               16.D 17.A 18.C 19.C 20.E 21.A 22.C 23.E 24.C 25.A 26.B 27.B 28.B 29.D
      Fifteen of its questions already existed in the bank and stayed in their
      topic sets; quant-live-1 holds the thirteen that were new. */
+  "di-ds-extra": ["C", "A", "E", "D", "C", "C", "E", "C", "E", "C", "E", "D", "D", "C", "C", "C", "B", "A", "D", "A", "B", "B", "C", "A", "D", "B", "E", "C", "A"],
   "quant-live-1": ["D","B","E","C","D","D","E","C","E","E","B","D","B"],
 
   /* GMAT Quant Live Session 2 — rates, work and ratios.

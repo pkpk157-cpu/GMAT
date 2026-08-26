@@ -2,7 +2,7 @@
 const fs = require("fs"), path = require("path");
 const ROOT = path.join(__dirname, "..");
 global.window = {};
-["sets.js","sets-extra.js","sets-rc.js","sets-di.js","sets-quant-live.js","sets-quant-live2.js"]
+["sets.js","sets-extra.js","sets-rc.js","sets-di.js","sets-di2.js","sets-quant-live.js","sets-quant-live2.js"]
   .forEach(f => eval(fs.readFileSync(path.join(ROOT, f), "utf8")));
 const b = window.GMAT_SETS;
 (window.GMAT_SETS_EXTRA||[]).forEach(x=>{const s=b.find(y=>y.id===x.setId); if(s) {let nx=s.questions.reduce((m,q)=>Math.max(m,q.n||0),0); x.add.forEach(q=>s.questions.push(Object.assign({n:++nx},q)));}});

@@ -1,6 +1,6 @@
 /* Static integrity audit of the question bank and set metadata. */
 global.window = {};
-['./sets.js', './sets-extra.js', './sets-rc.js', './sets-di.js',
+['./sets.js', './sets-extra.js', './sets-rc.js', './sets-di.js', './sets-di2.js',
  './sets-quant-live.js', './sets-quant-live2.js'].forEach(f => {
   try { require(require('path').join(__dirname, '..', '..', f.slice(2))); } catch (e) { console.log('LOAD FAIL', f, e.message); }
 });

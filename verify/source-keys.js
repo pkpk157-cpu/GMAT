@@ -65,5 +65,14 @@ module.exports = {
   /* Data Insights 5 — Data Sufficiency, Focus Edition. The source prints the
      questions WITHOUT an answer key, so these were derived by full case
      analysis and re-checked computationally; there is nothing to compare to. */
+  /* GMAT CR 2-Person Arguments — point at issue and method of reasoning.
+     Block 1 prints its keys as solution markers; block 2 prints a compact
+     answer table. Kept, in source order:
+     block 1 — 1.E 3.D 4.C 5.B 6.A 7.D 9.E 10.D 11.D 12.D 14.D
+     block 2 — 1.E 2.B 3.D 4.E 5.B 6.D 7.C 8.B 9.A 10.B 11.D 12.D 13.D 16.D 17.E 18.B 20.E 21.D 22.D 24.E 25.A 27.B 28.A 29.B 30.D 31.B 32.E */
+  "cr-two-person": ["E", "D", "C", "B", "A", "D", "E", "D", "D", "D", "D", "E", "B",
+                    "D", "E", "B", "D", "C", "B", "A", "B", "D", "D", "D", "D", "E",
+                    "B", "E", "D", "D", "E", "A", "B", "A", "B", "D", "B", "E"],
+
   "di-ds-realexam": null
 };

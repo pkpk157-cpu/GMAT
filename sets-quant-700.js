@@ -236,7 +236,7 @@
         "The markup is a share of the [[selling]] price, which is what makes this one awkward.",
         "\\(S = 150 + 0.40S\\), so \\(0.60S = 150\\) and \\(S = 250\\).\nGross profit: \\(250 - 150 = 100\\).\nNote: the source's printed key gives $90, which does not satisfy its own equation — $100 is the value the setup produces, and it is one of the choices.\nAnswer: E."),
       Q(42, "Percentages & percent change", "A",
-        "In May Mr. Lee's earnings were 60 percent of the Lee family's total income. In June Mr. Lee earned 20 percent more than in May. If the rest of the family's income was the same both months, then, in June, Mrs. Lee's earnings were approximately what percent of the Lee Family's total income?",
+        "In May Mr. Lee's earnings were 60 percent of the Lee family's total income. In June Mr. Lee earned 20 percent more than in May. If the rest of the family's income was the same both months, then, in June, Mr. Lee's earnings were approximately what percent of the Lee Family's total income?",
         ["64%", "68%", "72%", "76%", "80%"],
         "Only Mr. Lee's earnings change; the rest of the family's income is fixed.",
         "Take May's total as 100, with Mr. Lee at 60 and the rest at 40.\nIn June Mr. Lee earns \\(60 \\times 1.2 = 72\\), so the family total is 112.\n\\(\\tfrac{72}{112} \\approx 64\\%\\).\nAnswer: A."),

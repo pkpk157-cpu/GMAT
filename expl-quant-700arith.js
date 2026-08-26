@@ -577,3 +577,174 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"quant-700-arith#39": {
+  steps: "Step 1 — Let the smallest district hold \\(m\\) people. The rule says no district may exceed \\(1.1m\\).\n" +
+    "Step 2 — To make \\(m\\) as small as possible, make every other district as large as the rule permits — exactly \\(1.1m\\) each.\n" +
+    "Step 3 — There are 11 districts: one of size \\(m\\) and ten of size \\(1.1m\\).\n" +
+    "Step 4 — Total: \\(m + 10(1.1m) = m + 11m = 12m\\).\n" +
+    "Step 5 — \\(12m = 132{,}000\\), so \\(m = 11{,}000\\).",
+  fast: "The optimisation is the only idea here: to minimise one part of a fixed total, maximise every other part. That turns eleven unknowns into one, and the coefficients happen to be beautiful — \\(1 + 10(1.1) = 12\\), and \\(132{,}000 / 12 = 11{,}000\\).\n" +
+    "A useful check on the setup: the average district is \\(132{,}000/11 = 12{,}000\\), and the smallest must sit below that — which it does.",
+  traps: "(E) 11,100 and the choices below the answer come from mis-setting the constraint. \\(10\\%\\) greater than \\(m\\) is \\(1.1m\\); reading it as \"the largest is \\(m + 10\\%\\) of the *average*\" or as a \\(10\\%\\) spread around the mean produces figures in the 10,700–10,900 range.\n" +
+    "(A) 10,700, (B) 10,800 and (C) 10,900 are all below \\(132{,}000/12\\); each corresponds to letting the other districts exceed \\(1.1m\\), which the rule forbids.\n" +
+    "The phrase to parse exactly is \"more than 10 percent greater than the population of any other district\" — the cap applies pairwise, so it binds hardest between the smallest and largest.",
+  take: "To minimise one part of a fixed sum, push every other part to its maximum. Write \"10% greater than \\(m\\)\" as \\(1.1m\\), never as \\(m + 10\\)."
+},
+
+"quant-700-arith#40": {
+  steps: "Step 1 — Anchor the beginning of the year at 100.\n" +
+    "Step 2 — End of Q1 is \\(20\\%\\) higher than that: \\(120\\).\n" +
+    "Step 3 — End of Q2 is \\(50\\%\\) higher than the *beginning of the year*, not than Q1: \\(150\\).\n" +
+    "Step 4 — The increase from Q1 to Q2 runs from 120 to 150, a rise of 30.\n" +
+    "Step 5 — Percent increase divides by the starting point, 120: \\(\\dfrac{30}{120} = 25\\%\\).",
+  fast: "Both percentages share the same base, so the two end-points are simply 120 and 150. The question then reduces to \\(150/120 = 1.25\\) — a ratio of two friendly numbers, and the answer is read straight off the \\(1.25\\).",
+  traps: "(C) 30% is the trap: it takes the raw difference of 30 and treats it as a percentage, which would only be right if the base were 100.\n" +
+    "(A) 20% is the difference of the two given percentages read as an answer, or the Q1 figure repeated.\n" +
+    "(D) 33% is \\(\\tfrac{50 - 20}{...}\\)-flavoured, and also what you get from dividing 30 by 90.\n" +
+    "(E) 40% comes from dividing 50 by 120-ish quantities incorrectly.\n" +
+    "The key reading is that *both* percentages are measured from the beginning of the year — a common structure where the two figures are cumulative rather than sequential.",
+  take: "When two percentages share a common base, convert both to values first, then compute the change between them against the earlier value."
+},
+
+"quant-700-arith#41": {
+  steps: "Step 1 — The markup is defined as a percentage of the *selling* price, not of the cost. Write \\(S\\) for the selling price.\n" +
+    "Step 2 — Selling price = purchase price + markup: \\(S = 150 + 0.40S\\).\n" +
+    "Step 3 — Collect: \\(S - 0.40S = 150\\), so \\(0.60S = 150\\).\n" +
+    "Step 4 — \\(S = 250\\).\n" +
+    "Step 5 — Gross profit is selling price minus cost: \\(250 - 150 = 100\\).",
+  fast: "If the markup is \\(40\\%\\) of the selling price, then the cost is the other \\(60\\%\\) of it. So \\(150\\) is \\(60\\%\\) of the selling price, and the profit — being the remaining \\(40\\%\\) — is \\(\\tfrac{40}{60}\\) of the cost: \\(\\tfrac23 \\times 150 = 100\\). No equation needed once you see the cost and the markup as two slices of the same price.",
+  traps: "(B) 60 is \\(0.40 \\times 150\\) — the markup computed as a percentage of the *cost*, which is the standard convention and exactly what this question deliberately inverts.\n" +
+    "(A) 40 and (C) 80 come from partial corrections of that same base error.\n" +
+    "(D) 90 is the source document's own printed key, and it does not satisfy the equation the question sets up: a profit of 90 would make the selling price 240, whose \\(40\\%\\) is 96, not 90. The stored answer is the one the setup produces.\n" +
+    "Read the phrase \"40 percent of the selling price\" as the definition it is; the equation is self-referential and must be solved, not evaluated.",
+  take: "A markup stated as a percentage of the *selling* price gives a self-referential equation \\(S = C + rS\\), i.e. \\(S = \\frac{C}{1-r}\\). Percentages of cost and of price are different questions."
+},
+
+"quant-700-arith#42": {
+  steps: "Step 1 — Take the May total as 100. Mr. Lee earned \\(60\\); the rest of the family earned \\(40\\).\n" +
+    "Step 2 — In June, Mr. Lee earned \\(20\\%\\) more: \\(60 \\times 1.2 = 72\\).\n" +
+    "Step 3 — The rest of the family's income is unchanged at \\(40\\).\n" +
+    "Step 4 — June's family total is \\(72 + 40 = 112\\) — note that the total itself grew, which is the crux of the question.\n" +
+    "Step 5 — Mr. Lee's share in June: \\(\\dfrac{72}{112} = \\dfrac{9}{14} \\approx 64.3\\%\\).",
+  fast: "Set May's total to 100 so the two components are 60 and 40. Then only one number moves, and the fraction \\(\\tfrac{72}{112}\\) reduces to \\(\\tfrac9{14}\\) — a hair under two-thirds, which already isolates the answer among the choices without dividing.",
+  traps: "(C) 72% is the trap: it uses June's earnings over May's total, forgetting that when one component rises the total rises with it, so the denominator must be updated too.\n" +
+    "(D) 76% and (E) 80% come from inflating Mr. Lee's earnings further, e.g. applying the \\(20\\%\\) rise to the whole family income.\n" +
+    "(B) 68% is roughly the midpoint of the two most common wrong routes and catches partial corrections.\n" +
+    "The share actually rises only from \\(60\\%\\) to about \\(64\\%\\), far less than the \\(20\\%\\) raise suggests — because the raise lifts the denominator too.",
+  take: "When one part of a total grows, the total grows with it. Recompute the denominator before taking the new share."
+},
+
+"quant-700-arith#43": {
+  steps: "Step 1 — Find the threshold: twice \\(\\tfrac{11}{50}\\) is \\(\\tfrac{22}{50} = 0.44\\).\n" +
+    "Step 2 — The question asks which choice is *at least* 0.44, so the comparison is inclusive.\n" +
+    "Step 3 — Convert each option: \\(\\tfrac25 = 0.400\\); \\(\\tfrac{11}{34} \\approx 0.324\\); \\(\\tfrac{43}{99} \\approx 0.434\\); \\(\\tfrac8{21} \\approx 0.381\\); \\(\\tfrac9{20} = 0.450\\).\n" +
+    "Step 4 — Only \\(0.450\\) clears \\(0.44\\), so the answer is \\(\\tfrac9{20}\\).",
+  fast: "Rewrite the threshold as \\(\\tfrac{22}{50} = \\tfrac{11}{25}\\) and compare by cross-multiplication rather than division. The only genuinely close call is \\(\\tfrac{43}{99}\\): since \\(\\tfrac{43}{99}\\) is just under \\(\\tfrac{43}{98} = \\tfrac{43}{98}\\), and \\(0.44 \\times 99 = 43.56 > 43\\), it falls short. Everything else is clearly below \\(0.44\\) or clearly above.",
+  traps: "(C) \\(\\tfrac{43}{99}\\) is engineered to look like \"a bit under a half\" and sits only \\(0.006\\) below the threshold — rounding it to \\(0.44\\) is fatal. Compare it exactly: \\(43 \\times 50\\) against \\(22 \\times 99\\), i.e. 2150 against 2178, so it is smaller.\n" +
+    "(A) \\(\\tfrac25 = 0.40\\) is the trap of comparing against \\(\\tfrac{11}{25}\\) carelessly, since both have small denominators.\n" +
+    "(B) \\(\\tfrac{11}{34}\\) shares the numerator 11 and invites the false reasoning \"same numerator, so about the same size\" — but the denominator fell from 50 only to 34, not to 25.\n" +
+    "(D) \\(\\tfrac8{21}\\) is close to \\(\\tfrac38\\) and well short.",
+  take: "Double the fraction first to set a single threshold, then compare each option by cross-multiplication. Decimal rounding is unsafe when a distractor sits within 0.01 of the cutoff."
+},
+
+"quant-700-arith#44": {
+  steps: "Step 1 — Write the starting numbers as \\(3k\\) juniors and \\(4k\\) seniors, so the ratio \\(3:4\\) holds automatically.\n" +
+    "Step 2 — \"10 juniors and twice as many seniors\" means 10 juniors and 20 seniors leave.\n" +
+    "Step 3 — End-of-year ratio: \\(\\dfrac{3k - 10}{4k - 20} = \\dfrac45\\).\n" +
+    "Step 4 — Cross-multiply: \\(5(3k - 10) = 4(4k - 20)\\), so \\(15k - 50 = 16k - 80\\).\n" +
+    "Step 5 — \\(k = 30\\).\n" +
+    "Step 6 — Seniors at the beginning: \\(4k = 120\\).\n" +
+    "Step 7 — Check: 90 juniors and 120 seniors become 80 and 100, and \\(80 : 100 = 4 : 5\\) ✓.",
+  fast: "The multiplier \\(k\\) is what makes ratio problems tractable — never write \\(j/s = 3/4\\) and carry two unknowns. Once set up, the algebra is one cross-multiplication.\n" +
+    "Back-solving is also viable: the seniors must be a multiple of 4, and testing the choices means one subtraction and one ratio check each.",
+  traps: "(B) 90 is the number of *juniors* at the start — the other quantity the setup produces, and the answer to a question that was not asked.\n" +
+    "(C) 100 is the number of seniors at the *end* of the year.\n" +
+    "(A) 80 is the number of juniors at the end. Three of the five choices are genuine quantities from the problem, each one step away from the right one.\n" +
+    "(D) 110 comes from mis-reading \"twice as many seniors\" as 10 seniors plus twice ten juniors, or from an arithmetic slip in the cross-multiplication.\n" +
+    "Circle \"seniors\" and \"at the beginning of the year\" before you compute.",
+  take: "Give a ratio a single multiplier \\(k\\) and write both quantities in terms of it. Then re-read exactly which quantity, at which time, the question wants."
+},
+
+"quant-700-arith#45": {
+  steps: "Step 1 — Give each class its own multiplier: Class A has \\(3a\\) boys and \\(4a\\) girls; Class B has \\(4b\\) boys and \\(5b\\) girls.\n" +
+    "Step 2 — \"Boys in B is one less than boys in A\": \\(4b = 3a - 1\\).\n" +
+    "Step 3 — \"Girls in B is two less than girls in A\": \\(5b = 4a - 2\\).\n" +
+    "Step 4 — From the first, \\(b = \\dfrac{3a-1}{4}\\). Substitute into the second: \\(\\dfrac{5(3a-1)}{4} = 4a - 2\\).\n" +
+    "Step 5 — Multiply by 4: \\(15a - 5 = 16a - 8\\), so \\(a = 3\\), and then \\(b = 2\\).\n" +
+    "Step 6 — Class A: \\(9\\) boys, \\(12\\) girls. Class B: \\(8\\) boys, \\(10\\) girls.\n" +
+    "Step 7 — Check the combined ratio: \\(17\\) boys to \\(22\\) girls ✓, exactly as stated.\n" +
+    "Step 8 — Girls in Class A: \\(12\\).",
+  fast: "Two classes need two different multipliers — using one \\(k\\) for both is the mistake that makes this problem unsolvable. After that it is a two-equation linear system that collapses in one substitution.\n" +
+    "Faster still: the combined ratio \\(17 : 22\\) tells you the totals are \\(17\\) boys and \\(22\\) girls (the smallest case), and the two \"one less / two less\" conditions then split them as \\(9 + 8\\) and \\(12 + 10\\) almost by inspection.",
+  traps: "(B) 9 is the number of *boys* in Class A — the companion quantity, one line away.\n" +
+    "(C) 10 is the number of girls in Class B.\n" +
+    "(A) 8 is the number of boys in Class B. As in the previous question, most distractors are real quantities from the solved system.\n" +
+    "(D) 11 is what you get from using a single shared multiplier for both classes, which forces an inconsistent system and a near-miss answer.\n" +
+    "The combined-ratio condition is a genuine check, not decoration — use it to confirm your split before answering.",
+  take: "Separate ratios need separate multipliers. Use any extra given condition (here the combined ratio) as a verification step."
+},
+
+"quant-700-arith#46": {
+  steps: "Step 1 — Write both quantities in scientific notation. Stars: \\(4 \\times 10^{11}\\). Fifty million: \\(5 \\times 10^{7}\\).\n" +
+    "Step 2 — The count wanted is the number of groups of fifty million: \\(\\dfrac{4 \\times 10^{11}}{5 \\times 10^{7}}\\).\n" +
+    "Step 3 — Divide the coefficients: \\(4 \\div 5 = 0.8\\).\n" +
+    "Step 4 — Subtract the exponents: \\(10^{11-7} = 10^4\\).\n" +
+    "Step 5 — \\(0.8 \\times 10^4 = 8{,}000\\).",
+  fast: "Handle coefficients and powers of ten separately and the arithmetic never gets bigger than one digit: \\(4/5\\) and \\(10^{11}/10^{7}\\). The only place to slip is normalising \\(0.8 \\times 10^4\\) — it is \\(8 \\times 10^3\\), not \\(8 \\times 10^4\\).",
+  traps: "(E) 80,000 is that normalisation error: reading \\(0.8 \\times 10^4\\) as \\(8 \\times 10^4\\).\n" +
+    "(A) 800 is the same slip in the other direction.\n" +
+    "(B) 1,250 is the reciprocal ratio \\(5/4\\) applied to \\(10^3\\) — the result of inverting the division.\n" +
+    "(D) 12,000 comes from mis-writing fifty million as \\(5 \\times 10^{6}\\) or from a coefficient slip.\n" +
+    "Getting \"fifty million\" into \\(5 \\times 10^7\\) correctly is half the question: count the zeros deliberately.",
+  take: "In scientific notation, divide the coefficients and subtract the exponents separately, then renormalise so the coefficient sits between 1 and 10."
+},
+
+"quant-700-arith#47": {
+  steps: "Step 1 — The ratio \\(3 : 5 : 7\\) means dogs, cats and bunnies come in parts of equal size.\n" +
+    "Step 2 — Cats and bunnies together are \\(5 + 7 = 12\\) parts.\n" +
+    "Step 3 — Those 12 parts equal 48 animals, so one part is \\(48 \\div 12 = 4\\).\n" +
+    "Step 4 — Dogs are 3 parts: \\(3 \\times 4 = 12\\).",
+  fast: "Add only the parts the given total covers — cats and bunnies, 12 parts — and divide. The dogs' 3 parts never enter until the last line, so there is no need to compute the shop's whole stock (which would be 15 parts, or 60 animals).",
+  traps: "(E) 16 comes from dividing 48 by 3, treating the 48 as though it covered all fifteen parts or matching it to the wrong part count.\n" +
+    "(B) 13, (C) 14 and (D) 15 are tightly clustered around the answer, so they punish an arithmetic slip rather than a conceptual one — most often dividing 48 by 12 as 4 but then multiplying by 4 instead of 3, or using \\(5+7+3\\) as the divisor.\n" +
+    "The single guard is to write down which parts the given total corresponds to before dividing anything.",
+  take: "Match a given total to the specific parts it covers, find the value of one part, then scale to the part you want."
+},
+
+"quant-700-arith#48": {
+  steps: "Step 1 — Choose a total that makes every fraction whole. The denominators are 2, 3 and 3, so 18 works.\n" +
+    "Step 2 — With 18 players: 9 right-handed and 9 left-handed.\n" +
+    "Step 3 — Two-thirds absent leaves \\(18 \\div 3 = 6\\) at practice.\n" +
+    "Step 4 — Of those 6, one-third are left-handed: \\(2\\) left-handed and \\(4\\) right-handed present.\n" +
+    "Step 5 — Absent right-handed: \\(9 - 4 = 5\\). Absent left-handed: \\(9 - 2 = 7\\).\n" +
+    "Step 6 — Ratio \\(5 : 7\\).\n" +
+    "Step 7 — The answer is independent of the number chosen: in general the absent counts are \\(\\tfrac{5T}{18}\\) and \\(\\tfrac{7T}{18}\\).",
+  fast: "Pick 18 and the whole problem is four subtractions. The structural insight is that the absent group is what is left over, so compute the small present group first (6 players, split 4 and 2) and subtract from 9 and 9.\n" +
+    "Note that the absent group has more left-handers than right-handers, so the ratio must be less than 1 — that alone removes two choices.",
+  traps: "(D) 7/5 is the correct ratio inverted — the question asks right-handed to left-handed, in that order, and the absent left-handers outnumber the right-handers.\n" +
+    "(A) 1/3 and (B) 2/3 come from ratios among the *present* players (2 left of 6, or 2 to 4) rather than the absent ones.\n" +
+    "(E) 3/2 is another inversion, of the present split.\n" +
+    "Every distractor here is a real ratio in the problem; the discipline is to write \"absent right : absent left\" at the top of your scratch work before computing.",
+  take: "Choose a total equal to the lcm of the denominators. When the question asks about a complement, compute the smaller group and subtract — and preserve the order of the ratio."
+},
+
+"quant-700-arith#49": {
+  steps: "Step 1 — Link Bag A's two ratios through the colour they share. Red : white \\(= 1 : 3\\) and white : blue \\(= 2 : 3\\). Scale the first by 2 to make white agree: red : white \\(= 2 : 6\\), and white : blue \\(= 6 : 9\\).\n" +
+    "Step 2 — So Bag A is red : white : blue \\(= 2 : 6 : 9\\). Its white count is a multiple of 6, and its red count is one third of its white count.\n" +
+    "Step 3 — Bag B is red : white \\(= 1 : 4\\), so its white count is a multiple of 4.\n" +
+    "Step 4 — The two whites sum to 30. Test the multiples of 6 for Bag A: \\(6\\) leaves \\(24\\) ✓ (a multiple of 4); \\(12\\) leaves \\(18\\) ✗; \\(18\\) leaves \\(12\\) ✓; \\(24\\) leaves \\(6\\) ✗.\n" +
+    "Step 5 — So Bag A holds either 6 or 18 white marbles, giving \\(2\\) or \\(6\\) red marbles.\n" +
+    "Step 6 — Of the choices, only \\(6\\) is reachable.",
+  fast: "The question says \"could be\", so it is a divisibility puzzle, not an equation. Two constraints do all the work: A's white is a multiple of 6, B's white is a multiple of 4, and they sum to 30. Only two splits survive, and only one of their red counts appears among the options.\n" +
+    "Chaining the ratios is the step to get right: match on the shared colour by scaling, never by adding.",
+  traps: "(B) 3 is what you get by taking Bag A's red as \\(\\tfrac13\\) of a white count that is not a multiple of 6 — for instance assuming A holds 9 whites, which the blue ratio forbids.\n" +
+    "(C) 4 and (E) 8 come from treating A's white as a multiple of 3 (from the red : white ratio alone) and ignoring that the white : blue ratio forces multiples of 6.\n" +
+    "(A) 1 is the smallest-scale reading, taking the ratio numbers themselves as counts.\n" +
+    "The two constraints must be applied together; either one alone admits values the other rules out.",
+  take: "Chain two ratios by scaling them to a common shared term. On \"could be\" questions, translate the ratios into divisibility conditions and test the few splits that satisfy both."
+}
+
+});

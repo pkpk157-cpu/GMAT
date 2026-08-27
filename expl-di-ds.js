@@ -847,3 +847,186 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-ds-traps#1": {
+  steps: "Step 1 — Find the benchmark. The question asks whether \\(r > 8\\), and over two years the growth factor is \\(\\left(1 + \\tfrac{r}{100}\\right)^2\\). At exactly \\(r = 8\\) that factor is \\(1.08^2 = 1.1664\\).\n" +
+    "Step 2 — So the question is really: is \\(\\left(1 + \\tfrac{r}{100}\\right)^2 > 1.1664\\)?\n" +
+    "Step 3 — Statement (1): \\(210 = 1000\\left[\\left(1+\\tfrac{r}{100}\\right)^2 - 1\\right]\\), so the factor is \\(1.21\\) and \\(1 + \\tfrac{r}{100} = 1.1\\), giving \\(r = 10\\).\n" +
+    "Step 4 — \\(10 > 8\\), a definite yes — [[sufficient]]. (Even before computing, a single equation in \\(r\\) guarantees a definite answer either way.)\n" +
+    "Step 5 — Statement (2): the factor exceeds \\(1.15\\). But \\(1.15 < 1.1664\\), so the permitted range straddles the benchmark: \\(1.155\\) corresponds to \\(r \\approx 7.5\\) (no) and \\(1.21\\) to \\(r = 10\\) (yes) — [[not sufficient]].",
+  fast: "Convert the \\(8\\%\\) threshold into the two-year factor \\(1.08^2 = 1.1664\\) before reading either statement — everything then reduces to comparing numbers against that one value.\n" +
+    "Statement (1) is decisive because it fixes the factor exactly; statement (2) fails because its bound of \\(1.15\\) sits just *below* the benchmark rather than above it.",
+  traps: "(D) accepts statement (2) by treating \\(1.15\\) as though it were the \\(8\\%\\) threshold. It is not — \\(1.08^2 = 1.1664\\), and the gap between 1.15 and 1.1664 is exactly where the counterexample lives.\n" +
+    "(B) inverts the two.\n" +
+    "(C) is over-cautious; statement (1) alone closes it.\n" +
+    "(E) misses that a single equation determines \\(r\\).\n" +
+    "The near-miss is deliberate: \\(1.15\\) looks like \"a bit more than 15% over two years\", which feels like more than 8% a year — but compounding makes the true threshold 16.64%.",
+  take: "Convert a rate threshold into the compounded factor before comparing: \\(r\\%\\) per year over \\(n\\) years is \\((1+r/100)^n\\). A bound just below the benchmark is never sufficient."
+},
+
+"di-ds-traps#2": {
+  steps: "Step 1 — Both \\(x\\) and \\(y\\) are positive integers. That constraint does most of the work.\n" +
+    "Step 2 — Statement (1): \\(|x - 2| < 2 - y\\). The left side is at least 0, so the right side must be strictly positive: \\(2 - y > 0\\), giving \\(y < 2\\).\n" +
+    "Step 3 — Since \\(y\\) is a positive integer, \\(y = 1\\). Then \\(|x - 2| < 1\\), so \\(1 < x < 3\\), and the only integer is \\(x = 2\\).\n" +
+    "Step 4 — 2 is prime, so the answer is a definite yes — [[sufficient]].\n" +
+    "Step 5 — Statement (2): \\(x + y - 3 = |1 - y|\\). Since \\(y \\ge 1\\), \\(1 - y \\le 0\\) and \\(|1 - y| = y - 1\\).\n" +
+    "Step 6 — So \\(x + y - 3 = y - 1\\), and the \\(y\\) terms cancel: \\(x = 2\\) — prime again, [[sufficient]].",
+  fast: "In statement (1), use the fact that an absolute value is non-negative to bound the *other* side — that single move collapses \\(y\\) to 1 and then \\(x\\) to 2.\n" +
+    "In statement (2), resolve the absolute value by sign first: \\(y\\) is a positive integer so \\(1 - y\\) is never positive, and \\(|1-y| = y-1\\) makes the \\(y\\) terms cancel outright.",
+  traps: "(C) is the reflex pairing when two statements point at the same value; each is independently complete.\n" +
+    "(A) and (B) reject one, usually (2), because the absolute value looks like it should split into cases. The domain restriction removes one case before you start.\n" +
+    "(E) dismisses both.\n" +
+    "The positive-integer condition is load-bearing in both statements: without it, statement (1) would allow \\(y\\) anywhere below 2 and \\(x\\) anywhere in \\((1,3)\\), and 2.5 is not prime.",
+  take: "An absolute value is \\(\\ge 0\\), so it bounds whatever it is compared against. Resolve \\(|a-b|\\) by determining the sign of \\(a-b\\) from the stated domain."
+},
+
+"di-ds-traps#3": {
+  steps: "Step 1 — Analyse the stem first: \\(y = x + |x|\\). If \\(x \\ge 0\\) then \\(|x| = x\\) and \\(y = 2x \\ge 0\\). If \\(x < 0\\) then \\(|x| = -x\\) and \\(y = 0\\).\n" +
+    "Step 2 — So \\(y\\) is never negative — it is 0 for every non-positive \\(x\\) and positive for every positive \\(x\\).\n" +
+    "Step 3 — Statement (1): \\(x < 0\\) puts us in the second branch, so \\(y = 0\\) — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Statement (2): \\(y < 1\\). Combined with the stem's conclusion that \\(y \\ge 0\\), and with \\(y\\) an integer, the only possibility is \\(y = 0\\) — a definite yes, [[sufficient]].",
+  fast: "The work happens in the stem, not the statements: \\(x + |x|\\) is a function that returns 0 for non-positive inputs and doubles positive ones, so its range is \\([0, \\infty)\\).\n" +
+    "Once you know \\(y \\ge 0\\), statement (2)'s \\(y < 1\\) plus integrality squeezes \\(y\\) to a single value — which is why a statement that looks weak turns out decisive.",
+  traps: "(A) accepts only the statement that constrains \\(x\\), dismissing (2) as a mere bound. The bound is enough because the stem already floors \\(y\\) at 0 and the stem also says \\(y\\) is an integer.\n" +
+    "(C) pairs them unnecessarily.\n" +
+    "(B) inverts.\n" +
+    "(E) misses the range analysis.\n" +
+    "Note the boundary at \\(x = 0\\): it belongs to the first branch (\\(y = 2 \\times 0 = 0\\)) and to the answer yes either way, so it causes no trouble here.",
+  take: "Analyse the stem's function before the statements. \\(x + |x|\\) is 0 for \\(x \\le 0\\) and \\(2x\\) for \\(x > 0\\), so it is never negative."
+},
+
+"di-ds-traps#4": {
+  steps: "Step 1 — We are told \\(p > m > 2\\), that \\(m\\) does not divide \\(p\\), and \\(r\\) is the remainder of \\(p\\) divided by \\(m\\). Because \\(m\\) is not a factor, \\(r \\ne 0\\), so \\(r \\ge 1\\).\n" +
+    "Step 2 — Statement (1): \\(\\gcd(m, p) = 2\\), so both \\(m\\) and \\(p\\) are even.\n" +
+    "Step 3 — Write \\(p = qm + r\\). Since \\(p\\) and \\(qm\\) are both even, \\(r = p - qm\\) is even.\n" +
+    "Step 4 — An even remainder that is not 0 must be at least 2, so \\(r > 1\\) — a definite yes, [[sufficient]].\n" +
+    "Step 5 — Statement (2): \\(\\operatorname{lcm}(m, p) = 30\\). Take \\(m = 5, p = 6\\): the lcm is 30 ✓ and \\(6 \\div 5\\) leaves \\(r = 1\\) — answer no.\n" +
+    "Step 6 — Take \\(m = 10, p = 15\\): the lcm is 30 ✓ and \\(15 \\div 10\\) leaves \\(r = 5\\) — answer yes. Two opposite answers, [[not sufficient]].",
+  fast: "Statement (1) is a parity argument in disguise: a common factor of 2 makes both numbers even, and the remainder inherits that parity. An even non-zero remainder cannot be 1.\n" +
+    "Statement (2) is best attacked by listing the \\((m,p)\\) pairs whose lcm is 30 — there are few, and two of them give opposite answers.",
+  traps: "(D) accepts statement (2) by assuming the lcm pins the pair. It does not: \\(\\{5,6\\}\\), \\(\\{10,15\\}\\), \\(\\{6,10\\}\\) and others all have lcm 30.\n" +
+    "(C) is over-cautious; statement (1) alone closes it.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses the parity argument.\n" +
+    "Note that \\(\\gcd = 2\\) says more than \"both even\" — it also says they share no odd factor — but only the evenness is needed here.",
+  take: "If two numbers share a factor \\(d\\), their remainder on division is a multiple of \\(d\\). A non-zero multiple of 2 is at least 2."
+},
+
+"di-ds-traps#5": {
+  steps: "Step 1 — The stem says \\(xy + z\\) is odd. Combine that with each statement rather than analysing the statement alone.\n" +
+    "Step 2 — Statement (1): \\(xy + xz\\) is even. Subtract the stem's expression: \\((xy + xz) - (xy + z) = xz - z = z(x - 1)\\).\n" +
+    "Step 3 — That difference is even minus odd, hence odd. A product is odd only when both factors are odd, so \\(z\\) is odd and \\(x - 1\\) is odd.\n" +
+    "Step 4 — \\(x - 1\\) odd means \\(x\\) is even — a definite yes, [[sufficient]].\n" +
+    "Step 5 — Statement (2): \\(y + xz\\) is odd. Add the stem's expression: \\((xy + z) + (y + xz) = y(x+1) + z(x+1) = (x+1)(y+z)\\).\n" +
+    "Step 6 — Odd plus odd is even, so \\((x+1)(y+z)\\) is even. That only tells you *one* of the two factors is even, not which.\n" +
+    "Step 7 — Test both: \\(x = 2, y = 1, z = 1\\) satisfies stem and statement with \\(x\\) even; \\(x = 1, y = 1, z = 0\\) satisfies both with \\(x\\) odd — [[not sufficient]].",
+  fast: "Add or subtract the stem's expression from the statement's — that is the whole technique for parity questions with a shared structure.\n" +
+    "Subtracting gives a *product* that must be odd, which forces both factors odd and settles \\(x\\). Adding gives a product that must be even, which forces only one factor even and settles nothing.",
+  traps: "(D) accepts statement (2) by reasoning that an even product implies \\(x + 1\\) is even. It implies only that \\(x+1\\) or \\(y+z\\) is even — the asymmetry between \"odd product\" and \"even product\" is the entire question.\n" +
+    "(B) inverts the two.\n" +
+    "(C) is over-cautious.\n" +
+    "(E) misses the subtraction trick.\n" +
+    "The rule to hold: an odd product pins *both* factors odd; an even product pins neither individually.",
+  take: "Combine the stem with a statement by adding or subtracting. An odd product forces both factors odd; an even product forces only that at least one is even."
+},
+
+"di-ds-traps#6": {
+  steps: "Step 1 — Let \\(F\\) study French and \\(J\\) study Japanese. The stem says \\(4\\%\\) of the French students also study Japanese, so the overlap is \\(0.04F\\).\n" +
+    "Step 2 — The question is whether \\(F > J\\) — a comparison, not a count.\n" +
+    "Step 3 — Statement (1): the overlap is 16, so \\(0.04F = 16\\) and \\(F = 400\\). But \\(J\\) is only known to be at least 100, so it could be 200 (yes) or 2,000 (no) — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): \\(10\\%\\) of the Japanese students also study French, so the overlap is also \\(0.10J\\).\n" +
+    "Step 5 — Setting the two expressions for the overlap equal: \\(0.04F = 0.10J\\), so \\(F = 2.5J\\).\n" +
+    "Step 6 — Since \\(J\\) is positive, \\(F = 2.5J > J\\) — a definite yes, [[sufficient]].",
+  fast: "Write the overlap two ways and equate them; that converts the two percentages into a ratio between \\(F\\) and \\(J\\) with the overlap cancelling out.\n" +
+    "Because the question asks which group is larger — not by how much — a ratio is exactly the right currency and a raw count is the wrong one.",
+  traps: "(A) is the trap for anyone who reaches for the concrete number 400. Knowing \\(F\\) exactly is useless without \\(J\\), and the stem's \"at least 100\" deliberately leaves \\(J\\) unbounded above.\n" +
+    "(C) is the cautious pairing; statement (2) alone closes it.\n" +
+    "(D) accepts both.\n" +
+    "(E) misses the double-counting identity.\n" +
+    "The structural insight is that one overlap can be expressed as a percentage of either group, and equating the two expressions always yields their ratio.",
+  take: "An overlap expressed as a percentage of each group yields the ratio of the groups. For \"which is larger\", a ratio suffices where a count does not."
+},
+
+"di-ds-traps#7": {
+  steps: "Step 1 — Statement (1): \\(x^2 > 0\\). Since squares are non-negative and only \\(0\\) squares to \\(0\\), this says exactly \\(x \\ne 0\\). It could be \\(3\\) or \\(-3\\) — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(x^3\\) is non-positive, i.e. \\(x^3 \\le 0\\). Cubing preserves sign, so \\(x \\le 0\\).\n" +
+    "Step 3 — That still allows \\(x = 0\\), which is not negative — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(x \\ne 0\\) from (1) and \\(x \\le 0\\) from (2) leave \\(x < 0\\) — a definite yes, [[sufficient]].",
+  fast: "Each statement excludes exactly one thing: (1) excludes zero, (2) excludes positives. Neither alone gives \"negative\", but the intersection does.\n" +
+    "The word to read slowly is \"non-positive\" — it means \\(\\le 0\\), not \\(< 0\\), and that single value is what makes statement (2) fall short on its own.",
+  traps: "(B) reads \"non-positive\" as \"negative\". Those differ on exactly one number, and that number is the counterexample.\n" +
+    "(A) treats \\(x^2 > 0\\) as a sign statement; an even power destroys sign information.\n" +
+    "(D) accepts both.\n" +
+    "(E) misses that the two exclusions combine.\n" +
+    "The vocabulary is worth fixing: non-positive means \\(\\le 0\\); non-negative means \\(\\ge 0\\); the GMAT uses both precisely.",
+  take: "\"Non-positive\" means \\(\\le 0\\) and includes zero. An even power tells you only whether the value is zero; an odd power carries the sign."
+},
+
+"di-ds-traps#8": {
+  steps: "Step 1 — \\(64 = 2^6\\), so its only odd factor is 1. That means \\(\\gcd(n, 64) = 1\\) exactly when \\(n\\) is odd, and is at least 2 when \\(n\\) is even.\n" +
+    "Step 2 — So the question reduces to: is \\(n\\) odd?\n" +
+    "Step 3 — Statement (1): no two different factors of \\(n\\) sum to a prime. Every positive integer has 1 as a factor. If \\(n\\) were even, 2 would also be a factor, and \\(1 + 2 = 3\\) is prime — which the statement forbids.\n" +
+    "Step 4 — So \\(n\\) is odd, and \\(\\gcd(n, 64) = 1\\) — [[sufficient]]. (Consistently, for odd \\(n\\) every factor is odd, so any two distinct factors sum to an even number of at least 4 — never prime.)\n" +
+    "Step 5 — Statement (2): \\(\\gcd(n, 2310) = 165\\). Note \\(2310 = 2 \\times 3 \\times 5 \\times 7 \\times 11\\) is even, while \\(165 = 3 \\times 5 \\times 11\\) is odd.\n" +
+    "Step 6 — If \\(n\\) were even, then 2 would divide both \\(n\\) and 2,310, making their gcd even. It is odd, so \\(n\\) is odd and \\(\\gcd(n, 64) = 1\\) — [[sufficient]].",
+  fast: "Reduce the question to a parity question: since 64 is a pure power of 2, the gcd is 1 for odd \\(n\\) and more for even \\(n\\). Then each statement only has to settle whether \\(n\\) is odd.\n" +
+    "Statement (1) does it with the factors 1 and 2 summing to the prime 3; statement (2) does it because an even \\(n\\) would force an even gcd with an even number.",
+  traps: "(C) is the reflex pairing when neither statement names \\(n\\). Neither needs to — the question asks for a gcd, not for \\(n\\).\n" +
+    "(A) and (B) reject one statement, usually (1), because its condition looks exotic. It is exotic, but it resolves in one line.\n" +
+    "(E) treats the absence of \\(n\\) as fatal.\n" +
+    "The reduction in Step 1 is the whole question: without it, both statements look like they are about unrelated properties.",
+  take: "\\(\\gcd(n, 2^k) = 1\\) exactly when \\(n\\) is odd. Reduce a gcd question to a parity or prime-coverage question before testing statements."
+},
+
+"di-ds-traps#9": {
+  steps: "Step 1 — Note carefully: the stem never says \\(n\\) is an integer. That omission is the trap.\n" +
+    "Step 2 — Statement (1): \\(\\tfrac{5n}{18} = k\\) for some integer \\(k\\), so \\(n = \\tfrac{18k}{5}\\). With \\(k = 5\\), \\(n = 18\\) and \\(\\tfrac n{18} = 1\\) — yes. With \\(k = 1\\), \\(n = 3.6\\) and \\(\\tfrac n{18} = 0.2\\) — no. [[Not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(\\tfrac{3n}{18} = \\tfrac n6 = m\\) for some integer \\(m\\), so \\(n = 6m\\). With \\(m = 3\\), \\(n = 18\\) — yes. With \\(m = 1\\), \\(n = 6\\) — no. [[Not sufficient]].\n" +
+    "Step 4 — Together: from (2), \\(n = 6m\\) with \\(m\\) an integer. Substituting into (1): \\(\\tfrac{5(6m)}{18} = \\tfrac{30m}{18} = \\tfrac{5m}{3}\\) must be an integer.\n" +
+    "Step 5 — Since 5 and 3 are coprime, \\(3\\) must divide \\(m\\), so \\(m = 3j\\) and \\(n = 18j\\).\n" +
+    "Step 6 — Then \\(\\tfrac n{18} = j\\), an integer — a definite yes, [[sufficient]].",
+  fast: "Statement (2) is the more informative one because \\(\\tfrac{3n}{18}\\) simplifies to \\(\\tfrac n6\\), which forces \\(n\\) to be an integer multiple of 6. Substituting that into statement (1) supplies the remaining factor of 3.\n" +
+    "Together the two say \\(n\\) is divisible by 6 and by \\(\\tfrac{18}{\\gcd(5,18)} = 18\\)-worth of structure — the clean way to see it is that (2) gives the factor 6 and (1) then gives the extra 3.",
+  traps: "(D) is the trap for anyone who assumes \\(n\\) is an integer. Under that assumption statement (1) alone would work, since 5 and 18 are coprime — which is exactly why the assumption must be checked.\n" +
+    "(A) and (B) make the same assumption for one statement.\n" +
+    "(E) misses that the combination forces integrality and then divisibility.\n" +
+    "Watch also that statement (2) is not simply \"\\(n\\) is divisible by 18\": \\(\\tfrac{3n}{18}\\) reduces to \\(\\tfrac n6\\), a weaker condition.",
+  take: "Simplify each fraction to lowest terms first, and never assume a variable is an integer unless the stem says so."
+},
+
+"di-ds-traps#10": {
+  steps: "Step 1 — Find every way to write 45 as a sum of consecutive positive integers.\n" +
+    "Step 2 — \\(n = 1\\): 45. \\(n = 2\\): \\(22 + 23\\). \\(n = 3\\): \\(14+15+16\\). \\(n = 5\\): \\(7+8+9+10+11\\). \\(n = 6\\): \\(5+6+7+8+9+10\\). \\(n = 9\\): \\(1+2+\\dots+9\\).\n" +
+    "Step 3 — Statement (1): \\(n\\) is even. Both \\(n = 2\\) and \\(n = 6\\) qualify — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): \\(n < 9\\). That admits 1, 2, 3, 5 and 6 — [[not sufficient]].\n" +
+    "Step 5 — Together: \\(n\\) even and under 9 leaves both 2 and 6 — [[not sufficient]].",
+  fast: "Enumerate the possible \\(n\\) *before* reading the statements — with 45 the list is short, and once you see two even values below 9 the answer is E immediately.\n" +
+    "The structural fact behind the list: a run of \\(n\\) consecutive integers starting at \\(a\\) sums to \\(n a + \\tfrac{n(n-1)}{2}\\), so \\(n\\) must divide \\(45\\) when \\(n\\) is odd, and \\(\\tfrac n2\\) must divide 45 in a related way when \\(n\\) is even.",
+  traps: "(C) is the intended trap: two conditions that each narrow the list feel like they should intersect in one value. They leave two.\n" +
+    "(A) assumes only one even run exists.\n" +
+    "(B) assumes only one run below 9 exists.\n" +
+    "(D) is stronger still.\n" +
+    "The commonest incomplete enumeration finds \\(n = 2\\) and \\(n = 9\\) and stops, missing \\(n = 6\\) — which is exactly the value that defeats the combination.",
+  take: "Enumerate all possibilities before testing the statements. For sums of consecutive integers, expect several representations, not one."
+},
+
+"di-ds-traps#11": {
+  steps: "Step 1 — Statement (1): \\(x^2\\) is positive, which says only \\(x \\ne 0\\). Both \\(3\\) and \\(-3\\) qualify — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(x \\cdot |y|\\) is not positive, i.e. \\(x|y| \\le 0\\).\n" +
+    "Step 3 — If \\(y \\ne 0\\) then \\(|y| > 0\\), and dividing gives \\(x \\le 0\\). But if \\(y = 0\\), the product is 0 for *every* \\(x\\), including positive ones — [[not sufficient]].\n" +
+    "Step 4 — Together: take \\(x = 5\\), \\(y = 0\\). Then \\(x^2 = 25 > 0\\) ✓ and \\(x|y| = 0\\), which is not positive ✓ — yet \\(x\\) is positive, so the answer is no.\n" +
+    "Step 5 — Take \\(x = -5\\), \\(y = 2\\). Then \\(x^2 = 25 > 0\\) ✓ and \\(x|y| = -10 \\le 0\\) ✓ — and \\(x\\) is negative, so the answer is yes.\n" +
+    "Step 6 — Both answers survive both statements — [[not sufficient]].",
+  fast: "The whole question hinges on whether \\(y\\) can be zero. Nothing forbids it, and \\(|y| = 0\\) makes the product zero regardless of \\(x\\) — so statement (2) collapses.\n" +
+    "Whenever a statement involves a product with a variable that might be zero, test that case first; it usually breaks the statement.",
+  traps: "(C) is the intended trap: statement (1) rules out \\(x = 0\\) and statement (2) *appears* to rule out positive \\(x\\), which together would give \"negative\". The appearance fails at \\(y = 0\\).\n" +
+    "(B) accepts statement (2) alone by dividing through by \\(|y|\\) without checking it is non-zero.\n" +
+    "(A) treats a square's positivity as a sign statement.\n" +
+    "(D) is stronger still.\n" +
+    "Compare with the earlier question in this set where \\(x^3 \\le 0\\) paired with \\(x \\ne 0\\) *was* sufficient — there the second statement had no hidden zero case.",
+  take: "Never divide by a variable that might be zero. In a product \\(a \\cdot b \\le 0\\), the case \\(b = 0\\) makes the inequality hold for every \\(a\\)."
+}
+
+});

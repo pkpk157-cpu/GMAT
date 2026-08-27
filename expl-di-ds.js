@@ -1166,3 +1166,204 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-ds-realexam#1": {
+  steps: "Step 1 — Statement (1): \\(x^3\\) is a two-digit positive odd integer. That allows \\(x^3 = 27\\) (so \\(x = 3\\)) but also \\(x^3 = 11\\) (so \\(x = \\sqrt[3]{11}\\)) and many others — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(x^4\\) is a two-digit odd integer, allowing \\(x^4 = 81\\) (so \\(x = 3\\)) as well as \\(x^4 = 11\\) and others — [[not sufficient]].\n" +
+    "Step 3 — Together: \\(x = \\dfrac{x^4}{x^3}\\), so \\(x\\) is a ratio of two integers and hence rational.\n" +
+    "Step 4 — But if a rational \\(x = p/q\\) in lowest terms has an integer cube, then \\(q^3\\) must divide \\(p^3\\), which forces \\(q = 1\\). So \\(x\\) is an integer.\n" +
+    "Step 5 — Now find the integers with both \\(x^3\\) and \\(x^4\\) two-digit: \\(x^3 \\le 99\\) gives \\(x \\le 4\\), and \\(x^4 \\ge 10\\) gives \\(x \\ge 2\\).\n" +
+    "Step 6 — Test: \\(x = 2\\) gives \\(8\\) (one digit) ✗; \\(x = 3\\) gives \\(27\\) and \\(81\\), both two-digit and both odd ✓; \\(x = 4\\) gives \\(64\\) and \\(256\\) (three digits) ✗.\n" +
+    "Step 7 — Only \\(x = 3\\) survives — [[sufficient]].",
+  fast: "The combination is what forces integrality: dividing \\(x^4\\) by \\(x^3\\) makes \\(x\\) rational, and a rational number with an integer cube must be an integer.\n" +
+    "After that the search is tiny — only \\(x = 2, 3, 4\\) can give a two-digit cube — and 3 is the only one whose fourth power is also two-digit and odd.",
+  traps: "(D) accepts one statement alone by silently assuming \\(x\\) is an integer. The stem says only that \\(x\\) is positive, so a cube root of 11 is admissible.\n" +
+    "(A) and (B) make the same assumption for one statement.\n" +
+    "(E) misses that the ratio \\(x^4/x^3\\) forces rationality and then integrality.\n" +
+    "The wider lesson: when a stem says only \"positive number\", the integrality must be *derived*, not assumed — and here deriving it is the entire question.",
+  take: "\\(x = x^{n+1}/x^n\\), so two integer powers make \\(x\\) rational; a rational with an integer power is an integer. Derive integrality rather than assuming it."
+},
+
+"di-ds-realexam#2": {
+  steps: "Step 1 — Evaluate \\(z! + (z+1)\\) for small non-negative integers.\n" +
+    "Step 2 — \\(z = 0\\): \\(1 + 1 = 2\\), prime. \\(z = 2\\): \\(2 + 3 = 5\\), prime. \\(z = 4\\): \\(24 + 5 = 29\\), prime. \\(z = 6\\): \\(720 + 7 = 727\\), prime.\n" +
+    "Step 3 — Statement (1): \\(z\\) is even. The run above is encouraging, but \\(z = 8\\) gives \\(40320 + 9 = 40329\\), whose digits sum to 18, so it is divisible by 9 — not prime.\n" +
+    "Step 4 — Yes and no both occur — [[not sufficient]].\n" +
+    "Step 5 — Statement (2): \\(z < 10\\). Here \\(z = 0\\) gives 2 (prime) and \\(z = 3\\) gives \\(6 + 4 = 10\\) (not prime) — [[not sufficient]].\n" +
+    "Step 6 — Together: \\(z\\) even and under 10 still admits \\(z = 0\\) (yes) and \\(z = 8\\) (no) — [[not sufficient]].",
+  fast: "Look for a structural reason before trusting a run of primes. Here \\(z + 1 = 9\\) at \\(z = 8\\), and \\(8!\\) contains both 3 and 6, so it is divisible by 9 — which makes the whole sum divisible by 9.\n" +
+    "That divisibility test is far faster than factoring 40,329, and it tells you exactly where to look for the counterexample.",
+  traps: "(A) is the trap the question is built around: four consecutive even values give primes, and the fifth does not. A pattern is not a proof.\n" +
+    "(C) attaches an extra condition to the same faulty reasoning.\n" +
+    "(B) assumes the small range is uniform.\n" +
+    "(D) accepts both.\n" +
+    "On any \"is it prime?\" question, look for a shared factor between the terms being added; a run of examples should raise suspicion, not confidence.",
+  take: "For \\(z! + (z+1)\\), check whether \\(z+1\\) shares a factor with \\(z!\\). Test at least one case beyond where the pattern seems settled."
+},
+
+"di-ds-realexam#3": {
+  steps: "Step 1 — The recurrence \\(a_n = a_{n-1} + k\\) with \\(k \\ne 0\\) makes the sequence arithmetic and strictly monotonic — increasing if \\(k > 0\\), decreasing if \\(k < 0\\).\n" +
+    "Step 2 — Statement (1): \\(a_1 = 24\\). If \\(k > 0\\), every term exceeds 24 and all 15 are above 10. If \\(k = -1\\), the terms run \\(24, 23, \\dots, 10\\), and the last equals 10 — so only 14 exceed 10. Two answers — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(a_8 = 10\\). With 15 terms, position 8 is exactly the middle: 7 terms before it and 7 after.\n" +
+    "Step 4 — If \\(k > 0\\), the 7 terms after \\(a_8\\) exceed 10 and the 7 before are below it; \\(a_8 = 10\\) itself is not greater than 10. Count: 7.\n" +
+    "Step 5 — If \\(k < 0\\), the 7 terms before \\(a_8\\) exceed 10 and the 7 after are below. Count: 7 again.\n" +
+    "Step 6 — Either way the answer is 7 — [[sufficient]].",
+  fast: "The symmetry of position 8 in a 15-term list is the whole point: it splits the rest into two equal halves, and monotonicity puts exactly one half above the pivot whichever way the sequence runs.\n" +
+    "You never need \\(k\\) or any actual term — only that the sequence is strictly monotonic and that \\(a_8\\) sits at the threshold.",
+  traps: "(D) accepts statement (1), where the direction of the sequence changes the count.\n" +
+    "(A) inverts the two.\n" +
+    "(C) is over-cautious; statement (2) alone closes it.\n" +
+    "(E) misses the symmetry.\n" +
+    "The detail that matters is the strictness of \"greater than 10\": \\(a_8 = 10\\) is *not* counted, which is what makes the answer exactly 7 rather than 8.",
+  take: "In a strictly monotonic list, a term equal to the threshold splits the rest symmetrically. Note whether the threshold itself counts."
+},
+
+"di-ds-realexam#4": {
+  steps: "Step 1 — Work out the stem's function. If \\(x \\ge 0\\), \\(|x| = x\\) and \\(y = 2x \\ge 0\\). If \\(x < 0\\), \\(|x| = -x\\) and \\(y = 0\\).\n" +
+    "Step 2 — So \\(y\\) is never negative, and it is exactly 0 for every \\(x \\le 0\\).\n" +
+    "Step 3 — Statement (1): \\(x < 0\\) lands in the second branch, giving \\(y = 0\\) — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Statement (2): \\(y < 1\\). Since \\(y \\ge 0\\) from the stem and \\(y\\) is an integer, the only possibility is \\(y = 0\\) — a definite yes, [[sufficient]].",
+  fast: "Sketch the function \\(x + |x|\\): it is flat at 0 for all \\(x \\le 0\\) and rises as \\(2x\\) thereafter. Its range is \\([0, \\infty)\\), and that range is what makes statement (2) work.\n" +
+    "Statement (2) looks weaker than it is — a bound plus a floor plus integrality squeezes \\(y\\) to a single value.",
+  traps: "(A) accepts only the statement about \\(x\\), dismissing the bound on \\(y\\) as too loose. It is not, once the stem's floor of 0 and the integrality of \\(y\\) are in hand.\n" +
+    "(C) pairs them unnecessarily.\n" +
+    "(B) inverts.\n" +
+    "(E) misses the range analysis.\n" +
+    "The word \"integer\" in the stem is doing real work in statement (2): without it, \\(y\\) could be \\(0.5\\) and the answer would be no.",
+  take: "\\(x + |x|\\) equals 0 for \\(x \\le 0\\) and \\(2x\\) for \\(x > 0\\) — its range is \\([0,\\infty)\\). A floor plus a ceiling plus integrality can pin a single value."
+},
+
+"di-ds-realexam#5": {
+  steps: "Step 1 — The list has nine distinct integers with at least one negative, so the median is the 5th value in order.\n" +
+    "Step 2 — Statement (1): the product of all nine equals the median \\(m\\). Suppose \\(0 \\notin S\\). Then the product is non-zero, and dividing by \\(m\\) (which is one of the nine) leaves the other eight multiplying to 1.\n" +
+    "Step 3 — Eight *distinct* integers multiplying to 1 is impossible: the only integers of absolute value 1 are \\(1\\) and \\(-1\\), which gives at most two distinct values.\n" +
+    "Step 4 — So \\(0 \\in S\\), the product is 0, and therefore \\(m = 0\\) — not positive, a definite no, [[sufficient]].\n" +
+    "Step 5 — Statement (2): the sum equals the median. Take \\(\\{-6,-5,-3,0,1,2,3,4,5\\}\\): the sum is 1 and the median is 1 — positive, yes.\n" +
+    "Step 6 — Take \\(\\{-4,-3,-2,-1,0,1,2,3,4\\}\\): the sum is 0 and the median is 0 — not positive, no. Two answers, [[not sufficient]].",
+  fast: "Statement (1) rests on a counting impossibility rather than arithmetic: eight distinct integers cannot multiply to 1, so zero must be in the list, which forces the median to 0.\n" +
+    "For statement (2), symmetric lists centred on 0 give a sum and median of 0, while shifting one element upward can make both positive — two constructions and you are done.",
+  traps: "(D) accepts statement (2), perhaps by reasoning that a sum equalling a median is a strong coincidence. It is easy to arrange, in more than one way.\n" +
+    "(C) is over-cautious; statement (1) alone closes it.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses the impossibility argument in statement (1).\n" +
+    "The distinctness condition is essential in Step 3: without it, eight copies of 1 would multiply to 1 and the argument would collapse.",
+  take: "Distinct integers multiplying to 1 are limited to \\(\\pm 1\\), so more than two of them is impossible. A product equal to a member of the list usually forces a zero into the list."
+},
+
+"di-ds-realexam#6": {
+  steps: "Step 1 — A run of \\(n\\) consecutive positive integers starting at \\(a\\) sums to \\(na + \\dfrac{n(n-1)}{2} = 45\\).\n" +
+    "Step 2 — Enumerate the runs: \\(n = 1\\) (45); \\(n = 2\\) (\\(22+23\\)); \\(n = 3\\) (\\(14+15+16\\)); \\(n = 5\\) (\\(7\\) through \\(11\\)); \\(n = 6\\) (\\(5\\) through \\(10\\)); \\(n = 9\\) (\\(1\\) through \\(9\\)).\n" +
+    "Step 3 — Statement (1): \\(n\\) is even. Both \\(n = 2\\) and \\(n = 6\\) qualify — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): \\(n < 9\\). That leaves \\(1, 2, 3, 5, 6\\) — [[not sufficient]].\n" +
+    "Step 5 — Together: even and under 9 leaves \\(n = 2\\) and \\(n = 6\\) — still two values, [[not sufficient]].",
+  fast: "Build the full list of admissible \\(n\\) before touching the statements. With a target of 45 the list is short, and spotting two even values below 9 answers the question instantly.\n" +
+    "A quick way to generate it: for odd \\(n\\), the run's middle term is \\(45/n\\), so \\(n\\) must divide 45 — giving \\(n = 1, 3, 5, 9\\). For even \\(n\\), the two central terms average \\(45/n\\), which must be a half-integer — giving \\(n = 2, 6\\).",
+  traps: "(C) is the intended trap: two narrowing conditions feel as though they must intersect in one value.\n" +
+    "(A) finds only \\(n = 2\\) among the even runs and misses \\(n = 6\\) — which is precisely the value that defeats the combination.\n" +
+    "(B) assumes uniqueness below 9.\n" +
+    "(D) is stronger still.\n" +
+    "The most common incomplete enumeration stops at \\(n = 2\\), \\(n = 3\\) and \\(n = 9\\); \\(5+6+7+8+9+10\\) is the one people overlook.",
+  take: "For sums of consecutive integers, odd \\(n\\) must divide the total and even \\(n\\) must make \\(\\text{total}/n\\) a half-integer. Enumerate fully before judging."
+},
+
+"di-ds-realexam#7": {
+  steps: "Step 1 — No positivity or integrality is stated, so the variables range over all reals — and values just above 1 are where fourth powers behave differently from squares.\n" +
+    "Step 2 — Take \\(x = y = 1\\), \\(z = 1\\). Then \\(x^2 + y^2 = 2 > 1 = z^2\\) ✓ and \\(x + y = 2 > 1 = z\\) ✓, while \\(x^4 + y^4 = 2 > 1 = z^4\\) — answer yes.\n" +
+    "Step 3 — Now take \\(x = y = 1\\), \\(z = 1.3\\). Then \\(x^2 + y^2 = 2 > 1.69\\) ✓ and \\(x + y = 2 > 1.3\\) ✓ — both statements still hold.\n" +
+    "Step 4 — But \\(x^4 + y^4 = 2\\) while \\(z^4 = 2.8561\\), so \\(x^4 + y^4 < z^4\\) — answer no.\n" +
+    "Step 5 — The same pair of examples satisfies statement (1) alone, statement (2) alone, and both together, while giving opposite answers — [[not sufficient]] in every case.",
+  fast: "Raising an inequality to a higher power does not preserve it when the two sides are close and above 1: \\(z\\) grows much faster than the sum of two fixed terms.\n" +
+    "Fixing \\(x = y = 1\\) and sliding \\(z\\) upward through the interval \\((1, \\sqrt2)\\) breaks everything at once — a single family of counterexamples covering all three cases.",
+  traps: "(C) is the natural guess: two inequalities pointing the same way feel like they should compound. They do not, because the exponents change the balance.\n" +
+    "(A) assumes squaring an inequality preserves it. It preserves \\(a > b\\) for non-negative \\(a, b\\), but \\(x^2 + y^2 > z^2\\) does not imply \\(x^4 + y^4 > z^4\\) — sums of powers do not behave like single powers.\n" +
+    "(B) makes the same error one level lower.\n" +
+    "(D) accepts both.\n" +
+    "The tell is that the statements constrain *sums* of powers, and sums do not scale uniformly when raised to a power.",
+  take: "\\(a^n + b^n > c^n\\) does not follow from \\(a^m + b^m > c^m\\) for \\(n > m\\). Slide one variable through a narrow interval above 1 to break such claims."
+},
+
+"di-ds-realexam#8": {
+  steps: "Step 1 — Statement (1): \\(x^2 > 0\\) says only that \\(x \\ne 0\\); both \\(3\\) and \\(-3\\) satisfy it — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(x \\cdot |y|\\) is not positive, i.e. \\(x|y| \\le 0\\).\n" +
+    "Step 3 — If \\(y \\ne 0\\), then \\(|y| > 0\\) and dividing gives \\(x \\le 0\\). But if \\(y = 0\\), the product is 0 for every \\(x\\), positive ones included — [[not sufficient]].\n" +
+    "Step 4 — Together: take \\(x = 5\\), \\(y = 0\\). Then \\(x^2 = 25 > 0\\) ✓ and \\(x|y| = 0\\), which is not positive ✓ — yet \\(x\\) is positive, so the answer is no.\n" +
+    "Step 5 — Take \\(x = -5\\), \\(y = 2\\). Both statements hold and \\(x\\) is negative — the answer is yes.\n" +
+    "Step 6 — Both answers survive — [[not sufficient]].",
+  fast: "Ask immediately whether \\(y\\) can be zero. Nothing forbids it, and \\(|y| = 0\\) makes the product zero regardless of \\(x\\) — which empties statement (2) of content about the sign of \\(x\\).\n" +
+    "Any statement of the form \\(a \\cdot b \\le 0\\) should prompt the question \"can \\(b\\) be zero?\" before anything else.",
+  traps: "(C) is the intended trap: (1) rules out zero and (2) *appears* to rule out positives, which together would give \"negative\". The appearance breaks at \\(y = 0\\).\n" +
+    "(B) divides by \\(|y|\\) without checking it is non-zero.\n" +
+    "(A) treats a square's positivity as sign information.\n" +
+    "(D) is stronger still.\n" +
+    "The phrase \"not a positive number\" means \\(\\le 0\\), which explicitly includes zero — that inclusion is what the trap exploits.",
+  take: "Never divide by a quantity that might be zero. \"Not positive\" means \\(\\le 0\\), and the zero case usually breaks the statement."
+},
+
+"di-ds-realexam#9": {
+  steps: "Step 1 — Let \\(L\\) and \\(S\\) be the head counts and \\(m\\) the overall mean salary. The question asks for \\(\\dfrac{S}{L+S}\\).\n" +
+    "Step 2 — Statement (1): line-workers average \\(m - 10{,}000\\) and staff average \\(m + 30{,}000\\).\n" +
+    "Step 3 — In any weighted average, the deviations from the mean must balance: \\(L(-10{,}000) + S(30{,}000) = 0\\).\n" +
+    "Step 4 — So \\(10{,}000L = 30{,}000S\\), giving \\(L = 3S\\).\n" +
+    "Step 5 — Then \\(\\dfrac{S}{L+S} = \\dfrac{S}{4S} = 25\\%\\) — [[sufficient]], with the mean \\(m\\) never needed.\n" +
+    "Step 6 — Statement (2): \\(L = S + 500\\). That is a difference, not a ratio: \\(S = 100\\) gives \\(\\tfrac{100}{700}\\) while \\(S = 500\\) gives \\(\\tfrac{500}{1500}\\) — [[not sufficient]].",
+  fast: "The weighted-average lever does this in one line: the group sizes are inversely proportional to their distances from the overall mean. Distances 10,000 and 30,000 give a ratio of \\(3 : 1\\), so staff are one part in four.\n" +
+    "The question asks for a percentage, so a ratio is exactly the right currency and an absolute difference is exactly the wrong one.",
+  traps: "(D) accepts statement (2), which fixes a difference in head count but not a proportion — the very thing a percentage needs.\n" +
+    "(C) is the cautious pairing; statement (1) alone closes it.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses that the unknown mean cancels.\n" +
+    "The direction of the lever is the place to slip: the group *further* from the mean is the *smaller* one, so a distance of 30,000 means fewer staff, not more.",
+  take: "In a two-group weighted average, group sizes are inversely proportional to their distances from the overall mean. A percentage needs a ratio, not a difference."
+},
+
+"di-ds-realexam#10": {
+  steps: "Step 1 — Statement (1): \\(|z| < 2\\) gives the range \\(-2 < z < 2\\), not a value — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(|z| = 3z - 2\\). Note first that the right side must be non-negative, so \\(z \\ge \\tfrac23\\) — which already rules out the negative branch.\n" +
+    "Step 3 — Case \\(z \\ge 0\\): \\(z = 3z - 2\\), so \\(2z = 2\\) and \\(z = 1\\) ✓ consistent.\n" +
+    "Step 4 — Case \\(z < 0\\): \\(-z = 3z - 2\\), so \\(4z = 2\\) and \\(z = \\tfrac12\\) — which contradicts \\(z < 0\\) and is discarded.\n" +
+    "Step 5 — A unique value \\(z = 1\\) — [[sufficient]].",
+  fast: "The pre-check is the fastest route: an absolute value equals \\(3z - 2\\), so \\(3z - 2 \\ge 0\\) and \\(z \\ge \\tfrac23\\). Only the non-negative branch can survive, and it gives \\(z = 1\\) in one line.\n" +
+    "Without that pre-check you must solve both branches and then discard the inconsistent root — the same answer, slightly more work.",
+  traps: "(C) is the trap for anyone who finds two roots and reaches for statement (1) to choose. Both candidate roots lie inside \\((-2, 2)\\), so statement (1) would not have helped — the case check is what resolves it.\n" +
+    "(A) treats a range as a value.\n" +
+    "(D) accepts both.\n" +
+    "(E) misses the extraneous root.\n" +
+    "Extraneous roots are the hallmark of absolute-value and radical equations; substituting back is not optional.",
+  take: "For \\(|f(z)| = g(z)\\), require \\(g(z) \\ge 0\\) first — it often eliminates a branch before any algebra."
+},
+
+"di-ds-realexam#11": {
+  steps: "Step 1 — Statement (2): \\(q\\) is a positive integer and \\(q^4\\) is a two-digit odd number. Test small values: \\(2^4 = 16\\) (even), \\(3^4 = 81\\) (two-digit and odd ✓), \\(4^4 = 256\\) (three digits).\n" +
+    "Step 2 — So \\(q = 3\\) and \\(q^2 = 9\\). But alone this says nothing about \\(p\\) — [[not sufficient]].\n" +
+    "Step 3 — Statement (1): \\(p\\) is divisible by \\(q^2\\), with \\(q\\) unknown. Any two-digit \\(p\\) is divisible by \\(1^2\\), so this constrains nothing — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(p\\) is a two-digit multiple of 9 below 99 — namely \\(18, 27, 36, 45, 54, 63, 72, 81, 90\\).\n" +
+    "Step 5 — Every multiple of 9 has a digit sum that is a multiple of 9, and for two-digit multiples of 9 that sum is exactly 9 in each case.\n" +
+    "Step 6 — So the digit sum is 9 regardless of which \\(p\\) it is — [[sufficient]].",
+  fast: "You never need to identify \\(p\\). Once \\(q^2 = 9\\), the divisibility rule for 9 says the digit sum is a multiple of 9, and a two-digit number's digits sum to at most 18 — so 9 or 18, and 18 requires \\(p = 99\\), which the stem excludes.\n" +
+    "That reasoning gives the answer without listing a single multiple.",
+  traps: "(E) is the trap for anyone who insists that \\(p\\) must be pinned to a single value. It need not be — every candidate shares the same digit sum, which is all the question asks for.\n" +
+    "(B) treats a fact about \\(q\\) as a fact about \\(p\\).\n" +
+    "(A) treats an unconstrained divisibility as informative.\n" +
+    "Note the stem's \"less than 99\": that is what excludes \\(p = 99\\), whose digits sum to 18 rather than 9.",
+  take: "A digit sum is determined whenever all candidates share it — the value itself need not be. Two-digit multiples of 9 all have digit sum 9, since 99 is the only one reaching 18."
+},
+
+"di-ds-realexam#12": {
+  steps: "Step 1 — Four distinct positive integers \\(a < b < c < d\\) averaging 60 sum to \\(240\\).\n" +
+    "Step 2 — Statement (1): the median of the three largest, \\(\\{b, c, d\\}\\), is \\(c = 51\\); and \\(c + d = 190\\), so \\(d = 139\\).\n" +
+    "Step 3 — Then \\(a + b = 240 - 190 = 50\\), and since \\(a < b\\) with both positive, \\(b \\le 49\\) — so both are below 50.\n" +
+    "Step 4 — With \\(c = 51\\) and \\(d = 139\\) above 50, exactly two of the four are less than 50 — [[sufficient]].\n" +
+    "Step 5 — Statement (2): the median of four values is \\(\\dfrac{b+c}{2} = 50\\), so \\(b + c = 100\\). Distinctness forces \\(b < 50 < c\\).\n" +
+    "Step 6 — Then \\(a < b < 50\\) and \\(d > c > 50\\), so again exactly two fall below 50 — [[sufficient]].",
+  fast: "Neither statement requires finding the four numbers — each only has to place 50 within the ordering.\n" +
+    "Statement (2) is the more elegant: two distinct integers averaging 50 must sit on opposite sides of it, which splits the four into two and two immediately.",
+  traps: "(C) is the reflex pairing when neither statement identifies all four integers. Neither needs to.\n" +
+    "(A) and (B) reject one statement, usually (2), because it looks like less information than the two explicit sums in (1).\n" +
+    "(E) treats the unknown values as fatal.\n" +
+    "The word \"distinct\" carries weight in statement (2): with ties allowed, \\(b = c = 50\\) would put two values exactly at 50, and \"less than 50\" would then count differently.",
+  take: "Two distinct values averaging \\(m\\) straddle \\(m\\). Counting questions are answered by locating the threshold in the ordering, not by finding every value."
+}
+
+});

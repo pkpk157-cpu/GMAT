@@ -5,6 +5,14 @@
    was derived by full case analysis and then re-checked computationally
    (see the verification script accompanying this commit). Two questions from the
    source were dropped because OCR mangled their algebra beyond safe recovery.
+
+   Correction applied while writing the in-depth explanations:
+     - di-ds-realexam #11: the stem never said q was an integer, yet the stored
+       key C depends on it (a non-integer q with q^2 = 5 or 7 also satisfies
+       "q^4 is a two-digit odd number" and destroys the answer). "q is a
+       positive integer" added to the stem; the key is unchanged.
+       Contrast quant-numbersystem/quant-live y-versions of this construction,
+       where the stem deliberately omits integrality and the answer differs.
    Appends to window.GMAT_SETS_NEW, which index.html merges into GMAT_SETS. */
 (function () {
   var DS = [
@@ -67,7 +75,7 @@
           "Solve the absolute-value equation in both sign cases and discard the impossible one.",
           "Step 1 — (1) only bounds z between −2 and 2 — insufficient.\nStep 2 — (2) if z ≥ 0: \\(z = 3z-2 \\Rightarrow z = 1\\) ✓. If z < 0: \\(-z = 3z-2 \\Rightarrow z = 0.5\\), which contradicts z < 0.\nStep 3 — So z = 1 uniquely — sufficient.\nAnswer: B.", "medium"),
         Q(11, "C",
-          "If p is a two-digit positive integer less than 99, what is the sum of the digits of p?\n(1) p is divisible by \\(q^{2}\\).\n(2) \\(q^{4}\\) is a two-digit odd number.",
+          "If p is a two-digit positive integer less than 99 and q is a positive integer, what is the sum of the digits of p?\n(1) p is divisible by \\(q^{2}\\).\n(2) \\(q^{4}\\) is a two-digit odd number.",
           "Statement (2) pins down q — then ask what all the qualifying values of p have in common.",
           "Step 1 — (2): the only q with \\(q^4\\) a two-digit odd number is q = 3 (81), so \\(q^2 = 9\\). Alone this says nothing about p.\nStep 2 — (1) alone leaves q unknown — insufficient.\nStep 3 — Together p is a two-digit multiple of 9 below 99: 18, 27, 36, 45, 54, 63, 72, 81, 90 — every one has digit sum 9.\nAnswer: C.", "hard"),
         Q(12, "D",

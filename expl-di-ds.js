@@ -1030,3 +1030,139 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-ds-traps#12": {
+  steps: "Step 1 — Statement (1): \\(|x| < 2\\) means \\(-2 < x < 2\\). That is a range, not a value — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(|x| = 3x - 2\\). Split on the sign of \\(x\\).\n" +
+    "Step 3 — Case \\(x \\ge 0\\): \\(x = 3x - 2\\), so \\(2x = 2\\) and \\(x = 1\\). That satisfies \\(x \\ge 0\\) ✓ — a valid root.\n" +
+    "Step 4 — Case \\(x < 0\\): \\(-x = 3x - 2\\), so \\(4x = 2\\) and \\(x = \\tfrac12\\). But \\(\\tfrac12\\) is not negative, so this root contradicts its own case and is discarded.\n" +
+    "Step 5 — Only \\(x = 1\\) survives — a unique value, [[sufficient]].\n" +
+    "Step 6 — Sanity check: \\(|1| = 1\\) and \\(3(1) - 2 = 1\\) ✓.",
+  fast: "An absolute-value equation normally yields two candidates, and the discipline is to test each against the case that produced it. Here one root fails its own condition, leaving exactly one value.\n" +
+    "A second guard is worth applying: the right side \\(3x - 2\\) must be non-negative (it equals an absolute value), so \\(x \\ge \\tfrac23\\) — which independently kills the \\(x < 0\\) branch before any algebra.",
+  traps: "(C) is the trap for anyone who finds both roots and reaches for statement (1) to choose between them. Statement (1) would indeed exclude nothing here (both candidates lie in \\((-2,2)\\)) — the case check is what does the work.\n" +
+    "(A) treats a range as a value.\n" +
+    "(D) accepts both.\n" +
+    "(E) misses that one root is extraneous.\n" +
+    "Extraneous roots are the signature of absolute-value and radical equations; always substitute back.",
+  take: "Solve \\(|f(x)| = g(x)\\) by cases and discard roots that violate their own case — or note that \\(g(x) \\ge 0\\) is required and use that to prune first."
+},
+
+"di-ds-traps#13": {
+  steps: "Step 1 — Statement (1): \\(3|x^2 - 4| = y - 2\\). Two variables appear, so no value of \\(y\\) follows — [[not sufficient]].\n" +
+    "Step 2 — But it does carry information: the left side is a non-negative multiple of an absolute value, so \\(y - 2 \\ge 0\\), i.e. \\(y \\ge 2\\).\n" +
+    "Step 3 — Statement (2): \\(|3 - y| = 11\\) gives \\(3 - y = 11\\) (so \\(y = -8\\)) or \\(3 - y = -11\\) (so \\(y = 14\\)). Two values — [[not sufficient]].\n" +
+    "Step 4 — Together: the constraint \\(y \\ge 2\\) from statement (1) eliminates \\(y = -8\\).\n" +
+    "Step 5 — Only \\(y = 14\\) survives — [[sufficient]].",
+  fast: "Statement (1) cannot produce a value, but it can produce a *bound* — and a bound is exactly what is needed to choose between two candidates.\n" +
+    "The habit worth building: when a statement contains an absolute value or a square, extract the sign information even if the statement looks useless for finding a value.",
+  traps: "(B) treats statement (2) as complete, forgetting that an absolute-value equation gives two roots.\n" +
+    "(E) is the trap for anyone who dismisses statement (1) as \"two variables, therefore nothing\". It constrains \\(y\\) even though it cannot determine it.\n" +
+    "(A) treats a two-variable equation as sufficient.\n" +
+    "(D) accepts both.\n" +
+    "The general lesson: an insufficient statement can still be decisive in combination, precisely because it rules something out.",
+  take: "A statement that cannot determine a value may still supply a bound that eliminates a candidate. Extract sign information from every absolute value and square."
+},
+
+"di-ds-traps#14": {
+  steps: "Step 1 — Four distinct positive integers \\(a < b < c < d\\) averaging 60 sum to \\(240\\).\n" +
+    "Step 2 — Statement (1): the median of the three largest, \\(\\{b, c, d\\}\\), is \\(c = 51\\), and \\(c + d = 190\\), so \\(d = 139\\).\n" +
+    "Step 3 — Then \\(a + b = 240 - 51 - 139 = 50\\). Since both are positive and \\(a < b\\), the largest \\(b\\) can be is 49 — so both are under 50.\n" +
+    "Step 4 — And \\(c = 51\\), \\(d = 139\\) are both above 50. Exactly two of the four are less than 50 — [[sufficient]].\n" +
+    "Step 5 — Statement (2): the median of four values is \\(\\dfrac{b + c}{2} = 50\\), so \\(b + c = 100\\). Since \\(b < c\\), we get \\(b < 50 < c\\).\n" +
+    "Step 6 — Then \\(a < b < 50\\), while \\(c > 50\\) and \\(d > c > 50\\). Again exactly two are below 50 — [[sufficient]].",
+  fast: "Both statements work by locating 50 relative to the ordering rather than by finding the actual numbers — you never need \\(a\\) or \\(b\\) individually.\n" +
+    "In statement (2), the key move is that two distinct integers averaging 50 must straddle it, which immediately splits the four into two below and two above.",
+  traps: "(C) is the reflex pairing when neither statement names all four integers. Neither needs to — the question asks only how many fall below 50.\n" +
+    "(A) and (B) reject one statement, usually (2), because a median of 50 looks less informative than the explicit sums in (1).\n" +
+    "(E) treats the missing values as fatal.\n" +
+    "The distinctness matters in statement (2): if ties were allowed, \\(b = c = 50\\) would put two values *at* 50 rather than straddling it, and the count would change.",
+  take: "Two distinct values averaging \\(m\\) must straddle \\(m\\). Answer counting questions by locating the threshold in the ordering, not by finding every value."
+},
+
+"di-ds-traps#15": {
+  steps: "Step 1 — The blend weighs one kilogram, so \\(X + Y = 1\\) and \\(Y = 1 - X\\).\n" +
+    "Step 2 — Substitute into the cost: \\(C = 6.5X + 8.5(1 - X) = 8.5 - 2X\\). So the cost is a decreasing linear function of \\(X\\) alone.\n" +
+    "Step 3 — Statement (1): \\(Y > 0.15\\) means \\(X < 0.85\\). That allows \\(X = 0.84\\), which is not less than 0.8 (no), and \\(X = 0.5\\), which is (yes) — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): \\(C \\ge 7.30\\) means \\(8.5 - 2X \\ge 7.30\\), so \\(2X \\le 1.2\\) and \\(X \\le 0.6\\).\n" +
+    "Step 5 — Every value at or below 0.6 is below 0.8, so the answer is a definite yes — [[sufficient]].",
+  fast: "Use the one-kilogram condition to eliminate \\(Y\\) immediately; the cost formula then becomes \\(8.5 - 2X\\), and both statements become bounds on \\(X\\) to compare against 0.8.\n" +
+    "Statement (1) gives \\(X < 0.85\\) — just past the threshold — and statement (2) gives \\(X \\le 0.6\\), comfortably inside it.",
+  traps: "(D) accepts statement (1), whose bound of 0.85 lands just above 0.8. That 0.05 gap is the entire question, and it is engineered to look negligible.\n" +
+    "(C) is over-cautious; statement (2) alone closes it.\n" +
+    "(A) inverts the two.\n" +
+    "(E) misses that a bound below the threshold settles a \"less than\" question.\n" +
+    "The other trap is forgetting \\(X + Y = 1\\) and treating \\(C = 6.5X + 8.5Y\\) as a two-variable expression; the one-kilogram condition is stated in the first sentence.",
+  take: "Use a stated total to reduce two variables to one. A bound is sufficient only when it falls entirely on one side of the threshold — check the gap, however small."
+},
+
+"di-ds-traps#16": {
+  steps: "Step 1 — Let \\(b\\) be the number of 23-cent pencils and \\(a\\) the number of 21-cent pencils, both non-negative integers.\n" +
+    "Step 2 — Statement (1): \\(a + b = 6\\). The value would then be \\(21(6) + 2b = 126 + 2b\\), which varies with \\(b\\); seven splits are possible — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(21a + 23b = 130\\). Since \\(23b \\le 130\\), \\(b\\) can only be 0 through 5.\n" +
+    "Step 4 — Test each: \\(b = 0\\) leaves 130 (not divisible by 21); \\(b = 1\\) leaves 107; \\(b = 2\\) leaves \\(84 = 21 \\times 4\\) ✓; \\(b = 3\\) leaves 61; \\(b = 4\\) leaves 38; \\(b = 5\\) leaves 15.\n" +
+    "Step 5 — Only \\(b = 2\\) works, with \\(a = 4\\) — a unique answer, [[sufficient]].",
+  fast: "Since the two prices differ by only 2 cents, the total value is roughly 21 or 23 times the pencil count — so the count is about 6, and \\(b\\) is whatever pushes the total from a multiple of 21 up to 130.\n" +
+    "Formally, \\(130 = 21(a+b) + 2b\\), so \\(2b\\) is the excess of 130 over a multiple of 21. The multiples of 21 near 130 are 126 and 105; only \\(130 - 126 = 4\\) gives an integer \\(b = 2\\).",
+  traps: "(C) is the standard trap: one equation with two unknowns *feels* insufficient, so it seems natural to add the count. Non-negativity and integrality make the equation far more restrictive than it looks.\n" +
+    "(A) treats the pencil count as fixing the composition; the value depends on the split.\n" +
+    "(D) accepts either.\n" +
+    "(E) dismisses the value equation.\n" +
+    "Note that the two statements happen to be consistent — \\(a + b = 4 + 2 = 6\\) — which is reassuring but not why (2) is sufficient.",
+  take: "\\(21a + 23b = 130\\) rewrites as \\(21(a+b) + 2b = 130\\), so \\(2b\\) is the remainder above a multiple of 21. Small integer ranges reward enumeration."
+},
+
+"di-ds-traps#17": {
+  steps: "Step 1 — Let \\(a\\) be the number of 15-cent stamps and \\(b\\) the number of 29-cent stamps.\n" +
+    "Step 2 — Statement (1): \\(a = b\\). Equal counts could be 5 and 5, or 100 and 100 — nothing fixes the scale, [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(15a + 29b = 440\\). Reduce modulo 15: since \\(29 \\equiv 14 \\equiv -1 \\pmod{15}\\) and \\(440 = 15 \\times 29 + 5\\), the equation becomes \\(-b \\equiv 5\\), i.e. \\(b \\equiv 10 \\pmod{15}\\).\n" +
+    "Step 4 — Also \\(29b \\le 440\\) forces \\(b \\le 15\\), so \\(b = 10\\) is the only candidate.\n" +
+    "Step 5 — Then \\(15a = 440 - 290 = 150\\), giving \\(a = 10\\) — a unique solution, [[sufficient]].",
+  fast: "Reducing modulo the smaller coefficient turns a two-variable equation into a single congruence: \\(29 \\equiv -1 \\pmod{15}\\) makes the arithmetic trivial.\n" +
+    "Then the size bound \\(b \\le 15\\) leaves exactly one residue class member, which is what makes the statement sufficient.",
+  traps: "(C) is the intended trap, and it is sharpened by the fact that the answer turns out to be \\(a = b = 10\\) — so statement (1) is *true*, which makes it feel necessary. It is not: it could never have produced 10 on its own.\n" +
+    "(A) treats an equality of counts as informative without a total.\n" +
+    "(D) accepts either.\n" +
+    "(E) dismisses the equation.\n" +
+    "The general caution: a statement being consistent with the answer is not the same as a statement being needed to reach it.",
+  take: "Reduce a two-variable integer equation modulo the smaller coefficient. A statement that merely agrees with the answer was not necessarily required to find it."
+},
+
+"di-ds-traps#18": {
+  steps: "Step 1 — Compute the expression \\(x! + x + 1\\) for small non-negative integers.\n" +
+    "Step 2 — \\(x = 0\\): \\(1 + 0 + 1 = 2\\), prime. \\(x = 1\\): \\(1 + 1 + 1 = 3\\), prime. \\(x = 2\\): \\(2 + 2 + 1 = 5\\), prime.\n" +
+    "Step 3 — \\(x = 3\\): \\(6 + 3 + 1 = 10 = 2 \\times 5\\), not prime.\n" +
+    "Step 4 — Statement (1): \\(x < 10\\) admits \\(x = 2\\) (prime, yes) and \\(x = 3\\) (not prime, no) — [[not sufficient]].\n" +
+    "Step 5 — Statement (2): \\(x\\) is even. Checking \\(x = 2 \\to 5\\), \\(x = 4 \\to 29\\), \\(x = 6 \\to 727\\) — all prime, which is where most people stop.\n" +
+    "Step 6 — But \\(x = 8\\) gives \\(40320 + 8 + 1 = 40329\\), whose digits sum to 18, so it is divisible by 9 — not prime. [[Not sufficient]].\n" +
+    "Step 7 — Together: \\(x\\) even and under 10 still admits \\(x = 2\\) (yes) and \\(x = 8\\) (no) — [[not sufficient]].",
+  fast: "Do not stop testing after three agreeing cases. The structural reason \\(x = 8\\) fails is that \\(8!\\) contains the factors 3 and 6, so \\(8!\\) is divisible by 9, and \\(8 + 1 = 9\\) is too — making the sum divisible by 9.\n" +
+    "That divisibility argument generalises: whenever \\(x + 1\\) is a composite whose factors all appear inside \\(x!\\), the sum is composite.",
+  traps: "(B) is the intended trap and catches almost everyone who tests only \\(x = 2, 4, 6\\). Three confirmations are not a proof, and the counterexample is the very next even value.\n" +
+    "(C) is the same error with an extra condition attached.\n" +
+    "(A) assumes the small-\\(x\\) range is uniform.\n" +
+    "(D) accepts both.\n" +
+    "The lesson for \"is it prime?\" questions: look for a divisibility argument rather than trusting a run of examples, and test one case beyond where the pattern seems settled.",
+  take: "A pattern holding for three cases is not a proof. For \\(x! + x + 1\\), check whether \\(x+1\\) shares a factor with \\(x!\\) — if so, the sum is composite."
+},
+
+"di-ds-traps#19": {
+  steps: "Step 1 — The question asks whether \\(|x - 1| < 1\\), i.e. whether \\(0 < x < 2\\).\n" +
+    "Step 2 — Statement (1): \\((x-1)^2 \\le 1\\). Taking square roots gives \\(|x - 1| \\le 1\\), i.e. \\(0 \\le x \\le 2\\).\n" +
+    "Step 3 — That is compatible with a yes (\\(x = 1\\), where \\(|x-1| = 0 < 1\\)) and with a no (\\(x = 0\\) or \\(x = 2\\), where \\(|x-1| = 1\\), not strictly less) — [[not sufficient]].\n" +
+    "Step 4 — Statement (2): \\(x^2 - 1 > 0\\) means \\(|x| > 1\\), so \\(x > 1\\) or \\(x < -1\\). At \\(x = 1.5\\), \\(|x-1| = 0.5\\) (yes); at \\(x = 3\\), \\(|x-1| = 2\\) (no) — [[not sufficient]].\n" +
+    "Step 5 — Together: \\(0 \\le x \\le 2\\) and \\(|x| > 1\\) intersect in \\(1 < x \\le 2\\).\n" +
+    "Step 6 — At \\(x = 1.5\\) the answer is yes; at \\(x = 2\\) it is no — [[not sufficient]].",
+  fast: "Translate everything into intervals and overlay them. The combined range is \\((1, 2]\\), and the single point \\(x = 2\\) is what keeps the answer undetermined.\n" +
+    "The whole question turns on \\(\\le\\) versus \\(<\\): statement (1) permits equality, the question demands strict inequality, and that one endpoint survives the intersection.",
+  traps: "(C) is the intended answer for anyone who intersects the ranges but rounds \\(\\le\\) to \\(<\\). The endpoint \\(x = 2\\) satisfies both statements and answers no.\n" +
+    "(A) reads \\((x-1)^2 \\le 1\\) as \\(|x-1| < 1\\), dropping the equality.\n" +
+    "(B) treats \\(|x| > 1\\) as bounding \\(|x-1|\\).\n" +
+    "(D) accepts both.\n" +
+    "Whenever a statement uses \\(\\le\\) or \\(\\ge\\) and the question uses a strict inequality, check the boundary point explicitly — it is almost always the counterexample.",
+  take: "\\(u^2 \\le k\\) gives \\(|u| \\le \\sqrt k\\), with equality allowed. When the question is strict and a statement is not, test the boundary point."
+}
+
+});

@@ -8,10 +8,31 @@
 
    Where a source question was deliberately left out (a figure the export
    dropped, an unrecoverable OCR, or a key that could not be reconciled), the
-   entry is `null` and the reason is given in the set's own file header. */
+   entry is `null` and the reason is given in the set's own file header.
+
+   A printed key is not automatically right. Where re-derivation showed a source
+   key to be wrong, the bank stores the corrected answer and the deviation is
+   listed in CORRECTIONS below, with the reason. That keeps the check useful:
+   it still fails on accidental drift, but a documented correction is not a
+   permanent red mark that everyone learns to ignore. Adding an entry here is a
+   deliberate act — never do it to silence a failure you have not understood. */
 "use strict";
 
+/* Deliberate, reasoned departures from the printed key: "setId #n": {source,
+   stored, why}. Each is also documented in the set's own file header. */
+const CORRECTIONS = {
+  "quant-live-6b #6": {
+    source: "A", stored: "B",
+    why: "The question's own explanation proves statement II always holds and that I and III fail, which makes II-only the answer. The printed key contradicts the working printed beside it."
+  },
+  "rc-700-labor-myths #4": {
+    source: "A", stored: "E",
+    why: "Choice A says the consultants' advice fails to bring about the intended changes in compensation systems. The passage says the changes do happen — that is why they 'create new problems' the consultants are then paid to solve. What the passage does support is E: the firms' mainstay is compensation work and recommending anything else is 'contrary to the consultants' interests'."
+  }
+};
+
 module.exports = {
+  CORRECTIONS: CORRECTIONS,
   /* GMAT Quant Live Session 1 — Focus Edition.
      Printed: 1.E 2.D 3.B 4.E 5.B 6.A 7.C 8.D 9.A 10.B 11.A 12.D 13.B 14.A 15.E
               16.D 17.A 18.C 19.C 20.E 21.A 22.C 23.E 24.C 25.A 26.B 27.B 28.B 29.D

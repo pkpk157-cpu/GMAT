@@ -24,6 +24,12 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   take: "Structure can settle a purpose question outright. Count the objection-and-reply units and pick the option matching that count and direction."
 },
 
+"rc-ss-impressionism#1": {
+  fast: "The first sentence sets the agenda: the Impressionists disavowed philosophy, \"yet their new approach to art had far-reaching philosophical implications\".\n" +
+    "Prephrase \"the philosophical implications of the style\" and take it. Taine and Mauclair are quoted as spokesmen for the view, not as influences on it, and the author defends nobody's importance.",
+  take: "A first sentence built on \"yet\" usually states the purpose. Everything after it develops the clause the \"yet\" introduces."
+},
+
 "rc-ss-impressionism#2": {
   fast: "Function question, so read what surrounds the quotation. It arrives immediately after \"The Impressionists… viewed light, not matter, as the ultimate visual reality\", introduced by \"expressed the Impressionist view of things\".\n" +
     "Prephrase \"it sums up their outlook\" and take it. It is a statement about painting in general, not an example of a particular painting.",

@@ -12,6 +12,16 @@
    stored. Every stored answer here matches the solutions volume AND was
    reasoned out independently before the question was accepted.
 
+   One correction to the source: rc-700-labor-myths #4 (what the author suggests
+   about the consulting firms' advice) was stored with key A, "It often fails to
+   bring about the intended changes in companies' compensation systems." The
+   passage says the opposite — the compensation changes do get made, and it is
+   those changes that "create new problems". What the passage does support is E:
+   the firms' mainstay is compensation work and recommending anything else is
+   "contrary to the consultants' interests", so a less narrowly specialised firm
+   would have no such reason to push pay changes. The key is corrected to E and
+   the explanation rewritten.
+
    Questions that referred to "the highlighted text" or to a line number have
    the passage span marked in bold instead, since the app has no line numbers.
    Appends to window.GMAT_SETS_NEW, which index.html merges into GMAT_SETS. */
@@ -489,14 +499,14 @@
          "Managers often use information about competitors’ labor costs to calculate those companies’ labor rates."],
         "The author's central distinction: paying more per hour need not mean spending more per unit of output.",
         "Where to look — \"one company could pay its workers considerably more than another and yet have lower labor costs if that company's productivity were higher.\"\nWhy (B) — high labor rates are therefore compatible with the aim of reducing costs.\n(A) Efficiency of work processes is named as one of the things that determines labor costs.\n(C) Reversed: rates are highly visible and easy to compare, which is why managers fasten on them.\n(D) This is exactly the confusion the passage exists to correct.\n(E) Managers are described as comparing rates, and nothing is said about calculating one from the other.", "medium"),
-      Q(4, "Inference", "A", "The author of the passage suggests which of the following about the advice that the consulting firms discussed in the passage customarily give to companies attempting to control costs?",
+      Q(4, "Inference", "E", "The author of the passage suggests which of the following about the advice that the consulting firms discussed in the passage customarily give to companies attempting to control costs?",
         ["It often fails to bring about the intended changes in companies’ compensation systems.",
          "It has highly influenced views that predominate in prominent business journals.",
          "It tends to result in decreased labor rates but increased labor costs.",
          "It leads to changes in companies’ compensation practices that are less visible than changes to work processes would be.",
          "It might be different if the consulting firms were less narrowly specialized."],
-        "The last sentence about consultants explains what happens after the advice is taken.",
-        "Where to look — \"to the extent that changes in compensation create new problems, the consultants will continue to have work solving the problems that result from their advice.\"\nWhy (A) — the changes the advice produces generate fresh problems rather than the cost control they were meant to deliver, so the advice often fails to achieve what it intended.\n(B) Journalists' views are attributed to their own confusion, not to consultants' influence.\n(C) A specific outcome of lower rates and higher costs is never claimed.\n(D) Compensation changes are said to look [[simpler]] to implement than changes to work processes; visibility is claimed of labor rates, not of the changes.\n(E) The passage notes that some firms have broadened their practices, but it makes no claim about what less specialised firms would advise.", "hard"),
+        "Ask why these firms give the advice they do, rather than what happens afterwards.",
+        "Where to look — \"their mainstay continues to be advising companies on changing their compensation practices. Suggesting that a company's performance can be improved in some other way than by altering its pay system may be empirically correct but contrary to the consultants' interests.\"\nWhy (E) — the author ties the content of the advice to what the firms sell. Recommending a change to work processes or product design would be against the interest of a firm whose business is compensation, so a firm not confined to compensation work would have no such reason to steer clients towards pay changes.\n(A) The advice does change compensation systems; the passage's complaint is that those changes create fresh problems, not that they fail to happen.\n(B) Journalists' confusion of rates with costs is attributed to the journalists, not to consultants' influence.\n(C) A specific outcome of lower rates and higher costs is never claimed.\n(D) Compensation changes are said to look [[simpler]] to implement than changes to work processes; visibility is claimed of labor rates, not of the changes.", "hard"),
       Q(5, "Supporting detail", "E", "According to the passage, which of the following is true about changes to a company’s compensation system?",
         ["They are often implemented in conjunction with a company’s efforts to reconfigure its work processes.",
          "They have been advocated by prominent business journals as the most direct way for a company to bring about changes in its labor costs.",

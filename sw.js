@@ -20,6 +20,8 @@ const ASSETS = [
   "./sets-rc-700.js",
   "./sets-di4.js",
   "./expl-quant-percent.js",
+  "./expl-cr-700boldface.js",
+  "./expl-cr-700evaluate.js",
   "./expl-cr-boldface.js",
   "./expl-cr-paradox.js",
   "./expl-cr-strengthen.js",

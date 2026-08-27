@@ -467,3 +467,249 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-datasufficiency-ex#1": {
+  steps: "Step 1 — Let \\(P\\) be the price two years ago. Today's price is 3,600.\n" +
+    "Step 2 — Statement (1): the price rose \\(10\\%\\) per year for two years, so \\(3600 = P(1.1)^2 = 1.21P\\). That is a single linear equation in \\(P\\), with the unique solution \\(P = 3600/1.21\\) — [[sufficient]].\n" +
+    "Step 3 — Statement (2): today's price is \\(1.21\\) times the price two years ago, i.e. \\(3600 = 1.21P\\) — the identical equation, [[sufficient]].\n" +
+    "Step 4 — Each statement alone determines \\(P\\).",
+  fast: "Both statements say the same thing: \\((1.1)^2 = 1.21\\), so \"ten percent per year for two years\" and \"1.21 times\" are two descriptions of one growth factor.\n" +
+    "For sufficiency you never need the value — noting that each statement yields one equation in one unknown is enough.",
+  traps: "(C) is the reflex answer when two statements look like they describe the same situation. Redundancy is not a reason to require both; each is complete.\n" +
+    "(A) and (B) reject one statement, usually (1), because compounding looks like it might introduce a second unknown. It does not — the rate is given.\n" +
+    "(E) misses that a known growth factor inverts.\n" +
+    "The efficiency trap is computing \\(3600/1.21 \\approx 2975.21\\), which Data Sufficiency never asks for.",
+  take: "Two years at \\(r\\%\\) is a factor of \\((1+r)^2\\). One equation in one unknown is sufficient — stop before computing the value."
+},
+
+"di-datasufficiency-ex#2": {
+  steps: "Step 1 — Statement (1): \\(x^2 = 36\\) gives \\(x = 6\\) or \\(x = -6\\). Two values, so no unique answer — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(x\\) is negative. That is an entire half-line, not a value — [[not sufficient]].\n" +
+    "Step 3 — Together: the two candidates from (1) are \\(6\\) and \\(-6\\), and (2) eliminates the positive one.\n" +
+    "Step 4 — So \\(x = -6\\), a single value — [[sufficient]].",
+  fast: "An even power always produces two candidate roots, and a sign condition is exactly the tool that selects between them. Recognising that pairing makes this a C answer on sight.\n" +
+    "The general shape: statement (1) narrows to a finite set, statement (2) filters that set to one member.",
+  traps: "(A) forgets the negative root — the single most common error in Data Sufficiency, and the reason \\(x^2 = k\\) is such a frequent setup.\n" +
+    "(B) treats a sign as a value.\n" +
+    "(D) accepts either alone.\n" +
+    "(E) misses that two candidates plus a filter leave one.\n" +
+    "Note that had statement (1) been \\(x^3 = 36\\), an odd power, it would have been sufficient by itself — the parity of the exponent is what matters.",
+  take: "\\(x^2 = k\\) yields two roots; \\(x^3 = k\\) yields one. A sign condition is worth exactly as much as the number of candidates it eliminates."
+},
+
+"di-datasufficiency-ex#3": {
+  steps: "Step 1 — Statement (1): \\(n\\) times some nonzero number equals 0. A product is zero only when one factor is zero, and the other factor is stated to be nonzero.\n" +
+    "Step 2 — Therefore \\(n = 0\\) — a definite yes, [[sufficient]].\n" +
+    "Step 3 — Statement (2): \\(n + 0 = 0\\). Adding zero changes nothing, so this says \\(n = 0\\) directly — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Each statement alone answers the question.",
+  fast: "Both statements are restatements of \\(n = 0\\) wrapped in different arithmetic. The zero-product property handles the first; the additive identity handles the second.\n" +
+    "The word \"nonzero\" in statement (1) is what makes it work — without it, the equation would be satisfied by any \\(n\\) paired with a zero multiplier.",
+  traps: "(C) is the habit of pairing statements that look like they cover the same ground.\n" +
+    "(A) and (B) each dismiss one, usually (2), because it looks too trivial to be informative. Triviality is not insufficiency — \\(n + 0 = 0\\) genuinely pins \\(n\\).\n" +
+    "(E) rejects both.\n" +
+    "The one thing to check in statement (1) is that the other factor really is nonzero; if it could be zero, \\(n\\) would be unconstrained.",
+  take: "A product is zero only if a factor is zero — so with the other factor known nonzero, the remaining one must vanish. Trivial-looking statements can still be sufficient."
+},
+
+"di-datasufficiency-ex#4": {
+  steps: "Step 1 — \"Even\" is a property of integers, and nothing in the stem says \\(x\\) is an integer. That is the crux.\n" +
+    "Step 2 — Statement (1): \\(7x\\) is even. Take \\(x = 2\\) — even, answer yes. Take \\(x = \\tfrac27\\) — then \\(7x = 2\\), even, but \\(x\\) is not an integer, so it is not even. Two different answers — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(5x\\) is even. The same argument with \\(x = \\tfrac25\\) — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(7x\\) and \\(5x\\) are both even integers, so their difference \\(7x - 5x = 2x\\) is an even integer, which forces \\(x\\) to be an integer.\n" +
+    "Step 5 — Then \\(5x\\) even with 5 odd requires \\(x\\) itself to be even — a definite yes, [[sufficient]].",
+  fast: "Ask first whether \\(x\\) is guaranteed to be an integer. It is not, and one fraction — \\(\\tfrac27\\) or \\(\\tfrac25\\) — dispatches each statement alone.\n" +
+    "The combination works by subtraction: \\(7x - 5x = 2x\\) must be an even integer, which drags \\(x\\) into the integers, after which the odd multiplier 5 preserves parity.",
+  traps: "(D) is the trap for anyone who silently assumes \\(x\\) is an integer. Under that assumption each statement alone *would* work, since 7 and 5 are odd — which is exactly why the assumption must be tested.\n" +
+    "(A) and (B) make the same assumption for one statement.\n" +
+    "(E) misses that the pair forces integrality.\n" +
+    "The general warning: parity, divisibility and \"even/odd\" language all presuppose integers, and Data Sufficiency routinely withholds that word deliberately.",
+  take: "Parity arguments need integers. If the stem does not say \"integer\", test a fraction before concluding anything about even or odd."
+},
+
+"di-datasufficiency-ex#5": {
+  steps: "Step 1 — The box has four categories: red spheres, green spheres, red cubes, green cubes. The total is their sum.\n" +
+    "Step 2 — Statement (1): 6 cubes and 5 green objects. Cubes plus spheres is the total, but the sphere count is unknown; the green count overlaps both shapes — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): 2 red spheres. That is one of four cells — [[not sufficient]].\n" +
+    "Step 4 — Together: cubes \\(= 6\\), green \\(= 5\\), red spheres \\(= 2\\). Let \\(g_s\\) be the green spheres.\n" +
+    "Step 5 — Then spheres \\(= 2 + g_s\\), and the total is \\(6 + 2 + g_s = 8 + g_s\\).\n" +
+    "Step 6 — Green cubes are \\(5 - g_s\\), which only requires \\(0 \\le g_s \\le 5\\). So the total ranges from 8 to 13 — [[not sufficient]].",
+  fast: "A two-by-two table has four cells, and knowing a row total, a column total and one cell still leaves one degree of freedom — you need one more cell or one more margin.\n" +
+    "Draw the grid, mark what is known, and count the unknowns: one free variable survives, so the total is not determined.",
+  traps: "(C) is the natural guess: three facts about four cells feels like enough. It is not — the grid needs four independent pieces, and the missing one is the sphere or green-cube count.\n" +
+    "(A) treats a shape count and a colour count as spanning the box.\n" +
+    "(B) treats one cell as informative about the whole.\n" +
+    "(D) is stronger still.\n" +
+    "Note what *would* have sufficed: the total number of spheres, or the number of green spheres, or the number of red cubes.",
+  take: "A two-by-two table needs enough facts to fill every cell. A row total, a column total and one cell leave one degree of freedom."
+},
+
+"di-datasufficiency-ex#6": {
+  steps: "Step 1 — The units digit of a product depends only on the units digits of the factors.\n" +
+    "Step 2 — Statement (1): the units digit of \\(a\\) is 4. Multiplied by an unknown units digit, the result varies: \\(4 \\times 1 = 4\\) (units 4, not \\(> 5\\)) and \\(4 \\times 2 = 8\\) (units 8, \\(> 5\\)) — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): the units digit of \\(b\\) is 7, and by the same argument it varies — [[not sufficient]].\n" +
+    "Step 4 — Together: the units digit of the product is the units digit of \\(4 \\times 7 = 28\\), which is 8.\n" +
+    "Step 5 — \\(8 > 5\\), a definite yes — [[sufficient]].",
+  fast: "Units digits multiply independently of everything else in the numbers, so the three-digit framing is decoration. Once both units digits are known, the answer is one multiplication.\n" +
+    "Each statement alone fails for the obvious reason that one factor is still free.",
+  traps: "(D) accepts one statement alone, forgetting that a product needs both factors' units digits.\n" +
+    "(E) is the trap for anyone who thinks the hundreds and tens digits might interfere. They cannot — only the units column feeds the units column.\n" +
+    "(A) and (B) each pick one statement.\n" +
+    "A useful check: the answer is a definite *yes* here, but a definite *no* would have been equally sufficient — the question is whether the answer is determined, not whether it is affirmative.",
+  take: "The units digit of a product depends only on the units digits of the factors. A definite \"no\" is as sufficient as a definite \"yes\"."
+},
+
+"di-datasufficiency-ex#7": {
+  steps: "Step 1 — Translate the relationship: \\(M - J = 2(M - K)\\).\n" +
+    "Step 2 — Expand: \\(M - J = 2M - 2K\\), so \\(-J = M - 2K\\), i.e. \\(M + J = 2K\\).\n" +
+    "Step 3 — The average of the three salaries is \\(\\dfrac{M + J + K}{3}\\). Substituting \\(M + J = 2K\\) gives \\(\\dfrac{2K + K}{3} = K\\).\n" +
+    "Step 4 — So the average equals Kate's salary exactly, whatever the individual figures.\n" +
+    "Step 5 — Statement (2) gives \\(K = 40{,}000\\), so the average is \\(40{,}000\\) — [[sufficient]].\n" +
+    "Step 6 — Statement (1) gives \\(J = 30{,}000\\), which leaves \\(M\\) and \\(K\\) linked but unknown — [[not sufficient]].",
+  fast: "Simplify the stem's relation before touching the statements — that is the whole question. \\(M - J = 2(M-K)\\) collapses to \\(M + J = 2K\\), which says Kate's salary is the average of the other two, and therefore the average of all three.\n" +
+    "Once the target is identified as \"Kate's salary\", the statements answer themselves.",
+  traps: "(A) picks the statement that names a salary, without noticing the algebra points at the other person.\n" +
+    "(C) is the cautious pairing; statement (2) alone closes it.\n" +
+    "(D) accepts either.\n" +
+    "(E) misses the simplification.\n" +
+    "The detail that makes the algebra work is the direction of the differences — both are measured from Mary downward, which is consistent with the stem saying her salary is highest.",
+  take: "Simplify a stem's relation into its cleanest form before reading the statements. \\(M + J = 2K\\) means \\(K\\) is the mean of all three."
+},
+
+"di-datasufficiency-ex#8": {
+  steps: "Step 1 — The question asks for \\(a - b\\), a single combination, not for \\(a\\) and \\(b\\) individually.\n" +
+    "Step 2 — Statement (1): \\(a + 2b = 11\\). Then \\(a = 11 - 2b\\), so \\(a - b = 11 - 3b\\), which varies with \\(b\\) — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(4a + b = 5b + 8\\). Collect terms: \\(4a - 4b = 8\\).\n" +
+    "Step 4 — Divide by 4: \\(a - b = 2\\) — exactly the quantity asked for, [[sufficient]].",
+  fast: "Rearrange each statement toward the target combination rather than solving for the variables. Statement (2) is \\(a - b\\) in disguise, scaled by 4.\n" +
+    "This is the recurring Data Sufficiency lesson: a statement can determine a *combination* of unknowns without determining either one — here \\(a\\) and \\(b\\) remain individually unknown.",
+  traps: "(C) is the trap for anyone who solves for both variables. Together the statements do give \\(a\\) and \\(b\\), but that is more than the question needs.\n" +
+    "(A) treats any linear equation in two unknowns as equivalent to any other; \\(a + 2b\\) is not a multiple of \\(a - b\\).\n" +
+    "(D) accepts either.\n" +
+    "(E) misses the rearrangement.\n" +
+    "The test to apply: can the statement be scaled into exactly the requested expression? \\(4a - 4b = 8\\) can; \\(a + 2b = 11\\) cannot.",
+  take: "Ask whether a statement can be rescaled into the exact expression requested. Determining a combination does not require determining each variable."
+},
+
+"di-datasufficiency-ex#9": {
+  steps: "Step 1 — Factor the target: \\(a^2 - b^2 = (a + b)(a - b)\\).\n" +
+    "Step 2 — Statement (1): \\(a + b = 16\\). The other factor is unknown, so the product could be anything — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(a - b = 0\\). Then the product is \\((a+b) \\times 0 = 0\\), no matter what \\(a + b\\) turns out to be.\n" +
+    "Step 4 — The value is uniquely 0 — [[sufficient]].",
+  fast: "Factor the difference of squares first and the question becomes \"do we know both factors, or does one of them vanish?\".\n" +
+    "A factor of zero annihilates the product regardless of the other factor, which is why statement (2) alone suffices while a non-zero value there would not.",
+  traps: "(C) is the cautious pairing — with both statements you could find \\(a = b = 8\\), but statement (2) already fixed the value at 0.\n" +
+    "(A) treats one factor as enough; \\(16 \\times (a-b)\\) is undetermined.\n" +
+    "(D) accepts either.\n" +
+    "(E) misses the annihilation.\n" +
+    "Compare with a variant where statement (2) read \\(a - b = 2\\): then neither alone would work, and the answer would be C. The zero is doing all the work.",
+  take: "Factor the requested expression first. A factor of zero determines a product outright; any other single factor does not."
+},
+
+"di-datasufficiency-ex#10": {
+  steps: "Step 1 — Simplify the question. \\(\\dfrac{5^{x+2}}{25} = \\dfrac{5^{x+2}}{5^2} = 5^{x}\\).\n" +
+    "Step 2 — So the question is simply: is \\(5^x < 1\\)?\n" +
+    "Step 3 — Statement (1) says exactly that — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Statement (2): \\(x < 0\\). Since \\(5 > 1\\), the function \\(5^x\\) is increasing and equals 1 at \\(x = 0\\), so \\(x < 0\\) gives \\(5^x < 1\\) — a definite yes, [[sufficient]].\n" +
+    "Step 5 — Each statement alone answers the question.",
+  fast: "Simplify the target before reading the statements — the \\(25\\) in the denominator cancels the \\(+2\\) in the exponent, leaving a bare \\(5^x\\).\n" +
+    "After that, both statements are just two phrasings of \"\\(x\\) is negative\": for a base above 1, \\(b^x < 1\\) and \\(x < 0\\) are equivalent.",
+  traps: "(C) pairs two statements that are logically identical once the expression is simplified.\n" +
+    "(A) and (B) reject one, usually (2), on the grounds that a condition on \\(x\\) is not a condition on \\(5^x\\). For a base above 1 it is exactly that.\n" +
+    "(E) misses the simplification entirely and treats \\(5^{x+2}/25\\) as a new unknown.\n" +
+    "Careful with the base: if the base were between 0 and 1, the equivalence would reverse and \\(x < 0\\) would give a value *above* 1.",
+  take: "Simplify the question stem first. For a base \\(b > 1\\), \\(b^x < 1\\) is equivalent to \\(x < 0\\); for \\(0 < b < 1\\) the direction flips."
+},
+
+"di-datasufficiency-ex#11": {
+  steps: "Step 1 — Statement (1): \\(6a - 14b = 10\\). Divide through by 2: \\(3a - 7b = 5\\). One equation, two unknowns — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(21b = 9a - 15\\). Rearrange to \\(9a - 21b = 15\\), then divide by 3: \\(3a - 7b = 5\\) — [[not sufficient]].\n" +
+    "Step 3 — The two statements reduce to the *same* equation, so combining them adds nothing.\n" +
+    "Step 4 — Together we still have one equation in two unknowns, and \\(a\\) can be anything — \\((a,b) = (4,1)\\) and \\((11,4)\\) both work — [[not sufficient]].",
+  fast: "Reduce both statements to lowest terms before comparing them. Two equations are only useful together if they are independent, and here one is a scalar multiple of the other in disguise.\n" +
+    "The tell is that dividing (1) by 2 and (2) by 3 produces identical lines — so their graphs coincide rather than intersecting at a point.",
+  traps: "(C) is the intended trap and by far the most chosen: two linear equations in two unknowns *usually* determine both, and it takes a moment's work to notice these are dependent.\n" +
+    "(A) and (B) each treat one equation as enough.\n" +
+    "(D) is stronger still.\n" +
+    "The habit that catches this: always simplify each statement to lowest terms and compare the coefficient ratios. Here \\(6:14:10\\) and \\(9:21:15\\) are both \\(3:7:5\\).",
+  take: "Two linear equations determine two unknowns only if they are independent. Reduce both to lowest terms and compare coefficient ratios before combining."
+},
+
+"di-datasufficiency-ex#12": {
+  steps: "Step 1 — The question is a yes/no: is \\(a > 5\\)?\n" +
+    "Step 2 — Statement (1): \\(a < 6\\). That range includes \\(5.5\\) (yes) and \\(4\\) (no) — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(a < 4\\). Every value below 4 is also below 5, so the answer is a definite no — [[sufficient]].",
+  fast: "For a threshold question, a bound is sufficient exactly when it lies entirely on one side of the threshold. Compare each statement's boundary with 5: \\(6\\) is above it, \\(4\\) is below it.\n" +
+    "The narrower statement is the sufficient one here, which is the opposite of the usual instinct that the wider range is more informative.",
+  traps: "(A) treats \\(a < 6\\) as decisive because 6 is close to 5, but the interval \\((-\\infty, 6)\\) straddles the threshold.\n" +
+    "(D) accepts both.\n" +
+    "(C) is the cautious pairing, but the combination is just \\(a < 4\\), which statement (2) already gave.\n" +
+    "(E) misses that a definite \"no\" is a sufficient answer.\n" +
+    "The point worth internalising: sufficiency means the answer is determined, not that the answer is yes.",
+  take: "An upper bound settles \"is \\(a > k\\)?\" only when it is at or below \\(k\\). A definite \"no\" counts as sufficient."
+},
+
+"di-datasufficiency-ex#13": {
+  steps: "Step 1 — Statement (1): \\(-4a + 2b < b - 3a\\). Bring everything to one side: \\(-4a + 2b - b + 3a < 0\\), which simplifies to \\(-a + b < 0\\), i.e. \\(b < a\\).\n" +
+    "Step 2 — That is exactly the question, answered yes — [[sufficient]].\n" +
+    "Step 3 — Statement (2): \\(ca > cb\\), i.e. \\(c(a - b) > 0\\).\n" +
+    "Step 4 — If \\(c > 0\\), dividing gives \\(a > b\\) — yes. If \\(c < 0\\), dividing reverses the inequality and gives \\(a < b\\) — no.\n" +
+    "Step 5 — The sign of \\(c\\) is unknown, so both answers survive — [[not sufficient]].",
+  fast: "Statement (1) is an algebraic disguise: collecting like terms turns it straight into the question. Do the collection before judging it.\n" +
+    "Statement (2) is the classic \"never divide by a variable of unknown sign\" trap — factoring it as \\(c(a-b) > 0\\) makes the dependence on \\(c\\) explicit.",
+  traps: "(D) accepts statement (2) by dividing both sides by \\(c\\) as if it were positive. Nothing in the question says it is.\n" +
+    "(B) inverts the two.\n" +
+    "(C) pairs them, but (1) alone is decisive and (2) adds only the sign of \\(c\\) — which is not needed.\n" +
+    "(E) rejects (1), usually by mis-collecting terms; note that \\(2b - b = b\\) and \\(-4a + 3a = -a\\), so the simplification is short.\n" +
+    "The rule to hold: dividing an inequality by a variable is only legal when that variable's sign is known.",
+  take: "Collect terms before judging an inequality statement. Never divide an inequality by a variable of unknown sign — factor instead and read off the cases."
+},
+
+"di-datasufficiency-ex#14": {
+  steps: "Step 1 — Three books averaging 15 dollars means the three prices sum to 45.\n" +
+    "Step 2 — Statement (1): one book cost 13. The other two sum to 32, but their split is free. With \\(\\{13, 16, 16\\}\\) the median is 16; with \\(\\{1, 13, 31\\}\\) the median is 13 — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): one book cost 15, which is exactly the mean. The other two sum to \\(45 - 15 = 30\\).\n" +
+    "Step 4 — If one of those two is below 15, the other must be above 15 to keep the sum at 30 — and vice versa. Either way, 15 sits between them.\n" +
+    "Step 5 — So 15 is always the middle value, and the median is 15 — [[sufficient]].",
+  fast: "The key is that statement (2) names a price equal to the mean. Whenever one of three values equals their average, the other two are symmetric about it and it must be the median.\n" +
+    "Statement (1) names a price below the mean, which forces the other two to average above it — but says nothing about how they straddle.",
+  traps: "(D) accepts statement (1) by assuming the prices are \"reasonably\" spread; nothing constrains them, and the median moves freely.\n" +
+    "(A) inverts the two.\n" +
+    "(C) is the cautious pairing; statement (2) alone closes it.\n" +
+    "(E) misses the symmetry argument.\n" +
+    "The edge case worth checking in Step 4 is a tie: if both remaining books cost 15, the median is still 15. The conclusion holds either way.",
+  take: "If one of three values equals their mean, the other two straddle it, so that value is the median. A value below the mean fixes nothing about the ordering."
+},
+
+"di-datasufficiency-ex#15": {
+  steps: "Step 1 — Let \\(C\\) be the cost. The first asking price gives a \\(40\\%\\) profit, so it is \\(1.4C\\).\n" +
+    "Step 2 — Statement (1): the asking price was cut by \\(10\\%\\), so the sale price is \\(0.9 \\times 1.4C = 1.26C\\).\n" +
+    "Step 3 — The profit is then \\(1.26C - C = 0.26C\\), and we are told that equals 403.\n" +
+    "Step 4 — So \\(C = 403 / 0.26 = 1550\\) — a unique value, [[sufficient]].\n" +
+    "Step 5 — Statement (2): the bracelet sold for 1,953, but the statement does not say at what discount. If it sold at the original asking price, \\(1.4C = 1953\\) gives \\(C = 1395\\); if at \\(10\\%\\) off, \\(1.26C = 1953\\) gives \\(C = 1550\\) — [[not sufficient]].",
+  fast: "Carry \\(C\\) through as a multiplier: \\(C \\to 1.4C \\to 1.26C\\), so the realised profit is \\(0.26C\\). Statement (1) equates that to a number and inverts in one step.\n" +
+    "Statement (2) gives a sale price without saying which price it is — the discount from statement (1) belongs to statement (1) only, and Data Sufficiency statements must be evaluated independently.",
+  traps: "(D) accepts statement (2) by importing the \\(10\\%\\) discount from statement (1). That is the cardinal Data Sufficiency error: each statement must stand on its own.\n" +
+    "(C) is the cautious pairing; statement (1) alone closes it.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses that a profit figure plus a profit *rate* determines the cost.\n" +
+    "As a consistency check, the two statements agree: \\(1.26 \\times 1550 = 1953\\) ✓ — which is reassuring but not what makes (1) sufficient.",
+  take: "Evaluate each statement in isolation — never carry a detail from statement (1) into statement (2). A profit amount plus a profit rate determines the cost."
+},
+
+"di-datasufficiency-ex#16": {
+  steps: "Step 1 — Statement (1): \\(x^2 = 9\\) gives \\(x = 3\\) or \\(x = -3\\). One is positive and one is not, so the answer is undetermined — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(x^3 = 27\\). Cubing preserves sign, so a positive cube comes only from a positive number.\n" +
+    "Step 3 — The unique real solution is \\(x = 3\\), which is positive — a definite yes, [[sufficient]].",
+  fast: "Parity of the exponent decides everything. An even power destroys sign information and yields two roots; an odd power preserves it and yields exactly one real root.\n" +
+    "So \\(x^2 = 9\\) can never settle a sign question, while \\(x^3 = 27\\) always can.",
+  traps: "(D) accepts \\(x^2 = 9\\) by taking only the positive square root — the most common Data Sufficiency slip of all.\n" +
+    "(C) is the cautious pairing; statement (2) alone closes it, and statement (1) adds nothing beyond what (2) already implies.\n" +
+    "(A) inverts the two.\n" +
+    "(E) misses that an odd power has a unique real root.\n" +
+    "The same principle extends: \\(x^4 = 16\\) leaves two candidates, \\(x^5 = 32\\) leaves one.",
+  take: "Even powers lose sign information and give two real roots; odd powers preserve it and give one. That parity alone often decides a sign question."
+}
+
+});

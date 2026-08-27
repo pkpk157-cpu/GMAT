@@ -450,3 +450,103 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-700-noncash#1": {
+  steps: "Step 1 — Read both bar charts. 2006: debit 17, check 24, credit 22, auto 20 (millions). 2009: debit 39, check 30, credit 20, auto 24.\n" +
+    "Step 2 — Percent change is (rise) ÷ (2006 base), so compute each separately.\n" +
+    "Step 3 — Debit: \\(39 - 17 = 22\\) on a base of 17, about \\(129\\%\\).\n" +
+    "Step 4 — Paper check: \\(30 - 24 = 6\\) on a base of 24, exactly \\(\\tfrac6{24} = 25\\%\\) ✓.\n" +
+    "Step 5 — Credit: \\(20 - 22 = -2\\), a decrease.\n" +
+    "Step 6 — Auto transfer: \\(24 - 20 = 4\\) on a base of 20, exactly \\(20\\%\\).\n" +
+    "Step 7 — Only paper check rose by 25 percent.",
+  fast: "Divide each rise by its own 2006 base — the base changes from method to method, which is the whole point. Auto transfer and paper check rise by similar-looking amounts (4 and 6) but on different bases, giving 20% and 25%.\n" +
+    "Scan the credit-card pair first: it falls, so it can be discarded before any division.",
+  traps: "(A) debit card grows by far the most in absolute terms and visually dominates both charts, which is exactly why it is offered. As a percentage it is about 129%, nowhere near 25.\n" +
+    "(D) auto transfer is the closest rival at 20%, and its absolute rise of 4 million looks comparable to paper check's 6.\n" +
+    "(C) credit card is the only method that shrinks.\n" +
+    "(E) \"none of them\" fails because paper check matches exactly.\n" +
+    "Comparing bar *heights* rather than computing percentages is the error every distractor is built to catch.",
+  take: "Percent change divides by each item's own starting value, so the largest absolute rise is often not the largest percentage rise."
+},
+
+"di-700-noncash#2": {
+  steps: "Step 1 — Since every method is a share of the same total, the method with the largest share is simply the method with the most transactions.\n" +
+    "Step 2 — In 2006 the counts are debit 17, check 24, credit 22, auto 20. The largest is paper check at 24.\n" +
+    "Step 3 — In 2009 they are debit 39, check 30, credit 20, auto 24. The largest is debit card at 39.\n" +
+    "Step 4 — So paper check led in 2006 and debit card led in 2009.",
+  fast: "\"Largest share\" needs no percentages at all — with a common denominator, the tallest bar wins in each year. Read the two peaks and you are done.\n" +
+    "The story the charts tell is a reversal: debit card is the smallest method in 2006 and by some margin the largest in 2009.",
+  traps: "(A) debit card in both years is tempting because debit dominates the 2009 chart so visibly — but in 2006 it is the *smallest* of the four.\n" +
+    "(B) paper check in both years reverses the same error: check does grow, from 24 to 30, but debit overtakes it decisively.\n" +
+    "(C) credit card is second in 2006, behind paper check, and it is the only method to shrink.\n" +
+    "(E) auto transfer never leads in either year.\n" +
+    "Reading only one of the two charts is what produces (A) and (B); the question requires both.",
+  take: "With a shared total, the largest share is the largest count — no percentages needed. Two-year comparisons require reading both charts."
+},
+
+"di-700-noncash#3": {
+  steps: "Step 1 — The average value per transaction is (total value) ÷ (number of transactions).\n" +
+    "Step 2 — Let the 2006 total value be \\(V\\). The 2009 total value is \\(1.1V\\).\n" +
+    "Step 3 — Credit card transaction counts are 22 million in 2006 and 20 million in 2009.\n" +
+    "Step 4 — 2006 average: \\(\\dfrac{V}{22}\\). 2009 average: \\(\\dfrac{1.1V}{20}\\).\n" +
+    "Step 5 — The ratio is \\(\\dfrac{1.1V/20}{V/22} = 1.1 \\times \\dfrac{22}{20} = 1.1 \\times 1.1 = 1.21\\).\n" +
+    "Step 6 — That is an increase of about \\(21\\%\\).",
+  fast: "Two factors compound: the value rose by \\(10\\%\\) and the count *fell* by about \\(9\\%\\), so the average rises on both counts. Numerically the count factor is \\(\\tfrac{22}{20} = 1.1\\), the same as the value factor — so the answer is \\(1.1^2 = 1.21\\).\n" +
+    "Spotting that both factors are exactly \\(1.1\\) turns the whole question into squaring one number.",
+  traps: "(B) 10% uses only the rise in total value, ignoring that the same money was spread over fewer transactions.\n" +
+    "(E) 22% comes from adding the two effects (\\(10\\% + 10\\% + 2\\%\\)-style) rather than multiplying them — the classic additive error, and it lands one point away from the truth.\n" +
+    "(D) 17% and (A) 2% come from dividing by \\(\\tfrac{22}{20}\\) instead of multiplying, or from applying only the count change.\n" +
+    "The direction of the count effect is the subtlety: a *falling* transaction count *raises* the average, because the denominator shrinks.",
+  take: "Average = total ÷ count, so the change factor is (value factor) × (1/count factor). A falling count raises the average."
+},
+
+"di-700-commute#1": {
+  steps: "Step 1 — Count the walkers: \\(30 + 10 + 6 + 0 + 0 = 46\\) people.\n" +
+    "Step 2 — With an even count, the median is the average of the 23rd and 24th values when ordered by distance.\n" +
+    "Step 3 — The lowest band, \\(d \\le 2\\) km, already contains 30 people — positions 1 through 30.\n" +
+    "Step 4 — So both the 23rd and the 24th walker fall inside that band, each with a distance of at most 2 km.\n" +
+    "Step 5 — The average of two values that are each at most 2 is itself at most 2, so \\(x \\le 2\\).",
+  fast: "You never need individual distances — only which band the middle position falls in. Build a running total across the bands and stop when it passes the median position.\n" +
+    "Here the first band alone covers 30 of the 46 walkers, so the median is inside it immediately; the remaining bands never come into play.",
+  traps: "(B) and (C) would require fewer than 23 people in the first band, so anyone who mis-sums the walkers or works from the wrong chart lands here.\n" +
+    "(D) and (E) are impossible: the walking chart shows zero people above 10 km.\n" +
+    "The commonest error is reading the transit chart by mistake — its distribution is centred far higher, and its median does fall in the \\(10 < x \\le 15\\) band.\n" +
+    "Note that the median is a *position*, not a value: with grouped data you identify the band, not the exact distance.",
+  take: "For grouped data, find the median's position and walk the cumulative counts until you pass it. The band containing that position is the answer."
+},
+
+"di-700-commute#2": {
+  steps: "Step 1 — Count the transit riders: \\(2 + 17 + 30 + 17 + 37 = 103\\).\n" +
+    "Step 2 — With an odd count, the median is the 52nd value in order.\n" +
+    "Step 3 — Build the running totals: \\(2\\) after the first band, \\(19\\) after the second, \\(49\\) after the third, \\(66\\) after the fourth.\n" +
+    "Step 4 — The 52nd rider therefore falls in the fourth band, which covers positions 50 through 66.\n" +
+    "Step 5 — That band is \\(10 < x \\le 15\\) km.",
+  fast: "Cumulative totals and one comparison. The third band ends at position 49 and the fourth ends at 66, so any median position between 50 and 66 lands in the fourth band — and 52 does.\n" +
+    "The running total is worth writing down: \\(2, 19, 49, 66, 103\\). It answers this question and makes the next one immediate too.",
+  traps: "(C) the third band ends at the 49th rider — just three short of the median, which is the sharpest near-miss and the reason the counts were chosen as they were.\n" +
+    "(E) the top band is the largest single group at 37 riders, which makes it feel central, but it does not begin until position 67.\n" +
+    "(A) and (B) sit far below the middle: together the first two bands hold only 19 of the 103 riders.\n" +
+    "The largest band is not the median band — that is the intuition this question is built to break.",
+  take: "The median band is where the cumulative count first reaches the median position, which is often not the tallest bar."
+},
+
+"di-700-commute#3": {
+  steps: "Step 1 — Transit riders total 103, of whom 37 are in the top band, above 15 km.\n" +
+    "Step 2 — A third of 103 is about \\(34.3\\), and \\(37 > 34.3\\).\n" +
+    "Step 3 — So more than a third of transit riders travelled more than 15 km — statement (E) holds.\n" +
+    "Step 4 — Check the others. Walkers total 46 against 103 transit riders, so (A) is false — transit was more than twice as common.\n" +
+    "Step 5 — (B) fails because 2 transit riders travelled 2 km or less, a distance many walkers also covered.\n" +
+    "Step 6 — (C) fails because walkers cluster in the lowest band while most transit riders sit in the highest, so the mean runs the other way.\n" +
+    "Step 7 — (D) fails because the first transit bar holds 2 people.",
+  fast: "Compare \\(37\\) against \\(103/3 \\approx 34.3\\) — one division and one comparison settles the answer.\n" +
+    "The other four options can each be refuted by a single bar: the walkers' total, the transit chart's first bar (twice), and the shape of the two distributions.",
+  traps: "(B) and (D) are both refuted by the same small bar — the 2 transit riders in the \\(\\le 2\\) km band. A short bar is easy to overlook, and both distractors depend on you missing it.\n" +
+    "(A) inverts the totals; the walking chart has three non-empty bars and the transit chart five, but the counts are what matter.\n" +
+    "(C) reverses the comparison: walkers are concentrated in the shortest band and no walker exceeds 10 km, so their mean is much the lower.\n" +
+    "The habit that resolves all of them: total each chart once, then check every claim against the specific bars it names.",
+  take: "Total each distribution before comparing claims, and look carefully at the smallest bars — \"no one\" and \"everyone\" claims usually fail on them."
+}
+
+});

@@ -295,3 +295,175 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-ds-extra#19": {
+  steps: "Step 1 — Let \\(x\\) be the price of the 5 pounds of regular and \\(y\\) the price of the 3 pounds of decaf. The stem gives \\(x + y = 21.50\\).\n" +
+    "Step 2 — Note that the question asks for \\(x\\) as a bundle price, not a per-pound price, so no division by 5 is needed.\n" +
+    "Step 3 — Statement (1): \\(0.9x + 0.8y = 18.45\\). Substitute \\(y = 21.50 - x\\): \\(0.9x + 17.20 - 0.8x = 18.45\\), so \\(0.1x = 1.25\\) and \\(x = 12.50\\) — [[sufficient]].\n" +
+    "Step 4 — Statement (2): \\(x = y + 3.50\\). With \\(x + y = 21.50\\), substituting gives \\(2y + 3.50 = 21.50\\), so \\(y = 9\\) and \\(x = 12.50\\) — [[sufficient]].\n" +
+    "Step 5 — Each statement supplies a second independent equation, so each alone determines \\(x\\).",
+  fast: "The stem already gives one equation in two unknowns, so the only question is whether each statement supplies a second *independent* one. Both do, and both are linear — so both are sufficient without computing anything.\n" +
+    "Statement (1) simplifies beautifully: the two discount factors differ by \\(0.1\\), so after substitution the \\(y\\) terms almost cancel and a single \\(0.1x\\) survives.",
+  traps: "(C) is the reflex when two statements happen to yield the same value; each was already enough.\n" +
+    "(A) and (B) reject one statement, usually (1), because the discount arithmetic looks messy. Messy is not insufficient — the substitution collapses it in one line.\n" +
+    "(E) misses that both are genuine equations.\n" +
+    "One reading trap in the stem: \\(x\\) is the price of *5 pounds*, not of one pound, so no per-pound conversion belongs anywhere in this problem.",
+  take: "With one equation from the stem and two unknowns, any statement giving a second independent linear equation is sufficient. Check what unit the question asks about."
+},
+
+"di-ds-extra#20": {
+  steps: "Step 1 — The three paints total 12 quarts: \\(g + y + w = 12\\).\n" +
+    "Step 2 — Statement (1): green to (yellow plus white) is \\(1 : 3\\). Those two groups together are the entire mixture, so green is 1 part out of 4.\n" +
+    "Step 3 — That gives green \\(= \\tfrac14 \\times 12 = 3\\) quarts — [[sufficient]].\n" +
+    "Step 4 — Statement (2): yellow to green is \\(3 : 2\\), but white is entirely unconstrained.\n" +
+    "Step 5 — With \\(w = 2\\), the remaining 10 quarts split \\(6 : 4\\), so green is 4. With \\(w = 7\\), the remaining 5 split \\(3 : 2\\), so green is 2 — [[not sufficient]].",
+  fast: "The decisive feature of statement (1) is that its two groups are exhaustive — green versus everything else. A ratio against the complement always fixes the share of the whole.\n" +
+    "Statement (2) compares green against only one of the other two colours, leaving the third free, which is exactly why it fails.",
+  traps: "(D) accepts statement (2), which looks structurally similar but is not: it constrains two of three quantities, leaving one degree of freedom.\n" +
+    "(C) is the over-cautious pairing; statement (1) alone closes it.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses that a part-to-whole ratio plus a total is always enough.\n" +
+    "The distinction worth internalising is part-to-part versus part-to-whole: \\(1 : 3\\) against the complement means \\(\\tfrac14\\) of the total, not \\(\\tfrac13\\).",
+  take: "A ratio of one part to *all the rest* fixes that part's share of the whole; a ratio between two parts of three leaves the third free."
+},
+
+"di-ds-extra#21": {
+  steps: "Step 1 — Within each size the colours split evenly, so green small \\(= \\tfrac12 \\times\\) small, and green large \\(= \\tfrac12 \\times\\) large.\n" +
+    "Step 2 — The question asks for \\(\\dfrac{\\text{green large}}{\\text{green total}} = \\dfrac{\\tfrac12 L}{\\tfrac12 (S + L)} = \\dfrac{L}{S + L}\\).\n" +
+    "Step 3 — So the answer is simply the large toys' share of the whole lot — the colour split cancels out entirely.\n" +
+    "Step 4 — Statement (1): 400 small toys are green, so there are 800 small toys. But the number of large toys is unknown, so the share is not determined — [[not sufficient]].\n" +
+    "Step 5 — Statement (2): small is \\(\\tfrac23\\) of the lot, so large is \\(\\tfrac13\\). The answer is \\(\\tfrac13\\) — [[sufficient]].",
+  fast: "Simplify the target before reading the statements. Because the red–green split is the same within every size, the green large fraction reduces to the large fraction of the whole lot — a fraction, not a count.\n" +
+    "Once you see that, statement (2) is visibly exactly what is needed, and statement (1)'s absolute count is visibly the wrong kind of information.",
+  traps: "(A) is the trap for anyone who reaches for the concrete number. 400 is a count, and the question wants a fraction — a count fixes nothing without the other size's count.\n" +
+    "(C) is the cautious pairing; statement (2) alone closes it.\n" +
+    "(D) accepts both.\n" +
+    "(E) misses the cancellation.\n" +
+    "The reason the cancellation works is the phrase \"for each size\": if the colour split differed between sizes, statement (2) alone would not suffice.",
+  take: "Simplify the requested ratio first — shared factors often cancel. A question wanting a fraction is usually answered by proportions, not by counts."
+},
+
+"di-ds-extra#22": {
+  steps: "Step 1 — The answer is (total attendances across all 8 performances) divided by 8. So the question reduces to finding the total number of attendances.\n" +
+    "Step 2 — Statement (1): every student attended at least one performance. That is a lower bound of 200 attendances, but the true total could be 200 or 1,600 — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): students averaged 4 performances each. With 200 students, the total attendances are \\(200 \\times 4 = 800\\).\n" +
+    "Step 4 — The average per performance is \\(\\dfrac{800}{8} = 100\\) — [[sufficient]].",
+  fast: "The same pool of attendances can be averaged two ways — per student or per performance — and knowing one average plus both counts gives the other.\n" +
+    "Formally: (attendances) = (students) × (average per student) = (performances) × (average per performance). Statement (2) fills in three of the four quantities.",
+  traps: "(A) treats a lower bound as a value. \"At least one\" is the classic insufficiency signal on Data Sufficiency.\n" +
+    "(C) is the cautious pairing; statement (2) alone closes it, and statement (1) adds nothing (it is even implied by an average of 4 in most, though not all, distributions).\n" +
+    "(D) accepts both.\n" +
+    "(E) misses the double-counting identity.\n" +
+    "The number 200 comes from the stem, and it is essential — without the student count, an average per student would convert to nothing.",
+  take: "Total attendances = (people) × (average per person) = (events) × (average per event). One average plus both counts determines the other average."
+},
+
+"di-ds-extra#23": {
+  steps: "Step 1 — The question is a yes/no: can at least 1,000 jackets be made from 3,000 pounds of wool and 2,000 pounds of cotton?\n" +
+    "Step 2 — Statement (1): a wool jacket takes 4 pounds of wool and no cotton, so the wool alone yields \\(3000 / 4 = 750\\) jackets. But nothing is known about what the cotton can produce — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): a cotton jacket takes 6 pounds of cotton and no wool, so the cotton alone yields \\(\\lfloor 2000/6 \\rfloor = 333\\) jackets. The wool is unaccounted for — [[not sufficient]].\n" +
+    "Step 4 — Together: making only pure jackets gives \\(750 + 333 = 1083\\) jackets.\n" +
+    "Step 5 — That already exceeds 1,000, so the answer is a definite yes — [[sufficient]].",
+  fast: "The two statements describe *disjoint* uses of the two materials — wool jackets consume no cotton and vice versa — so the yields simply add. No optimisation over combination jackets is needed.\n" +
+    "And because the question asks only whether 1,000 is reachable, finding one workable production plan is enough; \\(750 + 333\\) clears the bar with room to spare.",
+  traps: "(D) accepts one statement alone, but each covers only one material and the question concerns both.\n" +
+    "(A) and (B) do the same in one direction.\n" +
+    "(E) is the trap for anyone who worries about the combination jackets mentioned in the stem. Those are an *option*, not a requirement — ignoring them is legitimate, since we only need to show 1,000 is achievable.\n" +
+    "Note the floor in Step 3: 2,000 pounds at 6 pounds each gives 333 whole jackets, not \\(333.\\overline{3}\\).",
+  take: "When statements describe disjoint uses of separate resources, the yields add. For a \"can we reach \\(N\\)\" question, one feasible plan settles it."
+},
+
+"di-ds-extra#24": {
+  steps: "Step 1 — Let \\(P\\) be the pre-sale price and \\(D\\) the discounted price. The discount percentage is \\(\\dfrac{P - D}{P}\\).\n" +
+    "Step 2 — Statement (1): \\(P = 1.25D\\). Substitute: \\(\\dfrac{1.25D - D}{1.25D} = \\dfrac{0.25D}{1.25D} = \\dfrac{0.25}{1.25} = 20\\%\\).\n" +
+    "Step 3 — The unknown \\(D\\) cancels entirely, so the percentage is determined without knowing either price — [[sufficient]].\n" +
+    "Step 4 — Statement (2): the discount was 60 dollars. Without a base price this is no percentage at all: 60 off 200 is \\(30\\%\\), 60 off 600 is \\(10\\%\\) — [[not sufficient]].",
+  fast: "A percentage is a ratio, so any statement giving a *ratio* of the two prices is sufficient and any statement giving an absolute difference is not.\n" +
+    "Statement (1) is a ratio in disguise, and the arithmetic \\(\\tfrac{0.25}{1.25} = \\tfrac15\\) is worth knowing on sight: a \\(25\\%\\) markup corresponds to a \\(20\\%\\) discount going the other way.",
+  traps: "(C) adds the dollar figure to the ratio, which would let you find both prices — far more than the question needs.\n" +
+    "(D) accepts the dollar amount alone.\n" +
+    "(B) inverts the two.\n" +
+    "(E) misses the cancellation.\n" +
+    "The subtler trap sits inside statement (1): the \\(25\\%\\) is measured *from the discounted price upward*, so the discount is not \\(25\\%\\). Percentage increases and decreases between the same two numbers always differ, because the bases differ.",
+  take: "A percentage question needs a ratio, not an absolute amount. Going up \\(25\\%\\) and coming back down are different percentages — \\(P = 1.25D\\) means a \\(20\\%\\) discount."
+},
+
+"di-ds-extra#25": {
+  steps: "Step 1 — Let the mixture total \\(T\\) gallons. Then \\(0.01xT = 1\\) (blue) and \\(0.01zT = 3\\) (red).\n" +
+    "Step 2 — Dividing those, \\(\\dfrac{z}{x} = 3\\), so \\(z = 3x\\) — a relation that holds regardless of the statements.\n" +
+    "Step 3 — Also \\(x + y + z = 100\\), since the three percentages exhaust the mixture.\n" +
+    "Step 4 — Statement (1): \\(x = y\\). Then \\(x + x + 3x = 100\\), so \\(x = 20\\), \\(y = 20\\), \\(z = 60\\). From \\(0.01(20)T = 1\\), \\(T = 5\\), and green is \\(20\\%\\) of 5 \\(= 1\\) gallon — [[sufficient]].\n" +
+    "Step 5 — Statement (2): \\(z = 60\\). Then \\(x = 20\\) from \\(z = 3x\\), and \\(y = 100 - 20 - 60 = 20\\), giving the same 1 gallon — [[sufficient]].",
+  fast: "The stem already carries a hidden relation: 3 gallons of red to 1 of blue means \\(z = 3x\\), whatever the total is. That plus \\(x + y + z = 100\\) leaves a single degree of freedom, so any one more fact closes it.\n" +
+    "Both statements supply exactly one such fact, which is why the answer is D rather than C.",
+  traps: "(C) is the reflex when two statements point to the same configuration; each was independently enough once the stem's relation is extracted.\n" +
+    "(A) and (B) reject one statement, usually because the connection \\(z = 3x\\) was not noticed and the system looked under-determined.\n" +
+    "(E) misses that relation entirely.\n" +
+    "The habit to build: mine the stem for relations before testing statements. Here the gallon figures are not decoration — they encode a ratio between two of the percentages.",
+  take: "Extract every relation the stem implies before evaluating statements. Fixed volumes of two components fix the ratio of their percentages."
+},
+
+"di-ds-extra#26": {
+  steps: "Step 1 — The charge is \\(T = F + xM\\), where \\(x\\) is the number of minutes *beyond* the 420-minute allowance. So \\(x = 0\\) whenever usage is 420 minutes or less.\n" +
+    "Step 2 — Statement (1): 450 minutes means \\(x = 30\\), giving \\(13{,}755 = F + 30M\\). One equation, two unknowns — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): 400 minutes is *within* the allowance, so \\(x = 0\\) and the equation collapses to \\(T = F\\).\n" +
+    "Step 4 — Therefore \\(F = 13{,}125\\) directly — [[sufficient]].",
+  fast: "The whole question turns on comparing each month's usage against the 420-minute threshold. A month under the cap bills the flat fee and nothing else, so it reveals \\(F\\) immediately; a month over the cap mixes \\(F\\) and \\(M\\) together.\n" +
+    "Check the threshold before doing any algebra — that single comparison decides both statements.",
+  traps: "(A) treats the over-cap month as more informative because it produces a richer-looking equation. Richer is worse here: two unknowns in one equation determine neither.\n" +
+    "(C) is the cautious pairing, and it would indeed give both \\(F\\) and \\(M\\) — but the question asks only for \\(F\\), which statement (2) supplies alone.\n" +
+    "(D) accepts both.\n" +
+    "(E) misses that under-cap usage isolates the fixed fee.\n" +
+    "The reading error to avoid is treating \\(x\\) as total minutes rather than overage minutes; the stem defines it as \"each of \\(x\\) additional minutes\".",
+  take: "In a tiered plan, usage below the allowance isolates the fixed fee. Compare each data point against the threshold before writing equations."
+},
+
+"di-ds-extra#27": {
+  steps: "Step 1 — Profit per unit: P earns \\(10.00 - 8.00 = 2.00\\); Q earns \\(13.00 - 9.50 = 3.50\\).\n" +
+    "Step 2 — With \\(p + q = 834\\), total profit is \\(2p + 3.5q = 2(834 - q) + 3.5q = 1668 + 1.5q\\).\n" +
+    "Step 3 — That exceeds 2,000 exactly when \\(1.5q > 332\\), i.e. \\(q > 221.3\\), so from \\(q \\ge 222\\) upward.\n" +
+    "Step 4 — Statement (1): more P than Q means \\(q \\le 416\\). With \\(q = 100\\) the profit is \\(1{,}818\\) (no); with \\(q = 400\\) it is \\(2{,}268\\) (yes) — [[not sufficient]].\n" +
+    "Step 5 — Statement (2): \\(q \\ge 100\\) admits exactly the same two cases — [[not sufficient]].\n" +
+    "Step 6 — Together: \\(100 \\le q \\le 416\\), a range that straddles the threshold of 222 — [[not sufficient]].",
+  fast: "Reduce the profit to a single variable first: \\(1668 + 1.5q\\). Then the question becomes \"is \\(q\\) above 222?\", and each statement is just an interval to compare against that number.\n" +
+    "Both intervals contain 222 in their interior, so neither decides — and their intersection still does. Finding the threshold once replaces all the case testing.",
+  traps: "(C) is the natural guess: two bounds from opposite directions feel like they should pin the answer. They do bound \\(q\\), but the bounds are far too loose — 100 to 416 spans the critical value comfortably.\n" +
+    "(A) and (B) each treat one loose bound as decisive.\n" +
+    "(D) is stronger still.\n" +
+    "The reliable method for yes/no threshold questions: compute the exact break-even value, then check whether each statement's range lies entirely on one side of it.",
+  take: "Reduce a yes/no quantity to one variable and find its break-even value. A statement is sufficient only if its whole range sits on one side of that value."
+},
+
+"di-ds-extra#28": {
+  steps: "Step 1 — The three outcomes — both offers, exactly one, neither — are mutually exclusive and exhaustive, so \\(P_2 + P_1 + P_0 = 1\\).\n" +
+    "Step 2 — Statement (1): \\(P_0 = 0.3\\), so \\(P_2 + P_1 = 0.7\\). That leaves \\(P_2\\) anywhere from 0 to 0.7 — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(P_1 = 0.5\\), so \\(P_2 + P_0 = 0.5\\). Again \\(P_2\\) is free — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(P_2 = 1 - P_1 - P_0 = 1 - 0.5 - 0.3 = 0.2\\) — [[sufficient]].",
+  fast: "Partition the sample space into exactly three cases and the arithmetic is a single subtraction. No independence assumption is needed, and none is available — the two job offers may well be correlated.\n" +
+    "Naming the three probabilities before reading the statements is what makes the combination obvious.",
+  traps: "(A) and (B) each fix one of the three pieces and leave two unknown.\n" +
+    "(D) accepts either alone.\n" +
+    "(E) misses that three exhaustive cases summing to 1 need only two known values.\n" +
+    "The tempting shortcut is to assume the two offers are independent and multiply individual probabilities. Nothing in the question supports that, and the partition method needs no such assumption.",
+  take: "Partition an outcome space into mutually exclusive, exhaustive cases summing to 1. Knowing all but one determines the last — no independence assumption required."
+},
+
+"di-ds-extra#29": {
+  steps: "Step 1 — Convert the speed: \\(120\\) cm per second is \\(1.2\\) metres per second.\n" +
+    "Step 2 — At that speed, 90 metres takes \\(90 / 1.2 = 75\\) seconds.\n" +
+    "Step 3 — So the distance is under 90 metres exactly when the travel time is under 75 seconds. That is the threshold to test.\n" +
+    "Step 4 — Statement (1): less than \\(1.2\\) minutes is less than \\(72\\) seconds. Every value under 72 is also under 75, so the answer is a definite yes — [[sufficient]].\n" +
+    "Step 5 — Statement (2): more than \\(1.1\\) minutes is more than \\(66\\) seconds. That allows 70 seconds (distance 84 m, yes) and 80 seconds (distance 96 m, no) — [[not sufficient]].",
+  fast: "Convert the target distance into a time threshold once — 75 seconds — and then each statement is a one-line comparison.\n" +
+    "The trap is the units: \\(1.2\\) minutes is 72 seconds, not 120 seconds, and \\(1.1\\) minutes is 66. Converting minutes to seconds before comparing is the whole exercise.",
+  traps: "(D) accepts statement (2), whose lower bound of 66 seconds sits *below* the 75-second threshold and therefore decides nothing.\n" +
+    "(B) inverts the two.\n" +
+    "(C) is the cautious pairing; statement (1) alone closes it, since an upper bound below the threshold settles the question.\n" +
+    "(E) misses that.\n" +
+    "The structural rule: an upper bound is decisive when it falls below the threshold; a lower bound is decisive when it falls above it. Here only the first applies.",
+  take: "Convert the target into a threshold in the statements' own units. An upper bound settles a \"less than\" question only if it lies below the threshold."
+}
+
+});

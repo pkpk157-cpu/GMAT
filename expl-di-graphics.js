@@ -155,3 +155,156 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-msr-startup#1": {
+  steps: "Step 1 — Source 1 sets three requirements: at most 10 weeks, at most 80,000 dollars, and Tier-2 certification. All three must hold, and Source 3 says none will be waived.\n" +
+    "Step 2 — Vendor A: 8 weeks ✓, 85,000 ✗ (above the ceiling), Tier-2 ✓ — fails on cost.\n" +
+    "Step 3 — Vendor B: 9 weeks ✓, 78,000 ✓, Tier-1 ✗ — fails on certification, since Source 3 says Tier-1 does not satisfy a Tier-2 requirement.\n" +
+    "Step 4 — Vendor C: 10 weeks ✓ (the limit is inclusive), 75,000 ✓, Tier-2 ✓ — meets all three.\n" +
+    "Step 5 — Vendor D: 12 weeks ✗, 70,000 ✓, Tier-2 ✓ — fails on time.\n" +
+    "Step 6 — Only Vendor C qualifies.",
+  fast: "Build a three-column checklist and eliminate on the first failure — most vendors fall on one criterion, so you rarely check all three.\n" +
+    "Start with the criterion that eliminates most: the cost ceiling and the time limit each knock out one vendor, and the certification rule knocks out another.",
+  traps: "(D) Vendor D has the lowest bid at 70,000, which makes it attractive if you scan for price first — but 12 weeks breaks the deadline outright.\n" +
+    "(B) Vendor B is comfortably within both numeric limits and fails only on the certification rule buried in Source 3.\n" +
+    "(A) Vendor A is the fastest at 8 weeks.\n" +
+    "(E) \"None of them\" tempts anyone who misreads 10 weeks as a strict limit; Vendor C sits exactly at 10, which the wording \"within 10 weeks\" permits.\n" +
+    "The boundary case is deliberate — the qualifying vendor is exactly at one limit.",
+  take: "Multi-source questions reward a checklist. Eliminate on first failure, and read boundary conditions exactly — \"within 10 weeks\" includes 10."
+},
+
+"di-msr-startup#2": {
+  steps: "Step 1 — Check Vendor A against each requirement in turn.\n" +
+    "Step 2 — Time: 8 weeks against a limit of 10 — passes.\n" +
+    "Step 3 — Cost: 85,000 against a ceiling of 80,000 — fails.\n" +
+    "Step 4 — Certification: Tier-2, which is exactly what is required — passes.\n" +
+    "Step 5 — Exactly one requirement fails, and it is the cost.",
+  fast: "The word \"solely\" tells you the answer is a single criterion, so the job is to confirm the other two pass rather than to hunt for failures.\n" +
+    "Vendor A is the fastest bidder and already holds the required certification, which makes the cost the only candidate.",
+  traps: "(D) and (E) each pair cost with a second failure, but Vendor A's 8 weeks is well inside the deadline and its Tier-2 certification is exactly what is asked.\n" +
+    "(C) certification confuses Vendor A with Vendor B, the Tier-1 bidder.\n" +
+    "(B) completion time confuses it with Vendor D, the 12-week bidder.\n" +
+    "Each distractor imports another vendor's failing, which is the standard multi-source trap — keep the rows separate.",
+  take: "\"Solely because of\" means exactly one criterion fails. Verify the others pass rather than stopping at the first failure you find."
+},
+
+"di-msr-startup#3": {
+  steps: "Step 1 — Change only the cost ceiling to 86,000; the 10-week limit and the Tier-2 requirement stand.\n" +
+    "Step 2 — Vendor A: 8 weeks ✓, 85,000 now ✓ (under 86,000), Tier-2 ✓ — qualifies.\n" +
+    "Step 3 — Vendor B: 78,000 ✓ and 9 weeks ✓, but Tier-1 still fails the certification requirement — does not qualify.\n" +
+    "Step 4 — Vendor C: 10 weeks ✓, 75,000 ✓, Tier-2 ✓ — still qualifies.\n" +
+    "Step 5 — Vendor D: 12 weeks ✗ — still fails.\n" +
+    "Step 6 — Exactly two vendors qualify, so the statement is true.",
+  fast: "Only one criterion moved, so re-check only that column: which vendors were failing on cost alone? Vendor A was, and 85,000 now clears 86,000.\n" +
+    "Everything else is unchanged, so the new qualifying set is the old one plus Vendor A — two vendors.",
+  traps: "(B) three vendors would require Vendor B or D to newly qualify, but neither was failing on cost — B fails certification and D fails time, and neither changed.\n" +
+    "(A) one vendor forgets that Vendor A's only failing was the cost.\n" +
+    "(C) no vendor contradicts Vendor C, which qualified even under the tighter ceiling.\n" +
+    "(E) treats a hypothetical as undeterminable, but every figure needed is given.\n" +
+    "The efficient method — re-examine only the criterion that changed — is what prevents re-deriving the whole table and making a slip.",
+  take: "When a hypothetical changes one condition, re-check only the entries that were failing on that condition. Everything else keeps its previous verdict."
+},
+
+"di-msr-startup#4": {
+  steps: "Step 1 — Source 3 states the rule precisely: a Tier-2 certification also satisfies any Tier-1 requirement, but not the reverse.\n" +
+    "Step 2 — \"Not the reverse\" means a Tier-1 certification does *not* satisfy a Tier-2 requirement.\n" +
+    "Step 3 — Vendor B holds Tier-1 and the client requires Tier-2.\n" +
+    "Step 4 — Therefore Vendor B does not satisfy the certification requirement.",
+  fast: "The rule is one-directional, so the whole question is reading which direction it runs. Tier-2 is the stronger credential: it covers Tier-1 needs, but Tier-1 does not cover Tier-2 needs.\n" +
+    "Picture it as a hierarchy — the higher tier substitutes downward, never upward.",
+  traps: "(A) reads the rule backwards, applying the substitution in the direction Source 3 explicitly excludes.\n" +
+    "(C) \"exceeds\" would be true of a Tier-2 vendor facing a Tier-1 requirement — the reverse situation.\n" +
+    "(D) invents an exemption; Source 3 says the client will not waive any requirement.\n" +
+    "(E) invents a trade-off between price and certification, which no source offers.\n" +
+    "Two of the distractors describe the mirror-image case, which is the standard way a one-directional rule is tested.",
+  take: "A one-directional substitution rule runs only the way it is written. \"A satisfies B, but not the reverse\" means B never satisfies A."
+},
+
+"di-msr-startup#5": {
+  steps: "Step 1 — The hypothetical drops the cost ceiling but keeps the time and certification requirements, then asks for the cheapest qualifying bid.\n" +
+    "Step 2 — Filter on time (≤10 weeks) and certification (Tier-2). Vendor A: 8 weeks ✓, Tier-2 ✓ — qualifies.\n" +
+    "Step 3 — Vendor B: Tier-1 ✗ — excluded.\n" +
+    "Step 4 — Vendor C: 10 weeks ✓, Tier-2 ✓ — qualifies.\n" +
+    "Step 5 — Vendor D: 12 weeks ✗ — excluded.\n" +
+    "Step 6 — Between the two survivors, Vendor A bids 85,000 and Vendor C bids 75,000. The cheaper is Vendor C.",
+  fast: "Filter first, then optimise. The two surviving criteria eliminate half the field immediately, and only then does price matter.\n" +
+    "Note that removing the cost ceiling does not remove cost from the decision — it changes cost from a filter into the ranking criterion.",
+  traps: "(C) Vendor D is the cheapest bid overall at 70,000, and it is the trap for anyone who optimises before filtering. Its 12 weeks disqualify it regardless of price.\n" +
+    "(B) Vendor B is the second cheapest but fails the certification rule.\n" +
+    "(A) Vendor A survives the filter but is 10,000 dearer than the answer.\n" +
+    "(D) \"Vendor A or C\" treats the choice as undetermined, but the two prices differ, so the cheapest is unique.\n" +
+    "The ordering of operations is the whole question: filter on the hard requirements, then rank the survivors.",
+  take: "Apply the hard filters before optimising. Relaxing a criterion as a *ceiling* often keeps it active as a *ranking* rule."
+},
+
+"di-700-enrolment#1": {
+  steps: "Step 1 — Note what the table contains: percentages of women only, with no enrollment counts anywhere. That immediately limits what can be concluded.\n" +
+    "Step 2 — Test (D): does each university show at least one fall-to-fall decline in its percentage?\n" +
+    "Step 3 — University X falls from 53.6 in 2002 to 53.3 in 2003 ✓. University Y falls from 44.2 in 2000 to 44.1 in 2001 ✓. University Z falls from 58.9 in 2001 to 55.8 in 2002 ✓.\n" +
+    "Step 4 — All three qualify, so (D) must be true.\n" +
+    "Step 5 — The others fail because they require counts. (A) compares total enrollments; (B) compares numbers of women across years; (C) compares numbers of women across universities; (E) compares combined enrollment.\n" +
+    "Step 6 — None of those quantities appears in the table, and a percentage cannot supply them.",
+  fast: "Read the second paragraph of the source first: \"The table gives percentages only. It reports no enrollment counts.\" That sentence eliminates four of the five options before you look at a single number.\n" +
+    "Then verify the survivor by scanning each university's column for any downward step — one suffices per column.",
+  traps: "(C) is the most seductive: University Z's percentage exceeds University X's in every single year, which looks conclusive. But a higher *proportion* of women says nothing about a higher *number* — X could be five times the size.\n" +
+    "(B) makes the same error across time: Province A's percentage fell from 50.6 to 49.7, yet if total enrollment grew, the number of women could still have risen.\n" +
+    "(A) infers size from a percentage, which is impossible in either direction.\n" +
+    "(E) asserts a trend in combined enrollment, a quantity the table never reports.\n" +
+    "The single discipline that answers this question: a percentage is a ratio, and a ratio alone never yields a count.",
+  take: "A table of percentages supports conclusions about percentages only. Comparing counts across groups or years requires the totals, which a proportion never supplies."
+},
+
+"di-700-enrolment#2": {
+  steps: "Step 1 — The question asks for the largest change between two *consecutive* falls, so compare adjacent rows within each column.\n" +
+    "Step 2 — University X's year-on-year moves are at most 0.6 points (52.0 to 51.4, in 2007–08).\n" +
+    "Step 3 — University Y's are at most 0.6 points (43.8 to 43.2, in 2006–07, and back up in 2007–08).\n" +
+    "Step 4 — University Z moves from 58.9 in 2001 to 55.8 in 2002 — a drop of 3.1 points.\n" +
+    "Step 5 — Z then rebounds from 55.8 to 58.6 in 2003, a rise of 2.8 points — large, but smaller than the drop before it.\n" +
+    "Step 6 — So the largest single-year change anywhere in the table is University Z's 3.1 points.",
+  fast: "Scan for the visually obvious outlier: University Z's 55.8 in 2002 breaks a column that otherwise sits between 57.8 and 58.9. The two changes bracketing that dip are the only candidates.\n" +
+    "Then compare just those two — 3.1 down and 2.8 up — rather than differencing every adjacent pair in the table.",
+  traps: "(D) 2.8 points is University Z's rebound the following year — a genuine change, and the closest rival, but smaller than the drop that preceded it.\n" +
+    "(A) 1.4 points is University X's change across the entire nine years (52.8 to 51.4), not a one-year move.\n" +
+    "(C) 1.0 point is University Y's full-period range (44.2 down to 43.2); its largest single-year move is only 0.6.\n" +
+    "(E) 2.2 points is University X's full range (53.6 down to 51.4), again a multi-year figure.\n" +
+    "Three of the four distractors substitute a whole-period range for a one-year change — the word \"from one fall to the next\" is what rules them out.",
+  take: "\"From one year to the next\" means adjacent rows only. Look for the value that breaks its column's pattern, then check the changes on either side of it."
+},
+
+"di-700-enrolment#3": {
+  steps: "Step 1 — Read the definition of the Province A column: women at all three universities divided by total enrollment at all three.\n" +
+    "Step 2 — That is not a plain average of the three percentages; it is an average weighted by each university's enrollment.\n" +
+    "Step 3 — A weighted average of several numbers always lies between the smallest and the largest of them, whatever the weights are — because it is a blend, and no blend can escape the range of its ingredients.\n" +
+    "Step 4 — So the Province A figure is mathematically guaranteed to sit between the lowest and highest university figure each year.\n" +
+    "Step 5 — That is exactly what choice (E) states.",
+  fast: "Ask what kind of quantity the combined column *is*. Once you identify it as a weighted average, the between-ness is a theorem rather than a coincidence, and no data needs checking.\n" +
+    "The give-away is the phrase \"combined ... as a percent of the combined total\" — a ratio of sums is always a weighted average of the component ratios.",
+  traps: "(A) equal enrollments would make the combined figure the *plain* average, which is one particular point between the extremes — but the between-ness holds for any sizes, so equality is not needed.\n" +
+    "(C) describes year-to-year movement, which has nothing to do with where a figure sits within a single year.\n" +
+    "(D) is true of this table — University Y is lowest every year — but it explains which figure is the lower bound, not why the combined value stays inside the bounds.\n" +
+    "(B) is irrelevant: the column is defined as these three universities combined, so other institutions cannot affect it.\n" +
+    "The question asks why the pattern *had* to happen, so a true-but-incidental observation like (D) is not an explanation.",
+  take: "A ratio of sums is a weighted average of the component ratios, and a weighted average always lies between the smallest and largest component. \"Had to happen\" calls for a guarantee, not a coincidence."
+},
+
+"di-700-enrolment#4": {
+  steps: "Step 1 — There are nine years, so eight fall-to-fall intervals. Record the sign of each university's change in each.\n" +
+    "Step 2 — 2000→2001: X \\(+0.3\\), Y \\(-0.1\\), Z \\(+0.4\\) — mixed.\n" +
+    "Step 3 — 2001→2002: \\(+0.5, -0.1, -3.1\\) — mixed. 2002→2003: \\(-0.3, -0.4, +2.8\\) — mixed.\n" +
+    "Step 4 — 2003→2004: \\(-0.3, +0.3, -0.5\\) — mixed. 2004→2005: \\(-0.5, -0.2, +0.2\\) — mixed.\n" +
+    "Step 5 — 2005→2006: \\(-0.3, +0.1, -0.2\\) — mixed.\n" +
+    "Step 6 — 2006→2007: \\(-0.2, -0.6, -0.3\\) — all three fall ✓.\n" +
+    "Step 7 — 2007→2008: \\(-0.6, +0.6, +0.5\\) — mixed.\n" +
+    "Step 8 — Exactly one interval has all three moving together.",
+  fast: "Record only signs, not magnitudes — the question asks about direction. Write three symbols per interval and stop as soon as a mixed pair appears.\n" +
+    "University Y is the usual dissenter: it rises in several intervals where X and Z fall, so checking Y against X first often settles an interval in one comparison.",
+  traps: "(A) None misses 2006→2007, where the changes are small (0.2, 0.6 and 0.3) and easy to overlook — small moves still count as moves.\n" +
+    "(C), (D) and (E) over-count, usually by treating an interval as uniform after checking only two of the three columns.\n" +
+    "Note there are eight intervals, not nine — a nine-row table has eight gaps, and mis-counting that is the other common slip.\n" +
+    "No interval here has a zero change, so every entry is genuinely up or down and no tie-breaking is needed.",
+  take: "For direction questions, record signs only and stop at the first disagreement. A table with \\(n\\) rows has \\(n-1\\) intervals."
+}
+
+});

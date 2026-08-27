@@ -13,6 +13,8 @@
        from rendering that span at all
      - a section that is empty, or so short it cannot be doing its job
      - a "traps" block that never mentions any of the wrong choices
+     - a record with no "steps" attached to a question that has no explanation
+       of its own to keep, or that omits "fast" or "take"
 
    It does NOT check that the mathematics is right — that is what verify/run.js
    and the printed source keys are for. */
@@ -73,7 +75,15 @@ Object.keys(EXPL).forEach(k => {
     });
   });
 
-  if (!rec.steps) bad(k, "no steps — a rewrite with no worked solution");
+  // Two shapes are allowed. A full rewrite supplies its own `steps`, which
+  // replaces the transcribed explanation. A fast-route addition keeps the
+  // question's existing explanation and layers `fast` and `take` on top of it;
+  // that is only legitimate when the question actually has an explanation to
+  // keep, and when both of the new blocks are present.
+  if (!rec.steps) {
+    if (!q.expl) bad(k, "no steps, and the question has no explanation to keep");
+    else if (!rec.fast || !rec.take) bad(k, "no steps — a fast-route addition must supply both fast and take");
+  }
   if (rec.steps && rec.steps.length < 120) bad(k, `steps is only ${rec.steps.length} chars, shorter than the explanation it replaces`);
   if (rec.fast && rec.fast.length < 60) bad(k, `fast is only ${rec.fast.length} chars`);
 
@@ -96,9 +106,10 @@ Object.keys(EXPL).forEach(k => {
 const covered = Object.keys(EXPL).filter(k => index[k]).length;
 const tot = Object.keys(index).length;
 const withFast = Object.keys(EXPL).filter(k => index[k] && EXPL[k].fast).length;
+const full = Object.keys(EXPL).filter(k => index[k] && EXPL[k].steps).length;
 
 console.log(`explanation files: ${EXPL_FILES.length ? EXPL_FILES.join(", ") : "(none)"}`);
-console.log(`rewritten: ${covered} of ${tot} questions | with a fast route: ${withFast}`);
+console.log(`covered: ${covered} of ${tot} questions | full rewrites: ${full} | with a fast route: ${withFast}`);
 console.log(`\n=== EXPLANATION PROBLEMS (${problems.length}) ===`);
 console.log(problems.length ? problems.map(p => "  " + p).join("\n") : "  none");
 process.exit(problems.length ? 1 : 0);

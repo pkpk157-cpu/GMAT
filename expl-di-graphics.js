@@ -308,3 +308,145 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-700-nutrition#1": {
+  steps: "Step 1 — Separate the rows by the Cooked column. Five servings are uncooked: broccoli, carrots, spinach, summer squash and sweet green pepper.\n" +
+    "Step 2 — Their protein values are \\(3, 1, 1, 1, 1\\). Sorted: \\(1, 1, 1, 1, 3\\). With five values the median is the third, so \\(1\\) g.\n" +
+    "Step 3 — The other ten servings are cooked, with protein \\(5, 3, 5, 2, 5, 2, 3, 3, 5, 2\\).\n" +
+    "Step 4 — Sorted: \\(2, 2, 2, 3, 3, 3, 5, 5, 5, 5\\). With ten values the median is the average of the fifth and sixth, both \\(3\\), so \\(3\\) g.\n" +
+    "Step 5 — The ratio is \\(\\dfrac13\\).",
+  fast: "Split the table by the Cooked column before doing anything else — that single filter is what the question is built on, and mixing the two groups ruins both medians.\n" +
+    "Then remember the position rules: an odd count takes the middle value, an even count averages the two middle ones. Here five and ten give different rules.",
+  traps: "(B) \\(\\tfrac12\\) and (C) \\(\\tfrac23\\) come from using means rather than medians — the uncooked mean is \\(1.4\\) and the cooked mean is \\(3.3\\), giving roughly \\(0.42\\), which rounds toward these values.\n" +
+    "(D) 1 would require the two medians to be equal, which happens only if the groups are not separated.\n" +
+    "(E) \\(\\tfrac32\\) inverts the ratio; the question puts the uncooked median in the numerator.\n" +
+    "Note also that the uncooked group has an outlier (broccoli's 3 g) which pulls the mean well above the median — exactly the situation where the two diverge.",
+  take: "Filter the rows first, then apply the median position rule to each group separately: middle value for odd counts, average of the two middle for even."
+},
+
+"di-700-nutrition#2": {
+  steps: "Step 1 — Corn's carbohydrate is 32 g, the highest in the table. Exclude that row and work with the other fourteen.\n" +
+    "Step 2 — Those carbohydrate values are \\(8, 17, 8, 5, 16, 11, 10, 3, 3, 7, 1, 8, 5, 10\\).\n" +
+    "Step 3 — Sorted: \\(1, 3, 3, 5, 5, 7, 8, 8, 8, 10, 10, 11, 16, 17\\).\n" +
+    "Step 4 — Fourteen values, so the median is the average of the seventh and eighth. Both are \\(8\\), so the median is \\(8\\) g.\n" +
+    "Step 5 — \\(32 \\div 8 = 4\\).",
+  fast: "Sorting fourteen values by hand is slow; instead count upward until you reach position 7. Values at or below 8: \\(1, 3, 3, 5, 5, 7, 8, 8, 8\\) — that is nine values, so positions 7 and 8 are both 8.\n" +
+    "Counting into the sorted position is faster and less error-prone than writing out the whole ordered list.",
+  traps: "(C) 3 is the closest trap: it results from landing on 10 or 11 as the median, which happens if you miscount the position or forget to exclude corn.\n" +
+    "(A) 2 would need a median of 16, and (E) 5 a median of 6.4 — neither appears in the data.\n" +
+    "(B) 2.5 corresponds to a median near 12.8.\n" +
+    "The instruction \"of the other fourteen servings\" is essential: including corn would make fifteen values and shift the median position.",
+  take: "To find a median in a long list, count how many values fall at or below a candidate rather than sorting everything. Honour any exclusion the question states."
+},
+
+"di-700-nutrition#3": {
+  steps: "Step 1 — Filter on total fiber below \\(3.0\\) g. Scanning the fiber column: asparagus \\(2.9\\), uncooked broccoli \\(2.6\\), mustard greens \\(2.8\\), pak choi \\(2.7\\), uncooked spinach \\(0.8\\), cooked summer squash \\(2.5\\), uncooked summer squash \\(2.1\\), and sweet green pepper \\(2.7\\).\n" +
+    "Step 2 — That is eight servings; every other row has fiber of \\(3.3\\) or more.\n" +
+    "Step 3 — Read their carbohydrate values: \\(8, 5, 3, 3, 1, 8, 5, 10\\).\n" +
+    "Step 4 — The greatest is \\(10\\) g, from the uncooked sweet green pepper.",
+  fast: "Filter first on one column, then maximise on another — never scan the carbohydrate column looking for large values and check fiber afterwards, because the largest carbohydrate figures all belong to high-fiber rows.\n" +
+    "The cut-off is close to several values (\\(2.9\\), \\(2.8\\), \\(2.7\\)), so read the fiber column carefully rather than approximating.",
+  traps: "(C) 11 g is uncooked carrots, whose fiber is \\(3.3\\) — just above the cut-off, and the sharpest near-miss.\n" +
+    "(D) 16 g is cooked carrots at \\(5.1\\) fiber, and (E) 17 g is beets at \\(3.4\\) — both are among the highest carbohydrate values in the table, which is exactly why they are offered.\n" +
+    "(A) 8 g is the largest carbohydrate among the *cooked* members of the qualifying group, so it catches anyone who filters on fiber and then quietly restricts to cooked servings.\n" +
+    "The question's filter is fiber alone; nothing about cooking status is imposed.",
+  take: "Apply the stated filter first, then optimise within the survivors. The largest values overall usually fail the filter — that is the point of the question."
+},
+
+"di-700-nutrition#4": {
+  steps: "Step 1 — Identify the vegetables listed both ways: broccoli, carrots, spinach and summer squash. Every claim must hold for all four.\n" +
+    "Step 2 — Test (A), percent water unchanged: broccoli \\(91 \\to 91\\) ✓, but carrots \\(88 \\to 87\\) ✗. Fails.\n" +
+    "Step 3 — Test (B), fiber at least doubles: spinach \\(0.8 \\to 4.3\\) ✓, but broccoli \\(2.6 \\to 4.5\\) is only \\(1.73\\) times ✗. Fails.\n" +
+    "Step 4 — Test (C), carbohydrate gains at least 4 g: spinach gains 6 and carrots 5, but broccoli gains \\(8 - 5 = 3\\) ✗. Fails.\n" +
+    "Step 5 — Test (D), protein at least doubles: spinach \\(1 \\to 5\\) ✓, but broccoli \\(3 \\to 5\\) is only \\(1.67\\) times ✗. Fails.\n" +
+    "Step 6 — Test (E), both energy and fiber rise: broccoli \\(25 \\to 44\\) and \\(2.6 \\to 4.5\\) ✓; carrots \\(47 \\to 70\\) and \\(3.3 \\to 5.1\\) ✓; spinach \\(7 \\to 41\\) and \\(0.8 \\to 4.3\\) ✓; summer squash \\(23 \\to 36\\) and \\(2.1 \\to 2.5\\) ✓. Holds without exception.",
+  fast: "\"Without exception\" means one counterexample kills a claim, so test each option against the *weakest* pair first. Broccoli and summer squash change least on most measures, so they break the demanding claims immediately.\n" +
+    "Spinach is the opposite — it changes dramatically on every measure, so testing spinach first confirms nothing.",
+  traps: "(B) and (D) are both true of spinach, whose fiber quintuples and whose protein quintuples. Checking only the most dramatic pair confirms them falsely.\n" +
+    "(C) holds for spinach and carrots but not for broccoli or summer squash, both of which gain exactly 3 g.\n" +
+    "(A) is true for two of the four pairs, which is enough to feel right if you stop early.\n" +
+    "The strategy that avoids all four: pick the pair with the smallest changes and test every claim against it.",
+  take: "For \"holds without exception\", hunt for the counterexample rather than the confirmation — and start with the case whose values change least."
+},
+
+"di-700-nutrition#5": {
+  steps: "Step 1 — Read down the Energy column and mark every value of 50 kcal or more.\n" +
+    "Step 2 — Cooked corn: 131 ✓. Cooked beets: 75 ✓. Cooked carrots: 70 ✓.\n" +
+    "Step 3 — The next highest is uncooked carrots at 47, which falls short.\n" +
+    "Step 4 — After that come cooked broccoli and cooked green beans at 44, cooked asparagus at 43, and cooked spinach at 41 — all below the threshold.\n" +
+    "Step 5 — Exactly three servings reach 50 kcal.",
+  fast: "One column, one threshold, one count. Scan from the top of the column for values in the 50s and above; only three rows have a leading digit above 4.\n" +
+    "Since the threshold is 50 and the nearest non-qualifier is 47, there is no boundary ambiguity here — but reading 47 as 57 is the one slip to guard against.",
+  traps: "(D) Four counts uncooked carrots at 47 as qualifying — the nearest miss, and the intended trap.\n" +
+    "(E) Five would additionally include one of the 44s.\n" +
+    "(A) One counts only corn, whose 131 stands far above everything else and makes the other two easy to overlook.\n" +
+    "(B) Two typically misses cooked carrots at 70.\n" +
+    "The values cluster tightly in the low 40s, so the answer hinges on reading the small gap between 47 and 50.",
+  take: "Threshold counting needs one careful pass down one column. Check the values just below the cut-off explicitly — they are what the distractors are built from."
+},
+
+"di-700-msr-gold#1": {
+  steps: "Step 1 — The new fact is that Grasberg is the world's largest gold mine, producing over 57,000 kg of pure gold a year.\n" +
+    "Step 2 — Source 2 draws a size contrast: \"Unlike placer-deposit mines, modern commercial lode-deposit mines are massive operations.\"\n" +
+    "Step 3 — Size is therefore the sources' distinguishing feature between the two deposit types, and Grasberg is the largest of all.\n" +
+    "Step 4 — So the sources most strongly imply that Grasberg works a lode deposit rather than a placer deposit.",
+  fast: "Find the one attribute the sources explicitly tie to each deposit type, then match the new fact against it. Here the attribute is scale, and the new fact is about scale.\n" +
+    "Everything else in the sources — rivers, settling ponds, US output shares — attaches to placer mining, so any option invoking those points the wrong way.",
+  traps: "(A) rivers are linked to *placer* deposits, not lode deposits; the sources say nothing about where lode mines sit.\n" +
+    "(D) settling ponds are described as a practice of modern commercial *placer* operations.\n" +
+    "(C) the figure of 130 kg of ore per gram is stated as an average across lode operations. An average tells you nothing about one particular mine, least of all the largest.\n" +
+    "(E) Grasberg is in Indonesia, so it contributes nothing to the United States total that the prospector discusses.\n" +
+    "Three of the four distractors take a placer-specific detail and apply it to a mine the sources imply is not placer.",
+  take: "Match a new fact to the attribute the sources actually use to distinguish the categories. An average across a group never describes a specific member."
+},
+
+"di-700-msr-gold#2": {
+  steps: "Step 1 — The question asks which claim is backed by *specific evidence*, not merely asserted or explained.\n" +
+    "Step 2 — Scan the environmental scientist's source for a number or a concrete finding attached to a claim.\n" +
+    "Step 3 — The claim that lode-deposit mines are massive operations is immediately followed by a figure: some displace and process up to 180,000 metric tons of raw ore per day.\n" +
+    "Step 4 — That is the only quantity offered in direct support of a claim.\n" +
+    "Step 5 — So the massiveness claim is the one backed with evidence.",
+  fast: "Look for numbers. In a source that is otherwise descriptive, a figure attached to a sentence is the tell that the sentence is being supported rather than simply asserted.\n" +
+    "The 130 kg per gram figure is also a number, but it supports a general description of ore processing rather than one of the listed claims.",
+  traps: "(A) habitat destruction is asserted and its mechanism named — river diversions and bottom disruption — but naming a mechanism is explanation, not evidence.\n" +
+    "(B) is the scientist's headline comparison, supported by a *reason* (no crushing, no chemicals) rather than by data.\n" +
+    "(C) the settling-pond practice is simply reported as something operations tend to do.\n" +
+    "(E) toxic chemicals appear in a list of reasons for the larger impact, with no supporting figure.\n" +
+    "The distinction being tested is evidence versus explanation: a reason why something is so is not the same as data showing that it is.",
+  take: "Evidence is data; a reason or a mechanism is explanation. Scan for figures when asked which claim is actually supported."
+},
+
+"di-700-msr-gold#3": {
+  steps: "Step 1 — At the stated average, 130 kg of raw ore yields 1 g of pure gold.\n" +
+    "Step 2 — Ore 20 times richer needs one twentieth as much: \\(130 \\div 20 = 6.5\\) kg of ore per gram of gold.\n" +
+    "Step 3 — The fastest rate described is 180,000 metric tons of ore per day, which is \\(180{,}000{,}000\\) kg.\n" +
+    "Step 4 — Daily gold output: \\(180{,}000{,}000 \\div 6.5 \\approx 27{,}700{,}000\\) g, i.e. about \\(27.7\\) metric tons of gold per day.\n" +
+    "Step 5 — Time for 100 metric tons: \\(100 \\div 27.7 \\approx 3.6\\) days.\n" +
+    "Step 6 — That is more than 3 but less than 4 days.",
+  fast: "Keep the units in one place. Convert metric tons to kilograms once, at the start, and note that gold output in *grams* converts back to metric tons by dividing by a million.\n" +
+    "A rough estimate suffices: \\(180\\) million divided by \\(6.5\\) is close to \\(180/6.5 = 27.7\\) million grams, so about 28 tons a day — and \\(100/28\\) is between 3 and 4.",
+  traps: "(D) and (E) follow from forgetting the twentyfold enrichment: at the average concentration the mine would produce only \\(1.38\\) tons a day and need about 72 days.\n" +
+    "(A) and (B) would require daily output above 50 metric tons, which needs an enrichment factor of about 40 rather than 20.\n" +
+    "The unit chain is the whole difficulty: metric tons of ore → kilograms of ore → grams of gold → metric tons of gold. Write each conversion down.",
+  take: "Enriching ore by a factor of \\(k\\) divides the ore needed per gram by \\(k\\). Convert units in one explicit chain and estimate rather than computing exactly."
+},
+
+"di-700-msr-gold#4": {
+  steps: "Step 1 — A share falls when its numerator shrinks, its denominator grows, or both. The question asks which explanation the sources actually give.\n" +
+    "Step 2 — The prospector says output from placer deposits \"has fallen as the readily accessible ones have been exhausted\" — that is the shrinking numerator.\n" +
+    "Step 3 — The same passage adds \"despite an increase in net gold mined\" — that is the growing denominator.\n" +
+    "Step 4 — So the share fell from about 35 percent to a few percent because less placer gold is being produced while total production has risen.\n" +
+    "Step 5 — Choice (A) states exactly those two movements.",
+  fast: "A percentage question about a falling share should immediately prompt \"numerator, denominator, or both?\". The prospector's sentence names both in a single clause, which makes the correct explanation easy to spot once you are looking for it.\n" +
+    "The phrase \"despite an increase in net gold mined\" is the give-away: it is there precisely to tell you the denominator grew.",
+  traps: "(B) a ban is never mentioned; water quality appears only as an environmental impact of placer mining.\n" +
+    "(C) lode deposits are described as nearly pure gold, which sounds like cheapness — but the sources also say lode mining processes 130 kg of ore per gram and is enormously more disruptive, so no cost conclusion is available.\n" +
+    "(D) settling ponds are described as a preventive measure, not a cost that closed operations down.\n" +
+    "(E) the weathering-and-transport process is described in the present tense as ongoing, not as having stopped.\n" +
+    "Each distractor is a plausible real-world story that the sources simply do not tell.",
+  take: "A falling share has two possible causes — a smaller numerator or a larger denominator. Identify which the passage names, and reject explanations the sources never make."
+}
+
+});

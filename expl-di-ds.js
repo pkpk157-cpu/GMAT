@@ -713,3 +713,137 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 }
 
 });
+
+window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+
+"di-datasufficiency-ex#17": {
+  steps: "Step 1 — Statement (1): the primes strictly between 20 and 30 are 23 and 29. Two candidates, so no unique value — [[not sufficient]].\n" +
+    "Step 2 — Statement (2): \\(n\\) is odd. That admits infinitely many integers — [[not sufficient]].\n" +
+    "Step 3 — Together: both 23 and 29 are odd, so statement (2) eliminates neither candidate.\n" +
+    "Step 4 — Two values still survive — [[not sufficient]].",
+  fast: "List the candidates from the restrictive statement first — there are only two — then ask whether the second statement removes either. It does not, because every prime above 2 is odd.\n" +
+    "That observation is the whole question: \"odd\" is implied by \"prime in this range\" and therefore adds no information at all.",
+  traps: "(C) is the intended trap: a narrow list plus an extra condition normally resolves to one value. Here the extra condition is redundant.\n" +
+    "(A) assumes there is only one prime in the twenties; there are two.\n" +
+    "(B) treats \"odd\" as narrowing.\n" +
+    "(D) is stronger still.\n" +
+    "The primes in the twenties are worth knowing cold: 23 and 29 (21 is \\(3 \\times 7\\), 25 is \\(5^2\\), 27 is \\(3^3\\)).",
+  take: "Enumerate the candidates the restrictive statement allows, then test whether the second statement removes any. A condition already implied by the first adds nothing."
+},
+
+"di-datasufficiency-ex#18": {
+  steps: "Step 1 — Both \\(x\\) and \\(y\\) are positive, which is what makes both statements usable.\n" +
+    "Step 2 — Statement (1): \\(\\dfrac xy = 1.2\\), so \\(x = 1.2y\\). Since \\(y > 0\\), multiplying by \\(1.2\\) increases it, so \\(x > y\\) — a definite yes, [[sufficient]].\n" +
+    "Step 3 — Statement (2): \\(x - y = 5\\), so \\(x = y + 5 > y\\) — a definite yes, [[sufficient]].\n" +
+    "Step 4 — Each statement alone answers the question.",
+  fast: "Both statements say \\(x\\) exceeds \\(y\\) in a different currency: one multiplicatively, one additively. Neither needs the actual values.\n" +
+    "The positivity in the stem matters only for statement (1): if \\(y\\) could be negative, \\(x = 1.2y\\) would be *smaller* than \\(y\\), and the ratio would decide nothing.",
+  traps: "(C) is the reflex pairing when both statements point the same way.\n" +
+    "(A) and (B) reject one, usually (1), because a ratio feels like it needs a scale. For a yes/no comparison it does not.\n" +
+    "(E) misses that both are decisive.\n" +
+    "The instructive variant: drop the positivity condition and statement (1) becomes insufficient while statement (2) stays sufficient — the answer would be B. Always check which givens each statement leans on.",
+  take: "A ratio above 1 proves \\(x > y\\) only when the quantities are positive; a positive difference proves it unconditionally."
+},
+
+"di-datasufficiency-ex#19": {
+  steps: "Step 1 — The area of a rectangle is length times width, so both dimensions are needed.\n" +
+    "Step 2 — Statement (1): the length is 8. The width is free, so the area could be anything — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): the perimeter is 28, so \\(2(l + w) = 28\\) and \\(l + w = 14\\). Many pairs sum to 14, with areas ranging from near 0 to 49 — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(l = 8\\) and \\(l + w = 14\\) give \\(w = 6\\).\n" +
+    "Step 5 — Area \\(= 8 \\times 6 = 48\\) — [[sufficient]].",
+  fast: "Convert the perimeter to \\(l + w = 14\\) immediately; a sum plus one value gives the other in one subtraction.\n" +
+    "The general point is that a perimeter constrains the *sum* of the dimensions while the area needs their *product*, and a sum alone never determines a product.",
+  traps: "(B) treats the perimeter as determining the area. It does not: a \\(7 \\times 7\\) rectangle and a \\(1 \\times 13\\) rectangle share a perimeter of 28 but have areas of 49 and 13.\n" +
+    "(A) gives one dimension only.\n" +
+    "(D) accepts either.\n" +
+    "(E) misses that one dimension plus the sum gives the other.\n" +
+    "A square is a rectangle, so nothing in the stem forces \\(l \\ne w\\) — which is precisely why statement (2) alone spans such a wide range of areas.",
+  take: "Perimeter fixes \\(l + w\\); area needs \\(lw\\). A sum plus one term gives the other, but a sum alone never determines a product."
+},
+
+"di-datasufficiency-ex#20": {
+  steps: "Step 1 — Divisibility by 6 means divisibility by both 2 and 3.\n" +
+    "Step 2 — Statement (1): \\(k\\) is divisible by 3. But \\(k = 3\\) is not divisible by 6 while \\(k = 6\\) is — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(k\\) is divisible by 4, hence by 2. But \\(k = 4\\) is not divisible by 6 while \\(k = 12\\) is — [[not sufficient]].\n" +
+    "Step 4 — Together: \\(k\\) is divisible by both 3 and 4, which are coprime, so \\(k\\) is divisible by \\(\\operatorname{lcm}(3,4) = 12\\).\n" +
+    "Step 5 — Every multiple of 12 is a multiple of 6, so the answer is a definite yes — [[sufficient]].",
+  fast: "Break the target into its prime requirements: 6 needs one factor of 2 and one of 3. Statement (2) supplies the 2 (in fact two of them) and statement (1) supplies the 3.\n" +
+    "Neither alone covers both primes, which is what makes this a clean C.",
+  traps: "(A) treats divisibility by 3 as enough, forgetting the factor of 2.\n" +
+    "(B) treats divisibility by 4 as enough, forgetting the 3.\n" +
+    "(D) accepts either.\n" +
+    "(E) misses that combining coprime divisors multiplies them.\n" +
+    "One caution on the general rule: divisibility by \\(a\\) and by \\(b\\) gives divisibility by \\(\\operatorname{lcm}(a,b)\\), not by \\(ab\\) — here 3 and 4 are coprime so the two coincide, but for 4 and 6 the lcm is 12, not 24.",
+  take: "Factor the divisor into primes and check each is covered. Divisibility by \\(a\\) and \\(b\\) gives divisibility by \\(\\operatorname{lcm}(a,b)\\)."
+},
+
+"di-datasufficiency-ex#21": {
+  steps: "Step 1 — Let \\(a\\) be the number of 15-cent stamps and \\(b\\) the number of 29-cent stamps, both non-negative integers.\n" +
+    "Step 2 — Statement (1): \\(a = b\\). With no total, any equal pair works — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(15a + 29b = 440\\). This is one equation in two unknowns, but the integer requirement makes it a Diophantine problem with possibly few solutions.\n" +
+    "Step 4 — Since \\(29b \\le 440\\), \\(b\\) runs from 0 to 15. Test which values make \\(440 - 29b\\) a multiple of 15.\n" +
+    "Step 5 — Working modulo 15: \\(29 \\equiv 14 \\equiv -1\\), and \\(440 \\equiv 5\\). So \\(-b \\equiv 5\\), i.e. \\(b \\equiv -5 \\equiv 10 \\pmod{15}\\).\n" +
+    "Step 6 — In the range 0 to 15 the only such value is \\(b = 10\\), giving \\(15a = 440 - 290 = 150\\) and \\(a = 10\\).\n" +
+    "Step 7 — A unique solution — [[sufficient]].",
+  fast: "Do not dismiss a single equation in two unknowns when the unknowns must be non-negative integers — count the solutions instead.\n" +
+    "Reducing modulo the smaller coefficient is the quick route: \\(29 \\equiv -1 \\pmod{15}\\) turns the condition into \\(b \\equiv 10\\), and the range 0–15 admits exactly one such \\(b\\).",
+  traps: "(C) is the intended trap: one equation with two unknowns *looks* insufficient, so pairing it with the ratio feels necessary. The integrality does the work instead.\n" +
+    "(A) treats a bare equality of counts as informative without a total.\n" +
+    "(D) accepts either.\n" +
+    "(E) dismisses the equation entirely.\n" +
+    "The coincidence that \\(a = b = 10\\) makes statement (1) *true* is a consistency check, not evidence that (1) was needed.",
+  take: "A single linear equation in non-negative integers may have exactly one solution. Reduce modulo the smaller coefficient and count the candidates before judging sufficiency."
+},
+
+"di-datasufficiency-ex#22": {
+  steps: "Step 1 — Let \\(a\\) be the number of 23-cent pencils and \\(b\\) the number of 21-cent pencils, both non-negative integers.\n" +
+    "Step 2 — Statement (1): \\(a + b = 6\\). Then the total value is \\(23a + 21(6-a) = 126 + 2a\\), which varies with \\(a\\); the split could be any of seven combinations — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(23a + 21b = 130\\). Since \\(23a \\le 130\\), \\(a\\) runs from 0 to 5.\n" +
+    "Step 4 — Test each: \\(a = 0\\) leaves 130 (not a multiple of 21); \\(a = 1\\) leaves 107; \\(a = 2\\) leaves \\(84 = 21 \\times 4\\) ✓; \\(a = 3\\) leaves 61; \\(a = 4\\) leaves 38; \\(a = 5\\) leaves 15.\n" +
+    "Step 5 — Only \\(a = 2\\) works, with \\(b = 4\\) — a unique solution, [[sufficient]].",
+  fast: "The small range is what makes brute force fast: \\(a\\) can only be 0 through 5, so six subtractions settle it.\n" +
+    "Notice also that statement (1) is *not* consistent with statement (2): six pencils would cost between 126 and 138, and 130 is in that range only for \\(a = 2\\) — in fact the two statements agree, since \\(2 + 4 = 6\\).",
+  traps: "(C) is the trap of assuming one equation cannot pin two unknowns. With small non-negative integers it often can.\n" +
+    "(A) treats the count as determining the composition; \\(126 + 2a\\) shows the value depends on the split.\n" +
+    "(D) accepts either.\n" +
+    "(E) dismisses the value equation.\n" +
+    "The efficient check in Step 4 is to test divisibility by 21 rather than solving; the multiples of 21 below 130 are 0, 21, 42, 63, 84, 105 and 126, and only 84 differs from 130 by a multiple of 23.",
+  take: "With a small non-negative integer range, enumerate. A total value can determine the split even when a total count cannot."
+},
+
+"di-datasufficiency-ex#23": {
+  steps: "Step 1 — Revenue is 500,000 and the only costs are labour \\(L\\) and materials \\(M\\), so profit \\(= 500{,}000 - L - M\\).\n" +
+    "Step 2 — Statement (1): total cost \\(= 3M\\), so \\(L + M = 3M\\) and \\(L = 2M\\). Profit \\(= 500{,}000 - 3M\\), but \\(M\\) is unknown, so the profit could be almost anything — [[not sufficient]].\n" +
+    "Step 3 — Statement (2): profit exceeds labour cost. With no absolute figures, this fixes nothing — [[not sufficient]].\n" +
+    "Step 4 — Together: profit \\(= 500{,}000 - 3M\\) and the condition profit \\(> L = 2M\\) gives \\(500{,}000 - 3M > 2M\\).\n" +
+    "Step 5 — So \\(500{,}000 > 5M\\), i.e. \\(M < 100{,}000\\).\n" +
+    "Step 6 — Then profit \\(= 500{,}000 - 3M > 500{,}000 - 300{,}000 = 200{,}000\\).\n" +
+    "Step 7 — Since \\(200{,}000 > 150{,}000\\), the answer is a definite yes — [[sufficient]].",
+  fast: "Reduce everything to one variable. Statement (1) makes labour \\(2M\\) and profit \\(500{,}000 - 3M\\); statement (2) then becomes an inequality in \\(M\\) alone, which bounds it.\n" +
+    "The elegance is that the bound on \\(M\\) translates into a bound on profit that clears the threshold with room to spare — you never need the exact figures.",
+  traps: "(E) is the natural guess: an inequality plus a ratio rarely pins a value. But a yes/no question needs only a bound, not a value.\n" +
+    "(A) treats the cost structure as enough without any scale.\n" +
+    "(B) treats a comparison as enough without any figures.\n" +
+    "(D) is stronger still.\n" +
+    "The habit to build: on yes/no questions, ask whether the statements *bound* the quantity on the right side of the threshold — determination of the exact value is not required.",
+  take: "For yes/no questions, a bound can be sufficient where a value is not. Reduce to one variable, then check whether the resulting inequality clears the threshold."
+},
+
+"di-datasufficiency-ex#24": {
+  steps: "Step 1 — Cows plus pigs make \\(\\tfrac23 \\times 60 = 40\\) animals, so \\(C + P = 40\\) and \\(C = 40 - P\\).\n" +
+    "Step 2 — Statement (1): \\(C > 2P\\). Substituting, \\(40 - P > 2P\\), so \\(40 > 3P\\) and \\(P < 13.33\\). With \\(P\\) an integer, \\(P \\le 13\\) — a range, [[not sufficient]].\n" +
+    "Step 3 — Statement (2): \\(P > 12\\), so \\(P \\ge 13\\) — also a range, [[not sufficient]].\n" +
+    "Step 4 — Together: \\(12 < P < 13.33\\), and since \\(P\\) counts animals it must be an integer.\n" +
+    "Step 5 — The only integer in that interval is \\(P = 13\\).\n" +
+    "Step 6 — So \\(C = 40 - 13 = 27\\) — [[sufficient]].",
+  fast: "Two inequalities can pin a value exactly when the interval between them contains a single integer — and that is what makes this a C rather than an E.\n" +
+    "Reduce both statements to bounds on the same variable (\\(P\\)) and check the width of the overlap: from just above 12 to just below 13.34 leaves only 13.",
+  traps: "(E) is the intended trap: two inequalities normally leave a range, and this looks like the classic insufficient pairing. The integrality of an animal count is what closes it.\n" +
+    "(A) and (B) each give one loose bound.\n" +
+    "(D) is stronger still.\n" +
+    "Watch the strictness in Step 2: \\(P < 13.33\\) admits \\(P = 13\\), whereas an inequality of \\(C \\ge 2P\\) would have given \\(P \\le 13.33\\) — same integer conclusion here, but the reasoning must be exact.\n" +
+    "Note also that the remaining third of the farm — 20 other animals — plays no part in the calculation.",
+  take: "Two bounds on an integer are sufficient when only one integer lies between them. Always convert both statements into bounds on the same variable."
+}
+
+});

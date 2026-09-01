@@ -16,7 +16,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(B) 80 is Lexy's own round-trip time in minutes — the intermediate value, and the trap for anyone who forgets to double it.\n" +
     "(C) 120 comes from averaging 5 and 15 to get 10 mph for Lexy, halving to 5 mph for Ben, and dividing 10 miles by that. Averaging the two speeds is the classic error, and it always overstates the true average.\n" +
     "(A) 40 is Lexy's cycling leg alone.\n" +
-    "(E) 180 comes from treating Lexy's average as 10 mph but keeping her walking hour intact.\n" +
+    "(E) 180 would mean 3 hours for the 10 miles — beyond even the doubled time, a filler at the top of the range.\n" +
     "Average speed is never the average of the speeds unless the *times* are equal — here the times are 1 hour and 20 minutes.",
   take: "Average speed = total distance ÷ total time. At half the speed over the same route, the time exactly doubles."
 },
@@ -157,7 +157,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "In practice the cleanest route is Step 3: multiplying by 31.5 turns awkward decimals into the integers 7 and 9, and the rest is one line.",
   traps: "(A) 140 is the distance driven at 60 mph — the complement of the answer, and the trap for anyone who solves for the wrong variable.\n" +
     "(C) 250 splits the trip evenly, which would use \\(250/4.5 + 250/3.5 \\approx 127\\) gallons, not 120.\n" +
-    "(D) 300 and (B) 200 come from setting up the equation with the mileages multiplied rather than divided — \\(4.5x + 3.5(500-x)\\) has no sensible units.\n" +
+    "(D) 300 and (B) 200 fail the fuel check: 300 miles at 55 mph burns \\(300/4.5 + 200/3.5 \\approx 124\\) gallons, and 200 burns \\(200/4.5 + 300/3.5 \\approx 130\\) — neither lands on 120.\n" +
     "Remember that miles per gallon sits in the denominator: gallons \\(=\\) miles \\(\\div\\) mpg.",
   take: "Fuel consumed = distance ÷ mpg. Clear decimal denominators by multiplying through by their least common multiple, and check which of the two distances the question wants."
 },
@@ -191,8 +191,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Both factors are friendly fractions: \\(0.8 = \\tfrac45\\) and \\(1.25 = \\tfrac54\\). Dividing gives \\(\\tfrac45 \\times \\tfrac45 = \\tfrac{16}{25} = 0.64\\) — the two changes happen to compound into a clean square. Read the reduction as \\(1 - 0.64\\).",
   traps: "(C) 37% is a decoy for anyone who estimates rather than computes; the true figure is exactly 36, and the near-miss punishes rounding.\n" +
     "(D) 45% comes from adding the two percentages (\\(20 + 25\\)) — the standard additive error with multiplicative changes.\n" +
-    "(A) 16% comes from reporting \\(0.8 \\times 1.25 = 1.0\\)-style arithmetic gone slightly wrong, or from \\(1 - 0.84\\).\n" +
-    "(E) 56% overshoots, typically from computing \\(1 - 0.8 \\times 0.55\\) or from dividing the wrong way round.\n" +
+    "(A) 16% lifts the 16 straight out of \\(\\tfrac{16}{25}\\) — the surviving fraction's numerator mistaken for the reduction.\n" +
+    "(E) 56% would leave only 44% of the original time, a deeper cut than any combination of these two changes produces — a filler at the top.\n" +
     "The direction matters too: a higher speed *reduces* time, so speed belongs in the denominator.",
   take: "Time = distance ÷ speed, so combine the change factors as a quotient. A resulting factor of \\(k\\) means a reduction of \\((1-k)\\), not of \\(k\\)."
 },
@@ -266,9 +266,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — Time for all three together: \\(1 \\div 1 = 1\\) hour.",
   fast: "Never solve for the individual rates. Adding the three pair-rates counts every pump twice, so halving the sum gives the three-pump rate immediately. That trick works for any \"three pairs, find the trio\" problem.\n" +
     "Here the sum is exactly 2, so the trio's rate is exactly 1 — the numbers were chosen to make the final division disappear.",
-  traps: "(B) \\(\\tfrac12\\) is the *rate* halved rather than the sum halved — that is, \\(a+b+c\\) computed as \\(\\tfrac12 \\times\\) something, or the reciprocal taken twice.\n" +
-    "(A) \\(\\tfrac13\\) and (C) \\(\\tfrac23\\) come from averaging the three given times (\\(\\tfrac65, \\tfrac32, 2\\)) instead of adding rates — times never average like that.\n" +
-    "(D) \\(\\tfrac56\\) is the rate of pumps A and B, quoted as a time.\n" +
+  traps: "(B) \\(\\tfrac12\\), (C) \\(\\tfrac23\\) and (D) \\(\\tfrac56\\) are the three [[pair]] rates — B+C, A+C and A+B respectively — every one a number sitting in your working, offered as the final answer.\n" +
+    "(A) \\(\\tfrac13\\) halves the A+C pair rate a second time.\n" +
     "The unit slip to guard against: \\(\\tfrac65\\) hours corresponds to a rate of \\(\\tfrac56\\), and mixing the two up flows through the whole problem.",
   take: "Sum the pair-rates and halve: \\((a{+}b) + (a{+}c) + (b{+}c) = 2(a{+}b{+}c)\\). Convert times to rates before combining anything."
 },
@@ -300,7 +299,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Note the sanity check: Y is slower than X, so its solo time must exceed 9 hours.",
   traps: "(D) \\(4\\tfrac12\\) and (E) \\(3\\tfrac23\\) are both *shorter* than X's 9 hours, which is impossible — the pair together takes 6 hours' worth of rate, so Y must be the slower machine. That single observation eliminates two choices instantly.\n" +
     "(C) \\(7\\tfrac15\\) is the time for the two machines working together on the whole job from the start, a genuine quantity but not the one asked.\n" +
-    "(B) \\(13\\tfrac12\\) comes from computing the joint rate as \\(\\tfrac23 \\div 4\\) but then subtracting times rather than rates.\n" +
+    "(B) \\(13\\tfrac12\\) is at least slower than X, but it fails the check: at that speed the pair's rate would be \\(\\tfrac19 + \\tfrac2{27} = \\tfrac5{27}\\), and the last \\(\\tfrac23\\) of the job would take 3.6 hours, not 4.\n" +
     "Rates subtract; times never do.",
   take: "Joint rate minus known rate gives the unknown rate. Sanity-check the direction: if the pair is only slightly faster than one machine, the other must be much slower."
 },
@@ -398,7 +397,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The \\(b\\) terms collapse because \\(0.75 + 0.25 = 1\\): the equation reduces to \\(b + 6 = 62\\) in a single line. Notice that before expanding and the algebra is trivial.\n" +
     "The structural point is that the two cars' distances must sum to the full 62 miles — that is what \"met\" means on a single road.",
   traps: "(E) 8 is the speed *difference* from the stem, recycled as a distance.\n" +
-    "(B) 12 and (C) 10 come from giving Car A only a quarter hour as well, which would make the meeting point closer to the middle.\n" +
+    "(B) 12 and (C) 10 correspond to Car B speeds of 48 and 40 — with Car A 8 mph faster, the pair would cover only \\(0.75 \\times 56 + 12 = 54\\) or \\(46\\) miles, short of the 62 needed to meet.\n" +
     "(D) 9 arises from computing Car B's speed correctly but then multiplying by the wrong time.\n" +
     "The two details that decide the question are the unequal driving times (0.75 versus 0.25 hours) and that the answer wants *miles driven*, not the speed 56.",
   take: "In head-on meeting problems the two distances add to the total gap. Give each traveller its own elapsed time when their start times differ."
@@ -429,7 +428,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Two stages, each one subtraction. First subtract rates to get B's solo time of 40 minutes; then subtract page-rates to get \\(\\tfrac{N}{120} = 5\\).\n" +
     "The \\(\\tfrac1{120}\\) appears twice because 120 is the least common multiple of 24, 60 and 40 — choosing it as the working denominator from the outset makes both subtractions instant.",
   traps: "(D) 1200 doubles the answer, from using \\(\\tfrac{N}{60}\\) as B's rate or from a factor-of-two slip in the least common denominator.\n" +
-    "(B) 800 and (C) 1000 come from mis-deriving B's solo time — 30 or 48 minutes instead of 40 — usually by subtracting the times \\(60 - 24\\) rather than the rates.\n" +
+    "(B) 800 and (C) 1000 fail the per-minute check: with B's 40-minute solo time they would make the page-rate gap \\(20 - 13\\tfrac13 = 6\\tfrac23\\) and \\(25 - 16\\tfrac23 = 8\\tfrac13\\) pages a minute, not the stated 5.\n" +
     "(E) 1500 arises from treating the 5-page difference as applying over the whole 24-minute task rather than per minute.\n" +
     "The general rule this question tests twice: rates subtract, times do not.",
   take: "Solve rate problems in two layers when a second quantity (pages) is involved: first find the missing time from the rates, then convert to the second quantity."
@@ -491,8 +490,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — Only \\(6\\) appears among the choices.",
   fast: "\"Could be\" signals a divisibility question. Reduce \\(6a + 4b = 30\\) to \\(3a + 2b = 15\\) and note that \\(a\\) must be odd for \\(2b\\) to come out even — so \\(a \\in \\{1, 3\\}\\) and the red count is \\(2a \\in \\{2, 6\\}\\). Two candidates, one of which is offered.\n" +
     "The step that must be right is the chaining: scale the ratios to match on white, never add them.",
-  traps: "(B) 3 and (E) 8 come from taking Bag A's white count as a multiple of 3 (from red : white alone) instead of a multiple of 6 — the white : blue ratio tightens that requirement, and skipping it admits values that do not exist.\n" +
-    "(C) 4 arises from reading the red : white ratio as \\(1 : 3\\) applied to a white count of 12, which the second ratio forbids.\n" +
+  traps: "(B) 3 fails at once: Bag A's red count is \\(2a\\), necessarily [[even]].\n" +
+    "(C) 4 and (E) 8 would need \\(a = 2\\) or \\(a = 4\\), but parity forbids both — in \\(3a + 2b = 15\\) the \\(2b\\) is even and 15 is odd, so \\(a\\) must be odd.\n" +
     "(A) 1 takes the ratio numbers themselves as counts.\n" +
     "Both of Bag A's ratios must hold simultaneously; each alone permits configurations the other rules out.",
   take: "Chain ratios by scaling to a common shared term, then read off the divisibility conditions. On \"could be\" questions, enumerate the few integer solutions."

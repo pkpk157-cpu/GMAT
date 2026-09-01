@@ -18,7 +18,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — Female rainbow \\(= 355 - 150 = 205\\).",
   fast: "The chain has one entry point — the 645 — so go through it in order and never look back: \\(200 \\to 150 \\to 1000 \\to 355 \\to 205\\).\n" +
     "Each step uses exactly one given fact, and each produces a whole number, which is your running confirmation that you have read the ratios the right way round.",
-  traps: "(A) 192 and (B) 195 come from mis-scaling one of the two ratios (for instance reading \\(4:3\\) as male-to-female).\n" +
+  traps: "(A) 192 and (B) 195 sit just below the answer to catch slips in the final \\(355 - 150\\); note that reading the \\(4:3\\) ratio the wrong way round gives a fractional count (\\(200 \\times \\tfrac43\\)) — an instant signal to re-read.\n" +
     "(C) 200 is the number of [[female speckled]] trout — a value computed on the way, and the most likely wrong selection.\n" +
     "(E) 208 is a near-miss for anyone who slips in the final subtraction.",
   take: "Multi-ratio questions have one anchor with a real number. Find it, then walk the chain one relationship at a time — and check that every intermediate count is a whole number."

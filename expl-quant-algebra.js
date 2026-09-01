@@ -225,7 +225,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "This \"assume the extreme, then price the shortfall\" move solves every two-price counting question in two lines.",
   traps: "(D) 6 is the number of [[adult]] tickets — right work, wrong group.\n" +
     "(E) 5 is the even split, which would cost $65.\n" +
-    "(A) 2 and (B) 3 undershoot: 2 children make the bill \\(8 \\times 8 + 2 \\times 5 = \\$74\\) and 3 make it \\$71 — only 4 lands on \\$68. And (B) 3 doubles as the \\$3-per-child saving, a number lifted straight from the working.",
+    "(A) 2 and (B) 3 undershoot: 2 children make the bill \\(8 \\times 8 + 2 \\times 5 = \\$74\\) and 3 make it $71 — only 4 lands on $68. And (B) 3 doubles as the $3-per-child saving, a number lifted straight from the working.",
   take: "Assume everything is the expensive item, then divide the overshoot by the price difference. It replaces the whole system with one subtraction and one division."
 }
 

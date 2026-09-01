@@ -467,7 +467,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — The shop then sold at an \\(80\\%\\) profit on the buy-back price: \\(150 \\times 1.80 = 270\\).",
   fast: "Keep every price as a multiple of \\(c\\) and only substitute at the end: \\(c \\to 1.2c \\to 0.6c \\to 1.08c\\). The final sale is \\(1.8 \\times 0.6c = 1.08c\\), and since \\(0.4c = 100\\) gives \\(c = 250\\), the answer is \\(1.08 \\times 250 = 270\\) in one multiplication.",
   traps: "(B) 250 is the shop's original cost — the first quantity you solve for, and the answer to a different question.\n" +
-    "(E) 200 is 80% [[of]] the original \\$250 cost, and (C) 240 is 80% of the collector's \\$300 — both misread \"a profit of 80 percent on its buy-back price\" as a simple fraction of the wrong price. (D) 220 is the filler between them.\n" +
+    "(E) 200 is 80% [[of]] the original $250 cost, and (C) 240 is 80% of the collector's $300 — both misread \"a profit of 80 percent on its buy-back price\" as a simple fraction of the wrong price. (D) 220 is the filler between them.\n" +
     "Every percentage in this problem has a different base — original cost, collector's price, buy-back price — and naming the base at each step is the entire discipline.",
   take: "Carry one variable through every transaction as a multiplier chain, and state which base each percentage applies to. Solve for the variable only at the end."
 },

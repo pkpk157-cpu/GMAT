@@ -452,7 +452,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "There is also a symmetry shortcut: every root satisfies \\(|x - 3| \\in \\{2, 8\\}\\), so the roots are symmetric about 3 — and a symmetric set has its median at the centre of symmetry, which is 3.",
   traps: "(D) 5 and (A) 1 are individual roots mistaken for the median.\n" +
     "(E) 6 is the average of \\(1\\) and \\(11\\), or the mean of all four roots computed carelessly — the actual mean is \\(\\tfrac{-5+1+5+11}{4} = 3\\), which happens to agree, but the arithmetic must still be done.\n" +
-    "(B) 2 comes from finding only the inner roots \\(1\\) and \\(5\\)... and then mis-averaging, or from solving only one of the two outer branches.\n" +
+    "(B) 2 reads like a count — two roots per branch — rather than a median; no averaging of the actual roots lands on it.\n" +
     "The commonest structural error is solving only \\(|x-3| = 8\\) and stopping, since the \\(-3\\) branch is easy to overlook.",
   take: "A nested absolute value splits twice, giving up to four roots. Roots of \\(|x - c| = k\\) are symmetric about \\(c\\), so their median is \\(c\\)."
 },
@@ -468,9 +468,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Each equation is engineered to collapse under one sign assumption: if \\(y \\ge 0\\) the second reduces to \\(x = 6\\), and if \\(x < 0\\) the first reduces to \\(y = 7\\). Testing those two assumptions first eliminates two of the four cases in a line each.\n" +
     "What remains is an ordinary two-by-two linear system.",
   traps: "(D) 6 is the value of \\(x\\) from the discarded case \\(y \\ge 0\\) — a real intermediate result that fails its own assumption.\n" +
-    "(E) 9 comes from adding \\(x = 4\\) to \\(|y| = 1\\) plus a stray term, or from keeping \\(y = 7\\) from the other discarded case.\n" +
-    "(B) 4 is \\(x\\) alone.\n" +
-    "(C) 5 comes from a sign slip in \\(x - 2y = 6\\).\n" +
+    "(C) 5 is \\(x + |y| = 4 + 1\\) — the sign of \\(y\\) lost at the very last step.\n" +
+    "(B) 4 is \\(x\\) alone. (E) 9 is a filler beyond the plausible range.\n" +
     "The essential discipline is to check the solution against the sign assumptions that produced it — a case can yield clean numbers and still be invalid.",
   take: "Split on the sign of each absolute value, and prefer the assumption that makes an equation collapse. Always verify the solution satisfies the assumptions of its own case."
 }
@@ -489,7 +488,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — Product: \\((-5)(10)(-20)(40) = 40{,}000\\).",
   fast: "Two relations pin everything: \\(ac = b^2 = 100\\) and \\(a + c\\) from the absolute value. That turns the problem into a quadratic whose roots are \\(a\\) and \\(c\\), and only one of the two sign branches has real roots.\n" +
     "For the final product, note that the four terms are \\(a, ar, ar^2, ar^3\\), so their product is \\(a^4 r^6\\) — but here multiplying the four numbers directly is quicker.",
-  traps: "(A) 8,000 is the product of just the first three terms in absolute value, or \\(20^3\\) — it stops before the fourth term.\n" +
+  traps: "(A) 8,000 is \\(20^3\\) — three terms sized at 20 apiece, stopping before the fourth term.\n" +
     "(C) 32,000 and (E) 48,000 come from a wrong common ratio, usually \\(+2\\), which would break the sum condition.\n" +
     "(B) 16,000 arises from taking the fourth term as \\(20\\) rather than \\(40\\).\n" +
     "The two conditions people skip are the median check (which confirms \\(a = -5\\) rather than \\(-20\\)) and the sign of the ratio — a negative ratio is what makes the terms alternate and the sum come out to \\(-15\\).",
@@ -604,7 +603,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Reduce to a single variable first, then the whole question is an integer count on an interval. The \\(+1\\) in \\(12 - 0 + 1\\) is where this question is usually lost.\n" +
     "Note also that \\(y = 12 - 2x\\) is an integer whenever \\(x\\) is, so no extra divisibility check is needed.",
   traps: "(C) 12 forgets the \\(+1\\) in the inclusive count — the classic fencepost error.\n" +
-    "(A) 17 counts the integer values of \\(y\\) instead: \\(y\\) ranges over the even numbers from \\(-12\\) to \\(12\\), which is 13 values, so 17 comes from counting all integers in \\([-12, 12]\\) with a further slip.\n" +
+    "(A) 17 comes from switching to counting \\(y\\)-values over a wrongly widened range — the valid \\(y\\) are exactly the 13 even numbers in \\([-12, 12]\\), the same count as \\(x\\).\n" +
     "(E) 14 adds an endpoint that is not there, and (B) 10 drops several.\n" +
     "Watch the sign reversal in Step 5 too: dividing an inequality chain by \\(-2\\) flips both comparisons.",
   take: "Substitute to reduce to one variable, solve the inequality (reversing when dividing by a negative), then count inclusively with \\(b - a + 1\\)."
@@ -688,7 +687,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The identity \\(\\sqrt{u^2} = |u|\\) is the whole first step — writing \\(\\sqrt{(x+4)^2} = x + 4\\) loses one of the two roots.\n" +
     "Then subtract 4 from each root and scan the list. Since the question asks for \\(x - 4\\) rather than \\(x\\), doing the subtraction is not optional.",
   traps: "(B) \\(-7\\) is a value of \\(x\\), not of \\(x - 4\\) — the trap for anyone who stops one step early.\n" +
-    "(D) \\(-3\\) is the right-hand side negated, and (E) 5 comes from solving \\(x + 4 = 3\\) as \\(x = 5\\)-style slips.\n" +
+    "(D) \\(-3\\) is the right-hand side negated, and (E) 5 is the other legitimate value \\(-5\\) with its sign lost.\n" +
     "(C) \\(-4\\) is the constant inside the parentheses.\n" +
     "Note that the other legitimate answer, \\(-5\\), is deliberately absent from the choices — so finding only the root \\(x = -1\\) leaves you with nothing to pick and invites a guess.",
   take: "\\(\\sqrt{u^2} = |u|\\), which yields two roots. Then re-read what expression the question wants evaluated — it is often not \\(x\\) itself."

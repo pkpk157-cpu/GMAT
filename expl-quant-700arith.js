@@ -12,8 +12,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — Nothing broke even, so every film is either profitable or not, with no third bucket. Total profitable \\(= 18 + 4 = 22\\).",
   fast: "Both genres split 75/25, so the only thing to track is which side of the split each one is on: comedies are 75% profitable, horror films are 75% *un*profitable. That makes the answer \\(0.75(24) + 0.25(16)\\), and since 24 and 16 are both multiples of 4 the arithmetic is instant — 18 and 4.",
   traps: "(A) 18 is the profitable comedies alone, with the horror films never added. When a choice matches an intermediate quantity, suspect that you stopped early.\n" +
-    "(C) 20 is \\(0.75(24) + 0.75(16) - 6\\)-style arithmetic; more commonly it comes from taking 75% of the horror films as profitable and then correcting once.\n" +
-    "(D) 21 and (B) 19 are near-misses from mis-splitting 40 into 25/15 or 23/17.\n" +
+    "(C) 20 is half the films — a plausible round figure with no route behind it; the true split is 22 profitable, 18 not.\n" +
+    "(D) 21 and (B) 19 flank the answer to punish small slips in the two products \\(0.75 \\times 24\\) and \\(0.25 \\times 16\\).\n" +
     "The sentence \"75% of the horror movies were unprofitable\" is the entire difficulty — read it as 25% profitable before you compute anything.",
   take: "In two-category percent problems, write down for each category whether the given percentage is the one you want or its complement, before doing any arithmetic."
 },
@@ -44,7 +44,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(E) 119 restates the band count, which is the number the question hands you rather than the one it asks for.\n" +
     "(D) 85 is \\(50\\%\\) of 170 — the band-only count, not the orchestra-only count.\n" +
     "(A) 30 mistakes the *percentage* for the number of students; the question asks how many, and 30 is the percent.\n" +
-    "(C) 60 comes from taking 119 as the band-only figure, which would make the school \\(238\\) and the orchestra-only count 71 — but the given 119 covers the whole band, both groups included.\n" +
+    "(C) 60 is 30% of a guessed 200-student school — the right percentage on a wrong total. (Taking 119 as band-only gives a 238-student school and lands on 71, not offered; the given 119 covers the whole band, both groups included.)\n" +
     "The subtle step is Step 3: \"119 students in the band\" includes the students in both groups.",
   take: "\"In the band\" always means band-only plus both. Solve the whole overlap in percentages first, then convert once using the single count you are given."
 },
@@ -56,7 +56,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — The attendees who are neither are the rest: \\(T - \\tfrac{5T}{6} = \\tfrac{T}{6}\\).\n" +
     "Step 5 — That equals 150, so \\(T = 900\\).",
   fast: "The three fractions are all sixths in disguise: \\(\\tfrac46 + \\tfrac26 - \\tfrac16 = \\tfrac56\\) in one line. So \"neither\" is exactly one sixth of the convention, and \\(150 \\times 6 = 900\\). The overlap subtraction is the only place a mistake can hide.",
-  traps: "(C) 600 is what you get by forgetting to subtract the overlap: \\(\\tfrac23 + \\tfrac13 = 1\\) leaves no one in the \"neither\" group at all, which is why that route feels wrong immediately — but a partial correction lands here.\n" +
+  traps: "(C) 600 treats the 150 as a quarter of the convention rather than a sixth.\n" +
     "(A) 300 and (B) 450 come from setting \\(150\\) equal to \\(\\tfrac T2\\) or \\(\\tfrac T3\\), i.e. mis-combining the fractions.\n" +
     "(D) 800 is not a multiple of 6, so it cannot make \\(\\tfrac T6\\) a whole number of attendees — a useful one-second screen on this question.\n" +
     "Note the trap of adding \"neither\" into the union: the 150 are outside both circles and must be added at the end, not inside the inclusion–exclusion sum.",
@@ -72,7 +72,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Lights supposed to be off: \\(20\\). Of those, \\(40\\%\\) are on: \\(8\\) lights.\n" +
     "Step 7 — The question asks what percent of the lights that are *on* are supposed to be off: \\(\\dfrac{8}{80} = 10\\%\\).",
   fast: "Set up the single equation \\(0.9S + 0.4(100-S) = 80\\) — the coefficients collapse to \\(0.5S\\), so \\(S = 80\\) in one line. Then the last step is the whole trick: the denominator is the 80 lights that are on, not the 20 supposed to be off and not the 100 total.",
-  traps: "(A) \\(22\\tfrac29\\%\\) and (C) \\(11\\tfrac19\\%\\) both use 72 or 9 in the wrong place — they come from mixing up which group the \\(10\\%\\) and \\(40\\%\\) apply to, so the counts land near but not on 8 and 80.\n" +
+  traps: "(C) \\(11\\tfrac19\\%\\) is \\(\\tfrac8{72}\\) — the right numerator over the on-lights that are [[supposed]] to be on. (A) \\(22\\tfrac29\\%\\) is \\(\\tfrac{16}{72}\\), the same wrong denominator with the numerator doubled.\n" +
     "(B) \\(16\\tfrac23\\%\\) is \\(\\tfrac8{48}\\)-flavoured, the result of a denominator built from the wrong subgroup.\n" +
     "(E) \\(5\\%\\) is \\(\\tfrac{8}{160}\\) or \\(\\tfrac 5{100}\\) — the lights that are supposed to be on but are off, expressed against the whole.\n" +
     "Every wrong answer here is a right numerator over a wrong denominator. Underline the phrase \"of the lights that are on\" before computing.",
@@ -88,7 +88,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Female rainbow \\(= 355 - 150 = 205\\).",
   fast: "It is a four-link chain and each link is one multiplication, so the discipline is simply to move in order: \\(f = 200 \\to\\) male rainbow \\(150 \\to\\) total \\(1000 \\to\\) rainbow \\(355 \\to\\) female rainbow \\(205\\). Never skip to the end — every intermediate value is used by the next step.",
   traps: "(C) 200 is the female *speckled* count, computed in Step 2 and then mistaken for the answer — the classic \"first number I derived\" error on a chained problem.\n" +
-    "(A) 192 and (B) 195 come from an arithmetic slip in the 4:3 or 3:20 conversion, most often inverting one of the two ratios.\n" +
+    "(A) 192 and (B) 195 sit just below the answer to catch slips in the final \\(355 - 150\\); note that inverting the 4:3 ratio gives a fractional count (\\(200 \\times \\tfrac43\\)) — an instant signal to re-read.\n" +
     "(E) 208 comes from subtracting 645 from 1000 and then removing a slightly wrong male-rainbow count.\n" +
     "The step people misread is \"the number of males is 45 more than twice the number of females\" — it is \\(2f + 45\\), not \\(2(f + 45)\\), and the second reading gives \\(f = 185\\) and derails everything downstream.",
   take: "Translate \"45 more than twice\" as \\(2f + 45\\), and work chained ratios strictly in order. On a multi-link chain, the trap answers are the intermediate values."
@@ -115,7 +115,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — So of the 40 with their chosen job, \\(40 - 10 = 30\\) have a diploma.\n" +
     "Step 5 — Total with a diploma: \\(30 + 15 = 45\\), i.e. \\(45\\%\\).",
   fast: "Two-by-two box again: rows job / no job (40 and 60), columns diploma / no diploma. You are given one cell outright (10) and one as a share of a row (15), so the diploma column is \\(30 + 15\\). The whole problem is filling four cells from two clues and two row totals.",
-  traps: "(A) \\(35\\%\\) drops one of the two contributions or reads the 10 as a share of the 40 (giving 4 without a diploma and 36 with, then mis-adding).\n" +
+  traps: "(A) \\(35\\%\\) is \\(45 - 10\\) — the given 10 subtracted once too often.\n" +
     "(C) \\(55\\%\\) is the complement of 45 — the percentage *without* a diploma, read off the wrong column.\n" +
     "(D) \\(65\\%\\) and (E) \\(75\\%\\) come from treating the \\(25\\%\\) as applying to the whole population rather than to the 60 who lack their chosen job.\n" +
     "As in the intern question, the deciding detail is \"10% of the people\" (whole population) against \"25% of the people who do not…\" (subgroup).",
@@ -145,7 +145,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The 75% queen figure is a decoy for this particular question — everything you need is in the non-smoking column. Ten rooms are 40% of the non-smoking rooms, so there are 25 non-smoking rooms and 75 smoking ones. Two lines.",
   traps: "(A) \\(25\\%\\) is the non-smoking share — the complement of what is asked. Circle whether the question wants smoking or non-smoking before you answer.\n" +
     "(C) \\(50\\%\\) and (D) \\(55\\%\\) come from using the \\(75\\%\\) queen figure as though it constrained the non-smoking rooms, which it does not.\n" +
-    "(B) \\(30\\%\\) arises from computing \\(10 \\div 0.60\\) — dividing by the queen share instead of the king share.\n" +
+    "(B) \\(30\\%\\) reads the 60% as a share of [[all]] rooms: 60 non-smoking queens plus the 10 kings would make 70 non-smoking rooms, leaving 30.\n" +
     "The genuinely useful observation is that the overall 75/25 queen–king split never enters the calculation; recognising an unused given is a skill these questions test deliberately.",
   take: "Anchor on the one cell given as a percent of the whole (10 rooms) and the one given as a percent of a subgroup (40%). Dividing the first by the second sizes the subgroup — and check whether the question wants that group or its complement."
 },
@@ -161,7 +161,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The sanity check: \\(e_1 = 1 - \\tfrac18 - \\tfrac38 = \\tfrac12\\), and \\(\\tfrac12 + 2(\\tfrac18) + 3(\\tfrac38) = \\tfrac{15}8\\) ✓.",
   traps: "(C) \\(\\tfrac38\\) restates the three-club fraction the question gave you.\n" +
     "(D) \\(\\tfrac12\\) is \\(e_1\\), the exactly-one-club fraction — also a genuine quantity here, just not the one asked for.\n" +
-    "(B) \\(\\tfrac14\\) comes from using \\(e_2 + e_3 = \\tfrac78 - \\tfrac38\\) style arithmetic, i.e. subtracting \\(e_3\\) once where the double-count requires subtracting it twice.\n" +
+    "(B) \\(\\tfrac14\\) is a filler between the answer and the given \\(\\tfrac38\\); note that subtracting \\(e_3\\) only once from \\(\\tfrac78\\) gives \\(\\tfrac12\\), which is choice (D)'s value reached by the wrong road.\n" +
     "(E) \\(\\tfrac58\\) is one of the given club sizes, repeated.\n" +
     "The coefficient 2 on \\(e_3\\) in Step 5 is where this question is won: a three-club student is over-counted twice, not once.",
   take: "For three sets: (sum of set sizes) = \\(e_1 + 2e_2 + 3e_3\\), and (total) = \\(e_1 + e_2 + e_3\\). Subtracting gives \\(e_2 + 2e_3\\) — note the 2."
@@ -256,9 +256,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 8 — Bags with exactly one kind of item: \\(10p + 5p + p = 16p = 320\\).",
   fast: "Name the smallest quantity — only-peanuts — and express everything in it, so the seven Venn regions collapse to a single variable. The clever move is Step 5: you never need to know how the 210 almond bags split among their regions, only that the non-only-almond part is \\(210 - 5p\\), which lets one equation close the whole diagram.\n" +
     "The finish is then a single line: exactly-one is \\(16p\\), and \\(16 \\times 20 = 320\\).",
-  traps: "(E) 350 is what you get by adding the \\(p/4\\) region (which is a two-item region) into the exactly-one total.\n" +
-    "(C) 316 and (A) 256 come from an error in the chain of translations — most often reading \"only almonds is 20 times only-raisins-and-peanuts\" backwards, which makes that region \\(100p\\) and destroys the arithmetic.\n" +
-    "(B) 260 is \\(200 + 60\\)-flavoured: the only-raisins and only-peanuts counts with a wrong only-almonds figure.\n" +
+  traps: "Reading \"only almonds is 20 times only-raisins-and-peanuts\" backwards makes that region \\(100p\\) and forces a fractional \\(p\\) — the non-integer is itself the signal to re-read. (A), (B), (C) and (E) are the debris of mis-chained translations like that one.\n" +
+    "With \\(p = 20\\) the pure regions are exactly \\(200 + 100 + 20 = 320\\); anything else fails one of the two closing checks below.\n" +
     "The reliable defence is to check that your regions sum to 435 and that the almond regions sum to 210 before answering.",
   take: "Express every Venn region in terms of the smallest one. You rarely need to split a given total across its regions — knowing the remainder is enough to close the system."
 },
@@ -275,7 +274,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "A quick estimate also works: two children are well up, two are well down and one is wiped out, so the total should land just under 100 — and only one choice sits there.",
   traps: "(C) 100% is the trap of assuming the gains and losses cancel, which they never do when percentages are applied to different bases.\n" +
     "(D) 107% and (E) 120% come from adding percentage changes instead of multiplying factors: \\(+50 + 10\\) treated as \\(+60\\), and so on.\n" +
-    "(B) 97% is a near-miss that arises from giving Errol a small residue or from mis-computing Dave as \\(20 \\times 0.6 \\times 1.25 = 18\\).\n" +
+    "(B) 97% is a near-miss filler — one small slip anywhere among the five products lands beside 93, and the choice is there to absorb it.\n" +
     "The single most instructive line is Carol's: a \\(50\\%\\) gain followed by a \\(60\\%\\) loss leaves \\(0.6\\) of the original, not \\(0.9\\).",
   take: "Chain percent changes as multiplicative factors on a common base. Gains and losses of equal size never cancel — \\(1.5 \\times 0.4 \\ne 1\\)."
 },
@@ -305,7 +304,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — \\(\\dfrac{88}{96} = \\dfrac{11}{12}\\).",
   fast: "Anchor at 100 for Rex and every figure becomes a small whole number: 60, 48, 36. The only reading trap is whose income each percentage refers to — Quentin and Sam are both measured against Paul, while the gifts are measured against Rex.\n" +
     "Sanity check before dividing: Sam receives more and started lower, so the ratio should be just under 1 — which already narrows the choices to one.",
-  traps: "(B) 13/17, (C) 13/19, (D) 12/19 and (E) 11/19 all come from measuring Quentin or Sam against Rex instead of Paul: taking Sam as \\(0.6 \\times 100 = 60\\) or Quentin as \\(0.8 \\times 100 = 80\\) produces exactly these fractions.\n" +
+  traps: "(B) 13/17, (C) 13/19, (D) 12/19 and (E) 11/19 all carry a prime denominator — the fingerprint of a mis-based chain, because the true totals 88 and 96 share a factor of 8 and reduce to twelfths. Measuring Quentin or Sam against Rex instead of Paul is the usual wrong turn.\n" +
     "The denominators 17 and 19 are the fingerprint of that error — the correct totals are 88 and 96, both divisible by 8, so a prime denominator like 17 or 19 signals a wrong base somewhere.\n" +
     "The other slip is applying the gift percentages to Paul's or Sam's income rather than Rex's; the sentence says \"Rex gave 60% of his income\".",
   take: "In chained percent-of-someone-else problems, write each person's base explicitly before computing. Set the root person to 100 and the rest fall out as whole numbers."
@@ -320,7 +319,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Quantity is a ratio, so the two percentage changes become a single fraction: \\(1.6/1.2 = 4/3\\). Read the increase off the fraction — a factor of \\(4/3\\) is \"one third more\", never \"40% more\" from subtracting \\(60 - 20\\).",
   traps: "(B) 40% is exactly that subtraction, \\(60\\% - 20\\%\\), which treats multiplicative changes as if they added. It is the intended trap.\n" +
     "(E) 60% repeats the budget increase and ignores the price rise entirely.\n" +
-    "(C) 42% and (D) 48% come from compounding in the wrong direction — computing \\(1.6 \\times 1.2\\)-style products, or \\(1.6 \\times 0.8\\).\n" +
+    "(D) 48% deflates the 60% by the price factor once (\\(60 \\times 0.8\\)) — a half-correct correction that subtracts instead of divides. (C) 42% is the filler beside it.\n" +
     "The check that catches all of them: a \\(60\\%\\) budget rise against a \\(20\\%\\) price rise must buy less than \\(60\\%\\) more but more than nothing extra, and only one choice near a third fits cleanly.",
   take: "When a quantity equals one changing amount divided by another, divide the growth factors — do not subtract the percentages."
 },
@@ -334,10 +333,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — About \\(65\\%\\).",
   fast: "Everything hangs on picking today as the anchor rather than \"one year ago\". Then two forward steps give \\(1.21p\\), halving gives \\(0.605p\\) backwards, and the growth factor over the last year is \\(1/0.605 \\approx 1.65\\).\n" +
     "Estimate rather than divide: \\(0.605 \\times 1.6 = 0.968\\) and \\(0.605 \\times 1.7 = 1.03\\), so the factor is between 1.6 and 1.7 and much closer to 1.65 — enough to pick the answer outright.",
-  traps: "(C) 50% is what you get by comparing against the wrong base — \\(0.395/p\\) rather than \\(0.395/0.605p\\) gives about \\(40\\%\\), and rounding that upward lands here.\n" +
-    "(B) 40% is that base error left uncorrected.\n" +
-    "(A) 20% comes from reading \"double in two years\" as roughly \\(10\\%\\) a year each way and mixing the directions.\n" +
-    "(E) 75% overshoots, typically from taking one year ago as \\(0.55p\\) (halving \\(1.1\\) instead of \\(1.21\\)).\n" +
+  traps: "(C) 50% halves the overall doubling — 100% split evenly across two years, ignoring both the compounding and the base.\n" +
+    "(B) 40% divides the rise by [[today's]] population instead of last year's: \\(0.395/p\\) instead of \\(0.395/0.605p\\).\n" +
+    "(A) 20% just sums the two projected 10% rises. (E) 75% is a filler above the answer.\n" +
     "The trap the question is built on is the direction of time: the growth to compute runs from a year ago *to today*, so today is the new value and last year the base.",
   take: "Anchor the variable at the moment that makes both directions easy, then divide by the *earlier* value when computing a percent increase."
 },
@@ -395,7 +393,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The 24-gallon capacity is a decoy beyond its role in Step 1; the tank is never filled further.",
   traps: "(A) 43% is \\(2.6/6\\) — using the *original* total volume as the denominator and forgetting that the tank now holds less liquid.\n" +
     "(B) 50% assumes the evaporation is split between water and salt, or simply eyeballs \"about half\".\n" +
-    "(D) 54% and (E) 56% come from removing the gallon from the wrong component or from computing \\(2.4/5 = 48\\%\\) and then taking a mis-stated complement.\n" +
+    "(D) 54% and (E) 56% bracket the answer to punish estimation; only tracking [[both]] shrinkages — water 3.6 → 2.6 and total 6 → 5 — lands exactly on 52.\n" +
     "Both the numerator and the denominator shrink here, and each distractor updates only one of them.",
   take: "In evaporation problems, the dissolved solid is constant — anchor on it. When one component leaves, the total volume falls too, so update numerator and denominator together."
 }
@@ -469,8 +467,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — The shop then sold at an \\(80\\%\\) profit on the buy-back price: \\(150 \\times 1.80 = 270\\).",
   fast: "Keep every price as a multiple of \\(c\\) and only substitute at the end: \\(c \\to 1.2c \\to 0.6c \\to 1.08c\\). The final sale is \\(1.8 \\times 0.6c = 1.08c\\), and since \\(0.4c = 100\\) gives \\(c = 250\\), the answer is \\(1.08 \\times 250 = 270\\) in one multiplication.",
   traps: "(B) 250 is the shop's original cost — the first quantity you solve for, and the answer to a different question.\n" +
-    "(E) 200 and (D) 220 come from applying the \\(80\\%\\) profit to the wrong base, usually to the collector's price of 300 or to the original cost.\n" +
-    "(C) 240 is \\(1.2 \\times 200\\)-flavoured, from taking the buy-back as \\(50\\%\\) of the original cost rather than of what the collector paid.\n" +
+    "(E) 200 is 80% [[of]] the original \\$250 cost, and (C) 240 is 80% of the collector's \\$300 — both misread \"a profit of 80 percent on its buy-back price\" as a simple fraction of the wrong price. (D) 220 is the filler between them.\n" +
     "Every percentage in this problem has a different base — original cost, collector's price, buy-back price — and naming the base at each step is the entire discipline.",
   take: "Carry one variable through every transaction as a multiplier chain, and state which base each percentage applies to. Solve for the variable only at the end."
 },
@@ -483,9 +480,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — \\(x = 150\\) (the negative root is meaningless for a population).\n" +
     "Step 6 — Check: the school has 150 students, 60 of them boys, and \\(150\\%\\) of 60 is 90 ✓.",
   fast: "Recognise \\(22500\\) as \\(225 \\times 100\\), so its square root is \\(15 \\times 10 = 150\\) — no calculator moment needed. Alternatively test the choices: with \\(x = 150\\), boys \\(= 60\\) and \\(150\\%\\) of 60 is 90, which lands immediately.",
-  traps: "(D) 250 and (E) 500 come from dropping the \\(\\tfrac1{100}\\) that converts \"\\(x\\) percent\" into a multiplier, which turns the equation into \\(90 = 0.4x\\) and gives 225.\n" +
-    "(C) 225 is exactly that error's output — the most common wrong answer here.\n" +
-    "(A) 125 comes from solving \\(90 = 0.4x \\times \\tfrac{x}{100}\\) with an arithmetic slip on \\(22500\\).\n" +
+  traps: "(C) 225 is the output of dropping the \\(\\tfrac1{100}\\) that converts \"\\(x\\) percent\" into a multiplier — solving \\(90 = 0.4x\\) — and it is the most common wrong answer here.\n" +
+    "(D) 250, (E) 500 and (A) 125 are round fillers; each dies on the forward check (a 250-student school has 100 boys, and 250% of 100 is 250, not 90).\n" +
     "The oddity that unsettles people is the same symbol appearing as both a percent and a count; treat them as the same number and the algebra behaves normally.",
   take: "\"\\(x\\) percent of\" means \\(\\frac{x}{100} \\times\\). When one symbol serves two roles, write both meanings out explicitly and let the quadratic appear."
 },

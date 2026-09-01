@@ -496,7 +496,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Two factors compound: the value rose by \\(10\\%\\) and the count *fell* by about \\(9\\%\\), so the average rises on both counts. Numerically the count factor is \\(\\tfrac{22}{20} = 1.1\\), the same as the value factor — so the answer is \\(1.1^2 = 1.21\\).\n" +
     "Spotting that both factors are exactly \\(1.1\\) turns the whole question into squaring one number.",
   traps: "(B) 10% uses only the rise in total value, ignoring that the same money was spread over fewer transactions.\n" +
-    "(E) 22% comes from adding the two effects (\\(10\\% + 10\\% + 2\\%\\)-style) rather than multiplying them — the classic additive error, and it lands one point away from the truth.\n" +
+    "(E) 22% treats the count as having fallen exactly 10% and divides: \\(1.1/0.9 \\approx 1.222\\) — but the fall from 22 to 20 is a 9.1% drop, equivalent to multiplying by \\(\\tfrac{22}{20}\\), not dividing by 0.9.\n" +
     "(D) 17% and (A) 2% come from dividing by \\(\\tfrac{22}{20}\\) instead of multiplying, or from applying only the count change.\n" +
     "The direction of the count effect is the subtlety: a *falling* transaction count *raises* the average, because the denominator shrinks.",
   take: "Average = total ÷ count, so the change factor is (value factor) × (1/count factor). A falling count raises the average."

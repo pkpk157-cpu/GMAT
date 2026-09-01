@@ -32,7 +32,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(D) 254 is the total of the *payments after the first*, or \\(2^8 - 2\\) — an off-by-one from dropping week 1.\n" +
     "(B) 127 is \\(2^7 - 1\\), the total after seven weeks: the classic off-by-one on the exponent.\n" +
     "(A) 126 combines both errors.\n" +
-    "(C) 252 comes from summing an arithmetic rather than geometric progression.\n" +
+    "(C) 252 is \\(2^8 - 4\\) — the payment series \\(4 + 8 + \\dots + 128\\) with the first two weeks dropped.\n" +
     "The distinction to hold onto: the eighth *payment* is 128, while the eight-week *total* is 255.",
   take: "When each term equals one plus the sum of all previous terms, the running totals follow \\(2^n - 1\\) and the payments follow \\(2^{n-1}\\)."
 },
@@ -174,7 +174,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) \\((-4.5, 2.5)\\) is the midpoint of \\(AB\\) — a point inside the figure, not a vertex.\n" +
     "(E) \\((10, 1)\\) comes from adding \\(\\vec{AB}\\) to \\(C\\) instead of \\(\\vec{BC}\\) to \\(A\\), which walks the wrong way around the rectangle.\n" +
     "(C) \\((6, -2)\\) is a near-miss from an arithmetic slip in the vector addition.\n" +
-    "(B) \\((-4, 5)\\) is \\(B\\) shifted by one unit, the answer if you treat \\(AB\\) as a side of length 1.\n" +
+    "(B) \\((-4, 5)\\) merely shifts \\(B\\) up one unit — no construction from the three given vertices lands there.\n" +
     "The safeguard is the closure check in Step 5: a wrong \\(D\\) will fail to make \\(CD\\) parallel to \\(AB\\).",
   take: "In parallelogram \\(ABCD\\) (a rectangle included), \\(A + C = B + D\\). Confirm adjacency with a dot product, and verify the fourth vertex closes the figure."
 }
@@ -277,7 +277,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The reflection formula is worth memorising — it saves you from re-deriving the midpoint relation every time, and it is the step people most often get backwards.",
   traps: "(C) \\((0, 1)\\) has the right \\(x\\) but reflects only the \\(x\\)-coordinate, leaving \\(y\\) unchanged.\n" +
     "(D) \\((-4, 1)\\) reflects across the \\(y\\)-axis rather than across the given line.\n" +
-    "(B) \\((-2, 2)\\) and (E) \\((2, 7)\\) come from using the perpendicular line's slope as \\(-2\\) or \\(2\\) instead of \\(\\tfrac12\\).\n" +
+    "(B) \\((-2, 2)\\) and (E) \\((2, 7)\\) fail the midpoint test outright: their midpoints with \\(R\\) are \\((1, 1.5)\\) and \\((3, 4)\\), and neither lies on \\(y = 4 - 2x\\).\n" +
     "The quickest check on any candidate: its midpoint with \\(R\\) must lie on \\(y = 4 - 2x\\). Only one choice passes.",
   take: "Reflecting a point across a line: drop a perpendicular, find the intersection \\(M\\), then use \\(P = 2M - R\\). Verify by checking the midpoint lies on the line."
 },

@@ -112,7 +112,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Convert both percentile statements into raw counts of grades below her, add, and divide by the combined total. The whole question is a caution against averaging the two percentiles.\n" +
     "\\(\\tfrac{153}{180}\\) simplifies to \\(\\tfrac{17}{20}\\), which is \\(85\\%\\) — worth spotting rather than long-dividing.",
   traps: "(C) 81st is the other class's percentile taken alone.\n" +
-    "(E) 92nd averages the two percentiles (90 and 81 would give 85.5, but taking 90 and 100 − 19 differently produces 92-flavoured figures) — in any case, percentiles from groups of different sizes cannot be averaged.\n" +
+    "(E) 92nd is bait for guessing high from the stem's flattering figures (90th percentile, only 19 above her); combining groups honestly runs through raw counts, and those give exactly 85.\n" +
     "(B) 80th and (A) 72nd repeat the raw count 72 or the class size 80 as a percentile.\n" +
     "Watch the wording \"19 were higher\": that gives the count *above*, so the count below needs the subtraction.",
   take: "Percentile means the share of the group scoring below. Combine groups by adding counts, never by averaging percentiles."
@@ -219,11 +219,11 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — The whole group averaged 74, so the total is \\(7400\\), leaving \\(1380\\) points for the 30 who failed — an average of 46.\n" +
     "Step 3 — Since 70 students passed, the 50th and 51st scores both sit inside the passing group, so the median is some passing score.\n" +
     "Step 4 — But the passing scores are only constrained by their average of 86; their individual spread is free.\n" +
-    "Step 5 — They could be tightly bunched near 86, giving a median near 86. Or one pass could be barely above the fail line while the rest cluster near 92.5, pushing the median above 92.\n" +
+    "Step 5 — They could be tightly bunched near 86, giving a median near 86. Or 19 passes could sit near 70 while the other 51 sit just above 92 (\\(19 \\times 70 + 51 \\times 92 \\approx 6020\\)) — then both middle scores of the whole group exceed 92.\n" +
     "Step 6 — Since the median can land on either side of every threshold the choices offer, [[nothing can be conclusively said]].",
   fast: "Compute the failing average if you like — it is 46 — but notice it does not constrain the median at all. The median sits among the passing scores, and an average alone never pins a median.\n" +
     "The decisive test is whether you can build two admissible groups with medians on opposite sides of a proposed bound. Here you can, for every bound offered.",
-  traps: "(B) less than 92 is the most seductive: since the passing average is 86, the median \"ought\" to be below 92. But scores cap at 100, so 70 passes averaging 86 can be arranged as one score near the pass mark and the rest near 92.5, lifting the median above 92.\n" +
+  traps: "(B) less than 92 is the most seductive: since the passing average is 86, the median \"ought\" to be below 92. But the 70 passes averaging 86 can be split as 19 scores near 70 and 51 just above 92, which lifts both middle scores — and so the median — above 92.\n" +
     "(C) greater than 92 fails just as easily with all passes at exactly 86.\n" +
     "(D) exactly 86 confuses the group's average with its median.\n" +
     "(A) a unique value assumes averages determine medians, which they never do without further structure.\n" +

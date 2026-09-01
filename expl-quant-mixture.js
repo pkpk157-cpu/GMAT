@@ -189,7 +189,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The acid falls from 54 to 24, a factor of \\(\\dfrac{24}{54} = \\dfrac49\\), over two rounds. So each round multiplies by \\(\\sqrt{\\dfrac49} = \\dfrac23\\).\n" +
     "Keeping two-thirds means drawing off one-third: \\(\\dfrac{54}{3} = 18\\) litres.\n" +
     "That \\(\\tfrac{24}{54}\\) reduces to a perfect square is the signal the numbers were chosen for this route.",
-  traps: "(A) 12 L and (B) 16 L would leave 34 and 28.4 litres respectively — both too much acid.\n" +
+  traps: "(A) 12 L and (B) 16 L leave \\(54 \\times \\left(\\tfrac{42}{54}\\right)^2 \\approx 32.7\\) and \\(54 \\times \\left(\\tfrac{38}{54}\\right)^2 \\approx 26.7\\) litres — both too much acid.\n" +
     "(D) 24 L is the [[acid remaining]], lifted from the stem.\n" +
     "(E) 28 L draws off more than a third and leaves under 20 litres.",
   take: "Same replacement rule, solved backwards: take the \\(n\\)-th root of the surviving fraction to get the per-round factor. The fraction will always be a perfect power when the question is solvable this way."
@@ -234,7 +234,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Opposite distances give original : replacement \\(= 5 : 20 = 1 : 4\\), so 4 parts of every 5 were replaced — \\(80\\%\\).\n" +
     "Direction check: 30 is much nearer 25 than 50, so most of the jar must be the weaker solution.",
   traps: "(D) 20% is the fraction [[kept]] — the ratio read the wrong way round, and the most likely error.\n" +
-    "(B) 75% and (C) 66% are what appear from mis-setting the alligation distances.\n" +
+    "(B) 75% and (C) 66% come from dividing by the wrong number: \\(\\tfrac{5}{20} = 25\\%\\) kept (the 5 should sit over the full 25-point spread) leaves 75% replaced, and \\(\\tfrac{20}{30} \\approx 66\\%\\) puts the 20-point drop over the new strength instead of the spread.\n" +
     "(E) 3% is far too small to move the strength from 50% to 30%.",
   take: "Same structure as question 10 in this set. Set the alligation up, then read carefully whether the question asks for the portion replaced or the portion remaining — both are always on the list."
 }

@@ -313,7 +313,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Order matters — the doubling happens before the addition, exactly as written.",
   traps: "(A) 7 is \\(4 + 3\\), skipping the multiplication.\n" +
     "(D) 14 is \\(2(4 + 3)\\) — adding before doubling, which is what the notation does [[not]] say.\n" +
-    "(B) 9 and (E) 8 are partial evaluations.",
+    "(E) 8 is \\(2 \\times 4\\) with the \\(+3\\) forgotten; (B) 9 is \\(f(3)\\) — the 3 from the rule substituted as the input.",
   take: "\\(f(a)\\) means substitute \\(a\\) for every \\(x\\) and follow the order of operations as written. The bracket in \\(f(4)\\) is notation, not multiplication."
 },
 
@@ -325,8 +325,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "\\(9 - 1 = 8\\). The only decision is squaring before subtracting, which is what the expression says.\n" +
     "Note that \\(f(x) = x^2 - 1\\) also factors as \\((x-1)(x+1)\\), giving \\(2 \\times 4 = 8\\) — a useful alternative when the numbers are larger.",
   traps: "(C) 9 is \\(3^2\\) with the \\(-1\\) forgotten.\n" +
-    "(A) 6 is \\((3-1)^2 + 2\\)-style arithmetic, or \\(3 \\times 2\\); it comes from squaring after subtracting.\n" +
-    "(D) 10 is \\(9 + 1\\), the sign flipped; (E) 5 has no derivation.",
+    "(A) 6 is \\(2 \\times 3\\), reading the square as a doubling.\n" +
+    "(D) 10 is \\(9 + 1\\), the sign flipped; (E) 5 is \\(2(3) - 1\\) — the square-as-doubling misread carried through the whole rule.",
   take: "Follow the operations in the order written. Where a function factors — \\(x^2 - 1 = (x-1)(x+1)\\) — the factored form can be quicker for large inputs."
 },
 
@@ -339,7 +339,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Run the machine backwards: undo the \\(-1\\) (giving 15), then undo the \\(\\times 3\\) (giving 5).\n" +
     "Working backwards through the operations in reverse order is exactly what solving an equation is.",
   traps: "(B) 4 gives \\(f(4) = 11\\) and (E) 6 gives 17 — the neighbours.\n" +
-    "(C) 4.5 comes from \\(\\dfrac{14 - 1}{3}\\), subtracting instead of adding.\n" +
+    "(C) 4.5 gives \\(f(4.5) = 12.5\\), short of 14 — the non-integer decoy.\n" +
     "(A) 3 is the coefficient reused as the answer.",
   take: "When the output is given, invert the operations in reverse order. Then substitute forwards to check — one line, and it catches every sign error."
 },
@@ -367,7 +367,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) 3 is \\(f(1)\\), the inner value alone — the most likely wrong pick.\n" +
     "(B) 5 is \\(2 \\times 1 + 3\\)-style arithmetic, or \\(f(2)\\).\n" +
     "(D) 9 applies the function a third time.\n" +
-    "(E) 4 doubles the inner result without adding 1.",
+    "(E) 4 is the inner 3 plus 1 — adding once instead of running the full rule again.",
   take: "Composition works inside out. Evaluate the inner function completely, write the number down, then substitute it into the outer one."
 },
 
@@ -391,7 +391,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — \\(a_{10} = 3 + 9(4) = 3 + 36 = 39\\).",
   fast: "From the 1st term to the 10th is [[nine]] steps of 4, so \\(3 + 36 = 39\\).\n" +
     "Counting the gaps rather than the terms is the reliable way to avoid the off-by-one that this formula invites.",
-  traps: "(E) 40 uses \\(3 + 10(4) - 3\\) or simply ten steps instead of nine — the classic off-by-one, and the reason 40 sits next to the answer.\n" +
+  traps: "(E) 40 is \\(10 \\times 4\\) — ten steps counted instead of nine [[and]] the starting 3 dropped, landing one above the answer.\n" +
     "(A) 36 is \\(9 \\times 4\\), the total step without the starting value.\n" +
     "(B) 37 and (C) 38 are the intermediate near-misses.",
   take: "Arithmetic sequence: \\(a_n = a + (n-1)d\\). Count [[gaps]], not terms — from the 1st to the \\(n\\)-th there are \\(n-1\\) of them."
@@ -420,7 +420,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Equivalently, average the first and last: \\(\\dfrac{1 + 13}{2} = 7\\), then multiply by 5. Both routes avoid adding five numbers.",
   traps: "(B) 30 and (C) 40 are what you get by using 6 or 8 as the average.\n" +
     "(D) 25 is \\(5 \\times 5\\), taking the count as the average.\n" +
-    "(E) 45 overshoots by using the last term as the average.",
+    "(E) 45 is \\(3 + 6 + 9 + 12 + 15\\) — the right common difference, but started at 3 instead of 1.",
   take: "Evenly spaced sum = middle term × number of terms = \\(\\dfrac{\\text{first} + \\text{last}}{2} \\times n\\). This scales to long lists where adding is impractical."
 },
 

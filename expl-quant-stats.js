@@ -26,8 +26,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — That is 5.",
   fast: "Sort, then take the middle. With an odd count of \\(n\\), the median sits at position \\(\\dfrac{n+1}{2}\\) — here the 3rd of 5.\n" +
     "The sorting is the step people skip; the numbers are deliberately given out of order.",
-  traps: "(C) 7 is the middle value of the list [[as written]], before sorting — exactly the trap the scrambled order creates.\n" +
-    "(D) 6 is the mean-ish midpoint of 2 and 9.\n" +
+  traps: "(C) 7 sits one place above the true middle once the list is sorted — a position miscount, and the scrambled order is there to invite it.\n" +
+    "(D) 6 is bait for estimators: the mean is 5.2 and the midpoint of the extremes 5.5, and 6 sits near both without being either.\n" +
     "(A) 3 and (E) 9 are other members of the list.",
   take: "Always sort before finding a median. For \\(n\\) odd the median is the \\(\\dfrac{n+1}{2}\\)-th value; for \\(n\\) even it is the average of the two middle ones."
 },
@@ -147,7 +147,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "No arithmetic required once you notice 15 is the existing average.",
   traps: "(A) 13.6 is \\(150/11\\) — adding to the count without adding to the total.\n" +
     "(B) 14 and (D) 15.5 assume the mean must move in one direction or the other.\n" +
-    "(E) 16.5 comes from a mis-scaled total.",
+    "(E) 16.5 is \\(165 \\div 10\\) — the new total spread over the old count.",
   take: "A new value equal to the mean leaves the mean unchanged; above it pulls up, below pulls down. Compare the new value with the current mean before computing anything."
 },
 
@@ -278,7 +278,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The denominator is always the whole bag, never the other colour — that single point is what the wrong answers here test.",
   traps: "(D) \\(\\tfrac32\\) uses blue as the denominator, giving a \"probability\" above 1 — impossible, and eliminable on sight.\n" +
     "(A) \\(\\tfrac25\\) is the probability of blue.\n" +
-    "(B) \\(\\tfrac12\\) and (E) \\(\\tfrac23\\) come from mis-counting the bag.",
+    "(B) \\(\\tfrac12\\) treats the two colours as equally likely regardless of count. (E) \\(\\tfrac23\\) is blue over red — a ratio of the colours, not a probability.",
   take: "Probability = favourable ÷ total, and the total is everything in the sample space. Any answer above 1 is wrong before you check anything else."
 },
 
@@ -291,7 +291,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The tell is whether swapping the two chosen people produces a different outcome. Here it does, so do [[not]] divide by 2.",
   traps: "(B) 15 is \\(\\dbinom62 = 15\\) — the combination, which treats the two roles as interchangeable. That is the central trap.\n" +
     "(D) 36 is \\(6^2\\), allowing the same person to hold both roles.\n" +
-    "(C) 20 and (A) 12 come from mis-set products.",
+    "(C) 20 is \\(5 \\times 4\\) — starting the count one person short. (A) 12 is \\(6 \\times 2\\), multiplying by the number of roles instead of the people left.",
   take: "Distinct roles → permutation (do not divide). Identical roles, such as \"a committee of 2\" → combination (divide by \\(2!\\)). Ask whether swapping changes the outcome."
 },
 
@@ -424,7 +424,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Combination check: \\(\\dfrac{\\binom42}{\\binom{10}{2}} = \\dfrac{6}{45} = \\dfrac{2}{15}\\) ✓.",
   traps: "(C) \\(\\tfrac4{25}\\) is \\(\\left(\\tfrac{4}{10}\\right)^2\\) — the with-replacement answer, ignoring the changed bag.\n" +
     "(D) \\(\\tfrac15\\) is the first draw's probability halved, or a mis-cancellation.\n" +
-    "(B) \\(\\tfrac16\\) and (E) \\(\\tfrac3{25}\\) are near-misses just above and below.",
+    "(E) \\(\\tfrac3{25}\\) is \\(\\tfrac{4}{10} \\times \\tfrac{3}{10}\\) — the red count reduced for the second draw but the bag size left at 10. (B) \\(\\tfrac16\\) is a near-miss just above the answer.",
   take: "Same structure as question 12 with the colours swapped. Without replacement both counts fall by one; cancel the fractions before multiplying."
 },
 

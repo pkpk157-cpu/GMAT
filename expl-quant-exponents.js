@@ -43,7 +43,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Alternatively \\((3^2)^3 = 9^3 = 729\\) — cubing 9 is quick and is a useful cross-check.",
   traps: "(A) \\(3^5\\) adds the exponents, the rule for \\(3^2 \\cdot 3^3\\).\n" +
     "(B) 243 is \\(3^5\\) evaluated — the same error carried through.\n" +
-    "(D) 81 is \\(3^4\\); (E) \\(3^{18}\\) cubes the exponent instead of multiplying by 3.",
+    "(D) 81 is \\(3^4\\); (E) \\(3^{18}\\) takes the correct \\(3^6\\) and multiplies its exponent by 3 once more.",
   take: "\\((a^m)^n = a^{mn}\\). Keep the powers of 2 and 3 memorised to at least \\(2^{10}\\) and \\(3^6\\) — they turn these into recall rather than arithmetic."
 },
 
@@ -56,7 +56,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Getting everything onto one base is the move for essentially every exponential equation on this test — the numbers are always chosen to make it possible.",
   traps: "(C) 4 is the exponent of 16 itself, ignoring the \\(+1\\) — the most common slip, and the reason the question includes it.\n" +
     "(A) 2 solves \\(2^{x+1} = 8\\); (D) 5 solves \\(2^{x+1} = 64\\).\n" +
-    "(E) 8 is \\(2^3\\), the answer squared into the wrong slot.\n" +
+    "(E) 8 is \\(2^3\\) — the correct \\(x = 3\\) fed back in as a power of 2 instead of being reported.\n" +
     "A one-second check disposes of all of them: \\(2^{3+1} = 2^4 = 16\\) ✓.",
   take: "Same base on both sides → set the exponents equal. Then substitute back; the check takes two seconds and catches every off-by-one."
 },
@@ -121,7 +121,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The exponents multiply and the 3s cancel. Whenever the base is a perfect cube or square, converting it to a prime power makes fractional exponents trivial.",
   traps: "(A) 3 is \\(27^{1/3}\\) — the root taken without the squaring.\n" +
     "(C) 18 is \\(27 \\times \\tfrac23\\), multiplying by the exponent rather than applying it.\n" +
-    "(B) 6 and (E) 12 have no derivation; they fill out the list.",
+    "(B) 6 is \\(3 \\times 2\\) — the cube root multiplied by the 2 instead of raised to it. (E) 12 fills out the list.",
   take: "\\(a^{p/q} = \\left(\\sqrt[q]{a}\\right)^p\\). Take the root first to keep numbers small, or rewrite the base as a prime power and let the exponents cancel."
 },
 
@@ -199,7 +199,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "\\(3 \\times 2 - 4 = 2\\), so the answer is \\(2^2 = 4\\).\n" +
     "Multiply for the nested power, add for the product — the negative sign takes care of itself, with no need to convert to a fraction at any stage.",
   traps: "(C) 8 is \\(2^3\\), the base power left unsquared.\n" +
-    "(D) 16 is \\(2^4\\), treating \\(2^{-4}\\) as \\(2^{+4}\\) somewhere in the working.\n" +
+    "(D) 16 is \\(2^4\\) — the final factor with its minus sign dropped, reported on its own.\n" +
     "(E) 1 is \\(2^0\\), which is what \\((2^3)^2 \\times 2^{-6}\\) would give.\n" +
     "(A) 2 is \\(2^1\\), an off-by-one.",
   take: "Negative exponents obey exactly the same addition rule as positive ones. Convert to fractions only if you actually need a fractional answer."

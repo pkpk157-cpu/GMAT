@@ -15,7 +15,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Substitute the middle choice. \\(x = 5\\) gives \\(15 + 5 = 20\\) ✓ — done in one line.\n" +
     "With five numeric choices, testing beats solving whenever the arithmetic is this small, and starting in the middle lets you tell which direction to move if it misses.",
   traps: "(B) 4 gives 17 and (D) 6 gives 23 — the neighbours, for anyone dividing 15 by 3 carelessly.\n" +
-    "(A) 3 is what you get by subtracting 5 from 20 and then from 15 again.\n" +
+    "(A) 3 is \\(15 \\div 5\\) — dividing by the constant instead of the coefficient.\n" +
     "(E) 7 has no derivation; it fills out the list.",
   take: "Undo operations in reverse order, then substitute your answer back. The check costs five seconds and catches every arithmetic slip."
 },
@@ -30,7 +30,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Whenever a bracket sits alone on one side, dividing is faster than distributing.",
   traps: "(B) 5 is \\(x - 3\\), the value inside the bracket — a correct intermediate result, and the most likely wrong pick.\n" +
     "(A) 2 comes from subtracting 3 instead of adding it.\n" +
-    "(C) 7 and (E) 11 are neighbours from a mishandled expansion (e.g. \\(2x - 3 = 10\\)).",
+    "(C) 7 and (E) 11 sit either side as fillers — substituting them makes the left side 8 and 16, nowhere near 10.",
   take: "A lone bracket with a coefficient: divide first. And when a choice equals your intermediate value, that is a sign the question is testing whether you finished."
 },
 
@@ -69,8 +69,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Check: \\(3(9) - 2(6) = 27 - 12 = 15\\) ✓.",
   fast: "The \\(x\\) terms are \\(3x - 2x = x\\) and the constants are \\(6 + 2 = 8\\), so the whole left side is just \\(x + 8\\). Then \\(x = 7\\).\n" +
     "Collecting the coefficients mentally before writing anything turns this into a one-line question.",
-  traps: "(A) 5 comes from \\(-2(x-1) = -2x - 2\\) — distributing the minus onto the \\(-1\\) incorrectly, which gives \\(x + 4 = 15\\)… and the sign error is exactly what the bracket is there for.\n" +
-    "(C) 9 and (D) 11 come from dropping a constant.\n" +
+  traps: "(D) 11 is the sign-error answer: writing \\(-2(x-1) = -2x - 2\\) turns the left side into \\(x + 4\\), and \\(x + 4 = 15\\) gives 11 — the exact slip the bracket is there to catch.\n" +
+    "(A) 5 and (C) 9 make the left side 13 and 17 respectively — near-misses either side of the answer.\n" +
     "(E) 13 treats the left side as \\(x + 2\\).",
   take: "A minus in front of a bracket flips [[both]] signs inside it. Expand the negative bracket separately and write it out — that single discipline removes the most common algebra error on the test."
 },
@@ -84,8 +84,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "\\(\\dfrac13 - \\dfrac14 = \\dfrac{1}{12}\\) — for unit fractions with consecutive denominators, the difference is always \\(\\dfrac{1}{ab}\\).\n" +
     "So \\(\\dfrac{x}{12} = 2\\) and \\(x = 24\\). One line, no expansion.",
   traps: "(B) 12 is the common denominator, sitting right there in the working.\n" +
-    "(A) 6 comes from \\(\\dfrac13 - \\dfrac14 = \\dfrac{1}{7}\\)-style subtraction of denominators.\n" +
-    "(C) 18 and (E) 30 are near-misses; note that \\(x\\) must be divisible by 12 for both fractions to be whole, which alone points at 24.",
+    "(A) 6 makes the left side \\(2 - 1.5 = 0.5\\) — a quarter of what is needed.\n" +
+    "(C) 18 and (E) 30 give 1.5 and 2.5, near-misses either side; and since \\(x\\) must be divisible by 12 for both fractions to come out whole, only 12 and 24 are even candidates.",
   take: "\\(\\dfrac1a - \\dfrac1b = \\dfrac{b-a}{ab}\\). For consecutive integers that is \\(\\dfrac{1}{ab}\\) — worth knowing, since it turns up constantly in rate and fraction questions."
 },
 
@@ -96,7 +96,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — The question asks for the [[product]]: \\(xy = 7 \\times 3 = 21\\).",
   fast: "Sum and difference: \\(x\\) is the average of the two right-hand sides, \\(\\dfrac{10+4}{2} = 7\\), and \\(y\\) is half their difference, \\(\\dfrac{10-4}{2} = 3\\).\n" +
     "That pattern — add for one variable, subtract for the other — solves any \\(x+y\\), \\(x-y\\) pair instantly. Then \\(7 \\times 3 = 21\\).",
-  traps: "(D) 24 and (A) 12 come from finding \\(x\\) and \\(y\\) correctly and then adding or mis-multiplying.\n" +
+  traps: "(D) 24 is \\(6 \\times 4\\) — a pair that sums to 10 but differs by 2, not 4. (A) 12 is \\(4 \\times 3\\), the difference times \\(y\\).\n" +
     "(E) 30 is \\(10 \\times 3\\), pairing the sum with \\(y\\).\n" +
     "(B) 18 is a decoy. The question asks for \\(xy\\), not \\(x\\) or \\(y\\) — and 7 and 3 are deliberately absent so you must finish.",
   take: "Given \\(x+y\\) and \\(x-y\\): \\(x\\) is their average, \\(y\\) is half their difference. Then re-read what the question actually wants."
@@ -167,7 +167,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Elimination is tidier here: multiply the second equation by 3 to get \\(12t + 3p = 93\\), then subtract the first:\n" +
     "\\(10t = 70\\), so \\(t = \\$7\\).\n" +
     "Look for the variable with a coefficient of 1 — scaling to match it is always the cheapest elimination.",
-  traps: "(A) $6.50 and (C) $7.50 bracket the answer; substituting either gives a non-integer programme price, which a ticket-and-programme question will not do.\n" +
+  traps: "(A) $6.50 and (C) $7.50 bracket the answer; substituting either into \\(2t + 3p = 23\\) leaves \\(3p = 10\\) or \\(3p = 8\\) — a non-integer programme price, which a ticket-and-programme question will not do.\n" +
     "(E) $5.00 makes \\(p = 11\\), failing the first equation.\n" +
     "(D) $8.00 fails outright: the second equation would give \\(p = 31 - 32 = -1\\), a negative programme price. A choice that forces an impossible companion value eliminates itself.\n" +
     "The programme price of $3 is deliberately absent — the question names the ticket.",
@@ -195,7 +195,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Use the identity directly: \\(xy = \\dfrac{(x+y)^2 - (x-y)^2}{4} = \\dfrac{100 - 16}{4} = 21\\).\n" +
     "Or, just as fast, \\(x\\) is the average (7) and \\(y\\) is half the difference (3).",
   traps: "(A) 16 is \\((x-y)^2\\), a number that appears in the identity.\n" +
-    "(D) 25 and (C) 24 are near-misses from a slip in \\(x\\) or \\(y\\).\n" +
+    "(D) 25 is \\(5 \\times 5\\), the product if the difference is ignored and the 10 split evenly; (C) 24 is \\(6 \\times 4\\), a pair with the right sum but a difference of 2.\n" +
     "(E) 10 is the sum from the stem. As in question 7, neither 7 nor 3 is offered — the question wants the product.",
   take: "\\((x+y)^2 - (x-y)^2 = 4xy\\). Worth memorising: it gives the product straight from the sum and difference, with no need to solve for either variable."
 },
@@ -225,7 +225,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "This \"assume the extreme, then price the shortfall\" move solves every two-price counting question in two lines.",
   traps: "(D) 6 is the number of [[adult]] tickets — right work, wrong group.\n" +
     "(E) 5 is the even split, which would cost $65.\n" +
-    "(A) 2 and (B) 3 come from dividing 12 by the wrong difference (e.g. by 5 or 8 rather than 3).",
+    "(A) 2 and (B) 3 undershoot: 2 children make the bill \\(8 \\times 8 + 2 \\times 5 = \\$74\\) and 3 make it \\$71 — only 4 lands on \\$68. And (B) 3 doubles as the \\$3-per-child saving, a number lifted straight from the working.",
   take: "Assume everything is the expensive item, then divide the overshoot by the price difference. It replaces the whole system with one subtraction and one division."
 }
 

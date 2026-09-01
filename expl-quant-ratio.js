@@ -74,7 +74,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Scale to the shared term's LCM (15), giving \\(10 : 15 : 24\\) = 49 parts. That 98 is exactly \\(2 \\times 49\\) confirms the chain is right — test writers pick totals that divide.\n" +
     "Second number \\(= 15 \\times 2 = 30\\).",
   traps: "(A) 20 is the [[first]] number (\\(10 \\times 2\\)) and (D) 48 is the third (\\(24 \\times 2\\)). Both are correct values reported for the wrong position.\n" +
-    "(C) 38 and (E) 58 come from chaining without scaling — writing \\(2 : 3 : 8\\) or \\(2 : 5 : 8\\) and dividing 98 by the wrong number of parts.\n" +
+    "(C) 38 and (E) 58 belong to no consistent chain: the true numbers are 20, 30 and 48, and the tempting wrong chains (\\(2:3:8\\) with 13 parts, \\(2:5:8\\) with 15 parts) fail immediately because neither 13 nor 15 divides 98.\n" +
     "If the total does not divide evenly by your parts count, you have scaled wrongly.",
   take: "Chain through the LCM of the shared term. Then use the total dividing cleanly by the parts count as your check that the chain is correct."
 },
@@ -88,7 +88,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Backsolve using the total, which must be a multiple of 3 (the parts sum to 3). Try 12: that is 4 ladies and 8 gents; after 2 of each leave, 2 and 6, which is \\(1 : 3\\) ✓.\n" +
     "Screen first and there is very little left to test: 6 would mean only 2 ladies, and removing 2 of them leaves none at all.",
   traps: "(A) 6 leaves zero ladies after the departure, so the new ratio is undefined.\n" +
-    "(B) 9 and (D) 15 are not consistent with a \\(1 : 2\\) split into whole people plus the later condition.\n" +
+    "(B) 9 splits \\(1:2\\) as 3 and 6, but removing 2 of each leaves \\(1 : 4\\); (D) 15 splits as 5 and 10, leaving \\(3 : 8\\). Neither ends at \\(1 : 3\\).\n" +
     "(E) 18 gives 6 and 12 → after departures 4 and 10, which is \\(2 : 5\\), not \\(1 : 3\\).\n" +
     "The answer 4 (the number of ladies) is deliberately absent — the question asks for the [[total]].",
   take: "Ratios are about parts, so the total must be divisible by the sum of the parts. Use that to screen the choices before testing any of them properly."
@@ -119,7 +119,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Water must therefore become \\(2 \\times 12 = 24\\) L, and it is currently 9 L — so add 15 L.\n" +
     "Fixing the unchanged component and re-pricing the part is the standard move for every add-one-ingredient question.",
   traps: "(B) 24 L is the [[final]] amount of water, not the amount added — the most common way to lose this question.\n" +
-    "(A) 7.2 L and (D) 1.5 L come from applying the ratio change to the total rather than to the water.\n" +
+    "(A) 7.2 L and (D) 1.5 L fail the forward check: adding 7.2 L gives \\(36 : 16.2 \\approx 2.2 : 1\\), and adding 1.5 L gives \\(36 : 10.5 \\approx 3.4 : 1\\) — neither is the required \\(3 : 2\\).\n" +
     "(E) 31.8 L is a decoy near the total volume increase.",
   take: "When one ingredient is added, the other is constant — anchor on the constant one, re-price the part, and subtract what is already there to get the amount [[added]]."
 },
@@ -130,9 +130,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — The whole mixture is 20 parts: \\(20 \\times 3.2 = 64\\) kg.",
   fast: "Find the part, then multiply by the total parts: \\(28.8 / 9 = 3.2\\), and \\(3.2 \\times 20 = 64\\).\n" +
     "\\(28.8/9\\) is easier as \\(288/9 = 32\\), then shift the decimal.",
-  traps: "(A) 58 and (B) 60 are what you get by adding a mis-scaled copper weight; copper is actually \\(11 \\times 3.2 = 35.2\\) kg, and \\(28.8 + 35.2 = 64\\) ✓.\n" +
-    "(D) 70 and (E) 74 overshoot.\n" +
-    "A quick bound: zinc is 9 of 20 parts, slightly under half, so the total must be a bit more than \\(2 \\times 28.8 = 57.6\\) — and 64 is the only choice in the right neighbourhood once you require whole-number tidiness.",
+  traps: "Every wrong choice fails the same one-line check — the total times \\(\\tfrac{9}{20}\\) must give back the 28.8 kg of zinc. (A) 58 and (B) 60 give 26.1 and 27 kg; (D) 70 and (E) 74 give 31.5 and 33.3 kg. Only \\(64 \\times \\tfrac{9}{20} = 28.8\\) ✓.\n" +
+    "Copper, for the record, is \\(11 \\times 3.2 = 35.2\\) kg, and \\(28.8 + 35.2 = 64\\) confirms it from the other side.",
   take: "Ratio questions reduce to one number: the value of a single part. Find it first and every other quantity is a multiplication away."
 },
 
@@ -148,7 +147,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) \\(4 : 9 : 16\\) squares the original terms.\n" +
     "(C) \\(8 : 9 : 16\\) gets the first two right and then uses \\(\\tfrac{C}{A}\\) as \\(\\tfrac43\\) instead of 2 — the most likely genuine slip.\n" +
     "(B) \\(8 : 9 : 12\\) makes the third term far too small.\n" +
-    "(E) \\(6 : 8 : 24\\) mis-scales the first two.",
+    "(E) \\(6 : 8 : 24\\) is \\(12 \\times \\left(\\tfrac{A}{C} : \\tfrac{A}{B} : \\tfrac{C}{A}\\right)\\) — the right technique applied to a jumbled selection of fractions.",
   take: "Turn a ratio into actual numbers before manipulating it. Then clear the fractions with one LCM — and sanity-check the [[relative sizes]] of the three terms against the fractions you computed."
 },
 
@@ -305,7 +304,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The denominators are the parts, so \\(x : y : z = 3 : 4 : 7\\), totalling 14. The question wants total ÷ \\(z\\) \\(= 14 : 7 = 2\\).\n" +
     "Notice \\(3 + 4 = 7\\), so the total is exactly twice \\(z\\) — the numbers were chosen for that.",
   traps: "(E) 7 and (C) 14 are the raw parts (\\(z\\) and the total), lifted out of the working.\n" +
-    "(B) \\(\\tfrac72\\) is the reciprocal-ish decoy \\(\\dfrac{z}{\\text{something}}\\).\n" +
+    "(B) \\(\\tfrac72\\) is \\(\\dfrac{x+y+z}{y} = \\dfrac{14}{4}\\) — the right idea divided by the wrong variable.\n" +
     "(D) 1 would require \\(x + y = 0\\).",
   take: "\\(\\dfrac{x}{p} = \\dfrac{y}{q} = \\dfrac{z}{r}\\) means \\(x : y : z = p : q : r\\). Once the parts are written down, any combination the question asks for is a ratio of small integers."
 },
@@ -319,8 +318,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(200 \\div 8 = 25\\) cans.\n" +
     "Computing the yield per can first is the cleanest route and avoids the 1,200 entirely.",
   traps: "(E) 100 is \\(1200/12\\) — the number of cans if concentrate were the whole drink rather than a quarter of it.\n" +
-    "(D) 67 comes from using \\(1 : 3\\) as one-third rather than one-quarter (\\(1200/3/12 \\approx 33\\)) or from a similar mis-split.\n" +
-    "(C) 50 halves the total; (B) 34 is a rounding decoy.\n" +
+    "(D) 67 is \\(200 \\div 3\\) — treating each can of concentrate as making three servings, one per can of water added.\n" +
+    "(C) 50 is \\(200 \\div 4\\), one serving per can in the 4-can mix — both slips forget that a can of concentrate makes [[eight]] 6-oz servings. (B) 34 is a rounding decoy.\n" +
     "The recurring trap in every mixture question: \\(1 : 3\\) means one part in [[four]], not one in three.",
   take: "A ratio \\(1 : n\\) makes the first ingredient \\(\\dfrac{1}{n+1}\\) of the whole, not \\(\\dfrac1n\\). Getting that denominator right is the difference between (A) and (D) here."
 }

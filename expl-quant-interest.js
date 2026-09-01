@@ -30,7 +30,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "\\(\\dfrac{1020 - 720}{5} = 60\\) a year → \\(P = 720 - 120 = 600\\) → \\(60/600 = 10\\%\\).\n" +
     "Read \"a further 5 years\" carefully — it is the gap, and the gap is all the subtraction method needs.",
   traps: "(A) $500, 10% has the right rate with a principal that would make the year-2 amount $600, not $720.\n" +
-    "(C) and (D) pair a principal with 12%, which is what you get if you treat the second reading as year 5 and divide 300 by 3.\n" +
+    "(C) and (D) pair the pieces wrongly: $60 a year on a $500 principal would indeed be 12%, but that principal fails the year-2 reading (\\(500 + 120 = 620\\), not 720). Internally consistent pairs still have to match the stem.\n" +
     "(E) \"$700%\" is malformed and can be discarded on sight — a reminder to read the choices, not just the numbers.",
   take: "Watch the wording of the second date: \"after a further \\(n\\) years\" means \\(n\\) years [[more]], so the span between readings is \\(n\\), not the difference from zero."
 },
@@ -42,7 +42,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — \\(P = \\dfrac{56}{0.08} = \\$700\\).",
   fast: "The extra interest is \\(P \\times 2\\% \\times 4 = 8\\%\\) of \\(P\\). \\(8\\%\\) of \\(P\\) is 56, so \\(1\\%\\) is 7 and \\(P = 700\\).\n" +
     "Notice what never mattered: the actual rate. Only the [[difference]] of 2 points appears, which is why the question can withhold the rate entirely.",
-  traps: "(A) $500 and (B) $600 come from dividing 56 by \\(0.1\\) or by a mis-set multiplier.\n" +
+  traps: "(A) $500 and (B) $600 fail the forward check: at 2 extra points for 4 years they would earn only $40 and $48 more, not the stated $56. Only \\(700 \\times 0.08 = 56\\) fits.\n" +
     "(D) $800 is \\(56 \\div 0.07\\), i.e. using 7 years or a 1.75-point gap.\n" +
     "(E) $900 is the round-number decoy at the end of the list.\n" +
     "If you tried to find the original rate first, you would find it is not determinable — that impasse is the signal that only the difference is needed.",
@@ -101,8 +101,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Then \\(r = \\dfrac{2200}{22{,}000} = 10\\%\\).\n" +
     "Collapsing every loan to principal × time first turns any number of loans at a shared rate into a single division.",
   traps: "(A) 5% halves the answer — the result of using only one of the two loans.\n" +
-    "(E) 8% and (C) \\(7\\tfrac18\\%\\) come from mixing up which principal goes with which duration (\\(5000 \\times 4\\) and \\(3000 \\times 2\\) gives 26,000 dollar-years and about 8.5%).\n" +
-    "(B) 7% is the midpoint decoy.",
+    "(E) 8% is the swapped pairing — \\(5000 \\times 4 + 3000 \\times 2 = 26{,}000\\) dollar-years gives \\(2200/26{,}000 \\approx 8.5\\%\\), which loose rounding turns into 8%.\n" +
+    "(C) \\(7\\tfrac18\\%\\) and (B) 7% sit below the answer with no clean derivation; they punish dividing 2,200 by a padded dollar-year total.",
   take: "Several simple-interest loans at one rate: sum the principal × time products, then divide the total interest by that sum. The rate falls out in a single step."
 },
 
@@ -188,8 +188,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — So 15 years.",
   fast: "\\(8 = 2^3\\), so you need three doubling periods: \\(3 \\times 5 = 15\\) years.\n" +
     "Any \"doubles in \\(n\\) years, when does it become \\(2^k\\)\" question is answered by \\(k \\times n\\). No rate, no formula.",
-  traps: "(B) 20 years and (C) 25 years come from treating the growth as [[simple]], where becoming 8 times takes far longer and the periods do not stack this way.\n" +
-    "(D) 30 and (E) 35 extend the same error.\n" +
+  traps: "(E) 35 years is the [[simple]]-interest answer: doubling in 5 years means each year adds \\(P/5\\), and reaching \\(8P\\) needs \\(7P\\) of interest — 35 years. Getting it here means using the wrong regime.\n" +
+    "(B) 20 counts four doubling periods, as though the original sum also had to be earned; (C) 25 and (D) 30 stretch the same overcount.\n" +
     "Note the contrast with question 17 in this set, which asks the same shape of question under simple interest and has a completely different answer — the test writers rely on you not checking which regime you are in.",
   take: "Compound: multiples multiply, so \\(2^k\\) times takes \\(k\\) doubling periods. Simple: interest adds, so \\(k\\) times the principal takes a proportional number of years. Always check which one you are given."
 },
@@ -266,7 +266,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — Check: SI \\(= \\$1{,}000\\); CI \\(= 5000(1.21) - 5000 = \\$1{,}050\\). The gap is $50. ✓",
   fast: "At 10%, the two-year gap is exactly \\(P/100\\) — one percent of the principal. So \\(P = 100 \\times 50 = \\$5{,}000\\).\n" +
     "This is the cleanest case of the formula and is worth holding in memory: [[at 10%, the two-year CI–SI difference is 1% of the principal]].",
-  traps: "(B) $2,500 halves the answer; (E) $2,000 comes from using \\(r = 0.05\\).\n" +
+  traps: "(B) $2,500 halves the answer — its gap would be $25; (E) $2,000 would give a gap of just $20. Both fail the one-line forward check \\(P/100\\).\n" +
     "(C) $10,000 doubles it — the error of taking the gap as \\(0.005P\\).\n" +
     "(D) $4,000 is a near-miss that gives a $40 gap, which a quick forward check disposes of.",
   take: "Recognise the CI–SI two-year gap on sight. At 5% it is \\(P/400\\); at 10%, \\(P/100\\); at 20%, \\(P/25\\). Each one turns the question into a single multiplication."

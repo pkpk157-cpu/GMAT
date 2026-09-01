@@ -101,7 +101,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "\\(1.3 = 13/10\\), so dividing by 1.3 is \\(\\times 10/13\\). \\(9{,}100/13 = 700\\), then \\(\\times 10 = 7{,}000\\).\n" +
     "Spotting that 9,100 is a clean multiple of 13 is the whole trick — test writers choose numbers that divide.",
   traps: "(A) 10,000 and (E) 11,000 are both [[larger]] than 9,100. A quantity that rose to 9,100 must have started below it, so these two can be eliminated before any arithmetic.\n" +
-    "(B) 9,000 is what you get by subtracting a rough 1% instead of undoing 30%.\n" +
+    "(B) 9,000 is the round number just under 9,100 — a guess, not a computation; it fails the Step 4 check at once (\\(9{,}000 \\times 1.3 = 11{,}700\\)).\n" +
     "(C) 8,000 is the answer to \"fell 30% from 8,000\"-style eyeballing; it does not survive the check in Step 4.",
   take: "\"Rose \\(p\\%\\) to \\(X\\)\" means divide by \\(1 + p/100\\); \"rose \\(p\\%\\) from \\(X\\)\" means multiply. Reading which one you have is worth more than the arithmetic — and a direction check kills half the choices for free."
 },
@@ -171,7 +171,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(86{,}000 \\div 43 = 2{,}000\\) per part, so \\(C = 18 \\times 2{,}000 = 36{,}000\\).\n" +
     "The 43 is worth spotting early — 86,000 was chosen to divide by it cleanly.",
   traps: "(A) $30,000 is A's income and (C) $20,000 is B's. Both come from doing the work correctly and then reporting the wrong person — the most common way to lose this question.\n" +
-    "(B) $32,000 and (E) $40,000 are what you get if you make C 120% of B instead of 120% of A.",
+    "(B) $32,000 and (E) $40,000 fail the forward check: C = 1.8 parts means the total is \\(86{,}000 = 43 \\times 2{,}000\\), and neither 32,000 nor 40,000 is \\(18 \\times 2{,}000\\). Each would force a total different from $86,000.",
   take: "Chained percentages become a ratio with whole-number parts; dividing the total by the number of parts is one step. Then re-read the question to check [[whose]] figure it wants."
 },
 
@@ -214,7 +214,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Pair the +5% and −5% first: by the \\(1 - (a/100)^2\\) rule that is \\(\\times 0.9975\\), giving \\(4{,}000 \\times 0.9975 = 3{,}990\\). Then take 10% off: \\(3{,}990 - 399 = 3{,}591\\).\n" +
     "Taking 10% off is always subtraction of a shifted decimal — never reach for a calculator-style multiplication.",
   traps: "Cancelling the +5% against the −5% gives \\(4{,}000 \\times 0.9 = 3{,}600\\). That number is deliberately [[not]] among the choices — its absence is the signal that the two changes have different bases.\n" +
-    "(C) 3,575 sits just below the right answer to catch a mis-rounded middle step; (A) 3,125 and (B) 3,255 come from applying the 10% cut more than once.\n" +
+    "(C) 3,575 sits just below the right answer to catch a mis-rounded middle step. (A) 3,125 and (B) 3,255 are the deep-low decoys — the territory you reach by over-applying the cuts (a second 10% cut on 3,591 gives about 3,232, in their neighbourhood).\n" +
     "(E) 3,721 is the only choice [[above]] the answer: it would need the three months to lose just 7% overall, when the factors \\(1.05 \\times 0.95 \\times 0.90\\) lose 10.2%. It catches an under-applied April cut.",
   take: "+5% followed by −5% is a 0.25% loss, not zero. On the GMAT that difference is exactly the gap between two answer choices."
 },
@@ -259,7 +259,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Any percentage question with no numbers in it should start with \"let it be 100\".",
   traps: "(A) 22% is \\(2/9\\) truncated. The presence of both 22% and \\(22\\tfrac29\\%\\) is the giveaway that the answer is a repeating fraction and that rounding will be punished.\n" +
     "(E) 20% is the rise in [[income]], not in expenditure — right number, wrong quantity.\n" +
-    "(D) 24% is \\(20/\\!\\approx\\!83\\), the result of dividing by the new figure instead of the old one.\n" +
+    "(D) 24% is the income rise scaled up by itself (\\(1.2 \\times 20\\)) — a slip that never re-bases the rise on the 90 he used to spend.\n" +
     "(C) \\(23\\tfrac13\\%\\) is the matching decoy just [[above]] the answer — it pairs with (A) below it so that computing \\(2/9\\) loosely as \"about 22 or 23 percent\" cannot settle the question. Only the exact fraction does.",
   take: "Percent increase always divides by the [[original]] value. And when two answer choices differ only by a fraction, the exact fraction is the answer — do not convert to a decimal and round."
 },
@@ -363,7 +363,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The rise is \\(3\\tfrac13\\) on 10, i.e. \\(33\\tfrac13\\%\\). Choosing a price of 10 keeps the division trivial.",
   traps: "(B) 40% is \\(60 - 20\\), the additive error. When one factor divides another, their percentage changes do not subtract.\n" +
     "(E) 60% ignores the price rise and reports the budget increase.\n" +
-    "(C) 42% and (D) 48% are what appear if you divide 1.6 by 1.2 carelessly, or compute \\(1.6 \\times 1.2\\) instead.",
+    "(D) 48% is the budget rise shaved by a fifth (\\(0.8 \\times 60\\)) — treating the price rise as a haircut on the 60% rather than dividing the factors. (C) 42% sits beside it so that a loose estimate has nowhere safe to land: only the exact \\(4/3\\) is offered.",
   take: "When a quantity is the ratio of two things that both change, [[divide]] the multipliers. \\(1.6/1.2 = 4/3\\) is exact; \\(60\\% - 20\\%\\) is not an operation."
 },
 
@@ -391,7 +391,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Two cuts of \\(\\tfrac16\\) leave \\(\\left(\\dfrac56\\right)^2 = \\dfrac{25}{36}\\). To undo that you need the reciprocal, \\(\\dfrac{36}{25} = 1.44\\) — a 44% rise.\n" +
     "The whole question is one reciprocal. Note also that \\(n\\) never mattered: it cancels, which is why no dollar figure was ever given.",
   traps: "(D) 36 is \\(\\dfrac{36}{25}\\) misread as \"36 percent\" — the number is right there in the working, which is exactly why it is offered.\n" +
-    "(B) 12 comes from treating the two \\(\\tfrac16\\) cuts as one \\(\\tfrac13\\) cut and then halving.\n" +
+    "(B) 12 is the distant lowball; the size check below rules it out before any algebra.\n" +
     "(C) 40 and (E) 50 bracket the answer for estimators. A useful check: the falls remove \\(11/36 \\approx 31\\%\\), yet they act on the [[raised]] premium, so the rise that precedes them must be larger than 31% — which already rules out (B).",
   take: "\"Decreased by \\(\\tfrac16\\)\" means \\(\\times \\dfrac56\\); reversing it needs \\(\\times \\dfrac65\\), never \"+\\(\\tfrac16\\)\". A rise and a fall of the same fraction never cancel, and the rise required is always the bigger number."
 }

@@ -12,9 +12,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — \\(\\dfrac{200}{1600} = \\dfrac18 = 12.5\\%\\).",
   fast: "\\(\\dfrac{200}{1600}\\) reduces to \\(\\dfrac18\\), and \\(\\dfrac18 = 12.5\\%\\) is one of the fraction–percent pairs worth knowing on sight.\n" +
     "Reducing before dividing is almost always faster than long division.",
-  traps: "(B) 12% is \\(\\dfrac{200}{1400}\\) rounded — dividing by the selling price instead of the cost.\n" +
-    "(C) 14% and (E) 15.5% come from the same wrong base with different rounding.\n" +
-    "(D) 10% is the round-number guess.",
+  traps: "(C) 14% is \\(\\dfrac{200}{1400}\\) — dividing by the selling price instead of the cost. That wrong base gives 14.3%, and the choice is its rounding.\n" +
+    "(B) 12% is the true answer carelessly rounded down from 12.5 — the choices punish truncation as well as the wrong base.\n" +
+    "(D) 10% is the round-number guess, and (E) 15.5% pads the high side.",
   take: "Profit and loss percent are always on cost price. If you divide by the selling price you will land on a nearby wrong answer, which is exactly what the distractors are for."
 },
 
@@ -37,8 +37,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "\\(1.2 \\times 1.25 = 1.5\\) — the price simply gets one-and-a-half times bigger down the chain. So A paid \\(225 \\div 1.5 = 150\\).\n" +
     "In fractions it is even cleaner: \\(\\dfrac65 \\times \\dfrac54 = \\dfrac64 = \\dfrac32\\); the fives cancel.",
   traps: "(D) $180 is what B paid (\\(225/1.25\\)) — a correct intermediate value one step short of the answer.\n" +
-    "(A) $140 and (B) $160 come from adding the percentages (45% total) instead of compounding them.\n" +
-    "(E) $190 is a decoy near B's price.",
+    "(A) $140 and (B) $160 undershoot: the additive slip of a combined 45% markup gives \\(225/1.45 \\approx \\$155\\), and these two flank it. Neither survives the forward check \\(\\times 1.5 = 225\\).\n" +
+    "(E) $190 is a decoy near B's price of $180.",
   take: "Successive markups multiply. Convert them to fractions and look for cancellation — \\(\\tfrac65 \\times \\tfrac54\\) collapsing to \\(\\tfrac32\\) is why the numbers were chosen."
 },
 
@@ -52,7 +52,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Cost: \\(30/6 = 5\\) lots at $5 \\(= \\$25\\). Sale: \\(30/5 = 6\\) lots at $6 \\(= \\$36\\).\n" +
     "Gain \\(= 11\\) on a cost of 25 \\(= 44\\%\\). No fractions at any point.",
   traps: "(A) 20% is \\(\\dfrac{6-5}{5}\\), comparing the two dollar figures directly and ignoring that they cover different quantities.\n" +
-    "(B) 25% and (C) 36% are what appear from mixing up which ratio goes on top.\n" +
+    "(B) 25% and (C) 36% are the two dollar figures from the 30-article working — the $25 cost and the $36 revenue — dressed up as percentages. Numbers that appear mid-working make the most seductive decoys.\n" +
     "(E) 52% overshoots. A useful bound: the price per article goes from \\(0.83\\) to \\(1.20\\), which is clearly under a 50% rise.",
   take: "\"\\(a\\) for \\(\\$b\\)\" questions become easy the moment you buy the LCM of the two group sizes. Everything is then whole numbers and the percentage is one division."
 },
@@ -121,7 +121,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — \\(\\text{MP} = \\dfrac{880}{0.88} = \\$1{,}000\\).",
   fast: "\\(880/0.88\\): both have 88 in them, so this is just \\(1000\\). Spotting that saves the division entirely.\n" +
     "More generally, 88% of 1,000 is 880 — checking forwards is quicker than dividing backwards.",
-  traps: "(A) $990 is \\(880 + 12\\%\\ \\text{of}\\ 880\\) — adding the discount back onto the sale price instead of undoing it on the marked price.\n" +
+  traps: "(A) $990 comes from adding the discount back onto the sale price instead of undoing it — and it fails the forward check: 12% off $990 is $871.20, not $880.\n" +
     "(C) $1,024 and (E) $1,048 come from dividing by 0.86 or similar.\n" +
     "(D) $950 undershoots.",
   take: "Undo a discount by dividing by \\((1 - d)\\), never by adding \\(d\\%\\) back. Discount is on the marked price; profit is on the cost price — keep the two bases separate."
@@ -148,7 +148,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The ratio flips: \\(\\dfrac{\\text{SP}}{\\text{CP}} = \\dfrac{\\text{number bought}}{\\text{number sold}} = \\dfrac{15}{20} = \\dfrac34\\).\n" +
     "Below 1 means a loss, and \\(1 - \\dfrac34 = \\dfrac14 = 25\\%\\).\n" +
     "Direction check first: you need to sell [[more]] articles (20) to raise what 15 cost, so each is going out cheap — a loss.",
-  traps: "(A) 20% is \\(\\dfrac{20-15}{20}\\), dividing the gap by the selling count instead of the cost count.\n" +
+  traps: "(A) 20% borrows the \"20\" from the stem; the real computation \\(1 - \\tfrac{15}{20}\\) gives 25%, and no legitimate base turns the gap of 5 into 20%.\n" +
     "(C) \\(33\\tfrac13\\%\\) is \\(\\dfrac{5}{15}\\) — the gain percent you would get if the counts were reversed.\n" +
     "(D) 30% and (E) 15% are decoys; 15 in particular is lifted straight from the stem.",
   take: "\\(m\\,\\text{CP} = n\\,\\text{SP}\\) gives \\(\\dfrac{\\text{SP}}{\\text{CP}} = \\dfrac{m}{n}\\). If \\(n > m\\) it is a loss; if \\(n < m\\) it is a gain. Decide the direction before computing."

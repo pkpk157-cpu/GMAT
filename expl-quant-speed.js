@@ -73,7 +73,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — Car B's time is \\(3k = 9\\) hours, so its speed is \\(\\dfrac{540}{9} = 60\\) km/h.",
   fast: "Flip the ratio: times are \\(5 : 3\\), a gap of 2 parts. The gap is 6 hours, so one part is 3 hours → B takes 9 hours → \\(540/9 = 60\\) km/h.\n" +
     "No variables, no equation. Flipping the ratio and pricing one \"part\" handles almost every same-distance question in this topic.",
-  traps: "(A) 80 km/h and (E) 90 km/h come from assigning the longer time to the [[faster]] car — always check that the bigger speed gets the smaller time.\n" +
+  traps: "(E) 90 km/h is \\(540 \\div 6\\) — treating the six-hour [[difference]] as B's entire journey time. (A) 80 km/h is its round neighbour; neither survives the parts check (the real times are 15 h and 9 h).\n" +
     "(C) 50 km/h is Car A's speed rounded; Car A actually travels at \\(540/15 = 36\\) km/h.\n" +
     "(D) 70 km/h sits between the two real speeds as a decoy for anyone estimating.",
   take: "Same distance: invert the speed ratio to get the time ratio, then let the stated time difference price one part of that ratio."
@@ -91,7 +91,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Bounding alone nearly finishes it: the average must lie between the two speeds, so the truck is below 70 and the bus above it — and since the truck is only 30% slower, its speed has to be in the high 50s or 60s.",
   traps: "(C) 31.5 and (D) 25.7 are far too small. The harmonic mean of two speeds always lies between them, so a truck averaging into 70 km/h cannot be doing 30.\n" +
     "(B) 60 is the round number just above the answer, for anyone estimating rather than computing.\n" +
-    "(E) 65.8 is what appears if you use the arithmetic mean \\((b + 0.7b)/2 = 70\\) somewhere in the working.",
+    "(E) 65.8 slips inside the bound (truck below 70, bus above), so only the computation rejects it — the arithmetic-mean slip \\((b + 0.7b)/2 = 70\\) actually gives a truck speed of 57.6, and nothing clean lands on 65.8.",
   take: "Equal distances → harmonic mean \\(\\dfrac{2v_1v_2}{v_1+v_2}\\). Equal times → arithmetic mean. Reading which one the question describes is the whole question."
 },
 
@@ -169,7 +169,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Usual speed \\(= \\dfrac{480}{2/3} = 480 \\times \\dfrac32 = 720\\) km/h.",
   fast: "\\(80\\% = \\dfrac45\\), so the time factor is \\(\\dfrac54\\) — a quarter longer. A quarter of the usual time is 10 minutes, so the usual time is 40 minutes, i.e. \\(\\tfrac23\\) hour. \\(480 \\div \\tfrac23 = 720\\).\n" +
     "Converting the percentage to a fraction first is what makes \"a quarter longer\" jump out; \\(0.8\\) hides it.",
-  traps: "(A) 240 and (D) 360 come from treating the 10 minutes as the whole journey time or as half of it.\n" +
+  traps: "(A) 240 and (D) 360 fail the delay check: at 240 km/h the usual trip is 2 hours and the slowdown would cost 30 minutes; at 360 km/h, 80 minutes and a 20-minute delay. Only 720 makes the quarter-longer trip cost exactly 10 minutes.\n" +
     "(B) 480 is the distance reused as a speed — a number lifted straight from the stem.\n" +
     "(E) 840 overshoots; a check is quick, since \\(480/840\\) is not a tidy time.",
   take: "Speed \\(\\times \\tfrac45\\) → time \\(\\times \\tfrac54\\). The delay is the extra \\(\\tfrac14\\), so the usual time is four times the delay. Convert percentages of speed into fractions before doing anything else."
@@ -215,7 +215,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Average \\(= \\dfrac{240}{12} = 20\\) km/h.",
   fast: "Half the speed means double the time, so P's time is exactly Q's plus Q's again — and that extra copy is the 4 hours. So Q takes 4 hours, P takes 8, and \\(Q = 120/4 = 30\\), \\(P = 15\\).\n" +
     "Then the combined average is \\(240/12 = 20\\). Recognising \"half the speed → the difference equals the faster time\" removes the algebra entirely.",
-  traps: "(E) 50 is \\(15 + 30\\); (B) 40 is a scaled version of the same slip.\n" +
+  traps: "(E) 50 and (B) 40 both exceed Q's own 30 km/h — impossible for any blend of 15 and 30, so the between-the-speeds bound removes them unread.\n" +
     "(C) 30 is Q's speed on its own.\n" +
     "The plain average of 15 and 30 is 22.5 — not offered, because the correct combined figure is the harmonic mean, 20, which always sits [[below]] the arithmetic mean.\n" +
     "(A) 10 is below both speeds, which no average can be.",
@@ -229,7 +229,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Doubling both parts clears the decimal: 150 km in 2.5 h is the same as 300 km in 5 h, which is 60 km/h at a glance.\n" +
     "Doubling to kill a \\(.5\\) is quicker and safer than dividing by a decimal.",
   traps: "(C) 62.5 km/h is \\(150 \\div 2.4\\) — the result of reading \"2 hours 30 minutes\" as 2.4 hours. This is the single most common error in the topic: 30 minutes is 0.5 hours, not 0.3.\n" +
-    "(A) 55 and (E) 50 are what appear if you round the time up to 3 hours.\n" +
+    "(E) 50 is \\(150 \\div 3\\) — rounding the time up to 3 hours; (A) 55 splits the difference between that slip and the true 60.\n" +
     "(D) 75 is \\(150 \\div 2\\), dropping the 30 minutes altogether.",
   take: "Minutes convert by dividing by 60, never by moving a decimal point. 15 min = 0.25 h, 20 min = \\(\\tfrac13\\) h, 40 min = \\(\\tfrac23\\) h — know these before test day."
 },
@@ -281,7 +281,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Flip the fraction: \\(\\tfrac34\\) speed → \\(\\tfrac43\\) time → \\(\\tfrac13\\) extra. The lateness is that third, so multiply by 3: 60 minutes.\n" +
     "The general form is worth memorising: at \\(\\tfrac{a}{b}\\) of the usual speed, the delay is \\(\\dfrac{b-a}{a}\\) of the usual time.",
   traps: "(D) 80 minutes is the [[new]] journey time (\\(60 \\times \\tfrac43\\)), not the usual one — a correct value answering the wrong question.\n" +
-    "(A) 40 and (B) 45 come from taking the delay as a quarter rather than a third, i.e. flipping \\(\\tfrac34\\) to \\(\\tfrac14\\) instead of \\(\\tfrac43\\).\n" +
+    "(B) 45 is the true 60 shrunk by the same \\(\\tfrac34\\) — applying the speed factor to the [[time]]; (A) 40 merely doubles the delay instead of tripling it.\n" +
     "(E) 90 triples the wrong quantity.",
   take: "Speed \\(\\times \\tfrac34\\) → time \\(\\times \\tfrac43\\). The delay is the [[excess over 1]], which is \\(\\tfrac13\\), not \\(\\tfrac14\\). Getting that one fraction right is the whole question."
 }

@@ -86,6 +86,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Turning the division into a fraction and cancelling by 10 is faster than long division, and 25/4 is instantly recognisable.",
   traps: "(B) 6.50 would need 260 runs; (C) 6.75 would need 270. The choices step by 10 runs each, so a single arithmetic slip in \\(282 - 32\\) lands you on one of them.\n" +
     "(D) 7.00 is \\(280/40\\), what you get by forgetting the 32 already scored and rounding.\n" +
+    "(E) 7.25 would need 290 runs — the top of the ten-run staircase, forty runs beyond the true 250. It is the farthest decoy, there to reward computing \\(282 - 32\\) exactly rather than roughly.\n" +
     "The overall required rate is \\(282/50 = 5.64\\) — the answer must be above that, since the first 10 overs came in below it.",
   take: "Rate questions are total questions: multiply out what has happened, subtract from the target, divide by what is left. And the required rate always exceeds the overall rate if you have started slowly."
 },
@@ -126,6 +127,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "This works because the extra marks are shared out equally across every paper: 22 more marks lifting each of \\(n\\) papers by 2 means \\(2n = 22\\).",
   traps: "(E) 12 and (C) 10 sit either side for anyone dividing 22 by the wrong figure.\n" +
     "(A) 8 comes from using only the 20-mark increase and a rise of 2.5.\n" +
+    "(B) 9 is \\((20 - 2) \\div 2\\) — [[subtracting]] the History marks instead of adding them. Both extra scores push the total the same way, so they add.\n" +
     "The 63 and 65 themselves never enter the calculation — only their [[difference]] does, which is a useful signal that the shortcut exists.",
   take: "Total extra marks ÷ increase in average = number of items. The averages themselves cancel; only the gap between them matters."
 },

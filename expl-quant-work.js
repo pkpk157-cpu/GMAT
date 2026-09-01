@@ -269,7 +269,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Counting the team in units of the slower worker is the fastest route to any \"twice as fast\" question.",
   traps: "(B) 16 is \\(2 \\times 8\\), treating the team as two B's rather than three — it ignores that A is worth two on his own.\n" +
     "(A) 12 is A's solo time.\n" +
-    "(E) 48 doubles the answer, as though A were worth five B's.",
+    "(E) 48 doubles the answer, as though A were worth five B's.\n" +
+    "(D) 36 would make B [[three]] times slower than A (36 days against A's 12). \"Twice as fast\" fixes the solo times in the ratio 1 : 2 — the 3 in the combined rate \\(3r\\) is a rate sum, not a time ratio.",
   take: "Count everyone in units of the slowest worker. \"A is twice as fast\" makes the pair worth 3 slow-workers, so the slow worker alone takes 3× the joint time."
 },
 

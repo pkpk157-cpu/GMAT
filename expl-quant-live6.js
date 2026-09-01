@@ -555,6 +555,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The case worth pausing on is \\(n = -1\\): the base becomes \\(|-1| = 1\\), and 1 raised to any power stays 1, matching \\((-1)^2\\).",
   traps: "(C) 2 misses \\(n = -1\\), which is easy to overlook because a negative exponent usually kills a solution — here the base is 1, so it does not.\n" +
     "(B) 1 finds only \\(n = 2\\), treating \\(n = 1\\) as trivial or excluded.\n" +
+    "(A) 0 would mean no integer works at all, when \\(n = 1\\) checks in one line: \\(1^1 = 1 = 1 \\times 1\\).\n" +
     "(E) more than 3 comes from expecting a family of negative solutions by symmetry; \\(n = -2\\) already fails, since \\(2^{-2} = \\tfrac14 \\ne 4\\).\n" +
     "The structural point is that \\(n\\) appears both as an exponent and inside the base, so the two sides scale completely differently and can only agree at small values.",
   take: "When the variable appears in both the base and the exponent, test small integers and then argue divergence. A base of 1 makes any exponent harmless."

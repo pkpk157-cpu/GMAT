@@ -19,6 +19,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Backsolving works here because 540 was chosen to divide cleanly by the candidate speeds — start with a choice that divides 540, and you will usually land on it first or second.",
   traps: "(D) 45 and (C) 50 divide 540 cleanly too, which is why they are here — but 540/42 and 540/47 are not whole hours, so the 2-hour gap fails.\n" +
     "(B) 40 is what you get if you solve for \\(v\\) correctly and then forget to add the 3.\n" +
+    "(E) 55 fails the forward check immediately: at 52 versus 55 km/h the trip times are 10.4 and 9.8 hours — a gap of barely half an hour. The faster the speeds, the less a +3 km/h boost saves, so the large choices die first.\n" +
     "Note that 27 itself is deliberately absent: the question asks for the new speed, and the set-up hands you the old one.",
   take: "Fixed distance, two speeds, a time difference: either solve the quadratic or backsolve. Backsolving is almost always faster, and the last line of the stem tells you whether the answer is the old speed or the new one."
 },
@@ -45,7 +46,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "A sanity check that takes one second: the fastest traveller must have the [[smallest]] time, so the first number in the answer has to be the smallest of the three. Only (D) and (A) survive that, and (A) does not preserve the ratio.",
   traps: "(E) \\(5 : 2 : 1\\) is the speed ratio copied straight down — it says the fastest person takes the longest, which is backwards.\n" +
     "(B) \\(2 : 5 : 1\\) inverts the first two terms but leaves the third alone.\n" +
-    "(C) \\(2 : 1 : 10\\) inverts the outer terms and forgets the middle one.",
+    "(C) \\(2 : 1 : 10\\) inverts the outer terms and forgets the middle one.\n" +
+    "(A) \\(2 : 15 : 1\\) is a hybrid of two scalings: via the LCM 30 the times are \\(6 : 15 : 30\\), which reduces to \\(2 : 5 : 10\\) — keeping the raw 15 while reducing the other terms produces this mismatch.",
   take: "Same distance → time and speed are inverses. Flip each term of the speed ratio and clear denominators; then check that the fastest has the smallest time."
 },
 
@@ -103,7 +105,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Before computing, bound it: he spends slightly [[more]] time at 3 km/h than at 5.5, so the answer must be a little below the midpoint of 4.25. Only 4.15 fits.",
   traps: "The plain average of 3 and 5.5 is 4.25 — deliberately not offered, because its absence forces you to notice the times are unequal.\n" +
     "(A) 3.5 is the first leg's duration masquerading as a speed.\n" +
-    "(B) 7.15 and (D) 6.35 exceed the faster leg's speed of 5.5 km/h, which is impossible for an average.",
+    "(B) 7.15 and (D) 6.35 exceed the faster leg's speed of 5.5 km/h, which is impossible for an average — and (E) 8.0, close to the raw [[sum]] of the two speeds, fails the same test even more badly.",
   take: "An average speed must always lie strictly between the slowest and fastest speeds in the journey. That check kills two or three choices before you compute anything."
 },
 
@@ -183,9 +185,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(45 \\times 3.31 = 45 \\times 3 + 45 \\times 0.31 = 135 + 13.95 = 148.95\\).\n" +
     "Because each leg lasts exactly one hour, distance and speed are numerically identical — that is the shortcut the question is built on.",
   traps: "Every choice ends in \\(.95\\), so the decimal gives you nothing — the question is testing whether you compound correctly, and all five are two or three units apart.\n" +
-    "(A) 140.95 is \\(45 \\times 3.1\\), the result of adding 10% only once.\n" +
-    "(E) 153.95 is what you get by compounding a fourth time.\n" +
-    "Simple growth (\\(45 + 4.5 + 4.5\\) each hour) gives 148.5 — close enough to 148.95 that only careful compounding separates them.",
+    "(A) 140.95 and (B) 145.95 sit [[below]] the answer — under-compounding territory, where one of the later hours grew by less than its full 10%.\n" +
+    "(D) 150.95 and (E) 153.95 sit [[above]] it — the over-compounding side, where an extra 10% has crept into one of the hours.\n" +
+    "Simple growth (\\(45 + 4.5 + 4.5\\) each hour) gives 148.5 — within half a kilometre of the right answer, so only the exact third hour (\\(54.45\\), not 54) separates them.",
   take: "\"Increases by 10% each hour\" is geometric: \\(1 + 1.1 + 1.21\\). Factor the first term out and you replace three multiplications with one."
 },
 

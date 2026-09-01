@@ -75,6 +75,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "One subtraction and one division, with no equation to expand.",
   traps: "(A) $600 and (C) $650 sit either side of the answer for anyone estimating; only $625 makes the interest come out to exactly $275.\n" +
     "(E) $700 would give \\(2[0.07(700) + 0.05(1800)] = \\$278\\) — close, which is precisely why the choices are tightly spaced.\n" +
+    "(D) $675 gives \\(2[0.07(675) + 0.05(1825)] = \\$277\\). Each $50 moved from the 5% loan to the 7% loan adds exactly $2 of two-year interest, so every $25 step in the choices moves the interest by $1 — only $625 lands on $275.\n" +
     "The amount at 5% is $1,875, deliberately not offered: the question names the 7% portion in its last line.",
   take: "Alligation: assume everything sits at the lower rate, then divide the shortfall by the [[extra]] each dollar earns at the higher rate. It replaces a two-variable system with one division."
 },
@@ -115,7 +116,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Each dollar moved to scheme B costs 3 cents a year (14% − 11%), so \\(192 \\div 0.03 = \\$6{,}400\\) sits in B.\n" +
     "Halving the two-year total first is what keeps the numbers small enough to do mentally.",
   traps: "(D) $7,500 and (C) $7,200 are the amounts in [[scheme A]] under slightly wrong workings; scheme A actually holds \\(13900 - 6400 = \\$7{,}500\\), so (D) is the right arithmetic reported for the wrong scheme — the most likely way to lose this question.\n" +
-    "(B) $6,500 is a rounded near-miss designed to catch anyone who divides 192 by 0.03 loosely.",
+    "(B) $6,500 is a rounded near-miss designed to catch anyone who divides 192 by 0.03 loosely.\n" +
+    "(E) $7,800 fails a forward check: it would leave $6,100 in scheme A, and \\(2[0.14(6100) + 0.11(7800)] = \\$3{,}424\\) — eighty-four dollars short of the stated $3,508.",
   take: "Split-investment questions are alligation problems. And when both parts of the split appear among the choices — here 6,400 and 7,500 — re-read which one the question names before selecting."
 },
 
@@ -145,6 +147,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Drawing the alligation cross takes ten seconds and skips the algebra entirely.",
   traps: "(C) $24,000 comes from splitting the money evenly, which would give a blended rate of 15%, not 14%.\n" +
     "(B) $22,000 and (D) $25,000 are round decoys.\n" +
+    "(E) $27,000 would put $15,000 at 20% and lift the blend to \\(\\dfrac{1200 + 3000}{27{,}000} \\approx 15.6\\%\\), overshooting the stated 14%.\n" +
     "$8,000 — the amount at 20% — is deliberately absent from the list, because the question asks for the total and answering with the part is the natural slip.",
   take: "Alligation: the weights are in the ratio of the [[opposite]] distances from the blend. A blend nearer the low rate means more money at the low rate."
 },

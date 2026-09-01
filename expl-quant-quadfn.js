@@ -217,7 +217,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The question asks which is NOT possible — read that word twice, since four of the five choices are perfectly valid.",
   traps: "(D) 2.5 is inside the interval and looks suspicious only because it is not an integer — the inequality says nothing about integers.\n" +
     "(B) 0 satisfies it (\\(|0| = 0 < 3\\)) and is often doubted for the same reason.\n" +
-    "(A) −2 is inside; negative values are allowed because absolute value strips the sign.",
+    "(A) −2 is inside; negative values are allowed because absolute value strips the sign — and (C) 2 is its mirror image, included so that neither sign looks special.",
   take: "\\(|x| < k\\) is \\(-k < x < k\\); \\(|x| > k\\) is \\(x < -k\\) or \\(x > k\\). And in a NOT question, the four choices you can quickly confirm are the ones to discard."
 },
 

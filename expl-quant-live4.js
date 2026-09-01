@@ -13,7 +13,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Quadrant III: \\((-2, -1)\\) gives \\(-1 \\ge -3\\) ✓ and \\(-1 > -2\\) ✓.",
   fast: "Only the steeper constraint matters. \\(y \\ge 2x + 1\\) already forces \\(y > 1\\) for any positive \\(x\\), so the whole of quadrant IV is excluded before the second inequality is even read.\n" +
     "The second inequality, \\(y > \\tfrac12 x - 1\\), is the weaker of the two on the right-hand side and never becomes the binding constraint there.",
-  traps: "(E) II and IV over-excludes: quadrant II has \\(x < 0\\), where \\(2x + 1\\) can be very negative, so plenty of points with positive \\(y\\) satisfy both inequalities.\n" +
+  traps: "(B) II — and with it the pairing in (E) — over-excludes: quadrant II has \\(x < 0\\), where \\(2x + 1\\) can be very negative, so plenty of points with positive \\(y\\) satisfy both inequalities.\n" +
     "(C) III looks plausible because both \\(x\\) and \\(y\\) are negative there, but the line \\(y = 2x+1\\) drops steeply into that quadrant, leaving a wedge of solutions above it.\n" +
     "(A) I is the region where both inequalities are easiest to satisfy.\n" +
     "The reliable method here is not sketching but substitution: one test point per quadrant settles the whole question.",
@@ -292,7 +292,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Statement (2) is engineered to leave one operation from each camp — addition and subtraction — so it cannot decide.",
   traps: "(D) is the trap for anyone who stops once a statement narrows the field to two operations. Two candidates are fine if they agree, fatal if they disagree.\n" +
     "(B) picks the statement that eliminates multiplication and division, which feels like more progress but leaves the crucial ambiguity intact.\n" +
-    "(C) misses that (1) alone is decisive.\n" +
+    "(C) misses that (1) alone is decisive, and (E) goes further still: even together the statements narrow the field to addition alone, which certainly answers the question.\n" +
     "Note the subtlety in statement (2): division is excluded not because \\(2 \\div 0 \\ne 2\\) but because it is undefined — a legitimate elimination.",
   take: "Among \\(+, -, \\times, \\div\\), commutativity and associativity both hold for exactly \\(+\\) and \\(\\times\\). A statement is sufficient only if every surviving operation gives the same answer."
 },

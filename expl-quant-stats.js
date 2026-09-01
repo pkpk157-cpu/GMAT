@@ -118,7 +118,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "No computation is needed once you notice P is constant.",
   traps: "(C) \"They are equal\" is tempting because both sets share the same [[mean]] of 5 — but the mean says nothing about spread, which is exactly the distinction being tested.\n" +
     "(E) \"Both are zero\" applies P's property to Q.\n" +
-    "(D) \"Cannot be determined\" is wrong: both sets are fully specified.",
+    "(D) \"Cannot be determined\" is wrong: both sets are fully specified.\n" +
+    "(A) Set P picks the set with [[no]] spread at all — it reads \"greater standard deviation\" as \"greater consistency\", which is the exact opposite of what the statistic measures.",
   take: "Standard deviation is about spread, not centre. Identical values give zero; two sets can share a mean and have wildly different deviations."
 },
 
@@ -369,7 +370,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The combination route agrees: \\(\\dfrac{\\binom62}{\\binom{10}{2}} = \\dfrac{15}{45} = \\dfrac13\\).",
   traps: "(A) \\(\\tfrac9{25}\\) is \\(\\left(\\tfrac{6}{10}\\right)^2\\) — the answer [[with]] replacement, which ignores that the bag changes. That is the trap the phrase \"without replacement\" is testing.\n" +
     "(E) \\(\\tfrac35\\) is the probability of a single green draw.\n" +
-    "(C) \\(\\tfrac59\\) is the second conditional probability alone.",
+    "(C) \\(\\tfrac59\\) is the second conditional probability alone.\n" +
+    "(D) \\(\\tfrac12\\) is the \"two colours, so fifty-fifty\" guess. No draw sequence produces it: every two-draw probability here is a product of marble counts over 90, and 45 is not such a product.",
   take: "Without replacement, both numerator and denominator drop by one on the second draw. With replacement, the fractions are identical each time — read which one you have."
 },
 

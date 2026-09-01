@@ -169,6 +169,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Look for the variable with a coefficient of 1 — scaling to match it is always the cheapest elimination.",
   traps: "(A) $6.50 and (C) $7.50 bracket the answer; substituting either gives a non-integer programme price, which a ticket-and-programme question will not do.\n" +
     "(E) $5.00 makes \\(p = 11\\), failing the first equation.\n" +
+    "(D) $8.00 fails outright: the second equation would give \\(p = 31 - 32 = -1\\), a negative programme price. A choice that forces an impossible companion value eliminates itself.\n" +
     "The programme price of $3 is deliberately absent — the question names the ticket.",
   take: "Two equations, two unknowns: scale to match a coefficient and subtract. Substituting back is not optional — it is what catches an arithmetic slip in seconds."
 },

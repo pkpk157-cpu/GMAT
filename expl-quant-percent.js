@@ -143,7 +143,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "5,400 is \\(9/10\\) of the original → \\(5{,}400 \\times \\dfrac{10}{9} = 6{,}000\\).\n" +
     "Two clean fraction multiplications beat one division by 0.675.",
   traps: "Adding the losses — \\(10\\% + 25\\% = 35\\%\\) gone, so \\(4{,}050/0.65\\) — gives about 6,231, which is not on the list. That absence is the tell: the changes compound.\n" +
-    "(A) 5,000 and (C) 7,000 are the neighbouring round numbers you land on after rounding a wrong division; neither survives a forward check.",
+    "(A) 5,000 and (C) 7,000 are the neighbouring round numbers you land on after rounding a wrong division; neither survives a forward check.\n" +
+    "(D) 8,000 and (E) 9,000 fail the same forward check even faster: \\(8{,}000 \\times 0.675 = 5{,}400\\) and \\(9{,}000 \\times 0.675 = 6{,}075\\), both far above the 4,050 who remain. They catch anyone who divides by the loss factor 0.325 instead of the survival factor 0.675.",
   take: "Successive percentage changes multiply. To reverse them, work backwards from the final figure, undoing the [[last]] change first."
 },
 
@@ -185,7 +186,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Setting the base to 100 and walking the chain forward removes every fraction.",
   traps: "(D) 6 : 5 is the correct ratio written backwards. The question asks for Ram : [[Ravi]], and Ram is the smaller of the two — so the first number must be the smaller one.\n" +
     "(E) 8 : 15 is the two given percentages placed side by side; it is not a ratio of anyone's salary.\n" +
-    "(B) 2 : 3 is Amit : Ravi, the right method applied to the wrong pair.",
+    "(B) 2 : 3 is Amit : Ravi, the right method applied to the wrong pair.\n" +
+    "(A) 1 : 2 comes from reading \"150% of\" as \"150% [[more]] than\": that would make Ravi \\(2.5 \\times 0.8 = 2\\) times Ram. \"Of\" means multiply by 1.5, not by 2.5.",
   take: "Set the base to 100, walk the chain, then read the ratio in the [[order the question asks]]. Reversal is the single most common error in ratio questions."
 },
 
@@ -198,7 +200,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Count the defective units, not the percentages: 6 and 8 make 14 out of 200, and 14/200 doubles to 28/400 — or just halve 200 to see that 14 out of 200 is 7 per 100.\n" +
     "Whenever two groups with different sizes are merged, go to counts immediately.",
   traps: "(C) 7.5% is the plain average of 5% and 10%. It is wrong because the shipments are different sizes: the 120-part shipment carries more weight, which pulls the true answer [[below]] the midpoint.\n" +
-    "That relationship is a check in itself — the answer must lie strictly between 5% and 10%, and nearer 5%, which alone identifies 7.0% and rules out (D) and (E).",
+    "That relationship is a check in itself — the answer must lie strictly between 5% and 10%, and nearer 5%, which alone identifies 7.0% and rules out (D) and (E).\n" +
+    "(A) 6.5% would require 13 defective parts out of 200; the true counts are \\(6 + 8 = 14\\). It sits one part below the answer to punish a slip in either count.",
   take: "Percentages of different-sized groups cannot be averaged. Convert to counts, add, then divide once by the combined total."
 },
 
@@ -211,7 +214,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Pair the +5% and −5% first: by the \\(1 - (a/100)^2\\) rule that is \\(\\times 0.9975\\), giving \\(4{,}000 \\times 0.9975 = 3{,}990\\). Then take 10% off: \\(3{,}990 - 399 = 3{,}591\\).\n" +
     "Taking 10% off is always subtraction of a shifted decimal — never reach for a calculator-style multiplication.",
   traps: "Cancelling the +5% against the −5% gives \\(4{,}000 \\times 0.9 = 3{,}600\\). That number is deliberately [[not]] among the choices — its absence is the signal that the two changes have different bases.\n" +
-    "(C) 3,575 sits just below the right answer to catch a mis-rounded middle step; (A) 3,125 and (B) 3,255 come from applying the 10% cut more than once.",
+    "(C) 3,575 sits just below the right answer to catch a mis-rounded middle step; (A) 3,125 and (B) 3,255 come from applying the 10% cut more than once.\n" +
+    "(E) 3,721 is the only choice [[above]] the answer: it would need the three months to lose just 7% overall, when the factors \\(1.05 \\times 0.95 \\times 0.90\\) lose 10.2%. It catches an under-applied April cut.",
   take: "+5% followed by −5% is a 0.25% loss, not zero. On the GMAT that difference is exactly the gap between two answer choices."
 },
 
@@ -239,7 +243,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Dropping the decimals and comparing to 10,000 is quicker and less error-prone than multiplying 1.4 by 0.8 under time pressure.",
   traps: "(A) 20% increase is \\(40 - 20\\) — the additive trap. It is wrong because the 40% is a percentage of the price and the 20% is a percentage of the consumption; they are percentages of different things and cannot be combined by subtraction.\n" +
     "(D) 40% ignores the consumption cut entirely.\n" +
-    "(E) 44% has no sign attached, and 44 is what you would get from two 20% rises — a different question.",
+    "(E) 44% has no sign attached, and 44 is what you would get from two 20% rises — a different question.\n" +
+    "(B) 16% sits between the additive 20% and the true 12%, catching anyone who senses that \\(40 - 20\\) is too high and shaves it by guesswork instead of multiplying \\(1.40 \\times 0.80\\).",
   take: "When two different quantities each change, multiply their factors: \\(1.40 \\times 0.80\\). Percentages of different bases are never additive."
 },
 
@@ -254,7 +259,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Any percentage question with no numbers in it should start with \"let it be 100\".",
   traps: "(A) 22% is \\(2/9\\) truncated. The presence of both 22% and \\(22\\tfrac29\\%\\) is the giveaway that the answer is a repeating fraction and that rounding will be punished.\n" +
     "(E) 20% is the rise in [[income]], not in expenditure — right number, wrong quantity.\n" +
-    "(D) 24% is \\(20/\\!\\approx\\!83\\), the result of dividing by the new figure instead of the old one.",
+    "(D) 24% is \\(20/\\!\\approx\\!83\\), the result of dividing by the new figure instead of the old one.\n" +
+    "(C) \\(23\\tfrac13\\%\\) is the matching decoy just [[above]] the answer — it pairs with (A) below it so that computing \\(2/9\\) loosely as \"about 22 or 23 percent\" cannot settle the question. Only the exact fraction does.",
   take: "Percent increase always divides by the [[original]] value. And when two answer choices differ only by a fraction, the exact fraction is the answer — do not convert to a decimal and round."
 },
 
@@ -292,6 +298,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Recognise the reciprocal pairs and this is a five-second question.",
   traps: "(A) 5% lower is \\(25 - 20\\) — the additive instinct. The percentages are taken on different bases, so they never subtract.\n" +
     "(C) 5% higher and (D) 4% higher are the same slip with the sign flipped, or the residue of computing \\(1.25 \\times 0.8\\) carelessly.\n" +
+    "(E) 10% higher is the far decoy: no reading of \"20% off the new price\" produces a factor of 1.10, so it survives only pure guessing.\n" +
     "That an exact cancellation is even on offer is the hint: the numbers were chosen for it.",
   take: "Memorise the reciprocal pairs: \\(+25\\%/-20\\%\\), \\(+50\\%/-33\\tfrac13\\%\\), \\(+100\\%/-50\\%\\), \\(+\\tfrac13/-25\\%\\). Each pair returns you exactly to the start."
 },
@@ -303,7 +310,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Finding the value of 1% turns any \"\\(x\\%\\) is \\(A\\), what is \\(y\\%\\)\" question into a single multiplication, and you never need the whole number at all.",
   traps: "(A) 360 is \\(240 \\times 1.5\\) — scaling by \\(60/40\\) instead of the correct \\(75/40 = 1.875\\).\n" +
     "(D) 480 is \\(240 \\times 2\\), the scaling you would use for 80%.\n" +
-    "(E) 180 is 75% of 240 itself, applying the percentage to the part rather than to the whole.",
+    "(E) 180 is 75% of 240 itself, applying the percentage to the part rather than to the whole.\n" +
+    "(B) 420 is \\(240 \\times 1.75\\) — increasing the part [[by]] 75% instead of taking 75% [[of]] the whole. \"Of\" and \"more than\" are different instructions.",
   take: "Convert to a per-1% unit immediately. It removes the intermediate step of finding the whole and eliminates the wrong-base errors that all three traps here depend on."
 },
 
@@ -316,7 +324,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "That alone leaves only 28% and 30% in play, and the exact count \\(12 + 16 = 28\\) settles it.",
   traps: "(C) 30% is the plain average of 20% and 40%, which would be correct only if the class were an even split. Since there are more boys, the answer must be pulled below 30%.\n" +
     "(A) 24% is \\(0.60 \\times 0.40\\) — pairing the boys' share with the girls' rate.\n" +
-    "(E) 20% is the boys' rate alone.",
+    "(E) 20% is the boys' rate alone.\n" +
+    "(D) 32% swaps the two rates — \\(40\\%\\) of the 60 boys plus \\(20\\%\\) of the 40 girls gives \\(24 + 8 = 32\\). Right method, rates attached to the wrong groups.",
   take: "A weighted average always lands strictly between the two rates, nearer the one with the bigger weight. Using that to bound the answer often eliminates three choices before you compute."
 },
 

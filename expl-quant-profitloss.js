@@ -95,7 +95,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Reducing the fraction before converting is what makes the repeating decimal manageable — \\(1/24\\) is exact, \\(4.1666\\ldots\\) is not.",
   traps: "(D) \\(4\\tfrac16\\%\\) [[loss]] is the right magnitude with the wrong sign — $2,000 is above the $1,920 cost, so it must be a gain.\n" +
     "(B) 5% is \\(\\dfrac{100}{2000}\\), measuring the gain against the selling price.\n" +
-    "(A) 4% is \\(\\dfrac{1}{24}\\) truncated, and its presence next to \\(4\\tfrac16\\%\\) tells you the answer is an exact fraction.",
+    "(A) 4% is \\(\\dfrac{1}{24}\\) truncated, and its presence next to \\(4\\tfrac16\\%\\) tells you the answer is an exact fraction.\n" +
+    "(E) \\(3\\tfrac13\\%\\) is \\(\\dfrac{1}{30}\\) — a neighbouring \"nice\" fraction that no route from these numbers produces. Its job is to make \\(\\dfrac{1}{24}\\) feel less certain than it is.",
   take: "Always recover the cost price first — every percentage in this topic is measured against it. Then reduce the gain fraction before converting to a percentage."
 },
 

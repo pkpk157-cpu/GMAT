@@ -162,7 +162,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "So C beats everyone, and the fractional value of D never needs computing.",
   traps: "(E) \"Cannot be determined\" is the trap for anyone who stalls on \\(D\\) coming out fractional. A non-integer share is perfectly legitimate — the comparison is still decidable.\n" +
     "(B) B is the largest of the first two ratios and tempting if you stop after the first link.\n" +
-    "(D) D is chosen by anyone who reads \\(C : D = 7 : 5\\) backwards.",
+    "(D) D is chosen by anyone who reads \\(C : D = 7 : 5\\) backwards.\n" +
+    "(A) A is actually the [[smallest]] of the first three shares (15 against 20 and 24); it comes out on top only if every ratio in the chain is read backwards.",
   take: "When the question only asks which is largest, chain far enough to decide and no further. A ratio like \\(C : D = 7 : 5\\) settles the comparison without any arithmetic."
 },
 

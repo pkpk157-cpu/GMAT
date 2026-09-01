@@ -107,7 +107,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "The efficient construction: fix the required extremes, then push the *rest* of one group high and the rest of the other low — then swap.",
   traps: "(C) is the natural guess: one statement describes the sizes and the other the extremes, so they feel complementary. But nothing constrains the 9 and 11 middle students, who dominate both averages.\n" +
     "(B) treats \"holds the highest score\" as evidence of a higher average. A single top score can sit above a group of very low ones.\n" +
-    "(A) treats group size as relevant to an average, which it is not by itself.\n" +
+    "(A) treats group size as relevant to an average, which it is not by itself — and (D), which needs [[each]] statement to suffice alone, fails twice over for the same reasons.\n" +
     "The habit worth building on yes/no questions: aim to produce one YES and one NO rather than trying to compute an answer.",
   take: "Knowing the extreme values of two groups constrains neither average. On yes/no questions, try to construct one YES scenario and one NO scenario."
 },
@@ -1345,7 +1345,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "That reasoning gives the answer without listing a single multiple.",
   traps: "(E) is the trap for anyone who insists that \\(p\\) must be pinned to a single value. It need not be — every candidate shares the same digit sum, which is all the question asks for.\n" +
     "(B) treats a fact about \\(q\\) as a fact about \\(p\\).\n" +
-    "(A) treats an unconstrained divisibility as informative.\n" +
+    "(A) treats an unconstrained divisibility as informative — with \\(q\\) free, statement (1) allows \\(p = 10\\) (digit sum 1, via \\(q = 1\\)) just as easily as \\(p = 18\\) (digit sum 9).\n" +
+    "(D) requires each statement to work [[alone]], and (1) alone fails exactly as above, so (D) dies with the weaker statement.\n" +
     "Note the stem's \"less than 99\": that is what excludes \\(p = 99\\), whose digits sum to 18 rather than 9.",
   take: "A digit sum is determined whenever all candidates share it — the value itself need not be. Two-digit multiples of 9 all have digit sum 9, since 99 is the only one reaching 18."
 },

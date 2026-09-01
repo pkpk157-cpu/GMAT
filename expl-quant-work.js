@@ -17,7 +17,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "So C does \\(4 - 2 - 1 = 1\\) unit a day → 24 days.\n" +
     "Choosing 24 — the LCM of the days in the problem — makes every rate a whole number and removes all the fractions.",
   traps: "(A) 12 is A's time, handed to you in the stem.\n" +
-    "(B) 16 and (D) 18 come from treating \"half as efficient\" as \"half the days\" — it means half the [[rate]], so B takes twice as long, 24 days, not 6.\n" +
+    "(B) 16 and (D) 18 are mid-range decoys. The real danger is reading \"half as efficient\" as \"half the days\" (B = 6): that makes C's computed rate [[negative]] (\\(\\tfrac16 - \\tfrac1{12} - \\tfrac16 < 0\\)), and the absurdity is your cue that efficiency halves the rate, doubling B's days to 24.\n" +
     "(E) 28 exceeds anything consistent with the three finishing in 6 days.",
   take: "Work in rates and pick the job size as the LCM of the given days. \"Half as efficient\" halves the rate and [[doubles]] the days — the inversion is where most errors start."
 },
@@ -31,7 +31,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Let the job be 48 units. The pairs do 4, 3 and 2 units a day. Adding gives 9 units a day for [[two]] of each worker, so one of each does 4.5 units a day.\n" +
     "\\(48 \\div 4.5 = 10\\tfrac23\\) days.\n" +
     "The \"add all the pairs, then halve\" move is the standard trick whenever you are given every pair but no individual.",
-  traps: "(C) 12 is the fastest pair's time — the answer must be [[less]] than that, since adding a third worker can only speed things up. That bound alone eliminates (C) and (A).\n" +
+  traps: "(C) 12 is the fastest pair's time — the answer must be [[less]] than that, since adding a third worker can only speed things up. The bound kills (C) on sight; (A) \\(10\\tfrac13\\) survives it and sits just below the true \\(10\\tfrac23\\) to punish a slip in the ninths.\n" +
     "(E) \\(5\\tfrac13\\) forgets to halve, doubling the team's rate.\n" +
     "(D) 9 is a round decoy just below the answer.",
   take: "Given every pair, add all the pair rates and halve: that is the whole team. And sanity-check against the fastest pair — the trio must always be quicker."
@@ -60,7 +60,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(72 \\div 10 = 7.2 = 7\\tfrac15\\) days.\n" +
     "Twice as efficient means [[half]] the time of the pair, and the pair takes \\(72/5 = 14.4\\) days — so 7.2, which is also a quick check.",
   traps: "(E) \\(14\\tfrac25\\) is the [[pair's]] time, before doubling C's efficiency — the value you compute one step before the answer.\n" +
-    "(A) \\(4\\tfrac15\\) and (C) \\(5\\tfrac15\\) come from doubling the wrong quantity or halving twice.\n" +
+    "(A) \\(4\\tfrac15\\) and (C) \\(5\\tfrac15\\) borrow the answer's fifth so the fraction alone cannot identify it; only \\(72 \\div 10\\) lands on the right whole part.\n" +
     "(D) \\(6\\tfrac15\\) is a decoy just below the answer.",
   take: "Twice as efficient = twice the rate = half the time. Compute the pair first, then apply the doubling to the [[rate]], and take the reciprocal only at the very end."
 },
@@ -74,8 +74,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Let the job be 240 units. \\(A+B = 8\\) units a day; \\(C = -2\\); \\(B + C = 1\\), so \\(B = 3\\).\n" +
     "Then \\(A = 8 - 3 = 5\\) units a day → \\(240/5 = 48\\) days.\n" +
     "Taking the LCM as the job size turns the negative rate into a plain \\(-2\\) and the whole question into three subtractions.",
-  traps: "The trap this question exists for is treating C as a helper. If you set \\(C = +\\dfrac{1}{120}\\), you get \\(B\\) negative and the arithmetic falls apart — that collapse is the signal you have the sign wrong.\n" +
-    "(C) 60 and (E) 66 are what appear from that sign error; (B) 36 and (D) 42 bracket the answer for estimators.",
+  traps: "The trap this question exists for is treating C as a helper. If you set \\(C = +\\dfrac{1}{120}\\), you get \\(B\\) negative (\\(\\tfrac1{240} - \\tfrac1{120} < 0\\)) and the arithmetic falls apart — that collapse is the signal you have the sign wrong.\n" +
+    "(C) 60 and (E) 66 are far-side decoys that no consistent working produces, and (B) 36 and (D) 42 bracket the answer for estimators — all four fall to the forward check \\(240 \\div 48 = 5\\) units a day.",
   take: "A worker who undoes the job has a negative rate. Rates still simply add — the sign does all the work, and there is no separate formula to remember."
 },
 
@@ -88,9 +88,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Take the LCM of 12, 15 and 20 — that is 60 — and read off the rates: \\(5 : 4 : 3\\). P and Q are 9 parts of 12, i.e. three-quarters.\n" +
     "Three-quarters of 84,000 is 63,000.\n" +
     "The pay ratio is always the [[rate]] ratio, which is the reciprocal of the days ratio — never split the money in the ratio 12 : 15 : 20.",
-  traps: "(C) $42,000 is half the pot, which would be the split if pay went by head count.\n" +
-    "(D) $49,000 comes from splitting in the ratio of the [[days]] (\\(12 : 15\\) of \\(12+15+20\\)) rather than the rates — the single most common error here.\n" +
-    "(B) $56,000 is P and R's share; (E) $70,000 overshoots. R's share is $21,000, deliberately absent.",
+  traps: "(C) $42,000 is half the pot — a naive even split between \"P and Q\" and everything else.\n" +
+    "(B) $56,000 is doubly tempting: it is the head-count split (P and Q as two workers of three) [[and]] the true combined share of P and R.\n" +
+    "(D) $49,000 sits beside the days-ratio split (\\(\\tfrac{27}{47}\\) of the pot \\(\\approx \\$48{,}300\\)) — the inversion error, rounded. (E) $70,000 overshoots; R's own $21,000 is deliberately absent.",
   take: "Pay follows rate, and rate is the reciprocal of time. Convert days to rates over their LCM first — the ratio you get is what the money splits by."
 },
 
@@ -185,9 +185,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Let the job be 210 units. A: 70 days → 3 units a day. B: 52.5 days → 4 units a day.\n" +
     "Together 7 units a day → \\(210/7 = 30\\) days.\n" +
     "B being faster than A is worth noticing early: B does a third in the time A does a quarter, so B must finish sooner.",
-  traps: "(A) 35 is the number from the stem, and it is also impossible — two workers together must beat A's solo time of 70 by more than that.\n" +
-    "(D) 60 and (E) 65 sit near A's solo time, which no pair can take.\n" +
-    "(B) 40 comes from treating B's whole-job time as 70 as well, i.e. missing the third-versus-quarter comparison.",
+  traps: "(A) 35 is the stem's number reused — and exactly what two copies of A would manage (\\(\\tfrac1{70} + \\tfrac1{70} = \\tfrac1{35}\\)): the slip of treating B as A's equal.\n" +
+    "(D) 60 and (E) 65 exceed B's solo 52.5 days, impossible once anyone helps.\n" +
+    "(B) 40 fails the forward check: it would need 5.25 units a day against the true 7.",
   take: "Scale part-jobs to whole jobs before comparing anyone. And bound the answer: two workers together are always faster than the faster one alone."
 },
 
@@ -216,9 +216,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Both awkward percentages are friendly fractions: \\(166\\tfrac23\\% = \\dfrac53\\) and \\(88\\tfrac89\\% = \\dfrac89\\).\n" +
     "Rates are then \\(A : B = 5 : 3\\), so the pair is 8 parts. Eight parts do \\(\\dfrac89\\) of the job in 10 days, so [[one part]] does \\(\\dfrac19\\) of the job in 10 days.\n" +
     "B is 3 parts → \\(\\dfrac39 = \\dfrac13\\) of the job in 10 days → 30 days for the whole thing.",
-  traps: "(A) 40 is what you get by reading \\(166\\tfrac23\\%\\) as \"A is \\(\\dfrac53\\) of B\" but then applying it to times instead of rates.\n" +
-    "(B) 25 and (D) 35 bracket the answer; A alone takes 18 days, which is deliberately absent.\n" +
-    "(E) 45 comes from using \\(\\dfrac89\\) as a multiplier on 10 rather than a share of the job.",
+  traps: "(A) 40 fails the forward check: B at 40 days puts A at 24, the pair at \\(\\tfrac1{15}\\) a day — ten days would finish only \\(\\tfrac23\\) of the job, not \\(\\tfrac89\\).\n" +
+    "(E) 45 fails the same check further out (ten days would give \\(\\tfrac{16}{27}\\)).\n" +
+    "(B) 25 and (D) 35 bracket the answer; A alone takes 18 days, which is deliberately absent.",
   take: "Convert every ugly percentage to a fraction first: \\(166\\tfrac23\\% = \\tfrac53\\), \\(88\\tfrac89\\% = \\tfrac89\\), \\(133\\tfrac13\\% = \\tfrac43\\). The arithmetic then stays in small whole numbers."
 },
 

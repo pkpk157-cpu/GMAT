@@ -70,7 +70,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The 65 has two jobs: cover the new average of \\(x\\) for this innings, and pay for the 2-run rise across the 11 earlier innings.\n" +
     "So \\(65 = x + 11 \\times 2\\), giving \\(x = 65 - 22 = 43\\).\n" +
     "Every \"raises his average by \\(d\\)\" question is this one line: score = new average + \\(d \\times\\) (previous innings).",
-  traps: "(A) 42 comes from using 12 innings instead of 11 in the surcharge (\\(65 - 24\\)) — the rise applies only to the innings that came [[before]] this one.\n" +
+  traps: "(A) 42 splits the difference between the old average (41) and the new (43) — the sign of muddling [[which]] average the question asks for. Using 12 innings in the surcharge (\\(65 - 24 = 41\\)) lands on the old one.\n" +
     "(D) 45 and (E) 46 come from adding the 2 rather than subtracting the surcharge.\n" +
     "(C) 44 is the near-miss for a slip of one innings.",
   take: "Score in the new innings = new average + (rise × number of previous innings). Count the [[previous]] innings, not the total — that off-by-one is what the wrong answers are for."
@@ -202,7 +202,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Total: 600 km in 25 hours \\(= 24\\) km/h.\n" +
     "Choosing a distance that is a multiple of the speeds turns the whole question into three easy divisions.",
   traps: "(D) 30 km/h is the plain average of 40, 30 and 10 — wrong because the slowest leg eats a disproportionate share of the [[time]] (12 of the 25 hours) even though it is only 20% of the distance.\n" +
-    "(E) 31 is a weighted average using the distance percentages as weights (\\(0.6 \\times 40 + 0.2 \\times 30 + 0.2 \\times 10 = 32\\)) — the natural but incorrect move.\n" +
+    "(E) 31 sits just under the distance-weighted average (\\(0.6 \\times 40 + 0.2 \\times 30 + 0.2 \\times 10 = 32\\)) — the natural but incorrect move, offset slightly so that even the wrong method needs a second slip to land on it.\n" +
     "(A) 25 and (B) 26 sit just above the answer to punish rounding.",
   take: "Percentages of [[distance]] → average with times (harmonic). Percentages of [[time]] → average with speeds (arithmetic). The slow leg always drags the answer down more than it looks like it should."
 },

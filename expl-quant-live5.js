@@ -269,7 +269,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Direct counting here would require splitting into exactly-one-pair, two-pairs, three-of-a-kind and four-of-a-kind cases, which is far more work and far more error-prone.",
   traps: "(E) 1,296 is the unrestricted total, the answer if you forget to subtract.\n" +
     "(A) 720 is \\(6!\\), which counts arrangements of all six letters rather than four-letter passwords.\n" +
-    "(B) 864 and (C) 900 come from subtracting a wrong distinct-letter count, such as \\(6^4 - 6 \\times 5 \\times 4 \\times 4\\) or \\(1296 - 396\\).\n" +
+    "(B) 864 and (C) 900 subtract the wrong distinct-letter count (432 and 396 respectively) — the falling product \\(6 \\times 5 \\times 4 \\times 3 = 360\\) is the only correct one.\n" +
     "The distinct count must be a falling product \\(6 \\times 5 \\times 4 \\times 3\\); using \\(\\binom64\\) instead would count sets rather than ordered passwords.",
   take: "\"At least one repeat\" = (all arrangements) − (all distinct). Passwords are ordered, so the distinct count is the falling product \\(n(n-1)(n-2)\\dots\\), not a combination."
 },
@@ -283,7 +283,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Apply the must-sit-together condition first to shrink the universe, then subtract the must-not cases from *that* smaller universe — not from \\(6!\\). Getting the order of operations right is the whole technique.\n" +
     "Each gluing step reduces the item count by one and multiplies in a factor of 2 for the internal order.",
   traps: "(B) 240 stops after the Jeong–Leila condition and never applies the Gita–Inge restriction.\n" +
-    "(A) 288 comes from subtracting a Gita–Inge count computed against all \\(6!\\) arrangements rather than against the 240 that already satisfy the first condition.\n" +
+    "(A) 288 is double the answer — an internal-order factor of 2 applied one time too many somewhere in the chain.\n" +
     "(D) 120 forgets the factor of 2 for Jeong and Leila's internal order.\n" +
     "(E) 96 reports the subtracted quantity itself.\n" +
     "The disciplined phrasing is: within the set where JL are together, how many also have GI together? That framing prevents mixing universes.",
@@ -319,9 +319,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Maximum overlap means minimum union, and the minimum union is just the larger probability. So the answer is \\(1 - 0.68\\) — one subtraction, no formula.\n" +
     "The companion bound is worth knowing at the same time: the union is at most \\(\\min(1,\\ 0.54 + 0.68) = 1\\), which would make \\(P(\\text{neither})\\) as small as 0.\n" +
     "Note that the question says \"greatest possible\", which signals a bounding problem rather than a computation.",
-  traps: "(A) 0.22 is \\(1 - (0.54 + 0.68 - 0.68 \\times 0.54)\\)-flavoured — the answer under an *independence* assumption, which the question never grants and which \"greatest possible\" explicitly rules out.\n" +
+  traps: "(A) 0.22 is \\(0.54 + 0.68 - 1\\) — the [[minimum]] possible overlap of the two events, a genuine bound in this problem attached to the wrong question.\n" +
     "(D) 0.46 is \\(1 - 0.54\\), using the smaller event as the union.\n" +
-    "(C) 0.37 and (E) 0.63 come from adding or averaging the two probabilities.\n" +
+    "(C) 0.37 is \\(0.54 \\times 0.68\\) — the chance both rise under an independence assumption the question never grants — and (E) 0.63 is its complement.\n" +
     "The habit worth building: when a probability question says \"greatest possible\" or \"least possible\", it is asking about the range of dependence structures, not about independent events.",
   take: "For two events, \\(\\max(P_A, P_B) \\le P(A \\cup B) \\le \\min(1, P_A + P_B)\\). \"Greatest possible\" for the complement means minimising the union — maximum overlap."
 },
@@ -469,9 +469,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — Probability \\(= \\dfrac{30}{64} = \\dfrac{15}{32}\\).",
   fast: "Enumerate by multiset, not by ordered triple — there are only twenty multisets, and each carries a multiplicity of 1, 3 or 6 depending on how many of its entries repeat.\n" +
     "Then apply one test per multiset: does the sum of the two smaller entries exceed the largest? The equality cases (\\(1{+}2{=}3\\), \\(1{+}3{=}4\\), \\(2{+}2{=}4\\)) are where this question is won, since they *fail*.",
-  traps: "(B) \\(\\tfrac{13}{32}\\) counts 26 failures — it treats the three equality cases as valid triangles, which is the intended trap. A degenerate \"triangle\" with zero area is not a triangle.\n" +
-    "(D) \\(\\tfrac{17}{32}\\) and (E) \\(\\tfrac{19}{32}\\) overcount, usually by mishandling the multiplicities: a triple with all three entries distinct represents 6 ordered outcomes, not 3.\n" +
-    "(A) \\(\\tfrac{11}{32}\\) misses one of the failing multisets.\n" +
+  traps: "The intended trap is treating the equality cases (\\(1{+}2{=}3\\), \\(1{+}3{=}4\\), \\(2{+}2{=}4\\), and even \\(1{+}1{=}2\\)) as triangles — a degenerate \"triangle\" with zero area is not one.\n" +
+    "(A), (B), (D) and (E) flank the answer at two and four ordered outcomes' distance — the typical price of mis-weighting one multiset (a distinct triple represents 6 ordered outcomes, a doubled one 3) or mishandling one equality case.\n" +
     "Note also that the three bags are separate, so repeats are allowed — \\(\\{1,1,2\\}\\) is a legitimate outcome.",
   take: "The triangle inequality is strict: \\(a + b > c\\), with equality failing. Enumerate multisets and weight each by its number of ordered arrangements (1, 3 or 6 for three picks)."
 },
@@ -515,7 +514,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The net-change equation \\(2u - n\\) is the key: with 5 steps of \\(\\pm 1\\), the reachable net changes are \\(-5, -3, -1, 1, 3, 5\\), and \\(+3\\) corresponds to 4 ups. Then it is \\(\\binom54 / 2^5\\).\n" +
     "Notice that the parity of the net change must match the parity of the number of steps — with 5 steps you can never end up an even number of dollars from where you started.",
   traps: "(A) \\(\\tfrac1{16}\\) is \\(2/32\\), and (B) \\(\\tfrac18\\) is \\(4/32\\) — both from miscounting \\(\\binom54\\), which is 5, not 2 or 4.\n" +
-    "(D) \\(\\tfrac9{32}\\) and (E) \\(\\tfrac38\\) come from solving for the wrong \\(u\\), usually \\(u = 3\\) (which gives a net of \\(+1\\), not \\(+3\\)) — \\(\\binom53 = 10\\), giving \\(\\tfrac{10}{32}\\).\n" +
+    "(D) \\(\\tfrac9{32}\\) and (E) \\(\\tfrac38 = \\tfrac{12}{32}\\) flank the miscount \\(\\tfrac{10}{32}\\) that comes from reading \"up by \$3\" as \"3 up days\" (\\(\\binom53 = 10\\), but 3 ups net only \\(+1\\)) — placed to catch anyone near that road.\n" +
     "The equation \\(2u - 5 = 3\\) is what prevents that: \"up by 3\" does not mean \"3 up days\".",
   take: "With \\(n\\) steps of \\(\\pm 1\\), the net displacement is \\(2u - n\\). Solve for \\(u\\) first, then count \\(\\binom nu\\) out of \\(2^n\\)."
 },
@@ -528,9 +527,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — Probability \\(= \\dfrac{6}{24} = \\dfrac14\\).",
   fast: "\"Exactly \\(k\\) correct\" always factors as (choose which \\(k\\) are correct) × (derangements of the rest). Here the second factor is the number of derangements of 2, which is 1.\n" +
     "Knowing the small derangement values — \\(D_1 = 0\\), \\(D_2 = 1\\), \\(D_3 = 2\\), \\(D_4 = 9\\) — makes every question of this family a ten-second computation.",
-  traps: "(D) \\(\\tfrac38\\) counts 9 favourable outcomes, which is \\(\\binom42 \\times\\) something larger — it comes from allowing the other two keys to be assigned freely (\\(2! = 2\\) ways), which double-counts the case where all four are correct.\n" +
-    "(E) \\(\\tfrac12\\) is the same over-count taken one step further, treating half of all reassignments as favourable.\n" +
-    "(A) \\(\\tfrac18\\) and (B) \\(\\tfrac16\\) come from miscounting the total as 16 or from using \\(\\binom42\\) alone over 24.\n" +
+  traps: "(D) \\(\\tfrac38\\) is \\(\\tfrac9{24}\\) — the nine derangements of four keys, i.e. the probability that [[no]] key fits, a genuine quantity attached to the wrong question.\n" +
+    "(E) \\(\\tfrac12\\) is \\(6 \\times 2 = 12\\) outcomes — letting the last two keys sit freely, which wrongly counts the all-four-correct case as \"exactly two\".\n" +
+    "(A) \\(\\tfrac18\\) (3 outcomes) and (B) \\(\\tfrac16\\) (4) undercount the six correct-pair choices.\n" +
     "The word \"exactly\" is what forces the derangement condition on the remaining keys — \"at least two\" would be a different count.",
   take: "\"Exactly \\(k\\) fixed points\" = \\(\\binom nk \\times D_{n-k}\\). The small derangement numbers are \\(D_2 = 1\\), \\(D_3 = 2\\), \\(D_4 = 9\\)."
 },
@@ -690,8 +689,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Decode the sibling counts into group sizes first — \"exactly one sibling\" means a pair, \"exactly two siblings\" means a trio — and the rest is a small combination count.\n" +
     "Then compute the complement: it is much easier to count the 5 sibling pairs than the 16 non-sibling ones.",
   traps: "(A) \\(\\tfrac5{21}\\) is the probability that the two *are* siblings — the complement, and the natural slip when you have just computed 5.\n" +
-    "(C) \\(\\tfrac47\\) and (D) \\(\\tfrac57\\) come from working with individual people rather than pairs.\n" +
-    "(B) \\(\\tfrac37\\) is \\(\\tfrac9{21}\\), from counting the trio as contributing 6 ordered pairs instead of 3 unordered ones.\n" +
+    "(B) \\(\\tfrac37\\), (C) \\(\\tfrac47\\) and (D) \\(\\tfrac57\\) are all sevenths — the scale of individual head-counts, not of the 21 possible pairs the drawing actually ranges over.\n" +
     "The structural decoding is the real difficulty: it is tempting to read \"3 people have exactly 2 siblings\" as three separate families rather than one trio.",
   take: "Translate \"has exactly \\(k\\) siblings present\" into a group of size \\(k+1\\). Count within-group pairs as \\(\\binom{k+1}{2}\\) and take the complement."
 },

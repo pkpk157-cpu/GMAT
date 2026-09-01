@@ -495,7 +495,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) 0 assumes a \\(15\\%\\) cut and a \\(25\\%\\) rise cancel; they cannot, since \\(0.85 \\times 1.25 = 1.0625\\).\n" +
     "(E) 6.80 is \\(10\\%\\) of 68, the sort of figure produced by applying the \\(25\\%\\) rise to the original price rather than to the sale price.\n" +
     "(C) 3.40 is \\(5\\%\\) of 68, from a similar base confusion.\n" +
-    "(B) 1.00 comes from computing the original as 85 and the final as 84-ish — that is, from dividing 68 by 0.8 instead of 0.85.\n" +
+    "(B) 1.00 is a small-gap filler for anyone whose two bases nearly cancelled but not quite.\n" +
     "The base for the \\(25\\%\\) increase is the *new* price; that is what the phrase \"raises the new price\" specifies.",
   take: "Read which price each percentage acts on. A drop of \\(a\\%\\) followed by a rise of \\(b\\%\\) never returns to the start unless \\((1-a)(1+b) = 1\\)."
 },
@@ -512,7 +512,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Testing the choices is also fast here: each candidate takes about ten seconds to check forwards, and only one works.",
   traps: "(A) 40 is Brian's original amount, not Jennifer's — a natural mix-up given that the equation is written around \\(J\\).\n" +
     "(C) 120 and (D) 140 come from applying the \\(25\\%\\) comparison to Jennifer's *original* amount rather than her amount after the transfer.\n" +
-    "(E) 180 arises from reading \"1/5 of her money\" as one fifth of the difference, or from adding the 60 on the wrong side.\n" +
+    "(E) 180 fails the forward check: Jennifer would keep 144 and Brian would hold 156 — [[more]] than her, not 25% less.\n" +
     "The two conditions to keep distinct: the 60-dollar gap is *before* the transfer, and the \\(25\\%\\) comparison is *after* it.",
   take: "Set the variable to the person the question asks about, apply the transfer to both sides, and note that \"25% less than\" means \\(\\times 0.75\\) of the other's post-transfer amount."
 },
@@ -638,7 +638,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — The question asks which choice is *at least* 0.44, so the comparison is inclusive.\n" +
     "Step 3 — Convert each option: \\(\\tfrac25 = 0.400\\); \\(\\tfrac{11}{34} \\approx 0.324\\); \\(\\tfrac{43}{99} \\approx 0.434\\); \\(\\tfrac8{21} \\approx 0.381\\); \\(\\tfrac9{20} = 0.450\\).\n" +
     "Step 4 — Only \\(0.450\\) clears \\(0.44\\), so the answer is \\(\\tfrac9{20}\\).",
-  fast: "Rewrite the threshold as \\(\\tfrac{22}{50} = \\tfrac{11}{25}\\) and compare by cross-multiplication rather than division. The only genuinely close call is \\(\\tfrac{43}{99}\\): since \\(\\tfrac{43}{99}\\) is just under \\(\\tfrac{43}{98} = \\tfrac{43}{98}\\), and \\(0.44 \\times 99 = 43.56 > 43\\), it falls short. Everything else is clearly below \\(0.44\\) or clearly above.",
+  fast: "Rewrite the threshold as \\(\\tfrac{22}{50} = \\tfrac{11}{25}\\) and compare by cross-multiplication rather than division. The only genuinely close call is \\(\\tfrac{43}{99}\\): since \\(0.44 \\times 99 = 43.56 > 43\\), it falls just short. Everything else is clearly below \\(0.44\\) or clearly above.",
   traps: "(C) \\(\\tfrac{43}{99}\\) is engineered to look like \"a bit under a half\" and sits only \\(0.006\\) below the threshold — rounding it to \\(0.44\\) is fatal. Compare it exactly: \\(43 \\times 50\\) against \\(22 \\times 99\\), i.e. 2150 against 2178, so it is smaller.\n" +
     "(A) \\(\\tfrac25 = 0.40\\) is the trap of comparing against \\(\\tfrac{11}{25}\\) carelessly, since both have small denominators.\n" +
     "(B) \\(\\tfrac{11}{34}\\) shares the numerator 11 and invites the false reasoning \"same numerator, so about the same size\" — but the denominator fell from 50 only to 34, not to 25.\n" +
@@ -736,8 +736,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Of the choices, only \\(6\\) is reachable.",
   fast: "The question says \"could be\", so it is a divisibility puzzle, not an equation. Two constraints do all the work: A's white is a multiple of 6, B's white is a multiple of 4, and they sum to 30. Only two splits survive, and only one of their red counts appears among the options.\n" +
     "Chaining the ratios is the step to get right: match on the shared colour by scaling, never by adding.",
-  traps: "(B) 3 is what you get by taking Bag A's red as \\(\\tfrac13\\) of a white count that is not a multiple of 6 — for instance assuming A holds 9 whites, which the blue ratio forbids.\n" +
-    "(C) 4 and (E) 8 come from treating A's white as a multiple of 3 (from the red : white ratio alone) and ignoring that the white : blue ratio forces multiples of 6.\n" +
+  traps: "(B) 3 would need 9 whites in Bag A, which the white-to-blue ratio forbids — A's whites must be a multiple of 6.\n" +
+    "(C) 4 and (E) 8 pass A's test but die on B's: they need 12 or 24 whites in A, leaving 18 or 6 for Bag B — and neither is the multiple of 4 that B's 1 : 4 ratio requires.\n" +
     "(A) 1 is the smallest-scale reading, taking the ratio numbers themselves as counts.\n" +
     "The two constraints must be applied together; either one alone admits values the other rules out.",
   take: "Chain two ratios by scaling them to a common shared term. On \"could be\" questions, translate the ratios into divisibility conditions and test the few splits that satisfy both."

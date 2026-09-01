@@ -145,8 +145,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Three-digit numbers: \\(100\\) to \\(999\\), that is 900 numbers × 3 digits \\(= 2700\\) presses.\n" +
     "Step 5 — Total \\(= 9 + 180 + 2700 = 2889\\).",
   fast: "The three band sizes — 9, 90, 900 — are worth knowing by reflex, and each band's digit count is just its size times its length. \\(9 + 180 + 2700\\) is then a five-second sum, and the leading 2700 already tells you the answer must start with 28 or 29.",
-  traps: "(A) 2708 and (C) 2644 fall short — they come from mis-sizing a band, most often calling the two-digit range 89 numbers or the three-digit range 899.\n" +
-    "(D) 2978 and (E) 3067 overshoot, typically by charging three key presses to numbers that need only one or two, or by running the count to 1000.\n" +
+  traps: "(A) 2708 and (C) 2644 fall short and (D) 2978 and (E) 3067 overshoot — all four are bracket decoys, and none survives the exact band arithmetic \\(9 + 180 + 2700\\).\n" +
+    "The 2700 from the three-digit band alone pins the answer's neighbourhood; the near-miss 2887-style totals from mis-sized bands (89 or 899 numbers) are not even offered.\n" +
     "Every wrong answer here is a counting error, not a reasoning error — which is exactly why the band sizes 9 / 90 / 900 should be automatic.",
   take: "Digit-counting problems split into bands: 9 one-digit, 90 two-digit, 900 three-digit numbers. Multiply each band's size by its digit length and add."
 },
@@ -208,9 +208,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Dividing by a fraction means multiplying by its reciprocal: \\(\\dfrac{17}{60} \\times 18 = \\dfrac{306}{60}\\).\n" +
     "Step 5 — \\(\\dfrac{306}{60} = \\dfrac{51}{10} = 5\\tfrac{1}{10}\\).",
   fast: "The second bracket is the one that collapses: \\(\\tfrac25 + \\tfrac35 = 1\\) exactly, so it is really \\(1 - \\tfrac59 - \\tfrac{7}{18} = \\tfrac{18 - 10 - 7}{18} = \\tfrac{1}{18}\\). Spotting that pair turns a four-fraction grind into one line, and dividing by \\(\\tfrac1{18}\\) is just multiplying by 18.",
-  traps: "(A) \\(2\\tfrac13\\) and (C) \\(3\\tfrac1{10}\\) are what a sign slip in the alternating brackets produces — mis-handling one minus changes the denominator bracket enormously because it is so close to zero.\n" +
-    "(B) \\(3\\tfrac16\\) and (E) \\(4\\tfrac1{10}\\) come from multiplying the two brackets instead of dividing, or from inverting the wrong one.\n" +
-    "Before dividing, note that the denominator bracket is tiny (\\(\\tfrac1{18}\\)) while the numerator is about \\(0.28\\) — the answer must therefore be around 5, which alone singles out one choice.",
+  traps: "All four wrong answers die on one size check: the divisor bracket is \\(\\tfrac1{18}\\), so the quotient is \\(18 \\times \\tfrac{17}{60} \\approx 5.1\\) — and (A), (B), (C) and (E) all sit below 5.\n" +
+    "A sign slip in either alternating bracket is what generates answers in that low range: the divisor bracket sits so close to zero that one wrong minus swings the quotient wildly.\n" +
+    "Run the estimate before the exact division — it settles the question on its own here.",
   take: "Scan an alternating fraction string for pairs that make a whole number before finding a common denominator. Then estimate the size of the quotient as a sanity check."
 },
 
@@ -254,8 +254,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — \\(N = 5 \\times 7930 + 4 = 39650 + 4 = 39654\\).\n" +
     "Step 6 — Check: \\(39654 = 385 \\times 102 + 384\\), and \\(385 \\times 102 = 39270\\), leaving 384 — a legal remainder under 385. ✓",
   fast: "Work strictly outward from the innermost division: multiply by 11 and add 10, then by 7 and add 6, then by 5 and add 4. Even faster, check the units digit: \\(5 \\times (\\text{anything}) + 4\\) must end in 4 or 9, and only two choices end that way — then one multiplication separates them.",
-  traps: "(B) 32754 and (C) 38554 come from folding the remainders in the wrong order — pairing 4 with 11 and 10 with 5 instead of the order the divisions were performed.\n" +
-    "(D) 39954 is a near-miss on the last step, the sort of thing a slip in \\(5 \\times 7930\\) produces; it is close enough to the right value to survive a careless check.\n" +
+  traps: "(B) 32754 and (C) 38554 pass the units filter (a number of the form \\(5a+4\\) ends in 4 or 9, and both end in 4) but die one level in: their first quotients, \\((32754-4)/5 = 6550\\) and \\((38554-4)/5 = 7710\\), leave 5 and 3 on division by 7 — not the required 6.\n" +
+    "(D) 39954 is a near-miss on the last step; its quotient 7990 also fails the 7-test (remainder 3).\n" +
     "(E) tempts anyone whose reconstruction produced a number not on the list — which usually means the folding order, not the arithmetic, went wrong.",
   take: "Division by factors rebuilds outward from the innermost quotient: multiply by the last divisor, add the last remainder, and repeat back to the first."
 },
@@ -326,7 +326,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Check with 444444: \\(444444 \\div 7 = 63492\\), \\(\\div 11 = 40404\\), \\(\\div 13 = 34188\\). ✓",
   fast: "\\(1001 = 7 \\times 11 \\times 13\\) is the single most useful factorisation in number-property questions, and \\(111111 = 111 \\times 1001\\). Once you see the 1001 hiding inside, the answer is immediate without dividing anything.",
   traps: "(A) 17 and (B) 19 appear nowhere in \\(3 \\times 7 \\times 11 \\times 13 \\times 37\\), so both fail on the factor that was slipped in beside a true one — the trap is checking only the first factor listed and accepting the pair.\n" +
-    "(D) offers 9, and the repunit's digit sum is 6, so 9 never divides it (for \\(d = 3\\) it happens to, but the question says *always*).\n" +
+    "(D) offers 9, and the repunit's digit sum is 6, so 9 never divides it (for \\(d = 3, 6, 9\\) it happens to, but the question says *always*).\n" +
     "(E) is for anyone who tried dividing 111111 by hand and lost confidence.",
   take: "\\(1001 = 7 \\times 11 \\times 13\\) and \\(111111 = 3 \\times 7 \\times 11 \\times 13 \\times 37\\). \"Always divisible\" means it must hold for every digit, so one counterexample kills a claim."
 },
@@ -340,7 +340,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The whole question is the observation \\(296 = 8 \\times 37\\). When the new divisor divides the old one, the big multiple vanishes and you only need to reduce the remainder itself: \\(75 \\bmod 37 = 1\\). One subtraction of 74.",
   traps: "(B) 2 is the *quotient* when 75 is divided by 37, not the remainder — the classic one-line-too-early stop.\n" +
     "(C) 8 is the other factor of 296, grabbed from the factorisation instead of the reduction.\n" +
-    "(D) 11 and (E) 14 come from reducing 75 by the wrong multiple of 37, or from dividing 296 rather than 75.\n" +
+    "(D) 11 and (E) 14 fail the defining check: a remainder must differ from 75 by a multiple of 37, and \\(75 - 11 = 64\\), \\(75 - 14 = 61\\) are not multiples of 37.\n" +
     "This shortcut only works because 37 divides 296. If it did not, the remainder would not be determined at all — worth noticing, since that is how the same question gets turned into a data-sufficiency trap.",
   take: "If the new divisor divides the old one, the new remainder is just the old remainder reduced: \\(N \\bmod d = r \\bmod d\\) whenever \\(d \\mid D\\) and \\(N = Dk + r\\)."
 },
@@ -387,7 +387,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(C) 40.843 is the single most likely wrong answer — it is the correct product, with the leading \\(2.002\\) never added. Whenever a choice equals your second-to-last line, suspect exactly this.\n" +
     "(B) 4.2845 is the right answer with the decimal point moved, which happens when the three decimal places get miscounted.\n" +
     "(A) 2.002 is what you write down if you decide the braces come out to zero and give up.\n" +
-    "(E) 45.130 is a near-miss from a sign slip inside the braces, close enough to survive a rushed check — which is why the braces must be fully resolved before the multiplication happens.",
+    "(E) 45.130 sits just above the answer to punish loose estimation — resolving the braces exactly (5.17, not \"about 5.5\") is what separates it from 42.845.",
   take: "Innermost bracket first, then multiplication, then left-to-right addition and subtraction. Estimate the size first, and beware of choices that match an intermediate line."
 },
 
@@ -399,8 +399,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — \\(9 - 4 + 4\\) = [[9]].",
   fast: "The whole question is built so that both products cancel to the same clean number. \\(1\\tfrac29\\) has denominator 9 and \\(3\\tfrac3{11}\\) has numerator 36 over 11 — the 11s vanish; the second pair does the same with 7s. Convert, cancel, and you get \\(4\\) twice, so the \\(-4\\) and \\(+4\\) annihilate and the expression is just the leading 9.",
   traps: "(C) \\(8\\tfrac{32}{81}\\) carries a denominator of 81, which can only come from a mixed-number conversion that left a stray ninth — a sure sign that \\(1\\tfrac29\\) was turned into something other than \\(\\tfrac{11}{9}\\).\n" +
-    "(B) 8 and (E) \\(7\\tfrac12\\) come from mishandling the order: reading the expression as \\(9 - \\left(\\text{first product} + \\text{second product}\\right)\\), or subtracting where the sign is plus.\n" +
-    "(A) \\(\\tfrac54\\) is what a full order-of-operations collapse produces — treating \"of\" as though it applied to the running total \\(9 - 1\\tfrac29\\).\n" +
+    "(B) 8 and (E) \\(7\\tfrac12\\) are what broken cancellations look like: once either product is off, the \\(-4\\) and \\(+4\\) no longer annihilate and the clean 9 is lost.\n" +
+    "(A) \\(\\tfrac54\\) is the bottom-end filler — nothing short of collapsing the whole order of operations lands there.\n" +
     "The guard is to compute each \"of\" product on its own line before touching the \\(+\\) and \\(-\\).",
   take: "\"Of\" is multiplication and binds tighter than \\(+\\) or \\(-\\). Convert mixed numbers to improper fractions first, then look for cancellations before multiplying anything out."
 },
@@ -475,7 +475,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) 8 is the answer for anyone who counts the multiples of 5 and stops — it forgets that \\(25 = 5^2\\) contributes two factors of 5, not one. This is by far the most common miss.\n" +
     "(C) 10 double-counts: it adds an extra 5 for a number that does not have one (perhaps 40 or 35 treated as a higher power).\n" +
     "(D) 7 undercounts the multiples of 5 themselves.\n" +
-    "(E) 11 comes from adding a \\(\\lfloor 40/125 \\rfloor\\)-style term that is actually zero.",
+    "(E) 11 rounds the higher terms up instead of flooring — \\(40/25\\) counted as 2 and \\(40/125\\) as 1 gives \\(8 + 2 + 1 = 11\\).",
   take: "Multiples of \\(p^2\\), \\(p^3\\), … each contribute an extra factor. Always run the floor sum past the first term until it reaches zero."
 },
 
@@ -502,8 +502,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — General form: \\(N = 84c + 53\\), so every such number leaves 53 on division by 84 — the answer does not depend on the choice of \\(c\\).",
   fast: "The product of the three divisors is 84, the very number in the question — that is the signal. Rebuild the smallest \\(N\\) by folding back (\\(4 \\to 17 \\to 53\\)) and it *is* the remainder, because it is already below 84.",
   traps: "(E) 92 is impossible on sight: a remainder must be smaller than its divisor, and \\(92 > 84\\). That check costs one second and removes a choice.\n" +
-    "(A) 80 and (B) 76 come from folding the remainders in the wrong order — using \\(3 \\to 4 \\to 7\\) forwards instead of rebuilding from the last remainder backwards.\n" +
-    "(C) 41 drops one step of the reconstruction, typically the final \\(+2\\) or the multiplication by 3.\n" +
+    "(A) 80 and (B) 76 both fail the original divisions: 76 leaves 1, not 2, on division by 3, and 80 passes that stage but its quotient 26 leaves 2, not 1, on division by 4.\n" +
+    "(C) 41 is the rebuild with the last remainder taken as 3 instead of 4 — it passes the first two divisions and dies at the third.\n" +
     "Always verify your rebuilt number against all three original divisions before trusting it: \\(53 \\div 3 = 17\\) r2 ✓, \\(17 \\div 4 = 4\\) r1 ✓, \\(4 \\div 7 = 0\\) r4 ✓.",
   take: "When the divisor asked about equals the product of the successive divisors, the smallest rebuilt number is the remainder. And a remainder is always smaller than its divisor."
 },
@@ -548,8 +548,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — \\(13 \\times 52\\) = [[676]].",
   fast: "An arithmetic list's sum is always (count) × (middle term). With 13 terms the middle one is the 7th, \\(10 + 6 \\times 7 = 52\\), so the sum is \\(13 \\times 52 = 676\\) — and \\(13 \\times 52 = 13 \\times 13 \\times 4 = 169 \\times 4\\) if you prefer that route.\n" +
     "The two places to be careful are the endpoints: 10 is the first two-digit member, and 94 the last.",
-  traps: "(B) 666 and (D) 683 bracket the right answer and come from getting an endpoint wrong — starting at 17 instead of 10, or running past 94 to 101.\n" +
-    "(E) 777 is the sum you would get with an extra term or two tacked on; it is also suspiciously \"neat\", which on this question is a warning sign rather than a reassurance.\n" +
+  traps: "(B) 666 is the sum with the first term dropped — starting the list at 17 loses exactly the 10.\n" +
+    "(E) 777 is \\(676 + 101\\): running one term past 94 and counting the three-digit 101. (D) 683 is a filler seven above the answer.\n" +
     "(A) 0 is there for anyone who concludes no two-digit number qualifies — 10 itself does.\n" +
     "The count is where this question is won or lost: \\(\\frac{\\text{last} - \\text{first}}{\\text{difference}} + 1\\), and the \\(+1\\) is not optional.",
   take: "Sum of an evenly spaced list = (count) × (average of first and last). Count = \\(\\frac{\\text{last} - \\text{first}}{d} + 1\\) — and pin the true first and last terms before anything else."
@@ -703,7 +703,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — The pole is 16 m long.",
   fast: "The green fraction is a shade over three-quarters (\\(453/600 = 0.755\\)), so the pole is a little over \\(12.08 \\div 0.755 \\approx 16\\) — and only one choice is anywhere near that. The exact division is worth doing once to confirm, but the estimate alone picks the answer.",
   traps: "(B) 18, (C) 20, (D) 30 and (E) 32 are all far too long: the green portion is more than three-quarters of the pole, so the total cannot be much above 16 when green measures 12.08.\n" +
-    "(D) 30 and (E) 32 in particular come from inverting the ratio — multiplying by \\(\\tfrac{600}{147}\\) or by \\(\\tfrac{453}{600}\\) instead of dividing by the green fraction.\n" +
+    "(D) 30 and (E) 32 would make green only 0.40 and 0.38 of the pole (\\(12.08 \\div 30\\), \\(12.08 \\div 32\\)) — roughly the coloured share and the green share swapped.\n" +
     "(C) 20 is roughly \\(12.08 \\div 0.6\\), the answer if the coloured fractions were mis-added into a much larger total.\n" +
     "Sanity-check the direction every time: the pole must be longer than its green section, but not by much.",
   take: "Add the parts over one common denominator, subtract from 1 for the remainder, then divide the known length by that fraction. Estimate the fraction first so the size of the answer is never in doubt."
@@ -717,8 +717,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 5 — The question asks what fraction of the large bottle's fluid is left: \\(\\dfrac{3}{7}\\).",
   fast: "Set the bucket to 28 and the two bottle sizes read straight off as 7 and 4. A small bottle is therefore \\(\\tfrac47\\) of a large one, so \\(\\tfrac37\\) of the large one survives the pour — one subtraction from 1.",
   traps: "(C) \\(\\tfrac47\\) is the fraction *used up*, not the fraction left over. Read the last clause of the question before answering; these two are the standard pair.\n" +
-    "(A) \\(\\tfrac27\\) and (D) \\(\\tfrac57\\) come from setting the bottle sizes the wrong way round — treating the large bottle as \\(\\tfrac1 4\\) of the bucket in units of small bottles, which inverts the ratio.\n" +
-    "(E) \\(\\tfrac17\\) is what you get by subtracting the counts (\\(7 - 4 = 3\\)) and then dividing by the wrong thing, or by comparing bottle counts rather than volumes.\n" +
+    "(A) \\(\\tfrac27\\) and (D) \\(\\tfrac57\\) flank the answer as fillers — neither survives the unit count: the large bottle holds 7 units, the small takes 4, and 3 of the 7 remain.\n" +
+    "(E) \\(\\tfrac17\\) is the [[small bottle]] as a fraction of the bucket — the right kind of ratio, taken between the wrong pair of containers.\n" +
     "Note that more large bottles fit than small ones is impossible — four large equals seven small, so a large bottle is the bigger one; keeping that straight prevents the inversions.",
   take: "Set the shared total to the lcm of the counts, and every part becomes a whole number. Then re-read which quantity the fraction is *of* — used or left, part or whole."
 },
@@ -730,10 +730,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Not French: \\(15 - 8 = 7\\), a fraction of \\(\\dfrac{7}{15}\\).\n" +
     "Step 5 — In fractions: French women are \\(\\tfrac15 \\times \\tfrac53 = \\tfrac13\\) of the dinner, French total \\(\\tfrac15 + \\tfrac13 = \\tfrac8{15}\\), non-French \\(\\tfrac7{15}\\).",
   fast: "Take the total as 15 and the whole problem becomes small whole numbers: 3 French men, 5 French women, 8 French, 7 not. The only wording to get right is \"\\(\\tfrac23\\) greater than\", which means multiply by \\(\\tfrac53\\) — not by \\(\\tfrac23\\).",
-  traps: "(E) \\(\\tfrac35\\) is what you get by treating French women as \\(\\tfrac23\\) *of* the men rather than \\(\\tfrac23\\) greater: that gives 2 women, 5 French, 10 non-French. This is the trap the question is built on.\n" +
-    "(B) \\(\\tfrac25\\) comes from stopping at the French women count and never adding the men, or from \\(1 - \\tfrac35\\).\n" +
-    "(A) \\(\\tfrac15\\) simply repeats the given fraction of French men.\n" +
-    "(C) \\(\\tfrac23\\) copies the comparison fraction straight out of the question, which is never the answer to \"what fraction of the whole\".",
+  traps: "(E) \\(\\tfrac35\\) and (B) \\(\\tfrac25\\) are the two halves of the same misread — as many French women as men: 6 French out of 15 makes the French share \\(\\tfrac25\\) and the rest \\(\\tfrac35\\).\n" +
+    "(C) \\(\\tfrac23\\) is doubly tempting: it is the comparison fraction copied from the stem, [[and]] exactly what \"women \\(= \\tfrac23\\) of the men\" produces (2 women, 5 French, 10 of 15 not French).\n" +
+    "(A) \\(\\tfrac15\\) simply repeats the given fraction of French men.",
   take: "\"\\(x\\) greater than\" means multiply by \\((1+x)\\); \"\\(x\\) of\" means multiply by \\(x\\). Choose a total equal to the lcm of the denominators so every group is a whole number."
 },
 
@@ -746,8 +745,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 6 — Check forwards: \\(20 \\to\\) sells \\(10+1 = 11\\), leaving 9 \\(\\to\\) sells \\(3+1 = 4\\), leaving 5 \\(\\to\\) sells \\(1+1 = 2\\), leaving 3. ✓",
   fast: "Reverse each step with a single rule: add the 1 back, then divide by the fraction that remained. \\((3+1) \\div \\tfrac45 = 5\\); \\((5+1) \\div \\tfrac23 = 9\\); \\((9+1) \\div \\tfrac12 = 20\\). Three lines, no variables.\n" +
     "If reversing feels risky, just test the choices forwards — five candidates, three short steps each, and only one ends on 3.",
-  traps: "(A) 15 and (B) 18 are what you get from working backwards but forgetting to restore the \"+1\" at one of the stages — the single most common slip in this classic problem type.\n" +
-    "(D) 25 and (E) 28 come from adding the 1 in the wrong order: dividing first and then adding, instead of adding then dividing.\n" +
+  traps: "(B) 18 is the rebuild with the final \"+1\" forgotten — \\(9 \\div \\tfrac12\\) instead of \\((9+1) \\div \\tfrac12\\).\n" +
+    "(A) 15, (D) 25 and (E) 28 all break the story at once: half of 15 plus 1 sells 8.5 apples, 25 sells 13.5, and 28 leaves 13 — of which a third is not a whole number.\n" +
     "The order matters because the customer takes the fraction *first* and the extra apple *after*, so reversing means undoing the apple before undoing the fraction.\n" +
     "Every one of these is caught by the forward check, which costs fifteen seconds.",
   take: "Undo \"a fraction plus a constant\" in reverse order: add the constant back, then divide by the fraction that was left. Always verify by running the story forwards."
@@ -763,7 +762,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — He started with fare plus balance: \\(860 + 215 = 1075\\).",
   fast: "The third band is the one to simplify: Rs 8 per 5 km is Rs 1.60 per km, so 200 km costs 320. Then the last line is the whole question — he still holds a quarter of the fare, so his initial money is \\(\\tfrac54\\) of the fare: \\(860 \\times 1.25 = 1075\\).",
   traps: "(D) 860 is the fare itself — the answer to \"how much did the ride cost\", not \"how much did he start with\". It is the most likely wrong answer because it is the number you compute last but one.\n" +
-    "(B) 1255 and (C) 1540 come from treating the balance as one-fourth of the *initial* amount rather than of the fare, or from adding a whole fare instead of a quarter.\n" +
+    "(B) 1255 and (C) 1540 fail the structure check: the initial amount must be \\(\\tfrac54\\) of the fare, and they would need fares of 1004 and 1232 — which no banding of 320 km produces.\n" +
     "(E) is unnecessary once the bands are added correctly.\n" +
     "Watch the third band's units too: Rs 8 for every 5 km is not Rs 8 per km, and reading it that way inflates the fare by 1280.",
   take: "Split tiered rates band by band and check each band's units. Then read the final relationship carefully: a fraction \"of what he paid\" is not a fraction of what he started with."

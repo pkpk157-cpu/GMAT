@@ -435,7 +435,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Fill the Venn diagram from the middle out: both = 8, soccer only = 10, tennis only = 7. That is 25 accounted for, leaving 5.\n" +
     "Starting with the overlap is the habit that makes every one of these fast and error-free.",
   traps: "(B) 7 is the tennis-only count and (E) 10 is the soccer-only count — regions of the diagram, not the answer.\n" +
-    "(C) 3 comes from \\(30 - 18 - 15 + 8 + 2\\)-style arithmetic slips.\n" +
+    "(C) 3 is \\(18 + 15 - 30\\) — the excess of the two team counts over the class, mistaken for the answer.\n" +
     "(D) 8 is the overlap, handed to you in the stem.",
   take: "\\(|A \\cup B| = |A| + |B| - |A \\cap B|\\), then subtract from the total for \"neither\". Fill the overlap first when drawing the diagram."
 },
@@ -458,7 +458,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — \\(\\text{both} = 55 - 50 = 5\\).",
   fast: "The two subject counts sum to 55, which is 5 more than the 50 students. That excess is exactly the double-counted overlap: 5.\n" +
     "Whenever the union equals the total, the overlap is simply (sum of the groups) − (total).",
-  traps: "(A) 10 and (D) 15 come from arithmetic slips in \\(55 - 50\\).\n" +
+  traps: "(A) 10 and (D) 15 fail the forward check: an overlap of 10 makes the union \\(30 + 25 - 10 = 45\\), and 15 makes it 40 — but all 50 students study something.\n" +
     "(E) 0 would require the counts to sum to exactly 50, contradicting the given figures.\n" +
     "(B) 3 is a decoy near the answer.",
   take: "When everyone belongs to at least one group, the overlap is the excess of the group totals over the population. The \"at least one\" phrasing is what licenses this."
@@ -470,7 +470,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — So 10 read neither.",
   fast: "\\(60 + 50 = 110\\), which overshoots 100 by 10 — but that overshoot is the double-counted 20, so the union is \\(110 - 20 = 90\\) and 10 are left out.\n" +
     "Union first, then subtract from the total: two operations for any \"neither\" question.",
-  traps: "(A) 30 is \\(100 - 60 - 20 + 10\\)-style arithmetic, or the non-A readers minus the overlap.\n" +
+  traps: "(A) 30 is the B-only region (\\(50 - 20\\)) — a real part of the diagram, but not \"neither\".\n" +
     "(B) 20 is the overlap from the stem.\n" +
     "(C) 0 assumes everyone reads something; (E) 40 is the count who do not read A.",
   take: "Neither \\(=\\) total \\(- |A \\cup B|\\), and \\(|A \\cup B| = |A| + |B| - \\text{both}\\). Two steps, always in that order."
@@ -513,8 +513,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The age gap of 30 never changes. When the father is exactly twice the son, the gap equals the son's age — so at that moment the son is 30 and the father 60.\n" +
     "That is 10 years from now, so today they are 20 and 50.\n" +
     "The constant-gap insight removes the algebra from every problem of this shape.",
-  traps: "(A) 40 and (B) 45 come from applying the doubling at today's ages rather than in 10 years.\n" +
-    "(C) 48 and (E) 55 bracket the answer.\n" +
+  traps: "(A) 40 is twice the son's [[current]] age of 20 — the doubling applied today instead of in 10 years.\n" +
+    "(B) 45 fails the check: it makes the son 15, and in 10 years 55 is not twice 25. (C) 48 and (E) 55 bracket the answer.\n" +
     "The son's age of 20 is deliberately absent — the question asks for the father.",
   take: "An age difference is constant forever. When one person is twice another, the difference equals the younger person's age — often the whole solution in one line."
 },
@@ -528,7 +528,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The gap is \\(4d - d = 3d\\) and never changes. When the mother is twice the daughter, the gap equals the daughter's age then: \\(3d = d + 16\\), so \\(d = 8\\).\n" +
     "One equation instead of expanding a bracket, and it uses the same constant-gap idea as the previous question.",
   traps: "(D) 16 is the number of years from the stem.\n" +
-    "(B) 10 and (C) 12 come from mis-expanding the bracket (e.g. \\(2d + 16\\)).\n" +
+    "(B) 10 and (C) 12 fail the forward check: a daughter of 10 gives 26 and 56 in 16 years (56 is not twice 26), and 12 gives 28 and 64 — further off still.\n" +
     "(E) 6 undershoots; the mother's current age of 32 is not offered.",
   take: "Set up with today's ages, apply the future condition, and use the constant difference as a shortcut. Always check by ageing both people forward."
 },
@@ -586,7 +586,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Each \"exactly two\" student is counted once too many (adding 1) and each \"exactly three\" student twice too many (adding 2). So \\(e_2 + 2(3) = 16\\), giving \\(e_2 = 10\\).\n" +
     "Counting the [[excess]] directly is one line and skips both equations.",
   traps: "(A) 13 is \\(16 - 3\\), subtracting the triple-counted students only once instead of twice.\n" +
-    "(C) 9 and (D) 8 come from mis-setting the excess.\n" +
+    "(C) 9 is \\(3 \\times 3\\), the all-three students' registrations counted as the answer. (D) 8 simply halves the excess of 16.\n" +
     "(E) 7 undershoots. Note that \"exactly one\" works out to 55, which is not offered — the question asks specifically about exactly two.",
   take: "Three sets: (sum of group sizes) − (total people) = (exactly two) + 2 × (exactly three). Counting the excess registrations is faster than either full formula."
 }

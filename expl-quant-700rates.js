@@ -98,8 +98,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "That gives \\(T = \\dfrac{2k}{6 - 2k}\\), so \\(T = \\dfrac15\\) and \\(T = 2\\).\n" +
     "The head start is the whole difficulty — Linda's time is always Tom's plus one, and the opposite directions never matter because only distances are compared.",
   traps: "(A) 60 is the head start itself, a number sitting in the stem.\n" +
-    "(B) 72 and (D) 90 come from measuring one of the two times from Linda's start rather than Tom's.\n" +
-    "(C) 84 is a near-miss for anyone who mishandles the \\(T+1\\).",
+    "(B) 72 is the first crossing measured from [[Linda's]] start: \\(12 + 60\\).\n" +
+    "(C) 84 and (D) 90 are fillers between the plausible mis-clockings — any mishandled \\(T+1\\) lands nearby.",
   take: "With a staggered start, write both distances in terms of one person's clock. And note that \"opposite directions\" is scenery here — the question compares distances, not the gap between them."
 },
 
@@ -114,9 +114,8 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Two shortcuts. First, the word \"ensure\" means take the worst case — the slowest speed, 12 mph. Second, the answer is the [[difference]] between the two journey times, not the biking time itself.\n" +
     "\\(24/12 = 2\\) hours; \\(120 - 45 = 75\\) minutes.\n" +
     "Getting either of those two readings wrong lands you on a specific wrong choice, which is exactly how the list is built.",
-  traps: "(A) 135 comes from using 12 mph on the full 30 miles, forgetting the 20% shorter route.\n" +
-    "(B) 105 uses the wrong distance or speed pairing.\n" +
-    "(C) 95 and (E) 45 come from using the fastest speed (90 minutes) or from reporting the driving time itself.\n" +
+  traps: "(B) 105 uses the full 30-mile distance: 30 miles at 12 mph is 150 minutes, and \\(150 - 45 = 105\\). (A) 135 pushes the same slip one step further.\n" +
+    "(E) 45 is the fast-case answer, \\(90 - 45\\) — planning around 16 mph cannot [[ensure]] anything. (C) 95 is a filler.\n" +
     "Choosing 16 mph gives \\(90 - 45 = 45\\) minutes — choice (E) — which is why the fast case is on the list.",
   take: "\"To ensure\" always means plan for the worst case. And check whether the question wants the new duration or the [[extra]] time — both will be among the choices."
 },
@@ -147,7 +146,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "In fractions that is \\(\\dfrac34 \\times \\dfrac54 \\times \\dfrac23 \\times \\dfrac43 = \\dfrac{5}{6}\\), and \\(6 \\times \\dfrac56 = 5\\) hours.\n" +
     "The cancellation is dramatic because each clock's rate is defined [[relative to the previous one]] — so the factors chain, and reading that correctly is the entire question.",
   traps: "(D) 6:00 assumes the gains and losses cancel — they nearly look symmetric, but they are percentages of different bases.\n" +
-    "(B) 5:34 and (C) 5:42 come from adding and subtracting the minute figures instead of chaining the ratios.\n" +
+    "(B) 5:34 and (C) 5:42 are near-miss fillers — chains with only some of the four factors applied correctly land between 5:00 and 6:00.\n" +
     "(E) 6:24 has Clock 4 running fast, which the chain does not support.",
   take: "\"Gains \\(m\\) minutes per hour [[relative to]] another clock\" means multiply that clock's rate by \\(\\dfrac{60+m}{60}\\). Chain the factors and cancel — never add and subtract the minutes."
 },
@@ -166,7 +165,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "Dividing a whole number of degrees by \\(5.5 = \\tfrac{11}{2}\\) can only leave a denominator of 11 (or a factor of it), so every choice built on some other denominator is decoration.\n" +
     "(A) \\(20\\tfrac{13}{21}\\) and (B) \\(20\\tfrac{13}{17}\\) sit just below the true value with denominators no clock calculation produces.\n" +
     "(C) \\(21\\tfrac{3}{23}\\) is close enough in size to look tempting if you estimated instead of computing.\n" +
-    "(E) \\(22\\tfrac49\\) overshoots — it is what you land near if you close the gap to \\(90°\\) on the wrong side, and its denominator is again impossible.",
+    "(E) \\(22\\tfrac49\\) overshoots, and its denominator of 9 — like every non-11 denominator here — is one that dividing degrees by \\(5.5\\) can never produce.",
   take: "Relative speed of the hands is \\(5.5°\\) per minute. Time \\(=\\) (degrees to close) \\(\\div\\, 5.5\\), and the answer always has 11 in the denominator."
 },
 
@@ -181,7 +180,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "That bound does most of the work.",
   traps: "(C) $900.00 is exactly the non-compounded total — the trap for anyone who adds the percentages.\n" +
     "(D) $920.24 is a near-miss just below the answer, for a slip in the middle step.\n" +
-    "(A) $506.00 and (B) $726.24 come from applying only some of the payments.",
+    "(A) $506.00 is the first two payments only (\\(200 + 306\\)), dropping the final 4%. (B) $726.24 is the last two (\\(306 + 420.24\\)), dropping the first.",
   take: "\"Reinvested\" means compounded. Compute the simple-interest total first as a floor — the compounded answer must exceed it, usually by only a little, which brackets the answer immediately."
 },
 

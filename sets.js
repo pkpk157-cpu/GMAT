@@ -267,11 +267,11 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "When \\(\\left(\\frac{1}{2}-\\frac{1}{4}+\\frac{1}{5}-\\frac{1}{6}\\right)\\) is divided by \\(\\left(\\frac{2}{5}-\\frac{5}{9}+\\frac{3}{5}-\\frac{7}{18}\\right)\\), the result is:",
         "choices": [
-          "\\(2\\tfrac{1}{3}\\)",
-          "\\(3\\tfrac{1}{6}\\)",
-          "\\(3\\tfrac{1}{10}\\)",
-          "\\(5\\tfrac{1}{10}\\)",
-          "\\(4\\tfrac{1}{10}\\)"
+          "\\(2\\dfrac{1}{3}\\)",
+          "\\(3\\dfrac{1}{6}\\)",
+          "\\(3\\dfrac{1}{10}\\)",
+          "\\(5\\dfrac{1}{10}\\)",
+          "\\(4\\dfrac{1}{10}\\)"
         ],
         "hint": "Simplify the numerator bracket and denominator bracket separately, then divide.",
         "expl": "Step 1 — Simplify the numerator and denominator brackets separately.\nStep 2 — Divide one by the other to get \\(5\\tfrac{1}{10}\\).\nNote — The fractions were garbled in the source PDF; verify. Intended \\(5\\tfrac{1}{10}\\).\nAnswer: \\(5\\tfrac{1}{10}\\) (D).",
@@ -491,9 +491,9 @@ window.GMAT_SETS = [
         "choices": [
           "\\(\\frac{5}{4}\\)",
           "8",
-          "\\(8\\tfrac{32}{81}\\)",
+          "\\(8\\dfrac{32}{81}\\)",
           "9",
-          "\\(7\\tfrac12\\)"
+          "\\(7\\dfrac12\\)"
         ],
         "hint": "\"of\" means multiply, and it is evaluated before the addition and subtraction.",
         "expl": "Step 1 — Convert the mixed numbers: \\(1\\tfrac29 = \\tfrac{11}{9}\\), \\(3\\tfrac{3}{11} = \\tfrac{36}{11}\\), \\(5\\tfrac17 = \\tfrac{36}{7}\\).\nStep 2 — \\(\\tfrac{11}{9} \\text{ of } \\tfrac{36}{11} = \\tfrac{11}{9} \\times \\tfrac{36}{11} = 4\\).\nStep 3 — \\(\\tfrac{36}{7} \\text{ of } \\tfrac{7}{9} = \\tfrac{36}{7} \\times \\tfrac{7}{9} = 4\\).\nStep 4 — \\(9 - 4 + 4 = 9\\).\nAnswer: D.",
@@ -816,8 +816,8 @@ window.GMAT_SETS = [
         "text": "When a ball bounces, it rises to \\(\\frac{3}{4}\\) of the height from which it fell. If the ball is dropped from a height of 32 m, how high will it rise at the third bounce?",
         "choices": [
           "13 m",
-          "\\(13\\tfrac{1}{2}\\) m",
-          "\\(14\\tfrac{1}{2}\\) m",
+          "\\(13\\dfrac{1}{2}\\) m",
+          "\\(14\\dfrac{1}{2}\\) m",
           "12 m",
           "None of these"
         ],
@@ -976,9 +976,9 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "\\(p\\) is six times as large as \\(q\\). The percent that \\(q\\) is less than \\(p\\) is:",
         "choices": [
-          "\\(16\\tfrac23\\%\\)",
+          "\\(16\\dfrac23\\%\\)",
           "60%",
-          "\\(83\\tfrac13\\%\\)",
+          "\\(83\\dfrac13\\%\\)",
           "90%",
           "500%"
         ],
@@ -1044,10 +1044,10 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "A's salary is 25% higher than B's salary. By what percent is B's salary lower than A's?",
         "choices": [
-          "\\(16\\tfrac13\\%\\)",
+          "\\(16\\dfrac13\\%\\)",
           "20%",
           "25%",
-          "\\(33\\tfrac13\\%\\)",
+          "\\(33\\dfrac13\\%\\)",
           "80%"
         ],
         "hint": "The base flips: use \\(\\frac{r}{100+r}\\times100\\).",
@@ -1112,11 +1112,11 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "The price of groundnut oil rose from $24 to $27 per kg. By what percent should a family cut consumption to keep its expenditure unchanged?",
         "choices": [
-          "\\(11\\tfrac19\\%\\)",
-          "\\(11\\tfrac{1}{11}\\%\\)",
-          "\\(11\\tfrac{1}{10}\\%\\)",
-          "\\(9\\tfrac{1}{10}\\%\\)",
-          "\\(12\\tfrac12\\%\\)"
+          "\\(11\\dfrac19\\%\\)",
+          "\\(11\\dfrac{1}{11}\\%\\)",
+          "\\(11\\dfrac{1}{10}\\%\\)",
+          "\\(9\\dfrac{1}{10}\\%\\)",
+          "\\(12\\dfrac12\\%\\)"
         ],
         "hint": "Price up r%, consumption must drop \\(\\frac{r}{100+r}\\times100\\).",
         "expl": "Step 1 — Price rise \\(=\\frac{27-24}{24}\\times100 = 12.5\\%\\).\nStep 2 — Required cut \\(=\\frac{12.5}{100+12.5}\\times100 = \\frac{12.5}{112.5}\\times100\\).\nStep 3 — \\(=\\frac{100}{9} = 11\\tfrac19\\%\\).\nAnswer: \\(11\\tfrac19\\%\\) (A).",
@@ -1266,8 +1266,8 @@ window.GMAT_SETS = [
         "text": "A man saves 10% of his income. Two years later his income has risen 20%, yet he saves the same dollar amount as before. By what percent has his expenditure increased?",
         "choices": [
           "22%",
-          "\\(22\\tfrac29\\%\\)",
-          "\\(23\\tfrac13\\%\\)",
+          "\\(22\\dfrac29\\%\\)",
+          "\\(23\\dfrac13\\%\\)",
           "24%",
           "20%"
         ],
@@ -1364,7 +1364,7 @@ window.GMAT_SETS = [
           "7",
           "9"
         ],
-        "hint": "Set up (5+x)/(9+x) > 7/10 and solve for x.",
+        "hint": "Set up \\(\\frac{5+x}{9+x} > \\tfrac{7}{10}\\) and solve for x.",
         "expl": "Step 1 — Require \\(\\frac{5+x}{9+x} > \\frac{7}{10}\\).\nStep 2 — Cross-multiply: \\(10(5+x) > 7(9+x)\\Rightarrow 50+10x > 63+7x\\).\nStep 3 — \\(3x > 13\\Rightarrow x > 4.33\\); least integer is 5.\nAnswer: 5 (C).",
         "level": "medium"
       },
@@ -1602,16 +1602,16 @@ window.GMAT_SETS = [
         "topic": "Simple & compound interest",
         "correct": "A",
         "options": 5,
-        "text": "A sum lent at simple interest amounts to $1,008 in 2 years and $1,164 in 3½ years. Find the rate % per annum.",
+        "text": "A sum lent at simple interest amounts to $1,008 in 2 years and $1,164 in \\(3\\tfrac{1}{2}\\) years. Find the rate % per annum.",
         "choices": [
           "13%",
           "14%",
           "12½%",
           "15%",
-          "\\(13\\tfrac12\\%\\)"
+          "\\(13\\dfrac12\\%\\)"
         ],
         "hint": "The growth between the two times is pure interest — find interest per year first.",
-        "expl": "Step 1 — SI for 1½ years \\(= 1164 - 1008 = 156\\), so SI/year \\(= 104\\).\nStep 2 — SI for 2 years \\(= 208\\); principal \\(= 1008 - 208 = 800\\).\nStep 3 — Rate \\(= \\frac{208\\times100}{800\\times2} = 13\\%\\).\nAnswer: 13% (A).",
+        "expl": "Step 1 — SI for \\(1\\tfrac{1}{2}\\) years \\(= 1164 - 1008 = 156\\), so SI/year \\(= 104\\).\nStep 2 — SI for 2 years \\(= 208\\); principal \\(= 1008 - 208 = 800\\).\nStep 3 — Rate \\(= \\frac{208\\times100}{800\\times2} = 13\\%\\).\nAnswer: 13% (A).",
         "level": "medium"
       },
       {
@@ -1661,7 +1661,7 @@ window.GMAT_SETS = [
           "12% for 12 years",
           "14%"
         ],
-        "hint": "With rate = time = R, SI = P·R²/100.",
+        "hint": "With rate = time = R, \\(\\text{SI} = \\tfrac{P R^{2}}{100}\\).",
         "expl": "Step 1 — \\(\\frac{16}{25}P = \\frac{P\\cdot R\\cdot R}{100}\\).\nStep 2 — \\(R^2 = \\frac{1600}{25} = 64\\Rightarrow R = 8\\).\nStep 3 — So rate 8% and time 8 years.\nAnswer: 8% for 8 years (A).",
         "level": "medium"
       },
@@ -1814,7 +1814,7 @@ window.GMAT_SETS = [
           "30 years",
           "35 years"
         ],
-        "hint": "8 = 2³, and each doubling takes 5 years.",
+        "hint": "\\(8 = 2^{3}\\), and each doubling takes 5 years.",
         "expl": "Step 1 — Doubling takes 5 years, and \\(8 = 2^3\\).\nStep 2 — So three doublings \\(= 3\\times5 = 15\\) years.\nAnswer: 15 years (A).",
         "level": "medium"
       },
@@ -1941,7 +1941,7 @@ window.GMAT_SETS = [
           "2% loss",
           "10% loss"
         ],
-        "hint": "Same selling price with equal +p% and −p% always gives a loss of p²/100.",
+        "hint": "Same selling price with equal +p% and −p% always gives a loss of \\(\\tfrac{p^{2}}{100}\\).",
         "expl": "Step 1 — CPs: \\(\\frac{792}{1.1} = 720\\) and \\(\\frac{792}{0.9} = 880\\); total CP \\(= 1600\\).\nStep 2 — Total SP \\(= 1584\\), so loss \\(= 16\\), i.e. \\(\\frac{16}{1600} = 1\\%\\).\nStep 3 — Shortcut: loss \\(= \\frac{10^2}{100} = 1\\%\\).\nAnswer: 1% loss (B).",
         "level": "medium"
       },
@@ -1971,9 +1971,9 @@ window.GMAT_SETS = [
         "choices": [
           "4% gain",
           "5% gain",
-          "\\(4\\tfrac16\\%\\) gain",
-          "\\(4\\tfrac16\\%\\) loss",
-          "\\(3\\tfrac13\\% gain\\)"
+          "\\(4\\dfrac16\\%\\) gain",
+          "\\(4\\dfrac16\\%\\) loss",
+          "\\(3\\dfrac13\\% gain\\)"
         ],
         "hint": "Find the cost price first from the 20% loss.",
         "expl": "Step 1 — \\(CP = \\frac{1536}{0.8} = 1920\\).\nStep 2 — At $2,000: gain \\(= 80\\), so \\(\\frac{80}{1920}\\times100 = 4\\tfrac16\\%\\) gain.\nAnswer: \\(4\\tfrac16\\%\\) gain (C).",
@@ -2039,7 +2039,7 @@ window.GMAT_SETS = [
         "choices": [
           "20%",
           "25%",
-          "\\(33\\tfrac13\\%\\)",
+          "\\(33\\dfrac13\\%\\)",
           "30%",
           "15%"
         ],
@@ -2054,10 +2054,10 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "If the cost price of 6 articles equals the selling price of 4 articles, what is the gain percent?",
         "choices": [
-          "\\(33\\tfrac13\\%\\)",
+          "\\(33\\dfrac13\\%\\)",
           "50%",
           "40%",
-          "\\(66\\tfrac23\\%\\)",
+          "\\(66\\dfrac23\\%\\)",
           "25%"
         ],
         "hint": "SP of 4 = CP of 6, so find gain on those 4.",
@@ -2072,7 +2072,7 @@ window.GMAT_SETS = [
         "text": "By what percent must the cost price be marked up so that, after a 10% discount, a 20% profit is still made?",
         "choices": [
           "30%",
-          "\\(33\\tfrac13\\%\\)",
+          "\\(33\\dfrac13\\%\\)",
           "32%",
           "35%",
           "20%"
@@ -2410,11 +2410,11 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "A + B can do a job in 12 days, B + C in 16 days, and A + C in 24 days. How long do A, B and C together take?",
         "choices": [
-          "\\(10\\tfrac13\\) days",
-          "\\(10\\tfrac23\\) days",
+          "\\(10\\dfrac13\\) days",
+          "\\(10\\dfrac23\\) days",
           "12 days",
           "9 days",
-          "\\(5\\tfrac13 days\\)"
+          "\\(5\\dfrac13 days\\)"
         ],
         "hint": "Add the three pair-rates to get twice the combined rate.",
         "expl": "Step 1 — Take total work \\(= 48\\). Pair rates: \\(A+B = 4\\), \\(B+C = 3\\), \\(A+C = 2\\) units/day.\nStep 2 — Sum \\(= 9 = 2(A+B+C)\\), so \\(A+B+C = 4.5\\) units/day.\nStep 3 — Days \\(= \\frac{48}{4.5} = \\frac{32}{3} = 10\\tfrac23\\).\nAnswer: \\(10\\tfrac23\\) days (B).",
@@ -2444,11 +2444,11 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "A needs 24 days and B needs 36 days. C is twice as efficient as A and B working together. How many days does C alone take?",
         "choices": [
-          "\\(4\\tfrac15\\)",
-          "\\(7\\tfrac15\\)",
-          "\\(5\\tfrac15\\)",
-          "\\(6\\tfrac15\\)",
-          "\\(14\\tfrac25 days\\)"
+          "\\(4\\dfrac15\\)",
+          "\\(7\\dfrac15\\)",
+          "\\(5\\dfrac15\\)",
+          "\\(6\\dfrac15\\)",
+          "\\(14\\dfrac25 days\\)"
         ],
         "hint": "Find A+B's combined rate, double it for C.",
         "expl": "Step 1 — Total \\(= 72\\): A \\(= 3\\), B \\(= 2\\) units/day, so A+B \\(= 5\\).\nStep 2 — C \\(= 2\\times5 = 10\\) units/day.\nStep 3 — C alone \\(= \\frac{72}{10} = 7\\tfrac15\\) days.\nAnswer: \\(7\\tfrac15\\) (B).",
@@ -2587,7 +2587,7 @@ window.GMAT_SETS = [
           "65 days"
         ],
         "hint": "Get A's full time first, then translate B's condition into a rate ratio.",
-        "expl": "Step 1 — A does half in 35 days ⟹ whole in 70 days.\nStep 2 — A does ¼ in \\(17.5\\) days; B does ⅓ in \\(17.5\\) days ⟹ B whole \\(= 52.5\\) days.\nStep 3 — Rates ratio A:B \\(= 3:4\\); together \\(\\frac{70\\times3}{7} = 30\\) days.\nAnswer: 30 days (C).",
+        "expl": "Step 1 — A does half in 35 days ⟹ whole in 70 days.\nStep 2 — A does \\(\\tfrac{1}{4}\\) in \\(17.5\\) days; B does \\(\\tfrac{1}{3}\\) in \\(17.5\\) days ⟹ B whole \\(= 52.5\\) days.\nStep 3 — Rates ratio A:B \\(= 3:4\\); together \\(\\frac{70\\times3}{7} = 30\\) days.\nAnswer: 30 days (C).",
         "level": "hard"
       },
       {
@@ -2827,8 +2827,8 @@ window.GMAT_SETS = [
         "text": "A class of 45 averages 52 kg. Five students averaging 48 kg leave and five averaging 54 kg join. What is the new average weight?",
         "choices": [
           "52.6 kg",
-          "\\(52\\tfrac23\\) kg",
-          "\\(52\\tfrac13\\) kg",
+          "\\(52\\dfrac23\\) kg",
+          "\\(52\\dfrac13\\) kg",
           "53 kg",
           "52 kg"
         ],
@@ -3072,14 +3072,14 @@ window.GMAT_SETS = [
         "options": 5,
         "text": "A jar of whisky is 40% alcohol. Part is replaced by whisky that is 19% alcohol, giving 26% overall. What fraction was replaced?",
         "choices": [
-          "1/3",
-          "2/3",
-          "2/5",
-          "3/5",
-          "4 /3"
+          "\\(\\dfrac{1}{3}\\)",
+          "\\(\\dfrac{2}{3}\\)",
+          "\\(\\dfrac{2}{5}\\)",
+          "\\(\\dfrac{3}{5}\\)",
+          "\\(\\dfrac{4}{3}\\)"
         ],
         "hint": "Alligation of the two strengths around the final 26%.",
-        "expl": "Step 1 — Around mean 26: original (40) is 14 above, added (19) is 7 below.\nStep 2 — Original : added \\(= 7 : 14 = 1 : 2\\).\nStep 3 — Replaced (added) fraction \\(= \\frac{2}{3}\\).\nAnswer: 2/3 (B).",
+        "expl": "Step 1 — Around mean 26: original (40) is 14 above, added (19) is 7 below.\nStep 2 — Original : added \\(= 7 : 14 = 1 : 2\\).\nStep 3 — Replaced (added) fraction \\(= \\frac{2}{3}\\).\nAnswer: \\(\\tfrac{2}{3}\\) (B).",
         "level": "medium"
       },
       {
@@ -3112,7 +3112,7 @@ window.GMAT_SETS = [
           "30 litres",
           "37 litres"
         ],
-        "hint": "Each replacement multiplies the milk by (1 − 10/50).",
+        "hint": "Each replacement multiplies the milk by \\((1 - \\tfrac{10}{50})\\).",
         "expl": "Step 1 — Milk left \\(= 50\\left(1 - \\frac{10}{50}\\right)^2 = 50(0.8)^2\\).\nStep 2 — \\(= 50\\times0.64 = 32\\) litres.\nAnswer: 32 litres (B).",
         "level": "medium"
       },
@@ -3129,7 +3129,7 @@ window.GMAT_SETS = [
           "24 L",
           "28 L"
         ],
-        "hint": "Use 54(1 − y/54)² = 24.",
+        "hint": "Use \\(54(1 - \\tfrac{y}{54})^{2} = 24\\).",
         "expl": "Step 1 — \\(54\\left(1 - \\frac{y}{54}\\right)^2 = 24\\Rightarrow \\left(1 - \\frac{y}{54}\\right)^2 = \\frac{4}{9}\\).\nStep 2 — \\(1 - \\frac{y}{54} = \\frac{2}{3}\\Rightarrow \\frac{y}{54} = \\frac{1}{3}\\).\nStep 3 — \\(y = 18\\) L.\nAnswer: 18 L (C).",
         "level": "medium"
       },
@@ -3180,7 +3180,7 @@ window.GMAT_SETS = [
         "topic": "Common traps & C-trap",
         "correct": "C",
         "options": 5,
-        "text": "What is the value of x?\n(1) x² = 36\n(2) x is negative.",
+        "text": "What is the value of x?\n(1) \\(x^{2} = 36\\)\n(2) x is negative.",
         "choices": [
           "(1) ALONE sufficient, (2) alone not",
           "(2) ALONE sufficient, (1) alone not",
@@ -3223,7 +3223,7 @@ window.GMAT_SETS = [
           "Together still NOT sufficient"
         ],
         "hint": "Don't assume x is an integer.",
-        "expl": "Step 1 — (1): 7x even is true for x = 0 (even) but also x = 2/7 (not even) — not sufficient.\nStep 2 — (2): same issue with x = 2/5 — not sufficient.\nStep 3 — Together, both 7x and 5x even forces x to be an even integer — definite YES.\nAnswer: C.",
+        "expl": "Step 1 — (1): 7x even is true for x = 0 (even) but also \\(x = \\tfrac{2}{7}\\) (not even) — not sufficient.\nStep 2 — (2): same issue with \\(x = \\tfrac{2}{5}\\) — not sufficient.\nStep 3 — Together, both 7x and 5x even forces x to be an even integer — definite YES.\nAnswer: C.",
         "level": "hard"
       },
       {
@@ -3299,7 +3299,7 @@ window.GMAT_SETS = [
         "topic": "Common traps & C-trap",
         "correct": "B",
         "options": 5,
-        "text": "What is the value of a² − b²?\n(1) a + b = 16\n(2) a − b = 0",
+        "text": "What is the value of \\(a^{2} - b^{2}\\)?\n(1) a + b = 16\n(2) a − b = 0",
         "choices": [
           "(1) ALONE sufficient, (2) alone not",
           "(2) ALONE sufficient, (1) alone not",
@@ -3307,7 +3307,7 @@ window.GMAT_SETS = [
           "EACH alone sufficient",
           "Together still NOT sufficient"
         ],
-        "hint": "Factor: a² − b² = (a − b)(a + b).",
+        "hint": "Factor: \\(a^{2} - b^{2} = (a - b)(a + b)\\).",
         "expl": "Step 1 — (2): \\(a - b = 0\\Rightarrow (a-b)(a+b) = 0\\) regardless of a+b — sufficient (value is 0).\nStep 2 — (1) alone gives a+b but not the product.\nAnswer: B.",
         "level": "medium"
       },
@@ -3316,7 +3316,7 @@ window.GMAT_SETS = [
         "topic": "Yes / No questions",
         "correct": "D",
         "options": 5,
-        "text": "Is 5^(x+2) / 25 < 1 ?\n(1) 5^x < 1\n(2) x < 0",
+        "text": "Is \\(\\dfrac{5^{x+2}}{25} < 1\\)?\n(1) \\(5^{x} < 1\\)\n(2) \\(x < 0\\)",
         "choices": [
           "(1) ALONE sufficient, (2) alone not",
           "(2) ALONE sufficient, (1) alone not",
@@ -5270,8 +5270,8 @@ window.GMAT_SETS = [
           "(4, 5)",
           "(3, 3)"
         ],
-        "hint": "A: floor(300/80). B: floor((300−40)/50).",
-        "expl": "Hotel A: 300/80 = 3.75 → 3 nights. Hotel B: (300 − 40)/50 = 260/50 = 5.2 → 5 nights. So the pair is (3, 5), choice A."
+        "hint": "A: \\(\\left\\lfloor \\tfrac{300}{80} \\right\\rfloor\\). B: \\(\\left\\lfloor \\tfrac{300-40}{50} \\right\\rfloor\\).",
+        "expl": "Hotel A: \\(\\tfrac{300}{80} = 3.75 \\rightarrow 3\\) nights. Hotel B: \\((300 - 40)/50 = \\tfrac{260}{50} = 5.2 \\rightarrow 5\\) nights. So the pair is (3, 5), choice A."
       },
       {
         "n": 4,
@@ -5287,7 +5287,7 @@ window.GMAT_SETS = [
           "(1600, 500)",
           "(1050, 1050)"
         ],
-        "hint": "Total parts = 7; each part = 2100/7.",
+        "hint": "Total parts = 7; each part = \\(\\tfrac{2100}{7}\\).",
         "expl": "7 parts = 2,100 g, so 1 part = 300 g. Flour = 5×300 = 1,500 g; sugar = 2×300 = 600 g → (1500, 600), choice A."
       },
       {
@@ -5315,14 +5315,14 @@ window.GMAT_SETS = [
         "level": "hard",
         "text": "A tank is filled by pipe X in 6 hours and by pipe Y in 12 hours. Which pair gives (fraction filled in 1 hour by X and Y together, hours to fill the tank together)?",
         "choices": [
-          "(1/6, 6)",
-          "(1/4, 4)",
-          "(1/3, 3)",
-          "(1/8, 8)",
-          "(1/12, 12)"
+          "\\((\\dfrac{1}{6}\\), 6)",
+          "\\((\\dfrac{1}{4}\\), 4)",
+          "\\((\\dfrac{1}{3}\\), 3)",
+          "\\((\\dfrac{1}{8}\\), 8)",
+          "\\((\\dfrac{1}{12}\\), 12)"
         ],
-        "hint": "Add the rates 1/6 + 1/12.",
-        "expl": "Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 per hour, so the tank fills in 4 hours → (1/4, 4), choice B."
+        "hint": "Add the rates \\(\\tfrac{1}{6} + \\tfrac{1}{12}\\).",
+        "expl": "Combined rate = \\(\\tfrac{1}{6} + \\tfrac{1}{12} = \\tfrac{2}{12} + \\tfrac{1}{12} = \\tfrac{3}{12} = \\tfrac{1}{4}\\) per hour, so the tank fills in 4 hours → \\((\\tfrac{1}{4}\\), 4), choice B."
       },
       {
         "n": 7,
@@ -5339,7 +5339,7 @@ window.GMAT_SETS = [
           "(3 days/$1500, 4 days/$1200)"
         ],
         "hint": "Days = ceil(600/rate); cost = days × daily cost.",
-        "expl": "Line 1: 600/200 = 3 days, cost 3×$500 = $1,500. Line 2: 600/150 = 4 days, cost 4×$300 = $1,200 → (3 days/$1500, 4 days/$1200), choice E."
+        "expl": "Line 1: \\(\\tfrac{600}{200} = 3\\) days, cost 3×$500 = $1,500. Line 2: \\(\\tfrac{600}{150} = 4\\) days, cost 4×$300 = $1,200 → (3 days/$1500, 4 days/$1200), choice E."
       },
       {
         "n": 8,
@@ -5881,7 +5881,7 @@ window.GMAT_SETS = [
           "5",
           "125",
           "1",
-          "5^{10}"
+          "\\(5^{10}\\)"
         ],
         "hint": "When dividing like bases, subtract the exponents.",
         "expl": "\\(5^{6-4} = 5^2 = 25\\) (A)."
@@ -5894,11 +5894,11 @@ window.GMAT_SETS = [
         "level": "easy",
         "text": "Evaluate \\((3^2)^3\\).",
         "choices": [
-          "3^5",
+          "\\(3^{5}\\)",
           "243",
           "729",
           "81",
-          "3^{18}"
+          "\\(3^{18}\\)"
         ],
         "hint": "A power raised to a power: multiply the exponents.",
         "expl": "\\((3^2)^3 = 3^{2 \\cdot 3} = 3^6 = 729\\) (C)."
@@ -5932,7 +5932,7 @@ window.GMAT_SETS = [
           "-6",
           "6",
           "9",
-          "1/9"
+          "\\(\\dfrac{1}{9}\\)"
         ],
         "hint": "A negative exponent means the reciprocal.",
         "expl": "\\(3^{-2} = \\dfrac{1}{3^2} = \\dfrac{1}{9}\\) (E)."
@@ -5979,11 +5979,11 @@ window.GMAT_SETS = [
         "level": "medium",
         "text": "Evaluate \\(\\sqrt{\\dfrac{9}{16}}\\).",
         "choices": [
-          "3/4",
-          "4/3",
-          "9/16",
-          "1/2",
-          "3/16"
+          "\\(\\dfrac{3}{4}\\)",
+          "\\(\\dfrac{4}{3}\\)",
+          "\\(\\dfrac{9}{16}\\)",
+          "\\(\\dfrac{1}{2}\\)",
+          "\\(\\dfrac{3}{16}\\)"
         ],
         "hint": "The square root of a fraction is the root of top over root of bottom.",
         "expl": "\\(\\sqrt{9}/\\sqrt{16} = 3/4\\) (A)."
@@ -6054,7 +6054,7 @@ window.GMAT_SETS = [
           "\\(4.5 \\times 10^7\\)"
         ],
         "hint": "One nonzero digit before the decimal point; count the places moved.",
-        "expl": "4,500,000 = \\(4.5 \\times 10^6\\) (the point moves 6 places), choice B. (A) and (D) aren't in standard form."
+        "expl": "\\(4{,}500{,}000 = 4.5 \\times 10^{6}\\) (the point moves 6 places), choice B. (A) and (D) aren't in standard form."
       }
     ]
   },
@@ -6765,7 +6765,7 @@ window.GMAT_SETS = [
           "96",
           "128"
         ],
-        "hint": "Each term doubles; term = 2·2^{n−1}.",
+        "hint": "Each term doubles; term = \\(2 \\cdot 2^{n-1}\\).",
         "expl": "\\(2 \\cdot 2^{5} = 2 \\cdot 32 = 64\\) (C)."
       },
       {
@@ -6825,7 +6825,7 @@ window.GMAT_SETS = [
           "10"
         ],
         "hint": "Add them and divide by 5.",
-        "expl": "Sum = 40; 40 / 5 = 8 (C)."
+        "expl": "Sum = 40; \\(40 \\div 5 = 8\\) (C)."
       },
       {
         "n": 2,
@@ -6893,7 +6893,7 @@ window.GMAT_SETS = [
           "10"
         ],
         "hint": "Find the total, remove 16, divide by 3.",
-        "expl": "Total = 40; remove 16 → 24; 24 / 3 = 8 (C)."
+        "expl": "Total = 40; remove 16 → 24; \\(24 \\div 3 = 8\\) (C)."
       },
       {
         "n": 6,
@@ -6927,7 +6927,7 @@ window.GMAT_SETS = [
           "85"
         ],
         "hint": "Total points ÷ total students, not the simple average of 80 and 90.",
-        "expl": "Points = 30·80 + 20·90 = 2400 + 1800 = 4200; 4200 / 50 = 84 (D)."
+        "expl": "Points \\(= 30 \\cdot 80 + 20 \\cdot 90 = 2400 + 1800 = 4200\\); \\(4200 \\div 50 = 84\\) (D)."
       },
       {
         "n": 8,
@@ -7064,11 +7064,11 @@ window.GMAT_SETS = [
         "level": "easy",
         "text": "A fair coin is flipped twice. What is the probability of getting two heads?",
         "choices": [
-          "1/2",
-          "1/3",
-          "1/8",
-          "1/4",
-          "2/3"
+          "\\(\\dfrac{1}{2}\\)",
+          "\\(\\dfrac{1}{3}\\)",
+          "\\(\\dfrac{1}{8}\\)",
+          "\\(\\dfrac{1}{4}\\)",
+          "\\(\\dfrac{2}{3}\\)"
         ],
         "hint": "Multiply the probability of heads on each flip.",
         "expl": "\\(\\tfrac12 \\cdot \\tfrac12 = \\tfrac14\\) (D)."
@@ -7081,14 +7081,14 @@ window.GMAT_SETS = [
         "level": "easy",
         "text": "A standard die is rolled once. What is the probability of an even number?",
         "choices": [
-          "1/2",
-          "1/3",
-          "1/6",
-          "2/3",
-          "5/6"
+          "\\(\\dfrac{1}{2}\\)",
+          "\\(\\dfrac{1}{3}\\)",
+          "\\(\\dfrac{1}{6}\\)",
+          "\\(\\dfrac{2}{3}\\)",
+          "\\(\\dfrac{5}{6}\\)"
         ],
         "hint": "Count the even faces out of 6.",
-        "expl": "Even faces are 2, 4, 6 — three of six, or 1/2 (A)."
+        "expl": "Even faces are 2, 4, 6 — three of six, or \\(\\tfrac{1}{2}\\) (A)."
       },
       {
         "n": 5,
@@ -7098,14 +7098,14 @@ window.GMAT_SETS = [
         "level": "medium",
         "text": "A bag has 3 red and 2 blue marbles. What is the probability of drawing a red marble?",
         "choices": [
-          "2/5",
-          "1/2",
-          "3/5",
-          "3/2",
-          "2/3"
+          "\\(\\dfrac{2}{5}\\)",
+          "\\(\\dfrac{1}{2}\\)",
+          "\\(\\dfrac{3}{5}\\)",
+          "\\(\\dfrac{3}{2}\\)",
+          "\\(\\dfrac{2}{3}\\)"
         ],
         "hint": "Favorable over total.",
-        "expl": "3 red of 5 total → 3/5 (C)."
+        "expl": "3 red of 5 total → \\(\\tfrac{3}{5}\\) (C)."
       },
       {
         "n": 6,
@@ -7149,14 +7149,14 @@ window.GMAT_SETS = [
         "level": "medium",
         "text": "Two fair dice are rolled. What is the probability that the sum is 7?",
         "choices": [
-          "1/12",
-          "1/9",
-          "5/36",
-          "1/6",
-          "1/4"
+          "\\(\\dfrac{1}{12}\\)",
+          "\\(\\dfrac{1}{9}\\)",
+          "\\(\\dfrac{5}{36}\\)",
+          "\\(\\dfrac{1}{6}\\)",
+          "\\(\\dfrac{1}{4}\\)"
         ],
         "hint": "Count the ordered pairs that sum to 7 out of 36.",
-        "expl": "Pairs summing to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) — 6 of 36 = 1/6 (D)."
+        "expl": "Pairs summing to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) — 6 of \\(36 = \\tfrac{1}{6}\\) (D)."
       },
       {
         "n": 9,
@@ -7183,11 +7183,11 @@ window.GMAT_SETS = [
         "level": "hard",
         "text": "A committee of 2 is chosen at random from 4 men and 3 women. What is the probability both are women?",
         "choices": [
-          "1/7",
-          "2/7",
-          "1/3",
-          "3/7",
-          "1/2"
+          "\\(\\dfrac{1}{7}\\)",
+          "\\(\\dfrac{2}{7}\\)",
+          "\\(\\dfrac{1}{3}\\)",
+          "\\(\\dfrac{3}{7}\\)",
+          "\\(\\dfrac{1}{2}\\)"
         ],
         "hint": "P = (ways to pick 2 women) / (ways to pick any 2).",
         "expl": "\\(\\binom{3}{2} = 3\\) all-women pairs; \\(\\binom{7}{2} = 21\\) total; \\(3/21 = 1/7\\) (A)."
@@ -7217,14 +7217,14 @@ window.GMAT_SETS = [
         "level": "hard",
         "text": "A bag has 4 red and 6 green marbles. Two are drawn without replacement. What is the probability both are green?",
         "choices": [
-          "9/25",
-          "1/3",
-          "5/9",
-          "1/2",
-          "3/5"
+          "\\(\\dfrac{9}{25}\\)",
+          "\\(\\dfrac{1}{3}\\)",
+          "\\(\\dfrac{5}{9}\\)",
+          "\\(\\dfrac{1}{2}\\)",
+          "\\(\\dfrac{3}{5}\\)"
         ],
         "hint": "Multiply P(first green) by P(second green given the first was green).",
-        "expl": "\\(\\tfrac{6}{10} \\cdot \\tfrac{5}{9} = \\tfrac{30}{90} = \\tfrac13\\), choice B. (9/25 would be the with-replacement answer.)"
+        "expl": "\\(\\tfrac{6}{10} \\cdot \\tfrac{5}{9} = \\tfrac{30}{90} = \\tfrac13\\), choice B. \\((\\tfrac{9}{25}\\) would be the with-replacement answer.)"
       }
     ]
   },

@@ -10,7 +10,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — Read the horror sentence carefully — it gives the *unprofitable* share. \\(75\\%\\) of the horror films lost money, so \\(25\\%\\) made money.\n" +
     "Step 4 — Profitable horror: \\(25\\%\\) of 16 \\(= 4\\).\n" +
     "Step 5 — Nothing broke even, so every film is either profitable or not, with no third bucket. Total profitable \\(= 18 + 4 = 22\\).",
-  fast: "Both genres split 75/25, so the only thing to track is which side of the split each one is on: comedies are 75% profitable, horror films are 75% *un*profitable. That makes the answer \\(0.75(24) + 0.25(16)\\), and since 24 and 16 are both multiples of 4 the arithmetic is instant — 18 and 4.",
+  fast: "Both genres split \\(\\tfrac{75}{25}\\), so the only thing to track is which side of the split each one is on: comedies are 75% profitable, horror films are 75% *un*profitable. That makes the answer \\(0.75(24) + 0.25(16)\\), and since 24 and 16 are both multiples of 4 the arithmetic is instant — 18 and 4.",
   traps: "(A) 18 is the profitable comedies alone, with the horror films never added. When a choice matches an intermediate quantity, suspect that you stopped early.\n" +
     "(C) 20 is half the films — a plausible round figure with no route behind it; the true split is 22 profitable, 18 not.\n" +
     "(D) 21 and (B) 19 flank the answer to punish small slips in the two products \\(0.75 \\times 24\\) and \\(0.25 \\times 16\\).\n" +
@@ -146,7 +146,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) \\(25\\%\\) is the non-smoking share — the complement of what is asked. Circle whether the question wants smoking or non-smoking before you answer.\n" +
     "(C) \\(50\\%\\) and (D) \\(55\\%\\) come from using the \\(75\\%\\) queen figure as though it constrained the non-smoking rooms, which it does not.\n" +
     "(B) \\(30\\%\\) reads the 60% as a share of [[all]] rooms: 60 non-smoking queens plus the 10 kings would make 70 non-smoking rooms, leaving 30.\n" +
-    "The genuinely useful observation is that the overall 75/25 queen–king split never enters the calculation; recognising an unused given is a skill these questions test deliberately.",
+    "The genuinely useful observation is that the overall \\(\\tfrac{75}{25}\\) queen–king split never enters the calculation; recognising an unused given is a skill these questions test deliberately.",
   take: "Anchor on the one cell given as a percent of the whole (10 rooms) and the one given as a percent of a subgroup (40%). Dividing the first by the second sizes the subgroup — and check whether the question wants that group or its complement."
 },
 
@@ -304,7 +304,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — \\(\\dfrac{88}{96} = \\dfrac{11}{12}\\).",
   fast: "Anchor at 100 for Rex and every figure becomes a small whole number: 60, 48, 36. The only reading trap is whose income each percentage refers to — Quentin and Sam are both measured against Paul, while the gifts are measured against Rex.\n" +
     "Sanity check before dividing: Sam receives more and started lower, so the ratio should be just under 1 — which already narrows the choices to one.",
-  traps: "(B) 13/17, (C) 13/19, (D) 12/19 and (E) 11/19 all carry a prime denominator — the fingerprint of a mis-based chain, because the true totals 88 and 96 share a factor of 8 and reduce to twelfths. Measuring Quentin or Sam against Rex instead of Paul is the usual wrong turn.\n" +
+  traps: "(B) \\(\\tfrac{13}{17}\\), (C) \\(\\tfrac{13}{19}\\), (D) \\(\\tfrac{12}{19}\\) and (E) \\(\\tfrac{11}{19}\\) all carry a prime denominator — the fingerprint of a mis-based chain, because the true totals 88 and 96 share a factor of 8 and reduce to twelfths. Measuring Quentin or Sam against Rex instead of Paul is the usual wrong turn.\n" +
     "The denominators 17 and 19 are the fingerprint of that error — the correct totals are 88 and 96, both divisible by 8, so a prime denominator like 17 or 19 signals a wrong base somewhere.\n" +
     "The other slip is applying the gift percentages to Paul's or Sam's income rather than Rex's; the sentence says \"Rex gave 60% of his income\".",
   take: "In chained percent-of-someone-else problems, write each person's base explicitly before computing. Set the root person to 100 and the rest fall out as whole numbers."
@@ -362,7 +362,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "That constant-component method avoids the two-sided equation entirely and generalises to every \"add pure X\" problem.",
   traps: "(B) 1 is the answer to \"how much ethanol is already there\" and also what you get from the wrong equation \\(\\dfrac{1+x}{20} = 0.10\\), which forgets that adding ethanol also increases the total volume. This is the intended trap.\n" +
     "(E) 2 comes from doubling the ethanol because the target percentage is double the current one — but the denominator grows too, so doubling overshoots.\n" +
-    "(A) 9/10 and (D) 20/19 are the near-misses produced by inverting a fraction in the final step.\n" +
+    "(A) \\(\\tfrac{9}{10}\\) and (D) \\(\\tfrac{20}{19}\\) are the near-misses produced by inverting a fraction in the final step.\n" +
     "Sanity check the answer: \\(\\dfrac{1 + 10/9}{20 + 10/9} = \\dfrac{19/9}{190/9} = \\dfrac{19}{190} = 0.10\\) ✓.",
   take: "When you add a pure component, both numerator and denominator change. Either write \\(\\frac{a+x}{T+x}\\), or — usually faster — hold the untouched component fixed and solve for the new total."
 },
@@ -720,9 +720,9 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 7 — The answer is independent of the number chosen: in general the absent counts are \\(\\tfrac{5T}{18}\\) and \\(\\tfrac{7T}{18}\\).",
   fast: "Pick 18 and the whole problem is four subtractions. The structural insight is that the absent group is what is left over, so compute the small present group first (6 players, split 4 and 2) and subtract from 9 and 9.\n" +
     "Note that the absent group has more left-handers than right-handers, so the ratio must be less than 1 — that alone removes two choices.",
-  traps: "(D) 7/5 is the correct ratio inverted — the question asks right-handed to left-handed, in that order, and the absent left-handers outnumber the right-handers.\n" +
-    "(A) 1/3 and (B) 2/3 come from ratios among the *present* players (2 left of 6, or 2 to 4) rather than the absent ones.\n" +
-    "(E) 3/2 is another inversion, of the present split.\n" +
+  traps: "(D) \\(\\tfrac{7}{5}\\) is the correct ratio inverted — the question asks right-handed to left-handed, in that order, and the absent left-handers outnumber the right-handers.\n" +
+    "(A) \\(\\tfrac{1}{3}\\) and (B) \\(\\tfrac{2}{3}\\) come from ratios among the *present* players (2 left of 6, or 2 to 4) rather than the absent ones.\n" +
+    "(E) \\(\\tfrac{3}{2}\\) is another inversion, of the present split.\n" +
     "Every distractor here is a real ratio in the problem; the discipline is to write \"absent right : absent left\" at the top of your scratch work before computing.",
   take: "Choose a total equal to the lcm of the denominators. When the question asks about a complement, compute the smaller group and subtract — and preserve the order of the ratio."
 },

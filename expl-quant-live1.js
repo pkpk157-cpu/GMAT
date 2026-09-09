@@ -126,7 +126,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 "quant-live-1#8": {
   steps: "Step 1 — The stem gives women : children \\(= 5 : 2\\). The question asks for the [[number]] of men, so a ratio alone will never be enough — some absolute figure is needed.\n" +
     "Step 2 — Statement (1): children : men \\(= 5 : 11\\). Chain it with the stem by matching children: \\(5 : 2 = 25 : 10\\) and \\(5 : 11 = 10 : 22\\), so W : C : M \\(= 25 : 10 : 22\\).\n" +
-    "That is still only a ratio — the group could be 25/10/22 or double that — [[insufficient]].\n" +
+    "That is still only a ratio — the group could be 25 : 10 : 22 or double that — [[insufficient]].\n" +
     "Step 3 — Statement (2): women \\(< 30\\). Alone this says nothing about men — insufficient.\n" +
     "Step 4 — Together: women \\(= 25k\\) for a positive integer \\(k\\), and \\(25k < 30\\) forces \\(k = 1\\).\n" +
     "Step 5 — So W \\(= 25\\), C \\(= 10\\), M \\(= 22\\). Sufficient together.",

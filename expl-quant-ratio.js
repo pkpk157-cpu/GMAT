@@ -71,7 +71,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(10 : 15\\) and \\(15 : 24\\).\n" +
     "Step 4 — Chain them: \\(10 : 15 : 24\\), a total of 49 parts.\n" +
     "Step 5 — \\(\\dfrac{98}{49} = 2\\) per part, so the second number is \\(15 \\times 2 = 30\\).",
-  fast: "Scale to the shared term's LCM (15), giving \\(10 : 15 : 24\\) = 49 parts. That 98 is exactly \\(2 \\times 49\\) confirms the chain is right — test writers pick totals that divide.\n" +
+  fast: "Scale to the shared term's LCM (15), giving \\(10 : 15 : 24\\), 49 parts in all. That 98 is exactly \\(2 \\times 49\\) confirms the chain is right — test writers pick totals that divide.\n" +
     "Second number \\(= 15 \\times 2 = 30\\).",
   traps: "(A) 20 is the [[first]] number (\\(10 \\times 2\\)) and (D) 48 is the third (\\(24 \\times 2\\)). Both are correct values reported for the wrong position.\n" +
     "(C) 38 and (E) 58 belong to no consistent chain: the true numbers are 20, 30 and 48, and the tempting wrong chains (\\(2:3:8\\) with 13 parts, \\(2:5:8\\) with 15 parts) fail immediately because neither 13 nor 15 divides 98.\n" +

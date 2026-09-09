@@ -223,7 +223,7 @@ window.GMAT_TRICKS = [
     { t:"p", x:"\"Which of the following must be true?\" and most Data Sufficiency yes/no questions are not asking you to prove anything. They are asking whether a statement survives every kind of number — and there are only seven kinds that matter." },
     { t:"h", x:"The kit" },
     { t:"table", head:["Zone","Test number"], rows:[
-      ["below −1","−2"],["exactly −1","−1"],["between −1 and 0","−½"],["zero","0"],["between 0 and 1","½"],["exactly 1","1"],["above 1","2"]
+      ["below −1","−2"],["exactly −1","−1"],["between −1 and 0","\\(-\\tfrac{1}{2}\\)"],["zero","0"],["between 0 and 1","\\(\\dfrac{1}{2}\\)"],["exactly 1","1"],["above 1","2"]
     ]},
     { t:"p", x:"Squaring, rooting and taking reciprocals each behave differently in each zone, so a claim that holds in one zone routinely fails in the next. Run the kit and a false \"must be true\" collapses in seconds." },
     { t:"ol", items:[
@@ -234,7 +234,7 @@ window.GMAT_TRICKS = [
     { t:"eg",
       q:"If \\(x^{2} &lt; x\\), which of the following must be true?",
       choices:["\\(x &lt; 0\\)","\\(x &gt; 1\\)","\\(0 &lt; x &lt; 1\\)","\\(x &lt; -1\\)","\\(|x| &gt; 1\\)"], ans:"C",
-      why:"Rather than solving the inequality, ask which test numbers satisfy it. \\(-2\\): 4 &lt; −2? No. \\(-\\tfrac12\\): ¼ &lt; −½? No. \\(0\\): 0 &lt; 0? No. \\(\\tfrac12\\): ¼ &lt; ½? Yes. \\(1\\): 1 &lt; 1? No. \\(2\\): 4 &lt; 2? No. Only the zone between 0 and 1 works, so that is what must be true. Every other choice was eliminated by a single test number." },
+      why:"Rather than solving the inequality, ask which test numbers satisfy it. \\(-2\\): 4 &lt; −2? No. \\(-\\tfrac12\\): \\(\\tfrac{1}{4} &lt; -\\tfrac{1}{2}\\)? No. \\(0\\): 0 &lt; 0? No. \\(\\tfrac12\\): \\(\\tfrac{1}{4} &lt; \\tfrac{1}{2}\\)? Yes. \\(1\\): 1 &lt; 1? No. \\(2\\): 4 &lt; 2? No. Only the zone between 0 and 1 works, so that is what must be true. Every other choice was eliminated by a single test number." },
     { t:"tip", x:"In Data Sufficiency, a statement that is true for \\(\\tfrac12\\) and false for \\(2\\) is insufficient, full stop. Two numbers from the kit settle most yes/no statements without any algebra." }
   ]},
 
@@ -248,7 +248,7 @@ window.GMAT_TRICKS = [
     ]},
     { t:"eg",
       q:"If \\(4^{x} \\cdot 8^{x-1} = 2^{13}\\), then \\(x = \\)",
-      choices:["2","3","\\(\\tfrac{16}{5}\\)","4","5"], ans:"C",
+      choices:["2","3","\\(\\dfrac{16}{5}\\)","4","5"], ans:"C",
       why:"Everything is a power of 2: \\(4 = 2^{2}\\) and \\(8 = 2^{3}\\). The left side becomes \\(2^{2x}\\cdot2^{3(x-1)} = 2^{2x+3x-3} = 2^{5x-3}\\). Match exponents: \\(5x-3 = 13\\), so \\(x = \\tfrac{16}{5}\\). Check: \\(5(3.2)-3 = 13\\) ✓. Nothing was multiplied out, and a fractional answer is a strong hint that guessing integers would have failed." },
     { t:"warn", x:"Match the base, not the exponent, when solving. When comparing, match whichever is easier — but you must end with both sides in the same form before the comparison means anything." }
   ]},
@@ -262,7 +262,7 @@ window.GMAT_TRICKS = [
     ]},
     { t:"eg",
       q:"If \\(2 \\le a \\le 5\\) and \\(1 \\le b \\le 4\\), what is the least possible value of \\(\\dfrac{a}{b}\\)?",
-      choices:["\\(\\tfrac12\\)","\\(\\tfrac25\\)","\\(\\tfrac15\\)","2","5"], ans:"A",
+      choices:["\\(\\dfrac12\\)","\\(\\dfrac25\\)","\\(\\dfrac15\\)","2","5"], ans:"A",
       why:"A fraction is smallest when its top is smallest and its bottom is largest: \\(a = 2\\) over \\(b = 4\\) gives \\(\\tfrac12\\). The other corners — \\(\\tfrac21\\), \\(\\tfrac51\\), \\(\\tfrac54\\) — are all larger. (C) \\(\\tfrac15\\) is the trap for anyone who inverts the roles and puts the smallest number underneath." },
     { t:"warn", x:"Read for the word <b>distinct</b>. If the values must all be different, the \"others\" cannot all sit at the same minimum — they have to step up one at a time, and the answer moves." }
   ]}

@@ -568,7 +568,7 @@ window.GMAT_CONCEPTS = [
         blocks: [
           { t: "p", x: "Every RC passage is a <b>formal piece of writing</b>, and what separates formal writing from a chat message is that it has a <b>purpose</b>. That's why almost every passage carries a <i>primary purpose</i> question — nailing the purpose is half the battle." },
           { t: "p", x: "Purposes fall into a handful of families: to <b>argue</b> a conclusion, to <b>suggest / recommend</b>, to <b>evaluate</b> pros and cons, to <b>explain a puzzling phenomenon</b>, or simply to <b>inform / report</b> facts with no argument at all." },
-          { t: "p", x: "Broadly, passages split roughly 50/50:" },
+          { t: "p", x: "Broadly, passages split roughly \\(\\tfrac{50}{50}\\):" },
           { t: "ul", items: [
             "The author expresses a <b>personal opinion</b> — the primary purpose restates that opinion.",
             "The author expresses <b>no opinion</b> — the purpose usually lives at the key contradiction location."
@@ -1014,7 +1014,7 @@ window.GMAT_CONCEPTS = [
           ]},
           { t: "h", x: "The exit strategy" },
           { t: "ul", items: [
-            "<b>Never spend more than about 2½ minutes</b> on any question — first seven or last seven, no exceptions.",
+            "<b>Never spend more than about \\(2\\tfrac{1}{2}\\) minutes</b> on any question — first seven or last seven, no exceptions.",
             "If it will not fall in time, make your best intelligent guess, <b>bookmark it, and move on</b>.",
             "Finish the section. An unanswered question costs more than a wrong one, and running the clock to zero also loses you the review screen."
           ]},
@@ -1138,8 +1138,8 @@ window.GMAT_CONCEPTS = [
           { t: "h", x: "Learn these by sight, not by division" },
           { t: "p", x: "A question that hands you \\(37.5\\%\\) of 240 is not asking for long multiplication. It is checking whether you recognise \\(37.5\\%\\) as \\(3/8\\), because \\(3/8\\) of 240 is 90 in one step. These are worth knowing the way you know a phone number:" },
           { t: "table", head: ["Fraction", "%"], rows: [
-            ["1/2", "50%"], ["1/3", "33⅓%"], ["1/4", "25%"], ["1/5", "20%"],
-            ["1/6", "16⅔%"], ["1/8", "12.5%"], ["1/9", "11⅑%"], ["1/20", "5%"]
+            ["\\(\\dfrac{1}{2}\\)", "50%"], ["\\(\\dfrac{1}{3}\\)", "33⅓%"], ["\\(\\dfrac{1}{4}\\)", "25%"], ["\\(\\tfrac{1}{5}\\)", "20%"],
+            ["\\(\\dfrac{1}{6}\\)", "16⅔%"], ["\\(\\dfrac{1}{8}\\)", "12.5%"], ["\\(\\dfrac{1}{9}\\)", "11⅑%"], ["\\(\\tfrac{1}{20}\\)", "5%"]
           ]},
           { t: "tip", x: "Doubling and halving extends the table for free. If \\(1/8 = 12.5\\%\\) then \\(3/8 = 37.5\\%\\) and \\(5/8 = 62.5\\%\\). If \\(1/6 = 16\\tfrac{2}{3}\\%\\) then \\(5/6 = 83\\tfrac{1}{3}\\%\\)." },
           { t: "h", x: "The three shapes a percent question takes" },
@@ -1242,7 +1242,7 @@ window.GMAT_CONCEPTS = [
           { t: "tip", x: "The combined average always lands <b>between</b> the two group averages and closer to the bigger group. That is often enough on its own: if the choices are 74, 76, 77, 79 and 81, everything outside 72–82 is already dead, and \"closer to the boys\" kills anything above 77." },
           { t: "h", x: "The deviation shortcut" },
           { t: "p", x: "When the numbers are large and close together, do not add them. Pick a convenient reference near the middle, average the <b>deviations</b> from it, and add the reference back. For 402, 407, 411, 400 the deviations from 400 are 2, 7, 11 and 0, which average to 5 — so the average is 405. You have added four small numbers instead of four large ones." },
-          { t: "warn", x: "An average need not be one of the values, need not be a whole number, and is <b>not</b> the median. A set can average 50 with no member anywhere near 50 — {0, 0, 200} averages 66⅔ and contains nothing like it." },
+          { t: "warn", x: "An average need not be one of the values, need not be a whole number, and is <b>not</b> the median. A set can average 50 with no member anywhere near 50 — {0, 0, 200} averages \\(66\\tfrac{2}{3}\\) and contains nothing like it." },
           { t: "eg",
             q: "The average of 6 numbers is 15. When one number is removed, the average of the remaining 5 is 14. What number was removed?",
             choices: ["10", "14", "16", "20", "24"],
@@ -1484,7 +1484,7 @@ window.GMAT_CONCEPTS = [
           { t: "ul", items: [
             "The product of any <b>\\(k\\) consecutive integers</b> is divisible by \\( k! \\). Any 3 in a row are divisible by 6; any 4 in a row by 24. Expressions like \\(n(n+1)(n+2)\\) exist in a question only to test this.",
             "Among any \\(k\\) consecutive integers there is <b>exactly one</b> multiple of \\(k\\).",
-            "<b>Trailing zeros of</b> \\( n! \\) = \\( \\lfloor n/5 \\rfloor + \\lfloor n/25 \\rfloor + \\lfloor n/125 \\rfloor + \\dots \\). A zero needs a 2 and a 5, and 2s are far more plentiful, so counting 5s counts zeros.",
+            "<b>Trailing zeros of</b> \\( n! = \\lfloor n/5 \\rfloor + \\lfloor n/25 \\rfloor + \\lfloor n/125 \\rfloor + \\dots \\). A zero needs a 2 and a 5, and 2s are far more plentiful, so counting 5s counts zeros.",
             "If \\(a\\) divides \\(b\\) and \\(b\\) divides \\(c\\), then \\(a\\) divides \\(c\\)."
           ]},
           { t: "warn", x: "Divisible by \\(a\\) <b>and</b> by \\(b\\) does not mean divisible by \\(ab\\) — that only holds when \\(a\\) and \\(b\\) share no prime factor. 12 is divisible by 4 and by 6, but not by 24, because the two share a factor of 2 and it gets counted twice. Use the <b>LCM</b> (12), never the product." },
@@ -1624,7 +1624,7 @@ window.GMAT_CONCEPTS = [
           },
           { t: "eg",
             q: "If x and y are integers and x + y is odd, which of the following must be even?",
-            choices: ["xy", "x − y", "x + 2y", "xy + 1", "x² + y²"],
+            choices: ["xy", "x − y", "x + 2y", "xy + 1", "\\(x^{2} + y^{2}\\)"],
             ans: "A",
             why: "An odd sum means one of the two is odd and the other even — that is the only way to get an odd total. So the product \\(xy\\) has an even factor in it and must be even ✓. The rest: \\(x-y\\) is odd for the same reason the sum is; \\(x+2y\\) depends on \\(x\\), which could be either, so it is not determined; \\(xy+1\\) is even + 1, so odd; and \\(x^{2}+y^{2}\\) keeps the parities of \\(x\\) and \\(y\\), so it is odd + even = odd. Only (A) survives, and no numbers were substituted."
           }
@@ -1659,13 +1659,13 @@ window.GMAT_CONCEPTS = [
           { t: "tip", x: "Round late, not early. \\( \\tfrac13 \\) is exact and 0.333 is not, and rounding at the start is how a perfectly correct method lands between two answer choices." },
           { t: "eg",
             q: "Which of the following fractions is equivalent to a terminating decimal?",
-            choices: ["1/6", "1/7", "1/12", "1/15", "1/16"],
+            choices: ["\\(\\dfrac{1}{6}\\)", "\\(\\dfrac{1}{7}\\)", "\\(\\dfrac{1}{12}\\)", "\\(\\dfrac{1}{15}\\)", "\\(\\dfrac{1}{16}\\)"],
             ans: "E",
             why: "Factorize each denominator and look for anything other than 2s and 5s. \\(6 = 2\\cdot3\\), \\(7\\) is prime, \\(12 = 2^{2}\\cdot3\\), \\(15 = 3\\cdot5\\) — every one of those carries a 3 or a 7, so all four repeat. Only \\(16 = 2^{4}\\) is built from 2s alone, and indeed \\(1/16 = 0.0625\\). Note the rule needs the fraction in <b>lowest terms</b>: \\(3/6\\) looks like it fails, but it reduces to \\(1/2\\), which terminates."
           },
           { t: "eg",
             q: "Which of the following is the greatest?",
-            choices: ["7/9", "5/7", "9/11", "11/14", "3/4"],
+            choices: ["\\(\\dfrac{7}{9}\\)", "\\(\\dfrac{5}{7}\\)", "\\(\\dfrac{9}{11}\\)", "\\(\\dfrac{11}{14}\\)", "\\(\\dfrac{3}{4}\\)"],
             ans: "C",
             why: "Every one of these sits just below 1, so compare the shortfalls instead of the fractions. They are \\(2/9\\), \\(2/7\\), \\(2/11\\), \\(3/14\\) and \\(1/4\\), which as decimals are about 0.222, 0.286, 0.182, 0.214 and 0.25. The smallest shortfall belongs to \\(9/11\\), so it is the largest fraction. Three of the gaps have numerator 2, and among those the largest denominator gives the smallest gap — so \\(9/11\\) beats \\(7/9\\) and \\(5/7\\) at a glance."
           }
@@ -1690,9 +1690,9 @@ window.GMAT_CONCEPTS = [
           { t: "table", head: ["Zone", "Example", "\\(x^{2}\\) vs \\(x\\)", "\\(1/x\\)"], rows: [
             ["\\(x &lt; -1\\)", "\\(-2\\)", "\\(x^{2} &gt; x\\) (4 vs −2)", "between −1 and 0"],
             ["\\(x = -1\\)", "\\(-1\\)", "\\(x^{2} &gt; x\\)", "\\(-1\\), itself"],
-            ["\\(-1 &lt; x &lt; 0\\)", "\\(-\\tfrac12\\)", "\\(x^{2} &gt; x\\) (positive beats negative)", "less than −1"],
+            ["\\(-1 &lt; x &lt; 0\\)", "\\(-\\dfrac12\\)", "\\(x^{2} &gt; x\\) (positive beats negative)", "less than −1"],
             ["\\(x = 0\\)", "\\(0\\)", "equal", "undefined"],
-            ["\\(0 &lt; x &lt; 1\\)", "\\(\\tfrac12\\)", "\\(x^{2} &lt; x\\) (¼ vs ½)", "greater than 1"],
+            ["\\(0 &lt; x &lt; 1\\)", "\\(\\dfrac12\\)", "\\(x^{2} &lt; x\\) \\((\\tfrac{1}{4}\\) vs \\(\\tfrac{1}{2})\\)", "greater than 1"],
             ["\\(x = 1\\)", "\\(1\\)", "equal", "\\(1\\), itself"],
             ["\\(x &gt; 1\\)", "\\(2\\)", "\\(x^{2} &gt; x\\)", "between 0 and 1"]
           ]},
@@ -1816,8 +1816,8 @@ window.GMAT_CONCEPTS = [
           { t: "table", head: ["Quantity", "≈", "Quantity", "≈"], rows: [
             ["\\(2^{10}\\)", "1,000", "\\(\\sqrt2\\)", "1.41"],
             ["\\(\\pi\\)", "3.14", "\\(\\sqrt3\\)", "1.73"],
-            ["\\(\\tfrac17\\)", "0.143", "\\(\\sqrt5\\)", "2.24"],
-            ["\\(\\tfrac19\\)", "0.111", "\\(\\tfrac1{12}\\)", "0.083"]
+            ["\\(\\dfrac17\\)", "0.143", "\\(\\sqrt5\\)", "2.24"],
+            ["\\(\\dfrac19\\)", "0.111", "\\(\\dfrac1{12}\\)", "0.083"]
           ]},
           { t: "h", x: "Scientific notation" },
           { t: "p", x: "A number is written as \\( a\\times10^{n} \\) with \\( 1\\le a&lt;10 \\). Keep the two parts separate: multiply or divide the \\(a\\)'s as ordinary numbers, and <b>add or subtract the exponents</b>. Then renormalise if \\(a\\) has drifted outside 1 to 10." },
@@ -2451,15 +2451,15 @@ window.GMAT_CONCEPTS = [
           { t: "tip", x: "For draws where order is irrelevant you may either count with combinations on top and bottom, or multiply sequential probabilities and then multiply by the number of orders. Both are correct — pick whichever keeps the numbers small." },
           { t: "eg",
             q: "A bag holds 3 red and 5 blue marbles. Two are drawn at random without replacement. What is the probability that at least one is red?",
-            choices: ["3/14", "5/14", "3/8", "9/14", "11/14"],
+            choices: ["\\(\\dfrac{3}{14}\\)", "\\(\\dfrac{5}{14}\\)", "\\(\\dfrac{3}{8}\\)", "\\(\\dfrac{9}{14}\\)", "\\(\\dfrac{11}{14}\\)"],
             ans: "D",
             why: "\"At least one\" is the cue to flip to the complement. The opposite of at least one red is <b>no reds at all</b>, which is a single case: the first draw is blue with probability \\(5/8\\), and then only 4 blues remain among 7 marbles, so the second is \\(4/7\\). That gives \\(\\frac{5}{8}\\times\\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}\\), and the answer is \\(1-\\frac{5}{14} = \\frac{9}{14}\\). Doing it directly would mean adding the exactly-one and exactly-two cases — three times the work for the same number."
           },
           { t: "eg",
             q: "Two fair six-sided dice are rolled. What is the probability that the sum is 7?",
-            choices: ["1/12", "1/9", "1/6", "5/36", "7/36"],
+            choices: ["\\(\\dfrac{1}{12}\\)", "\\(\\dfrac{1}{9}\\)", "\\(\\dfrac{1}{6}\\)", "\\(\\dfrac{5}{36}\\)", "\\(\\dfrac{7}{36}\\)"],
             ans: "C",
-            why: "Count both parts. Two dice give \\(6\\times6 = 36\\) equally likely outcomes, since each die is independent of the other. The sums of 7 come from (1,6), (2,5), (3,4), (4,3), (5,2) and (6,1) — six of them, and the pairs must be counted separately because a 2 on the first die with a 5 on the second is a different roll from the reverse. So the probability is \\(6/36 = 1/6\\). Treating the pairs as unordered gives only 3 favourable outcomes and the trap answer 1/12; 7 is in fact the most likely sum on two dice."
+            why: "Count both parts. Two dice give \\(6\\times6 = 36\\) equally likely outcomes, since each die is independent of the other. The sums of 7 come from (1,6), (2,5), (3,4), (4,3), (5,2) and (6,1) — six of them, and the pairs must be counted separately because a 2 on the first die with a 5 on the second is a different roll from the reverse. So the probability is \\(6/36 = 1/6\\). Treating the pairs as unordered gives only 3 favourable outcomes and the trap answer \\(\\tfrac{1}{12}\\); 7 is in fact the most likely sum on two dice."
           }
         ]
       }
@@ -2525,7 +2525,7 @@ window.GMAT_CONCEPTS = [
             "<b>“IS / DOES” (yes-no)</b> — sufficient only for a <b>definite YES</b> or a <b>definite NO</b>. A confirmed NO is just as good as a YES; “sometimes yes, sometimes no” is insufficient."
           ] },
           { t: "eg",
-            q: "If m and n are integers, what is the value of m + n?  (1) (x+m)(x+n) = x² + 5x + mn, and x ≠ 0.   (2) mn = 4",
+            q: "If m and n are integers, what is the value of m + n?  (1) \\((x+m)(x+n) = x^{2} + 5x + mn\\), and x ≠ 0.   (2) mn = 4",
             choices: [
               "(1) alone sufficient, (2) alone not",
               "(2) alone sufficient, (1) alone not",
@@ -2534,7 +2534,7 @@ window.GMAT_CONCEPTS = [
               "Together still not sufficient"
             ],
             ans: "A",
-            why: "(1): expanding gives x²+(m+n)x+mn = x²+5x+mn, so (m+n)x = 5x, and since x ≠ 0, m+n = 5 — a unique value, sufficient. (2): mn = 4 allows 1·4, 2·2, −1·−4… so m+n could be 5, 4, −5… not unique, insufficient."
+            why: "(1): expanding gives \\(x^{2}+(m+n)x+mn = x^{2}+5x+mn\\), so (m+n)x = 5x, and since x ≠ 0, m+n = 5 — a unique value, sufficient. (2): mn = 4 allows 1·4, 2·2, −1·−4… so m+n could be 5, 4, −5… not unique, insufficient."
           },
           { t: "h", x: "The AD / BCE split" },
           { t: "p", x: "Test statement (1) on its own <b>first</b>, and the five choices immediately halve:" },

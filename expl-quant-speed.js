@@ -17,7 +17,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Do not solve the quadratic — the answer choices are the new speed, so test them.\n" +
     "Try 30: the old speed was 27. \\(540/27 = 20\\) hours and \\(540/30 = 18\\) hours. That is exactly the 2 hours saved. Done.\n" +
     "Backsolving works here because 540 was chosen to divide cleanly by the candidate speeds — start with a choice that divides 540, and you will usually land on it first or second.",
-  traps: "(D) 45 and (C) 50 divide 540 cleanly too, which is why they are here — but 540/42 and 540/47 are not whole hours, so the 2-hour gap fails.\n" +
+  traps: "(D) 45 and (C) 50 divide 540 cleanly too, which is why they are here — but \\(\\tfrac{540}{42}\\) and \\(\\tfrac{540}{47}\\) are not whole hours, so the 2-hour gap fails.\n" +
     "(B) 40 is what you get if you solve for \\(v\\) correctly and then forget to add the 3.\n" +
     "(E) 55 fails the forward check immediately: at 52 versus 55 km/h the trip times are 10.4 and 9.8 hours — a gap of barely half an hour. The faster the speeds, the less a +3 km/h boost saves, so the large choices die first.\n" +
     "Note that 27 itself is deliberately absent: the question asks for the new speed, and the set-up hands you the old one.",

@@ -83,7 +83,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Overs remaining: 40.\n" +
     "Step 5 — Required rate: \\(\\dfrac{250}{40} = 6.25\\).",
   fast: "\\(32\\) scored, \\(250\\) to get, \\(40\\) overs left. \\(250/40 = 25/4 = 6.25\\).\n" +
-    "Turning the division into a fraction and cancelling by 10 is faster than long division, and 25/4 is instantly recognisable.",
+    "Turning the division into a fraction and cancelling by 10 is faster than long division, and \\(\\tfrac{25}{4}\\) is instantly recognisable.",
   traps: "(B) 6.50 would need 260 runs; (C) 6.75 would need 270. The choices step by 10 runs each, so a single arithmetic slip in \\(282 - 32\\) lands you on one of them.\n" +
     "(D) 7.00 is \\(280/40\\), what you get by forgetting the 32 already scored and rounding.\n" +
     "(E) 7.25 would need 290 runs — the top of the ten-run staircase, forty runs beyond the true 250. It is the farthest decoy, there to reward computing \\(282 - 32\\) exactly rather than roughly.\n" +
@@ -188,7 +188,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "You can also bound it in two seconds: the answer must lie between 66 and 70, closer to 66 because that group is larger — which leaves only (A) and (B), and (A) is barely above 66.",
   traps: "(C) 68.7 would be the answer if the sections were the same size (the midpoint is 68).\n" +
     "(D) 69.7 and (E) 70.7 sit at or above the higher average, which no weighted average of 66 and 70 can reach.\n" +
-    "(A) 66.7 is too close to the lower average for a group that is 15/35 of the class.",
+    "(A) 66.7 is too close to the lower average for a group that is \\(\\tfrac{15}{35}\\) of the class.",
   take: "Bound before you compute: a weighted average lies strictly between the two rates and leans toward the larger group. That alone usually leaves two choices."
 },
 

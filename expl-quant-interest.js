@@ -9,14 +9,14 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 
 "quant-interest-ex#1": {
   steps: "Step 1 — Under simple interest the same amount of interest is added every year, so the amount grows in a straight line.\n" +
-    "Step 2 — Between year 2 and year 3½ — a span of 1.5 years — the amount rises by \\(1164 - 1008 = \\$156\\).\n" +
+    "Step 2 — Between year 2 and year \\(3\\tfrac{1}{2}\\) — a span of 1.5 years — the amount rises by \\(1164 - 1008 = \\$156\\).\n" +
     "Step 3 — So one year's interest is \\(\\dfrac{156}{1.5} = \\$104\\).\n" +
     "Step 4 — Work back to the principal: at year 2 the amount included 2 years of interest, so \\(P = 1008 - 2(104) = \\$800\\).\n" +
     "Step 5 — Rate \\(= \\dfrac{104}{800} = 0.13 = 13\\%\\).",
   fast: "Two amounts at two dates give the annual interest by subtraction: \\(\\dfrac{1164 - 1008}{3.5 - 2} = 104\\) per year. Strip 2 years of it off 1,008 to get \\(P = 800\\), then \\(104/800 = 13\\%\\).\n" +
     "The whole method is \"difference in amounts ÷ difference in years\". It works only because simple interest is linear — never try it on compound interest.",
   traps: "(C) \\(12\\tfrac12\\%\\) is \\(100/800\\), what you get by rounding the annual interest to $100.\n" +
-    "(E) \\(13\\tfrac12\\%\\) and (B) 14% are near-misses for anyone dividing 156 by 1.5 imprecisely or using 3½ years as the whole span.\n" +
+    "(E) \\(13\\tfrac12\\%\\) and (B) 14% are near-misses for anyone dividing 156 by 1.5 imprecisely or using \\(3\\tfrac{1}{2}\\) years as the whole span.\n" +
     "(D) 15% would need $120 a year, which contradicts the $156 over 1.5 years.",
   take: "Simple interest is linear. Two amounts at two times give the annual interest by subtraction, and the principal is then the amount minus however many years of it have accrued."
 },

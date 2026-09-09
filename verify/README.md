@@ -46,6 +46,15 @@ reader, an unconverted `[[` marker, or a formula KaTeX could not parse. It
 exists because `\$` is correct inside a `\( … \)` span and wrong outside one —
 a distinction invisible in the source and obvious to anyone reading the page.
 
+`notation.js` reads the source for typesetting: a power, root, fraction or
+comparison written as the ASCII a reader would type (`x^2`, `sqrt(`, `2/3`,
+`<=`), a unicode superscript or root sign in prose, an exponent inside `\( \)`
+that needs braces (`x^10` typesets as x¹0), an expression split half in and half
+out of the delimiters, and every math span parsed with the app's own KaTeX
+build. `ui/notation-render.js` then renders every stem, choice, hint, record
+and block inside the real page and fails if KaTeX marks an error or a delimiter,
+caret or LaTeX command reaches the reader as text.
+
 `ui/deep.js` is the broad net: it opens every pane, clicks every control on it,
 and after each click scans what is on screen for the signatures of a broken
 template — `undefined`, `NaN`, `[object Object]`, an unexpanded `${`, escaped

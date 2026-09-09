@@ -622,7 +622,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "\\(\\tfrac35 = 0.600\\), \\(\\tfrac18 = 0.125\\), \\(\\tfrac8{11} \\approx 0.727\\), \\(\\tfrac49 \\approx 0.444\\), \\(\\tfrac27 \\approx 0.286\\), \\(\\tfrac5{12} \\approx 0.417\\).\n" +
     "Step 2 — Sort them descending: \\(0.727 > 0.600 > 0.444 > 0.417 > 0.286 > 0.125\\).\n" +
     "Step 3 — In fraction form that is \\(\\tfrac8{11} > \\tfrac35 > \\tfrac49 > \\tfrac5{12} > \\tfrac27 > \\tfrac18\\).\n" +
-    "Step 4 — Counting from the largest, the third value is [[4/9]].",
+    "Step 4 — Counting from the largest, the third value is [[\\(\\tfrac{4}{9}\\)]].",
   fast: "You do not need the full ordering — only the top three. Two fractions clearly exceed a half (\\(\\tfrac8{11}\\) and \\(\\tfrac35\\)), and of the four below a half the largest is the one closest to it. Compare \\(\\tfrac49\\) with \\(\\tfrac5{12}\\) by cross-multiplying: \\(4 \\times 12 = 48\\) against \\(5 \\times 9 = 45\\), so \\(\\tfrac49\\) is bigger. Third place settled in two comparisons.",
   traps: "(D) \\(\\tfrac8{11}\\) is the largest of the six — the answer if you miscount the position, or if you read \"third\" as \"first\".\n" +
     "(C) \\(\\tfrac5{12}\\) is fourth, and it loses to \\(\\tfrac49\\) by the narrowest margin in the list (0.417 versus 0.444), so a sloppy decimal conversion puts it in third place.\n" +

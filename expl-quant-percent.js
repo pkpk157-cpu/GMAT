@@ -111,7 +111,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 2 — \"Defeated by 160 votes\" is the [[difference]] between them, not either candidate's total.\n" +
     "Step 3 — That difference is \\(60\\% - 40\\% = 20\\%\\) of all votes polled.\n" +
     "Step 4 — Solve. \\(0.20 \\times \\text{total} = 160 \\Rightarrow \\text{total} = 800\\).\n" +
-    "Step 5 — Check. \\(40\\%\\) of 800 = 320, \\(60\\%\\) = 480, and \\(480 - 320 = 160\\). ✓",
+    "Step 5 — Check. \\(40\\%\\) of 800 \\(= 320\\), \\(60\\% = 480\\), and \\(480 - 320 = 160\\). ✓",
   fast: "The margin between the two shares is 20 percentage points, and 20% of the total is 160 → total \\(= 800\\).\n" +
     "One subtraction and one division. The moment you see a two-candidate election, write down the margin as a percentage before anything else.",
   traps: "The error this question exists to catch is attaching 160 to a candidate rather than to the gap: setting \\(0.40 \\times \\text{total} = 160\\) gives 400, and setting \\(0.60 \\times \\text{total} = 160\\) gives about 267 — neither is offered, which is itself a signal you have misread the stem.\n" +
@@ -197,7 +197,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 3 — Second shipment: \\(10\\%\\) of 80 = 8 defective.\n" +
     "Step 4 — Combine. \\(6 + 8 = 14\\) defective out of \\(120 + 80 = 200\\) parts.\n" +
     "Step 5 — \\(\\dfrac{14}{200} = 0.07 = 7.0\\%\\).",
-  fast: "Count the defective units, not the percentages: 6 and 8 make 14 out of 200, and 14/200 doubles to 28/400 — or just halve 200 to see that 14 out of 200 is 7 per 100.\n" +
+  fast: "Count the defective units, not the percentages: 6 and 8 make 14 out of 200, and \\(\\tfrac{14}{200}\\) doubles to \\(\\tfrac{28}{400}\\) — or just halve 200 to see that 14 out of 200 is 7 per 100.\n" +
     "Whenever two groups with different sizes are merged, go to counts immediately.",
   traps: "(C) 7.5% is the plain average of 5% and 10%. It is wrong because the shipments are different sizes: the 120-part shipment carries more weight, which pulls the true answer [[below]] the midpoint.\n" +
     "That relationship is a check in itself — the answer must lie strictly between 5% and 10%, and nearer 5%, which alone identifies 7.0% and rules out (D) and (E).\n" +
@@ -374,7 +374,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
     "Step 4 — Sales factor \\(= \\dfrac{1.10}{0.90} = 1.222\\ldots\\)\n" +
     "Step 5 — Sales were about 122% of the previous year's.",
   fast: "\\(\\dfrac{1.1}{0.9} = \\dfrac{11}{9}\\), and \\(11/9\\) is just over \\(1.22\\).\n" +
-    "The direction alone nearly settles it: profit rose while the margin fell, so sales must have risen by [[more]] than 10% — which leaves only (D) and (E), and 190% is far too large for a 10/10 pair.",
+    "The direction alone nearly settles it: profit rose while the margin fell, so sales must have risen by [[more]] than 10% — which leaves only (D) and (E), and 190% is far too large for a \\(\\tfrac{10}{10}\\) pair.",
   traps: "(C) 110% is the profit change reported as the sales change — it ignores the margin entirely.\n" +
     "(B) 90% is the margin change alone, and points the wrong way.\n" +
     "(E) 190% adds the two effects; (A) 78% is \\(0.9/1.15\\)-style arithmetic with the fraction inverted.",

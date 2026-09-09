@@ -130,7 +130,7 @@
     questions: [
       Q(1, "Statistics from a table", "A",
         "The median amount of protein for the uncooked servings listed is what fraction of the median amount of protein for the cooked servings listed?",
-        ["1/3", "1/2", "2/3", "1", "3/2"],
+        ["\\(\\dfrac{1}{3}\\)", "\\(\\dfrac{1}{2}\\)", "\\(\\dfrac{2}{3}\\)", "1", "\\(\\dfrac{3}{2}\\)"],
         "Pull out the five uncooked rows and the ten cooked rows, then take each median separately.",
         "The five uncooked servings give protein 3, 1, 1, 1, 1; sorted, that is 1, 1, 1, 1, 3, so the median is the third value, 1 g.\nThe ten cooked servings give 5, 3, 5, 2, 5, 2, 3, 3, 5, 2; sorted, 2, 2, 2, 3, 3, 3, 5, 5, 5, 5, so the median is the average of the fifth and sixth values, both 3, giving 3 g.\nWhy (A) — 1 g is one third of 3 g.\n(B), (C), (D) and (E) all misread one of the two medians; note in particular that the cooked median is not the mean of the cooked values (3.3), and the uncooked median is not their mean (1.4)."),
       Q(2, "Statistics from a table", "D",
@@ -320,7 +320,7 @@
         "If the total value of all credit card transactions in 2009 was 10 percent greater than in 2006, by approximately what percent did the average (arithmetic mean) value of a credit card transaction increase from 2006 to 2009?",
         ["2%", "10%", "21%", "17%", "22%"],
         "Average value is total value divided by number of transactions. Both parts changed.",
-        "Let the 2006 total value be V. The 2009 total value is 1.1V. The transaction counts are 22 million in 2006 and 20 million in 2009.\nAverage in 2006 is V/22; average in 2009 is 1.1V/20. The ratio is (1.1V/20) ÷ (V/22) = 1.1 × 22/20 = 1.21, an increase of about 21%.\nWhy (C) — 21%.\n(B) 10% is the growth in total value, which ignores that the transactions were spread over fewer payments.\n(A) 2% treats the count as essentially unchanged, so only the 10% would show through — and even then not as 2%.\n(D) 17% and (E) 22% are near misses: they survive only if the 1.1 and the 22/20 are combined by something other than multiplication."),
+        "Let the 2006 total value be V. The 2009 total value is 1.1V. The transaction counts are 22 million in 2006 and 20 million in 2009.\nAverage in 2006 is V/22; average in 2009 is 1.1V/20. The ratio is \\((\\tfrac{1.1V}{20}) \\div (\\tfrac{V}{22}) = 1.1 \\times \\tfrac{22}{20} = 1.21\\), an increase of about 21%.\nWhy (C) — 21%.\n(B) 10% is the growth in total value, which ignores that the transactions were spread over fewer payments.\n(A) 2% treats the count as essentially unchanged, so only the 10% would show through — and even then not as 2%.\n(D) 17% and (E) 22% are near misses: they survive only if the 1.1 and the \\(\\tfrac{22}{20}\\) are combined by something other than multiplication."),
     ]
   });
 

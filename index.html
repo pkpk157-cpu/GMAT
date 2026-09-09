@@ -786,6 +786,8 @@
   .cn-p, .cn-li, .cn-h, .cn-h1, .cn-toct, .cn-tocs, .cn-call, .cn-eg-q, .cn-eg-op, .cn-eg-why, .cn-table th, .cn-table td { overflow-wrap: break-word; word-break: break-word; }
   .cn-back { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; color: var(--c-cr); font-weight: 700; font-size: 14.5px; padding: 4px 0; margin-bottom: 4px; }
   .cn-eyebrow { font-size: 13.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); }
+  .cn-readtimer { display: inline-block; margin-left: 10px; font-size: 12.5px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  .cn-readtimer.done { color: var(--good); }
   .cn-h1 { font-size: 23px; font-weight: 750; letter-spacing: -.02em; margin: 4px 0 18px; }
   .cn-h { font-size: 16px; font-weight: 700; margin: 22px 0 8px; color: var(--ink); }
   .cn-p { font-size: 15.5px; line-height: 1.62; color: var(--ink-soft); margin: 10px 0; text-wrap: pretty; }
@@ -1264,7 +1266,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v111";
+  const APP_VERSION = "v112";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1280,7 +1282,7 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[] };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], readProg:{} };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
 
@@ -2653,6 +2655,56 @@
   // Concept "read" tracking — a part counts as read once opened.
   function conceptRead(gid, pid) { return !!(state.read && state.read[gid] && state.read[gid][pid]); }
   function markConceptRead(gid, pid) { if (!state.read) state.read = {}; if (!state.read[gid]) state.read[gid] = {}; if (!state.read[gid][pid]) { state.read[gid][pid] = 1; save(); } }
+
+  /* ---- The reading timer ----
+     A section counts as read only once its estimated reading time has actually
+     been spent on it. Opening a section and closing it again marks nothing.
+     Time accrues only while the reader is open on that section and the tab is
+     visible, and it is kept per section, so a long section can be read across
+     several sittings. The same clock decides when reading counts as today's
+     "study a concept guide" activity. */
+  let cnTimer = null, cnTimerAt = null, cnSession = 0, cnCredited = false;
+  const readNeedSec = (p) => Math.max(60, ((p && p.mins) || 2) * 60);
+  function readProgress(gid, pid) { return (state.readProg && state.readProg[gid] && state.readProg[gid][pid]) || 0; }
+  function setReadProgress(gid, pid, sec) { if (!state.readProg) state.readProg = {}; if (!state.readProg[gid]) state.readProg[gid] = {}; state.readProg[gid][pid] = sec; }
+  function readTimerStop() { if (cnTimer) { clearInterval(cnTimer); cnTimer = null; } cnTimerAt = null; }
+  function readTimerStart(g, p) {
+    readTimerStop(); cnSession = 0; cnCredited = false;
+    cnTimerAt = Date.now();
+    cnTimer = setInterval(() => readTimerTick(g, p), 1000);
+    paintReadBadge(g, p);
+  }
+  function readTimerTick(g, p) {
+    const overlay = document.getElementById("concept");
+    const live = overlay && !overlay.hidden && cnGuideId === g.id && document.visibilityState === "visible";
+    const now = Date.now();
+    if (live && cnTimerAt != null) {
+      // One tick can never bank more than a minute, so a tab that slept for an
+      // hour does not come back with the hour credited.
+      const add = Math.min(60, Math.max(0, (now - cnTimerAt) / 1000));
+      cnSession += add;
+      if (!conceptRead(g.id, p.id)) setReadProgress(g.id, p.id, readProgress(g.id, p.id) + add);
+    }
+    cnTimerAt = live ? now : null;
+    const need = readNeedSec(p);
+    if (!conceptRead(g.id, p.id) && readProgress(g.id, p.id) >= need) {
+      markConceptRead(g.id, p.id);
+      if (!cnCredited) { cnCredited = true; markActivity("concept"); }
+    } else if (!cnCredited && cnSession >= need) {
+      cnCredited = true; markActivity("concept");
+    } else if (live && Math.floor(cnSession) % 10 === 0) {
+      saveRaw();   // keep partial progress without a sync push every second
+    }
+    paintReadBadge(g, p);
+  }
+  function paintReadBadge(g, p) {
+    const el = document.getElementById("cn-readtimer"); if (!el) return;
+    if (conceptRead(g.id, p.id)) { el.className = "cn-readtimer done"; el.textContent = "✓ Read"; return; }
+    const left = Math.max(0, readNeedSec(p) - readProgress(g.id, p.id));
+    el.className = "cn-readtimer"; el.textContent = "⏱ " + fmtClock(left * 1000) + " to count as read";
+  }
+  // Time spent with the tab hidden is not reading time.
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState !== "visible") cnTimerAt = null; });
   function guideReadCount(g) { return g.parts.reduce((n, p) => n + (conceptRead(g.id, p.id) ? 1 : 0), 0); }
   // Link a concept section to its practice set by keyword overlap of titles.
   const CN_STOP = new Set(["the","of","a","an","and","to","in","is","are","for","with","by","on","or","questions","question","argument","arguments","exercise","set","must","true","how","works","work","what","its","concepts","concept","reasoning","data","insights","study","skip"]);
@@ -2738,8 +2790,8 @@
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
-  function openConcept(id, partIdx) { cnGuideId = id; cnPartIdx = (typeof partIdx === "number") ? partIdx : -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); markActivity("concept"); if (window.gtrack) gtrack("concept-open"); }
-  function closeConcept() { document.getElementById("concept").hidden = true; cnGuideId = null; document.body.style.overflow = ""; render(); }
+  function openConcept(id, partIdx) { cnGuideId = id; cnPartIdx = (typeof partIdx === "number") ? partIdx : -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("concept-open"); }
+  function closeConcept() { readTimerStop(); saveRaw(); document.getElementById("concept").hidden = true; cnGuideId = null; document.body.style.overflow = ""; render(); }
 
   function blockHTML(b) {
     switch (b.t) {
@@ -2776,10 +2828,9 @@
       body.innerHTML = h + `</div></div>`;
     } else {
       const p = g.parts[cnPartIdx];
-      markConceptRead(g.id, p.id);   // opening a section marks it read
       const backTo = !guideIsFlat(g) ? "‹ Contents" : (g.kind === "trick" ? "‹ All tricks" : "‹ All sections");
       let h = `<div class="cn-article"><button class="cn-back" data-cnpart="-1">${backTo}</button>`;
-      h += `<div class="cn-eyebrow">${cnPartIdx+1} of ${g.parts.length}${p.mins?" · "+p.mins+" min":""}</div><h1 class="cn-h1">${esc(p.title)}</h1>`;
+      h += `<div class="cn-eyebrow">${cnPartIdx+1} of ${g.parts.length}${p.mins?" · "+p.mins+" min":""}<span id="cn-readtimer" class="cn-readtimer"></span></div><h1 class="cn-h1">${esc(p.title)}</h1>`;
       h += p.blocks.map(blockHTML).join("");
       const lastPart = cnPartIdx === g.parts.length-1;
       const ps = practiceSetForPart(p, g.section);
@@ -2791,7 +2842,9 @@
       }
       h += `<div class="cn-nav"><button class="prev" data-cnpart="${cnPartIdx-1}" ${cnPartIdx===0?"disabled":""}>‹ Previous</button>${lastPart?`<button class="next" data-cnpart="-1">Done ✓</button>`:`<button class="next" data-cnpart="${cnPartIdx+1}">Next section ›</button>`}</div>`;
       body.innerHTML = h + `</div>`;
+      readTimerStart(g, p);
     }
+    if (cnPartIdx < 0) readTimerStop();
     typeset(body);
   }
   function gotoPart(i) {

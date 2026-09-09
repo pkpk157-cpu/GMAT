@@ -180,30 +180,6 @@
   .sec-stat b { font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
   .sec-stat .acc { color: var(--good); }
 
-  /* Subject cards */
-  .subjects { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
-  .subject { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-  .subj-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
-  .subj-head:hover { background: var(--surface-2); }
-  .subj-head .chev { color: var(--ink-faint); transition: transform .2s; font-size: 13.5px; }
-  .subject.collapsed .chev { transform: rotate(-90deg); }
-  .subj-head .title { font-weight: 650; font-size: 15.5px; margin-right: auto; letter-spacing: -.01em; }
-  .subj-head .count { font-size: 14px; font-weight: 600; color: var(--secc); background: color-mix(in srgb, var(--secc) 12%, transparent); padding: 3px 10px; border-radius: 20px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .subject.collapsed .topics { display: none; }
-
-  .topic { display: flex; align-items: center; gap: 9px; padding: 10px 16px; border-top: 1px solid var(--line-soft); }
-  .topic .tname { font-size: 14px; margin-right: auto; line-height: 1.3; }
-  .acts { display: flex; gap: 5px; flex: none; }
-  .mk { width: 34px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; font-weight: 800; line-height: 1; display: grid; place-items: center; transition: .12s; }
-  .mk.right { color: var(--good); }
-  .mk.right:hover { background: color-mix(in srgb, var(--good) 14%, var(--surface)); border-color: var(--good); }
-  .mk.wrong { color: var(--bad); }
-  .mk.wrong:hover { background: color-mix(in srgb, var(--bad) 14%, var(--surface)); border-color: var(--bad); }
-  .tstat { display: flex; flex-direction: column; align-items: flex-end; gap: 0; min-width: 50px; border: none; background: none; padding: 3px 3px; border-radius: 8px; flex: none; }
-  .tstat:hover { background: var(--surface-2); }
-  .tstat .td { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; line-height: 1.2; }
-  .tstat .td.zero { color: var(--ink-faint); font-weight: 600; }
-  .tstat .tacc { font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; }
   .acc-hi { color: var(--good); } .acc-mid { color: var(--warn); } .acc-lo { color: var(--bad); }
 
   /* Goals rings */
@@ -245,28 +221,6 @@
   /* A recalibrated level is marked with words, not a caret: a dashed outline
      plus a "▾" read as a dropdown the user was meant to operate. */
   .lvl-recal i { font-style: normal; font-weight: 700; margin-left: 4px; opacity: .72; }
-  .recal { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px dashed color-mix(in srgb, var(--secc, var(--accent)) 38%, var(--line)); background: color-mix(in srgb, var(--secc, var(--accent)) 6%, var(--surface)); }
-  .recal h4 { margin: 0 0 4px; font-size: 14px; font-weight: 800; color: color-mix(in srgb, var(--secc, var(--accent)) 60%, var(--ink)); }
-  .recal p { margin: 0 0 9px; font-size: 13px; color: var(--ink-faint); line-height: 1.45; }
-  .recal ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .recal li { font-size: 13.5px; color: var(--ink-soft); display: flex; align-items: baseline; gap: 7px; }
-  .recal li b { font-weight: 700; color: var(--ink); }
-  .recal .rdir { flex: none; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; }
-  .recal .rdir.up { background: color-mix(in srgb, var(--bad) 16%, var(--surface)); color: var(--bad); }
-  .recal .rdir.down { background: color-mix(in srgb, var(--good) 16%, var(--surface)); color: var(--good); }
-  /* ---- Generate practice ---- */
-  .gen-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 14px; }
-  .gen-chip { font: inherit; font-size: 13.5px; font-weight: 650; padding: 7px 12px; border-radius: 999px; cursor: pointer;
-    border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); transition: background .15s, border-color .15s, color .15s; }
-  .gen-chip[aria-pressed="true"] { background: color-mix(in srgb, var(--secc, var(--accent)) 16%, var(--surface));
-    border-color: color-mix(in srgb, var(--secc, var(--accent)) 55%, var(--line)); color: color-mix(in srgb, var(--secc, var(--accent)) 70%, var(--ink)); }
-  .gen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
-  .gen-row label { font-size: 13.5px; font-weight: 650; color: var(--ink-faint); }
-  .gen-row select { font: inherit; font-size: 14px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
-  .gen-go { font: inherit; font-size: 14.5px; font-weight: 750; padding: 9px 16px; border-radius: 11px; cursor: pointer; border: 0;
-    background: var(--secc, var(--accent)); color: #fff; margin-left: auto; }
-  .gen-go[disabled] { opacity: .45; cursor: not-allowed; }
-  .gen-note { font-size: 13px; color: var(--ink-faint); margin: 11px 0 0; line-height: 1.45; }
   /* Section mock launcher */
   .mocks { margin: 0 0 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
   .mocks-h { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); }
@@ -587,22 +541,10 @@
   .modal .btn-primary { margin-top: 4px; }
   .hint { font-size: 13.5px; color: var(--ink-faint); margin-top: 6px; }
 
-  /* Log sheet */
+  /* Modal heading pair, used by the question jumper */
   .ls-eyebrow { font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ls-c, var(--accent)); font-weight: 700; }
   .ls-title { font-family: var(--serif); font-size: 21px; font-weight: 600; margin: 5px 0 2px; letter-spacing: -.01em; text-wrap: balance; }
-  .ls-crumb { font-size: 14px; color: var(--ink-soft); margin-bottom: 18px; }
-  .ls-row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-top: 1px solid var(--line-soft); }
-  .ls-row .li { margin-right: auto; }
-  .ls-row .lk { font-weight: 650; font-size: 14.5px; }
-  .ls-row .ls { font-size: 13.5px; color: var(--ink-soft); }
-  .ls-big { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 19px; min-width: 40px; text-align: center; }
-  .ls-presets { display: flex; gap: 7px; margin: 14px 0 4px; }
-  .ls-presets button { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); padding: 8px; border-radius: 9px; font-size: 14.5px; font-weight: 700; }
-  .ls-presets button:hover { border-color: var(--accent); color: var(--accent); }
-  .ls-now { font-size: 14px; color: var(--ink-soft); text-align: center; margin: 16px 0 4px; }
-  .ls-now b { color: var(--ink); }
-  .ls-reset { display: block; margin: 12px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 14px; text-decoration: underline; }
-  .ls-reset:hover { color: var(--bad); }
+
   .step { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); height: 34px; min-width: 36px; padding: 0 9px; border-radius: 9px; font-size: 16px; font-weight: 700; transition: .12s; line-height: 1; }
   .step:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
   .step.minus { min-width: 34px; }
@@ -706,7 +648,6 @@
   .hint-box summary { color: var(--gold); }
   .rev-time { font-size: 12.5px; color: var(--ink-faint); font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 8px; }
   .rev-time.slow { color: var(--bad); }
-  .tstat .ttime { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); font-variant-numeric: tabular-nums; line-height: 1.2; }
   .revitem { border-top: 1px solid var(--line-soft); padding: 9px 0; }
   .revitem:first-child { border-top: none; }
   .revitem .qrow { border-top: none; padding: 0; }
@@ -1102,9 +1043,6 @@
   </div>
 </div>
 
-<!-- Log sheet -->
-<div class="scrim" id="logsheet" hidden><div class="modal" id="ls-card"></div></div>
-
 <!-- Profile page -->
 <div class="profile" id="profile" hidden>
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Profile</h2><button class="pf-close" id="pf-close" title="Close">✕</button></div></div>
@@ -1232,7 +1170,7 @@
 <script src="expl-quant-ratio.js"></script>
 <script src="expl-quant-work.js"></script>
 <script src="expl-quant-profitloss.js"></script>
-<script src="generator.js"></script>
+<script src="ai-key.js"></script>
 <script src="concepts.js"></script>
 <script src="tricks.js"></script>
 <script src="flashcards.js"></script>
@@ -1280,8 +1218,6 @@
     concepts:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>',
     flash:'<svg viewBox="0 0 24 24"><rect x="8" y="3.5" width="12" height="14" rx="2"/><path d="M4 8v10.5A2 2 0 0 0 6 20.5h10"/></svg>',
     practice:'<svg viewBox="0 0 24 24"><path d="M12.5 20H21"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
-    logged:'<svg viewBox="0 0 24 24"><path d="M10 6h10"/><path d="M10 12h10"/><path d="M10 18h10"/><path d="M3.5 6l1.2 1.2L7 5"/><path d="M3.5 12l1.2 1.2L7 11"/><path d="M3.5 18l1.2 1.2L7 17"/></svg>',
-    spark:'<svg viewBox="0 0 24 24"><path d="M12 2.5l2.1 5.4 5.4 2.1-5.4 2.1L12 17.5l-2.1-5.4L4.5 10l5.4-2.1z"/><path d="M18.5 16.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',
     tricks:'<svg viewBox="0 0 24 24"><path d="M13 2.5L4.5 13.5H11l-1 8 8.5-11H12z"/></svg>'
   };
 
@@ -1325,7 +1261,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v105";
+  const APP_VERSION = "v106";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1341,10 +1277,9 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], genPick:{} };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[] };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
-  let sheet = null; // { id, a, c }
 
   // Saved state can be damaged — a half-finished sync, a hand-edited backup, an
   // older build. Merging it in blind used to hand the app a string where it
@@ -1395,15 +1330,6 @@
   const done = (id) => getRec(id).d;
   const accPct = (c, d) => d > 0 ? Math.round(c / d * 100) : null;
   const accClass = (p) => p === null ? "" : p >= 80 ? "acc-hi" : p >= 65 ? "acc-mid" : "acc-lo";
-
-  function logQ(id, attempted, correct) {
-    attempted = Math.max(0, attempted | 0);
-    correct = Math.max(0, Math.min(attempted, correct | 0));
-    if (attempted <= 0) return;
-    const r = getRec(id); r.d += attempted; r.c += correct; setRec(id, r);
-    const k = dkey(); state.daily[k] = Math.max(0, (state.daily[k] || 0) + attempted);
-    save(); renderView(); renderBotnav();
-  }
 
   // aggregates -> { d, c }
   function subjectAgg(secId, su) { let d=0,c=0,ms=0; su.topics.forEach(t=>{ const r=getRec(topicId(secId,su.name,t)); d+=r.d; c+=r.c; ms+=r.ms; }); return { d, c, ms }; }
@@ -1579,41 +1505,6 @@
   const tsecKey = (secId, area) => secId + "::§" + area;
   function tsecCollapsed(key) { return !!(state.collapsed && state.collapsed[key]); }
 
-  function questionsLoggedHTML(sec) {
-    const ag = sectionAgg(sec), p = accPct(ag.c, ag.d);
-    const meta = ag.d > 0
-      ? `<span class="acc ${accClass(p)}" style="font-weight:800;font-size:15px">${ag.d} · ${p===null?"—":p+"%"}</span>`
-      : "";
-    const key = tsecKey(sec.id, "logged");
-    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-logged" style="--secc:${sec.color}">`;
-    h += tabSecHead(ICON.logged, "Questions logged", "Your attempts per topic. Tap ✓ / ✗ to log one, or a count to enter a batch.", meta, key);
-    h += `<div class="tabsec-body"><div class="subjects" style="margin-top:0">`;
-    sec.subjects.forEach(su => {
-      const ckey = sec.id+"::"+su.name, collapsed = state.collapsed[ckey] ? " collapsed" : "";
-      const a = subjectAgg(sec.id, su), sp = accPct(a.c, a.d);
-      h += `<section class="subject${collapsed}" style="--secc:${sec.color}">
-        <div class="subj-head" data-collapse="${esc(ckey)}"><span class="chev">▼</span><span class="title">${esc(su.name)}</span>
-        <span class="count">${a.d} done${sp!==null?` · ${sp}%`:""}</span></div><div class="topics">`;
-      su.topics.forEach(t => {
-        const id = topicId(sec.id, su.name, t), r = getRec(id), p2 = accPct(r.c, r.d);
-        h += `<div class="topic">
-          <span class="tname">${esc(t)}</span>
-          <div class="acts">
-            <button class="mk right" data-mk="${esc(id)}" data-c="1" aria-label="Log one correct">✓</button>
-            <button class="mk wrong" data-mk="${esc(id)}" data-c="0" aria-label="Log one wrong">✗</button>
-          </div>
-          <button class="tstat" data-edit="${esc(id)}" title="Log a batch or edit">
-            <span class="td ${r.d===0?"zero":""}">${r.d}</span>
-            ${p2!==null?`<span class="tacc ${accClass(p2)}">${p2}%</span>`:`<span class="tacc" style="color:var(--ink-faint)">—</span>`}
-            ${r.ms>0&&r.d>0?`<span class="ttime">⏱ ${fmtDur(r.ms/r.d)}</span>`:""}
-          </button>
-        </div>`;
-      });
-      h += `</div></section>`;
-    });
-    return h + `</div></div></section>`;
-  }
-
   /* Forget a generated set completely. Deleting the run alone used to leave its
      flags, review cards and miss reasons behind: invisible, because every panel
      looks the set up first, but still stored and still synced to other devices. */
@@ -1625,24 +1516,6 @@
     Object.keys(state.srs || {}).forEach(k => { if (k.indexOf(pre) === 0) delete state.srs[k]; });
     Object.keys(state.miss || {}).forEach(k => { if (k.indexOf(pre) === 0) delete state.miss[k]; });
     const at = SETS.findIndex(x => x.id === gone.id); if (at >= 0) SETS.splice(at, 1);
-  }
-
-  // Build a set, persist it, splice it into the live SETS array (so the runner
-  // and every aggregate see it immediately) and open it.
-  function generateSet(secId) {
-    const G = window.GMAT_GEN;
-    if (!G) { alert("The generator didn't load. Pull the latest version from your profile and try again."); return; }
-    const sel = document.querySelector(`[data-gencount="${secId}"]`);
-    const count = sel ? parseInt(sel.value, 10) || 10 : 10;
-    const set = G.makeSet(genPicked(secId), count);
-    if (!set || !set.questions.length) { alert("Couldn't build a set from those topics — try picking another one."); return; }
-    state.genSets = (state.genSets || []).concat([set]);
-    // Keep the newest 20 generated sets; drop the oldest along with its state.
-    while (state.genSets.length > 20) dropGenSet(state.genSets.shift());
-    SETS.push(set);
-    save(); renderView();
-    openRunner(set.id);
-    if (window.gtrack) gtrack("generate-set");
   }
 
   /* ===================== Difficulty recalibration =====================
@@ -1710,141 +1583,6 @@
     const p = personalLevel(section, q);
     if (!p.shifted) return `<span class="lvl lvl-${p.level}">${p.level}</span>`;
     return `<span class="lvl lvl-${p.level} lvl-recal" title="${esc(p.why)}">${p.level}<i>· for you</i></span>`;
-  }
-  // Per-section summary of every bucket your results disagree with.
-  function recalSummary(secId) {
-    const out = [];
-    const buckets = recalBuckets();
-    Object.keys(buckets).forEach(k => {
-      const [sec, topic, lvl] = k.split("::");
-      if (sec !== secId) return;
-      const b = buckets[k];
-      if (b.n < RECAL_MIN_SAMPLE) return;
-      const acc = b.c / b.n, base = LEVEL_BASELINE[lvl], at = LEVEL_ORDER.indexOf(lvl);
-      if (acc >= base + RECAL_MARGIN && at > 0) out.push({ topic, lvl, acc, n: b.n, dir: -1 });
-      else if (acc <= base - RECAL_MARGIN && at < LEVEL_ORDER.length - 1) out.push({ topic, lvl, acc, n: b.n, dir: 1 });
-    });
-    return out.sort((a, b) => (a.dir - b.dir) || (a.acc - b.acc));
-  }
-
-  function recalPanelHTML(sec) {
-    const rows = recalSummary(sec.id);
-    if (!rows.length) return "";
-    let h = `<div class="panel recal" style="--secc:${sec.color}"><h4>Difficulty, recalibrated for you</h4>` +
-      `<p>These labels came from whoever wrote the questions. On ${esc(sec.nav)} your own results disagree, so the badges on these questions now show your level instead.</p><ul>`;
-    rows.forEach(r => {
-      h += `<li><span class="rdir ${r.dir < 0 ? "down" : "up"}">${r.dir < 0 ? "easier" : "harder"}</span>` +
-        `<span><b>${esc(r.topic)}</b> · marked ${esc(r.lvl)} · you're at ${Math.round(r.acc * 100)}% over ${r.n} question${r.n === 1 ? "" : "s"}</span></li>`;
-    });
-    return h + `</ul></div>`;
-  }
-
-  /* ===================== Generate practice ===================== */
-  let genBusy = false, genStatus = "", genStatusCls = "";
-  function setGenStatus(msg, cls) { genStatus = msg || ""; genStatusCls = cls || ""; renderView(); }
-
-  // Generate a set through the Claude API. Only reachable once the user has
-  // saved their own key; the request and the key never leave this device except
-  // to go to api.anthropic.com.
-  async function generateAiSet(secId) {
-    const AI = window.GMAT_GEN && window.GMAT_GEN.ai;
-    if (!AI || !AI.hasKey()) { setGenStatus("Add an API key under Profile → AI question generation first.", "bad"); return; }
-    if (genBusy) return;
-    const sel = document.querySelector(`[data-gencount="${secId}"]`);
-    const count = sel ? parseInt(sel.value, 10) || 4 : 4;
-    const sec = secById(secId);
-    genBusy = true; setGenStatus("Writing " + count + " question" + (count === 1 ? "" : "s") + "… this takes a few seconds.", "");
-    try {
-      const out = await AI.generate({ section: secId, count: count, label: sec ? sec.nav : secId });
-      state.genSets = (state.genSets || []).concat([out.set]);
-      while (state.genSets.length > 20) dropGenSet(state.genSets.shift());
-      SETS.push(out.set);
-      save();
-      genBusy = false;
-      const dropped = out.rejected.length;
-      setGenStatus(dropped ? ("Kept " + out.set.questions.length + "; dropped " + dropped + " that failed validation.") : "", dropped ? "" : "");
-      openRunner(out.set.id);
-      if (window.gtrack) gtrack("generate-ai-set");
-    } catch (e) {
-      genBusy = false;
-      setGenStatus((e && e.message) || "Generation failed.", "bad");
-    }
-  }
-
-  // Builds fresh questions on this device from parameterised templates. The
-  // answer is computed by the template rather than written down, so a
-  // generated question cannot carry a wrong key.
-  function genTopicsFor(secId) {
-    const G = window.GMAT_GEN;
-    return G ? G.TOPICS.filter(t => t.section === secId) : [];
-  }
-  function genPicked(secId) {
-    const all = genTopicsFor(secId).map(t => t.id);
-    const cur = (state.genPick && state.genPick[secId]) || [];
-    const kept = cur.filter(id => all.indexOf(id) >= 0);
-    return kept.length ? kept : all.slice(0, 1);
-  }
-  function generatorPanelHTML(sec) {
-    const topics = genTopicsFor(sec.id);
-    const key = tsecKey(sec.id, "generate");
-    const open = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-generate" style="--secc:${sec.color}">` +
-      tabSecHead(ICON.spark, "Generate practice", "Build a fresh set on any topic — new numbers every time, answers computed on the spot.", "", key) +
-      `<div class="tabsec-body">`;
-    const AI = window.GMAT_GEN && window.GMAT_GEN.ai;
-    const aiOn = !!(AI && AI.hasKey());
-    const mine0 = (state.genSets || []).filter(g => g.section === sec.id);
-    // RC and CR have no template generators — a passage or an argument has to be
-    // written, not parameterised — so those tabs offer the AI path instead.
-    if (!topics.length) {
-      let h = open;
-      if (!aiOn) {
-        h += `<p class="footnote" style="margin:0 0 4px;text-align:left">${esc(sec.nav)} questions need a written passage or argument, which the offline templates can't produce. Add an Anthropic API key under <b>Profile → AI question generation</b> to generate them.</p>`;
-        return h + genListHTML(mine0, sec) + `</div></section>`;
-      }
-      h += `<div class="gen-row"><label for="gen-n-${esc(sec.id)}">Questions</label>` +
-        `<select id="gen-n-${esc(sec.id)}" data-gencount="${esc(sec.id)}">` +
-        [3, 4, 6, 8].map(n => `<option value="${n}"${n === 4 ? " selected" : ""}>${n}</option>`).join("") +
-        `</select><button class="gen-go" data-genai="${esc(sec.id)}"${genBusy ? " disabled" : ""}>${genBusy ? "Writing…" : "✨ Generate with AI"}</button></div>`;
-      if (genStatus) h += `<p class="ai-status ${genStatusCls}">${esc(genStatus)}</p>`;
-      h += genListHTML(mine0, sec);
-      h += `<p class="gen-note">Written by ${esc(AI.MODEL)} and billed to your own Anthropic account. These answers are model-written, not computed or checked against a printed key — useful for extra reps, but the verified sets above are the source of truth.</p>`;
-      return h + `</div></section>`;
-    }
-    const picked = genPicked(sec.id);
-    let h = open + `<div class="gen-chips">`;
-    topics.forEach(t => {
-      const on = picked.indexOf(t.id) >= 0;
-      h += `<button type="button" class="gen-chip" aria-pressed="${on}" data-gentopic="${esc(sec.id)}|${esc(t.id)}">${esc(t.label)}</button>`;
-    });
-    h += `</div><div class="gen-row"><label for="gen-n-${esc(sec.id)}">Questions</label>` +
-      `<select id="gen-n-${esc(sec.id)}" data-gencount="${esc(sec.id)}">` +
-      [5, 10, 15, 20].map(n => `<option value="${n}"${n === 10 ? " selected" : ""}>${n}</option>`).join("") +
-      `</select><button class="gen-go" data-gengo="${esc(sec.id)}"${picked.length ? "" : " disabled"}>✨ Generate set</button></div>`;
-    h += genListHTML((state.genSets || []).filter(g => g.section === sec.id), sec);
-    if (aiOn) h += `<div class="gen-row" style="margin-top:12px"><button class="gen-go" style="margin-left:0" data-genai="${esc(sec.id)}"${genBusy ? " disabled" : ""}>${genBusy ? "Writing…" : "✨ Or write new ones with AI"}</button></div>`;
-    if (genStatus) h += `<p class="ai-status ${genStatusCls}">${esc(genStatus)}</p>`;
-    h += `<p class="gen-note">Generated questions are built from templates and scored the same way as the rest of the app, so they count towards your topic accuracy. They supplement the verified bank — they don't replace it.</p>`;
-    return h + `</div></section>`;
-  }
-
-  // The list of sets already generated for a section (shared by both paths).
-  function genListHTML(mine, sec) {
-    let h = "";
-    if (mine.length) {
-      h += `<div class="setlist" style="margin-top:15px">`;
-      mine.slice().reverse().forEach(gs => {
-        const run = getRun(gs.id), answered = Object.keys(run.ans).length;
-        let status, cls;
-        if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
-        else if (answered) { status = `${answered}/${gs.questions.length} answered`; cls = ""; }
-        else { status = "not started"; cls = "muted"; }
-        h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">✨</span><div class="si"><div class="st">${esc(gs.title)}</div>
-          <div class="sm"><span class="badge" style="--sc:${sec.color}">${gs.ai ? "AI · unverified" : "Generated"}</span><span>${gs.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span></div></div>
-          <div class="setbtns"><button class="reset-set" data-gendel="${esc(gs.id)}" title="Delete this generated set">🗑</button><button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(gs.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
-      });
-      h += `</div>`;
-    }
-    return h;
   }
 
   function sectionHTML(sec) {
@@ -2024,26 +1762,6 @@
     }
     h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
     return h;
-  }
-
-  /* Log sheet */
-  function openSheet(id) { const p = id.split("::"); sheet = { id, a:5, c:0, secId:p[0], subj:p[1], topic:p[2] }; renderSheet(); document.getElementById("logsheet").hidden = false; }
-  function closeSheet() { document.getElementById("logsheet").hidden = true; sheet = null; }
-  function renderSheet() {
-    if (!sheet) return;
-    const sec = secById(sheet.secId), r = getRec(sheet.id), p = accPct(r.c, r.d);
-    document.getElementById("ls-card").innerHTML = `
-      <div class="ls-eyebrow" style="--ls-c:${sec.color}">${esc(sec.nav)} · ${esc(sheet.subj)}</div>
-      <div class="ls-title">${esc(sheet.topic)}</div>
-      <div class="ls-crumb">Add a practice set — how many you did and how many you got right.</div>
-      <div class="ls-row"><div class="li"><div class="lk">Attempted</div><div class="ls">questions in this set</div></div>
-        <div class="stepper"><button class="step minus" data-sa="-1" ${sheet.a<=1?"disabled":""}>−</button><span class="ls-big">${sheet.a}</span><button class="step" data-sa="1">+</button></div></div>
-      <div class="ls-row"><div class="li"><div class="lk">Correct</div><div class="ls">of those, how many right</div></div>
-        <div class="stepper"><button class="step minus" data-sc="-1" ${sheet.c<=0?"disabled":""}>−</button><span class="ls-big">${sheet.c}</span><button class="step" data-sc="1" ${sheet.c>=sheet.a?"disabled":""}>+</button></div></div>
-      <div class="ls-presets"><button data-sap="5">Set 5</button><button data-sap="10">Set 10</button><button data-sap="20">Set 20</button></div>
-      <div class="ls-now">Now: <b>${r.d}</b> done${p!==null?` · <b>${p}%</b> accuracy`:""}</div>
-      <button class="btn-primary" data-ssave="1" style="margin-top:14px">Add ${sheet.a} question${sheet.a===1?"":"s"}${sheet.c>0?` · ${sheet.c} correct`:""}</button>
-      <button class="ls-reset" data-sreset="1">Reset this topic to zero</button>`;
   }
 
   /* Profile */
@@ -2397,18 +2115,18 @@
     catch (e) { syncStatus = e.message === "auth" ? "Token was rejected — re-link this device." : (!navigator.onLine ? "You're offline — will sync when back online." : "Sync failed — try again."); }
     syncBusy = false; renderSyncPanel();
   }
-  /* ---- AI question generation (optional add-on) ---- */
+  /* ---- AI explanations (optional add-on) ---- */
   function aiPanelInner() {
     const AI = window.GMAT_GEN && window.GMAT_GEN.ai;
-    if (!AI) return `<h3>AI question generation</h3><p class="sub">The generator didn't load. Pull the latest version and try again.</p>`;
-    let h = `<h3>AI question generation <span class="pf-adv">advanced</span></h3>`;
+    if (!AI) return `<h3>AI explanations</h3><p class="sub">That add-on didn't load. Pull the latest version and try again.</p>`;
+    let h = `<h3>AI explanations <span class="pf-adv">advanced</span></h3>`;
     if (AI.hasKey()) {
-      h += `<p class="sub">Connected. Reading Comprehension and Critical Reasoning can now be generated from the <b>Generate practice</b> panel on those tabs.</p>
-        <p class="sub" style="margin-top:8px">Questions written this way are produced by ${esc(AI.MODEL)} and are <b>not</b> verified the way the rest of the bank is — treat them as extra drilling, not as a source of truth.</p>
+      h += `<p class="sub">Connected. When you get a question wrong, the runner offers <b>Explain my mistake</b> — a walkthrough of why the option you picked looked right.</p>
+        <p class="sub" style="margin-top:8px">Those explanations are written by ${esc(AI.MODEL)} and are <b>not</b> verified the way the printed explanations are — read them alongside the written one, not instead of it.</p>
         <div class="pf-actions"><button class="btn-soft" data-ai-forget="1">Remove key from this device</button></div>`;
     } else {
-      h += `<p class="sub">The offline generator can't write a reading passage or a reasoning argument, so RC and CR need a model. Add your own Anthropic API key to turn that on. Everything else in the app works without it.</p>
-        <p class="sub" style="margin-top:8px">The key is stored only in this device's browser storage and is sent only to api.anthropic.com. It is never included in a backup or in cross-device sync, and you can revoke it any time at <b>console.anthropic.com</b>. Generating questions is billed to your own account.</p>
+      h += `<p class="sub">Every question in the bank already carries a written explanation. Add your own Anthropic API key and a wrong answer also gets a walkthrough of why <b>the option you picked</b> looked right. Everything else in the app works without it.</p>
+        <p class="sub" style="margin-top:8px">The key is stored only in this device's browser storage and is sent only to api.anthropic.com. It is never included in a backup or in cross-device sync, and you can revoke it any time at <b>console.anthropic.com</b>. Each explanation is billed to your own account.</p>
         <p class="footnote" style="text-align:left;margin:0 0 12px"><a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Create an API key →</a></p>
         <div class="field"><label for="ai-key">Anthropic API key</label><input id="ai-key" type="password" placeholder="sk-ant-…" autocomplete="off" spellcheck="false"></div>
         <div class="pf-actions"><button class="btn-primary" data-ai-save="1">Save key</button></div>`;
@@ -2427,20 +2145,9 @@
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
     const pg = e.target.closest("[data-progtoggle]"); if (pg) { state.progOpen = !state.progOpen; save(); renderView(); return; }
-    const mk = e.target.closest("[data-mk]"); if (mk) { logQ(mk.getAttribute("data-mk"), 1, mk.getAttribute("data-c")==="1"?1:0); return; }
-    const ed = e.target.closest("[data-edit]"); if (ed) { openSheet(ed.getAttribute("data-edit")); return; }
-    const col = e.target.closest("[data-collapse]"); if (col) { const k=col.getAttribute("data-collapse"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this topic added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
-    const gt = e.target.closest("[data-gentopic]"); if (gt) {
-      const [secId, topId] = gt.getAttribute("data-gentopic").split("|");
-      const cur = genPicked(secId).slice(), at = cur.indexOf(topId);
-      if (at >= 0) { if (cur.length > 1) cur.splice(at, 1); } else cur.push(topId);
-      state.genPick = state.genPick || {}; state.genPick[secId] = cur; save(); renderView(); return;
-    }
-    const gg = e.target.closest("[data-gengo]"); if (gg) { generateSet(gg.getAttribute("data-gengo")); return; }
-    const ga = e.target.closest("[data-genai]"); if (ga) { generateAiSet(ga.getAttribute("data-genai")); return; }
     const gd = e.target.closest("[data-gendel]"); if (gd) {
       const id = gd.getAttribute("data-gendel");
       const gs = (state.genSets || []).find(x => x.id === id);
@@ -2471,17 +2178,6 @@
   document.getElementById("cn-body").addEventListener("click", (e) => {
     const pr = e.target.closest("[data-practicerun]"); if (pr) { const id = pr.getAttribute("data-practicerun"); closeConcept(); openRunner(id); return; }
     const p = e.target.closest("[data-cnpart]"); if (p) { gotoPart(parseInt(p.getAttribute("data-cnpart"), 10)); }
-  });
-
-  /* Events — log sheet */
-  document.getElementById("logsheet").addEventListener("click", (e) => {
-    if (e.target.id === "logsheet") { closeSheet(); return; }
-    if (!sheet) return;
-    const sa = e.target.closest("[data-sa]"); if (sa) { sheet.a = Math.max(1, sheet.a + parseInt(sa.getAttribute("data-sa"),10)); if (sheet.c > sheet.a) sheet.c = sheet.a; renderSheet(); return; }
-    const sc = e.target.closest("[data-sc]"); if (sc) { sheet.c = Math.max(0, Math.min(sheet.a, sheet.c + parseInt(sc.getAttribute("data-sc"),10))); renderSheet(); return; }
-    const sap = e.target.closest("[data-sap]"); if (sap) { sheet.a = parseInt(sap.getAttribute("data-sap"),10); if (sheet.c > sheet.a) sheet.c = sheet.a; renderSheet(); return; }
-    if (e.target.closest("[data-ssave]")) { logQ(sheet.id, sheet.a, sheet.c); closeSheet(); return; }
-    if (e.target.closest("[data-sreset]")) { if (confirm("Reset this topic's counts to zero?")) { setRec(sheet.id, {d:0,c:0}); save(); renderView(); renderBotnav(); closeSheet(); } }
   });
 
   /* Events — profile */
@@ -3874,7 +3570,7 @@
     return `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample ? ' <span style="color:var(--ink-faint);font-weight:600">· sample</span>' : ""}</div>
       <div class="sm">${opts.secBadge ? `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>` : ""}<span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id) ? `<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>` : ""}</div>
       ${lvls ? `<div class="sm slvl">${lvls}</div>` : ""}</div>
-      <div class="setbtns">${hasProgress ? `<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this topic">↺</button>` : ""}<button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(s.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
+      <div class="setbtns">${opts.del ? `<button class="reset-set" data-gendel="${esc(s.id)}" title="Delete this generated set">🗑</button>` : hasProgress ? `<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this topic">↺</button>` : ""}<button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(s.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
   }
 
   function topicsPanelHTML(sec, num) {
@@ -3909,7 +3605,7 @@
     }
     if (gen.length) {
       h += `<div class="tsub"><h4>Generated on this device</h4><span>${gen.length} set${gen.length === 1 ? "" : "s"}</span></div><div class="setlist">`;
-      gen.forEach(s => { h += setRowHTML(s); });
+      gen.forEach(s => { h += setRowHTML(s, { del: true }); });
       h += `</div>`;
     }
     return h + `</div></section>`;
@@ -4871,7 +4567,6 @@
     if (vis("sess-config")) { closeSessionConfig(); return true; }
     if (vis("session"))  { closeSession(false); return true; }
     if (vis("flash"))    { closeFlash(); return true; }
-    if (vis("logsheet")) { closeSheet();   return true; }
     if (vis("concept")) {
       if (cnPartIdx >= 0) gotoPart(-1);    // article → back to contents
       else closeConcept();                 // contents → back to the section page

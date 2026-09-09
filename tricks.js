@@ -9,7 +9,7 @@ window.GMAT_TRICKS = [
 {
   id: "tr-quant", section: "quant", kind: "trick",
   title: "Quant speed tricks",
-  source: "Ten shortcuts that answer a question without solving it",
+  source: "Thirteen shortcuts that answer a question without solving it",
   parts: [
 
   { id: "tr-q-backsolve", title: "Backsolve — plug the answers in", mins: 4, blocks: [
@@ -217,6 +217,54 @@ window.GMAT_TRICKS = [
       "A distance, a count, and a length cannot be negative."
     ]},
     { t:"warn", x:"If you are two minutes into a question with nothing to show, eliminate what you can and move on. On an adaptive test a guess costs one question; a five-minute rescue costs three." }
+  ]},
+
+  { id: "tr-q-zones", title: "The seven-zone number line test", mins: 3, blocks: [
+    { t:"p", x:"\"Which of the following must be true?\" and most Data Sufficiency yes/no questions are not asking you to prove anything. They are asking whether a statement survives every kind of number — and there are only seven kinds that matter." },
+    { t:"h", x:"The kit" },
+    { t:"table", head:["Zone","Test number"], rows:[
+      ["below −1","−2"],["exactly −1","−1"],["between −1 and 0","−½"],["zero","0"],["between 0 and 1","½"],["exactly 1","1"],["above 1","2"]
+    ]},
+    { t:"p", x:"Squaring, rooting and taking reciprocals each behave differently in each zone, so a claim that holds in one zone routinely fails in the next. Run the kit and a false \"must be true\" collapses in seconds." },
+    { t:"ol", items:[
+      "Read the stem's condition and cross out the zones it excludes — \"\\(x\\) is positive\" leaves three; \"\\(x\\) is an integer\" leaves the integers only.",
+      "Test each remaining number against each statement. One failure kills the statement.",
+      "Whatever survives every allowed zone is what must be true."
+    ]},
+    { t:"eg",
+      q:"If \\(x^{2} &lt; x\\), which of the following must be true?",
+      choices:["\\(x &lt; 0\\)","\\(x &gt; 1\\)","\\(0 &lt; x &lt; 1\\)","\\(x &lt; -1\\)","\\(|x| &gt; 1\\)"], ans:"C",
+      why:"Rather than solving the inequality, ask which test numbers satisfy it. \\(-2\\): 4 &lt; −2? No. \\(-\\tfrac12\\): ¼ &lt; −½? No. \\(0\\): 0 &lt; 0? No. \\(\\tfrac12\\): ¼ &lt; ½? Yes. \\(1\\): 1 &lt; 1? No. \\(2\\): 4 &lt; 2? No. Only the zone between 0 and 1 works, so that is what must be true. Every other choice was eliminated by a single test number." },
+    { t:"tip", x:"In Data Sufficiency, a statement that is true for \\(\\tfrac12\\) and false for \\(2\\) is insufficient, full stop. Two numbers from the kit settle most yes/no statements without any algebra." }
+  ]},
+
+  { id: "tr-q-powers", title: "Powers: match the base, then compare exponents", mins: 3, blocks: [
+    { t:"p", x:"You cannot compare, add or equate powers with different bases directly. But almost every exponent question on the exam is built from bases that are themselves powers of the same small number — 4, 8, 16 and 32 are all powers of 2; 9, 27 and 81 are powers of 3. Rewrite everything as a power of the smallest base and the question usually answers itself." },
+    { t:"h", x:"Three uses" },
+    { t:"ul", items:[
+      "<b>Solve</b>: \\(8^{x} = 32\\) becomes \\(2^{3x} = 2^{5}\\), so \\(3x = 5\\) and \\(x = \\tfrac53\\). Once the bases match, the exponents must be equal.",
+      "<b>Compare</b>: to rank \\(2^{40}\\) against \\(3^{24}\\), pull out the common factor of the exponents — 8 — to get \\((2^{5})^{8} = 32^{8}\\) against \\((3^{3})^{8} = 27^{8}\\). Same exponent now, so the bigger base wins: \\(2^{40}\\) is larger.",
+      "<b>Simplify a sum</b>: there is no rule for adding powers, so factor out the smallest one. \\(2^{12} + 2^{10} = 2^{10}(4+1) = 5\\cdot2^{10}\\)."
+    ]},
+    { t:"eg",
+      q:"If \\(4^{x} \\cdot 8^{x-1} = 2^{13}\\), then \\(x = \\)",
+      choices:["2","3","\\(\\tfrac{16}{5}\\)","4","5"], ans:"C",
+      why:"Everything is a power of 2: \\(4 = 2^{2}\\) and \\(8 = 2^{3}\\). The left side becomes \\(2^{2x}\\cdot2^{3(x-1)} = 2^{2x+3x-3} = 2^{5x-3}\\). Match exponents: \\(5x-3 = 13\\), so \\(x = \\tfrac{16}{5}\\). Check: \\(5(3.2)-3 = 13\\) ✓. Nothing was multiplied out, and a fractional answer is a strong hint that guessing integers would have failed." },
+    { t:"warn", x:"Match the base, not the exponent, when solving. When comparing, match whichever is easier — but you must end with both sides in the same form before the comparison means anything." }
+  ]},
+
+  { id: "tr-q-minmax", title: "Max and min: push to the edges", mins: 2, blocks: [
+    { t:"p", x:"\"Greatest possible\" and \"least possible\" questions have one method: whatever you are maximising, shove everything competing with it to its own limit. There is no algebra to set up — only limits to find and a total to subtract from." },
+    { t:"ul", items:[
+      "To make one term as large as possible, make every other term as <b>small</b> as it is allowed to be.",
+      "Extremes of a product or quotient over ranges live at the <b>corners</b> — test the endpoint combinations, and remember two negatives make a positive.",
+      "With an average constraint, convert it to a total first; then it is the sum rule above."
+    ]},
+    { t:"eg",
+      q:"If \\(2 \\le a \\le 5\\) and \\(1 \\le b \\le 4\\), what is the least possible value of \\(\\dfrac{a}{b}\\)?",
+      choices:["\\(\\tfrac12\\)","\\(\\tfrac25\\)","\\(\\tfrac15\\)","2","5"], ans:"A",
+      why:"A fraction is smallest when its top is smallest and its bottom is largest: \\(a = 2\\) over \\(b = 4\\) gives \\(\\tfrac12\\). The other corners — \\(\\tfrac21\\), \\(\\tfrac51\\), \\(\\tfrac54\\) — are all larger. (C) \\(\\tfrac15\\) is the trap for anyone who inverts the roles and puts the smallest number underneath." },
+    { t:"warn", x:"Read for the word <b>distinct</b>. If the values must all be different, the \"others\" cannot all sit at the same minimum — they have to step up one at a time, and the answer moves." }
   ]}
 
 ]},
@@ -344,6 +392,18 @@ window.GMAT_TRICKS = [
     { t:"warn", x:"The classic wrong answer is true — but true according to a <b>different tab</b> from the one the question is about, or true of a different person's opinion. Track who said what: an email from a sceptical manager is that manager's view, not a fact of the case." },
     { t:"tip", x:"For the three-statement inference items, judge each statement against the tabs <b>separately</b> and resist filling gaps with common sense. If no tab supports it, the answer is no — even when it sounds plausible." },
     { t:"note", x:"Numbers scattered across two tabs are the standard hard variant: one tab gives the rate, another gives the quantity. Expect to combine exactly two facts, not five." }
+  ]},
+
+  { id: "tr-d-dropdown", title: "Dropdowns: read each blank as its own question", mins: 2, blocks: [
+    { t:"p", x:"Graphics Interpretation questions are sentences with one or two blanks, each filled from a short drop-down. The sentence looks like one task; it is really one small question per blank, and the fastest route is to treat it that way." },
+    { t:"ol", items:[
+      "Rewrite the first blank as a question — \"between 2006 and 2009 the number of transactions ___\" becomes \"did it rise or fall, and by how much?\"",
+      "Answer <b>direction</b> first. Half the options usually point the wrong way and go immediately.",
+      "Only then read the graph for the <b>magnitude</b>, and only to the precision the surviving options need.",
+      "Do the second blank the same way, from scratch — it is often independent of the first."
+    ]},
+    { t:"warn", x:"Both blanks must be right for the question to score. When the two are linked — \"increased by ___ percent, which is ___ than the average\" — check the pair together at the end, because a correct first blank can be undone by a second that was read against the wrong baseline." },
+    { t:"tip", x:"The drop-down options are the answer choices, so read them before the graph. They tell you whether the question wants a percentage or an absolute change, and how rough your reading is allowed to be." }
   ]}
 
 ]},
@@ -457,6 +517,21 @@ window.GMAT_TRICKS = [
     ]},
     { t:"warn", x:"\"Half right\" is the hardest to catch because the first half reads perfectly. Check <b>every</b> clause of a long answer choice; one false word is enough to kill it." },
     { t:"tip", x:"When two choices are left and both look supportable, find the <b>single word</b> that differs in strength or scope. That word is the whole question." }
+  ]},
+
+  { id: "tr-rc-tone", title: "Tone: let the adjectives decide", mins: 3, blocks: [
+    { t:"p", x:"An author's attitude is carried by a handful of evaluative words — <i>surprisingly, merely, at best, remarkable, so-called, unfortunately</i> — and by the verbs chosen for the people being discussed: they <i>claim</i>, they <i>demonstrate</i>, they <i>assert</i>, they <i>establish</i>. Collect those words as you read and the tone question is already answered." },
+    { t:"h", x:"The scale" },
+    { t:"p", x:"GMAT authors are academics, and their tone lives in the middle of the scale: <b>qualified approval, measured scepticism, cautious optimism, respectful disagreement</b>. Answers at the extremes — contemptuous, enthusiastic, hostile, indifferent — are almost always wrong, because that is not how a scholarly passage is written." },
+    { t:"ul", items:[
+      "No evaluative words at all means the passage is <b>reporting</b>, and the tone is neutral or objective.",
+      "Hedges — <i>may, perhaps, in part, to some extent</i> — signal a qualified view. Pick the answer that keeps the hedge.",
+      "A single \"however\" after a summary of someone else's view is usually where the author's own attitude appears."
+    ]},
+    { t:"eg",
+      q:"A passage describes a new conservation programme as one that \"may offer a partial remedy, though its costs are considerable and its long-term effects remain untested.\" The author's attitude toward the programme is best described as",
+      choices:["unqualified enthusiasm","cautious and qualified approval","open hostility","detached indifference","ironic amusement"], ans:"B",
+      why:"Three hedges in one sentence — <i>may</i>, <i>partial</i>, <i>remain untested</i> — plus one acknowledged drawback, and yet the word \"remedy\" keeps the overall verdict positive. That is approval with reservations. The extremes fail on the language: nothing is enthusiastic, hostile or amused, and an author who lists costs is not indifferent." }
   ]}
 
 ]},
@@ -576,6 +651,17 @@ window.GMAT_TRICKS = [
     { t:"h", x:"Evaluate the argument" },
     { t:"p", x:"\"Which would be most useful to know?\" is a weaken question wearing a disguise. Apply the <b>two-answer test</b>: imagine the answer to the proposed question coming back yes, then no. If the two answers push the conclusion in opposite directions, the choice is relevant. If the conclusion is unaffected either way, it is not." },
     { t:"tip", x:"Both types reward labelling over reading. Decide what the argument is doing first, and the five choices become a checklist rather than five new arguments to evaluate." }
+  ]},
+
+  { id: "tr-cr-except", title: "EXCEPT: flip the stem into a checklist", mins: 2, blocks: [
+    { t:"p", x:"\"Each of the following weakens the argument EXCEPT\" gives you four weakeners and asks for the one that is not. The trap is your own training: you will hunt for the best weakener, and there are four of them. So do not hunt — <b>cross out</b>." },
+    { t:"ol", items:[
+      "Before reading any choice, write the task as a checklist: \"cross out everything that weakens.\"",
+      "Ask each choice a yes/no question — does this weaken? Yes means eliminate. Never rank the choices against each other.",
+      "The survivor is the answer. It is usually a choice that does <b>nothing</b> to the argument, not one that strengthens it."
+    ]},
+    { t:"tip", x:"\"Slightly\" still counts. A choice that weakens even a little gets crossed out. The EXCEPT answer is the one with no effect, or the opposite effect — never the mildest of the four." },
+    { t:"warn", x:"Glance back at your checklist after every choice. The most common failure is remembering the flip for choices (A) and (B) and forgetting it by (D)." }
   ]}
 
 ]}

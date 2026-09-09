@@ -508,6 +508,49 @@ window.GMAT_CONCEPTS = [
             why: "The blank follows \"because\", so it must explain why retail prices held steady despite higher shipping costs. Someone had to absorb the increase, and (C) names them. (B) and (D) both make the puzzle harder, (E) would push prices up, and (A) concerns next year rather than now."
           }
         ]
+      },
+      {
+        id: "cr-except",
+        title: "EXCEPT and LEAST questions",
+        mins: 8,
+        blocks: [
+          { t: "p", x: "An EXCEPT question is an ordinary question with the answer turned inside out. \"Each of the following, if true, weakens the argument EXCEPT\" hands you four choices that weaken and one that does not — and the one that does not is the answer. Nothing about the argument or the reasoning changes; only which choice you are looking for." },
+          { t: "p", x: "They are worth practising separately because they attack a habit you have spent weeks building. On a normal weaken question you hunt for the weakener; here that instinct produces four \"right-looking\" answers and leads you to pick the strongest of them — which is exactly wrong." },
+          { t: "h", x: "The forms it takes" },
+          { t: "table", head: ["Stem", "Four of the choices…", "The answer…"], rows: [
+            ["…weakens the argument EXCEPT", "weaken", "strengthens, or is irrelevant"],
+            ["…strengthens the argument EXCEPT", "strengthen", "weakens, or is irrelevant"],
+            ["…would be useful to know EXCEPT", "bear on the conclusion", "does not bear on it"],
+            ["…helps explain the discrepancy EXCEPT", "resolve the paradox", "leaves it standing, or deepens it"],
+            ["Which would LEAST strengthen…", "strengthen", "strengthens least, or not at all"]
+          ]},
+          { t: "warn", x: "The answer to a weaken-EXCEPT question is <b>not necessarily a strengthener</b>. It is simply the one choice that fails to weaken — and on the exam that is very often a choice with <b>no effect at all</b>. Students who go hunting for the opposite of the other four miss the neutral answer sitting in plain sight." },
+          { t: "h", x: "How to work one" },
+          { t: "ol", items: [
+            "Rewrite the stem as a <b>checklist</b> before you read a single choice: \"cross out everything that weakens.\" That one line keeps the task in front of you when the choices start to look alike.",
+            "Read the argument the usual way — find the conclusion, name the gap. The four weakeners will all attack that gap.",
+            "Go through the choices with a <b>yes or no</b> question, never a ranking: does this weaken? Yes — cross it out. You are not comparing choices with each other.",
+            "The one left standing is the answer. Read it once more to confirm it genuinely does not weaken, rather than weakening only slightly."
+          ]},
+          { t: "tip", x: "\"Slightly\" still counts. A choice that weakens even a little is a weakener and must be crossed out. The EXCEPT answer is the one that does <i>nothing</i> to the argument, or pushes it the other way — never the mildest of the four." },
+          { t: "h", x: "The two mistakes that lose these questions" },
+          { t: "ul", items: [
+            "<b>Forgetting the flip halfway through.</b> Around the third choice your normal instinct reasserts itself and you start looking for the best weakener. The checklist line at the top of your scratch work is there to stop this; glance back at it after every choice.",
+            "<b>Confusing EXCEPT with NOT.</b> \"Which of the following is NOT true?\" is a different question — it asks about facts, not about effect on an argument. An EXCEPT stem always names an effect: weakens, strengthens, explains, supports."
+          ]},
+          { t: "eg",
+            q: "City council member: Since the new protected bicycle lanes opened on Main Street last spring, the number of cyclists counted on that street each morning has risen by 40 percent. Clearly the new lanes have caused more people to cycle to work.\n\nEach of the following, if true, weakens the council member's argument EXCEPT:",
+            choices: [
+              "Fuel prices in the city rose sharply during the same period, and bus fares increased by a third.",
+              "A city bike-share scheme, with a large docking station on Main Street, was launched in the same month the lanes opened.",
+              "Morning cyclist counts rose by roughly 40 percent over the same period in comparable cities that built no new lanes.",
+              "After the lanes opened, the council's count began to include cyclists using Main Street for recreation, not only those commuting.",
+              "The lanes were completed for a third less than the amount the council had budgeted for them."
+            ],
+            ans: "E",
+            why: "The gap is the usual causal one: cyclists rose after the lanes, therefore because of the lanes. (A) and (B) each offer a different cause for the rise — expensive alternatives, and a bike-share scheme that put bicycles on that very street. (C) says the rise happened everywhere regardless of lanes, which undercuts the lanes as the cause. (D) says the number rose partly because the counting rule changed, so the rise is at least partly an artefact. All four weaken. (E) is about what the lanes cost, which has no bearing on whether they caused anyone to cycle — it neither weakens nor strengthens, and that is what makes it the answer. Notice that the answer is a neutral fact, not a strengthener."
+          }
+        ]
       }
     ]
   },
@@ -912,24 +955,26 @@ window.GMAT_CONCEPTS = [
       {
         id: "q-scoring",
         title: "The scoring reality",
-        mins: 2,
+        mins: 4,
         blocks: [
-          { t: "p", x: "Quant and Verbal are scored on very different curves, so a “good” Quant score is higher than most people assume." },
+          { t: "p", x: "The Focus Edition reports three section scores, each on a <b>60–90</b> scale, and a total on <b>205–805</b>. Every total ends in a 5 and moves in steps of 10, and the three sections count <b>equally</b> toward it. That last fact matters more than any other for planning, because it means a point is a point wherever you earn it." },
+          { t: "h", x: "What the numbers mean" },
           { t: "ul", items: [
-            "The <b>maximum</b> score is only the ~97th percentile — about 3% of test-takers reach the top each year.",
-            "Q50 is roughly the 86th percentile; the next step down drops off fast.",
-            "Your <b>target can't be below the top band</b>. Many schools are sceptical even of the score just under it, and placements & scholarships lean on a top Quant score."
-          ] },
-          { t: "h", x: "How few mistakes you can afford" },
+            "The maximum, <b>805</b>, needs a 90 in every section. Anything from about <b>735 upward</b> is already the 100th percentile on GMAC's most recent concordance (July 2025).",
+            "The same scaled score lands in a different percentile in each section, because each has its own distribution. On the current tables a <b>Q85 is about the 88th percentile</b>, a <b>V85 about the 94th</b>, and a <b>DI82 about the 91st</b> — while a Q80 sits near the 64th.",
+            "So Quant is the most crowded section at the top: to reach a given percentile you need a higher raw number in Quant than in Verbal. That is why a \"good\" Quant score is higher than most people assume."
+          ]},
+          { t: "h", x: "How the score is built" },
+          { t: "p", x: "Each section is computer-adaptive at the question level. The test starts near the middle, gives you a harder question after a right answer and an easier one after a wrong answer, and settles on an estimate of your level. Two consequences follow:" },
           { t: "ul", items: [
-            "Top score → essentially <b>zero</b> mistakes on the questions that count.",
-            "One notch down → up to <b>3 mistakes</b>, and only if they're not in the first 10, not consecutive, and you finish the section."
-          ] },
+            "Your score is <b>not</b> a raw count. Missing a hard question you were only shown because you had been doing well costs far less than missing an easy one.",
+            "<b>Unanswered questions are penalised heavily</b> — more than a wrong answer. Finishing the section is worth more than any single question in it."
+          ]},
           { t: "h", x: "Where the total comes from" },
-          { t: "p", x: "Quant, Verbal and Data Insights are each scored 60–90 and each counts <b>equally</b> toward the 205–805 total. That has one blunt consequence for planning:" },
+          { t: "p", x: "Quant, Verbal and Data Insights are each scored 60–90 and each counts equally toward the 205–805 total. That has one blunt consequence for planning:" },
           { t: "tip", x: "Points are cheapest in your <b>weakest</b> section. Moving Data Insights from mediocre to solid almost always adds more to the total than grinding the last few Quant points, because the curve is far less crowded there." },
-          { t: "warn", x: "Do not read a percentile as a difficulty. Percentiles reflect who sits the exam, so the same scaled score can shift percentile from year to year — target the <b>scaled score</b> your schools quote, not the percentile." },
-          { t: "note", x: "A one-point Quant drop can take about <b>four</b> Verbal points to make up for on the total score — that's how steep the Quant curve is at the top." }
+          { t: "warn", x: "Do not read a percentile as a difficulty. Percentiles reflect who sits the exam over a rolling period and are recalculated every year, so the same scaled score can shift percentile from one year to the next. Target the <b>scaled score</b> your schools quote, not the percentile." },
+          { t: "note", x: "Older material talks about Quant scores of 49, 50 and 51 and totals out of 800. Those are the pre-2024 scales. If a source quotes them, it is describing a different exam — the Focus scales above are the only ones that matter now." }
         ]
       },
       {
@@ -957,33 +1002,33 @@ window.GMAT_CONCEPTS = [
       {
         id: "q-pacing",
         title: "Pacing & the exit strategy",
-        mins: 3,
+        mins: 4,
         blocks: [
-          { t: "p", x: "Good average pace hides bad pacing: solving most questions fast but bleeding 5–7 minutes into a few is how strong students still run out of time." },
+          { t: "p", x: "Quant is <b>21 questions in 45 minutes</b> — about 2 minutes 8 seconds each. Good average pace hides bad pacing: solving most questions fast but bleeding 5–7 minutes into a few is how strong students still run out of time." },
           { t: "h", x: "Use hard time markers" },
-          { t: "p", x: "Roughly <b>2 minutes per question</b> — so check the clock in blocks of 8:" },
+          { t: "p", x: "Check the clock in blocks of seven. The numbers below leave a small cushion for the review screen at the end:" },
           { t: "table", head: ["After question", "Time you should have left"], rows: [
-            ["8", "~46 min"],
-            ["16", "~30 min"],
-            ["24", "~14 min"],
-            ["Final 7", "~14 min to spare"]
-          ] },
+            ["7", "about 31 min"],
+            ["14", "about 16 min"],
+            ["21", "at least 1 min — for Review &amp; Edit"]
+          ]},
           { t: "h", x: "The exit strategy" },
           { t: "ul", items: [
-            "<b>Never spend more than ~2½ minutes</b> on any question — first 10 or last 10, no exceptions.",
-            "If it won't fall in time, make your best intelligent guess, <b>sacrifice it, and move on</b>.",
-            "Consecutive mistakes are penalised just as hard at the end as at the start — so protect your streak."
-          ] },
-          { t: "tip", x: "The other side of the rule: with the right approach, <b>every</b> real GMAT Quant question is solvable in under 2 minutes (sometimes under 30 seconds). If your method routinely takes longer, dump it — the only measure of a better approach is that it's faster." },
+            "<b>Never spend more than about 2½ minutes</b> on any question — first seven or last seven, no exceptions.",
+            "If it will not fall in time, make your best intelligent guess, <b>bookmark it, and move on</b>.",
+            "Finish the section. An unanswered question costs more than a wrong one, and running the clock to zero also loses you the review screen."
+          ]},
+          { t: "tip", x: "The other side of the rule: with the right approach, <b>every</b> real GMAT Quant question is solvable in under 2 minutes, and many in under 30 seconds. If your method routinely takes longer, dump it — the only measure of a better approach is that it is faster." },
           { t: "h", x: "Guessing properly" },
           { t: "ol", items: [
             "Eliminate on <b>structure</b> before content: wrong sign, wrong units, impossible magnitude, an answer that ignores a stated constraint.",
-            "On “which must be true”, test the <b>easiest</b> case you can think of — zero, one, a fraction — and cross off whatever it breaks.",
+            "On \"which must be true\", test the <b>easiest</b> case you can think of — zero, one, a fraction — and cross off whatever it breaks.",
             "Then pick and move. Never leave a question blank; an unanswered question is a guaranteed loss, a guess is not."
-          ] },
+          ]},
           { t: "h", x: "Use the review screen" },
-          { t: "p", x: "The Focus edition lets you <b>bookmark</b> questions and change up to <b>three answers per section</b> at the end. That turns the exit strategy from damage control into a plan: bookmark anything you guessed on, move on without regret, and spend leftover minutes on the bookmarks rather than on questions you already got right." },
-          { t: "tip", x: "Bookmark deliberately, not anxiously. Twelve bookmarks are the same as none — you can only revisit three, so mark the ones where you were genuinely one step from the answer." }
+          { t: "p", x: "When you finish a section you are taken to <b>Question Review &amp; Edit</b>: a numbered list of every question, with your bookmarks marked. You can bookmark as many questions as you like and revisit any of them, but you can change at most <b>three answers per section</b>. That turns the exit strategy from damage control into a plan: bookmark anything you guessed on, move on without regret, and spend leftover minutes on the bookmarks rather than on questions you already got right." },
+          { t: "warn", x: "The review screen only appears if you reach it. If the section clock hits zero before you have answered the last question, it is skipped entirely — which is the practical reason to keep a minute in hand at the end." },
+          { t: "tip", x: "Bookmark deliberately, not anxiously. Twelve bookmarks are fine to place, but you can only change three answers, so revisit the ones where you were genuinely one step from the answer." }
         ]
       },
       {
@@ -1627,6 +1672,55 @@ window.GMAT_CONCEPTS = [
         ]
       },
       {
+        id: "np-numberline",
+        title: "The Number Line & Real Numbers",
+        mins: 8,
+        blocks: [
+          { t: "p", x: "The real numbers are every point on a line — the integers, the fractions between them, and the irrationals such as \\( \\sqrt2 \\) and \\( \\pi \\) that fill the gaps between the fractions. The GMAT lists \"real numbers\" as its own topic because a surprising number of questions are not about arithmetic at all, but about <b>where a number sits on the line and how that position controls its behaviour</b>." },
+          { t: "h", x: "Ordering" },
+          { t: "ul", items: [
+            "Left is smaller. That sounds trivial until the numbers are negative: \\( -5 &lt; -2 \\), because \\(-5\\) sits further left. \"Bigger negative\" is not a phrase that means anything — say \"further from zero\" instead.",
+            "Between any two real numbers there is always another. \"The integer between 3 and 4\" does not exist, but \"the number between 3 and 4\" has infinitely many answers, and a question that says \"a number\" without \"integer\" is inviting you to try \\(3.5\\).",
+            "Comparing a fraction and a decimal: convert to whichever form is quicker, or compare both to a benchmark like \\( \\tfrac12 \\). \\( \\tfrac{7}{15} \\) against \\(0.48\\): the fraction is just under a half, the decimal just under it too, so cross-multiply — \\(7\\times100 = 700\\) against \\(48\\times15 = 720\\), so \\(0.48\\) is larger."
+          ]},
+          { t: "h", x: "Absolute value is distance" },
+          { t: "p", x: "\\( |x| \\) is how far \\(x\\) is from zero, and \\( |x-a| \\) is how far it is from \\(a\\). Distance is never negative and does not care about direction, which is why \\( |{-7}| = |7| = 7 \\). Reading absolute value as a distance turns most such questions into pictures: \\( |x-3| &lt; 2 \\) means \"within 2 of 3\", which is the stretch from 1 to 5." },
+          { t: "h", x: "The seven zones" },
+          { t: "p", x: "How a number responds to being squared, rooted, or flipped depends only on which zone of the line it lives in. The boundaries are \\(-1\\), \\(0\\) and \\(1\\):" },
+          { t: "table", head: ["Zone", "Example", "\\(x^{2}\\) vs \\(x\\)", "\\(1/x\\)"], rows: [
+            ["\\(x &lt; -1\\)", "\\(-2\\)", "\\(x^{2} &gt; x\\) (4 vs −2)", "between −1 and 0"],
+            ["\\(x = -1\\)", "\\(-1\\)", "\\(x^{2} &gt; x\\)", "\\(-1\\), itself"],
+            ["\\(-1 &lt; x &lt; 0\\)", "\\(-\\tfrac12\\)", "\\(x^{2} &gt; x\\) (positive beats negative)", "less than −1"],
+            ["\\(x = 0\\)", "\\(0\\)", "equal", "undefined"],
+            ["\\(0 &lt; x &lt; 1\\)", "\\(\\tfrac12\\)", "\\(x^{2} &lt; x\\) (¼ vs ½)", "greater than 1"],
+            ["\\(x = 1\\)", "\\(1\\)", "equal", "\\(1\\), itself"],
+            ["\\(x &gt; 1\\)", "\\(2\\)", "\\(x^{2} &gt; x\\)", "between 0 and 1"]
+          ]},
+          { t: "p", x: "Two things to take from the table. Squaring makes a number bigger <b>everywhere except</b> between 0 and 1, where it shrinks it. And taking a reciprocal flips a number across the boundary at 1 (or \\(-1\\)) without changing its sign — a number between 0 and 1 becomes a number above 1, and vice versa." },
+          { t: "warn", x: "Reciprocals reverse order for numbers of the same sign: \\( 2 &lt; 5 \\) but \\( \\tfrac12 &gt; \\tfrac15 \\). They do <b>not</b> reverse it across a sign change — \\( -2 &lt; 5 \\) and \\( -\\tfrac12 &lt; \\tfrac15 \\) too. A question that has you flip both sides of an inequality is testing exactly this." },
+          { t: "h", x: "Must be true, could be true, cannot be true" },
+          { t: "p", x: "These three stems are three different jobs, and the number line is how you do them. Pick one test number from each zone that the given conditions allow, and run each choice against them." },
+          { t: "ul", items: [
+            "<b>Must be true</b> — needs to hold for every allowed number. One counterexample kills a choice, so try the awkward zones first: negatives, fractions, zero.",
+            "<b>Could be true</b> — needs to hold for at least one allowed number. One example proves a choice.",
+            "<b>Cannot be true</b> — fails for every allowed number. Again, a single example that makes it work is enough to eliminate the choice."
+          ]},
+          { t: "tip", x: "Keep a fixed kit of test numbers and run through it without thinking: \\(-2\\), \\(-1\\), \\(-\\tfrac12\\), \\(0\\), \\(\\tfrac12\\), \\(1\\), \\(2\\). That is one from each zone, and it exposes nearly every false \"must be true\" on the exam in under a minute." },
+          { t: "eg",
+            q: "If \\(0 &lt; x &lt; 1\\), which of the following must be true?\n\nI. \\(x^{2} &lt; x\\)   II. \\(\\dfrac{1}{x} &gt; 1\\)   III. \\(\\sqrt{x} &gt; x\\)",
+            choices: ["I only", "II only", "I and II only", "I and III only", "I, II and III"],
+            ans: "E",
+            why: "Test the zone's representative, \\(x = \\tfrac12\\), and then think about why it generalises. I: \\(\\tfrac14 &lt; \\tfrac12\\) ✓ — multiplying a number by something smaller than 1 shrinks it, and \\(x\\) is smaller than 1. II: \\(1/\\tfrac12 = 2 &gt; 1\\) ✓ — a reciprocal flips a number across 1. III: \\(\\sqrt{\\tfrac12} \\approx 0.71 &gt; 0.5\\) ✓ — a root undoes some of the shrinking that squaring does, so it pulls a fraction back up towards 1. All three hold throughout the zone, so (E). Note that every one of the three reverses for \\(x &gt; 1\\), which is why the stem's condition matters."
+          },
+          { t: "eg",
+            q: "Which of the following numbers is closest to zero on the number line?",
+            choices: ["\\(-0.3\\)", "\\(0.35\\)", "\\(-\\dfrac{1}{4}\\)", "\\(\\dfrac{1}{3}\\)", "\\(-0.29\\)"],
+            ans: "C",
+            why: "\"Closest to zero\" means smallest absolute value, and the sign is irrelevant. Convert everything to a distance from zero: \\(0.3\\), \\(0.35\\), \\(0.25\\), \\(0.333\\ldots\\), \\(0.29\\). The smallest is \\(0.25\\), so \\(-\\tfrac14\\) is nearest zero. The trap is to pick the \"smallest\" number, which on the line is \\(-0.3\\) — but smallest and closest to zero are different questions, and the negatives are where they come apart."
+          }
+        ]
+      },
+      {
         id: "np-exponents",
         title: "Exponent Rules",
         mins: 7,
@@ -1700,6 +1794,51 @@ window.GMAT_CONCEPTS = [
             choices: ["5", "\\(\\sqrt{26}\\)", "\\(2\\sqrt6\\)", "\\(3\\sqrt3\\)", "\\(\\sqrt{24}\\)"],
             ans: "D",
             why: "Do not estimate five decimals — square everything, which is safe because all five are positive. The squares are 25, 26, \\(4\\times6 = 24\\), \\(9\\times3 = 27\\) and 24. The largest square belongs to \\(3\\sqrt3\\), so it is the largest value. Squaring turns an awkward comparison of irrational numbers into a comparison of small integers, and it is the standard move whenever roots have coefficients in front of them."
+          }
+        ]
+      },
+      {
+        id: "np-estimation",
+        title: "Estimation, Rounding & Scientific Notation",
+        mins: 7,
+        blocks: [
+          { t: "p", x: "The GMAT lists estimation as a topic in its own right, and it means it literally: some questions are written so that an exact answer is slow and a rounded one is instant. The skill is not \"being approximately right\" — it is knowing <b>how much precision the answer choices demand</b>, and then spending exactly that much." },
+          { t: "h", x: "Read the choices before you calculate" },
+          { t: "p", x: "Choices of 1.3, 13, 130, 1,300 and 13,000 differ by a factor of ten each; they are asking for an order of magnitude, and one rough multiplication settles it. Choices of 128, 130, 131, 133 and 135 are asking for the exact figure. Deciding which situation you are in is the first move on any question with the words \"closest to\" or \"approximately\"." },
+          { t: "h", x: "Round in compensating directions" },
+          { t: "p", x: "When you multiply, rounding one factor up and the other down keeps the errors small, because they pull opposite ways. When you divide, round the numerator and denominator in the <b>same</b> direction for the same reason. \\( \\dfrac{412}{19} \\) is close to \\( \\dfrac{420}{20} = 21 \\); rounding to \\( \\dfrac{400}{20} = 20 \\) drifts further from the true value of about 21.7." },
+          { t: "ul", items: [
+            "Prefer rounding to numbers that divide cleanly: 19 becomes 20, 0.248 becomes \\( \\tfrac14 \\), 0.66 becomes \\( \\tfrac23 \\).",
+            "Fractions are often cleaner than decimals — \\( \\tfrac18 \\) of 2,000 is 250 at sight; \\( 0.125\\times2000 \\) is not.",
+            "Keep track of which way you rounded. If both moves pushed the estimate up, the true value is a little below it — which is often enough to choose between two neighbouring choices."
+          ]},
+          { t: "h", x: "Benchmarks worth knowing" },
+          { t: "table", head: ["Quantity", "≈", "Quantity", "≈"], rows: [
+            ["\\(2^{10}\\)", "1,000", "\\(\\sqrt2\\)", "1.41"],
+            ["\\(\\pi\\)", "3.14", "\\(\\sqrt3\\)", "1.73"],
+            ["\\(\\tfrac17\\)", "0.143", "\\(\\sqrt5\\)", "2.24"],
+            ["\\(\\tfrac19\\)", "0.111", "\\(\\tfrac1{12}\\)", "0.083"]
+          ]},
+          { t: "h", x: "Scientific notation" },
+          { t: "p", x: "A number is written as \\( a\\times10^{n} \\) with \\( 1\\le a&lt;10 \\). Keep the two parts separate: multiply or divide the \\(a\\)'s as ordinary numbers, and <b>add or subtract the exponents</b>. Then renormalise if \\(a\\) has drifted outside 1 to 10." },
+          { t: "formula", x: "(3\\times10^{5})(4\\times10^{-2}) = 12\\times10^{3} = 1.2\\times10^{4}" },
+          { t: "ul", items: [
+            "Moving the decimal point one place left raises the exponent by one; one place right lowers it. \\( 0.0048 = 4.8\\times10^{-3} \\).",
+            "Counting digits: a number of the form \\( a\\times10^{n} \\) with \\(1\\le a&lt;10\\) has \\(n+1\\) digits before the decimal point.",
+            "Comparing two numbers in scientific notation, compare the exponents first; only if they match do the \\(a\\)'s matter."
+          ]},
+          { t: "warn", x: "Do not round early in a multi-step calculation and then report a precise answer. Rounding is for the <b>last</b> step, or for a question whose choices are far apart. Rounding at step one and then dividing twice can move the answer clean past a neighbouring choice." },
+          { t: "eg",
+            q: "Which of the following is closest to \\(0.00312\\times41{,}900\\)?",
+            choices: ["1.3", "13", "130", "1,300", "13,000"],
+            ans: "C",
+            why: "The choices are a factor of ten apart, so only the size matters. Round hard: \\(0.003\\times42{,}000\\). Three thousandths of 42,000 is \\(42{,}000/1000\\times3 = 126\\), so the answer is in the low hundreds — (C). The exact product is about 130.7, but computing it would have been wasted effort. Note the direction: 0.00312 was rounded down and 41,900 rounded up, which is why the estimate lands so close."
+          },
+          { t: "eg",
+            q: "\\(\\dfrac{4.2\\times10^{6}}{6\\times10^{-3}} = \\)",
+            choices: ["\\(7\\times10^{2}\\)", "\\(7\\times10^{3}\\)", "\\(7\\times10^{8}\\)", "\\(7\\times10^{9}\\)", "\\(2.52\\times10^{4}\\)"],
+            ans: "C",
+            why: "Handle the two parts separately. The numbers: \\(4.2/6 = 0.7\\). The exponents: dividing subtracts them, and subtracting a negative adds, so \\(6-(-3) = 9\\). That gives \\(0.7\\times10^{9}\\), which is not yet in standard form because 0.7 is below 1 — move the point one place right and drop the exponent by one: \\(7\\times10^{8}\\). The trap is (D), from forgetting that step; (B) comes from treating the \\(-3\\) as \\(+3\\)."
           }
         ]
       }
@@ -1899,6 +2038,44 @@ window.GMAT_CONCEPTS = [
             choices: ["x &gt; −4", "x &lt; −4", "x &gt; 4", "x &lt; 4", "x &gt; −12"],
             ans: "B",
             why: "Subtract 7 from both sides — always safe — to get \\(-3x &gt; 12\\). Now divide by \\(-3\\), and because that is negative the sign must <b>flip</b>: \\(x &lt; -4\\). Check with a number: \\(x=-5\\) gives \\(-3(-5)+7 = 22\\), which is indeed greater than 19 ✓, while \\(x=0\\) gives 7, which is not. Trap (A) is the same arithmetic with the flip forgotten — and testing one number would have caught it."
+          }
+        ]
+      },
+      {
+        id: "ag-minmax",
+        title: "Min / Max & Must-Be-True Questions",
+        mins: 8,
+        blocks: [
+          { t: "p", x: "Two question forms cut across every algebra topic, and the exam uses them to turn a routine problem into a hard one. \"What is the <b>greatest possible</b> value of…\" and \"which of the following <b>must be true</b>…\" do not test new mathematics. They test whether you can reason about a <i>whole range</i> of values instead of solving for one." },
+          { t: "h", x: "Maximum and minimum: push everything to the edges" },
+          { t: "p", x: "To make one quantity as large as it can be, make everything competing with it as small as it can be — and vice versa. That single principle handles most of these questions, and it means the first thing to write down is the <b>constraint</b> each other quantity is pushed against." },
+          { t: "ul", items: [
+            "Five positive integers sum to 60 and the smallest is 4. To maximise the largest, set the other four to their minimum, 4 each: \\(60 - 16 = 44\\).",
+            "To maximise a product of numbers drawn from ranges, test the <b>endpoints</b> of the ranges, and remember that two negatives multiply to a positive — the largest product often comes from the two most negative endpoints.",
+            "A quadratic \\(ax^{2}+bx+c\\) has its extreme value at \\(x = -\\tfrac{b}{2a}\\): a minimum if \\(a &gt; 0\\), a maximum if \\(a &lt; 0\\). Complete the square if you need the value itself.",
+            "With an <b>average</b> constraint, convert it to a total first and then push the other terms to their bounds, exactly as above."
+          ]},
+          { t: "warn", x: "\"Greatest possible\" questions with integers hide a boundary trap. If five integers have a mean of 12 and the largest is to be as large as possible, the others can all equal the minimum — but if the question says the integers are <b>distinct</b>, they must be 4, 5, 6, 7 instead, and the answer changes. Read for \"distinct\", \"different\" and \"consecutive\"." },
+          { t: "h", x: "Must be true, could be true, cannot be true" },
+          { t: "p", x: "These three stems ask three different things, and the difference is how many examples it takes to settle each one:" },
+          { t: "table", head: ["Stem", "A choice survives if…", "It dies if…"], rows: [
+            ["must be true", "it holds for every allowed value", "you find one counterexample"],
+            ["could be true", "it holds for at least one allowed value", "it fails for every value you can think of"],
+            ["cannot be true", "it fails for every allowed value", "you find one value that makes it work"]
+          ]},
+          { t: "p", x: "So for \"must be true\" you are hunting for a <b>counterexample</b>, and the productive places to look are the awkward zones of the number line: zero, negatives, fractions between 0 and 1, and the value exactly at a boundary. A choice that survives \\(-2\\), \\(-\\tfrac12\\), \\(0\\), \\(\\tfrac12\\) and \\(2\\) is almost certainly true in general." },
+          { t: "tip", x: "Roman-numeral questions are a checklist, not a puzzle. Test statement I on its own; cross out every answer choice that disagrees with your verdict; then test II; and so on. You usually need to test only two of the three statements to be left with one choice." },
+          { t: "eg",
+            q: "If \\(-5 \\le x \\le 2\\) and \\(-3 \\le y \\le 4\\), what is the greatest possible value of \\(xy\\)?",
+            choices: ["8", "12", "15", "20", "24"],
+            ans: "C",
+            why: "A product over ranges is extreme at the corners, so test the four endpoint pairs: \\((-5)(-3) = 15\\), \\((-5)(4) = -20\\), \\((2)(-3) = -6\\), \\((2)(4) = 8\\). The largest is 15, from the two <b>most negative</b> endpoints. The trap is (A) 8, which is what you get by assuming the biggest product comes from the biggest positive numbers — the sign flip is the whole point of the question. (Note that 20 is the size of the <i>most negative</i> product, so \\(-20\\) would be the answer to \"least possible\".)"
+          },
+          { t: "eg",
+            q: "If \\(a\\) and \\(b\\) are integers and \\(a &gt; b &gt; 0\\), which of the following must be true?\n\nI. \\(a^{2} &gt; b^{2}\\)   II. \\(\\dfrac{a}{b} &gt; 1\\)   III. \\(a - b \\ge 1\\)",
+            choices: ["I only", "II only", "I and II only", "II and III only", "I, II and III"],
+            ans: "E",
+            why: "Both are positive integers with \\(a\\) larger, so try the smallest legal pair, \\(a = 2, b = 1\\), and one more, \\(a = 5, b = 3\\). I: squaring preserves order for positives, so \\(a^{2} &gt; b^{2}\\) always ✓. II: a larger positive over a smaller positive is more than 1 ✓. III: two different integers differ by at least 1 — this is where \"integers\" earns its place in the stem; without it, \\(a = 1.5, b = 1\\) would break III. All three must be true, so (E). The wrong answers are built for a reader who tests only one pair, or who forgets that the integer condition rules out fractional gaps."
           }
         ]
       },
@@ -2298,22 +2475,23 @@ window.GMAT_CONCEPTS = [
       {
         id: "di-overview",
         title: "What Data Insights is",
-        mins: 3,
+        mins: 4,
         blocks: [
-          { t: "p", x: "Data Insights (DI) is really <b>IR + Data Sufficiency</b> merged. It's ~20 questions in 45 minutes, split across four types:" },
-          { t: "table", head: ["Type", "Questions"], rows: [
-            ["Data Sufficiency", "8"],
-            ["Two-Part Analysis", "4"],
-            ["Graphics & Table", "5"],
-            ["Multi-Source Reasoning (MSR)", "3"]
-          ] },
+          { t: "p", x: "Data Insights is the section the Focus Edition created: the old Integrated Reasoning question types plus <b>Data Sufficiency</b>, which moved here from Quant. It is <b>20 questions in 45 minutes</b>, across five formats. GMAC publishes the mix as ranges rather than fixed counts:" },
+          { t: "table", head: ["Type", "Share of the section", "In 20 questions"], rows: [
+            ["Data Sufficiency", "20–40%", "4–8"],
+            ["Graphics Interpretation", "20–30%", "4–6"],
+            ["Multi-Source Reasoning", "10–20%", "2–4"],
+            ["Table Analysis", "10–20%", "2–4"],
+            ["Two-Part Analysis", "10–20%", "2–4"]
+          ]},
           { t: "p", x: "Roughly half are math-flavoured and half verbal-flavoured — but the <b>real skill being tested is reading</b>: pulling the few relevant facts out of a jungle of information, fast." },
           { t: "ul", items: [
-            "It's <b>~75% reading &amp; reasoning, ~25% (very basic) math</b> — mostly percentages and mean/median. Even the “math” questions are won on reading.",
-            "A question can have <b>up to 3 sub-parts</b>, and you must get <b>all</b> of them right for any credit — there's <b>no partial credit</b>.",
-            "You get an <b>on-screen calculator</b>, sortable tables, dropdowns, and tabbed sources.",
-            "<b>MSR wastes the most time</b> — a common plan is to flag the 3 MSR questions for review and handle them last."
-          ] },
+            "It is <b>~75% reading &amp; reasoning, ~25% (very basic) math</b> — mostly percentages and mean/median. Even the \"math\" questions are won on reading.",
+            "A question can have <b>up to 3 sub-parts</b>, and you must get <b>all</b> of them right for any credit — there is <b>no partial credit</b>.",
+            "This is the only section with an <b>on-screen calculator</b>. Tables are sortable by column, Graphics questions are completed from drop-down menus, and Multi-Source questions sit on two or three tabbed sources.",
+            "<b>MSR wastes the most time</b> — a common plan is to bookmark the Multi-Source questions and handle them last."
+          ]},
           { t: "tip", x: "The fastest way to level up DI is to read a lot of dense LSAT-style RC/CR in long sittings — it trains the fast reading-and-analysing the section rewards." },
           { t: "h", x: "How it is scored" },
           { t: "p", x: "Data Insights is scored on the same 60–90 scale as Quant and Verbal and counts <b>equally</b> toward the 205–805 total. It is not a side section, and for most people it is the cheapest place to gain points because so few candidates prepare for it properly." },
@@ -2323,7 +2501,7 @@ window.GMAT_CONCEPTS = [
             "Answer Data Sufficiency and Two-Part as you meet them — they are self-contained and quick.",
             "Take Graphics and Table questions next, but bail early if the chart is unusually dense.",
             "Bookmark the Multi-Source sets and come back with whatever time is left."
-          ] },
+          ]},
           { t: "tip", x: "The on-screen calculator is slower than it looks. Use it for genuinely ugly arithmetic only — estimating in your head beats typing for almost everything the section actually asks." }
         ]
       },

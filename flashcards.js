@@ -94,6 +94,15 @@ window.GMAT_FLASHCARDS = [
     { f: "Geometric: \\(n\\)th term", b: "\\(a_n=a_1 r^{\\,n-1}\\)." },
     { f: "Geometric: sum of \\(n\\) terms", b: "\\(S_n=a_1\\dfrac{r^n-1}{r-1}\\) (for \\(r\\neq1\\))." },
     { f: "Count of integers from \\(a\\) to \\(b\\) inclusive", b: "\\(b-a+1\\)." }
+  ]},
+  { id: "fc-q-line", title: "Number Line & Estimation", cards: [
+    { f: "Which is smaller, −5 or −2?", b: "\\(-5\\). Further left on the line is smaller — a negative further from zero is the smaller number." },
+    { f: "For \\(0 &lt; x &lt; 1\\): order \\(x,\\ x^2,\\ \\sqrt{x},\\ 1/x\\)", b: "\\(x^2 &lt; x &lt; \\sqrt{x} &lt; 1/x\\). Powers shrink, roots grow toward 1, the reciprocal jumps above 1." },
+    { f: "Reciprocals and order", b: "For two numbers of the same sign, taking reciprocals reverses the order: \\(2 &lt; 5\\) but \\(\\tfrac12 &gt; \\tfrac15\\)." },
+    { f: "\\(|x - a| &lt; k\\) as a picture", b: "\\(x\\) is within \\(k\\) of \\(a\\): the stretch from \\(a-k\\) to \\(a+k\\)." },
+    { f: "Test numbers for \"must be true\"", b: "One from each zone: \\(-2,\\ -1,\\ -\\tfrac12,\\ 0,\\ \\tfrac12,\\ 1,\\ 2\\). One counterexample kills a choice." },
+    { f: "Scientific notation: multiply", b: "Multiply the decimals, add the exponents, then push the decimal back into 1–10: \\((3\\times10^5)(4\\times10^{-2}) = 1.2\\times10^4\\)." },
+    { f: "Rounding for a division", b: "Round numerator and denominator in the same direction so the errors offset: \\(412/19 \\approx 420/20 = 21\\)." }
   ]}
 ]},
 { section: "data", decks: [
@@ -174,6 +183,13 @@ window.GMAT_FLASHCARDS = [
     { f: "Ad hominem", b: "Attacking the person, not their argument." },
     { f: "Straw man", b: "Distorting an opponent's claim into a weaker one, then knocking that down." },
     { f: "Equivocation", b: "A key word shifts meaning between premise and conclusion." }
+  ]},
+  { id: "fc-cr-except", title: "EXCEPT & LEAST questions", cards: [
+    { f: "\"…weakens the argument EXCEPT\"", b: "Four choices weaken; the answer is the one that does <b>not</b> — usually a choice with no effect, not a strengthener." },
+    { f: "First move on an EXCEPT stem", b: "Rewrite it as a checklist: \"cross out everything that weakens.\" Then judge each choice yes/no, never by ranking." },
+    { f: "Does \"slightly\" count?", b: "Yes. A choice that weakens even a little is a weakener and is crossed out. The exception has zero effect or the opposite effect." },
+    { f: "LEAST strengthen / LEAST useful", b: "Same flip: four choices help, one does not. Treat LEAST exactly like EXCEPT." },
+    { f: "EXCEPT vs NOT", b: "EXCEPT names an <b>effect</b> on an argument (weakens, explains). \"Which is NOT true\" is about facts and is a different question." }
   ]}
 ]}
 ];

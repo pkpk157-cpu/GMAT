@@ -1120,6 +1120,7 @@
 <script src="sets-cr-700d.js"></script>
 <script src="sets-rc-700.js"></script>
 <script src="sets-di4.js"></script>
+<script src="sets-gaps.js"></script>
 <!-- Rewritten explanations: merged over the transcribed questions at load -->
 <script src="expl-quant-percent.js"></script>
 <script src="expl-rc-700d.js"></script>
@@ -1173,6 +1174,7 @@
 <script src="expl-quant-ratio.js"></script>
 <script src="expl-quant-work.js"></script>
 <script src="expl-quant-profitloss.js"></script>
+<script src="expl-gaps.js"></script>
 <script src="ai-key.js"></script>
 <script src="concepts.js"></script>
 <script src="tricks.js"></script>
@@ -1229,10 +1231,10 @@
       title:"Quantitative Reasoning",
       blurb:"Scored with Verbal and Data Insights. 45 min · 21 Problem-Solving questions — arithmetic and algebra only (no geometry, no calculator).",
       subjects:[
-        { name:"Arithmetic & Number Properties", topics:["Integers, factors & multiples","Prime numbers & factorization","LCM & GCD","Divisibility & remainders","Odd / even & sign rules","Fractions & decimals","Absolute value"] },
+        { name:"Arithmetic & Number Properties", topics:["Integers, factors & multiples","Prime numbers & factorization","LCM & GCD","Divisibility & remainders","Odd / even & sign rules","Fractions & decimals","Number line & real numbers","Absolute value"] },
         { name:"Percentages, Ratios & Proportions", topics:["Percentages & percent change","Ratios & proportions","Profit, loss & discount","Simple & compound interest"] },
         { name:"Powers, Roots & Exponents", topics:["Exponent rules","Roots & radicals","Scientific notation & estimation"] },
-        { name:"Algebra", topics:["Linear equations","Systems of equations","Quadratic equations","Inequalities & absolute value","Functions & custom symbols","Expressions & factoring","Sequences & series","Coordinate geometry"] },
+        { name:"Algebra", topics:["Linear equations","Systems of equations","Quadratic equations","Inequalities & absolute value","Min / max & must-be-true","Functions & custom symbols","Expressions & factoring","Sequences & series","Coordinate geometry"] },
         { name:"Word Problems", topics:["Speed, distance & time","Work & rate","Mixtures & solutions","Overlapping sets (Venn)","Age & number problems"] },
         { name:"Statistics, Counting & Probability", topics:["Mean, median & mode","Range & standard deviation","Weighted averages","Permutations & combinations","Probability"] }
       ]},
@@ -1240,7 +1242,7 @@
       title:"Data Insights",
       blurb:"45 min · 20 questions. The signature Focus-Edition section — data literacy across five formats, including Data Sufficiency (moved here from Quant).",
       subjects:[
-        { name:"Data Sufficiency", topics:["Value questions","Yes / No questions","Statement-combination strategy","Common traps & C-trap"] },
+        { name:"Data Sufficiency", topics:["Value questions","Yes / No questions","Common traps & C-trap"] },
         { name:"Multi-Source Reasoning", topics:["Reading across tabs","Synthesizing multiple sources","Inference from combined data","True / False judgment sets"] },
         { name:"Table Analysis", topics:["Sorting & filtering","Statistics from a table","Ratios & proportions in tables"] },
         { name:"Graphics Interpretation", topics:["Scatter plots & correlation","Bar & line graphs","Interpreting relationships","Dropdown completion"] },
@@ -1253,18 +1255,16 @@
       title:"Reading Comprehension",
       blurb:"One of the two Verbal question types (Verbal is 45 min · 23 questions). Passages with question sets testing main idea, detail, inference, and structure.",
       subjects:[
-        { name:"Question Types", topics:["Main idea / primary purpose","Supporting detail","Inference","Function of a detail or paragraph","Author's tone & attitude","Passage structure","Application / extension"] },
-        { name:"Passage Practice by Domain", topics:["Science & technology passages","Business & economics passages","Social science & humanities passages","Long, dense passages"] }
+        { name:"Question Types", topics:["Main idea / primary purpose","Supporting detail","Inference","Function of a detail or paragraph","Author's tone & attitude","Passage structure","Application / extension"] }
       ]},
     { id:"cr", nav:"CR", color:"var(--c-cr)", icon:ICON.cr,
       title:"Critical Reasoning",
       blurb:"The other Verbal question type. Short arguments testing your reasoning — assumptions, strengthen / weaken, flaws, paradoxes, and structure.",
       subjects:[
-        { name:"Foundations", topics:["Deconstructing arguments","Finding the conclusion","Spotting assumptions"] },
-        { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
+        { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v110";
+  const APP_VERSION = "v111";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -4064,8 +4064,14 @@
     h += `</div>`;
     const jump = `<button class="navpos jumpbtn" data-openjump title="Jump to any question">${runIndex+1} / ${total} ▾</button>`;
     if (total === 1) {
-      // Single question: no Prev/Next/jump to offer — just a way out once answered.
-      h += `<div class="rn-nav" style="justify-content:center">${revealed ? `<button class="navbtn primary" data-close-runner>Done</button>` : `<span class="mode-note" style="margin:0">Pick an option, then Confirm.</span>`}</div>`;
+      // Single question: no Prev/Next/jump to offer. Practice mode reveals on
+      // confirm, so Done is the way out; test mode reveals nothing until the run
+      // is submitted, so it needs a Submit — without one a one-question slice
+      // in test mode could be answered but never scored.
+      const oneNav = revealed ? `<button class="navbtn primary" data-close-runner>Done</button>`
+        : answered === total ? `<button class="navbtn primary" data-finish>Submit</button>`
+        : `<span class="mode-note" style="margin:0">Pick an option, then Confirm.</span>`;
+      h += `<div class="rn-nav" style="justify-content:center">${oneNav}</div>`;
     } else if (practice) {
       const nextBtn = revealed ? (last ? `<button class="navbtn primary" data-finish>See results</button>` : `<button class="navbtn primary" data-next>Next ›</button>`) : `<button class="navbtn" disabled>Next ›</button>`;
       h += `<div class="rn-nav"><button class="navbtn" data-prev ${runIndex===0?"disabled":""}>‹ Prev</button>${jump}${nextBtn}</div>`;

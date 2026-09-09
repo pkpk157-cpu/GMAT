@@ -2,13 +2,15 @@
 const fs = require("fs"), path = require("path");
 const ROOT = path.join(__dirname, "..");
 global.window = {};
-["sets.js","sets-extra.js","sets-rc.js","sets-di.js","sets-di2.js","sets-di3.js","sets-quant-live.js","sets-quant-live2.js","sets-quant-700.js","sets-cr-2person.js","sets-cr-700a.js","sets-cr-700b.js","sets-cr-700c.js","sets-cr-700d.js","sets-rc-700.js","sets-di4.js"]
+["sets.js","sets-extra.js","sets-rc.js","sets-di.js","sets-di2.js","sets-di3.js","sets-quant-live.js","sets-quant-live2.js","sets-quant-700.js","sets-cr-2person.js","sets-cr-700a.js","sets-cr-700b.js","sets-cr-700c.js","sets-cr-700d.js","sets-rc-700.js","sets-di4.js","sets-gaps.js"]
   .forEach(f => eval(fs.readFileSync(path.join(ROOT, f), "utf8")));
 const b = window.GMAT_SETS;
 (window.GMAT_SETS_EXTRA||[]).forEach(x=>{const s=b.find(y=>y.id===x.setId); if(s) {let nx=s.questions.reduce((m,q)=>Math.max(m,q.n||0),0); x.add.forEach(q=>s.questions.push(Object.assign({n:++nx},q)));}});
 (window.GMAT_SETS_NEW||[]).forEach(s=>{ if(!b.some(y=>y.id===s.id)) b.push(s); });
 const LET = ["A","B","C","D","E"];
 const { CASES } = require("./answers.js");
+const { CASES_GAPS } = require("./answers-gaps.js");
+CASES.push(...CASES_GAPS);
 
 /* Normalise a choice for comparison: strip LaTeX wrappers, commas, currency
    spacing and unit words, and turn \tfrac{a}{b} into a/b. */

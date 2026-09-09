@@ -240,11 +240,11 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
       await tab(i);
       await click('[data-subtab="tricks"]');
       // The pane lists the tricks themselves — no category row to tap through.
-      const rows = await count('[data-opentrick]');
+      const rows = await count('[data-openpart]');
       if (rows < 5) { note('SHAPE', `tab ${i} lists ${rows} tricks directly, expected the whole set`); }
       if (await $('[data-openconcept]')) note('SHAPE', `tab ${i} still has a guide row above the tricks`);
       if (!rows) { note('MISSING', `no tricks on tab ${i}`); continue; }
-      const opened = await click('[data-opentrick]', { optional: true });
+      const opened = await click('[data-openpart]', { optional: true });
       if (!opened) { note('BROKEN', `trick on tab ${i} would not open`); continue; }
       // Opening a row must land on the trick itself, not on a contents screen.
       const head = await P.evaluate(() => document.querySelector('#cn-body .cn-eyebrow')?.textContent || '');
@@ -256,6 +256,29 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
       await click('#cn-close', { optional: true });
       await P.evaluate(() => { const e = document.getElementById('concept'); if (e) e.hidden = true; document.body.style.overflow = ''; });
       await wait(150);
+    }
+  });
+
+  await run('concepts: no single-card panes', async () => {
+    // A pane listing exactly one guide is a category layer with one category —
+    // it should name the sections directly. Several guides still earn cards.
+    for (const [i, label] of [[0, 'Quant'], [1, 'Data'], [3, 'RC'], [4, 'CR']]) {
+      await tab(i);
+      await click('[data-subtab="concepts"]');
+      const cards = await count('[data-openconcept]');
+      const parts = await count('[data-openpart]');
+      if (cards === 1) note('SHAPE', `${label} concepts is a single card to tap through`);
+      if (!cards && !parts) note('MISSING', `${label} concepts lists nothing`);
+      if (cards && parts) note('SHAPE', `${label} concepts mixes guide cards with section rows`);
+      if (parts) {
+        const opened = await click('[data-openpart]', { optional: true });
+        if (!opened) { note('BROKEN', `${label} section row would not open`); continue; }
+        const head = await P.evaluate(() => document.querySelector('#cn-body .cn-eyebrow')?.textContent || '');
+        if (!/\d+ of \d+/.test(head)) note('BROKEN', `${label} opened a contents screen instead of the section (${head})`);
+        await click('#cn-close', { optional: true });
+        await P.evaluate(() => { const e = document.getElementById('concept'); if (e) e.hidden = true; document.body.style.overflow = ''; });
+        await wait(150);
+      }
     }
   });
 

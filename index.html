@@ -1264,7 +1264,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v109";
+  const APP_VERSION = "v110";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2161,7 +2161,7 @@
       }
       return;
     }
-    const ot = e.target.closest("[data-opentrick]"); if (ot) { const [gid, ix] = ot.getAttribute("data-opentrick").split("|"); openConcept(gid, parseInt(ix, 10)); return; }
+    const op = e.target.closest("[data-openpart]"); if (op) { const [gid, ix] = op.getAttribute("data-openpart").split("|"); openConcept(gid, parseInt(ix, 10)); return; }
     const oc = e.target.closest("[data-openconcept]"); if (oc) { openConcept(oc.getAttribute("data-openconcept")); return; }
     const fd = e.target.closest("[data-flashdeck]"); if (fd) { openFlashDeck(fd.getAttribute("data-flashdeck"), state.active); return; }
     if (e.target.closest("[data-session-open]")) { openSessionConfig(); return; }
@@ -2664,16 +2664,56 @@
     return score > 0 ? best : null;
   }
 
+  /* A pane that lists exactly one guide has a category layer with one category
+     in it: you tap a card to be shown a list. So when there is only one guide,
+     the pane IS that list — it names the sections directly and opens the reader
+     on the one you pick. Quant has five concept guides, which are worth telling
+     apart, so it keeps its cards. */
+  const guideIsFlat = (g) =>
+    (g.kind === "trick" ? tricksFor(g.section) : conceptsFor(g.section)).length === 1;
+
+  // The numbered section list, shared by both panes.
+  function partRowsHTML(list) {
+    let h = "", num = 0;
+    list.forEach(g => {
+      // A heading only earns its place once a pane has more than one guide to
+      // tell apart; with one it would just restate the panel title.
+      if (list.length > 1) h += `<div class="tsub"><h4>${esc(g.title)}</h4><span>${g.parts.length} sections</span></div>`;
+      h += `<div class="cn-toc wrap">`;
+      g.parts.forEach((p, i) => {
+        const read = conceptRead(g.id, p.id); num++;
+        h += `<button class="cn-tocrow ${read ? "done" : ""}" data-openpart="${esc(g.id)}|${i}">
+          <span class="cn-tocnum ${read ? "done" : ""}">${read ? "✓" : num}</span>
+          <span class="cn-tocmeta"><span class="cn-toct">${esc(p.title)}</span><span class="cn-tocs">${read ? "Read" : (p.mins ? p.mins + " min read" : "")}</span></span>
+          <span class="cn-chev">›</span></button>`;
+      });
+      h += `</div>`;
+    });
+    return h;
+  }
+
+  // Progress ring for a pane, over every section in every guide it lists.
+  function paneProgressMeta(list, noun) {
+    let total = 0, read = 0;
+    list.forEach(g => { total += g.parts.length; read += guideReadCount(g); });
+    const pct = total ? read / total : 0, allDone = read === total;
+    return `<span class="cn-ring" title="${read} of ${total} ${noun} read">${ring(pct, allDone ? "var(--good)" : "var(--accent)")}<span class="cn-ringpct">${read}/${total}</span></span>`;
+  }
+
   function conceptsPanelHTML(list, sec) {
     const secc = sec ? sec.color : "var(--accent)", key = tsecKey(sec ? sec.id : "", "concepts");
-    if (!list.length) {
-      return `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(ICON.concepts, "Concepts &amp; theory", "Study guides in a clean, readable format.", "", key)}<div class="tabsec-body"><p class="footnote" style="margin:0;text-align:left">No guides here yet.</p></div></section>`;
+    const shell = (inner, meta, sub) =>
+      `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">` +
+      tabSecHead(ICON.concepts, "Concepts &amp; theory", sub, meta || "", key) +
+      `<div class="tabsec-body">${inner}</div></section>`;
+    if (!list.length) return shell(`<p class="footnote" style="margin:0;text-align:left">No guides here yet.</p>`, "", "Study guides in a clean, readable format.");
+    const meta = paneProgressMeta(list, "sections");
+
+    if (list.length === 1) {
+      return shell(partRowsHTML(list), meta,
+        "The theory, section by section — tap to read, then jump into practice.");
     }
-    let totalParts = 0, totalRead = 0;
-    list.forEach(g => { totalParts += g.parts.length; totalRead += guideReadCount(g); });
-    const pct = totalParts ? totalRead / totalParts : 0, allDone = totalRead === totalParts;
-    const meta = `<span class="cn-ring" title="${totalRead} of ${totalParts} sections read">${ring(pct, allDone?"var(--good)":"var(--accent)")}<span class="cn-ringpct">${totalRead}/${totalParts}</span></span>`;
-    let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-concepts" style="--secc:${secc}">${tabSecHead(ICON.concepts, "Concepts &amp; theory", "Study guides in a clean, readable format — tap to read, then jump into practice.", meta, key)}<div class="tabsec-body"><div class="cn-toc">`;
+    let h = `<div class="cn-toc">`;
     list.forEach(g => {
       const done = guideReadCount(g), n = g.parts.length, complete = done === n;
       h += `<button class="cn-tocrow ${complete?"done":""}" data-openconcept="${esc(g.id)}">
@@ -2682,14 +2722,10 @@
         <span class="cn-tocstat ${complete?"done":""}">${complete?"✓":done+"/"+n}</span>
         <span class="cn-chev">›</span></button>`;
     });
-    return h + `</div></div></section>`;
+    return shell(h + `</div>`, meta,
+      "Study guides in a clean, readable format — tap to read, then jump into practice.");
   }
 
-  /* Trick guides open in the same reader as the concept guides — the pane only
-     differs in what it lists and in leading with the shortcut, not the theory. */
-  /* Every trick is the same kind of thing — a shortcut — so there is no
-     category layer worth tapping through. This pane IS the contents list: it
-     names each trick directly and opens the reader on it. */
   function tricksPanelHTML(list, sec) {
     const secc = sec ? sec.color : "var(--accent)", key = tsecKey(sec ? sec.id : "", "tricks");
     const blurb = "Ways to get the answer without doing the whole question — and when each one is safe.";
@@ -2698,28 +2734,7 @@
       tabSecHead(ICON.tricks, "Tricks &amp; shortcuts", blurb, meta || "", key) +
       `<div class="tabsec-body">${inner}</div></section>`;
     if (!list.length) return shell(`<p class="footnote" style="margin:0;text-align:left">No tricks here yet.</p>`);
-
-    let totalParts = 0, totalRead = 0;
-    list.forEach(g => { totalParts += g.parts.length; totalRead += guideReadCount(g); });
-    const pct = totalParts ? totalRead / totalParts : 0, allDone = totalRead === totalParts;
-    const meta = `<span class="cn-ring" title="${totalRead} of ${totalParts} tricks read">${ring(pct, allDone ? "var(--good)" : "var(--accent)")}<span class="cn-ringpct">${totalRead}/${totalParts}</span></span>`;
-
-    let h = "", num = 0;
-    list.forEach(g => {
-      // A heading only earns its place once a section has more than one set of
-      // tricks to tell apart; with one it would just restate the panel title.
-      if (list.length > 1) h += `<div class="tsub"><h4>${esc(g.title)}</h4><span>${g.parts.length} tricks</span></div>`;
-      h += `<div class="cn-toc wrap">`;
-      g.parts.forEach((p, i) => {
-        const read = conceptRead(g.id, p.id); num++;
-        h += `<button class="cn-tocrow ${read ? "done" : ""}" data-opentrick="${esc(g.id)}|${i}">
-          <span class="cn-tocnum ${read ? "done" : ""}">${read ? "✓" : num}</span>
-          <span class="cn-tocmeta"><span class="cn-toct">${esc(p.title)}</span><span class="cn-tocs">${read ? "Read" : (p.mins ? p.mins + " min read" : "")}</span></span>
-          <span class="cn-chev">›</span></button>`;
-      });
-      h += `</div>`;
-    });
-    return shell(h, meta);
+    return shell(partRowsHTML(list), paneProgressMeta(list, "tricks"));
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
@@ -2762,7 +2777,7 @@
     } else {
       const p = g.parts[cnPartIdx];
       markConceptRead(g.id, p.id);   // opening a section marks it read
-      const backTo = g.kind === "trick" ? "‹ All tricks" : "‹ Contents";
+      const backTo = !guideIsFlat(g) ? "‹ Contents" : (g.kind === "trick" ? "‹ All tricks" : "‹ All sections");
       let h = `<div class="cn-article"><button class="cn-back" data-cnpart="-1">${backTo}</button>`;
       h += `<div class="cn-eyebrow">${cnPartIdx+1} of ${g.parts.length}${p.mins?" · "+p.mins+" min":""}</div><h1 class="cn-h1">${esc(p.title)}</h1>`;
       h += p.blocks.map(blockHTML).join("");
@@ -2781,10 +2796,10 @@
   }
   function gotoPart(i) {
     const g = GUIDES.find(x => x.id === cnGuideId); if (!g) return;
-    // The Tricks pane already lists every trick, so a trick guide has no
-    // contents screen of its own to go back to — leaving the reader lands the
-    // reader on that same list instead of drawing it a second time.
-    if (i < 0 && g.kind === "trick") { closeConcept(); return; }
+    // When the pane already lists this guide's sections, the guide has no
+    // contents screen of its own to go back to — leaving the reader lands on
+    // that same list instead of drawing it a second time.
+    if (i < 0 && guideIsFlat(g)) { closeConcept(); return; }
     cnPartIdx = i < 0 ? -1 : Math.min(g.parts.length-1, i);
     renderConcept(); window.scrollTo({ top:0 });
   }

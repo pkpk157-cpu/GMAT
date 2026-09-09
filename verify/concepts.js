@@ -100,6 +100,23 @@ function practiceMatch(partTitle, section) {
 const KNOWN = new Set(["h","p","ul","ol","formula","tip","warn","note","table","eg"]);
 const LET = ["A","B","C","D","E","F","G","H"];
 
+/* Roughly how long a section takes to study, not to skim: prose at about 110
+   words a minute, with a formula, a table and a worked example each costing
+   more than the words they contain. */
+function blockWords(b) {
+  let s = "";
+  if (b.x) s += b.x;
+  if (b.items) s += b.items.join(" ");
+  if (b.head) s += b.head.join(" ") + (b.rows || []).map(r => r.join(" ")).join(" ");
+  if (b.q) s += b.q + (b.choices || []).join(" ") + (b.why || "");
+  return s.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+}
+function estimateMins(part) {
+  let w = 0, f = 0, t = 0, e = 0;
+  part.blocks.forEach(b => { w += blockWords(b); if (b.t === "formula") f++; if (b.t === "table") t++; if (b.t === "eg") e++; });
+  return Math.max(2, Math.min(8, Math.round((w + 25 * f + 30 * t + 60 * e) / 110)));
+}
+
 /* Block text is injected with innerHTML, so a bare "<" opens a tag and the
    browser swallows whatever follows — which quietly eats the rest of a math
    span. Inequalities have to be written &lt; and &gt;. */
@@ -181,6 +198,11 @@ GUIDES.forEach(g => {
     partIds.add(p.id);
     if (!p.title || !String(p.title).trim()) bad(pw, "part has no title");
     if (p.mins != null && !(Number.isInteger(p.mins) && p.mins > 0)) bad(pw, `"mins" should be a positive integer, got ${p.mins}`);
+    // The "N min read" label goes stale silently when a section is extended.
+    if (p.mins != null && Array.isArray(p.blocks)) {
+      const want = estimateMins(p);
+      if (Math.abs(p.mins - want) > 1) note(pw, `"${p.mins} min" looks off for this much content — about ${want} would fit`);
+    }
     if (!Array.isArray(p.blocks) || !p.blocks.length) return bad(pw, "part has no blocks");
     p.blocks.forEach((b, bi) => checkBlock(`${pw} block ${bi + 1}`, b));
 

@@ -239,12 +239,17 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
     for (const i of [0, 1, 3, 4]) {
       await tab(i);
       await click('[data-subtab="tricks"]');
-      const rows = await count('[data-openconcept]');
-      if (!rows) { note('MISSING', `no trick guides on tab ${i}`); continue; }
-      const opened = await click('[data-openconcept]', { optional: true });
-      if (!opened) { note('BROKEN', `trick guide on tab ${i} would not open`); continue; }
+      // The pane lists the tricks themselves — no category row to tap through.
+      const rows = await count('[data-opentrick]');
+      if (rows < 5) { note('SHAPE', `tab ${i} lists ${rows} tricks directly, expected the whole set`); }
+      if (await $('[data-openconcept]')) note('SHAPE', `tab ${i} still has a guide row above the tricks`);
+      if (!rows) { note('MISSING', `no tricks on tab ${i}`); continue; }
+      const opened = await click('[data-opentrick]', { optional: true });
+      if (!opened) { note('BROKEN', `trick on tab ${i} would not open`); continue; }
+      // Opening a row must land on the trick itself, not on a contents screen.
+      const head = await P.evaluate(() => document.querySelector('#cn-body .cn-eyebrow')?.textContent || '');
+      if (!/\d+ of \d+/.test(head)) note('BROKEN', `tab ${i} opened a contents screen instead of the trick (${head})`);
       if (!(await visible('concept'))) { note('MISSING', `trick reader did not open on tab ${i}`); }
-      await click('#concept [data-cnpart]', { optional: true });
       const txt = await P.evaluate(() => document.getElementById('cn-body').innerText || '');
       if (txt.length < 200) note('SHAPE', `trick section on tab ${i} rendered almost nothing`);
       if (txt.includes('\\')) note('BROKEN', `a literal backslash reached the trick reader on tab ${i}`);

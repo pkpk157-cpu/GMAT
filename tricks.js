@@ -7,7 +7,7 @@ window.GMAT_TRICKS = [
 
 /* ============================ QUANT ============================ */
 {
-  id: "tr-quant", section: "quant", kind: "trick", icon: "⚡",
+  id: "tr-quant", section: "quant", kind: "trick",
   title: "Quant speed tricks",
   source: "Ten shortcuts that answer a question without solving it",
   parts: [
@@ -223,7 +223,7 @@ window.GMAT_TRICKS = [
 
 /* ======================== DATA INSIGHTS ======================== */
 {
-  id: "tr-data", section: "data", kind: "trick", icon: "🎯",
+  id: "tr-data", section: "data", kind: "trick",
   title: "Data Insights speed tricks",
   source: "Sufficiency, graphs and tables — answered without full calculation",
   parts: [
@@ -350,7 +350,7 @@ window.GMAT_TRICKS = [
 
 /* ====================== READING COMPREHENSION ====================== */
 {
-  id: "tr-rc", section: "rc", kind: "trick", icon: "📖",
+  id: "tr-rc", section: "rc", kind: "trick",
   title: "RC speed tricks",
   source: "Read less, answer faster, and let the wrong answers eliminate themselves",
   parts: [
@@ -463,7 +463,7 @@ window.GMAT_TRICKS = [
 
 /* ======================= CRITICAL REASONING ======================= */
 {
-  id: "tr-cr", section: "cr", kind: "trick", icon: "🧠",
+  id: "tr-cr", section: "cr", kind: "trick",
   title: "CR speed tricks",
   source: "Work the gap in the argument, not the wall of answer choices",
   parts: [

@@ -1019,44 +1019,58 @@ window.GMAT_CONCEPTS = [
       {
         id: "q-ds-rules",
         title: "Data Sufficiency — the five answers",
-        mins: 3,
+        mins: 5,
         blocks: [
-          { t: "p", x: "A DS question gives you a question plus two statements, (1) and (2). You don't solve for the answer — you decide <b>whether the data is enough</b> to answer. The five choices are always the same:" },
+          { t: "p", x: "Data Sufficiency asks a different job of you than every other question type. You are given a question and two statements, and you are <b>not</b> asked to answer the question — only to decide whether the information would be enough to answer it. That distinction is the whole format, and it is what makes DS fast once it clicks: recognising that something is determined is much quicker than determining it." },
+          { t: "p", x: "The five choices never change, so learn them once and stop reading them:" },
           { t: "table", head: ["Choice", "Meaning"], rows: [
             ["A", "(1) alone is sufficient, (2) alone is not"],
             ["B", "(2) alone is sufficient, (1) alone is not"],
             ["C", "Both together sufficient, neither alone"],
             ["D", "Each alone is sufficient"],
             ["E", "Together still not sufficient"]
-          ] },
-          { t: "h", x: "Two question types" },
+          ]},
+          { t: "h", x: "Two question types, two meanings of \"sufficient\"" },
           { t: "ul", items: [
-            "<b>Value questions</b> (“what is x?”) — sufficient only if the data pins down <b>exactly one</b> numerical value. “x = 2 or 3” is <b>not</b> sufficient; “x = a” isn't either (not a number).",
-            "<b>Yes/No questions</b> (“Is x even?”) — sufficient only if you get a <b>confirmed yes</b> or a <b>confirmed no</b>. A confirmed NO is just as good as a YES; “sometimes yes, sometimes no” is insufficient."
-          ] },
+            "<b>Value questions</b> (\"what is \\(x\\)?\") — sufficient only if the data pins down <b>exactly one</b> number. \"\\(x = 2\\) or \\(3\\)\" is not sufficient, and neither is \"\\(x = a\\)\", which is not a number at all.",
+            "<b>Yes/No questions</b> (\"is \\(x\\) even?\") — sufficient if you get a confirmed <b>yes</b> or a confirmed <b>no</b>. A consistent no is exactly as sufficient as a consistent yes; only \"sometimes yes, sometimes no\" is insufficient."
+          ]},
           { t: "h", x: "The AD / BCE split" },
-          { t: "p", x: "Test statement (1) alone first and the five choices immediately halve. If (1) is sufficient the answer is <b>A or D</b>; if it is not, the answer is <b>B, C or E</b>. Then test (2) alone, and only combine them if neither worked on its own." },
-          { t: "warn", x: "Sufficiency is not about whether you can solve it — it is about whether the answer is <b>uniquely determined</b>. Two possible values means insufficient, however much work you did to find them." },
+          { t: "p", x: "Test statement (1) on its own first, and the five choices immediately halve. If (1) is sufficient, the answer is <b>A or D</b> and B, C and E are dead. If it is not, the answer is <b>B, C or E</b>. Then test (2) on its own, which resolves the survivors — and only if <i>both</i> failed alone do you combine them, which decides between C and E." },
+          { t: "warn", x: "Sufficiency is not about whether <b>you</b> can solve it. It is about whether the answer is <b>uniquely determined</b> by the information. Two possible values means insufficient, however much work you did to find them — and recognising that one linear equation in one unknown has a unique solution is sufficient without solving it." },
+          { t: "eg",
+            q: "What is the value of x?   (1) \\(x^{2}=16\\)   (2) \\(x &gt; 0\\)",
+            choices: ["A", "B", "C", "D", "E"],
+            ans: "C",
+            why: "Statement (1) alone: \\(x\\) could be 4 or \\(-4\\). Two values, so not sufficient — cross out A and D. Statement (2) alone, judged with (1) covered up: \\(x\\) is any positive number whatsoever, so clearly not sufficient — cross out B. Together: \\(x\\) is 4 or \\(-4\\) and also positive, which leaves 4 alone. Unique, so the answer is C. Notice how little arithmetic there was: the work was entirely in checking how many possibilities survived."
+          },
           { t: "note", x: "Data Sufficiency now sits in the Data Insights section rather than in Quant. The full treatment — the decision tree, the numbers to test, and the C-trap — is in the Data Insights guide." }
         ]
       },
       {
         id: "q-ds-traps",
         title: "Avoiding DS traps",
-        mins: 3,
+        mins: 5,
         blocks: [
-          { t: "p", x: "Every hard DS question hides a trap — fall for it and you'll mark the wrong answer <i>with total confidence</i>. These habits defuse most of them:" },
+          { t: "p", x: "Data Sufficiency is the one place on the exam where you can do everything right and still be confidently wrong. A trap here does not make the question look hard — it makes it look <b>easy</b>, and you mark an answer without hesitating. So the defence is a set of habits, applied every time rather than when something feels suspicious." },
           { t: "ul", items: [
-            "<b>Simplify the question</b> to its absolute basics before touching the statements — most DS questions can be boiled down.",
-            "<b>Assume nothing.</b> If a number isn't stated to be an integer, it might not be. If a figure isn't stated to be a square / parallel / right angle, it isn't — no matter how it looks.",
-            "<b>Keep the statements independent.</b> When testing (2), don't mentally carry over (1). Judge each alone first.",
-            "<b>Actively try to break it.</b> On yes/no questions, deliberately hunt for both a YES and a NO case rather than only trying to confirm one.",
-            "<b>Don't calculate</b> where you don't have to — sufficiency rarely needs the actual number.",
-            "<b>The two statements never contradict</b> each other. And when a question needs two simultaneous equations, usually just one statement carries them both."
-          ] },
+            "<b>Simplify the question first</b>, before touching the statements. \"Is \\(\\frac{x}{y} &gt; 1\\)?\" is much harder than the question it usually reduces to, and boiling it down often reveals that a statement you dismissed was enough.",
+            "<b>Assume nothing.</b> If a number is not stated to be an integer, it might not be. If it is not stated to be positive, it might be negative — or zero.",
+            "<b>Keep the statements independent.</b> When testing (2), do not carry over anything you learned from (1). This is the most common source of a wrong D.",
+            "<b>Actively try to break it.</b> On a yes/no question, hunt deliberately for both a yes case and a no case, rather than confirming the one you expect.",
+            "<b>Do not calculate</b> where you do not have to. Sufficiency rarely needs the actual number, and computing it wastes the time the format was designed to save you.",
+            "<b>The two statements never contradict each other.</b> If your reading has them disagreeing, you have misread one of them."
+          ]},
           { t: "h", x: "Proving insufficiency" },
-          { t: "p", x: "For a yes/no question you need <b>one case that answers YES and one that answers NO</b>. A single example proves nothing: finding a YES does not make a statement sufficient, it only means you have not yet found the NO." },
-          { t: "tip", x: "Have a fixed set of test numbers ready — 0, 1, −1, a large positive, a large negative, and a fraction either side of zero. Nearly every insufficiency is exposed by one of them, and running a fixed list is faster than inventing cases under pressure." },
+          { t: "p", x: "The two directions are not symmetric, and this is worth being precise about. To prove a statement <b>sufficient</b> you must show the answer is forced. To prove it <b>insufficient</b> you need only two examples that disagree — one giving yes and one giving no, or two different values." },
+          { t: "p", x: "It follows that a single example proves nothing on its own. Finding a case that answers yes does not make a statement sufficient; it only means you have not yet found the no. Keep looking until you have both, or until you are convinced there is no second case." },
+          { t: "tip", x: "Have a fixed set of test numbers ready: 0, 1, \\(-1\\), a large positive, a large negative, and a fraction on each side of zero. Nearly every insufficiency is exposed by one of them, and running down a fixed list is far faster than inventing cases under time pressure." },
+          { t: "eg",
+            q: "Is \\(x &gt; 2\\)?   (1) \\(x^{2} &gt; 4\\)   (2) \\(x &gt; 1\\)",
+            choices: ["A", "B", "C", "D", "E"],
+            ans: "C",
+            why: "Statement (1): squaring hides the sign, so \\(x^{2} &gt; 4\\) means \\(x &gt; 2\\) <b>or</b> \\(x &lt; -2\\). Test 3 — yes. Test \\(-3\\) — no. Both answers occur, so insufficient; A and D are out. Statement (2), read on its own: test 3 — yes; test 1.5 — no, and 1.5 is allowed because nothing said \\(x\\) was an integer. Insufficient, so B is out. Together, \\(x &gt; 1\\) rules out the whole negative branch of (1), leaving only \\(x &gt; 2\\) — a confirmed yes, so C. The fraction 1.5 is what does the work in statement (2); assuming integers would have given the wrong answer with complete confidence."
+          },
           { t: "note", x: "This guide covers strategy and the Data Sufficiency layer. The per-topic concepts live in the other Quant guides — Percentages, Ratios &amp; Word Problems; Number Properties; Algebra; and Statistics, Sets &amp; Probability." }
         ]
       }
@@ -1072,261 +1086,325 @@ window.GMAT_CONCEPTS = [
       {
         id: "qt-percent",
         title: "Percentages",
-        mins: 5,
+        mins: 8,
         blocks: [
-          { t: "p", x: "A percent is just a fraction out of 100. Fluency comes from <b>knowing the common fraction ↔ percent equivalents cold</b> so you never calculate them:" },
+          { t: "p", x: "Percentages are the single most common idea in GMAT Quant. They turn up in their own right, and they also sit inside profit and loss, interest, mixtures, statistics and half the Data Insights section. Almost none of the difficulty is arithmetic. It is <b>keeping track of what the percentage is a percentage of</b> — and the exam builds nearly every wrong answer out of a reader who lost track of that." },
+          { t: "p", x: "Start from the word itself. <i>Per cent</i> means <i>per hundred</i>, so a percent is a fraction whose denominator is 100. \\(30\\%\\) is \\(30/100\\), which is \\(0.30\\), which is \\(3/10\\). Those are three spellings of one number, and being able to move between them without stopping is most of what fluency in this topic means." },
+          { t: "h", x: "Learn these by sight, not by division" },
+          { t: "p", x: "A question that hands you \\(37.5\\%\\) of 240 is not asking for long multiplication. It is checking whether you recognise \\(37.5\\%\\) as \\(3/8\\), because \\(3/8\\) of 240 is 90 in one step. These are worth knowing the way you know a phone number:" },
           { t: "table", head: ["Fraction", "%"], rows: [
             ["1/2", "50%"], ["1/3", "33⅓%"], ["1/4", "25%"], ["1/5", "20%"],
             ["1/6", "16⅔%"], ["1/8", "12.5%"], ["1/9", "11⅑%"], ["1/20", "5%"]
-          ] },
-          { t: "h", x: "Change, increase, decrease" },
-          { t: "formula", x: "\\text{change \\%} = \\dfrac{\\text{new} - \\text{old}}{\\text{old}} \\times 100" },
-          { t: "p", x: "A rise of x% then a further rise of y% is <b>not</b> x+y — the combined effect is:" },
-          { t: "formula", x: "x + y + \\dfrac{xy}{100}" },
-          { t: "ul", items: [
-            "Up x% then down x% is a net <b>loss</b> of \\( \\frac{x^2}{100}\\% \\) — never zero.",
-            "“A is r% more than B” ⟹ B is \\( \\frac{r}{100+r}\\times100\\% \\) less than A (not r%).",
-            "Price up r%, to keep spend flat cut usage by \\( \\frac{r}{100+r}\\times100\\% \\)."
-          ] },
-          { t: "tip", x: "Turn “% of” into multiplication: 20% of 240 = 0.2 × 240, or use fractions — 37.5% of 240 = ⅜ × 240 = 90. Choose whichever is cleaner." },
+          ]},
+          { t: "tip", x: "Doubling and halving extends the table for free. If \\(1/8 = 12.5\\%\\) then \\(3/8 = 37.5\\%\\) and \\(5/8 = 62.5\\%\\). If \\(1/6 = 16\\tfrac{2}{3}\\%\\) then \\(5/6 = 83\\tfrac{1}{3}\\%\\)." },
           { t: "h", x: "The three shapes a percent question takes" },
+          { t: "p", x: "Before any calculation, work out which of these three you are being asked. They look alike on the page and behave completely differently." },
           { t: "ol", items: [
-            "<b>Percent of</b> — “what is 30% of 80?” Multiply: \\( 0.30\\times80=24 \\).",
-            "<b>Percent change</b> — “from 80 to 100” is a change measured <b>against the starting value</b>: \\( 20/80=25\\% \\).",
-            "<b>Percent more / less than</b> — “A is 25% more than B” means \\( A=1.25B \\). The word <b>than</b> points at the base."
-          ] },
-          { t: "warn", x: "Always ask “percent <b>of what</b>?”. Nearly every wrong answer in this topic comes from measuring the change against the wrong base — the new value instead of the old, or the total instead of the part." },
+            "<b>Percent of</b> — \"what is 30% of 80?\" This is plain multiplication: \\(0.30\\times80=24\\). The word <b>of</b> means <i>times</i>.",
+            "<b>Percent change</b> — \"the price went from 80 to 100\". The change is 20, and it is measured against where you <b>started</b>: \\(20/80=25\\%\\).",
+            "<b>Percent more / less than</b> — \"A is 25% more than B\" means \\(A = 1.25B\\). The word <b>than</b> points straight at the base."
+          ]},
+          { t: "p", x: "Notice that the same two numbers, 80 and 100, give a different answer in each shape. 80 is \\(80\\%\\) of 100, but 100 is a \\(25\\%\\) increase on 80. Nothing about the numbers tells you which is wanted — only the sentence does." },
+          { t: "h", x: "Percent change" },
+          { t: "formula", x: "\\text{percent change} = \\dfrac{\\text{new} - \\text{old}}{\\text{old}} \\times 100" },
+          { t: "p", x: "The numerator is how much it moved; the denominator is where it moved <b>from</b>. That denominator is the whole game. Going from 40 to 50 is a rise of \\(10/40 = 25\\%\\). Going straight back down from 50 to 40 is a fall of \\(10/50 = 20\\%\\). Same ten units, two different percentages, because the starting point changed." },
+          { t: "warn", x: "Ask \"percent <b>of what</b>?\" out loud before you divide. Nearly every wrong answer in this topic comes from a correct subtraction over the wrong denominator — the new value instead of the old, or the total instead of the part." },
+          { t: "h", x: "Two changes in a row" },
+          { t: "p", x: "This is where the exam collects its marks. A rise of \\(x\\%\\) followed by a rise of \\(y\\%\\) is <b>not</b> a rise of \\(x+y\\%\\), because the second rise is applied to a figure that already grew. The true combined change is:" },
+          { t: "formula", x: "x + y + \\dfrac{xy}{100}" },
+          { t: "p", x: "You rarely need that formula, though, because there is a cleaner way to think about it. Rewrite every change as a <b>multiplier</b> — up 20% is \\(\\times 1.20\\), down 15% is \\(\\times 0.85\\) — and then just multiply them together. Up 20% then down 15% is \\(1.20\\times0.85 = 1.02\\), a 2% rise overall. Multipliers also make the order obviously irrelevant, since multiplication commutes." },
+          { t: "ul", items: [
+            "Up \\(x\\%\\) then down \\(x\\%\\) is a net <b>loss</b> of \\( \\frac{x^2}{100}\\% \\), never zero. Up 10% then down 10% is \\(1.1\\times0.9=0.99\\) — you end 1% down.",
+            "\"A is \\(r\\%\\) more than B\" means B is \\( \\frac{r}{100+r}\\times100\\% \\) <b>less</b> than A, not \\(r\\%\\) less. If A is 25% more than B, then B is 20% less than A.",
+            "If a price rises \\(r\\%\\), holding your total spend flat means cutting how much you buy by \\( \\frac{r}{100+r}\\times100\\% \\)."
+          ]},
           { t: "h", x: "Percent vs. percentage points" },
-          { t: "p", x: "If a share rises from 20% to 25%, that is a rise of <b>5 percentage points</b> but a <b>25% increase</b> \\( (5/20) \\). The exam writes both numbers into the answer choices and lets you pick the wrong one." },
+          { t: "p", x: "These are different units and the exam prints both in the answer choices. If a market share rises from 20% to 25%, it has risen by <b>5 percentage points</b> — but that is a <b>25% increase</b>, because \\(5/20 = 0.25\\). Whenever the quantity being measured is itself a percentage, slow down and decide which of the two the question wants." },
           { t: "h", x: "Working backwards" },
-          { t: "p", x: "To undo a percentage change you <b>divide</b>, never subtract. If a price is $60 after a 20% rise, the original was \\( 60/1.2=50 \\) — not \\( 60\\times0.8=48 \\)." },
-          { t: "tip", x: "Chain changes as <b>multipliers</b> and the arithmetic collapses: up 25% then down 20% is \\( 1.25\\times0.80=1.00 \\), exactly back to the start. Order never matters, because multiplication commutes." },
+          { t: "p", x: "To undo a percentage change you <b>divide by the multiplier</b>. You never subtract the same percentage back off, because that percentage would be taken from the wrong base. If an item costs $60 after a 20% rise, the original was \\(60 \\div 1.2 = 50\\). Taking 20% off 60 gives 48, which is wrong — and which will be sitting there as an answer choice." },
           { t: "eg",
             q: "After a 20% increase, the price of an item is $60. What was the price before the increase?",
             choices: ["$40", "$48", "$50", "$52", "$75"],
             ans: "C",
-            why: "The new price is 1.2 times the old, so the old price is \\(60 \\div 1.2 = 50\\). The trap is $48, which comes from taking 20% off the new price instead of undoing the rise."
+            why: "Name the old price \\(P\\). A 20% rise means the new price is \\(1.2P\\), so \\(1.2P = 60\\) and \\(P = 60 \\div 1.2 = 50\\). Check it forwards: 20% of 50 is 10, and \\(50+10 = 60\\) ✓. The trap is (B) $48, which is 60 with 20% taken <i>off</i> — but that 20% is 20% of the new price, not of the old one, so it removes $12 where the rise had added $10."
+          },
+          { t: "eg",
+            q: "A shop raises the price of a jacket by 25%, and later reduces the raised price by 20%. Compared with the original price, the final price is",
+            choices: ["5% lower", "the same", "1% higher", "5% higher", "45% higher"],
+            ans: "B",
+            why: "Work in multipliers: \\(1.25 \\times 0.80 = 1.00\\), so the jacket ends exactly where it started. Concretely, $100 becomes $125, and 20% of $125 is $25, which comes straight back off. The tempting answer is 5% higher, from adding \\(+25\\) and \\(-20\\) as if the two percentages were measured against the same base — they are not, because the discount is taken from the larger, raised price."
           }
         ]
       },
       {
         id: "qt-ratio",
         title: "Ratios & Proportions",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "A ratio a : b compares parts. Treat the parts as <b>multiples of a common unit</b>: a : b really means 'ak and bk for some k'. That single k unlocks most ratio questions." },
+          { t: "p", x: "A ratio compares two quantities without committing to either one. \"3 : 4\" tells you the second is a third larger than the first, and nothing whatever about whether we are talking about 3 and 4, or 30 and 40, or 300 and 400. That is exactly why the GMAT likes ratios — it can give you the shape of a situation while holding back its size, and then test whether you can still reason about it." },
+          { t: "p", x: "The move that unlocks almost every ratio question is to <b>give the ratio a multiplier</b>. If two quantities are in the ratio 3 : 4, write them as \\(3k\\) and \\(4k\\). Now there is one unknown instead of two, every relationship in the question becomes an equation in \\(k\\), and the shape is preserved automatically." },
           { t: "ul", items: [
-            "To split a quantity Q in ratio a : b, one share is \\( \\frac{a}{a+b}\\times Q \\).",
-            "Chain ratios: given a : b and b : c, scale so the shared term matches, then read a : b : c.",
-            "A proportion a : b = c : d means <b>product of extremes = product of means</b>: \\( ad = bc \\)."
-          ] },
-          { t: "warn", x: "You can't add a number to both sides of a ratio and keep it — 2 : 3 is not 3 : 4. Work with the actual multiples (2k, 3k) instead." },
+            "\\(a : b\\) means \\(a/b\\), and it stays true when you scale both sides: \\(3:4 = 6:8 = 30:40\\).",
+            "Three or more terms work the same way. \\(2:3:5\\) becomes \\(2k, 3k, 5k\\).",
+            "The parts sum to \\((2+3+5)k = 10k\\), so a <b>total</b> in a 2:3:5 split must be a multiple of 10. That single fact answers a lot of \"which could be the total\" questions on its own."
+          ]},
+          { t: "warn", x: "A ratio of parts is not a fraction of the whole. If boys to girls is \\(2:3\\), boys are \\(2/5\\) of the class — not \\(2/3\\). The denominator of a fraction is the <b>total</b>; the second term of a ratio is only the <b>other part</b>." },
           { t: "eg",
-            q: "A sum is split between X and Y in the ratio 3 : 5. If Y gets $40 more than X, how much is the total?",
-            choices: ["$120", "$140", "$160", "$180", "$200"],
+            q: "The ratio of boys to girls in a class is 3 : 5, and there are 16 more girls than boys. How many students are in the class?",
+            choices: ["48", "56", "64", "72", "80"],
             ans: "C",
-            why: "Shares are 3k and 5k; the gap 5k − 3k = 2k = $40, so k = 20. Total = 8k = 8 × 20 = $160."
+            why: "Write the counts as \\(3k\\) boys and \\(5k\\) girls — one unknown instead of two, and the 3 : 5 shape is built in. The gap between them is \\(5k - 3k = 2k\\), and we are told that gap is 16, so \\(k = 8\\). That makes 24 boys and 40 girls, a total of \\(8k = 64\\). Check it: \\(24:40\\) reduces to \\(3:5\\) ✓ and \\(40-24 = 16\\) ✓. The trap is 80, which comes from reading 16 as the value of \\(k\\) rather than of \\(2k\\)."
           },
-          { t: "h", x: "Chaining three-part ratios" },
-          { t: "p", x: "Given \\( a:b=2:3 \\) and \\( b:c=4:5 \\), scale each so the shared term matches. The b terms are 3 and 4, so scale the first by 4 and the second by 3:" },
-          { t: "formula", x: "\\begin{gathered}a:b=8:12, \\quad b:c=12:15 \\\\[4pt] \\Rightarrow\\ a:b:c=8:12:15\\end{gathered}" },
-          { t: "h", x: "Direct and inverse proportion" },
+          { t: "h", x: "Combining two ratios" },
+          { t: "p", x: "When two ratios share a term, they are two views of the same situation and can be merged — but only after the shared term is written as the same number in both. Given \\(A:B = 2:3\\) and \\(B:C = 4:5\\), B appears as 3 in one and 4 in the other. Scale each ratio until B is 12 in both: multiply the first by 4 and the second by 3." },
+          { t: "formula", x: "\\begin{gathered}A:B = 8:12, \\qquad B:C = 12:15\\\\[4pt]\\Rightarrow\\quad A:B:C = 8:12:15\\end{gathered}" },
+          { t: "h", x: "Proportions" },
+          { t: "p", x: "A proportion is a statement that two ratios are equal, \\(a/b = c/d\\), and it is solved by cross-multiplying to \\(ad = bc\\). Most \"direct variation\" word problems are exactly this: if 4 machines fill 600 bottles, then 7 machines fill \\(x\\), and \\(4/600 = 7/x\\)." },
           { t: "ul", items: [
-            "<b>Direct</b>: \\( y=kx \\). Double one, double the other. Cost against quantity.",
-            "<b>Inverse</b>: \\( xy=k \\). Double one, halve the other. Speed against time for a fixed distance; workers against days for a fixed job.",
-            "For similar figures, lengths in ratio \\( k \\) put areas in ratio \\( k^{2} \\) and volumes in ratio \\( k^{3} \\)."
-          ] },
-          { t: "tip", x: "A ratio alone never gives an amount — you need <b>one real number</b> to find k. Scan the question for the sentence that supplies it: a difference, a total, or one share." },
-          { t: "warn", x: "When a ratio <b>changes</b> after something is added or removed, do not write a second unrelated ratio. Keep the same k from the first ratio, apply the change to it, and set the result equal to the new ratio." }
+            "<b>Direct</b> variation — one goes up, so does the other. \\(y = kx\\). Double the machines, double the output.",
+            "<b>Inverse</b> variation — one goes up, the other goes down. \\(xy = k\\). Double the workers, halve the time.",
+            "Deciding which one you are looking at, before writing anything, prevents the most common error in this topic."
+          ]},
+          { t: "tip", x: "Where a ratio changes — \"5 more boys join and the ratio becomes 2 : 3\" — set up the <b>original</b> as \\(3k\\) and \\(5k\\), apply the change to those expressions, and set the result equal to the new ratio. One equation, one unknown." },
+          { t: "warn", x: "You cannot add ratios. If one class is \\(2:3\\) boys to girls and another is \\(3:4\\), the combined ratio is not \\(5:7\\) — it depends on how big the two classes are. Convert to actual counts first."
+          }
         ]
       },
       {
         id: "qt-average",
         title: "Averages",
-        mins: 4,
+        mins: 8,
         blocks: [
+          { t: "p", x: "An average tells you what every value <i>would</i> be if the total were shared out equally. That is worth saying slowly, because it points at the thing the GMAT actually tests: an average is only ever a disguised statement about a <b>total</b>. Six numbers averaging 15 is another way of saying six numbers adding to 90, and the second version is almost always the one you can work with." },
           { t: "formula", x: "\\text{average} = \\dfrac{\\text{sum of terms}}{\\text{number of terms}}" },
+          { t: "p", x: "Rearranged, that reads <b>total = average × count</b>, and that rearrangement is the single most useful line in the topic. Whenever a question tells you an average, immediately convert it into a total and write the total down. Whenever it asks about an average, work out what total would produce it." },
           { t: "ul", items: [
-            "The <b>sum</b> is the bridge: total = average × count. Most average questions are really sum questions.",
-            "Adding a value equal to the current average leaves it unchanged; adding one above pulls it up, below pulls it down.",
-            "For evenly-spaced sets, the average equals the <b>middle value</b> (= (first + last)/2)."
-          ] },
-          { t: "h", x: "Weighted average" },
-          { t: "p", x: "When groups of different sizes combine, weight by size — you can't just average the averages:" },
-          { t: "formula", x: "\\bar{x} = \\dfrac{n_1\\bar{x}_1 + n_2\\bar{x}_2}{n_1 + n_2}" },
-          { t: "tip", x: "The combined average always lands <b>between</b> the two group averages, closer to the bigger group — a quick sanity check and often enough to answer." },
+            "Adding a value <b>equal to</b> the current average leaves the average unchanged — it brings exactly its own share.",
+            "Adding a value above the average pulls it up; below, pulls it down. How far it moves depends on how many terms are sharing the shift.",
+            "For an <b>evenly spaced</b> set the average equals the middle value, which is also \\((\\text{first}+\\text{last})/2\\). The average of 4, 7, 10, 13, 16 is 10, with no addition at all."
+          ]},
           { t: "h", x: "Changing the average" },
-          { t: "p", x: "Because the sum is the bridge, every “what happens to the average” question is answered by tracking the total:" },
+          { t: "p", x: "Because the total is the bridge, every \"what happens to the average\" question is answered by tracking the total through the change and then dividing by the new count. There is no separate technique to learn — just three shapes of the same move:" },
           { t: "ul", items: [
-            "Add a term x to n terms averaging A: the new average is \\( \\frac{nA+x}{n+1} \\).",
-            "Remove a term: subtract it from the total, then divide by the smaller count.",
-            "Replace a term: the average moves by \\( \\frac{\\text{new}-\\text{old}}{n} \\) — the change spread over all n terms."
-          ] },
+            "<b>Add</b> a term \\(x\\) to \\(n\\) terms averaging \\(A\\): the total becomes \\(nA+x\\) over \\(n+1\\) terms, so the new average is \\( \\frac{nA+x}{n+1} \\).",
+            "<b>Remove</b> a term: subtract it from the total, then divide by the smaller count.",
+            "<b>Replace</b> a term: the total moves by \\(\\text{new}-\\text{old}\\), so the average moves by \\( \\frac{\\text{new}-\\text{old}}{n} \\) — the change spread across all \\(n\\) terms. Swapping a 40 for a 70 in a set of 6 lifts the average by exactly 5."
+          ]},
+          { t: "h", x: "Averaging groups of different sizes" },
+          { t: "p", x: "When two groups combine, you cannot average the two averages — that would treat a group of 3 and a group of 30 as equally important. Go back to totals: add the two totals, divide by the two counts." },
+          { t: "formula", x: "\\bar{x} = \\dfrac{n_1\\bar{x}_1 + n_2\\bar{x}_2}{n_1 + n_2}" },
+          { t: "p", x: "So 30 boys averaging 72 and 20 girls averaging 82 give \\(\\frac{30(72)+20(82)}{50} = \\frac{2160+1640}{50} = 76\\) — not 77, which is what averaging 72 and 82 would have given you. There is a fuller treatment of this in the <b>Weighted Averages</b> section of the statistics guide." },
+          { t: "tip", x: "The combined average always lands <b>between</b> the two group averages and closer to the bigger group. That is often enough on its own: if the choices are 74, 76, 77, 79 and 81, everything outside 72–82 is already dead, and \"closer to the boys\" kills anything above 77." },
           { t: "h", x: "The deviation shortcut" },
-          { t: "p", x: "For awkward numbers, pick a convenient reference, average the <b>deviations</b> from it, then add the reference back. For 402, 407, 411, 400: deviations from 400 are 2, 7, 11, 0, averaging 5 — so the average is 405. No large addition at all." },
-          { t: "warn", x: "The average need not be one of the values, need not be an integer, and is <b>not</b> the median. A set can average 50 with no member anywhere near 50." },
+          { t: "p", x: "When the numbers are large and close together, do not add them. Pick a convenient reference near the middle, average the <b>deviations</b> from it, and add the reference back. For 402, 407, 411, 400 the deviations from 400 are 2, 7, 11 and 0, which average to 5 — so the average is 405. You have added four small numbers instead of four large ones." },
+          { t: "warn", x: "An average need not be one of the values, need not be a whole number, and is <b>not</b> the median. A set can average 50 with no member anywhere near 50 — {0, 0, 200} averages 66⅔ and contains nothing like it." },
           { t: "eg",
             q: "The average of 6 numbers is 15. When one number is removed, the average of the remaining 5 is 14. What number was removed?",
             choices: ["10", "14", "16", "20", "24"],
             ans: "D",
-            why: "The original total is \\(6\\times15=90\\) and the new total is \\(5\\times14=70\\). The removed number is the difference, \\(90-70=20\\)."
+            why: "Convert both averages into totals straight away. Six numbers averaging 15 add to \\(6\\times15=90\\); the five that remain average 14, so they add to \\(5\\times14=70\\). Nothing else changed, so the number that left is the difference between the two totals: \\(90-70=20\\). Note that the average only fell by 1, yet the removed number is 5 above the original average — because that one point of drop had to be paid for across all five remaining terms."
+          },
+          { t: "eg",
+            q: "A student has averaged 82 across four tests. What must she score on a fifth test to bring her average up to 84?",
+            choices: ["86", "88", "90", "92", "96"],
+            ans: "D",
+            why: "Totals again. Four tests at 82 is \\(4\\times82=328\\) points so far. Five tests averaging 84 would need \\(5\\times84=420\\). The fifth test must supply the gap: \\(420-328=92\\). The trap is 86, which is 84 plus the 2-point rise — but a 2-point rise across five tests costs \\(5\\times2=10\\) extra points, and those must all come out of the one remaining test, on top of the 82 she was already averaging."
           }
         ]
       },
       {
         id: "qt-mixture",
         title: "Mixtures & Alligation",
-        mins: 4,
+        mins: 8,
         blocks: [
-          { t: "p", x: "Alligation is weighted-average logic run backwards: given a blend's average, find the <b>ratio</b> of the two ingredients. With cheaper value c, dearer value d, and mean m:" },
-          { t: "formula", x: "\\dfrac{\\text{qty of cheaper}}{\\text{qty of dearer}} = \\dfrac{d - m}{m - c}" },
-          { t: "p", x: "(Each ingredient's 'distance' from the mean is inversely proportional to how much of it you use.)" },
-          { t: "h", x: "Repeated replacement" },
-          { t: "p", x: "If you remove x from a container of volume V and top up with the other liquid, n times, the original liquid left is:" },
-          { t: "formula", x: "V\\left(1 - \\dfrac{x}{V}\\right)^{n}" },
-          { t: "tip", x: "Alligation also cracks problems on average speed, blended interest rates, and salary/marks mixes — anything where two rates combine into one." },
-          { t: "h", x: "Track the pure component, not the mixture" },
-          { t: "p", x: "In 30 litres of a 20% salt solution there are 6 litres of salt. Every mixture question becomes easy once you hold that quantity in view:" },
+          { t: "p", x: "A mixture question hands you two things of different strength or price and blends them. The strength of the blend must land somewhere between the two, and where exactly it lands depends only on <b>how much of each you used</b>. Every question in this topic is a variation on that one sentence." },
+          { t: "h", x: "Hold the pure component in view" },
+          { t: "p", x: "The trick that makes these easy is to stop thinking about the mixture and think about the <b>ingredient</b> instead. In 30 litres of a 20% salt solution there are \\(0.20\\times30 = 6\\) litres of salt, and 24 litres of water. Now every operation the question can perform becomes obvious:" },
           { t: "ul", items: [
-            "Adding <b>pure water</b> leaves the salt unchanged and raises the total — so the concentration falls.",
+            "Adding <b>pure water</b> leaves the 6 litres of salt untouched and raises the total — so the concentration falls.",
             "Adding <b>pure salt</b> raises both the salt and the total.",
-            "<b>Evaporating water</b> leaves the salt unchanged and lowers the total — the concentration rises.",
-            "Removing some of the <b>mixture</b> lowers salt and total in the same proportion, so the concentration does not move at all."
-          ] },
-          { t: "tip", x: "The alligation ratio comes out as <b>cheaper : dearer</b>, which is the reverse of the order the distances are written in. Sanity-check it: the ingredient nearer the mean must be the one you used more of." },
-          { t: "warn", x: "Alligation works on <b>averages per unit</b> — concentrations, prices per kilo, rates. It does not work on totals. Convert to a per-unit figure before you cross." },
+            "<b>Evaporating water</b> leaves the salt untouched and lowers the total — the concentration rises.",
+            "Removing some of the <b>mixture</b> takes salt and water away in the same proportion, so the concentration does not move at all. Only the amounts do."
+          ]},
+          { t: "h", x: "Alligation: the blend ratio from the averages" },
+          { t: "p", x: "Alligation is weighted-average reasoning run backwards. Instead of being given the amounts and asked for the blend, you are given the blend and asked for the amounts. With a cheaper (or weaker) value \\(c\\), a dearer (or stronger) value \\(d\\), and a resulting mean \\(m\\):" },
+          { t: "formula", x: "\\dfrac{\\text{qty of cheaper}}{\\text{qty of dearer}} = \\dfrac{d - m}{m - c}" },
+          { t: "p", x: "Read it as a see-saw. Each ingredient sits at its own value, the mean is the balance point, and the amount of each is <b>inversely</b> proportional to how far it sits from that point. An ingredient far from the mean cannot be there in quantity, or it would have dragged the mean towards itself." },
+          { t: "p", x: "Concretely: blending a 20% solution with a 50% solution to reach 30%, the distances are \\(30-20 = 10\\) and \\(50-30 = 20\\). Reversing them gives a ratio of 20 : 10, or <b>2 : 1 in favour of the 20% solution</b> — which fits the intuition that the answer 30 sits much nearer 20 than 50, so most of the blend must be the weak one." },
+          { t: "tip", x: "The alligation ratio comes out as <b>cheaper : dearer</b>, the reverse of the order the two distances are written in. Sanity-check every time: the ingredient nearer the mean must be the one you used more of." },
+          { t: "warn", x: "Alligation works on <b>per-unit</b> figures — concentrations, prices per kilo, rates, percentages. It does not work on totals. Convert to a per-unit number before you cross." },
+          { t: "h", x: "Repeated replacement" },
+          { t: "p", x: "A container holds \\(V\\) of a liquid. You pour out \\(x\\), top back up with something else, and repeat \\(n\\) times. Each round removes the same <b>fraction</b> of whatever original liquid is left — pouring out 8 of 40 always removes a fifth — so the original liquid is multiplied by \\((1-x/V)\\) every time:" },
+          { t: "formula", x: "\\text{original liquid left} = V\\left(1 - \\dfrac{x}{V}\\right)^{n}" },
+          { t: "tip", x: "The same alligation machinery cracks average speed, blended interest rates, and salary or marks mixes — anything where two rates combine into one." },
           { t: "eg",
             q: "How many litres of water must be added to 30 litres of a 20% salt solution to dilute it to 15% salt?",
             choices: ["5", "7.5", "10", "12", "15"],
             ans: "C",
-            why: "The salt is fixed at \\(0.20\\times30=6\\) litres. We need \\(6/(30+x)=0.15\\), so \\(30+x=40\\) and \\(x=10\\)."
+            why: "Track the salt, because water is the only thing being added. The salt is \\(0.20\\times30 = 6\\) litres and it stays 6 litres throughout. After adding \\(x\\) litres of water the total is \\(30+x\\), and we need that 6 litres to be 15% of it: \\(6/(30+x) = 0.15\\), so \\(30+x = 6/0.15 = 40\\) and \\(x = 10\\). Sanity check: 6 out of 40 is 15% ✓. Notice you never needed the amount of water you started with."
+          },
+          { t: "eg",
+            q: "A vessel holds 40 litres of pure milk. 8 litres are drawn off and replaced with water; this is done a second time. How much milk remains?",
+            choices: ["24 litres", "25.6 litres", "26.4 litres", "28.8 litres", "32 litres"],
+            ans: "B",
+            why: "Each round removes \\(8/40 = 1/5\\) of whatever milk is in the vessel, leaving \\(4/5\\) of it. After two rounds the milk is \\(40\\times(4/5)^{2} = 40\\times0.64 = 25.6\\) litres. Step by step: the first draw leaves 32 litres of milk; the second draw removes a fifth of <i>those</i>, that is 6.4, leaving 25.6. The trap is 24, which comes from subtracting 8 litres of milk twice — wrong from the second round on, because by then the 8 litres drawn off is a mixture, not pure milk."
           }
         ]
       },
       {
         id: "qt-profit",
         title: "Profit, Loss & Discount",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "formula", x: "\\text{profit \\%} = \\dfrac{\\text{SP} - \\text{CP}}{\\text{CP}} \\times 100" },
-          { t: "ul", items: [
-            "Selling price from cost: \\( \\text{SP} = \\text{CP}\\left(1 + \\frac{p}{100}\\right) \\); a loss uses a minus sign.",
-            "<b>Discount is on the marked price</b>, profit is on the cost — keep the two bases separate.",
-            "Marked up m% then discounted d%: net effect \\( m - d - \\frac{md}{100}\\% \\) on cost.",
-            "Two items sold at the same price, one at +x% and one at −x%: always a net <b>loss</b> of \\( \\frac{x^2}{100}\\% \\)."
-          ] },
-          { t: "warn", x: "“Profit % on cost” and “profit % on selling price” are different — GMAT wording chooses the base deliberately, so read which one is meant." },
-          { t: "h", x: "Keep three prices apart" },
+          { t: "p", x: "Profit and loss is percentages wearing a shopkeeper's apron. Everything you already know about percent change applies; the only new work is keeping three different prices straight, because the exam measures different percentages against different ones and counts on you to blur them." },
           { t: "table", head: ["Price", "Meaning", "Percentages measured on it"], rows: [
             ["CP", "cost price — what the seller paid", "profit % and loss %"],
-            ["MP", "marked / list price — the tag", "discount %"],
-            ["SP", "selling price — what the buyer pays", "—"]
-          ] },
+            ["MP", "marked / list price — the tag in the window", "discount %"],
+            ["SP", "selling price — what the buyer actually pays", "—"]
+          ]},
+          { t: "p", x: "Read that table as a warning about bases. <b>Profit is measured on cost. Discount is measured on the marked price.</b> They are percentages of two different numbers, so they can never simply be added or subtracted against each other." },
+          { t: "formula", x: "\\text{profit \\%} = \\dfrac{\\text{SP} - \\text{CP}}{\\text{CP}} \\times 100" },
           { t: "formula", x: "\\begin{gathered}\\text{SP}=\\text{MP}\\left(1-\\tfrac{d}{100}\\right) \\\\[4pt] \\text{SP}=\\text{CP}\\left(1+\\tfrac{p}{100}\\right)\\end{gathered}" },
-          { t: "tip", x: "Set <b>CP = 100</b> and walk the story forward. Mark up 40% to 140, take 25% off to 105 — the profit is 5%, read straight off the number. This works because every quantity in the topic is a percentage." },
+          { t: "p", x: "The two lines describe the same selling price reached from two directions: down from the tag by the discount, and up from the cost by the profit. Most questions in this topic give you one route and ask for the other." },
+          { t: "tip", x: "<b>Set CP = 100 and walk the story forward.</b> Every quantity here is a percentage, so the actual cost is irrelevant and 100 makes the arithmetic disappear. Mark up 40% → 140. Take 25% off → 105. Profit is 5 on a cost of 100, so 5% — read straight off the number, with no formula used at all." },
+          { t: "h", x: "The results worth recognising" },
           { t: "ul", items: [
-            "<b>Successive discounts multiply</b>: 20% then 10% off is \\( 0.8\\times0.9=0.72 \\), a single discount of 28% — never 30%.",
-            "A dealer using a short weight of w grams per kilo makes a profit of \\( \\frac{1000-w}{w}\\times100\\% \\) even when selling at cost.",
-            "If SP is the same for two items at \\( +x\\% \\) and \\( -x\\% \\), the net is always a <b>loss</b> of \\( \\frac{x^{2}}{100}\\% \\)."
-          ] },
+            "<b>Successive discounts multiply.</b> 20% then 10% off is \\( 0.8\\times0.9=0.72 \\) — a single discount of 28%, not 30%, because the second 10% is taken from the already-reduced price.",
+            "Marked up \\(m\\%\\) and then discounted \\(d\\%\\) gives a net effect on cost of \\( m - d - \\frac{md}{100}\\% \\).",
+            "Two items sold at the <b>same price</b>, one at \\(+x\\%\\) and one at \\(-x\\%\\), always produce a net <b>loss</b> of \\( \\frac{x^{2}}{100}\\% \\). The percentages look like they cancel, but the item sold at a loss had the higher cost, so more money was tied up in the losing side.",
+            "A dealer using a short weight of \\(w\\) grams per kilo makes \\( \\frac{1000-w}{w}\\times100\\% \\) profit even while selling \"at cost\"."
+          ]},
+          { t: "warn", x: "\"Profit % on cost\" and \"profit % on selling price\" are different quantities, and GMAT wording picks its base deliberately. A profit of 25% on cost is a profit of 20% on the selling price — same money, different denominator." },
           { t: "eg",
             q: "A shopkeeper marks an item 40% above cost and then allows a 25% discount. What is the profit percent?",
             choices: ["5%", "10%", "15%", "20%", "25%"],
             ans: "A",
-            why: "Take CP = 100. The marked price is 140, and a 25% discount gives \\(140\\times0.75=105\\). Profit is 5 on a cost of 100, so 5%."
+            why: "Set CP = 100. Marking up 40% puts the tag at 140. The 25% discount comes off <b>that</b>, not off the cost: \\(140\\times0.75 = 105\\). So the item cost 100 and sold for 105 — a profit of 5%. The trap is 15%, from subtracting 25 from 40 as if both percentages were measured against the same number. They are not: the 40% is of 100 and the 25% is of 140, so the discount removes 35 while the markup had only added 40."
+          },
+          { t: "eg",
+            q: "A trader sells two watches for $120 each. On one he makes a 20% profit and on the other a 20% loss. Overall he",
+            choices: ["breaks even", "loses 4%", "gains 4%", "loses 10%", "loses 20%"],
+            ans: "B",
+            why: "The two selling prices match, so the two <i>costs</i> cannot. Work each back: at a 20% profit, \\(1.2\\,\\text{CP} = 120\\) gives CP = 100. At a 20% loss, \\(0.8\\,\\text{CP} = 120\\) gives CP = 150. Total cost $250, total revenue $240 — a loss of $10 on $250, which is 4%. This is the general result \\(x^{2}/100\\): \\(400/100 = 4\\%\\), and it is always a loss, because the item sold at a loss was the more expensive one."
           }
         ]
       },
       {
         id: "qt-interest",
         title: "Simple & Compound Interest",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Simple interest is a flat charge on the original principal each year:" },
+          { t: "p", x: "Interest questions are growth questions. The only thing that separates the two kinds is <b>what the interest is charged on</b>: simple interest always charges on the original amount you started with, while compound interest charges on whatever the balance has grown to. That one difference is the whole topic." },
+          { t: "h", x: "Simple interest" },
+          { t: "p", x: "The principal earns the same flat amount every period, because the base never changes. $1,000 at 8% earns $80 in year one, $80 in year two, $80 for ever — the growth is a straight line." },
           { t: "formula", x: "\\text{SI} = \\dfrac{P \\cdot R \\cdot T}{100}" },
-          { t: "p", x: "Compound interest charges on the growing balance, so it snowballs:" },
+          { t: "h", x: "Compound interest" },
+          { t: "p", x: "Here each period's interest is added to the balance and then earns interest itself. $1,000 at 8% earns $80 in year one, but year two earns 8% of $1,080, which is $86.40. Growth is a curve, and the formula is just \"multiply by \\((1+R/100)\\), once per period\":" },
           { t: "formula", x: "A = P\\left(1 + \\dfrac{R}{100}\\right)^{T}" },
-          { t: "ul", items: [
-            "Compounded k times a year: \\( A = P\\left(1 + \\frac{R}{100k}\\right)^{kT} \\).",
-            "Over 2 years, CI beats SI by exactly \\( P\\left(\\frac{R}{100}\\right)^2 \\) — a fast shortcut.",
-            "CI for the <b>first</b> year equals SI for that year; the gap only opens from year two."
-          ] },
-          { t: "tip", x: "Percentage growth, population, and appreciation/depreciation all use the compound formula — same machinery, different story." },
+          { t: "warn", x: "That formula gives \\(A\\), the <b>final amount</b>, not the interest. If the question asks for the interest earned, you still have to subtract the principal. Forgetting to is the most common slip in the topic, and the un-subtracted figure is always one of the answer choices." },
           { t: "h", x: "Reading the compounding period" },
-          { t: "p", x: "Whenever interest compounds more often than yearly, <b>divide the rate</b> and <b>multiply the periods</b>. At 10% a year compounded half-yearly for 2 years, use 5% for 4 periods — not 10% for 2." },
+          { t: "p", x: "Whenever interest compounds more often than once a year, <b>divide the rate</b> and <b>multiply the number of periods</b>. At 10% a year compounded half-yearly for 2 years, you use 5% for 4 periods — not 10% for 2. More frequent compounding always earns slightly more, because the interest starts earning sooner." },
+          { t: "formula", x: "A = P\\left(1 + \\dfrac{R}{100k}\\right)^{kT} \\quad (k \\text{ periods per year})" },
           { t: "h", x: "Shortcuts worth having" },
           { t: "ul", items: [
-            "Compound interest for 2 years is the same as two successive percentage rises, so the total growth is \\( 2R+\\frac{R^{2}}{100}\\ \\% \\).",
-            "<b>Rule of 72</b>: money roughly doubles in \\( 72/R \\) years. At 8%, about 9 years.",
-            "Halving the rate and doubling the time gives the same <b>simple</b> interest but <b>less</b> compound interest — compounding rewards rate over time in the short run."
-          ] },
-          { t: "warn", x: "Simple interest is linear and compound interest is exponential, so the two are <b>equal after one period</b> and only diverge afterwards. A question comparing them over one year is testing whether you know they agree." },
+            "Over the <b>first</b> period the two are identical — nothing has been added to the balance yet, so there is nothing extra to earn on. A question comparing them over one year is testing whether you know they agree.",
+            "Over <b>2 years</b>, compound beats simple by exactly \\( P\\left(\\frac{R}{100}\\right)^{2} \\) — that is just the interest earned on the first year's interest.",
+            "Compound growth over 2 years is two successive percentage rises, so the total growth is \\( 2R+\\frac{R^{2}}{100}\\ \\% \\).",
+            "<b>Rule of 72</b>: money roughly doubles in \\( 72/R \\) years. At 8%, about 9 years. Useful for eliminating choices fast.",
+            "Halving the rate and doubling the time gives the same <b>simple</b> interest but <b>less</b> compound interest."
+          ]},
+          { t: "tip", x: "Population growth, appreciation, depreciation and inflation are all the compound formula with the story changed. Depreciation just uses \\((1-R/100)\\) instead of \\((1+R/100)\\)." },
           { t: "eg",
             q: "$5,000 is invested at 10% per annum compounded annually. How much interest is earned over 2 years?",
             choices: ["$1,000", "$1,025", "$1,050", "$1,100", "$1,210"],
             ans: "C",
-            why: "\\(A = 5000(1.1)^{2} = 6050\\), so the interest is $1,050. The $1,000 option is the simple-interest figure, which is what you get by forgetting the second year's interest on interest."
+            why: "Year one earns 10% of 5,000 = $500, taking the balance to $5,500. Year two earns 10% of $5,500 = $550, taking it to $6,050. Interest earned is \\(6050-5000 = 1050\\). By formula: \\(A = 5000(1.1)^{2} = 6050\\), then subtract the principal. The $1,000 trap is the simple-interest figure — it misses the $50 that the first year's $500 itself earned. The $6,050 version of this trap appears when the question asks for interest and the choices offer the final amount."
+          },
+          { t: "eg",
+            q: "$8,000 is invested for one year at 10% per annum compounded half-yearly. The interest earned is",
+            choices: ["$400", "$800", "$820", "$840", "$1,600"],
+            ans: "C",
+            why: "Half-yearly compounding means the rate is halved and the periods are doubled: 5% applied twice, not 10% applied once. \\(8000\\times1.05 = 8400\\) after six months, then \\(8400\\times1.05 = 8820\\) after a year, so the interest is $820. The $800 trap is the annual figure, which ignores the compounding — the extra $20 is the second half-year's 5% on the first half-year's $400."
           }
         ]
       },
       {
         id: "qt-speed",
         title: "Speed, Time & Distance",
-        mins: 3,
+        mins: 8,
         blocks: [
+          { t: "p", x: "Everything in this topic comes out of one relationship, and it is worth reading as a sentence rather than a formula: <b>how far you get is how fast you go, multiplied by how long you go for</b>." },
           { t: "formula", x: "\\text{distance} = \\text{speed} \\times \\text{time}" },
+          { t: "p", x: "Any two of the three give you the third, so the real skill is not the algebra — it is noticing which two the question has quietly handed you, and making sure they are in compatible units before you multiply." },
+          { t: "h", x: "Fix the units first" },
+          { t: "p", x: "Mixed units cause more wrong answers here than anything else. A speed in km/h and a time in minutes cannot be multiplied until one of them moves. Convert before you set anything up:" },
           { t: "ul", items: [
-            "Convert km/h → m/s by \\( \\times\\frac{5}{18} \\); m/s → km/h by \\( \\times\\frac{18}{5} \\).",
-            "<b>Average speed</b> is total distance ÷ total time — for equal distances at speeds x and y it's \\( \\frac{2xy}{x+y} \\) (the harmonic mean), <b>not</b> \\( \\frac{x+y}{2} \\).",
-            "Relative speed: same direction ⟹ subtract; opposite directions ⟹ add.",
-            "Boats: downstream speed = b + s, upstream = b − s (b = boat, s = stream)."
-          ] },
+            "km/h → m/s: multiply by \\( \\tfrac{5}{18} \\). So 54 km/h is 15 m/s, and 72 km/h is 20 m/s.",
+            "m/s → km/h: multiply by \\( \\tfrac{18}{5} \\).",
+            "minutes → hours: divide by 60. 40 minutes is \\(2/3\\) of an hour, not 0.40."
+          ]},
+          { t: "h", x: "Average speed" },
+          { t: "p", x: "Average speed is <b>total distance ÷ total time</b> — always, with no exceptions. It is not the average of the speeds, because you do not spend equal <i>time</i> at each speed; you spend longer at the slow one, so the slow one counts for more." },
+          { t: "p", x: "For a journey covering equal distances at speeds \\(x\\) and \\(y\\), that reasoning collapses to the harmonic mean:" },
+          { t: "formula", x: "\\text{average speed} = \\dfrac{2xy}{x+y}" },
+          { t: "warn", x: "Never average two speeds directly. \\( \\frac{2xy}{x+y} \\) is always <b>less</b> than \\( \\frac{x+y}{2} \\), and the exam prints the arithmetic mean as a trap on almost every question of this shape." },
+          { t: "h", x: "Speed and time are inversely proportional" },
+          { t: "p", x: "Over a <b>fixed distance</b>, going faster means taking proportionally less time. If two speeds are in the ratio 3 : 4, the times are in the ratio 4 : 3. This answers most \"how much earlier would he have arrived?\" questions without ever finding the distance — which is usually the point, because the distance is usually not given." },
+          { t: "h", x: "Relative speed" },
+          { t: "p", x: "When two things move at once, work with the speed of one <b>relative to the other</b> and the problem becomes a single-object problem again." },
+          { t: "ul", items: [
+            "Moving <b>towards</b> each other: add the speeds. A gap \\(D\\) closes in \\( \\frac{D}{v_1+v_2} \\).",
+            "Moving in the <b>same</b> direction: subtract. The gap closes at \\( v_1-v_2 \\), which is why a chase takes so much longer than a head-on meeting.",
+            "<b>Boats</b>: downstream the current helps, so the speed is \\(b+s\\); upstream it hinders, so \\(b-s\\). Adding the two gives \\(2b\\) and subtracting gives \\(2s\\) — a fast way to recover both from a pair of times."
+          ]},
+          { t: "h", x: "Trains: what distance is actually covered?" },
+          { t: "p", x: "A train is not a point, so \"passing\" something means clearing it completely — front of the train to back. Passing a <b>pole</b> covers the train's own length. Passing a <b>platform or another train</b> covers the sum of the two lengths." },
           { t: "eg",
             q: "A car covers a distance at 40 km/h and returns along the same road at 60 km/h. What is its average speed for the whole trip?",
             choices: ["48 km/h", "50 km/h", "52 km/h", "45 km/h", "55 km/h"],
             ans: "A",
-            why: "Equal distances, so use the harmonic mean: 2·40·60 / (40+60) = 4800/100 = 48 km/h — not the tempting 50."
+            why: "Equal distances, so use the harmonic mean: \\(\\frac{2(40)(60)}{40+60} = \\frac{4800}{100} = 48\\) km/h. To see why it is not 50, take the distance as 120 km each way: the outward leg takes 3 hours and the return takes 2, so 240 km in 5 hours, which is 48 km/h. The car spends more of its <i>time</i> crawling at 40 than cruising at 60, so the slow speed carries more weight and the answer must sit below the midpoint."
           },
-          { t: "h", x: "Fix the units first" },
-          { t: "p", x: "Mixed units are the most common error here. Convert everything before you set up: km/h to m/s is \\( \\times\\tfrac{5}{18} \\), minutes to hours is \\( \\div60 \\)." },
-          { t: "h", x: "The inverse-proportion trick" },
-          { t: "p", x: "Over a <b>fixed distance</b>, speed and time are inversely proportional. If two speeds are in the ratio 3 : 4, the times are in the ratio 4 : 3 — which answers most “how much earlier did he arrive?” questions without ever finding the distance." },
-          { t: "h", x: "Relative speed" },
-          { t: "ul", items: [
-            "Approaching each other: add the speeds. They meet after \\( \\frac{D}{v_1+v_2} \\).",
-            "Chasing in the same direction: subtract. The gap closes at \\( v_1-v_2 \\).",
-            "A train passing a <b>pole</b> covers its own length; passing a <b>platform or another train</b> it covers the sum of the two lengths."
-          ] },
-          { t: "warn", x: "Never average two speeds directly. For equal distances the answer is the <b>harmonic</b> mean \\( \\frac{2xy}{x+y} \\), which is always less than \\( \\frac{x+y}{2} \\) — because more time is spent at the slower speed." }
+          { t: "eg",
+            q: "A train 180 metres long travelling at 54 km/h passes a platform 120 metres long. How long does it take?",
+            choices: ["12 seconds", "15 seconds", "20 seconds", "24 seconds", "30 seconds"],
+            ans: "C",
+            why: "Two steps, both easy to skip. First the units: 54 km/h \\(\\times \\tfrac{5}{18} = 15\\) m/s. Then the distance: to clear the platform the train must travel its own length <b>plus</b> the platform's, \\(180+120 = 300\\) metres — the front has to reach the far end and the back still has to leave the near end. So the time is \\(300/15 = 20\\) seconds. The 12-second trap uses only the 180 metres, as if the train were a point."
+          }
         ]
       },
       {
         id: "qt-work",
         title: "Work & Rate (Pipes & Cisterns)",
-        mins: 4,
+        mins: 8,
         blocks: [
-          { t: "p", x: "The one idea: work in terms of <b>rate = 1 job per unit time</b>. If A finishes in a days, A's rate is 1/a per day; rates simply add." },
+          { t: "p", x: "The mistake everyone makes first is to work with times. Times will not combine — if A takes 12 days and B takes 18, there is no sensible way to fold 12 and 18 together into a single number. What <b>does</b> combine is <b>rate</b>: how much of the job each one gets through in a day. Rates simply add, because in one day the work A does and the work B does both happen." },
+          { t: "p", x: "So the first move in every question of this type is to convert times into rates. If A finishes a job in \\(a\\) days, A completes \\(1/a\\) of it per day. Working together:" },
           { t: "formula", x: "\\dfrac{1}{T} = \\dfrac{1}{a} + \\dfrac{1}{b} \\quad\\Rightarrow\\quad T = \\dfrac{ab}{a+b}" },
+          { t: "warn", x: "<b>Rates add; times do not.</b> Two workers who each take 6 days do not take 3 days each — they take 3 days <i>together</i>, and that only follows after adding \\( \\tfrac16+\\tfrac16 = \\tfrac13 \\). The combined time is always shorter than the faster worker alone, which is a free sanity check on any answer." },
+          { t: "h", x: "The LCM method — no fractions at all" },
+          { t: "p", x: "Adding \\(\\frac1{12}+\\frac1{18}\\) is unpleasant, and you can avoid it entirely. Instead of calling the job \"1\", call it a number of <b>units</b> chosen so that everyone's daily output is a whole number: the LCM of the given times." },
+          { t: "p", x: "A finishes in 12 days and B in 18. Set the job to \\(\\mathrm{LCM}(12,18)=36\\) units. Then A does \\(36/12 = 3\\) units a day and B does \\(36/18 = 2\\), so together they do 5 units a day — and the job takes \\(36/5 = 7.2\\) days. Whole numbers throughout." },
+          { t: "tip", x: "The LCM method really earns its keep on the messier variants below, because once everyone's daily output is an integer you can just count units up and down as the story changes." },
+          { t: "h", x: "The variations you will actually see" },
           { t: "ul", items: [
-            "Scaling: \\( \\frac{M_1 D_1 H_1}{W_1} = \\frac{M_2 D_2 H_2}{W_2} \\) (men · days · hours per unit work stays constant).",
-            "<b>Pipes & cisterns</b> is the same maths: an inlet adds a positive rate, a leak/outlet subtracts.",
-            "A handy trick: set total work = LCM of the given times, so each worker's rate is a whole number."
-          ] },
-          { t: "h", x: "The LCM method, worked" },
-          { t: "p", x: "A finishes in 12 days and B in 18. Set the job to \\( \\mathrm{LCM}(12,18)=36 \\) units. Then A does 3 units a day and B does 2, so together they do 5 — and the job takes \\( 36/5=7.2 \\) days. Whole numbers throughout, no fractions to add." },
-          { t: "h", x: "Common variations" },
-          { t: "ul", items: [
-            "<b>Alternate days</b>: compute one two-day block (here 3 + 2 = 5 units), see how many blocks fit, then finish the remainder by hand.",
-            "<b>Someone leaves partway</b>: count the units done before the change, subtract, and divide the remainder by the new combined rate.",
-            "<b>Efficiency</b>: if A is twice as fast as B, their times are in the ratio 1 : 2. Efficiency and time are inversely proportional.",
-            "<b>Leaks</b>: a leak is simply a negative rate — subtract it before dividing."
-          ] },
-          { t: "warn", x: "<b>Rates add; times do not.</b> Two workers who each take 6 days do not take 3 days each — they take 3 days together, and that only follows after adding \\( \\tfrac16+\\tfrac16 \\)." },
+            "<b>Alternate days</b> — A works day one, B day two, and so on. Compute one two-day block (here \\(3+2 = 5\\) units), see how many whole blocks fit, then finish the remainder by hand.",
+            "<b>Someone leaves partway</b> — count the units finished before the change, subtract from the total, and divide what is left by the new combined rate.",
+            "<b>Efficiency</b> — if A is twice as fast as B, their times are in the ratio 1 : 2. Efficiency and time are inversely proportional, exactly as speed and time are.",
+            "<b>Leaks and outlets</b> — pipes and cisterns is this same topic with water in it. An inlet is a positive rate, a leak is a negative one; subtract it before dividing.",
+            "<b>Scaling people and hours</b> — \\( \\frac{M_1 D_1 H_1}{W_1} = \\frac{M_2 D_2 H_2}{W_2} \\), that is, men × days × hours per unit of work stays constant."
+          ]},
           { t: "eg",
             q: "A can complete a job in 12 days and B can complete it in 18 days. Working together, how long do they take?",
             choices: ["6 days", "7.2 days", "7.5 days", "9 days", "15 days"],
             ans: "B",
-            why: "Rates add: \\(\\tfrac1{12}+\\tfrac1{18}=\\tfrac{3}{36}+\\tfrac{2}{36}=\\tfrac{5}{36}\\), so the job takes \\(36/5 = 7.2\\) days. The 15-day option comes from averaging the two times, which is never valid."
+            why: "Convert to rates: A does \\(\\tfrac1{12}\\) of the job a day and B does \\(\\tfrac1{18}\\). Together that is \\(\\tfrac{3}{36}+\\tfrac{2}{36}=\\tfrac{5}{36}\\) of the job a day, so the whole job takes \\(36/5 = 7.2\\) days. By the LCM method: the job is 36 units, A does 3 a day, B does 2, together 5, so \\(36/5\\) days. The 15-day trap averages the two times, which is not only wrong but impossible — two people working together cannot be slower than one of them alone."
+          },
+          { t: "eg",
+            q: "A and B working together finish a job in 8 days. A working alone would take 12 days. How long would B take alone?",
+            choices: ["16 days", "20 days", "24 days", "28 days", "36 days"],
+            ans: "C",
+            why: "Rates subtract just as readily as they add. The pair's rate is \\(\\tfrac18\\) of the job a day and A's share of that is \\(\\tfrac1{12}\\), so B's rate is \\(\\tfrac18-\\tfrac1{12} = \\tfrac{3}{24}-\\tfrac{2}{24} = \\tfrac{1}{24}\\) — B alone takes 24 days. The trap is 20, from subtracting the times \\((8\\) and \\(12)\\) instead of the rates. Sanity check: B is much slower than A, which fits, since adding B to A only improved 12 days to 8."
           },
           { t: "note", x: "That completes the arithmetic and word-problem layer. Number properties, algebra, and statistics &amp; probability each have their own guide — see the list of guides on the Quant tab." }
         ]
@@ -1343,69 +1421,87 @@ window.GMAT_CONCEPTS = [
       {
         id: "np-integers",
         title: "Integers, Factors & Multiples",
-        mins: 4,
+        mins: 8,
         blocks: [
-          { t: "p", x: "A <b>factor</b> (divisor) of N divides N with no remainder; a <b>multiple</b> of N is N times an integer. Every question about factors, multiples, LCM or GCD is really a question about one thing — the <b>prime factorization</b>." },
+          { t: "p", x: "Two words do a lot of work here, so pin them down first. A <b>factor</b> (or divisor) of \\(N\\) is a number that divides \\(N\\) leaving no remainder — 6 is a factor of 24. A <b>multiple</b> of \\(N\\) is \\(N\\) times an integer — 24 is a multiple of 6. They are the same relationship read from opposite ends, and mixing them up is the quickest way to answer the wrong question." },
+          { t: "p", x: "Underneath, though, there is only one idea in this topic. Every question about factors, multiples, LCM or GCD is a question about the <b>prime factorization</b>, because that is the number's complete blueprint — the unique list of primes it is built from." },
           { t: "formula", x: "N = p^{a}\\,q^{b}\\,r^{c}\\ \\ (p,q,r \\text{ distinct primes})" },
+          { t: "p", x: "So \\(360 = 2^{3}\\cdot3^{2}\\cdot5\\). Once you have that line written down, almost everything the exam can ask is read off it rather than computed." },
           { t: "h", x: "What the factorization tells you" },
           { t: "ul", items: [
-            "<b>Number of factors</b> = \\( (a+1)(b+1)(c+1) \\). Add one to each exponent and multiply — you never list factors again.",
-            "<b>GCD</b>: take each shared prime to its <b>lowest</b> power. <b>LCM</b>: take every prime to its <b>highest</b> power.",
-            "For two numbers only: \\( \\text{LCM}(a,b)\\times\\text{GCD}(a,b) = a\\times b \\).",
-            "N is a <b>perfect square</b> exactly when every exponent is even — which is why perfect squares are the only numbers with an <b>odd</b> number of factors (one factor pairs with itself)."
-          ] },
-          { t: "tip", x: "Counting multiples in a range: the number of multiples of k from 1 to N is \\( \\lfloor N/k \\rfloor \\). Between two bounds, subtract: multiples of 7 from 100 to 500 = \\( \\lfloor 500/7 \\rfloor - \\lfloor 99/7 \\rfloor = 71 - 14 = 57 \\)." },
-          { t: "h", x: "Tricks worth memorising" },
+            "<b>Number of factors</b> = \\( (a+1)(b+1)(c+1) \\). Add one to each exponent and multiply. The \"add one\" is there because each prime can appear 0, 1, 2 … up to \\(a\\) times in a factor — that is \\(a+1\\) choices, made independently. You never list factors again.",
+            "<b>GCD</b>: take each <b>shared</b> prime to its <b>lowest</b> power — the most that fits inside both. <b>LCM</b>: take <b>every</b> prime to its <b>highest</b> power — the least that both fit inside.",
+            "For two numbers, \\( \\text{LCM}(a,b)\\times\\text{GCD}(a,b) = a\\times b \\). Every prime is counted once at its high power and once at its low power, which is exactly once in each number.",
+            "\\(N\\) is a <b>perfect square</b> exactly when every exponent is even. That is also why perfect squares are the only numbers with an <b>odd</b> number of factors — factors normally come in pairs, and a square's middle factor pairs with itself."
+          ]},
+          { t: "tip", x: "Counting multiples in a range: the number of multiples of \\(k\\) from 1 to \\(N\\) is \\( \\lfloor N/k \\rfloor \\). Between two bounds, subtract — multiples of 7 from 100 to 500 is \\( \\lfloor 500/7 \\rfloor - \\lfloor 99/7 \\rfloor = 71 - 14 = 57 \\). Use 99, not 100, so that a multiple sitting exactly on the lower bound is not thrown away." },
+          { t: "h", x: "Facts worth memorising" },
           { t: "ul", items: [
-            "The product of any <b>k consecutive integers</b> is divisible by \\( k! \\). So any 3 in a row are divisible by 6, any 4 in a row by 24.",
-            "Among any k consecutive integers there is <b>exactly one</b> multiple of k.",
-            "<b>Trailing zeros of</b> \\( n! \\) = \\( \\lfloor n/5 \\rfloor + \\lfloor n/25 \\rfloor + \\lfloor n/125 \\rfloor + \\dots \\) — count the 5s, since 2s are always plentiful.",
-            "If a divides b and b divides c, then a divides c."
-          ] },
-          { t: "warn", x: "Divisible by a <b>and</b> by b does not mean divisible by ab — only when a and b share no factor. 12 is divisible by 4 and by 6, but not by 24. Use the <b>LCM</b> (12), never the product." },
+            "The product of any <b>\\(k\\) consecutive integers</b> is divisible by \\( k! \\). Any 3 in a row are divisible by 6; any 4 in a row by 24. Expressions like \\(n(n+1)(n+2)\\) exist in a question only to test this.",
+            "Among any \\(k\\) consecutive integers there is <b>exactly one</b> multiple of \\(k\\).",
+            "<b>Trailing zeros of</b> \\( n! \\) = \\( \\lfloor n/5 \\rfloor + \\lfloor n/25 \\rfloor + \\lfloor n/125 \\rfloor + \\dots \\). A zero needs a 2 and a 5, and 2s are far more plentiful, so counting 5s counts zeros.",
+            "If \\(a\\) divides \\(b\\) and \\(b\\) divides \\(c\\), then \\(a\\) divides \\(c\\)."
+          ]},
+          { t: "warn", x: "Divisible by \\(a\\) <b>and</b> by \\(b\\) does not mean divisible by \\(ab\\) — that only holds when \\(a\\) and \\(b\\) share no prime factor. 12 is divisible by 4 and by 6, but not by 24, because the two share a factor of 2 and it gets counted twice. Use the <b>LCM</b> (12), never the product." },
           { t: "eg",
             q: "How many positive factors does 360 have?",
             choices: ["12", "18", "20", "24", "36"],
             ans: "D",
-            why: "\\(360 = 2^3\\cdot3^2\\cdot5^1\\). Add one to each exponent and multiply: \\((3+1)(2+1)(1+1) = 4\\cdot3\\cdot2 = 24\\)."
+            why: "Factorize first: \\(360 = 2^{3}\\cdot3^{2}\\cdot5^{1}\\). A factor of 360 is built by choosing how many 2s to include (0, 1, 2 or 3 — four options), how many 3s (0, 1 or 2 — three options) and how many 5s (0 or 1 — two options). Those choices are independent, so the count is \\(4\\times3\\times2 = 24\\). That is exactly the \\((a+1)(b+1)(c+1)\\) rule, and seeing where it comes from is what stops you writing \\(3\\times2\\times1\\) by mistake."
+          },
+          { t: "eg",
+            q: "The LCM of two positive integers is 180 and their GCD is 6. If one of the numbers is 36, what is the other?",
+            choices: ["24", "30", "36", "45", "60"],
+            ans: "B",
+            why: "Use \\(\\text{LCM}\\times\\text{GCD} = \\) the product of the two numbers: \\(180\\times6 = 1080\\), so the other number is \\(1080/36 = 30\\). Worth checking against the blueprint: \\(36 = 2^{2}3^{2}\\) and \\(30 = 2\\cdot3\\cdot5\\). Lowest shared powers give \\(2\\cdot3 = 6\\) ✓, and highest powers of everything give \\(2^{2}\\cdot3^{2}\\cdot5 = 180\\) ✓."
           }
         ]
       },
       {
         id: "np-primes",
         title: "Prime Numbers & Factorization",
-        mins: 3,
+        mins: 7,
         blocks: [
-          { t: "p", x: "A <b>prime</b> has exactly two positive factors: 1 and itself. Two facts win most prime questions on their own: <b>1 is not prime</b>, and <b>2 is the only even prime</b>." },
-          { t: "p", x: "Know these cold — the primes below 50:" },
+          { t: "p", x: "A <b>prime</b> is a number with exactly two positive factors: 1 and itself. Primes matter because they are the atoms — every integer above 1 is a product of primes in exactly one way, which is what makes the factorization blueprint in the previous section reliable." },
+          { t: "p", x: "Two small facts settle a surprising share of prime questions on their own. <b>1 is not prime</b> (it has only one factor, not two), and <b>2 is the only even prime</b> (every other even number has 2 as a third factor). The exam builds questions specifically around people forgetting the second one." },
+          { t: "p", x: "The primes below 50 are worth knowing on sight rather than deriving:" },
           { t: "formula", x: "\\begin{gathered}2,\\ 3,\\ 5,\\ 7,\\ 11,\\ 13,\\ 17,\\ 19 \\\\[4pt] 23,\\ 29,\\ 31,\\ 37,\\ 41,\\ 43,\\ 47\\end{gathered}" },
-          { t: "h", x: "Testing whether N is prime" },
-          { t: "p", x: "Divide only by primes up to \\( \\sqrt{N} \\). If none divides N, N is prime. To test 187: \\( \\sqrt{187}\\approx13.7 \\), so try 2, 3, 5, 7, 11, 13 — and \\( 187 = 11\\times17 \\), so it is not prime." },
+          { t: "h", x: "Testing whether a number is prime" },
+          { t: "p", x: "You only have to divide by primes up to \\( \\sqrt{N} \\). The reason is worth seeing: if \\(N = ab\\) with both factors above \\(\\sqrt N\\), their product would exceed \\(N\\) — so any composite number must have a factor at or below its square root." },
+          { t: "p", x: "To test 187: \\( \\sqrt{187}\\approx13.7 \\), so try 2, 3, 5, 7, 11, 13 and stop. It fails at 11, since \\( 187 = 11\\times17 \\), so 187 is not prime. Only six divisions were needed to settle a three-digit number." },
           { t: "h", x: "The parity trick" },
+          { t: "p", x: "Because 2 is the only even prime, anything a question says about the <b>sum</b> of two primes is really a statement about whether one of them is 2." },
           { t: "ul", items: [
-            "If two primes sum to an <b>odd</b> number, one of them <b>must be 2</b> (odd + odd = even).",
+            "If two primes sum to an <b>odd</b> number, one of them <b>must be 2</b> — odd + odd is always even, so an odd total needs an even prime.",
             "If two primes sum to an even number greater than 4, <b>both are odd</b>.",
-            "If a prime p divides a product ab, then p divides a or p divides b — the fact behind unique factorization."
-          ] },
-          { t: "tip", x: "\"Distinct prime factors\" ≠ \"prime factors with multiplicity\". \\( 72 = 2^3\\cdot3^2 \\) has <b>2 distinct</b> prime factors but <b>5</b> prime factors counted with repetition. Read which one the question wants." },
-          { t: "warn", x: "Do not assume a variable described only as \"a prime number\" is odd. Testing p = 2 is how most \"must be true\" prime questions are broken." },
+            "If a prime \\(p\\) divides a product \\(ab\\), then \\(p\\) divides \\(a\\) or \\(p\\) divides \\(b\\). This is the fact that makes factorization unique."
+          ]},
+          { t: "tip", x: "\"Distinct prime factors\" and \"prime factors\" are different counts. \\( 72 = 2^{3}\\cdot3^{2} \\) has <b>2 distinct</b> prime factors but <b>5</b> prime factors counted with repetition. Read which one the question wants — both numbers will be in the choices." },
+          { t: "warn", x: "Never assume a variable described only as \"a prime number\" is odd. Testing \\(p = 2\\) is how most \"must be true\" prime questions fall apart, and it is the first number you should try." },
           { t: "eg",
             q: "If p and q are prime numbers and p + q = 13, what is the value of pq?",
             choices: ["22", "26", "36", "40", "42"],
             ans: "A",
-            why: "13 is odd, so one prime must be even — and 2 is the only even prime. Then q = 11, and \\(pq = 2\\times11 = 22\\)."
+            why: "13 is odd. Two odd primes would add to an even number, so one of these primes has to be even — and 2 is the only even prime. That forces \\(p = 2\\) and \\(q = 11\\), which is indeed prime, so \\(pq = 22\\). Notice how little searching was involved: the parity of the total picked the pair out immediately."
+          },
+          { t: "eg",
+            q: "If p is a prime number greater than 3, then \\(p^{2}+2\\) must be divisible by",
+            choices: ["2", "3", "4", "5", "6"],
+            ans: "B",
+            why: "A prime above 3 is not a multiple of 3, so it is either one more or one less than a multiple of 3. Either way \\(p^{2}\\) is one more than a multiple of 3 — \\((3k\\pm1)^{2} = 9k^{2}\\pm6k+1\\), and the first two terms are multiples of 3. Adding 2 completes the next multiple of 3. Test it: \\(p=5\\) gives 27 ✓, \\(p=7\\) gives 51 ✓, \\(p=11\\) gives 123 ✓. It is not divisible by 2, because \\(p\\) is odd, so \\(p^{2}+2\\) is odd — which also rules out 4 and 6."
           }
         ]
       },
       {
         id: "np-divisibility",
         title: "Divisibility & Remainders",
-        mins: 4,
+        mins: 8,
         blocks: [
-          { t: "p", x: "This is the single most-tested number topic on the exam. Everything flows from one line — the <b>division algorithm</b>:" },
+          { t: "p", x: "This is the most heavily tested number topic on the exam, and almost all of it comes out of one line — the <b>division algorithm</b>. It says that dividing any integer \\(N\\) by \\(d\\) produces a quotient and a remainder, and that the remainder is always smaller than what you divided by." },
           { t: "formula", x: "N = dq + r, \\qquad 0 \\le r &lt; d" },
-          { t: "p", x: "\"When n is divided by 7 the remainder is 3\" is not a sentence to think about — it is an <b>equation to write down</b>: \\( n = 7k + 3 \\). Substitute it and the question usually collapses." },
+          { t: "p", x: "The practical value of that line is that it turns a sentence into an equation. \"When \\(n\\) is divided by 7 the remainder is 3\" is not something to hold in your head — it is \\( n = 7k + 3 \\), and once written down it can be substituted, squared, or added to something else like any other expression. Most remainder questions collapse the moment you do this." },
           { t: "h", x: "Divisibility tests" },
+          { t: "p", x: "These let you answer \"is it divisible?\" without dividing. The 3 and 9 tests work because 10 leaves a remainder of 1 when divided by either, so every digit contributes just its own value. The 4 and 8 tests work because 100 and 1000 are already divisible by them, so only the tail matters." },
           { t: "table", head: ["Divisor", "Test"], rows: [
             ["2", "last digit is even"],
             ["3", "digit sum divisible by 3"],
@@ -1415,165 +1511,196 @@ window.GMAT_CONCEPTS = [
             ["8", "last three digits form a multiple of 8"],
             ["9", "digit sum divisible by 9"],
             ["11", "alternating digit sum is 0 or a multiple of 11"]
-          ] },
+          ]},
           { t: "h", x: "Remainder arithmetic" },
+          { t: "p", x: "Remainders survive addition and multiplication, which means you can shrink the numbers before you work rather than after. To find the remainder of \\(43\\times58\\) on division by 5, you do not need the product: \\(43\\) leaves 3, \\(58\\) leaves 3, and \\(3\\times3 = 9\\) leaves 4." },
           { t: "ul", items: [
-            "Remainders <b>add and multiply</b>: the remainder of a sum is the remainder of the sum of remainders (then reduce). Same for products.",
-            "<b>Negative remainders</b> are the great shortcut: 29 leaves −1 with divisor 30, so \\( 29^{100} \\) leaves \\( (-1)^{100} = 1 \\).",
-            "<b>Cyclicity</b>: powers repeat. Find the cycle length, reduce the exponent by that length, and read off the answer.",
-            "Smallest number leaving remainder r for several divisors = \\( \\text{LCM} \\times k + r \\)."
-          ] },
+            "The remainder of a <b>sum</b> is the remainder of the sum of the remainders, then reduced again if needed. Same for products.",
+            "<b>Negative remainders</b> are the great shortcut. 29 is one <i>below</i> 30, so with divisor 30 it behaves like \\(-1\\) — and \\( 29^{100} \\) therefore behaves like \\( (-1)^{100} = 1 \\).",
+            "<b>Cyclicity</b>: powers of a fixed base repeat their remainders on a short cycle. Find the cycle length, divide the exponent by it, and read off the entry.",
+            "The smallest number leaving remainder \\(r\\) for several divisors is \\( \\text{LCM} \\times k + r \\)."
+          ]},
           { t: "h", x: "Units digits" },
+          { t: "p", x: "\"What is the units digit of \\(7^{83}\\)?\" is a remainder question in disguise — the units digit is the remainder on division by 10 — and it is answered by the same cycling. Only the last digit of the base matters, because nothing further left can affect the last digit of a product." },
           { t: "table", head: ["Last digit of base", "Cycle", "Length"], rows: [
             ["0, 1, 5, 6", "never changes", "1"],
             ["4, 9", "4→6, 9→1", "2"],
             ["2, 3, 7, 8", "e.g. 2: 2, 4, 8, 6", "4"]
-          ] },
-          { t: "tip", x: "For a cycle of length 4, divide the exponent by 4 and use the remainder — a remainder of 0 means take the <b>last</b> entry in the cycle, not the first." },
-          { t: "warn", x: "The remainder is always <b>less than the divisor</b> and never negative in the final answer. If your working gives −1 with divisor 5, the remainder is 4." },
+          ]},
+          { t: "tip", x: "Every cycle length divides 4, so dividing the exponent by 4 always works. A remainder of 0 means take the <b>last</b> entry in the cycle, not the first — \\(2^{8}\\) ends in 6, not 2." },
+          { t: "warn", x: "The final remainder is always <b>less than the divisor</b> and never negative. Negative remainders are a working device, not an answer: if your calculation lands on \\(-1\\) with divisor 5, the remainder is 4." },
           { t: "eg",
             q: "What is the remainder when \\(3^{47}\\) is divided by 5?",
             choices: ["1", "2", "3", "4", "0"],
             ans: "B",
-            why: "Powers of 3 leave remainders 3, 4, 2, 1 and then repeat — a cycle of length 4. \\(47 = 4(11)+3\\), so \\(3^{47}\\) matches the third entry: remainder 2."
+            why: "Build the cycle from the bottom: \\(3^{1}=3\\) leaves 3, \\(3^{2}=9\\) leaves 4, \\(3^{3}=27\\) leaves 2, \\(3^{4}=81\\) leaves 1 — and from there it repeats, because a remainder of 1 puts you back at the start. So the cycle is 3, 4, 2, 1 with length 4. Now place the exponent: \\(47 = 4(11)+3\\), a remainder of 3, so \\(3^{47}\\) matches the third entry in the cycle, which is 2."
+          },
+          { t: "eg",
+            q: "When the positive integer n is divided by 12, the remainder is 7. What is the remainder when n is divided by 4?",
+            choices: ["0", "1", "2", "3", "7"],
+            ans: "D",
+            why: "Write the sentence as an equation: \\(n = 12k + 7\\). Now divide that by 4 in pieces. The term \\(12k\\) is a multiple of 4 whatever \\(k\\) is, so it contributes no remainder at all; the whole remainder comes from the 7, and \\(7 = 4(1)+3\\) leaves 3. Test it if you like — 19, 31 and 43 all leave 7 on division by 12, and all three leave 3 on division by 4. The trap is (E) 7, which cannot be right: a remainder must be smaller than the divisor."
           }
         ]
       },
       {
         id: "np-parity",
         title: "Odd / Even & Sign Rules",
-        mins: 3,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Parity questions look like algebra but are answered by a two-line table. Learn the table and you never test numbers." },
+          { t: "p", x: "Parity is just whether a number is odd or even, and questions about it look far more algebraic than they are. They usually present an equation full of variables and ask what <b>must</b> be true — but the answer never depends on the actual values, only on which side of the odd/even line each one falls. Learn the table below and you can answer these without testing a single number." },
           { t: "table", head: ["Operation", "Result"], rows: [
             ["even ± even", "even"],
             ["odd ± odd", "even"],
             ["odd ± even", "odd"],
             ["even × anything", "even"],
             ["odd × odd", "odd"]
-          ] },
+          ]},
+          { t: "p", x: "Two rows carry most of the weight. <b>Addition and subtraction behave identically</b> — you only need to count how many odd terms there are. And <b>multiplication is ruthless</b>: a single even factor makes the whole product even, no matter what else is in it." },
           { t: "ul", items: [
-            "A product is <b>odd only if every factor is odd</b>. One even factor makes it even.",
-            "The parity of a long sum is decided by <b>how many odd terms</b> it has: an even count of odds gives an even total.",
-            "\\( n \\) and \\( n^2 \\) always share parity, so \\( n^2 \\) odd ⟹ n odd.",
-            "The sum of any two consecutive integers is odd; the sum of any three is divisible by 3."
-          ] },
+            "A product is <b>odd only if every factor is odd</b>. One even factor is enough to make it even.",
+            "The parity of a long sum is decided by <b>how many odd terms</b> it contains. An even count of odd terms gives an even total; the even terms are irrelevant.",
+            "\\( n \\) and \\( n^{2} \\) always share parity — squaring is just multiplying a number by itself, so an odd number stays odd. That is why \\( n^{2} \\) odd forces \\(n\\) odd.",
+            "The sum of any two consecutive integers is odd, since exactly one of them is even."
+          ]},
           { t: "h", x: "Sign rules" },
+          { t: "p", x: "Signs follow the same style of reasoning — count how many negatives are in play rather than tracking values." },
           { t: "ul", items: [
-            "A product or quotient is <b>positive</b> when it has an <b>even number of negative factors</b>, negative when odd.",
-            "An even power is never negative: \\( x^{2} \\ge 0 \\) for every real x — the fact behind most \"must be true\" answers.",
-            "An odd power keeps the sign of its base."
-          ] },
-          { t: "warn", x: "\"Positive\" and \"non-negative\" are different, and 0 is <b>even</b>. Zero is the counterexample the exam expects you to miss: it is even, it is neither positive nor negative, and it makes any product 0." },
+            "A product or quotient is <b>positive</b> when it has an <b>even number</b> of negative factors, negative when the count is odd.",
+            "An even power is never negative: \\( x^{2} \\ge 0 \\) for every real \\(x\\). This one fact is behind a large share of \"must be true\" answers.",
+            "An odd power keeps the sign of its base, so \\(x^{3}\\) is negative exactly when \\(x\\) is."
+          ]},
+          { t: "warn", x: "Zero is the counterexample the exam expects you to miss. <b>0 is even</b>; it is neither positive nor negative; and it turns any product into 0. Note also that \"positive\" and \"non-negative\" are different conditions — the second one includes 0 and the first does not." },
           { t: "eg",
             q: "If a and b are integers and ab is odd, which of the following must be true?",
             choices: ["a + b is odd", "a + b is even", "a − b is odd", "ab + 1 is odd", "a is even"],
             ans: "B",
-            why: "A product is odd only when both factors are odd. Odd + odd = even, so a + b must be even."
+            why: "Start from the given. A product is odd only when every factor is odd, so \\(a\\) and \\(b\\) are <b>both</b> odd — that is the whole content of \"ab is odd\". Odd + odd = even, so (B) must hold. Checking the others against the same fact: \\(a-b\\) is odd minus odd, which is even, so (A) and (C) are both wrong; \\(ab+1\\) is odd + 1, which is even, so (D) is wrong; and (E) contradicts what we just derived."
+          },
+          { t: "eg",
+            q: "If x and y are integers and x + y is odd, which of the following must be even?",
+            choices: ["xy", "x − y", "x + 2y", "xy + 1", "x² + y²"],
+            ans: "A",
+            why: "An odd sum means one of the two is odd and the other even — that is the only way to get an odd total. So the product \\(xy\\) has an even factor in it and must be even ✓. The rest: \\(x-y\\) is odd for the same reason the sum is; \\(x+2y\\) depends on \\(x\\), which could be either, so it is not determined; \\(xy+1\\) is even + 1, so odd; and \\(x^{2}+y^{2}\\) keeps the parities of \\(x\\) and \\(y\\), so it is odd + even = odd. Only (A) survives, and no numbers were substituted."
           }
         ]
       },
       {
         id: "np-fractions",
         title: "Fractions & Decimals",
-        mins: 4,
+        mins: 8,
         blocks: [
-          { t: "p", x: "Fraction questions reward comparison skill, not computation. Three tools cover nearly all of them." },
-          { t: "h", x: "1. Cross-multiply to compare" },
-          { t: "p", x: "For positive denominators, \\( \\frac{a}{b} \\) vs \\( \\frac{c}{d} \\) is decided by comparing \\( ad \\) vs \\( bc \\). No common denominator needed." },
-          { t: "h", x: "2. Compare to a benchmark" },
-          { t: "p", x: "Sort each fraction against \\( \\tfrac12 \\) or 1 first. \\( \\tfrac{7}{15} \\) is under a half, \\( \\tfrac{9}{17} \\) is over — done, no arithmetic." },
-          { t: "h", x: "3. The add-to-both trick" },
-          { t: "p", x: "Adding the same positive amount to numerator and denominator moves a fraction <b>toward 1</b>:" },
+          { t: "p", x: "Almost no GMAT fraction question wants you to compute a fraction. They want you to <b>compare</b> fractions, or to recognise one, and the exam deliberately chooses numbers where actually dividing is slow. So the skill worth building is a set of ways to decide which of two fractions is larger without ever finding either as a decimal." },
+          { t: "h", x: "1. Cross-multiply" },
+          { t: "p", x: "For positive denominators, comparing \\( \\frac{a}{b} \\) with \\( \\frac{c}{d} \\) is the same as comparing \\( ad \\) with \\( bc \\) — multiply up the diagonal, and the bigger product sits over the bigger fraction. It works because you are effectively multiplying both sides by \\(bd\\), which is positive and so leaves the inequality alone. No common denominator required." },
+          { t: "h", x: "2. Compare against a benchmark" },
+          { t: "p", x: "Often you do not need to compare the fractions to each other at all — just sort each one against \\( \\tfrac12 \\) or 1. \\( \\tfrac{7}{15} \\) is under a half (7 is less than half of 15) and \\( \\tfrac{9}{17} \\) is over. Done, with no arithmetic." },
+          { t: "h", x: "3. Measure the gap, not the value" },
+          { t: "p", x: "When every fraction in the list is close to 1, compare how far each one <b>falls short</b> of 1 — the smallest shortfall is the largest fraction. \\( \\tfrac78 \\) is \\( \\tfrac18 \\) short and \\( \\tfrac9{10} \\) is only \\( \\tfrac1{10} \\) short, so \\( \\tfrac9{10} \\) is larger. This turns a hard comparison into an easy one, because the gaps are unit fractions." },
+          { t: "h", x: "4. Adding to both parts pulls a fraction towards 1" },
+          { t: "p", x: "Adding the same positive amount to the top and the bottom always moves a fraction <b>closer to 1</b> — up if it started below, down if it started above:" },
           { t: "formula", x: "\\begin{gathered}\\frac{a}{b} &lt; \\frac{a+x}{b+x} \\quad \\text{ when } a&lt;b \\\\[4pt] \\frac{a}{b} &gt; \\frac{a+x}{b+x} \\quad \\text{ when } a&gt;b\\end{gathered}" },
+          { t: "p", x: "The intuition: \\(\\tfrac12\\) becomes \\(\\tfrac23\\) becomes \\(\\tfrac34\\) — the added amount matters proportionally less to the larger denominator, so the two parts drift together." },
           { t: "h", x: "Decimals" },
           { t: "ul", items: [
-            "A fraction in <b>lowest terms</b> terminates exactly when its denominator's only prime factors are <b>2 and 5</b>. Otherwise it repeats.",
-            "Same numerator, bigger denominator ⟹ smaller fraction.",
-            "To divide by a decimal, shift both decimal points until the divisor is a whole number.",
-            "Keep the fraction form as long as possible — \\( \\tfrac38 \\times 240 \\) is instant, 0.375 × 240 is not."
-          ] },
-          { t: "warn", x: "You may cancel a common <b>factor</b> across a fraction, never a common <b>term</b>. \\( \\frac{x+3}{x+5} \\) does not reduce to \\( \\frac{3}{5} \\)." },
+            "A fraction in <b>lowest terms</b> terminates exactly when its denominator's only prime factors are <b>2 and 5</b>. That is because a terminating decimal is a fraction over a power of 10, and \\(10 = 2\\times5\\). Any other prime left in the denominator forces a repeat.",
+            "Same numerator, bigger denominator means a smaller fraction — you are sharing the same amount among more.",
+            "To divide by a decimal, shift both decimal points right until the divisor is a whole number. \\(0.96 \\div 0.04\\) becomes \\(96 \\div 4\\).",
+            "Keep the fraction form as long as you can — \\( \\tfrac38 \\times 240 \\) is instant, \\(0.375 \\times 240\\) is not."
+          ]},
+          { t: "h", x: "Repeating decimals" },
+          { t: "p", x: "A repeating block converts back to a fraction by putting it over the same number of nines: \\( 0.\\overline{7}=\\tfrac79 \\), and \\( 0.\\overline{36}=\\tfrac{36}{99}=\\tfrac{4}{11} \\). One repeating digit gives ninths, two give ninety-ninths, three give nine-hundred-ninety-ninths." },
+          { t: "warn", x: "You may cancel a common <b>factor</b> across a fraction, never a common <b>term</b>. \\( \\frac{x+3}{x+5} \\) does not reduce to \\( \\frac{3}{5} \\), because the \\(x\\) is added, not multiplied. Cancelling is division, and you can only divide the whole of the top and the whole of the bottom." },
+          { t: "tip", x: "Round late, not early. \\( \\tfrac13 \\) is exact and 0.333 is not, and rounding at the start is how a perfectly correct method lands between two answer choices." },
           { t: "eg",
             q: "Which of the following fractions is equivalent to a terminating decimal?",
             choices: ["1/6", "1/7", "1/12", "1/15", "1/16"],
             ans: "E",
-            why: "A fraction terminates only when the reduced denominator is built from 2s and 5s alone. \\(16 = 2^4\\) qualifies; 6, 7, 12 and 15 all carry a factor of 3 or 7."
+            why: "Factorize each denominator and look for anything other than 2s and 5s. \\(6 = 2\\cdot3\\), \\(7\\) is prime, \\(12 = 2^{2}\\cdot3\\), \\(15 = 3\\cdot5\\) — every one of those carries a 3 or a 7, so all four repeat. Only \\(16 = 2^{4}\\) is built from 2s alone, and indeed \\(1/16 = 0.0625\\). Note the rule needs the fraction in <b>lowest terms</b>: \\(3/6\\) looks like it fails, but it reduces to \\(1/2\\), which terminates."
           },
-          { t: "h", x: "Two faster comparisons" },
-          { t: "ul", items: [
-            "<b>When both are close to 1</b>, compare the gaps instead. \\( \\tfrac78 \\) is \\( \\tfrac18 \\) short of 1 and \\( \\tfrac9{10} \\) is only \\( \\tfrac1{10} \\) short, so \\( \\tfrac9{10} \\) is the larger.",
-            "<b>When both are close to 0</b>, the same trick runs the other way — the one with the smaller value is the one further from the benchmark."
-          ] },
-          { t: "h", x: "Repeating decimals" },
-          { t: "p", x: "A repeating block over the same number of nines converts straight back: \\( 0.\\overline{36}=\\tfrac{36}{99}=\\tfrac{4}{11} \\), and \\( 0.\\overline{7}=\\tfrac79 \\). One digit repeating gives ninths, two digits give ninety-ninths." },
-          { t: "tip", x: "Keep numbers as fractions until the last possible moment. \\( \\tfrac13 \\) is exact and 0.333 is not, and rounding early is how a correct method lands between two answer choices." }
+          { t: "eg",
+            q: "Which of the following is the greatest?",
+            choices: ["7/9", "5/7", "9/11", "11/14", "3/4"],
+            ans: "C",
+            why: "Every one of these sits just below 1, so compare the shortfalls instead of the fractions. They are \\(2/9\\), \\(2/7\\), \\(2/11\\), \\(3/14\\) and \\(1/4\\), which as decimals are about 0.222, 0.286, 0.182, 0.214 and 0.25. The smallest shortfall belongs to \\(9/11\\), so it is the largest fraction. Three of the gaps have numerator 2, and among those the largest denominator gives the smallest gap — so \\(9/11\\) beats \\(7/9\\) and \\(5/7\\) at a glance."
+          }
         ]
       },
       {
         id: "np-exponents",
         title: "Exponent Rules",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Every exponent rule requires either the <b>same base</b> or the <b>same exponent</b>. When an expression looks unusable, your job is to rewrite it until one of those matches." },
+          { t: "p", x: "An exponent is repeated multiplication, and every rule below is just bookkeeping about how many times something has been multiplied. \\(a^{3}\\cdot a^{4}\\) is three \\(a\\)s next to four \\(a\\)s, which is seven \\(a\\)s — that is the whole justification for adding exponents, and it is worth holding on to, because it tells you when the rules do <b>not</b> apply." },
+          { t: "p", x: "The single most useful thing to notice: every rule requires either the <b>same base</b> or the <b>same exponent</b>. When an expression looks unusable, your job is to rewrite it until one of those two matches." },
           { t: "formula", x: "\\begin{gathered}a^m\\cdot a^n=a^{m+n} \\qquad \\frac{a^m}{a^n}=a^{m-n} \\\\[4pt] (a^m)^n=a^{mn} \\qquad (ab)^n=a^n b^n\\end{gathered}" },
           { t: "ul", items: [
-            "\\( a^{0}=1 \\) for any \\( a\\neq0 \\); \\( a^{-n}=\\frac{1}{a^{n}} \\) — a negative exponent flips, it does not make the value negative.",
-            "Match bases to solve: \\( 4^{x}=8 \\Rightarrow 2^{2x}=2^{3} \\Rightarrow x=\\tfrac32 \\).",
-            "\\( 2^{10}=1024\\approx10^{3} \\) — the estimation anchor for any \"roughly how big\" question."
-          ] },
-          { t: "h", x: "The two tricks that carry the topic" },
+            "\\( a^{0}=1 \\) for any \\( a\\neq0 \\). It has to be: \\(a^{3}/a^{3}\\) is both 1 and \\(a^{0}\\).",
+            "\\( a^{-n}=\\frac{1}{a^{n}} \\). A negative exponent <b>flips</b> the number; it never makes it negative. \\(2^{-3}\\) is \\(\\tfrac18\\), not \\(-8\\).",
+            "Match bases to solve an equation: \\( 4^{x}=8 \\Rightarrow 2^{2x}=2^{3} \\Rightarrow 2x = 3 \\Rightarrow x=\\tfrac32 \\). Once the bases agree, the exponents must too.",
+            "\\( 2^{10}=1024\\approx10^{3} \\) — the anchor for any \"roughly how big\" question."
+          ]},
+          { t: "h", x: "The two moves that carry the topic" },
+          { t: "p", x: "There is no rule for <b>adding</b> powers, which is exactly why the exam keeps presenting them. Both moves below convert a sum into a product, where the rules do work." },
           { t: "ol", items: [
-            "<b>Adding equal powers multiplies the base.</b> \\( 2^{n}+2^{n}=2^{n+1} \\), and \\( 3^{n}+3^{n}+3^{n}=3^{n+1} \\). Sums of powers are never left as sums.",
-            "<b>Factor out the smallest power.</b> \\( 2^{20}-2^{18}=2^{18}(2^{2}-1)=3\\cdot2^{18} \\). Whenever powers are added or subtracted, this is the move."
-          ] },
-          { t: "warn", x: "Three near-universal traps: \\( (a+b)^{2}\\neq a^{2}+b^{2} \\); \\( (-2)^{4}=16 \\) but \\( -2^{4}=-16 \\) (the exponent binds tighter than the sign); and for \\( 0&lt;x&lt;1 \\), raising to a higher power makes the value <b>smaller</b>, so \\( x^{3}&lt;x^{2}&lt;x \\)." },
+            "<b>Adding equal powers multiplies the base.</b> \\( 2^{n}+2^{n}=2\\cdot2^{n}=2^{n+1} \\), and \\( 3^{n}+3^{n}+3^{n}=3^{n+1} \\). A sum of identical powers should never be left as a sum.",
+            "<b>Factor out the smallest power.</b> \\( 2^{20}-2^{18}=2^{18}(2^{2}-1)=3\\cdot2^{18} \\). Whenever powers of one base are added or subtracted, this is the move — and what is left inside the bracket is always a small, tidy number."
+          ]},
+          { t: "h", x: "Comparing powers with different bases" },
+          { t: "p", x: "You cannot compare \\( 2^{30} \\) and \\( 3^{20} \\) directly, because neither the base nor the exponent matches. Force a common <b>exponent</b> by pulling out the greatest common factor of the two exponents — here 10:" },
+          { t: "formula", x: "\\begin{gathered}2^{30}=(2^{3})^{10}=8^{10} \\\\[4pt] 3^{20}=(3^{2})^{10}=9^{10}\\end{gathered}" },
+          { t: "p", x: "Now the comparison is obvious: \\( 9^{10} \\) is bigger, so \\( 3^{20} &gt; 2^{30} \\)." },
+          { t: "warn", x: "Three traps worth naming. \\( (a+b)^{2}\\neq a^{2}+b^{2} \\) — exponents do not distribute over addition. \\( (-2)^{4}=16 \\) but \\( -2^{4}=-16 \\), because without brackets the exponent binds tighter than the minus sign. And for \\( 0&lt;x&lt;1 \\), a higher power makes the value <b>smaller</b>, so \\( x^{3}&lt;x^{2}&lt;x \\) — squaring a half gives a quarter." },
+          { t: "tip", x: "Know every power of 2 up to \\( 2^{10}=1024 \\) by heart, along with \\( 3^{5}=243 \\), \\( 5^{4}=625 \\) and \\( 7^{3}=343 \\). Recognising a number as a power is what turns a hard exponent question into a one-liner." },
           { t: "eg",
             q: "\\(\\dfrac{2^{20}-2^{18}}{2^{18}} = \\)",
             choices: ["2", "3", "4", "\\(2^{2}\\)", "\\(2^{38}\\)"],
             ans: "B",
-            why: "Factor the smaller power out of the numerator: \\(2^{18}(2^{2}-1)\\). The \\(2^{18}\\) cancels, leaving \\(4-1=3\\)."
+            why: "There is no rule for dividing a difference, so first turn the numerator into a product by factoring out the smaller power: \\(2^{20}-2^{18} = 2^{18}(2^{2}-1) = 2^{18}\\cdot3\\). Now the \\(2^{18}\\) cancels against the denominator and 3 is all that remains. The tempting wrong move is to cancel \\(2^{18}\\) into each term separately and get \\(2^{2}-1\\) — which happens to give 3 as well, but only by luck of this arrangement; do it as a genuine factorization and it always works."
           },
-          { t: "h", x: "Comparing powers with different bases" },
-          { t: "p", x: "You cannot compare \\( 2^{30} \\) and \\( 3^{20} \\) directly, so force a common <b>exponent</b> by factoring it out:" },
-          { t: "formula", x: "\\begin{gathered}2^{30}=(2^{3})^{10}=8^{10} \\\\[4pt] 3^{20}=(3^{2})^{10}=9^{10}\\end{gathered}" },
-          { t: "p", x: "Now the comparison is trivial — \\( 9^{10} \\) wins, so \\( 3^{20}&gt;2^{30} \\). Look for the greatest common factor of the two exponents and pull it out." },
-          { t: "tip", x: "Every power of 2 up to \\( 2^{10}=1024 \\) is worth knowing by heart, along with \\( 3^{5}=243 \\), \\( 5^{4}=625 \\) and \\( 7^{3}=343 \\). Recognising a number as a power is what turns a hard exponent question into a one-liner." }
+          { t: "eg",
+            q: "If \\(2^{x}\\cdot 4^{\\,x+1} = 16^{2}\\), then \\(x = \\)",
+            choices: ["1", "2", "3", "4", "6"],
+            ans: "B",
+            why: "Nothing can be done while three different bases are on the page, so rewrite everything as a power of 2: \\(4 = 2^{2}\\) and \\(16 = 2^{4}\\). The left side becomes \\(2^{x}\\cdot2^{2(x+1)} = 2^{3x+2}\\) and the right becomes \\(2^{8}\\). With bases matched, the exponents must be equal: \\(3x+2 = 8\\), so \\(x = 2\\). Check: \\(2^{2}\\cdot4^{3} = 4\\cdot64 = 256 = 16^{2}\\) ✓."
+          }
         ]
       },
       {
         id: "np-roots",
         title: "Roots, Radicals & Estimation",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "A root is a fractional exponent, so every exponent rule still applies:" },
+          { t: "p", x: "A root is an exponent in disguise — \\( \\sqrt{a} \\) is \\( a^{1/2} \\) — which means every rule you learned for exponents still applies here. Nothing new has to be memorised; the only new work is recognising which perfect square is hiding inside an awkward number." },
           { t: "formula", x: "\\begin{gathered}a^{m/n}=\\sqrt[n]{a^{m}} \\qquad \\sqrt{ab}=\\sqrt a\\,\\sqrt b \\\\[4pt] \\sqrt{\\tfrac ab}=\\frac{\\sqrt a}{\\sqrt b}\\end{gathered}" },
+          { t: "p", x: "Note what those rules cover: <b>multiplication and division only</b>. Roots do not distribute over addition, and \\( \\sqrt{a+b}\\neq\\sqrt a+\\sqrt b \\) — \\(\\sqrt{9+16}\\) is 5, while \\(\\sqrt9+\\sqrt{16}\\) is 7." },
+          { t: "h", x: "Simplifying" },
+          { t: "p", x: "To simplify a root, split it into a perfect square times whatever is left, then take the square out: \\( \\sqrt{72}=\\sqrt{36\\cdot2}=6\\sqrt2 \\). Always strip the <b>largest</b> square you can see — pulling out 4 first leaves \\(2\\sqrt{18}\\), which still needs simplifying." },
           { t: "ul", items: [
-            "<b>Simplify by pulling out perfect squares</b>: \\( \\sqrt{72}=\\sqrt{36\\cdot2}=6\\sqrt2 \\). Always strip the largest square first.",
-            "<b>Rationalize</b> with the conjugate: \\( \\frac{1}{\\sqrt5-\\sqrt3}\\times\\frac{\\sqrt5+\\sqrt3}{\\sqrt5+\\sqrt3}=\\frac{\\sqrt5+\\sqrt3}{2} \\).",
-            "Roots do <b>not</b> distribute over addition: \\( \\sqrt{a+b}\\neq\\sqrt a+\\sqrt b \\).",
-            "Worth knowing: \\( \\sqrt2\\approx1.41 \\), \\( \\sqrt3\\approx1.73 \\), \\( \\sqrt5\\approx2.24 \\)."
-          ] },
-          { t: "h", x: "Bracketing — the estimation trick" },
-          { t: "p", x: "To place \\( \\sqrt{50} \\), find the perfect squares either side: \\( 49&lt;50&lt;64 \\), so the value sits just above 7. That is almost always precise enough to pick an answer." },
+            "<b>Rationalize</b> a denominator with the conjugate: \\( \\frac{1}{\\sqrt5-\\sqrt3}\\times\\frac{\\sqrt5+\\sqrt3}{\\sqrt5+\\sqrt3}=\\frac{\\sqrt5+\\sqrt3}{2} \\). The conjugate works because \\((x-y)(x+y) = x^{2}-y^{2}\\), and squaring kills the roots.",
+            "Worth knowing to two places: \\( \\sqrt2\\approx1.41 \\), \\( \\sqrt3\\approx1.73 \\), \\( \\sqrt5\\approx2.24 \\), \\( \\sqrt7\\approx2.65 \\).",
+            "\\( \\sqrt a+\\sqrt b \\) is always <b>greater</b> than \\( \\sqrt{a+b} \\) for positive \\(a\\) and \\(b\\), because squaring the left-hand side produces an extra \\( 2\\sqrt{ab} \\)."
+          ]},
+          { t: "h", x: "Bracketing — the estimation move" },
+          { t: "p", x: "To place a root you do not recognise, find the perfect squares on either side of it. For \\( \\sqrt{50} \\): \\( 49&lt;50&lt;64 \\), so the value sits just above 7 — and since 50 is barely past 49, it is only just above. That is almost always precise enough to pick an answer, and it takes two seconds." },
+          { t: "h", x: "Comparing roots" },
+          { t: "p", x: "To compare two positive roots, <b>square them both</b>. Squaring preserves order for positive numbers, and it clears the radicals completely. Comparing \\( 3\\sqrt5 \\) with \\( 2\\sqrt{12} \\): the squares are \\(9\\times5 = 45\\) and \\(4\\times12 = 48\\), so \\( 2\\sqrt{12} \\) is the larger." },
           { t: "h", x: "Scientific notation" },
-          { t: "p", x: "Write \\( a\\times10^{n} \\) with \\( 1\\le a&lt;10 \\). Multiplying adds the exponents, dividing subtracts them — so \\( (3\\times10^{5})(4\\times10^{-2}) = 12\\times10^{3} = 1.2\\times10^{4} \\)." },
-          { t: "warn", x: "\\( \\sqrt{x^{2}}=|x| \\), not x. And the radical sign means the <b>positive</b> root only: \\( \\sqrt{9}=3 \\). It is the equation \\( x^{2}=9 \\) that has two solutions, \\( x=\\pm3 \\)." },
-          { t: "tip", x: "For \\( 0&lt;x&lt;1 \\) a root makes a number <b>bigger</b>: \\( \\sqrt{0.25}=0.5 \\). Sorting \\( x,\\ x^{2},\\ \\sqrt x \\) is a favourite Data Sufficiency trap." },
+          { t: "p", x: "Write a number as \\( a\\times10^{n} \\) with \\( 1\\le a&lt;10 \\). Multiplying adds the exponents and dividing subtracts them, so \\( (3\\times10^{5})(4\\times10^{-2}) = 12\\times10^{3} \\) — then renormalise to \\( 1.2\\times10^{4} \\), since 12 is outside the allowed range for \\(a\\)." },
+          { t: "warn", x: "\\( \\sqrt{x^{2}}=|x| \\), not \\(x\\) — if \\(x\\) were \\(-3\\), the left side is 3. And the radical sign denotes the <b>positive</b> root only, so \\( \\sqrt{9}=3 \\) and nothing else. It is the <i>equation</i> \\( x^{2}=9 \\) that has two solutions, \\( x=\\pm3 \\). Keeping those two facts apart is worth several marks." },
+          { t: "tip", x: "For \\( 0&lt;x&lt;1 \\) a root makes a number <b>bigger</b>: \\( \\sqrt{0.25}=0.5 \\). Combined with the exponent rule that powers make such numbers smaller, sorting \\( x,\\ x^{2},\\ \\sqrt x \\) for a fraction gives \\( x^{2}&lt;x&lt;\\sqrt x \\) — a favourite Data Sufficiency trap." },
           { t: "eg",
             q: "If \\(\\sqrt{x}=8\\), then \\(\\sqrt[3]{x}=\\)",
             choices: ["2", "4", "8", "16", "64"],
             ans: "B",
-            why: "Square both sides: \\(x = 64\\). Then \\(\\sqrt[3]{64}=4\\)."
+            why: "Two clean steps. Square both sides of the given to recover \\(x\\) itself: \\(x = 64\\). Then take the cube root, which asks what number cubed gives 64 — that is 4, since \\(4^{3}=64\\). The trap is (C) 8, which comes from carrying the 8 across as though the two roots were interchangeable; they are not, and 64 is the only thing the two statements have in common."
           },
-          { t: "h", x: "Comparing surds" },
-          { t: "p", x: "To compare two positive roots, <b>square them</b> — squaring preserves the order for positive numbers. To place \\( 3\\sqrt5 \\) against \\( 2\\sqrt{12} \\), square to get 45 against 48, so \\( 2\\sqrt{12} \\) is larger." },
-          { t: "ul", items: [
-            "\\( \\sqrt a+\\sqrt b \\) is always <b>greater</b> than \\( \\sqrt{a+b} \\) for positive a and b — the square of the left side carries an extra \\( 2\\sqrt{ab} \\).",
-            "A root sits between the two nearest perfect squares, which is usually enough: \\( \\sqrt{30} \\) is between 5 and 6, and nearer 5.5.",
-            "Cube roots grow much more slowly: \\( \\sqrt[3]{1000}=10 \\), so anything under a thousand has a cube root under ten."
-          ] },
-          { t: "tip", x: "On “which is closest to” questions, round every root to one decimal and compare. The answer choices are spaced so that a rough value decides it, and exactness is wasted effort." }
+          { t: "eg",
+            q: "Which of the following is the greatest?",
+            choices: ["5", "\\(\\sqrt{26}\\)", "\\(2\\sqrt6\\)", "\\(3\\sqrt3\\)", "\\(\\sqrt{24}\\)"],
+            ans: "D",
+            why: "Do not estimate five decimals — square everything, which is safe because all five are positive. The squares are 25, 26, \\(4\\times6 = 24\\), \\(9\\times3 = 27\\) and 24. The largest square belongs to \\(3\\sqrt3\\), so it is the largest value. Squaring turns an awkward comparison of irrational numbers into a comparison of small integers, and it is the standard move whenever roots have coefficients in front of them."
+          }
         ]
       }
     ]
@@ -1588,51 +1715,53 @@ window.GMAT_CONCEPTS = [
       {
         id: "ag-expressions",
         title: "Expressions & Factoring",
-        mins: 5,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Three identities account for almost every factoring question. You should recognise them the instant they appear, in either direction." },
+          { t: "p", x: "Factoring on the GMAT is almost never asked for its own sake. It appears because an expression is standing in the way of an answer, and rewriting it as a product makes the obstacle disappear — a huge multiplication becomes two small ones, a fraction cancels, a sum turns into something you can divide by." },
+          { t: "p", x: "Three identities account for nearly all of it. Learn them in <b>both directions</b>: seeing \\(a^{2}-b^{2}\\) and thinking \"that factors\", and seeing \\((a-b)(a+b)\\) and thinking \"that is a difference of squares\"." },
           { t: "formula", x: "\\begin{gathered}a^{2}-b^{2}=(a-b)(a+b) \\\\[4pt] (a\\pm b)^{2}=a^{2}\\pm2ab+b^{2}\\end{gathered}" },
           { t: "formula", x: "a^{3}\\pm b^{3}=(a\\pm b)(a^{2}\\mp ab+b^{2})" },
           { t: "h", x: "Difference of squares as a calculator" },
-          { t: "p", x: "Any \"big number squared minus big number squared\" is a two-second question: \\( 87^{2}-13^{2}=(87-13)(87+13)=74\\times100=7400 \\). The exam writes these precisely to punish anyone who starts multiplying." },
+          { t: "p", x: "Any \"big number squared minus big number squared\" is a two-second question once you see the identity. \\( 87^{2}-13^{2}=(87-13)(87+13)=74\\times100=7400 \\). The exam writes these deliberately, with numbers chosen so that the sum or the difference comes out round — which is itself the signal that factoring is intended." },
           { t: "h", x: "Symmetric expressions" },
-          { t: "p", x: "If you are given \\( a+b \\) and \\( ab \\), you can reach almost anything without finding a and b:" },
+          { t: "p", x: "This is the idea that turns hard-looking algebra into two lines. If you are given \\( a+b \\) and \\( ab \\), you can reach almost any symmetric combination <b>without ever finding \\(a\\) and \\(b\\)</b> — and usually you cannot find them, which is the hint that you were not meant to." },
           { t: "ul", items: [
-            "\\( a^{2}+b^{2}=(a+b)^{2}-2ab \\)",
-            "\\( (a-b)^{2}=(a+b)^{2}-4ab \\)",
-            "\\( x+\\frac1x=k \\ \\Rightarrow\\ x^{2}+\\frac1{x^{2}}=k^{2}-2 \\) — square both sides and subtract the 2 cross-terms."
-          ] },
-          { t: "tip", x: "Always take out the <b>common factor first</b>. \\( 3x^{2}-27 = 3(x^{2}-9) = 3(x-3)(x+3) \\); factoring straight away hides the difference of squares." },
-          { t: "warn", x: "Never cancel a factor that could be zero. Going from \\( x(x-2)=x \\) to \\( x-2=1 \\) silently throws away the root \\( x=0 \\). Move everything to one side instead." },
+            "\\( a^{2}+b^{2}=(a+b)^{2}-2ab \\) — square the sum, then remove the cross terms it introduced.",
+            "\\( (a-b)^{2}=(a+b)^{2}-4ab \\), which also gives you \\(a-b\\) up to sign.",
+            "\\( x+\\frac1x=k \\ \\Rightarrow\\ x^{2}+\\frac1{x^{2}}=k^{2}-2 \\), because the cross term is \\(2\\cdot x\\cdot\\frac1x = 2\\) whatever \\(x\\) is."
+          ]},
+          { t: "tip", x: "Always take out the <b>common factor first</b>. \\( 3x^{2}-27 = 3(x^{2}-9) = 3(x-3)(x+3) \\); reaching for an identity before removing the 3 hides the difference of squares completely." },
+          { t: "warn", x: "Never cancel a factor that could be zero. Going from \\( x(x-2)=x \\) to \\( x-2=1 \\) silently throws away the root \\( x=0 \\), because you divided by \\(x\\) without checking whether \\(x\\) was allowed to be 0. Move everything to one side and factor instead." },
+          { t: "h", x: "A factoring checklist" },
+          { t: "ol", items: [
+            "Take out the <b>common factor</b> first, always.",
+            "Check for a <b>difference of squares</b> — two terms, both perfect squares, a minus sign between them.",
+            "For three terms, look for the pair of numbers whose <b>product is the constant and whose sum is the middle coefficient</b>.",
+            "For four terms, try <b>grouping</b> them in pairs and factoring each pair; if the brackets match, factor that out too.",
+            "If it still resists, try a <b>substitution</b>: \\( x^{4}-5x^{2}+4 \\) is an ordinary quadratic in \\( t=x^{2} \\)."
+          ]},
+          { t: "tip", x: "To simplify an algebraic fraction, factor the top and the bottom <b>completely</b> and only then cancel. Trying to cancel before factoring is what produces the classic error of striking out a term instead of a factor." },
           { t: "eg",
             q: "\\(87^{2}-13^{2}=\\)",
             choices: ["5476", "6400", "7400", "7600", "10 000"],
             ans: "C",
-            why: "Difference of squares: \\((87-13)(87+13) = 74 \\times 100 = 7400\\)."
+            why: "Squaring 87 by hand is a minute of work and a good chance of an arithmetic slip. Recognise the shape instead: \\(a^{2}-b^{2} = (a-b)(a+b)\\), so this is \\((87-13)(87+13) = 74\\times100 = 7400\\). The round 100 is the giveaway that the question was built for this identity — whenever two squares are subtracted and the numbers add to something tidy, factor."
           },
-          { t: "h", x: "A factoring checklist" },
-          { t: "ol", items: [
-            "Take out the <b>common factor</b> first, always.",
-            "Check for a <b>difference of squares</b> — two terms, both squares, a minus between them.",
-            "For three terms, look for the pair whose <b>product is the constant and sum is the middle coefficient</b>.",
-            "For four terms, try <b>grouping</b> them in pairs and factoring each pair.",
-            "If it still resists, try a <b>substitution</b>: \\( x^{4}-5x^{2}+4 \\) is a quadratic in \\( t=x^{2} \\)."
-          ] },
-          { t: "tip", x: "To simplify an algebraic fraction, factor the top and the bottom completely and then cancel. Attempting to cancel before factoring is what produces the classic error of striking out a term instead of a factor." },
           { t: "eg",
             q: "If \\(x + \\dfrac{1}{x} = 5\\), what is the value of \\(x^{2} + \\dfrac{1}{x^{2}}\\)?",
             choices: ["10", "23", "25", "27", "30"],
             ans: "B",
-            why: "Square both sides: \\(x^{2} + 2 + \\dfrac{1}{x^{2}} = 25\\), because the cross terms give \\(2 \\cdot x \\cdot \\tfrac1x = 2\\). Subtracting the 2 leaves 23. The trap is 25, which is what you get by squaring and forgetting the cross term."
+            why: "You are not meant to find \\(x\\) — it is irrational. Square the whole given instead: \\(\\left(x+\\tfrac1x\\right)^{2} = x^{2} + 2\\cdot x\\cdot\\tfrac1x + \\tfrac1{x^{2}} = x^{2} + 2 + \\tfrac1{x^{2}}\\). That equals \\(5^{2} = 25\\), so \\(x^{2}+\\tfrac1{x^{2}} = 23\\). The trap is 25, from squaring and forgetting the cross term — which here is exactly 2, because \\(x\\) cancels against \\(1/x\\)."
           }
         ]
       },
       {
         id: "ag-linear",
         title: "Linear Equations",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Solving is mechanical; the marks are lost in <b>translation</b>. Build the equation from the sentence one phrase at a time." },
+          { t: "p", x: "Solving a linear equation is mechanical, and the exam knows it. The marks in this topic are lost earlier, in <b>translation</b> — turning an English sentence into the right equation. So slow down at the sentence and speed up at the algebra, not the other way round." },
+          { t: "p", x: "Translate one phrase at a time, in the order it is written, using this dictionary:" },
           { t: "table", head: ["Words", "Algebra"], rows: [
             ["is, was, will be", "="],
             ["of", "×"],
@@ -1641,216 +1770,263 @@ window.GMAT_CONCEPTS = [
             ["twice, doubled", "2×"],
             ["per, for each", "÷"],
             ["a number", "x"]
-          ] },
-          { t: "warn", x: "\"5 less than x\" is \\( x-5 \\), never \\( 5-x \\). Subtraction and division reverse the reading order; addition and multiplication do not." },
+          ]},
+          { t: "warn", x: "\"5 less than \\(x\\)\" is \\( x-5 \\), never \\( 5-x \\). Addition and multiplication can be read in either order, but <b>subtraction and division reverse it</b> — \"less than\" and \"divided into\" both name the second quantity first. This one line of English costs more marks than any other in Quant." },
           { t: "h", x: "Working cleanly" },
           { t: "ul", items: [
-            "Clear fractions first by multiplying every term by the LCD — one step removes all the denominators.",
-            "Collect variables on the side that keeps the coefficient positive; it prevents most sign errors.",
-            "Consecutive integers are \\( n,\\ n+1,\\ n+2 \\); consecutive even or odd integers are \\( n,\\ n+2,\\ n+4 \\).",
-            "Substitute your answer back into the <b>original sentence</b>, not your equation — that catches translation errors, which is where the mistake usually is."
-          ] },
-          { t: "tip", x: "If the question asks for an <b>expression</b> such as \\( 2x+3y \\) rather than for x and y separately, look for a combination shortcut before solving. The exam sets these up deliberately." },
+            "Clear fractions first by multiplying <b>every</b> term by the lowest common denominator — one step and all the denominators are gone.",
+            "Collect the variables on whichever side keeps the coefficient positive. It costs nothing and prevents most sign errors.",
+            "Consecutive integers are \\( n,\\ n+1,\\ n+2 \\); consecutive even or odd integers are \\( n,\\ n+2,\\ n+4 \\) — the gap is 2 in both cases, since the parity has to be preserved.",
+            "Substitute your answer back into the <b>original sentence</b>, not into your equation."
+          ]},
+          { t: "h", x: "Sum and difference" },
+          { t: "p", x: "When a problem gives you the <b>total</b> and the <b>difference</b> of two quantities, you never need simultaneous equations. Adding the two facts cancels one variable outright:" },
+          { t: "formula", x: "\\begin{gathered}x=\\frac{S+D}{2} \\\\[4pt] y=\\frac{S-D}{2}\\end{gathered}" },
+          { t: "p", x: "Two numbers summing to 50 and differing by 12 are therefore \\( (50+12)/2 = 31 \\) and \\( (50-12)/2 = 19 \\), straight off, with nothing written down." },
+          { t: "tip", x: "Name your variable after the thing the question <b>asks for</b>. Solving neatly for \\(x\\) and only then noticing that the question wanted \\( 2x+1 \\) is one of the most common ways to lose a question you fully understood — and the value of \\(x\\) will be sitting in the answer choices, waiting." },
+          { t: "tip", x: "If the question asks for an <b>expression</b> such as \\( 2x+3y \\) rather than for \\(x\\) and \\(y\\) separately, look for a combination shortcut before solving anything. The exam sets these up deliberately; see the systems section for how to spot them." },
+          { t: "warn", x: "Check against the original sentence, not against your equation. If you mistranslated, your equation will happily confirm the mistranslation — it is only the English that can catch the error." },
           { t: "eg",
             q: "Four less than three times a number is 17. What is the number?",
             choices: ["5", "6", "7", "9", "21"],
             ans: "C",
-            why: "\"Four less than three times a number\" is \\(3n-4\\), so \\(3n-4=17\\), \\(3n=21\\), \\(n=7\\). Note the order: it is not \\(4-3n\\)."
+            why: "Take the sentence in pieces. \"Three times a number\" is \\(3n\\). \"Four less than\" that is \\(3n-4\\) — the 4 is taken away from the \\(3n\\), even though it is spoken first. \"Is 17\" gives \\(3n-4=17\\), so \\(3n=21\\) and \\(n=7\\). Check it against the words: three times 7 is 21, and four less is 17 ✓. Writing \\(4-3n\\) instead produces \\(n=-13/3\\), which is not on offer — a mistranslation usually announces itself that way."
           },
-          { t: "h", x: "Sum and difference" },
-          { t: "p", x: "When a word problem gives you the <b>total</b> and the <b>difference</b> of two quantities, you never need to set up simultaneous equations:" },
-          { t: "formula", x: "\\begin{gathered}x=\\frac{S+D}{2} \\\\[4pt] y=\\frac{S-D}{2}\\end{gathered}" },
-          { t: "p", x: "Two numbers summing to 50 and differing by 12 are therefore 31 and 19, straight off." },
-          { t: "tip", x: "Name your variable after the thing the question <b>asks for</b>. Solving neatly for x and then realising the question wanted \\( 2x+1 \\) is one of the most common ways to lose a question you understood completely." },
-          { t: "warn", x: "Check the answer against the original sentence, not against your equation. If you mistranslated, your equation will happily confirm the mistranslation." }
+          { t: "eg",
+            q: "A jacket costs $12 more than a shirt. Together they cost $86. What does the shirt cost?",
+            choices: ["$31", "$34", "$37", "$43", "$49"],
+            ans: "C",
+            why: "Name the variable after what is asked: let \\(s\\) be the shirt. Then the jacket is \\(s+12\\), and the total gives \\(s + (s+12) = 86\\), so \\(2s = 74\\) and \\(s = 37\\). Check: the jacket is $49, and \\(37+49 = 86\\) ✓. Two traps sit in the choices — $43 is half of 86, from ignoring the difference, and $49 is the <b>jacket</b>, which is the right arithmetic answering the wrong question."
+          }
         ]
       },
       {
         id: "ag-systems",
         title: "Systems of Equations",
-        mins: 3,
+        mins: 6,
         blocks: [
-          { t: "p", x: "Two unknowns generally need two independent equations. <b>Elimination</b> is faster when coefficients line up; <b>substitution</b> is faster when one variable is already isolated." },
+          { t: "p", x: "Two unknowns generally need two <b>independent</b> equations — two genuinely different pieces of information, not the same fact written twice. Which method you use is a matter of what is in front of you: <b>elimination</b> when the coefficients line up conveniently, <b>substitution</b> when one variable is already sitting alone on one side." },
+          { t: "p", x: "But before either, look at what the question actually wants. On the GMAT it is very often not \\(x\\) and \\(y\\) at all, but a combination of them — and combinations are usually far cheaper to find." },
           { t: "h", x: "The symmetry shortcut" },
-          { t: "p", x: "When the coefficients mirror each other, adding or subtracting the equations gives you the combination directly — far quicker than solving for each variable:" },
+          { t: "p", x: "When the coefficients mirror each other across the two equations, adding them collapses everything into a single symmetric statement:" },
           { t: "formula", x: "\\begin{gathered}\\begin{aligned}3x+2y&=17\\\\ 2x+3y&=13\\end{aligned} \\\\[4pt] \\Rightarrow\\ 5x+5y=30 \\ \\Rightarrow\\ x+y=6\\end{gathered}" },
-          { t: "p", x: "Subtracting instead gives \\( x-y=4 \\). Between them you have both x and y, with no substitution at all." },
+          { t: "p", x: "Subtracting the same pair gives \\( x-y=4 \\). So in two lines you have both the sum and the difference — and from those, if you really need them, \\(x=5\\) and \\(y=1\\) follow instantly. The mirrored coefficients are the signal; whenever you see them, add and subtract before doing anything else." },
           { t: "h", x: "When two equations are not enough" },
+          { t: "p", x: "\"Two equations, two unknowns\" is a rule of thumb, not a guarantee. It fails whenever the second equation carries no new information:" },
           { t: "ul", items: [
-            "<b>No solution</b>: same coefficients, different constant — \\( 2x+3y=7 \\) and \\( 4x+6y=15 \\) describe parallel lines.",
-            "<b>Infinitely many</b>: one equation is a multiple of the other — \\( 2x+3y=7 \\) and \\( 4x+6y=14 \\) are the same line.",
-            "Three unknowns need three independent equations — <b>unless</b> the question asks only for a combination such as \\( x+y+z \\)."
-          ] },
-          { t: "warn", x: "In Data Sufficiency, \"two equations in two unknowns\" is <b>not</b> automatically sufficient. Check that neither is a multiple of the other, and remember a non-linear pair such as \\( x+y=5 \\), \\( xy=6 \\) can give two valid solutions." },
-          { t: "tip", x: "The reverse trap is just as common: one equation can be sufficient when only a combination is asked for. \\( 3x+3y=12 \\) settles \\( x+y \\) completely, even though x and y stay unknown." },
+            "<b>No solution</b> — proportional coefficients but a mismatched constant. \\( 2x+3y=7 \\) and \\( 4x+6y=15 \\) describe parallel lines that never meet.",
+            "<b>Infinitely many</b> — one equation is a multiple of the other. \\( 2x+3y=7 \\) and \\( 4x+6y=14 \\) are the same line written twice.",
+            "Three unknowns need three independent equations — <b>unless</b> the question asks only for a combination such as \\( x+y+z \\), in which case fewer can do."
+          ]},
+          { t: "warn", x: "In Data Sufficiency, \"two equations in two unknowns\" is <b>not</b> automatically sufficient. Check that neither is a multiple of the other, and remember that a non-linear pair such as \\( x+y=5,\\ xy=6 \\) has two valid solutions (2 and 3, or 3 and 2) — which may or may not matter depending on what was asked." },
+          { t: "tip", x: "The opposite trap is just as common: <b>one</b> equation can be sufficient when only a combination is wanted. \\( 3x+3y=12 \\) settles \\( x+y=4 \\) completely, even though \\(x\\) and \\(y\\) individually remain unknown for ever." },
           { t: "eg",
             q: "If 3x + 2y = 17 and 2x + 3y = 13, what is the value of x + y?",
             choices: ["4", "5", "6", "8", "10"],
             ans: "C",
-            why: "Add the equations: \\(5x+5y=30\\), so \\(x+y=6\\). Solving for x and y individually is unnecessary work."
+            why: "The coefficients mirror each other — 3 and 2, then 2 and 3 — so adding the equations treats \\(x\\) and \\(y\\) identically: \\(5x+5y=30\\), hence \\(x+y=6\\). One line, no substitution. Solving properly would give \\(x=5\\) and \\(y=1\\), which does sum to 6, but that is three or four times the work for the same mark, and 5 is sitting in the choices to catch anyone who stops at \\(x\\)."
+          },
+          { t: "eg",
+            q: "If 2x + 3y = 13 and 3x + 2y = 12, what is the value of x − y?",
+            choices: ["−1", "0", "1", "5", "13"],
+            ans: "A",
+            why: "Subtract, and mind the direction. Taking the first from the second gives \\((3x+2y)-(2x+3y) = 12-13\\), that is \\(x-y = -1\\). Doing it the other way round gives \\(y-x = 1\\), which is the trap answer (C) — the arithmetic is identical and only the order differs, so write down which equation you are subtracting from which before you start. (Adding them, for the record, gives \\(5x+5y=25\\), so \\(x+y=5\\).)"
           }
         ]
       },
       {
         id: "ag-quadratic",
         title: "Quadratic Equations",
-        mins: 3,
+        mins: 6,
         blocks: [
-          { t: "p", x: "First move, always: get everything on one side so the equation reads \\( ax^{2}+bx+c=0 \\). Only then can the zero-product rule apply." },
+          { t: "p", x: "A quadratic is solved by factoring it into two brackets and then using the <b>zero-product rule</b>: if two things multiply to zero, at least one of them is zero. That rule only works against zero — which is why the first move, always, is to get everything onto one side so the equation reads \\( ax^{2}+bx+c=0 \\)." },
           { t: "formula", x: "x=\\frac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}" },
-          { t: "h", x: "Factor before you use the formula" },
-          { t: "p", x: "To factor \\( x^{2}+bx+c \\), find two numbers whose <b>product is c</b> and whose <b>sum is b</b>. For \\( x^{2}-7x+12 \\): −3 and −4, giving \\( (x-3)(x-4) \\). Nearly every exam quadratic factors — reach for the formula only when it plainly does not." },
+          { t: "h", x: "Factor before you reach for the formula" },
+          { t: "p", x: "To factor \\( x^{2}+bx+c \\), find two numbers whose <b>product is \\(c\\)</b> and whose <b>sum is \\(b\\)</b>. For \\( x^{2}-7x+12 \\): the pair is \\(-3\\) and \\(-4\\), giving \\( (x-3)(x-4) \\) and roots 3 and 4. Nearly every quadratic the GMAT prints factors with small integers — the formula is a fallback for when it plainly does not, not the default." },
           { t: "h", x: "Answering without solving" },
-          { t: "p", x: "For \\( ax^{2}+bx+c=0 \\) with roots \\( r_1, r_2 \\):" },
+          { t: "p", x: "The roots of \\( ax^{2}+bx+c=0 \\) are tied to the coefficients directly, which means a question about their sum or product needs no factoring at all:" },
           { t: "formula", x: "r_1+r_2=-\\frac{b}{a} \\qquad r_1 r_2=\\frac{c}{a}" },
-          { t: "p", x: "If the question wants the sum or product of the roots, that is the whole answer — no factoring required." },
+          { t: "p", x: "This is the same fact as the factoring rule above, seen from the other end: expanding \\((x-r_1)(x-r_2)\\) produces \\(x^{2}-(r_1+r_2)x+r_1r_2\\), so the middle coefficient is minus the sum and the constant is the product." },
           { t: "ul", items: [
-            "The <b>discriminant</b> \\( b^{2}-4ac \\) tells you the number of real roots: positive → two, zero → one, negative → none.",
-            "Disguised quadratics are common: \\( x^{4}-5x^{2}+4=0 \\) becomes a quadratic in \\( x^{2} \\).",
-            "A perfect-square trinomial signals a repeated root: \\( x^{2}-6x+9=(x-3)^{2} \\)."
-          ] },
-          { t: "warn", x: "Two habits lose marks. <b>Never divide both sides by a variable</b> — from \\( x^{2}=5x \\), dividing by x loses the root \\( x=0 \\). And taking a square root introduces <b>two</b> cases: \\( (x-1)^{2}=9 \\) gives \\( x=4 \\) and \\( x=-2 \\)." },
+            "The <b>discriminant</b> \\( b^{2}-4ac \\) counts the real roots: positive gives two, zero gives one, negative gives none. It is the part under the square root, so its sign decides whether that root exists.",
+            "Disguised quadratics are common — \\( x^{4}-5x^{2}+4=0 \\) is an ordinary quadratic in \\( x^{2} \\), so solve for \\(x^{2}\\) first and take roots afterwards.",
+            "A perfect-square trinomial signals a repeated root: \\( x^{2}-6x+9=(x-3)^{2} \\), so \\(x=3\\) twice."
+          ]},
+          { t: "warn", x: "Two habits lose marks here. <b>Never divide both sides by a variable</b> — from \\( x^{2}=5x \\), dividing by \\(x\\) throws away the root \\(x=0\\), because you assumed \\(x\\neq0\\) without being told so. And taking a square root opens <b>two</b> cases: \\( (x-1)^{2}=9 \\) gives \\(x-1 = 3\\) or \\(x-1=-3\\), so \\( x=4 \\) and \\( x=-2 \\)." },
           { t: "eg",
             q: "If \\(x^{2}=5x\\), which of the following gives all possible values of x?",
             choices: ["5 only", "0 only", "0 and 5", "−5 and 5", "0, 5 and −5"],
             ans: "C",
-            why: "Move everything across: \\(x^{2}-5x=0\\), so \\(x(x-5)=0\\) and \\(x=0\\) or \\(x=5\\). Dividing by x at the start would have produced the trap answer, 5 only."
+            why: "Resist dividing by \\(x\\). Move everything to one side: \\(x^{2}-5x=0\\), then factor: \\(x(x-5)=0\\). The zero-product rule now gives \\(x=0\\) or \\(x=5\\), and both check out in the original — \\(0^{2}=5(0)\\) ✓ and \\(25 = 25\\) ✓. Dividing by \\(x\\) at the start produces \\(x=5\\) alone, which is trap (A): it is not an arithmetic slip but an unstated assumption that \\(x\\) was not zero."
+          },
+          { t: "eg",
+            q: "The two roots of \\(x^{2}-7x+k=0\\) are consecutive integers. What is the value of k?",
+            choices: ["6", "10", "12", "14", "49"],
+            ans: "C",
+            why: "Use the coefficient relationships rather than hunting. The roots sum to \\(-b/a = 7\\), and consecutive integers can be written \\(r\\) and \\(r+1\\), so \\(2r+1 = 7\\) and \\(r = 3\\) — the roots are 3 and 4. Then \\(k\\) is their product, \\(c/a = 12\\). Check by factoring: \\(x^{2}-7x+12 = (x-3)(x-4)\\) ✓. Note that neither root was ever solved for by the quadratic formula."
           }
         ]
       },
       {
         id: "ag-inequalities",
         title: "Inequalities & Absolute Value",
-        mins: 3,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Inequalities behave like equations with <b>one</b> difference, and that difference is where every trap lives:" },
-          { t: "warn", x: "Multiplying or dividing by a <b>negative</b> flips the sign. Which means you must <b>never</b> multiply or divide by a variable whose sign you do not know — the single most common error in the topic. Move terms across instead." },
+          { t: "p", x: "An inequality behaves exactly like an equation except in <b>one</b> respect, and every trap in the topic lives at that one point. You may add, subtract, and multiply or divide by positives, all without a second thought. But multiplying or dividing by a negative reverses the direction of the sign — because \\(2 &lt; 3\\) while \\(-2 &gt; -3\\)." },
+          { t: "warn", x: "The practical consequence is severe: you must <b>never multiply or divide an inequality by a variable</b> whose sign you do not know, because you cannot know whether to flip. This is the single most common error in the topic. Move terms across instead, which is always safe." },
           { t: "ul", items: [
-            "You may <b>add</b> two inequalities pointing the same way; you may never <b>subtract</b> them.",
-            "You may multiply two inequalities only when every quantity involved is positive.",
-            "Squaring both sides is valid only when both sides are known to be non-negative."
-          ] },
+            "You may <b>add</b> two inequalities that point the same way. You may never <b>subtract</b> them — subtraction is multiplication by \\(-1\\) in disguise.",
+            "You may multiply two inequalities together only when every quantity involved is positive.",
+            "Squaring both sides is valid only when both sides are known to be non-negative — \\(-5 &lt; 2\\), but \\(25 &gt; 4\\)."
+          ]},
           { t: "h", x: "Absolute value is a distance" },
-          { t: "p", x: "Read \\( |x| \\) as \"distance from 0\" and \\( |x-a| \\) as \"distance from a\". That single reading answers most of these questions without algebra:" },
+          { t: "p", x: "Read \\( |x| \\) as \"how far \\(x\\) is from 0\", and \\( |x-a| \\) as \"how far \\(x\\) is from \\(a\\)\". Distance is never negative, which is the whole content of the absolute-value sign, and reading it this way answers most of these questions with no algebra at all." },
           { t: "formula", x: "\\begin{gathered}|x|&lt;k \\iff -k&lt;x&lt;k \\\\[4pt] |x|&gt;k \\iff x&lt;-k \\ \\text{ or } \\ x&gt;k\\end{gathered}" },
-          { t: "p", x: "So \\( |x-4|\\le3 \\) simply says \"x is within 3 of 4\", giving \\( 1\\le x\\le7 \\) at a glance." },
-          { t: "h", x: "The 0 to 1 ordering" },
-          { t: "p", x: "How a number behaves under powers and roots depends on which side of 1 it sits:" },
+          { t: "p", x: "Note the shapes: \"less than\" gives a single stretch <b>between</b> two bounds, because being close to a point is one region. \"Greater than\" gives <b>two</b> separate stretches, because you can be far away on either side. So \\( |x-4|\\le3 \\) says \"\\(x\\) is within 3 of 4\" and gives \\( 1\\le x\\le7 \\) at a glance." },
+          { t: "h", x: "The 0-to-1 ordering" },
+          { t: "p", x: "How a number responds to powers and roots depends entirely on which side of 1 it sits, and Data Sufficiency questions are built on this. Multiplying by something smaller than 1 shrinks a number, so a fraction shrinks when you square it:" },
           { t: "formula", x: "\\begin{gathered}0&lt;x&lt;1:\\ \\ x^{3}&lt;x^{2}&lt;x&lt;\\sqrt{x} \\\\[4pt] x&gt;1:\\ \\ \\sqrt{x}&lt;x&lt;x^{2}&lt;x^{3}\\end{gathered}" },
-          { t: "tip", x: "When a question gives a range and asks for the largest or smallest value of a product, test the <b>endpoints</b> — including the negative ones. The extreme of a product often comes from two negatives multiplying to a large positive." },
+          { t: "p", x: "The two orderings are exact reverses of each other, which is why a statement that merely says \\(x&gt;0\\) is so often insufficient — it leaves both worlds open. And negative values give a third ordering again." },
+          { t: "tip", x: "When a question gives ranges and asks for the largest or smallest value of a product, test the <b>endpoints</b>, including the negative ones. The extreme very often comes from two negatives multiplying to a large positive, which is easy to miss if you only try the numbers that look big." },
           { t: "eg",
             q: "How many integer values of x satisfy \\(|x-4|\\le 3\\)?",
             choices: ["3", "4", "6", "7", "8"],
             ans: "D",
-            why: "The inequality says x lies within 3 of 4, so \\(1\\le x\\le 7\\). That is the integers 1 through 7 — seven values. Forgetting to count both endpoints gives the trap answer 6."
+            why: "Read it as a distance: \\(x\\) is no more than 3 away from 4. That stretches from \\(4-3=1\\) up to \\(4+3=7\\), so \\(1\\le x\\le7\\). Now count inclusively — 1, 2, 3, 4, 5, 6, 7 is <b>seven</b> integers, which is \\(7-1+1\\), not \\(7-1\\). The trap answer 6 comes from that missing +1, and it is the most common slip in any counting question with two endpoints."
+          },
+          { t: "eg",
+            q: "If \\(-3x + 7 &gt; 19\\), which of the following must be true?",
+            choices: ["x &gt; −4", "x &lt; −4", "x &gt; 4", "x &lt; 4", "x &gt; −12"],
+            ans: "B",
+            why: "Subtract 7 from both sides — always safe — to get \\(-3x &gt; 12\\). Now divide by \\(-3\\), and because that is negative the sign must <b>flip</b>: \\(x &lt; -4\\). Check with a number: \\(x=-5\\) gives \\(-3(-5)+7 = 22\\), which is indeed greater than 19 ✓, while \\(x=0\\) gives 7, which is not. Trap (A) is the same arithmetic with the flip forgotten — and testing one number would have caught it."
           }
         ]
       },
       {
         id: "ag-functions",
         title: "Functions & Custom Symbols",
-        mins: 4,
+        mins: 6,
         blocks: [
-          { t: "p", x: "A function is a rule: whatever sits inside the brackets replaces every x in the definition. There is nothing conceptual to understand — only substitution to perform carefully." },
-          { t: "p", x: "If \\( f(x)=x^{2}-3x \\), then \\( f(a+1)=(a+1)^{2}-3(a+1) \\) — the <b>whole</b> argument goes in, brackets and all." },
+          { t: "p", x: "A function is a rule with a slot in it. \\(f(x)=x^{2}-3x\\) says: take whatever is handed to you, square it, and subtract three times it. There is nothing conceptual to unpack — the entire skill is substituting carefully, and the exam's difficulty comes from what it chooses to hand you." },
+          { t: "p", x: "The rule is that the <b>whole</b> argument goes into every slot, brackets and all. So \\( f(a+1)=(a+1)^{2}-3(a+1) \\), not \\(a+1^{2}-3a+1\\). Writing the brackets first and expanding second removes most of the risk." },
           { t: "h", x: "Nested functions" },
-          { t: "p", x: "Work strictly <b>inside out</b>. For \\( f(g(2)) \\), evaluate \\( g(2) \\) first, then feed that number into f. Reversing the order is the standard wrong answer." },
+          { t: "p", x: "\\( f(g(2)) \\) means: work out \\( g(2) \\), then hand that number to \\(f\\). Always <b>inside out</b>, the way brackets are always resolved from the inside. Doing it the other way round produces a specific wrong answer, and that answer will be among the choices." },
           { t: "h", x: "Made-up symbols" },
-          { t: "p", x: "When the exam defines \\( a \\bigtriangledown b = a^{2}-2b \\), it is testing whether you can follow instructions under time pressure. The symbol means nothing beyond its definition — apply it literally." },
+          { t: "p", x: "When the exam defines something like \\( a \\bigtriangledown b = a^{2}-2b \\), it is not testing knowledge — the symbol has no meaning outside that sentence. It is testing whether you can follow an unfamiliar instruction accurately while the clock runs. Apply it exactly as written, and assume nothing extra:" },
           { t: "ul", items: [
-            "Do <b>not</b> assume the operation is commutative: \\( a\\bigtriangledown b \\) and \\( b\\bigtriangledown a \\) are usually different.",
-            "Do not assume it is associative either — bracket exactly as written.",
-            "For a \"which must be true\" question about a defined operation, test two or three concrete number pairs; that settles it faster than algebra."
-          ] },
-          { t: "tip", x: "When a function is given by a <b>table or graph</b>, no algebra is needed at all — just read the values off. Many test-takers waste a minute looking for a formula that was never there." },
+            "Do <b>not</b> assume the operation is commutative. Here \\( 3\\bigtriangledown1 = 9-2 = 7 \\) while \\( 1\\bigtriangledown3 = 1-6 = -5 \\) — the order matters completely.",
+            "Do not assume it is associative either. Bracket exactly as the question brackets.",
+            "For a \"which must be true\" question about a defined operation, test two or three concrete number pairs. That settles it faster than trying to reason in general."
+          ]},
+          { t: "h", x: "The four shapes these questions take" },
+          { t: "ol", items: [
+            "<b>Evaluate</b> — substitute a value, or a whole expression, into the definition.",
+            "<b>Solve</b> — set \\( f(x)=k \\) and work backwards. This often becomes a quadratic, so expect two answers and check whether both are allowed.",
+            "<b>Compose</b> — evaluate the inner function first, then feed the result outward.",
+            "<b>Restrict</b> — say which inputs are legal."
+          ]},
+          { t: "h", x: "Domain restrictions" },
+          { t: "ul", items: [
+            "A denominator can never be zero.",
+            "An even root needs a non-negative quantity inside it.",
+            "Both together are a favourite Data Sufficiency setup, because the restriction quietly rules out exactly the value that would otherwise have made a statement insufficient."
+          ]},
+          { t: "tip", x: "When a function is given by a <b>table or a graph</b>, no algebra is required at all — read the values off. A lot of time gets wasted hunting for a formula that was never there." },
           { t: "eg",
             q: "If \\(a \\bigtriangledown b = a^{2} - 2b\\), what is the value of \\(3 \\bigtriangledown (1 \\bigtriangledown 2)\\)?",
             choices: ["3", "5", "9", "15", "21"],
             ans: "D",
-            why: "Inside first: \\(1 \\bigtriangledown 2 = 1^{2}-2(2) = -3\\). Then \\(3 \\bigtriangledown (-3) = 3^{2}-2(-3) = 9+6 = 15\\)."
+            why: "Inside the brackets first: \\(1 \\bigtriangledown 2\\) puts \\(a=1\\) and \\(b=2\\), giving \\(1^{2}-2(2) = -3\\). Now that \\(-3\\) becomes the second slot of the outer operation: \\(3 \\bigtriangledown (-3) = 3^{2}-2(-3) = 9+6 = 15\\). The sign is where this is lost — subtracting a negative adds — and reversing the order instead, as \\((3\\bigtriangledown1)\\bigtriangledown2\\), gives \\(7\\bigtriangledown2 = 45\\), which is why the brackets have to be respected."
           },
-          { t: "h", x: "The four shapes these questions take" },
-          { t: "ol", items: [
-            "<b>Evaluate</b> — substitute a value, or a whole expression, into the definition.",
-            "<b>Solve</b> — set \\( f(x)=k \\) and work backwards; this often turns into a quadratic with two answers.",
-            "<b>Compose</b> — evaluate the inner function first, then feed the result outward.",
-            "<b>Restrict</b> — say which inputs are allowed."
-          ] },
-          { t: "h", x: "Domain restrictions" },
-          { t: "ul", items: [
-            "A denominator can never be zero.",
-            "An even root needs a non-negative inside.",
-            "Both together are a favourite Data Sufficiency setup, because they quietly rule out exactly the value that would have made a statement insufficient."
-          ] },
-          { t: "tip", x: "For “which of the following must be true of \\( f \\)”, test two or three concrete inputs rather than reasoning abstractly. A single counterexample kills a choice, and finding one is usually faster than proving the survivor." }
+          { t: "eg",
+            q: "If \\(f(x) = 2x - 3\\) and \\(f(g(x)) = 4x + 1\\) for all x, then \\(g(x) = \\)",
+            choices: ["2x − 2", "2x + 2", "4x + 4", "2x + 4", "x + 2"],
+            ans: "B",
+            why: "Whatever \\(g(x)\\) is, \\(f\\) does the same thing to it that \\(f\\) does to anything: doubles it and subtracts 3. So \\(f(g(x)) = 2\\,g(x)-3\\), and we are told that equals \\(4x+1\\). Solve for the whole of \\(g(x)\\): \\(2\\,g(x) = 4x+4\\), so \\(g(x) = 2x+2\\). Check by composing forwards: \\(f(2x+2) = 2(2x+2)-3 = 4x+1\\) ✓. Trap (C) is the un-halved line, from forgetting that the 2 outside multiplies the entire inner function."
+          }
         ]
       },
       {
         id: "ag-sequences",
         title: "Sequences & Series",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Two patterns cover the syllabus: a constant <b>difference</b> (arithmetic) or a constant <b>ratio</b> (geometric)." },
+          { t: "p", x: "A sequence is just an ordered list of numbers, and the exam only uses two kinds. In an <b>arithmetic</b> sequence you add the same amount each time (3, 7, 11, 15 …). In a <b>geometric</b> one you multiply by the same amount each time (3, 6, 12, 24 …). Everything else in this section follows from which of those you are looking at." },
           { t: "formula", x: "\\begin{gathered}\\text{AP: } a_n=a_1+(n-1)d \\\\[4pt] S_n=\\frac{n}{2}\\big(a_1+a_n\\big)\\end{gathered}" },
+          { t: "p", x: "That \\((n-1)\\) is worth understanding rather than memorising: to reach the \\(n\\)th term you take \\(n-1\\) steps, because the first term is where you start, not a step you take. The sum formula is the average of the first and last term multiplied by how many terms there are — which works because an arithmetic sequence is symmetric about its middle." },
           { t: "formula", x: "\\begin{gathered}\\text{GP: } a_n=a_1 r^{\\,n-1} \\\\[4pt] S_n=a_1\\frac{r^{n}-1}{r-1}\\ \\ (r\\neq1)\\end{gathered}" },
-          { t: "h", x: "Counting terms — where marks are lost" },
+          { t: "h", x: "Counting terms — where the marks go" },
           { t: "formula", x: "n=\\frac{\\text{last}-\\text{first}}{d}+1" },
-          { t: "p", x: "That \"+1\" is the most-missed step in the topic. The integers from 1 to 10 inclusive number \\( 10-1+1=10 \\), not 9." },
+          { t: "p", x: "The \"+1\" is the most-missed step in the whole topic, and it is the same fencepost problem as counting inclusive ranges: the integers from 1 to 10 number \\( 10-1+1=10 \\), not 9. Subtracting counts the <b>gaps</b> between terms, and there is always one more term than there are gaps." },
           { t: "h", x: "Evenly spaced sets" },
+          { t: "p", x: "Arithmetic sequences have a property that makes their sums easy: because they are symmetric, the values pair up from the outside in, and every pair has the same total." },
           { t: "ul", items: [
-            "The <b>mean equals the median</b>, and both equal \\( \\frac{\\text{first}+\\text{last}}{2} \\).",
-            "So the sum is simply \\( \\text{average}\\times\\text{count} \\) — you never add the terms.",
-            "Useful sums: \\( 1+2+\\dots+n=\\frac{n(n+1)}{2} \\), and the first n odd numbers total \\( n^{2} \\)."
-          ] },
-          { t: "tip", x: "For a <b>recursive</b> rule such as \\( a_{n+1}=a_n+3 \\) or one defined by remainders, write out five or six terms. Exam recursions almost always settle into a short repeating cycle, and the cycle answers the question." },
+            "The <b>mean equals the median</b>, and both equal \\( \\frac{\\text{first}+\\text{last}}{2} \\) — you do not need the middle term, only the two ends.",
+            "So the sum is simply <b>average × count</b>. You never add the terms of an evenly spaced set.",
+            "Worth knowing: \\( 1+2+\\dots+n=\\frac{n(n+1)}{2} \\), and the first \\(n\\) odd numbers total exactly \\( n^{2} \\)."
+          ]},
+          { t: "h", x: "Telling the two apart" },
+          { t: "p", x: "Take the first three terms and test both. If \\( a_2-a_1=a_3-a_2 \\) it is arithmetic; if \\( a_2/a_1=a_3/a_2 \\) it is geometric. Check both before assuming — a sequence that starts 2, 4, … could continue 6, 8 or 8, 16, and only the third term tells you which." },
+          { t: "h", x: "Sequences given by a formula" },
+          { t: "p", x: "When the question defines \\( a_n=3n+2 \\), there is nothing to derive — substitute. Such a sequence is automatically arithmetic, and the coefficient of \\(n\\) is the common difference, here 3." },
+          { t: "tip", x: "For a <b>recursive</b> definition such as \\( a_{n+1}=a_n+3 \\), or one defined through remainders, just write out five or six terms. Exam recursions nearly always settle into a short repeating cycle, and once you have the cycle length the question becomes a remainder calculation." },
+          { t: "warn", x: "Read whether \\(n\\) counts from 0 or from 1, and keep \"the \\(n\\)th term\" apart from \"the term whose value is \\(n\\)\". Both distinctions have whole questions built on them." },
           { t: "eg",
             q: "How many terms are in the sequence 7, 11, 15, …, 143?",
             choices: ["33", "34", "35", "36", "37"],
             ans: "C",
-            why: "The common difference is 4, so \\(n = \\frac{143-7}{4}+1 = 34+1 = 35\\). Dropping the \"+1\" gives the trap answer 34."
+            why: "The common difference is 4. From 7 up to 143 is a span of 136, which is \\(136/4 = 34\\) <b>steps</b> — and 34 steps means 35 terms, because you also count the one you started on. Formally, \\(n = \\frac{143-7}{4}+1 = 35\\). Dropping the +1 gives 34, which is the trap; sanity-check the rule on something tiny, like 7, 11, 15, where the formula gives \\((15-7)/4+1 = 3\\) ✓."
           },
-          { t: "h", x: "Telling the two apart" },
-          { t: "p", x: "Take the first three terms. If \\( a_2-a_1=a_3-a_2 \\) it is arithmetic; if \\( a_2/a_1=a_3/a_2 \\) it is geometric. Check both before assuming — a sequence that starts 2, 4, … could be either." },
-          { t: "h", x: "Sequences given by a formula" },
-          { t: "p", x: "When the question defines \\( a_n=3n+2 \\), there is nothing to derive: substitute. Such a sequence is automatically arithmetic, with the coefficient of n as the common difference." },
-          { t: "warn", x: "Read carefully whether n counts from 0 or from 1, and keep “the nth term” apart from “the term whose value is n”. Both distinctions are worth a whole question." },
-          { t: "tip", x: "For a <b>recursive</b> definition, write out five or six terms before doing anything clever. Exam recursions almost always settle into a short repeating cycle, and once you have the cycle length the answer is a remainder calculation." }
+          { t: "eg",
+            q: "What is the sum of all the integers from 30 to 60, inclusive?",
+            choices: ["1,305", "1,350", "1,395", "1,400", "1,440"],
+            ans: "C",
+            why: "Do not add thirty-one numbers. This is an evenly spaced set, so the average is \\((30+60)/2 = 45\\), and the count is \\(60-30+1 = 31\\). The sum is \\(45\\times31 = 1{,}395\\). Both traps live in that line: 1,350 uses a count of 30, forgetting the inclusive +1, and using the middle term without checking the count would go wrong the same way."
+          }
         ]
       },
       {
         id: "ag-coordinate",
         title: "Coordinate Geometry",
-        mins: 5,
+        mins: 8,
         blocks: [
-          { t: "note", x: "The Focus edition dropped geometry from Quant, so nothing here asks for a theorem about triangles or circles. What remains is algebra drawn on a grid — lines, points and distances — which is why this sits in the algebra guide." },
+          { t: "note", x: "The Focus edition dropped geometry from Quant, so nothing here asks for a theorem about triangles or circles. What remains is algebra drawn on a grid — lines, points and distances — which is why this sits in the algebra guide rather than in one of its own." },
+          { t: "p", x: "A coordinate question is an algebra question that happens to have a picture. The picture is the advantage: a rough sketch tells you which quadrant an answer must be in, or which way a line leans, and that alone kills most of the choices before any calculation begins." },
           { t: "h", x: "Lines" },
+          { t: "p", x: "The slope is how much the line rises for each step to the right — vertical change over horizontal change. The equation \\(y=mx+b\\) then reads as a set of instructions: start at height \\(b\\), and climb \\(m\\) for every 1 you move right." },
           { t: "formula", x: "m=\\frac{y_2-y_1}{x_2-x_1} \\qquad y=mx+b" },
           { t: "ul", items: [
-            "b is the <b>y-intercept</b> — where the line crosses \\( x=0 \\).",
+            "\\(b\\) is the <b>y-intercept</b> — the height where the line crosses \\( x=0 \\).",
             "For the <b>x-intercept</b>, set \\( y=0 \\), which gives \\( x=-b/m \\).",
-            "<b>Parallel</b> lines have equal slopes. <b>Perpendicular</b> lines have slopes that multiply to \\( -1 \\), so each is the negative reciprocal of the other: 3 and \\( -\\tfrac13 \\).",
-            "A horizontal line is \\( y=c \\) with slope 0; a vertical line is \\( x=c \\) and has no slope at all."
-          ] },
-          { t: "tip", x: "Sign reasoning often beats calculation. If a line has y-intercept 4 and a <b>negative</b> slope, its x-intercept is \\( -4/m \\) with \\( m&lt;0 \\) — necessarily <b>positive</b>. That rules out every negative answer choice before you draw anything." },
+            "<b>Parallel</b> lines have equal slopes. <b>Perpendicular</b> lines have slopes multiplying to \\( -1 \\), so each is the negative reciprocal of the other: 3 pairs with \\( -\\tfrac13 \\).",
+            "A horizontal line is \\( y=c \\) with slope 0. A vertical line is \\( x=c \\) and has no slope at all — the denominator would be zero."
+          ]},
+          { t: "tip", x: "Sign reasoning often beats calculation. A line with y-intercept 4 and a <b>negative</b> slope has x-intercept \\( -4/m \\) with \\( m&lt;0 \\), which is necessarily <b>positive</b>. That rules out every negative answer choice before anything is drawn." },
           { t: "h", x: "Points" },
           { t: "formula", x: "\\begin{gathered}\\text{midpoint}=\\left(\\frac{x_1+x_2}{2},\\ \\frac{y_1+y_2}{2}\\right) \\\\[4pt] d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\\end{gathered}" },
-          { t: "p", x: "The distance formula is just Pythagoras on the horizontal and vertical gaps — you never need to memorise it separately." },
+          { t: "p", x: "Neither of these needs memorising if you see what they are. The midpoint is just the average of the two x's and the average of the two y's. The distance formula is Pythagoras: the horizontal gap and the vertical gap are the two legs of a right triangle, and the distance is its hypotenuse." },
           { t: "h", x: "Quadrants" },
           { t: "table", head: ["Quadrant", "x", "y"], rows: [
             ["I", "+", "+"], ["II", "−", "+"], ["III", "−", "−"], ["IV", "+", "−"]
-          ] },
+          ]},
           { t: "h", x: "Three tricks worth knowing" },
           { t: "ol", items: [
-            "<b>Perpendicular bisector</b>: it passes through the midpoint of a segment at right angles, so \"L is the perpendicular bisector of RP\" means P is the <b>reflection</b> of R across L — and the midpoint of RP lies on L.",
-            "<b>Rotation about the origin</b>: \\( (a,b)\\to(b,-a) \\) turns a point 90° clockwise, and \\( (a,b)\\to(-b,a) \\) turns it 90° anticlockwise.",
-            "<b>Absolute-value regions</b>: \\( |x|+|y|=k \\) traces a square standing on its corners, with vertices at \\( (\\pm k,0) \\) and \\( (0,\\pm k) \\). Both diagonals are \\( 2k \\), so the area is \\( \\tfrac12(2k)(2k)=2k^{2} \\)."
-          ] },
-          { t: "warn", x: "Sketch before you solve. These questions are built so that a rough picture — which quadrant, which direction the line leans, roughly where it crosses — eliminates most choices in seconds, while the algebra takes minutes." },
+            "<b>Perpendicular bisector</b> — it passes through the midpoint of a segment at right angles, so \"L is the perpendicular bisector of RP\" is another way of saying P is the <b>reflection</b> of R across L, and the midpoint of RP lies on L.",
+            "<b>Rotation about the origin</b> — \\( (a,b)\\to(b,-a) \\) turns a point 90° clockwise, and \\( (a,b)\\to(-b,a) \\) turns it 90° anticlockwise.",
+            "<b>Absolute-value regions</b> — \\( |x|+|y|=k \\) traces a square standing on its corners, with vertices at \\( (\\pm k,0) \\) and \\( (0,\\pm k) \\). Both diagonals measure \\(2k\\), so the area is \\( \\tfrac12(2k)(2k)=2k^{2} \\)."
+          ]},
+          { t: "warn", x: "Sketch before you solve. These questions are built so that a rough picture — which quadrant, which way the line leans, roughly where it crosses — eliminates most of the choices in seconds, while the full algebra takes minutes." },
+          { t: "eg",
+            q: "A line passes through the points (2, 5) and (6, 13). What is its y-intercept?",
+            choices: ["−1", "0", "1", "2", "3"],
+            ans: "C",
+            why: "Slope first: \\(m = \\frac{13-5}{6-2} = \\frac{8}{4} = 2\\), so the line climbs 2 for every 1 across. Now walk back from a known point to \\(x=0\\): from \\((2,5)\\) you move 2 to the left, so you drop \\(2\\times2 = 4\\), landing at \\((0,1)\\). By formula: \\(y = 2x+b\\) with \\(5 = 2(2)+b\\) gives \\(b = 1\\). Check the other point: \\(2(6)+1 = 13\\) ✓."
+          },
           { t: "eg",
             q: "What is the area of the region enclosed by \\(|x| + |y| = 6\\)?",
             choices: ["24", "36", "48", "72", "144"],
             ans: "D",
-            why: "The graph is a square on its corners with vertices \\((6,0)\\), \\((0,6)\\), \\((-6,0)\\) and \\((0,-6)\\). Both diagonals measure 12, so the area is \\(\\tfrac12 \\times 12 \\times 12 = 72\\)."
+            why: "Find the intercepts and the shape appears. Setting \\(y=0\\) gives \\(|x| = 6\\), so \\((6,0)\\) and \\((-6,0)\\); setting \\(x=0\\) gives \\((0,6)\\) and \\((0,-6)\\). Between those points the graph is straight, so the region is a square standing on its corners with diagonals of 12 each. A rhombus has area \\(\\tfrac12 d_1 d_2\\), so \\(\\tfrac12\\times12\\times12 = 72\\). The trap is 144, which is the area of a square whose <b>sides</b> are 12 — but 12 here is a diagonal, not a side."
           }
         ]
       }
@@ -1866,196 +2042,247 @@ window.GMAT_CONCEPTS = [
       {
         id: "sp-mean",
         title: "Mean, Median & Mode",
-        mins: 3,
+        mins: 7,
         blocks: [
+          { t: "p", x: "\"Average\" on the GMAT means the <b>mean</b> unless the question says otherwise, and the mean is the value every item would have if the total were shared out equally. That is the sentence to hold on to, because it says that a mean is really a statement about a <b>total</b> — and the total is what you can actually manipulate." },
           { t: "formula", x: "\\begin{gathered}\\text{mean}=\\frac{\\text{sum of terms}}{\\text{number of terms}} \\\\[4pt] \\Longrightarrow\\ \\ \\text{sum}=\\text{mean}\\times\\text{count}\\end{gathered}" },
-          { t: "p", x: "That rearrangement is the whole topic. Almost every mean question is really a <b>sum</b> question in disguise — find the total, and the rest follows." },
+          { t: "p", x: "That second line is the whole topic. Whenever a question hands you an average, convert it to a total before doing anything else; whenever it asks for an average, work out which total would produce it." },
           { t: "h", x: "The three measures" },
+          { t: "p", x: "They answer three different questions about \"what is typical\", and the exam chooses between them deliberately — usually to see whether you noticed which one was asked for." },
           { t: "ul", items: [
-            "<b>Mean</b> — the balance point. Every value affects it, so a single outlier drags it a long way.",
-            "<b>Median</b> — the middle value <b>after sorting</b>. With n terms it sits at position \\( \\frac{n+1}{2} \\); with an even count, average the two middle terms. Outliers barely move it.",
-            "<b>Mode</b> — the most frequent value. A set can have no mode or several."
-          ] },
-          { t: "warn", x: "Sort before you take a median. Reading the middle of an unsorted list is the most common careless error in the topic — and the exam always lists the numbers out of order." },
-          { t: "h", x: "Tricks" },
+            "<b>Mean</b> — the balance point. Every value pulls on it, so a single outlier drags it a long way. The mean of \\(\\{1,2,3,100\\}\\) is 26.5, which describes none of them.",
+            "<b>Median</b> — the middle value <b>after sorting</b>. With \\(n\\) terms it sits at position \\( \\frac{n+1}{2} \\); with an even count, average the two middle terms. Outliers barely move it — the median of that same set is 2.5.",
+            "<b>Mode</b> — the value that appears most often. A set can have no mode at all, or several."
+          ]},
+          { t: "warn", x: "Sort before you take a median. Reading the middle of an unsorted list is the most common careless error in the topic, and the exam always prints the numbers out of order for exactly that reason." },
+          { t: "h", x: "What the comparison tells you" },
           { t: "ul", items: [
-            "In an <b>evenly spaced</b> set, mean = median = \\( \\frac{\\text{first}+\\text{last}}{2} \\). This handles \"the average of the first 40 even integers\" in one line.",
-            "Adding a value <b>equal to the current mean</b> leaves the mean unchanged; anything above pulls it up, below pulls it down.",
-            "mean &gt; median usually signals a tail of high values; mean &lt; median, a tail of low values.",
-            "To hit a target mean, work with the <b>deficit</b>: how far the current sum is from what it needs to be."
-          ] },
-          { t: "tip", x: "In Data Sufficiency, a median question often needs only <b>positions</b>, not values. If you know where a number sits in the order, you may not need to know what it is." },
+            "In an <b>evenly spaced</b> set, mean = median = \\( \\frac{\\text{first}+\\text{last}}{2} \\). That answers \"the average of the first 40 even integers\" in one line — it is \\((2+80)/2 = 41\\).",
+            "Adding a value <b>equal to the current mean</b> leaves the mean unchanged, because it brings exactly its own share. Anything above pulls the mean up, anything below pulls it down.",
+            "<b>Mean above median</b> usually means a tail of high values pulling the balance point rightwards; mean below median means a tail of low ones.",
+            "To hit a target mean, work with the <b>deficit</b>: how far the current total is from the total you need."
+          ]},
+          { t: "tip", x: "In Data Sufficiency, a median question often needs only <b>positions</b>, not values. If you know where a number sits in the sorted order, you may not need to know what it is — which is why a statement that looks hopelessly vague can still be sufficient." },
           { t: "eg",
             q: "The mean of the five numbers 2, 5, 7, x and 10 is 6. What is x?",
             choices: ["4", "6", "8", "12", "5"],
             ans: "B",
-            why: "The sum must be \\(6\\times5=30\\). The four known values total 24, so \\(x=6\\)."
+            why: "Convert the average into a total immediately: five numbers averaging 6 must sum to \\(6\\times5 = 30\\). The four known values come to \\(2+5+7+10 = 24\\), so \\(x = 30-24 = 6\\). Notice that \\(x\\) turns out to equal the mean itself — which fits the rule above, since the other four already averaged 6 between them, so the fifth had to bring exactly its own share to leave the mean where it was."
+          },
+          { t: "eg",
+            q: "For the five numbers 3, 8, 8, 11 and x, the mean is equal to the median. What is x?",
+            choices: ["6", "8", "10", "12", "14"],
+            ans: "C",
+            why: "Handle the two measures separately and then set them equal. The four known values sum to 30, so the mean is \\((30+x)/5\\). For the median, note that 8 sits in the middle slot of the sorted list as long as \\(x\\) is at least 8 — so try that case: median 8 gives \\((30+x)/5 = 8\\), hence \\(x = 10\\), which is indeed at least 8, so the case is consistent. Check the finished set \\(\\{3,8,8,10,11\\}\\): sorted, the third value is 8 ✓, and the total is 40 over 5 terms, a mean of 8 ✓."
           }
         ]
       },
       {
         id: "sp-spread",
         title: "Range & Standard Deviation",
-        mins: 3,
+        mins: 7,
         blocks: [
-          { t: "p", x: "<b>Range</b> = largest − smallest. <b>Standard deviation</b> measures how far the values sit from their mean, on average. You are essentially never asked to compute an SD — only to <b>compare</b> two of them, so learn the behaviour rather than the formula." },
-          { t: "h", x: "How SD responds to changes" },
+          { t: "p", x: "Two sets can share a mean and still look nothing alike — \\(\\{49,50,51\\}\\) and \\(\\{0,50,100\\}\\) both average 50. Spread is what separates them, and the GMAT measures it two ways." },
+          { t: "p", x: "<b>Range</b> is simply largest minus smallest, so it notices only the two extremes. <b>Standard deviation</b> measures how far the values sit from their mean on average, so it notices everything. You are essentially never asked to compute a standard deviation — only to <b>compare</b> two of them — so learn how it behaves rather than the formula." },
+          { t: "h", x: "How the measures respond to changes" },
           { t: "table", head: ["Change to every term", "Mean", "Range", "SD"], rows: [
             ["add a constant c", "+ c", "unchanged", "unchanged"],
             ["multiply by k", "× k", "× |k|", "× |k|"]
-          ] },
-          { t: "p", x: "Shifting a whole set leaves its spread untouched — \\( \\{2,4,6,8\\} \\) and \\( \\{12,14,16,18\\} \\) have <b>identical</b> standard deviations. Only stretching changes it." },
+          ]},
+          { t: "p", x: "The first row is the one the exam tests. <b>Shifting a whole set leaves its spread untouched</b>, because every value and the mean move together, so the distances between them are exactly what they were. \\( \\{2,4,6,8\\} \\) and \\( \\{12,14,16,18\\} \\) have identical standard deviations. Only <b>stretching</b> — multiplying — changes the spread." },
           { t: "h", x: "Facts the exam tests" },
           { t: "ul", items: [
-            "SD is never negative, and \\( \\text{SD}=0 \\) exactly when every term is identical.",
-            "Adding a term <b>equal to the mean</b> pulls the SD down; adding an extreme value pushes it up.",
-            "Tighter clustering means smaller SD — you can usually rank two sets by eye, comparing distances from each mean.",
+            "SD is never negative, and \\( \\text{SD}=0 \\) exactly when every term is the same — there is no distance from the mean to average.",
+            "Adding a term <b>equal to the mean</b> pulls the SD down, because it contributes a distance of zero to the average distance. Adding an extreme value pushes it up.",
+            "Tighter clustering means a smaller SD. You can usually rank two sets by eye: glance at how far the values sit from each mean.",
             "Range ignores everything between the extremes, so two sets can share a range and have very different SDs."
-          ] },
-          { t: "warn", x: "A larger range does not guarantee a larger SD. \\( \\{0,50,50,50,100\\} \\) and \\( \\{0,0,50,100,100\\} \\) have the same range, but the second is far more spread out." },
+          ]},
+          { t: "warn", x: "A larger range does not guarantee a larger standard deviation. \\( \\{0,50,50,50,100\\} \\) and \\( \\{0,0,50,100,100\\} \\) have the same range of 100 and the same mean of 50, but the second is far more spread out — most of its values sit at the extremes, while most of the first set's sit at the centre." },
           { t: "eg",
             q: "Set A = {2, 4, 6, 8} and Set B = {12, 14, 16, 18}. Which statement is true?",
             choices: ["A has the greater standard deviation", "B has the greater standard deviation", "The standard deviations are equal", "B's standard deviation is 10 more than A's", "Not enough information"],
             ans: "C",
-            why: "Every term of B is exactly 10 more than the matching term of A. Shifting a set changes its mean but not its spread, so the standard deviations are identical."
+            why: "Every term of B is exactly 10 more than the matching term of A, so B is A shifted bodily up the number line. The mean shifts with it — 5 becomes 15 — which means every value sits the same distance from its own mean as before: \\(-3, -1, +1, +3\\) in both sets. Identical distances give identical spread, so the standard deviations are equal. Choice (D) is the specific trap for treating spread as though it travelled with the values."
+          },
+          { t: "eg",
+            q: "Which of the following sets has the smallest standard deviation?",
+            choices: ["{1, 2, 3, 4, 5}", "{3, 3, 3, 3, 3}", "{1, 3, 3, 3, 5}", "{0, 3, 3, 3, 6}", "{2, 3, 3, 3, 4}"],
+            ans: "B",
+            why: "No calculation is needed — just look for the least variation. Set (B) has every value identical, so every distance from the mean is zero and the standard deviation is exactly 0, the smallest it can ever be. All five sets have a mean of 3, so they can be ranked purely by how far their members stray from it: (B) not at all, then (E) by 1 on two terms, then (C) by 2, then (A), then (D) by 3. Notice that (A) has a smaller <i>range</i> than (D) and a smaller SD too — but the range alone would not have settled the comparison between (A) and (C)."
           }
         ]
       },
       {
         id: "sp-weighted",
         title: "Weighted Averages",
-        mins: 4,
+        mins: 8,
         blocks: [
-          { t: "p", x: "When groups of different sizes combine, you cannot average the averages — each group must be weighted by its size:" },
+          { t: "p", x: "A weighted average is what you need whenever the groups being combined are not the same size. Averaging two class averages treats a class of 10 and a class of 30 as equally important, which they are not — the larger class contributes three times as many scores, so it should pull the result three times as hard." },
+          { t: "p", x: "The fix is to go back to totals. Add up all the points, divide by all the people:" },
           { t: "formula", x: "\\bar{x}=\\frac{n_1\\bar{x}_1+n_2\\bar{x}_2}{n_1+n_2}" },
-          { t: "h", x: "The sanity check that often is the answer" },
-          { t: "p", x: "The combined average always lands <b>between</b> the two group averages, and <b>closer to the larger group</b>. On a five-choice question that frequently eliminates four options before any arithmetic." },
+          { t: "h", x: "The sanity check that is often the answer" },
+          { t: "p", x: "The combined average always lands <b>between</b> the two group averages, and <b>closer to the larger group</b>. On a five-choice question that frequently eliminates four options before any arithmetic — anything outside the two averages is impossible, and anything on the wrong side of the midpoint is wrong too." },
           { t: "h", x: "Running it backwards" },
-          { t: "p", x: "Given the blend, the ratio of the two weights is the ratio of the <b>opposite</b> distances from the mean:" },
+          { t: "p", x: "The more interesting version gives you the blend and asks for the mix. Picture the two values on a see-saw with the combined average as the balance point: the weights are inversely proportional to the distances, so the group further from the mean must be the smaller one." },
           { t: "formula", x: "\\frac{n_1}{n_2}=\\frac{\\bar{x}_2-\\bar{x}}{\\bar{x}-\\bar{x}_1}" },
-          { t: "p", x: "This is exactly the alligation rule from mixtures — the same idea wearing different clothes. Any question that blends two concentrations, two prices, two speeds or two test averages is this formula." },
-          { t: "tip", x: "Percentages weight like anything else. A 10% rise on a large base and a 30% rise on a small base do not give 20% overall — they give something much nearer 10%." },
-          { t: "warn", x: "Average <b>speed</b> is never the average of two speeds unless the two times are equal. Use total distance ÷ total time; for equal distances at speeds a and b it is \\( \\frac{2ab}{a+b} \\)." },
+          { t: "p", x: "Note the cross: \\(n_1\\) pairs with the distance measured on <b>group 2's</b> side. This is exactly the alligation rule from the mixtures section — the same idea wearing different clothes. Any question that blends two concentrations, two prices, two speeds or two test averages is this formula." },
+          { t: "h", x: "More than two groups" },
+          { t: "p", x: "Combine them <b>two at a time</b>. Blend the first pair into a single group with its own count and average, then blend that result with the third. The arithmetic stays small and the between-the-two sanity check still applies at every step." },
+          { t: "tip", x: "Only the <b>ratio</b> of the weights matters, never the actual counts. Ten and thirty give exactly the same answer as one and three, so replace awkward numbers with their simplest ratio before you start." },
+          { t: "tip", x: "Percentages weight like anything else. A 10% rise on a large base and a 30% rise on a small base do not average to 20% — the result sits much nearer 10%." },
+          { t: "warn", x: "Average <b>speed</b> is a weighted average over <i>time</i>, not distance, which is why it is never the plain average of two speeds unless the two times happen to be equal. Use total distance ÷ total time; for equal distances at speeds \\(a\\) and \\(b\\) that works out to \\( \\frac{2ab}{a+b} \\)." },
+          { t: "warn", x: "A weighted average can never fall outside the range of the values being averaged. If your answer is below the smallest or above the largest, you have weighted something backwards — worth checking before you even look at the choices." },
           { t: "eg",
             q: "A class of 10 students averages 70 on a test; a second class of 30 students averages 90. What is the combined average?",
             choices: ["75", "80", "82.5", "85", "87"],
             ans: "D",
-            why: "Total points \\(= 10(70)+30(90) = 700+2700 = 3400\\) over 40 students, giving 85. Note it sits much nearer 90, the average of the bigger group — the plain average of 80 is the trap."
+            why: "Totals first: \\(10(70) = 700\\) points and \\(30(90) = 2{,}700\\) points, so 3,400 points shared among 40 students, giving 85. The see-saw check confirms it before the arithmetic: there are three times as many students in the 90 class, so the answer must sit three times closer to 90 than to 70 — that is 85, one quarter of the way up from 70. The trap is (B) 80, the plain average of 70 and 90, which quietly assumes the classes are the same size."
           },
-          { t: "h", x: "More than two groups" },
-          { t: "p", x: "Combine them <b>two at a time</b>. Blend the first pair into a single group with its own count and average, then blend that result with the third. The arithmetic stays small and the sanity check still applies at every step." },
-          { t: "tip", x: "Only the <b>ratio</b> of the weights matters, never the actual counts. Ten and thirty give exactly the same answer as one and three, so replace awkward numbers with their simplest ratio before you start." },
-          { t: "warn", x: "A weighted average can never fall outside the range of the values being averaged. If your answer is below the smallest or above the largest, you have weighted something backwards — and that is worth checking before you look at the choices." }
+          { t: "eg",
+            q: "A jar of 20% acid is mixed with a jar of 60% acid to produce 20 litres of 35% acid. How many litres of the 20% solution are used?",
+            choices: ["7.5", "10", "12.5", "15", "16"],
+            ans: "C",
+            why: "Run the average backwards. The target 35 is 15 above the weak solution and 25 below the strong one. Weights are inversely proportional to those distances, so the ratio of weak to strong is 25 : 15, which reduces to 5 : 3. That splits 20 litres into 8 parts of 2.5 litres each, giving \\(5\\times2.5 = 12.5\\) litres of the 20% solution. Check it: \\(12.5(0.20)+7.5(0.60) = 2.5+4.5 = 7\\) litres of acid, and \\(7/20 = 35\\%\\) ✓. The answer is more than half the mixture, which fits — 35 is nearer 20 than 60."
+          }
         ]
       },
       {
         id: "sp-sets",
         title: "Overlapping Sets (Venn)",
-        mins: 3,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Two groups that overlap obey one formula, and the whole topic is careful bookkeeping around it:" },
+          { t: "p", x: "Overlapping-set questions are counting questions where some things get counted twice. A survey finds 70 people who like tea and 80 who like coffee — but if some like both, adding 70 and 80 counts those people once as tea drinkers and again as coffee drinkers. Everything in this topic is bookkeeping to undo that double count." },
           { t: "formula", x: "|A\\cup B| = |A| + |B| - |A\\cap B|" },
-          { t: "p", x: "You subtract the overlap because members of both were counted twice. Adding people in neither group:" },
+          { t: "p", x: "Read it as: add the two groups, then subtract the overlap once, because it was included twice. And since a survey usually contains people in neither group, the full picture is:" },
           { t: "formula", x: "\\text{Total} = \\underbrace{|A|+|B|-|A\\cap B|}_{\\text{at least one}} + \\text{neither}" },
           { t: "h", x: "The double matrix" },
-          { t: "p", x: "When there are two yes/no criteria — say male/female against employed/unemployed — a 2×2 grid with row and column totals beats a Venn diagram every time. Fill in what you are given, then let each row and column total do the rest." },
+          { t: "p", x: "When there are two yes/no criteria — male/female against employed/unemployed, say — draw a 2×2 grid with row and column totals rather than a Venn diagram. Fill in whatever the question gives you, and then let the totals do the rest: any row or column with one blank can be completed by subtraction, and completing one usually unlocks the next. This is faster and far less error-prone than reasoning about regions." },
           { t: "h", x: "Three sets" },
           { t: "formula", x: "\\begin{gathered}|A\\cup B\\cup C| = |A|+|B|+|C| \\\\[4pt] -\\ |A\\cap B| - |A\\cap C| - |B\\cap C| \\\\[4pt] +\\ |A\\cap B\\cap C|\\end{gathered}" },
-          { t: "warn", x: "Read the wording exactly. <b>\"Exactly one\"</b>, <b>\"at least one\"</b> and <b>\"exactly two\"</b> are three different counts, and the formula above gives \"at least one\". Working from the centre outwards — fill the triple overlap first, then the pairs, then the singles — keeps them straight." },
+          { t: "p", x: "The last line looks odd but follows the same logic: someone in all three sets was added three times, then subtracted three times by the pair terms, leaving them at zero — so they have to be added back once." },
+          { t: "warn", x: "Read the wording exactly. <b>\"Exactly one\"</b>, <b>\"at least one\"</b> and <b>\"exactly two\"</b> are three different counts, and the formula above gives \"at least one\". Working from the centre outwards — fill the triple overlap first, then the pairs, then the singles — keeps them straight, because each region then holds only the people who belong to it and nothing more." },
           { t: "h", x: "Maximum and minimum overlap" },
           { t: "ul", items: [
-            "<b>Maximum</b> overlap = the size of the smaller set (it can sit entirely inside the larger).",
-            "<b>Minimum</b> overlap = \\( |A|+|B|-\\text{Total} \\), or 0 if that comes out negative."
-          ] },
+            "<b>Maximum</b> overlap is the size of the smaller set — at best it sits entirely inside the larger one.",
+            "<b>Minimum</b> overlap is \\( |A|+|B|-\\text{Total} \\), or 0 if that comes out negative. It measures how much the two groups are forced to collide because there is not enough room for them to be separate."
+          ]},
           { t: "eg",
             q: "Of 100 people surveyed, 70 like tea and 80 like coffee. What is the smallest possible number who like both?",
             choices: ["0", "10", "30", "50", "70"],
             ans: "D",
-            why: "Overlap is minimised by spreading people out as far as possible: \\(70+80 = 150\\) preferences among only 100 people, so at least \\(150-100 = 50\\) must be counted twice."
+            why: "To minimise the overlap, spread people out as much as the numbers allow. There are \\(70+80 = 150\\) preferences to distribute among only 100 people, so at least \\(150-100 = 50\\) people must be holding two of them — they have nowhere else to go. Any smaller overlap would need more than 100 people. The zero option is a reasonable instinct but impossible here; it would only be available if the two groups summed to 100 or less."
+          },
+          { t: "eg",
+            q: "In a group of 60 students, 35 study French, 30 study German, and 12 study both. How many study neither?",
+            choices: ["5", "7", "12", "17", "25"],
+            ans: "B",
+            why: "Find \"at least one\" first, then subtract from the total. Adding 35 and 30 gives 65, which is already more than the whole group — the 12 who study both have been counted twice, so remove them once: \\(35+30-12 = 53\\) study at least one language. The rest study neither: \\(60-53 = 7\\). As a check, the regions should add to 60: 23 study French only, 18 German only, 12 both and 7 neither, which is \\(23+18+12+7 = 60\\) ✓."
           }
         ]
       },
       {
         id: "sp-ages",
         title: "Age & Number Problems",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Age questions are linear equations with a time axis. Set the <b>present</b> ages as your variables and everything else follows: x years ago is \\( \\text{age}-x \\), x years from now is \\( \\text{age}+x \\)." },
+          { t: "p", x: "Age problems are linear equations with a time axis bolted on, and they are worth practising because they train the translation skill the whole word-problem section depends on. Set the <b>present</b> ages as your variables and everything else follows mechanically: \\(x\\) years ago is \\( \\text{age}-x \\), and \\(x\\) years from now is \\( \\text{age}+x \\)." },
           { t: "h", x: "The gap never changes" },
-          { t: "p", x: "The difference between two people's ages is <b>constant for life</b>. If a father is 30 years older than his son today, he was 30 years older a decade ago and will be 30 years older a decade hence. Ratios change; the gap does not — and building on the gap turns most of these into one equation." },
-          { t: "tip", x: "When ages are given as a ratio, write them as multiples of the same unit — \\( 3k \\) and \\( 5k \\) — then apply the time shift to each. One equation in k finishes the job." },
+          { t: "p", x: "This is the fact that makes these questions tractable. The <b>difference</b> between two people's ages is constant for life — both people age at the same rate. If a father is 30 years older than his son today, he was 30 years older a decade ago and will be 30 years older a decade from now." },
+          { t: "p", x: "Ratios, by contrast, change constantly. A father twice his son's age this year will not be twice his son's age next year. So when a question mixes a ratio with a time shift, build the equation on the gap, which stays put, and let the ratio be the thing that moves." },
+          { t: "tip", x: "When ages are given as a ratio, write them as multiples of the same unit — \\( 3k \\) and \\( 5k \\) — and then apply the time shift to each. That keeps one unknown instead of two, and the resulting single equation in \\(k\\) finishes the job." },
+          { t: "warn", x: "Watch the tense. \"In 5 years he will be three times as old as his son is <b>now</b>\" is a different equation from \"…as his son <b>will be</b>\". In the first, only the father's side gets the +5; in the second, both do. Misreading which side moves is the standard error, and both readings are represented in the answer choices." },
           { t: "h", x: "Digit problems" },
-          { t: "p", x: "A two-digit number with tens digit t and units digit u is \\( 10t+u \\); reversing the digits gives \\( 10u+t \\). Two consequences do most of the work:" },
+          { t: "p", x: "These sit alongside age problems because they are the same skill — turning a sentence about numbers into algebra. A two-digit number with tens digit \\(t\\) and units digit \\(u\\) is \\( 10t+u \\), because the tens digit is worth ten of itself. Reversing the digits gives \\( 10u+t \\), and two consequences do most of the work:" },
           { t: "formula", x: "\\begin{gathered}(10t+u)-(10u+t)=9(t-u) \\\\[4pt] (10t+u)+(10u+t)=11(t+u)\\end{gathered}" },
           { t: "ul", items: [
-            "The difference between a two-digit number and its reversal is always a multiple of <b>9</b>; their sum is always a multiple of <b>11</b>.",
-            "Digits are integers from 0 to 9, and a leading digit cannot be 0 — constraints that usually pin the answer down."
-          ] },
-          { t: "warn", x: "Watch the tense. \"In 5 years he will be three times as old as his son is <b>now</b>\" is a different equation from \"…as his son <b>will be</b>\". Misreading which side gets the +5 is the standard error." },
+            "The difference between a two-digit number and its reversal is always a multiple of <b>9</b>; their sum is always a multiple of <b>11</b>. Either fact can eliminate most of an answer list instantly.",
+            "Digits are integers from 0 to 9, and a leading digit cannot be 0. Those constraints usually pin the answer down once one equation is in place."
+          ]},
           { t: "eg",
             q: "A father is 30 years older than his son. In 5 years he will be three times as old as his son. How old is the son now?",
             choices: ["5", "8", "10", "12", "15"],
             ans: "C",
-            why: "Let the son be s, so the father is \\(s+30\\). In 5 years: \\(s+35 = 3(s+5)\\), giving \\(s+35 = 3s+15\\), so \\(2s = 20\\) and \\(s = 10\\). Check: 10 and 40 today; in 5 years 15 and 45 = 3 × 15."
+            why: "Use the gap. Let the son be \\(s\\) now, so the father is \\(s+30\\) — one unknown, because the difference is fixed. In five years both are five years older: the son is \\(s+5\\) and the father is \\(s+35\\). The condition says the father is then triple the son: \\(s+35 = 3(s+5)\\), so \\(s+35 = 3s+15\\), giving \\(2s = 20\\) and \\(s = 10\\). Check against the words: today they are 10 and 40; in five years 15 and 45, and \\(45 = 3\\times15\\) ✓."
+          },
+          { t: "eg",
+            q: "The ratio of Anna's age to Ben's is 3 : 5. In 4 years the ratio will be 2 : 3. How old is Ben now?",
+            choices: ["12", "15", "18", "20", "24"],
+            ans: "D",
+            why: "Give the ratio a multiplier so there is only one unknown: Anna is \\(3k\\) and Ben is \\(5k\\). In four years they are \\(3k+4\\) and \\(5k+4\\), and the new ratio gives \\(\\frac{3k+4}{5k+4} = \\frac{2}{3}\\). Cross-multiply: \\(9k+12 = 10k+8\\), so \\(k = 4\\). Ben is \\(5k = 20\\). Check: today 12 and 20, which is 3 : 5 ✓; in four years 16 and 24, which is 2 : 3 ✓. The trap is 12 — the correct arithmetic reported for the wrong person."
           }
         ]
       },
       {
         id: "sp-counting",
         title: "Permutations & Combinations",
-        mins: 4,
+        mins: 7,
         blocks: [
-          { t: "p", x: "Start with the <b>counting principle</b>: if one stage can happen in m ways and the next in n ways, together they happen in \\( m\\times n \\) ways. Draw a slot for each decision, write the number of options in each, and multiply. That alone solves most counting questions." },
+          { t: "p", x: "Counting questions ask how many ways something can happen, and they are answered by breaking the process into <b>decisions</b>. The whole subject rests on one principle: if one stage can happen in \\(m\\) ways and the next in \\(n\\) ways, the two together happen in \\( m\\times n \\) ways — because every one of the \\(m\\) starts can be followed by any of the \\(n\\) continuations." },
+          { t: "p", x: "In practice: draw a slot for each decision, write the number of options in each slot, and multiply. A four-digit PIN with no repeats allowed is \\(10\\times9\\times8\\times7\\), because each choice removes one option from the next. That method alone solves most counting questions, without any formula." },
           { t: "h", x: "Does order matter?" },
+          { t: "p", x: "When you are choosing a group rather than filling ordered slots, the plain multiplication overcounts — it treats the same group picked in a different sequence as a different outcome. That is the one distinction you have to get right." },
           { t: "formula", x: "^nP_r=\\frac{n!}{(n-r)!} \\qquad ^nC_r=\\frac{n!}{r!\\,(n-r)!}" },
           { t: "ul", items: [
-            "<b>Order matters</b> — rankings, seat arrangements, president-and-treasurer — use a permutation.",
-            "<b>Order does not matter</b> — committees, teams, handshakes, choosing toppings — use a combination.",
-            "They differ by exactly the \\( r! \\) ways of arranging the chosen group: \\( ^nC_r = {}^nP_r / r! \\)."
-          ] },
-          { t: "tip", x: "\\( ^nC_r = {}^nC_{n-r} \\) turns an ugly calculation into an easy one: \\( ^{12}C_{10} \\) is the same as \\( ^{12}C_{2}=66 \\)." },
+            "<b>Order matters</b> — rankings, seat arrangements, president-and-treasurer, a race finish. Use a permutation.",
+            "<b>Order does not matter</b> — committees, teams, handshakes, choosing pizza toppings. Use a combination.",
+            "The two differ by exactly the \\( r! \\) ways of arranging the chosen group, which is why \\( ^nC_r = {}^nP_r / r! \\). Picking Ann, Bob and Cy is one committee but six different orderings."
+          ]},
+          { t: "tip", x: "\\( ^nC_r = {}^nC_{n-r} \\) turns an ugly calculation into an easy one, because choosing which 10 to include is the same as choosing which 2 to leave out: \\( ^{12}C_{10} \\) is just \\( ^{12}C_{2}=66 \\)." },
           { t: "h", x: "The standard set-ups" },
           { t: "ul", items: [
-            "<b>Repeated items</b> in an arrangement: divide by the factorial of each repeat count — the letters of LEVEL arrange in \\( \\frac{5!}{2!\\,2!}=30 \\) ways.",
-            "<b>Circular</b> seating of n people: \\( (n-1)! \\), because rotations are the same arrangement.",
-            "<b>Must be together</b>: glue them into one block, arrange the blocks, then multiply by the arrangements inside the block.",
-            "<b>Must not be together</b>: count everything, then subtract the together cases.",
-            "<b>Repeats allowed</b> (like a PIN): \\( k^{n} \\), not a permutation."
-          ] },
-          { t: "warn", x: "Decide \"order matters?\" <b>before</b> you write anything. Handshakes between 10 people are \\( ^{10}C_2=45 \\); if you count them as permutations you get 90, which is exactly the wrong answer the exam offers." },
+            "<b>Repeated items</b> in an arrangement — divide by the factorial of each repeat count, since swapping two identical letters changes nothing. LEVEL arranges in \\( \\frac{5!}{2!\\,2!}=30 \\) ways, not 120.",
+            "<b>Circular</b> seating of \\(n\\) people — \\( (n-1)! \\), because rotating everyone one seat round produces the same arrangement. Fix one person and arrange the rest.",
+            "<b>Must be together</b> — glue them into a single block, arrange the blocks, then multiply by the arrangements <i>inside</i> the block.",
+            "<b>Must not be together</b> — count everything, then subtract the together cases. Counting the complement is almost always easier than counting the restriction directly.",
+            "<b>Repeats allowed</b>, as in a PIN or a licence plate — \\( k^{n} \\), not a permutation, since nothing is used up."
+          ]},
+          { t: "warn", x: "Decide \"does order matter?\" <b>before</b> you write anything down. Handshakes between 10 people are \\( ^{10}C_2=45 \\), because a handshake between A and B is the same event as one between B and A. Counting them as permutations gives 90 — exactly the wrong answer the exam prints." },
           { t: "eg",
             q: "In how many ways can 5 people be seated in a row if two particular people must sit next to each other?",
             choices: ["24", "48", "60", "96", "120"],
             ans: "B",
-            why: "Glue the pair into one block: now 4 items arrange in \\(4! = 24\\) ways, and the pair can swap inside the block in \\(2! = 2\\) ways. \\(24 \\times 2 = 48\\)."
+            why: "Handle the restriction by making it structural. Glue the two people together into a single block; now you are arranging 4 objects — the block plus the other three people — which can be done in \\(4! = 24\\) ways. But the two inside the block can also swap places, in \\(2! = 2\\) ways, and both count as valid seatings. So the total is \\(24\\times2 = 48\\). Sanity check: it should be less than the unrestricted \\(5! = 120\\), and in fact it is exactly \\(2/5\\) of it."
+          },
+          { t: "eg",
+            q: "A committee of 3 is to be chosen from 4 men and 5 women. How many committees contain exactly 2 women?",
+            choices: ["20", "30", "40", "60", "84"],
+            ans: "C",
+            why: "A committee has no order, so this is combinations, and the two requirements are independent choices to be multiplied. Choose 2 women from 5: \\(^{5}C_{2} = \\frac{5\\times4}{2} = 10\\). Choose the remaining 1 member from the 4 men: \\(^{4}C_{1} = 4\\). Every pair of women can go with any of the men, so the count is \\(10\\times4 = 40\\). The trap is 60, from using permutations for the women — but a committee of Ann and Beth is the same committee as Beth and Ann."
           }
         ]
       },
       {
         id: "sp-probability",
         title: "Probability",
-        mins: 4,
+        mins: 7,
         blocks: [
+          { t: "p", x: "A probability is a count divided by a count: how many outcomes are the ones you want, over how many outcomes there are altogether. That means everything in the counting section still applies here — probability is that machinery with a denominator attached." },
           { t: "formula", x: "\\begin{gathered}P=\\frac{\\text{favourable outcomes}}{\\text{total outcomes}} \\\\[4pt] 0\\le P\\le 1\\end{gathered}" },
-          { t: "p", x: "Every probability is a counting question with a denominator, so the whole of the previous section applies. If a probability you compute exceeds 1, you have double-counted the numerator." },
+          { t: "p", x: "The bounds are a free error-check. A probability below 0 or above 1 is impossible, so if you compute one you have miscounted — usually by double-counting the numerator, or by using a denominator that shrank when it should not have." },
           { t: "h", x: "Combining events" },
           { t: "ul", items: [
-            "<b>AND</b> → multiply. \\( P(A \\text{ and } B)=P(A)\\times P(B) \\) when the events are independent.",
-            "<b>OR</b> → add, then remove the double-count: \\( P(A\\text{ or }B)=P(A)+P(B)-P(A\\text{ and }B) \\). The subtraction disappears only when the events cannot both happen.",
-            "Notice this is the overlapping-sets formula again — the same bookkeeping, scaled to 1."
-          ] },
+            "<b>AND → multiply.</b> \\( P(A \\text{ and } B)=P(A)\\times P(B) \\) when the events are independent. Each condition narrows the field further, so the probability gets smaller.",
+            "<b>OR → add, then remove the double-count.</b> \\( P(A\\text{ or }B)=P(A)+P(B)-P(A\\text{ and }B) \\). The subtraction disappears only when the two events cannot both happen.",
+            "Notice the second one is the overlapping-sets formula again, rescaled so the total is 1 instead of a headcount. It is the same bookkeeping problem."
+          ]},
           { t: "h", x: "The complement trick" },
           { t: "formula", x: "P(\\text{at least one}) = 1 - P(\\text{none})" },
-          { t: "p", x: "Whenever you see <b>\"at least one\"</b>, compute the opposite first. Counting \"exactly one, plus exactly two, plus exactly three…\" is several times more work and far more error-prone." },
+          { t: "p", x: "Whenever you see the words <b>\"at least one\"</b>, compute the opposite instead. \"At least one\" covers exactly one, exactly two, exactly three and so on — several separate cases to add up — whereas \"none\" is a single case. The complement turns a long sum into one short calculation, and it is the most valuable habit in the topic." },
           { t: "h", x: "With and without replacement" },
-          { t: "p", x: "If the item is <b>not</b> replaced, both the numerator and the denominator shrink on the next draw. Drawing two aces from a deck is \\( \\frac{4}{52}\\times\\frac{3}{51} \\) — the second fraction changes on top and bottom." },
-          { t: "warn", x: "Independence is an assumption, not a default. Draws without replacement are dependent, and so is anything where one outcome physically restricts the next." },
-          { t: "tip", x: "For draws where order is irrelevant you may count with combinations top and bottom, or multiply sequential probabilities and then multiply by the number of orders. Both are correct — pick whichever gives smaller numbers." },
+          { t: "p", x: "If the item is put back, nothing changes between draws and the probabilities stay the same. If it is <b>not</b> replaced, both the numerator and the denominator shrink on the next draw — drawing two aces from a deck is \\( \\frac{4}{52}\\times\\frac{3}{51} \\), with one fewer ace on top and one fewer card underneath." },
+          { t: "warn", x: "Independence is an assumption, not a default. Draws without replacement are dependent, and so is anything where one outcome physically restricts the next. Multiplying probabilities that are not independent is the standard mistake here." },
+          { t: "tip", x: "For draws where order is irrelevant you may either count with combinations on top and bottom, or multiply sequential probabilities and then multiply by the number of orders. Both are correct — pick whichever keeps the numbers small." },
           { t: "eg",
             q: "A bag holds 3 red and 5 blue marbles. Two are drawn at random without replacement. What is the probability that at least one is red?",
             choices: ["3/14", "5/14", "3/8", "9/14", "11/14"],
             ans: "D",
-            why: "Go via the complement. \\(P(\\text{no red}) = \\frac{5}{8}\\times\\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}\\), so \\(P(\\text{at least one red}) = 1-\\frac{5}{14} = \\frac{9}{14}\\)."
+            why: "\"At least one\" is the cue to flip to the complement. The opposite of at least one red is <b>no reds at all</b>, which is a single case: the first draw is blue with probability \\(5/8\\), and then only 4 blues remain among 7 marbles, so the second is \\(4/7\\). That gives \\(\\frac{5}{8}\\times\\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}\\), and the answer is \\(1-\\frac{5}{14} = \\frac{9}{14}\\). Doing it directly would mean adding the exactly-one and exactly-two cases — three times the work for the same number."
+          },
+          { t: "eg",
+            q: "Two fair six-sided dice are rolled. What is the probability that the sum is 7?",
+            choices: ["1/12", "1/9", "1/6", "5/36", "7/36"],
+            ans: "C",
+            why: "Count both parts. Two dice give \\(6\\times6 = 36\\) equally likely outcomes, since each die is independent of the other. The sums of 7 come from (1,6), (2,5), (3,4), (4,3), (5,2) and (6,1) — six of them, and the pairs must be counted separately because a 2 on the first die with a 5 on the second is a different roll from the reverse. So the probability is \\(6/36 = 1/6\\). Treating the pairs as unordered gives only 3 favourable outcomes and the trap answer 1/12; 7 is in fact the most likely sum on two dice."
           }
         ]
       }

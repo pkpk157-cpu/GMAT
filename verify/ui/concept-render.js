@@ -1,4 +1,4 @@
-/* Render every concept-guide block through the app's own pipeline.
+/* Render every concept- and trick-guide block through the app's own pipeline.
 
    verify/concepts.js checks the source text; this checks what a reader actually
    sees. It mirrors blockHTML() from index.html and then runs the same KaTeX
@@ -79,7 +79,8 @@ const server = http.createServer((req, res) => {
     body.innerHTML = '<div class="cn-article"><div id="probe"></div></div>';
     const box = document.getElementById('probe');
     let blocks = 0;
-    (window.GMAT_CONCEPTS || []).forEach(g => (g.parts || []).forEach(p => {
+    const all = [...(window.GMAT_CONCEPTS || []), ...(window.GMAT_TRICKS || [])];
+    all.forEach(g => (g.parts || []).forEach(p => {
       (p.blocks || []).forEach((b, i) => {
         blocks++;
         const where = `${g.id} › ${p.id} block ${i + 1} (${b.t})`;
@@ -112,7 +113,7 @@ const server = http.createServer((req, res) => {
   });
   problems.push(...res.out);
 
-  console.log(`rendered ${res.blocks} concept blocks`);
+  console.log(`rendered ${res.blocks} concept and trick blocks`);
   console.log(`\n=== CONCEPT RENDER PROBLEMS (${problems.length}) ===`);
   console.log(problems.length ? problems.slice(0, 30).map(p => '  ' + p).join('\n') : '  none');
   if (problems.length > 30) console.log(`  …and ${problems.length - 30} more`);

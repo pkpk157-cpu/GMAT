@@ -98,7 +98,8 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
     await run(`tab ${label}: all panes`, async () => {
       await tab(i);
       const panes = await P.evaluate(() => [...document.querySelectorAll('[data-subtab]')].map(b => b.getAttribute('data-subtab')));
-      if (panes.length !== 5) note('SHAPE', `${label} has ${panes.length} panes, expected 5`);
+      if (panes.length !== 4) note('SHAPE', `${label} has ${panes.length} panes, expected 4`);
+      if (!panes.includes('tricks')) note('MISSING', `${label} has no Tricks pane`);
       for (const p of panes) {
         step = `tab ${label} / pane ${p}`;
         await click(`[data-subtab="${p}"]`);
@@ -231,62 +232,47 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
     await wait(200);
   });
 
-  /* ---- generator ---- */
-  await run('generator: build a set', async () => {
+  /* ---- tricks ---- */
+  await run('tricks reader', async () => {
+    // Every section must offer tricks, and each one must open in the shared
+    // concept reader — the pane is the only place the shortcuts are reachable.
+    for (const i of [0, 1, 3, 4]) {
+      await tab(i);
+      await click('[data-subtab="tricks"]');
+      const rows = await count('[data-openconcept]');
+      if (!rows) { note('MISSING', `no trick guides on tab ${i}`); continue; }
+      const opened = await click('[data-openconcept]', { optional: true });
+      if (!opened) { note('BROKEN', `trick guide on tab ${i} would not open`); continue; }
+      if (!(await visible('concept'))) { note('MISSING', `trick reader did not open on tab ${i}`); }
+      await click('#concept [data-cnpart]', { optional: true });
+      const txt = await P.evaluate(() => document.getElementById('cn-body').innerText || '');
+      if (txt.length < 200) note('SHAPE', `trick section on tab ${i} rendered almost nothing`);
+      if (txt.includes('\\')) note('BROKEN', `a literal backslash reached the trick reader on tab ${i}`);
+      await click('#cn-close', { optional: true });
+      await P.evaluate(() => { const e = document.getElementById('concept'); if (e) e.hidden = true; document.body.style.overflow = ''; });
+      await wait(150);
+    }
+  });
+
+  /* ---- the retired panes ---- */
+  await run('build and log panes are gone', async () => {
     await tab(0);
-    await click('[data-subtab="build"]');
-    const chips = await count('[data-gentopic]');
-    if (!chips) { note('MISSING', 'no generator topic chips'); return; }
+    for (const pane of ['build', 'log']) {
+      if (await $(`[data-subtab="${pane}"]`)) note('SHAPE', `the ${pane} sub-tab is still on the sub-nav`);
+    }
+    // A saved sub-tab pointing at a removed pane must fall back, not blank out.
     await P.evaluate(() => {
-      const c = [...document.querySelectorAll('[data-gentopic]')].slice(0, 2);
-      c.forEach(x => x.click());
+      const k = 'gmat_tracker_v2', st = JSON.parse(localStorage.getItem(k) || '{}');
+      st.subtab = Object.assign({}, st.subtab, { quant: 'build' });
+      localStorage.setItem(k, JSON.stringify(st));
     });
-    await wait(250);
-    await click('[data-gencount]', { optional: true });
-    await click('[data-gengo]', { wait: 900 });
-    const made = await P.evaluate(() => JSON.parse(localStorage.getItem('gmat_tracker_v2') || '{}').genSets?.length || 0);
-    if (!made) note('BROKEN', 'generate produced no set');
-    // it should now be listed and runnable
-    await click('[data-subtab="practice"]');
-    const gid = await P.evaluate(() => JSON.parse(localStorage.getItem('gmat_tracker_v2') || '{}').genSets?.[0]?.id || null);
-    if (gid) {
-      await click(`[data-runset="${gid}"]`, { optional: true });
-      await click('#runner [data-mode="practice"]', { optional: true });
-      await click('#runner [data-pick="A"]', { optional: true });
-      await click('#runner [data-confirm]', { optional: true });
-      await P.evaluate(() => { const r = document.getElementById('runner'); if (r) { r.hidden = true; document.body.style.overflow = ''; } });
-      await wait(200);
-      await click('[data-subtab="build"]');
-      await click(`[data-gendel="${gid}"]`, { optional: true });
-    }
-  });
-
-  await run('generator: AI panel without a key', async () => {
+    await P.reload({ waitUntil: 'load' });
+    await wait(900);
     await tab(0);
-    await click('[data-subtab="build"]');
-    if (await $('[data-genai]')) note('SHAPE', 'AI generate button offered with no key saved');
-    // RC/CR have no offline templates, so their Build pane must explain the AI path.
-    await tab(4);
-    await click('[data-subtab="build"]');
-    const cue = await P.evaluate(() => /api key/i.test(document.getElementById('view').textContent));
-    if (!cue) note('SHAPE', 'CR Build pane offers neither templates nor an API-key cue');
-  });
-
-  /* ---- log pane: logging, filters, sheet ---- */
-  await run('log pane: mark and edit', async () => {
-    await tab(0);
-    await click('[data-subtab="log"]');
-    await click('[data-mk]', { optional: true });
-    await click('[data-collapse]', { optional: true });
-    const ed = await click('[data-edit]', { optional: true });
-    if (ed) {
-      if (!(await visible('logsheet'))) note('MISSING', 'log sheet did not open');
-      await click('#logsheet [data-sa]', { optional: true });
-      await click('#logsheet [data-sc]', { optional: true });
-      await click('#logsheet [data-ssave]', { optional: true });
-      await P.evaluate(() => { const e = document.getElementById('logsheet'); if (e) e.hidden = true; });
-    }
-    await wait(200);
+    const cur = await P.evaluate(() => document.querySelector('.subnav-b.on')?.getAttribute('data-subtab') || null);
+    if (cur !== 'practice') note('BROKEN', `a saved "build" sub-tab did not fall back to practice (got ${cur})`);
+    const body = await P.evaluate(() => (document.getElementById('view').innerText || '').length);
+    if (body < 200) note('BROKEN', 'the quant tab rendered empty after a stale sub-tab');
   });
 
   /* ---- adaptive session ---- */

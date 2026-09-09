@@ -33,6 +33,7 @@ const SET_FILES = [...PAGE.matchAll(/<script src="(sets[^"]*\.js)"><\/script>/g)
 if (!SET_FILES.length) { console.error("no set files found in index.html"); process.exit(2); }
 SET_FILES.forEach(f => require(path.join(ROOT, f)));
 require(path.join(ROOT, "concepts.js"));
+require(path.join(ROOT, "tricks.js"));
 
 /* Mirror the merge index.html performs at load: expansion questions in
    sets-extra.js and whole new sets in GMAT_SETS_NEW only become part of the
@@ -48,7 +49,14 @@ const SETS = window.GMAT_SETS || [];
 (window.GMAT_SETS_NEW || []).forEach(s => {
   if (s && Array.isArray(s.questions) && s.questions.length && !SETS.some(b => b.id === s.id)) SETS.push(s);
 });
-const GUIDES = window.GMAT_CONCEPTS || [];
+/* Concept guides and trick guides are the same shape and share one reader, so
+   the structural checks below run over both. They part company in two places:
+   a trick's title is not meant to name a practice topic, and topic coverage is
+   a promise about the theory guides — a shortcut is not a substitute for the
+   section that teaches the topic. */
+const CONCEPT_GUIDES = window.GMAT_CONCEPTS || [];
+const TRICK_GUIDES = window.GMAT_TRICKS || [];
+const GUIDES = [...CONCEPT_GUIDES, ...TRICK_GUIDES];
 const problems = [], notes = [];
 const bad = (where, msg) => problems.push(`${where}: ${msg}`);
 // A strategy section ("Pacing", "How CR works") is not meant to have a practice
@@ -206,7 +214,10 @@ GUIDES.forEach(g => {
     if (!Array.isArray(p.blocks) || !p.blocks.length) return bad(pw, "part has no blocks");
     p.blocks.forEach((b, bi) => checkBlock(`${pw} block ${bi + 1}`, b));
 
-    // The practice button is wired by title keywords; report where each part lands.
+    // The practice button is wired by title keywords; report where each part
+    // lands. A trick is a technique, not a topic, so its title is not expected
+    // to match a practice set and an unmatched one is not worth reporting.
+    if (g.kind === "trick") return;
     const m = practiceMatch(p.title, g.section);
     if (!m.best) note(pw, `no practice topic matches the title — no "Ready to practice" button (fine for a strategy section)`);
     else if (m.ties > 1) note(pw, `title ties ${m.ties} practice topics at score ${m.score} ("${m.best.title}" wins on load order)`);
@@ -232,7 +243,7 @@ const SUBJECT_OF = {};   // "section::topic" -> subject name
 const coverage = {};
 [...new Set(topicSets.map(t => t.section))].forEach(sec => {
   const partWords = [];
-  GUIDES.filter(g => g.section === sec).forEach(g => g.parts.forEach(p => partWords.push(new Set(cnKeywords(p.title)))));
+  CONCEPT_GUIDES.filter(g => g.section === sec).forEach(g => g.parts.forEach(p => partWords.push(new Set(cnKeywords(p.title)))));
   if (!partWords.length) return;
   const hit = words => words.some(w => partWords.some(s => s.has(w)));
   const mine = topicSets.filter(t => t.section === sec);
@@ -242,7 +253,7 @@ const coverage = {};
 });
 
 /* ---- report ---- */
-console.log(`\nchecked ${GUIDES.length} guides, ${GUIDES.reduce((a, g) => a + (g.parts || []).length, 0)} sections`);
+console.log(`\nchecked ${GUIDES.length} guides (${CONCEPT_GUIDES.length} concept, ${TRICK_GUIDES.length} trick), ${GUIDES.reduce((a, g) => a + (g.parts || []).length, 0)} sections`);
 Object.entries(coverage).forEach(([sec, c]) => {
   console.log(`  ${sec}: ${c.total - c.uncovered.length}/${c.total} practice topics have a concept section` +
     (c.uncovered.length ? ` — missing: ${c.uncovered.map(t => `${t.title} (${t.n}q)`).join(", ")}` : ""));

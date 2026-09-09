@@ -1264,7 +1264,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v108";
+  const APP_VERSION = "v109";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -4640,13 +4640,53 @@
 /* PWA: install prompt + offline service worker with auto-update */
 (function () {
   "use strict";
+  /* Anything open on top of the app is work in progress — a concept section
+     someone is halfway through, a question mid-answer, a running mock. The
+     reader's place lives in memory, not in saved state, so reloading under it
+     throws them back to the tab page with no warning. That reads as a crash,
+     and because it only happens when an update happens to land while you are
+     reading, it looks random. So a new service worker taking over waits for a
+     moment when nothing would be lost. */
+  var OVERLAYS = ["onboard", "profile", "achv", "review", "focus", "runner",
+                  "jumper", "concept", "flash", "sess-config", "mm", "session"];
+  function busy() {
+    for (var i = 0; i < OVERLAYS.length; i++) {
+      var el = document.getElementById(OVERLAYS[i]);
+      if (el && !el.hidden) return true;
+    }
+    return false;
+  }
   if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
-    var reloaded = false;
-    navigator.serviceWorker.addEventListener("controllerchange", function () { if (reloaded) return; reloaded = true; window.location.reload(); });
+    var reloaded = false, pending = false;
+    function reloadWhenIdle() {
+      if (reloaded) return;
+      if (busy()) { pending = true; return; }   // try again when they come up for air
+      reloaded = true;
+      window.location.reload();
+    }
+    window.__gmatPendingReload = function () { return pending; };   // for the health checks
+    navigator.serviceWorker.addEventListener("controllerchange", reloadWhenIdle);
+    // Closing an overlay is a tap, so re-check after each one — but only once an
+    // update is actually waiting, and after the tap's own handler has run.
+    document.addEventListener("click", function () {
+      if (pending) setTimeout(reloadWhenIdle, 0);
+    }, true);
+    document.addEventListener("visibilitychange", function () {
+      if (pending && document.visibilityState === "visible") reloadWhenIdle();
+    });
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js").then(function (reg) {
         reg.update();
-        document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") reg.update(); });
+        // Checking on every single app switch means an update can land seconds
+        // into a study session. Hourly-ish is plenty for a page that also
+        // fetches itself network-first.
+        var last = Date.now();
+        document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState !== "visible") return;
+          if (Date.now() - last < 900000) return;
+          last = Date.now();
+          reg.update();
+        });
       }).catch(function () {});
     });
   }

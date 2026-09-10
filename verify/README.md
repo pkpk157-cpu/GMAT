@@ -112,7 +112,7 @@ filled in from memory.
 
 | Section | Questions | How verified |
 |---|---|---|
-| Quant + Data Insights | 1,546 | 1,374 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
+| Quant + Data Insights | 1,708 | 1,583 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
 | Critical Reasoning | 542 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
 | Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
 

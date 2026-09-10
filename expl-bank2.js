@@ -931,6 +931,842 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "The question \\(4z > -6\\) is \\(z > -1.5\\).\n(1) \\(z < 7\\): \\(z = 0\\) says yes, \\(z = -10\\) says no. Not sufficient.\n(2) \\(z > -1\\), and \\(-1 > -1.5\\), so every allowed \\(z\\) exceeds \\(-1.5\\). Definite yes. Sufficient.\nAnswer: B.",
   take: "Rewrite the question as a bound on z, then compare with each statement's bound."
 },
+"di-ds-436-2#1": {
+  steps: "(1) Divide both sides by 3, a positive number, so the direction is kept: \\(m > k\\). Yes. Sufficient.\n(2) Divide both sides by 2, again positive: \\(m > k\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Scaling an inequality by a positive constant changes nothing."
+},
+"di-ds-436-2#2": {
+  steps: "(1) 4 is a square, 8 is not. Not sufficient.\n(2) \\(2 \\cdot 3 \\cdot 5 \\cdot 7\\) is not a square; \\((2 \\cdot 3 \\cdot 5 \\cdot 7)^{2}\\) is. Not sufficient.\nTogether: \\(4 \\cdot 3 \\cdot 5 \\cdot 7 = 420\\) (no) and \\(210^{2}\\) (yes) both satisfy both statements. Not sufficient.\nAnswer: E.",
+  take: "A square needs every prime exponent even; neither statement controls the exponents."
+},
+"di-ds-436-2#3": {
+  steps: "(1) \\(w < z\\) with \\(z > 0\\) gives \\(w/z < 1\\). Yes. Sufficient.\n(2) \\(z = 2\\): \\(w = 1\\) yes, \\(w = 3\\) no. Not sufficient.\nAnswer: A.",
+  take: "With positive denominators, a fraction compared with 1 is just numerator compared with denominator."
+},
+"di-ds-436-2#4": {
+  steps: "(1) \\(0.85J - 0.9S = 83\\), one equation. Not sufficient.\n(2) \\(J = 140\\), no \\(S\\). Not sufficient.\nTogether \\(119 - 0.9S = 83\\), \\(S = 40\\), difference \\(100\\). Sufficient.\nAnswer: C.",
+  take: "Different discount rates mean the sale-price gap does not translate into the original-price gap by itself."
+},
+"di-ds-436-2#5": {
+  steps: "The question reduces to: is \\(x + y\\) even?\n(1) \\(x\\) has the parity of \\(z\\); \\(y\\) unknown. Not sufficient.\n(2) \\(y\\) has the parity of \\(z\\); \\(x\\) unknown. Not sufficient.\nTogether \\(x\\) and \\(y\\) share \\(z\\)'s parity, so \\(x + y\\) is even. Sufficient.\nAnswer: C.",
+  take: "Drop even terms first; then chain parities through the shared variable."
+},
+"di-ds-436-2#6": {
+  steps: "(1) \\(0 + 2 = 2\\) works, \\(0 - 2\\) and \\(0 \\times 2\\) do not: addition, so \\(1 \\,@\\, 0 = 1\\). Sufficient.\n(2) \\(2 + 0 = 2\\) and \\(2 - 0 = 2\\) both work, but \\(1 + 0 = 1 - 0 = 1\\) either way. Sufficient.\nAnswer: D.",
+  take: "Two surviving operations are fine if they agree on the value asked."
+},
+"di-ds-436-2#7": {
+  steps: "\\(x + y = 1\\), so \\(C = 8.5 - 2x\\).\n(1) \\(x < 0.85\\): could be 0.82 (no) or 0.5 (yes). Not sufficient.\n(2) \\(8.5 - 2x \\ge 7.3\\) gives \\(x \\le 0.6 < 0.8\\). Yes. Sufficient.\nAnswer: B.",
+  take: "Use the hidden constraint x + y = 1 to turn the cost into a one-variable bound."
+},
+"di-ds-436-2#8": {
+  steps: "(1) Nothing about \\(p\\). Not sufficient.\n(2) \\(n\\) and \\(p\\) have the same sign, unknown which. Not sufficient.\nTogether \\(n \\ge 0\\) and \\(n \\ne 0\\), so \\(n > 0\\) and hence \\(p > 0\\). Sufficient.\nAnswer: C.",
+  take: "\"Integer\" turns n + 1 > 0 into n ≥ 0; a product condition then removes zero."
+},
+"di-ds-436-2#9": {
+  steps: "(1) or (2) alone leaves one class unconstrained. Not sufficient.\nTogether \\(f : s : j = 1 : 2 : 4\\), \\(7k = 105\\), \\(k = 15\\), sophomores 30. Sufficient.\nAnswer: C.",
+  take: "Two ratios sharing a part combine into a three-way ratio; the total then fixes the scale."
+},
+"di-ds-436-2#10": {
+  steps: "(1) \\(25h \\ge 150\\), \\(h \\ge 6\\). Not sufficient.\n(2) \\(8p + 25h < 260\\) with \\(p \\ge 11\\): \\(25h < 172\\), \\(h \\le 6\\). Not sufficient.\nTogether \\(h = 6\\). Sufficient.\nAnswer: C.",
+  take: "Push the given lower bound on one variable into the total to squeeze the other."
+},
+"di-ds-436-2#11": {
+  steps: "(1) \\(m = 3, 9, 15, \\dots\\) Not sufficient.\n(2) \\(m\\) divides \\(15 - 6 = 9\\) and exceeds the remainder 6, so \\(m = 9\\). Sufficient.\nAnswer: B.",
+  take: "\"15 divided by m leaves 6\" means m is a divisor of 9 larger than 6."
+},
+"di-ds-436-2#12": {
+  steps: "(1) The elements in \\(A\\), \\(B\\) and \\(C\\) are exactly those of \\(A \\cap B\\) that are also in \\(C\\): 9. Sufficient.\n(2) Set sizes do not fix the triple overlap. Not sufficient.\nAnswer: A.",
+  take: "The triple overlap is a subset of every pairwise overlap; read (1) literally."
+},
+"di-ds-436-2#13": {
+  steps: "(1) 120 teachers, split unknown. Not sufficient.\n(2) 72 non-language-arts teachers, total unknown. Not sufficient.\nTogether \\(120 - 72 = 48\\), and \\(48 / 200 = 24\\%\\). Sufficient.\nAnswer: C.",
+  take: "A percent of the whole needs the whole; a raw count needs the group size."
+},
+"di-ds-436-2#14": {
+  steps: "(1) Total time \\(4 / 3.2 = 1.25\\) hours, split unknown. Not sufficient.\n(2) A difference in times, no total. Not sufficient.\nTogether \\(t_1 + (t_1 + 0.25) = 1.25\\), \\(t_1 = 0.5\\) h, speed \\(4\\) mph. Sufficient.\nAnswer: C.",
+  take: "Total time plus a time difference is two equations in the two half-times."
+},
+"di-ds-436-2#15": {
+  steps: "\\(xy + xz = x(y + z)\\).\n(1) \\(x = 0\\) makes the product 0. Sufficient.\n(2) \\(y + z = 0\\) makes it 0. Sufficient.\nAnswer: D.",
+  take: "Factor the question expression; each statement kills one factor."
+},
+"di-ds-436-2#16": {
+  steps: "(1) \\(k^{2} = 4\\) gives \\(k = 2\\) or \\(k = -2\\); both have absolute value 2, so the answer is a definite yes. Sufficient.\n(2) \\(k = -2\\) and \\(|-2| = 2\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Two candidate values are fine when the question treats them alike."
+},
+"di-ds-436-2#17": {
+  steps: "(1) Friday 11, Saturday 39, others 10, 9, 8, 7, 6 sums to 90 (no); Friday 20, Saturday 30, others 40 (yes). Not sufficient.\n(2) Saturday 38 leaves 52 for Friday plus five smaller distinct days. If Friday were at most 11 the others would be at most \\(10 + 9 + 8 + 7 + 6 = 40\\), total at most 51. So Friday is at least 12. Sufficient.\nAnswer: B.",
+  take: "\"Distinct\" plus \"maximum\" problems: maximise the other values and see if the total can still be reached."
+},
+"di-ds-436-2#18": {
+  steps: "(1) \\(y = -x\\) with \\(x \\ne 0\\): opposite signs. Yes. Sufficient.\n(2) A negative product means opposite signs. Yes. Sufficient.\nAnswer: D.",
+  take: "Sum zero (nonzero numbers) or product negative each pins opposite signs."
+},
+"di-ds-436-2#19": {
+  steps: "(1) Median of \\(T\\) unknown. Not sufficient.\n(2) \\(5m_S = 7m_T\\): equal only if both are 0, but \\(m_S = 7, m_T = 5\\) also works. Not sufficient.\nTogether \\(m_S = 0\\) forces \\(m_T = 0\\). Yes. Sufficient.\nAnswer: C.",
+  take: "For consecutive integers the sum is the median times the count."
+},
+"di-ds-436-2#20": {
+  steps: "(1) \\(-2x > 3y > 0\\), so \\(x < 0\\). Sufficient.\n(2) \\(5y = 20 - 2x\\), so \\(-10x > 3(20 - 2x) = 60 - 6x\\), giving \\(-4x > 60\\), \\(x < -15\\). Sufficient.\nAnswer: D.",
+  take: "An equation in the statement can be substituted into the stem's inequality."
+},
+"di-ds-436-2#21": {
+  steps: "(1) 3 is odd, 6 is even. Not sufficient.\n(2) If \\(n\\) is odd, \\(2n\\) has exactly twice as many divisors (each divisor \\(d\\) gives \\(d\\) and \\(2d\\)). If \\(n = 2^{a}m\\) with \\(a \\ge 1\\), the count goes from \\((a + 1)k\\) to \\((a + 2)k\\), less than double. So \\(n\\) is odd. Sufficient.\nAnswer: B.",
+  take: "The divisor-count formula (exponent + 1 products) explains why doubling doubles only for odd n."
+},
+"di-ds-436-2#22": {
+  steps: "(1) \\(p = r\\): for \\(r > 0\\), \\(\\dfrac{1}{r} > \\dfrac{r}{r^{2} + 2}\\) because \\(r^{2} + 2 > r^{2}\\); for \\(r < 0\\) both sides are negative and the inequality reverses. Not sufficient.\n(2) \\(p\\) unknown. Not sufficient.\nTogether \\(r > 0\\) and \\(p = r\\): yes. Sufficient.\nAnswer: C.",
+  take: "Cross-multiplying needs the sign of the product of the denominators; a statement giving the sign is what makes it work."
+},
+"di-ds-436-2#23": {
+  steps: "(1) \\(\\tfrac{7}{12}\\) of 12 is 7 women, so 5 men remain: \\(\\tfrac{5}{12}\\). Sufficient.\n(2) A woman left, so 5 of 12 are men: \\(\\tfrac{5}{12}\\). Sufficient.\nAnswer: D.",
+  take: "One departure changes only one count; identify which."
+},
+"di-ds-436-2#24": {
+  steps: "(1) \\(x = y\\), any positive value. Not sufficient.\n(2) \\(x = 2, y = \\tfrac12\\) says no. Not sufficient.\nTogether \\(x^{2} = 1\\), \\(x = 1\\) (positive). Sufficient.\nAnswer: C.",
+  take: "Combine a ratio and a product to isolate a square."
+},
+"di-ds-436-2#25": {
+  steps: "(1) \\(x = 2\\) gives even; \\(x = 3, y = 2\\) gives 9. Not sufficient.\n(2) \\(x = 1, y = 8\\) gives 9. Not sufficient.\nTogether \\(y\\) is a prime greater than 7, hence odd, so \\(y + 1\\) is even. Yes. Sufficient.\nAnswer: C.",
+  take: "\"Prime\" alone allows 2; \"prime and large\" forces odd."
+},
+"di-ds-436-2#26": {
+  steps: "(1) \\(\\{6\\}\\) yes, \\(\\{9\\}\\) no. Not sufficient.\n(2) Same examples. Not sufficient.\nTogether the same two sets satisfy both. Not sufficient.\nAnswer: E.",
+  take: "Find one number that dodges both restrictions and is even, and one that is odd."
+},
+"di-ds-436-2#27": {
+  steps: "(1) \\(28x = 560{,}000\\), \\(x = 20{,}000\\), D pays 60,000. Sufficient.\n(2) \\(7x - 4x = 60{,}000\\), \\(x = 20{,}000\\). Sufficient.\nAnswer: D.",
+  take: "With one unknown rate, any dollar figure tied to known scene counts is enough."
+},
+"di-ds-436-2#28": {
+  steps: "(1) \\(2k + 1\\) is odd. Yes. Sufficient.\n(2) True for every integer \\(n\\), so it says nothing. Not sufficient.\nAnswer: A.",
+  take: "A statement that is always true carries no information."
+},
+"di-ds-436-2#29": {
+  steps: "(1) 7 divides \\(3n\\); since 7 is prime and does not divide 3, it must divide \\(n\\). Yes. Sufficient.\n(2) 7 divides \\(5n\\) and not 5, so it divides \\(n\\). Yes. Sufficient.\nAnswer: D.",
+  take: "A prime dividing a product divides one of the factors."
+},
+"di-ds-436-2#30": {
+  steps: "(1) Shortest \\(s\\), longest \\(2s\\), middle \\(27 - 3s\\); any \\(s\\) between 5.4 and 6.75 works. Not sufficient.\n(2) Longest \\(= 27 - 15 = 12\\). Sufficient.\nAnswer: B.",
+  take: "A ratio between two pieces leaves the third free; a sum of the other two is direct."
+},
+"di-ds-436-2#31": {
+  steps: "(1) 36 divides \\(n^{2}\\), so 9 divides \\(n^{2}\\) and 3 divides \\(n\\). Yes. Sufficient.\n(2) \\(n^{2}\\) divides 144: \\(n = 2\\) says no, \\(n = 3\\) says yes. Not sufficient.\nAnswer: A.",
+  take: "A prime dividing \\(n^{2}\\) divides n; a divisor list must be checked case by case."
+},
+"di-ds-436-2#32": {
+  steps: "(1) \\(2b = 2c\\), so \\(b = c\\). Yes. Sufficient.\n(2) \\(c^{2} = b^{2}\\), and both are positive, so \\(b = c\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Positivity lets you take square roots without a sign split."
+},
+"di-ds-436-2#33": {
+  steps: "(1) \\(p = 5, q = 1, n = 3\\) says no; \\(n = -10\\) says yes. Not sufficient.\n(2) Nothing about \\(n\\). Not sufficient.\nTogether \\(q > p\\) makes \\(p - q < 0\\), so \\(n < p - q < 0\\) and both positive integers exceed \\(n\\). Sufficient.\nAnswer: C.",
+  take: "A bound on a difference becomes a bound on n once the sign of the difference is known."
+},
+"di-ds-436-2#34": {
+  steps: "(1) or (2) alone: one relation, many products. Not sufficient.\nTogether \\(x + 1 = x^{2} + 1\\) gives \\(x = 0\\) or \\(x = 1\\): \\(xy = 0\\) or \\(2\\). Not sufficient.\nAnswer: E.",
+  take: "Two equations can still leave two solutions when one of them is quadratic."
+},
+"di-ds-436-2#35": {
+  steps: "\\(x = -b/a\\), positive exactly when \\(a\\) and \\(b\\) have opposite signs.\n(1) \\((2, 1)\\) gives \\(x < 0\\); \\((2, -1)\\) gives \\(x > 0\\). Not sufficient.\n(2) The same pairs satisfy \\(a - b > 0\\). Not sufficient.\nTogether the same two pairs still fit. Not sufficient.\nAnswer: E.",
+  take: "Sum and difference conditions only bound a; the sign of b stays free."
+},
+"di-ds-436-2#36": {
+  steps: "(1) Same sign, could both be negative. Not sufficient.\n(2) \\(5 + (-1)\\) is positive with a negative member. Not sufficient.\nTogether the shared sign must be positive. Yes. Sufficient.\nAnswer: C.",
+  take: "Product fixes \"same sign\"; sum then picks which sign."
+},
+"di-ds-436-2#37": {
+  steps: "(1) An increase of 50 on an unknown base. Not sufficient.\n(2) The total's growth says nothing about the full-time part. Not sufficient.\nTogether the 1999 full-time count is still unknown. Not sufficient.\nAnswer: E.",
+  take: "Percent change of a subgroup needs that subgroup's starting size."
+},
+"di-ds-436-2#38": {
+  steps: "(1) \\(c\\) even, or \\(d\\) odd. Not sufficient.\n(2) \\(c\\) even, or \\(d\\) even. Not sufficient.\nTogether: if \\(c\\) were odd, (1) needs \\(d\\) odd and (2) needs \\(d\\) even, impossible. So \\(c\\) is even. Sufficient.\nAnswer: C.",
+  take: "Two \"or\" conditions can combine into a certainty by contradiction."
+},
+"di-ds-436-2#39": {
+  steps: "(1) Median below 5 means \\(n < 5\\): \\(n = -3\\) says no, \\(n = 2\\) says yes. Not sufficient.\n(2) Median above 1 means \\(n > 1\\): \\(n = 10\\) says no. Not sufficient.\nTogether \\(1 < n < 5\\), inside \\((0, 7)\\). Sufficient.\nAnswer: C.",
+  take: "Work out the median as a function of the unknown before reading the statements."
+},
+"di-ds-436-2#40": {
+  steps: "John worked \\(j\\) hours, Larry \\(7 - j\\).\n(1) \\(3j + 4(7 - j) = 25\\), \\(j = 3\\), John made 9 chairs. Sufficient.\n(2) \\(4(7 - j) > 3j\\) gives \\(j < 4\\): 6 or 9 chairs, for instance. Not sufficient.\nAnswer: A.",
+  take: "A total plus a fixed hour split is one linear equation in one unknown."
+},
+"di-ds-436-2#41": {
+  steps: "(1) A steep line through \\((2, 0)\\) misses; a nearly flat one through \\((2, 0)\\) hits. Not sufficient.\n(2) Slope alone says nothing about position. Not sufficient.\nTogether: slope \\(-\\tfrac{1}{10}\\) through \\((1.01, 0)\\) passes within 0.1 of the origin (hits); through \\((100, 0)\\) it stays about 10 away (misses). Not sufficient.\nAnswer: E.",
+  take: "Intersection depends on the line's distance from the centre; intercept and slope together still leave that free."
+},
+"di-ds-436-2#42": {
+  steps: "(1) A rate without a count. Not sufficient.\n(2) A count without a rate. Not sufficient.\nTogether \\(0.6N = 42\\), \\(N = 70\\). Sufficient.\nAnswer: C.",
+  take: "Part = rate × whole; two of the three are needed."
+},
+"di-ds-436-2#43": {
+  steps: "(1) An odd sum means one of \\(x, z\\) is even and the other odd, so at least one is even. Yes. Sufficient.\n(2) An odd difference means the same thing: different parity, so one is even. Yes. Sufficient.\nAnswer: D.",
+  take: "x + z and x − z always share parity; an odd one means mixed parity."
+},
+"di-ds-436-2#44": {
+  steps: "(1) 20 families have no car; televisions unknown. Not sufficient.\n(2) The overlap alone. Not sufficient.\nTogether: 10 car owners lack a TV, and the 20 car-less families could own anywhere from 0 to 20 televisions. Not sufficient.\nAnswer: E.",
+  take: "Neither = no-car families without TV; the TV count among the car-less is never given."
+},
+"di-ds-436-2#45": {
+  steps: "(1) \\(y\\) could be 2 or 6 (and \\(x/y\\) need not even be in lowest terms). Not sufficient.\n(2) \\(x = 1\\), \\(y\\) free. Not sufficient.\nTogether \\(\\tfrac12\\) and \\(\\tfrac16\\) both fit. Not sufficient.\nAnswer: E.",
+  take: "An LCD pins the denominator only up to the divisors it shares."
+},
+"di-ds-436-2#46": {
+  steps: "(1) \\(s = k, p = 5k\\). Not sufficient.\n(2) \\(p - s = 16\\). Not sufficient.\nTogether \\(4k = 16\\), \\(k = 4\\), total 24. Sufficient.\nAnswer: C.",
+  take: "Ratio plus difference is the standard pair for two unknowns."
+},
+"di-ds-436-2#47": {
+  steps: "Let \\(d = \\dots a.bc\\dots\\) with \\(c\\) the hundredths digit.\n(1) \\(10d = \\dots ab.c\\dots\\), so its tenths digit is \\(c = 7 > 5\\). Sufficient.\n(2) \\(d/10 = \\dots 0.abc\\dots\\), so its thousandths digit is \\(c = 7\\). Sufficient.\nAnswer: D.",
+  take: "Track one named digit through the shift; both statements point at the same digit."
+},
+"di-ds-436-2#48": {
+  steps: "(1) or (2) alone: one equation. Not sufficient.\nTogether adding gives \\(8(x + y) = 128\\), so \\(x + y = 16\\) and \\(2x + 2y = 32\\). Sufficient.\nAnswer: C.",
+  take: "Symmetric coefficients add straight to the combination asked for."
+},
+"di-ds-436-2#49": {
+  steps: "(1) Bill 15 gives tip 2 (13%, no); bill 20 gives tip 4 (20%, yes). Not sufficient.\n(2) Tens digit 4, bill 40 to 49; \\(8/49 \\approx 16.3\\% > 15\\%\\). Yes. Sufficient.\nAnswer: B.",
+  take: "Check the worst case in the range the statement allows."
+},
+"di-ds-436-2#50": {
+  steps: "Profit \\(= 60{,}000 - t\\).\n(1) \\(1000(k + 60) = 150{,}000\\) gives \\(k = 90\\); \\(t\\) unknown. Not sufficient.\n(2) \\(500k = 45{,}000\\) gives \\(k = 90\\); \\(t\\) unknown. Not sufficient.\nTogether still no \\(t\\). Not sufficient.\nAnswer: E.",
+  take: "Simplify the target first; the variable that survives (t) is the one to look for in the statements."
+},
+"di-ds-436-2#51": {
+  steps: "(1) Only addition and multiplication commute, and both are associative. Yes. Sufficient.\n(2) \\(2 + 0 = 2\\) (associative) and \\(2 - 0 = 2\\) (not). Not sufficient.\nAnswer: A.",
+  take: "Narrow the operation set with the statement, then test the property on every survivor."
+},
+"di-ds-436-2#52": {
+  steps: "(1) \\(x < 0\\) gives \\(|x| = -x\\), so \\(y = 0\\). Sufficient.\n(2) \\(y \\ge 0\\) always; an integer below 1 that is at least 0 is 0. Sufficient.\nAnswer: D.",
+  take: "Know the shape of |x| + x: it is 0 on the left and 2x on the right."
+},
+"di-ds-436-2#53": {
+  steps: "(1) \\(n + 4 \\ge 5\\); the only even prime is 2, so \\(n + 4\\) is odd and \\(n\\) is odd. Sufficient.\n(2) \\(n = 1\\) (4 not prime) is odd; \\(n = 6\\) (9 not prime) is even. Not sufficient.\nAnswer: A.",
+  take: "\"Prime and at least 3\" means odd."
+},
+"di-ds-436-2#54": {
+  steps: "(1) Greatest and smallest share a sign, so every integer does and none is 0. All positive gives yes; an odd number of negatives gives no. Not sufficient.\n(2) \\(\\{-1, 2\\}\\) no, \\(\\{1, 2\\}\\) yes. Not sufficient.\nTogether: all positive, or an even number of negatives; either way positive. Sufficient.\nAnswer: C.",
+  take: "Sign of a product: count negatives and check for zero; (1) removes zero and mixed signs."
+},
+"di-ds-436-2#55": {
+  steps: "(1) \\(S = 0.9 \\times 6p = 5.4p\\). Not sufficient.\n(2) \\(S = 5p + 20\\). Not sufficient.\nTogether \\(5.4p = 5p + 20\\), \\(p = 50\\), \\(S = 270\\). Sufficient.\nAnswer: C.",
+  take: "Each statement links the set price to the single price; two links solve both."
+},
+"di-ds-436-2#56": {
+  steps: "The question asks whether \\(k > 0\\).\n(1) \\(k - 1 > 0\\), so \\(k > 1 > 0\\). Yes. Sufficient.\n(2) \\(k > -1\\): \\(k = -\\tfrac12\\) says no, \\(k = 2\\) says yes. Not sufficient.\nAnswer: A.",
+  take: "A reciprocal is positive exactly when its denominator is."
+},
+"di-ds-436-2#57": {
+  steps: "The question asks whether \\(k\\) is composite.\n(1) 25 is composite, 29 is prime. Not sufficient.\n(2) \\(k = 13! + j\\) with \\(2 \\le j \\le 13\\); \\(j\\) divides both terms, so \\(j\\) is a proper factor. Yes. Sufficient.\nAnswer: B.",
+  take: "n! + j is a multiple of j for 2 ≤ j ≤ n: a run of guaranteed composites."
+},
+"di-ds-436-2#58": {
+  steps: "\\(n = 13, 38, 63, 88, 113, \\dots\\)\n(1) Four candidates. Not sufficient.\n(2) \\(n \\equiv 3 \\pmod{20}\\): 63, 163, 263, … Not sufficient.\nTogether \\(n = 63\\). Sufficient.\nAnswer: C.",
+  take: "Two remainder conditions fix n modulo the LCM (100); a size cap then picks one."
+},
+"di-ds-436-2#59": {
+  steps: "(1) \\(y = 0\\) allows any \\(x\\). Not sufficient.\n(2) \\(0 \\le |x - 3| \\le -y \\le 0\\), so \\(|x - 3| = 0\\) and \\(x = 3\\). Sufficient.\nAnswer: B.",
+  take: "|expression| ≤ (something ≤ 0) forces the expression to be zero."
+},
+"di-ds-436-2#60": {
+  steps: "(1) Evenly spaced, so mean = median, but no number. Not sufficient.\n(2) Median 33, spacing unknown. Not sufficient.\nTogether mean = median = 33. Sufficient.\nAnswer: C.",
+  take: "For an evenly spaced set the median is the mean; either statement alone lacks half of that."
+},
+"di-ds-436-2#61": {
+  steps: "With the order given, \\(|y - a| = y - a\\) and \\(|y - b| = b - y\\).\n(1) \\(z\\) is closer to \\(a\\) than to \\(b\\); \\(y\\) is even further left, so \\(y\\) is too. Yes. Sufficient.\n(2) \\(y - a < b - z < b - y\\) because \\(z > y\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Draw the four points; absolute values drop once the order is known."
+},
+"di-ds-436-2#62": {
+  steps: "Same quadrant means \\(-a, -b\\) share a sign and \\(b, a\\) share a sign: \\(a\\) and \\(b\\) have the same sign. \\((-x, y)\\) is in that quadrant exactly when \\(x\\) and \\(y\\) both have the sign of \\(a\\).\n(1) \\(x, y\\) share a sign, unknown which. Not sufficient.\n(2) \\(x\\) has the sign of \\(a\\); \\(y\\) unknown. Not sufficient.\nTogether both match. Sufficient.\nAnswer: C.",
+  take: "Translate quadrant membership into sign conditions on each coordinate."
+},
+"di-ds-436-2#63": {
+  steps: "(1) \\(q = 11\\) gives 6, \\(q = 12\\) gives 5. Not sufficient.\n(2) \\(q \\in \\{2, 4, 8, 16\\}\\); \\(17 = 16 + 1\\) leaves remainder 1 for each. Sufficient.\nAnswer: B.",
+  take: "One more than a power of 2 leaves remainder 1 on division by any smaller power of 2."
+},
+"di-ds-436-2#64": {
+  steps: "(1) \\(F = 2.5S\\), ratio \\(5 : 2\\). Sufficient.\n(2) \\(F = S + 1.5\\): \\(S = 1\\) gives \\(5 : 2\\), \\(S = 3\\) gives \\(3 : 2\\). Not sufficient.\nAnswer: A.",
+  take: "\"Percent of\" gives the ratio directly; \"more than\" needs an absolute amount to become a ratio."
+},
+"di-ds-436-2#65": {
+  steps: "(1) \\(P = E/3\\), so \\(R = E + E/3 = 4E/3\\) and \\(P/R = \\tfrac14 = 25\\%\\). Sufficient.\n(2) \\(E = \\tfrac34 R\\), so \\(P = \\tfrac14 R\\): 25%. Sufficient.\nAnswer: D.",
+  take: "Three quantities linked by one equation: a ratio of any two fixes all ratios."
+},
+"di-ds-436-2#66": {
+  steps: "(1) \\(2d = 3c - 0.10\\). Not sufficient.\n(2) \\(d + c = 0.70\\). Not sufficient.\nTogether \\(d = 0.40, c = 0.30\\) and \\(0.4x + 0.3y = 6\\), i.e. \\(4x + 3y = 60\\): \\((x, y) = (12, 4), (9, 8), (6, 12), (3, 16)\\). Not sufficient.\nAnswer: E.",
+  take: "Knowing the prices is not the same as knowing the counts; check the integer solutions."
+},
+"di-ds-436-2#67": {
+  steps: "(1) First nine average 7, so they are 3 to 11 and the eleven are 3 to 13: average 8. Sufficient.\n(2) Last nine average 9, so 5 to 13; the eleven are 3 to 13: average 8. Sufficient.\nAnswer: D.",
+  take: "Any sub-run's average locates the whole run."
+},
+"di-ds-436-2#68": {
+  steps: "(1) \\(t = \\tfrac94 = 2.25\\), so the greatest integer below \\(t\\) is 2. Sufficient.\n(2) Squaring removes the sign: \\(t = \\tfrac94 = 2.25\\) again, greatest integer below it 2. Sufficient.\nAnswer: D.",
+  take: "A statement that pins t pins any function of t."
+},
+"di-ds-436-2#69": {
+  steps: "(1) Supporters: \\(1350\\) Democrats, \\(2000\\) Republicans; sex unknown. Not sufficient.\n(2) Fractions without counts. Not sufficient.\nTogether \\(450 + 1000 = 1450\\). Sufficient.\nAnswer: C.",
+  take: "Layered fractions: each layer needs the count from the layer above."
+},
+"di-ds-436-2#70": {
+  steps: "(1) \\(n\\) odd: \\(n - 1\\) and \\(n + 1\\) are consecutive even numbers, product divisible by 8. Yes. Sufficient.\n(2) \\(n = 2\\): \\(n^{2} + n = 6\\) but \\(n^{3} - n = 6\\) (no); \\(n = 3\\): 12 and 24 (yes). Not sufficient.\nAnswer: A.",
+  take: "Factor first; consecutive integers carry guaranteed factors."
+},
+"di-ds-436-2#71": {
+  steps: "(1) or (2) alone leaves the other variable free. Not sufficient.\nTogether \\(x = 1, y = -\\tfrac12\\): \\(\\tfrac{1.5}{0.5} = 3 > 1\\) (yes); \\(x = 1, y = -2\\): \\(\\tfrac{3}{-1} = -3\\) (no). Not sufficient.\nAnswer: E.",
+  take: "The sign of x + y matters; opposite-signed x and y do not fix it."
+},
+"di-ds-436-2#72": {
+  steps: "(1) 500 cars, \\(x\\) unknown. Not sufficient.\n(2) \\((E + 60)x = 28{,}000\\), two unknowns. Not sufficient.\nTogether \\(560x = 28{,}000\\), \\(x = 50\\), expected \\(500 \\times 50 = 25{,}000\\). Sufficient.\nAnswer: C.",
+  take: "\"More than expected\" statements need the expected count to become an equation in x."
+},
+"di-ds-436-2#73": {
+  steps: "(1) A larger share of a possibly smaller total. Not sufficient.\n(2) A larger total, possibly all bonds. Not sufficient.\nTogether stock shares = ratio × total, and both increased. Yes. Sufficient.\nAnswer: C.",
+  take: "A product of two increasing positive quantities increases."
+},
+"di-ds-436-2#74": {
+  steps: "(1) \\(y - z = -x\\); \\(|x| = -x\\) holds only for \\(x \\le 0\\), unknown. Not sufficient.\n(2) \\(y, z\\) unknown. Not sufficient.\nTogether \\(x < 0\\) gives \\(|x| = -x = y - z\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Rewrite the target with the statement's equation; the remaining condition is a sign."
+},
+"di-ds-436-2#75": {
+  steps: "(1) \\(x < 0\\): even \\(n\\) gives \\(x^{n} > 0\\) (no), odd \\(n\\) gives yes. Not sufficient.\n(2) \\(n\\) odd: sign of \\(x\\) unknown. Not sufficient.\nTogether \\(x^{n} < 0\\), so \\(-3x^{n} > 0\\). Sufficient.\nAnswer: C.",
+  take: "A power is negative only for a negative base and an odd exponent."
+},
+"di-ds-436-2#76": {
+  steps: "Squares: 4, 9, 16, 25, 36, 49, 64, 81.\n(1) Even: 4, 16, 36, 64. Not sufficient.\n(2) Also a perfect cube: only 64 (a sixth power). Sufficient.\nAnswer: B.",
+  take: "Square and cube together means a sixth power; 64 is the only one in range."
+},
+"di-ds-436-2#77": {
+  steps: "\\(\\gcd(x, y) = \\gcd(8y + 12, y) = \\gcd(12, y)\\).\n(1) \\(y = 3\\) gives \\(x = 36\\), GCD 3; \\(y = 6\\) gives \\(x = 60\\), GCD 6. Not sufficient.\n(2) \\(y\\) is a multiple of 12, so \\(\\gcd(12, y) = 12\\). Sufficient.\nAnswer: B.",
+  take: "Euclid: gcd(ay + b, y) = gcd(b, y)."
+},
+"di-ds-436-2#78": {
+  steps: "(1) \\(8r + 6d = 500\\). Not sufficient.\n(2) \\(16r + 12d = 1000\\), the same equation. Not sufficient.\nTogether nothing new. Not sufficient.\nAnswer: E.",
+  take: "Proportional equations are one equation."
+},
+"di-ds-436-2#79": {
+  steps: "(1) Same sign, unknown which. Not sufficient.\n(2) \\(x = -1, y = 5\\) says no. Not sufficient.\nTogether the common sign must be positive. Yes. Sufficient.\nAnswer: C.",
+  take: "Product fixes agreement of signs; sum picks the sign."
+},
+"di-ds-436-2#80": {
+  steps: "(1) The second half's speed is unknown. Not sufficient.\n(2) \\(\\dfrac{400}{v} - \\dfrac{400}{v + 20} = 1\\) gives \\(v^{2} + 20v - 8000 = 0\\), \\(v = 80\\), time 5 hours. Sufficient.\nAnswer: B.",
+  take: "A \"would have taken one hour less\" clause is a complete equation in the speed."
+},
+"di-ds-436-2#81": {
+  steps: "(1) Many mixes reach 9,500. Not sufficient.\n(2) Ten offices, the rest unknown. Not sufficient.\nTogether 6,000 square feet remain: 20 offices of 300 or 30 of 200 (or mixes). Not sufficient.\nAnswer: E.",
+  take: "An area total does not fix a count when sizes differ."
+},
+"di-ds-436-2#82": {
+  steps: "(1) 6 says no, 12 says yes. Not sufficient.\n(2) 4 says no, 12 says yes. Not sufficient.\nTogether \\(n\\) is a multiple of \\(\\text{lcm}(6, 4) = 12\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Divisible by both a and b means divisible by their LCM, not their product."
+},
+"di-ds-436-2#83": {
+  steps: "(1) Girls unknown. Not sufficient.\n(2) Boys unknown. Not sufficient.\nTogether: boys half the group gives \\(35\\% + 30\\% = 65\\%\\) (yes); boys a tenth gives \\(7\\% + 30\\% = 37\\%\\) (no). Not sufficient.\nAnswer: E.",
+  take: "A percent of a subgroup and a percent of the whole cannot be added without the subgroup's size."
+},
+"di-ds-436-2#84": {
+  steps: "(1) 20 says no, 60 says yes. Not sufficient.\n(2) \\(n\\) is a multiple of 3: 3 says no, 15 says yes. Not sufficient.\nTogether multiples of 5 and 3, hence of 15. Sufficient.\nAnswer: C.",
+  take: "Split 15 into 3 and 5 and collect one from each statement."
+},
+"di-ds-436-2#85": {
+  steps: "Factor the numerator: \\(\\dfrac{a(x + y)}{x + y} = a\\), because \\(x + y \\ne 0\\) lets the common factor cancel.\n(1) \\(x\\) and \\(y\\) are irrelevant and \\(a\\) is unknown. Not sufficient.\n(2) \\(a = 6\\), so the expression is 6. Sufficient.\nAnswer: B.",
+  take: "Simplify the expression before judging which variables matter."
+},
+"di-ds-436-2#86": {
+  steps: "(1) \\(\\dfrac{p}{3r} = \\dfrac59\\), so \\(\\dfrac{p}{r} = \\dfrac{15}{9} = \\dfrac53\\). Sufficient.\n(2) A sum gives no ratio. Not sufficient.\nAnswer: A.",
+  take: "A ratio to a multiple of r is still a ratio to r."
+},
+"di-ds-436-2#87": {
+  steps: "(1) \\(a^{2} + b^{2}\\) still unknown. Not sufficient.\n(2) One equation. Not sufficient.\nTogether \\((a - b)(a + b) = 16\\) gives \\(a - b = 2\\), so \\(a = 5, b = 3\\) and \\(a^{4} - b^{4} = 625 - 81 = 544\\). Sufficient.\nAnswer: C.",
+  take: "Difference of squares twice; the two statements pin a and b."
+},
+"di-ds-436-2#88": {
+  steps: "(1) Nothing about \\((u, v)\\). Not sufficient.\n(2) \\(u^{2} + v^{2} = r^{2} + s^{2} + 2 - 2(r + s)\\); equal exactly when \\(r + s = 1\\), unknown. Not sufficient.\nTogether \\(r + s = 1\\) makes the distances equal. Yes. Sufficient.\nAnswer: C.",
+  take: "Equidistant from the origin means equal sums of squares; expand and compare."
+},
+"di-ds-436-2#89": {
+  steps: "(1) or (2) alone describes one set only. Not sufficient.\nTogether \\(X = \\{1, 3, 5, 7, 9\\}\\) against \\(Y = \\{10, 12, 14\\}\\) says no; \\(X = \\{11, \\dots, 19\\}\\) says yes. Not sufficient.\nAnswer: E.",
+  take: "Upper bounds on both sets do not order their maxima."
+},
+"di-ds-436-2#90": {
+  steps: "(1) 32% lies outside, split evenly by symmetry: 16% above \\(m + d\\). Sufficient.\n(2) The lower tail is 16%, so the upper tail is 16%. Sufficient.\nAnswer: D.",
+  take: "Symmetric distribution: one tail, or the central band, determines the other tail."
+},
+"di-ds-436-2#91": {
+  steps: "\\(x = 2\\) or \\(x = -6\\).\n(1) \\(x^{2} \\ne 4\\) rules out 2: \\(x = -6\\). Sufficient.\n(2) \\(x^{2} = 36\\) rules out 2: \\(x = -6\\). Sufficient.\nAnswer: D.",
+  take: "Solve the stem's absolute value first; then each statement only has to pick between two values."
+},
+"di-ds-436-2#92": {
+  steps: "(1) \\(vw - v^{2} = v(w - v) = 0\\); since \\(w \\ne v\\), \\(v = 0\\). Yes. Sufficient.\n(2) \\(v\\) could be 0 or 5. Not sufficient.\nAnswer: A.",
+  take: "Do not divide by v; factor and use the \"different\" condition."
+},
+"di-ds-436-2#93": {
+  steps: "The left side is \\(|5 - x|\\), equal to \\(5 - x\\) exactly when \\(x \\le 5\\).\n(1) \\(-x|x| > 0\\) forces \\(x < 0\\), so \\(x \\le 5\\). Yes. Sufficient.\n(2) \\(x < 5\\). Yes. Sufficient.\nAnswer: D.",
+  take: "The square root of a square is an absolute value; the question is a sign question."
+},
+"di-ds-436-2#94": {
+  steps: "(1) or (2) alone: no value. Not sufficient.\nTogether the three smallest are below 10 and the other four above, so the median (4th) is some number above 10: 11 or 50. Not sufficient.\nAnswer: E.",
+  take: "Knowing which side of 10 the median lies on is not knowing the median."
+},
+"di-ds-436-2#95": {
+  steps: "(1) or (2) alone: the other variable is free. Not sufficient.\nTogether \\(x + y < \\tfrac89 + \\tfrac18 = \\tfrac{73}{72}\\), which exceeds 1, so \\(x = 0.88, y = 0.12\\) gives a sum of exactly 1 (no) while small values give yes. Not sufficient.\nAnswer: E.",
+  take: "Add the bounds; if the combined bound passes the target, both answers survive."
+},
+"di-ds-436-2#96": {
+  steps: "(1) The new home's price is unknown. Not sufficient.\n(2) A ratio, no amount. Not sufficient.\nTogether \\(0.005(169{,}500 + 203{,}400) = 1{,}864.50\\). Sufficient.\nAnswer: C.",
+  take: "Identify every payment the person makes, then check which statements price each one."
+},
+"di-ds-436-2#97": {
+  steps: "(1) No activity given. Not sufficient.\n(2) Starting balance and deposits unknown. Not sufficient.\nTogether: withdrawing 2,000 from 1,500 with no deposits drops below 1,000 (yes); depositing 5,000 first keeps it above (no). Not sufficient.\nAnswer: E.",
+  take: "\"At any time during the month\" depends on the order of deposits and withdrawals."
+},
+"di-ds-436-2#98": {
+  steps: "(1) A rate only. Not sufficient.\n(2) An amount only. Not sufficient.\nTogether \\(0.15F = 6\\), \\(F = 40\\). Sufficient.\nAnswer: C.",
+  take: "Percent and amount of the same tip together give the base."
+},
+"di-ds-436-2#99": {
+  steps: "(1) Many numbers. Not sufficient.\n(2) Many numbers. Not sufficient.\nTogether 127, 136, 145, 235 all qualify. Not sufficient.\nAnswer: E.",
+  take: "Enumerate; a digit-sum plus an ordering still leaves several candidates."
+},
+"di-ds-436-2#100": {
+  steps: "The question is whether \\(a > 0\\).\n(1) \\(a \\ne 0\\), sign unknown. Not sufficient.\n(2) \\(a = \\pm\\sqrt{13 - b}\\). Not sufficient.\nTogether \\(a = 3, b = 4\\) (yes) and \\(a = -3, b = 4\\) (no). Not sufficient.\nAnswer: E.",
+  take: "Statements built on \\(a^{2}\\) never reveal the sign of a."
+},
+"di-ds-436-2#101": {
+  steps: "(1) Equal interest, but X's rate is unknown. Not sufficient.\n(2) X's rate only. Not sufficient.\nTogether \\(0.07Y = 0.05(24{,}000 - Y)\\), \\(0.12Y = 1{,}200\\), \\(Y = 10{,}000\\). Sufficient.\nAnswer: C.",
+  take: "\"Same interest\" is an equation only once both rates are known."
+},
+"di-ds-436-2#102": {
+  steps: "(1) The left side is \\(-2\\) and \\(x^{2} \\ge 0\\). Yes. Sufficient.\n(2) \\(x > 2\\) gives \\(x^{2} > 2x\\), and \\(y > 0\\) gives \\(2x - 3y < 2x\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Bound each side separately; a chain of inequalities often settles a yes/no question."
+},
+"di-ds-436-2#103": {
+  steps: "\\(xy = 6\\), so \\(x = 6/y\\).\n(1) \\(y \\ge 3\\) gives \\(x \\le 2 < y\\). Yes. Sufficient.\n(2) \\(y = 1\\) gives \\(x = 6\\) (no); \\(y = 3\\) gives \\(x = 2\\) (yes). Not sufficient.\nAnswer: A.",
+  take: "Cross-multiply the stem, then express the compared variable in terms of the bounded one."
+},
+"di-ds-436-2#104": {
+  steps: "(1) Six pencils in any mix. Not sufficient.\n(2) \\(23x + 21y = 130\\): \\(x = 2\\) gives \\(21y = 84\\), \\(y = 4\\); no other \\(x\\) from 0 to 5 leaves a multiple of 21. Sufficient.\nAnswer: B.",
+  take: "Enumerate small integer solutions before dismissing a single equation."
+},
+"di-ds-436-2#105": {
+  steps: "(1) \\(y < 3.5x\\): \\(y\\) can be negative. Not sufficient.\n(2) \\(y > -x\\): \\(y = -1, x = 2\\) fits. Not sufficient.\nTogether \\(x = 2, y = -1\\) (no) and \\(x = 2, y = 1\\) (yes) both fit. Not sufficient.\nAnswer: E.",
+  take: "Bounds that leave a window around zero for y cannot decide its sign."
+},
+"di-ds-436-2#106": {
+  steps: "\\(m + n = mn + 1\\) is the same as \\((m - 1)(n - 1) = 0\\): one of them is 1.\n(1) \\(m = 1\\). Yes. Sufficient.\n(2) A prime factors only as \\(1 \\times k\\), so one of \\(m, n\\) is 1. Yes. Sufficient.\nAnswer: D.",
+  take: "Rearrange the question into a factored form before reading the statements."
+},
+"di-ds-436-2#107": {
+  steps: "(1) X is not in the top 4; it could be 5th or 50th. Not sufficient.\n(2) 4.8% could be 6th or outside. Not sufficient.\nTogether the 5th and 6th paid \\(67.8 - 56 = 11.8\\%\\). X as 6th with the 5th at 7% works; X as 7th with 5th and 6th at 6% and 5.8% also works. Not sufficient.\nAnswer: E.",
+  take: "Construct both rankings explicitly; a share of the total does not fix a rank."
+},
+"di-ds-436-2#108": {
+  steps: "\\(x = y(-2 - z)\\).\n(1) \\(z = -3\\) gives \\(x = y\\), either sign. Not sufficient.\n(2) \\(y > 0\\): \\(z = -3\\) gives \\(x > 0\\), \\(z = 0\\) gives \\(x < 0\\). Not sufficient.\nTogether \\(z = -3, y = 1\\) says yes; \\(z = -1, y = 1\\) says no. Not sufficient.\nAnswer: E.",
+  take: "\"Negative\" is not a magnitude; −2 − z changes sign at z = −2."
+},
+"di-ds-436-2#109": {
+  steps: "In each list the two remaining integers sum to 80.\n(1) \\(S = \\{25, 30, 40, 50, 55\\}\\); \\(T\\) could be \\(\\{30, 40, 40, 40, 50\\}\\) (smaller spread) or \\(\\{10, 30, 40, 50, 70\\}\\) (larger). Not sufficient.\n(2) \\(T = \\{30, 35, 40, 45, 50\\}\\); \\(S\\) unknown. Not sufficient.\nTogether \\(S\\) has deviations 15, 10, 0, 10, 15 and \\(T\\) has 10, 5, 0, 5, 10: \\(S\\) is more spread. Yes. Sufficient.\nAnswer: C.",
+  take: "Same mean: compare spreads by the deviations, no formula needed."
+},
+"di-ds-436-2#110": {
+  steps: "Distance \\(= |3x - 2x| = |x|\\).\n(1) \\(|x - (-x)| = 2|x| = 16\\), so \\(|x| = 8\\). Sufficient.\n(2) \\(|3x - x| = 2|x| = 16\\), \\(|x| = 8\\). Sufficient.\nAnswer: D.",
+  take: "Distances are absolute values; the sign of x never matters here."
+},
+"di-ds-436-2#111": {
+  steps: "(1) \\(n = k^{3} + 3k^{2} + 3k + 1\\) leaves remainder 1 (since \\(k > 1\\)). Sufficient.\n(2) \\(n\\) unknown. Not sufficient.\nAnswer: A.",
+  take: "(k + 1) to any power is 1 more than a multiple of k."
+},
+"di-ds-436-2#112": {
+  steps: "(1) \\(x = 3\\) yes, \\(x = -3\\) no. Not sufficient.\n(2) Wide open. Not sufficient.\nTogether both \\(\\pm 3\\) are below 10. Not sufficient.\nAnswer: E.",
+  take: "Never forget the negative root of a squared equation."
+},
+"di-ds-436-2#113": {
+  steps: "(1) \\(\\tfrac14 R = 25{,}000\\), so 75,000 voted; the winner's share is unknown. Not sufficient.\n(2) A percentage without a count. Not sufficient.\nTogether \\(0.55 \\times 75{,}000 = 41{,}250\\). Sufficient.\nAnswer: C.",
+  take: "The complement count gives the total; the percentage then gives the part."
+},
+"di-ds-436-2#114": {
+  steps: "(1) Greatest 20 means 15 to 20: \\(n = 300\\). Sufficient.\n(2) Mean 17.5 is the midpoint of 15 to 20: \\(n = 300\\). Sufficient.\nAnswer: D.",
+  take: "For consecutive integers, one anchor (an endpoint or the mean) fixes the whole run."
+},
+"di-ds-436-2#115": {
+  steps: "(1) 19 vs 21 says no, 29 vs 21 says yes. Not sufficient.\n(2) A larger tens digit means a larger number whatever the units digits. Yes. Sufficient.\nAnswer: B.",
+  take: "Compare place values from the left; the first difference decides."
+},
+"di-ds-436-2#116": {
+  steps: "(1) \\(n\\) odd: \\(n^{2} - 1\\) is a multiple of 8; \\(n = 3\\) gives 8, \\(n = 5\\) gives 0. Not sufficient.\n(2) \\(n = 2\\) gives 3, \\(n = 5\\) gives 0. Not sufficient.\nTogether \\(n^{2} - 1\\) is a multiple of 24: \\(r = 0\\). Sufficient.\nAnswer: C.",
+  take: "\\(n^{2} - 1\\) is divisible by 24 for every n coprime to 6."
+},
+"di-ds-436-2#117": {
+  steps: "(1) \\(n \\equiv 2 \\pmod{15}\\); \\(t\\) is 3, 8 or 13 mod 15, giving products 6, 1, 11. Not sufficient.\n(2) \\(t \\equiv 3 \\pmod{15}\\); \\(n\\) is 2, 5 or 8 mod 15, giving 6, 0, 9. Not sufficient.\nTogether \\(nt \\equiv 2 \\times 3 = 6\\). Sufficient.\nAnswer: C.",
+  take: "A remainder mod 15 needs remainders mod 3 and mod 5 for each factor."
+},
+"di-ds-436-2#118": {
+  steps: "(1) 180 four-person units, occupancy unknown. Not sufficient.\n(2) 80% full, count unknown. Not sufficient.\nTogether \\(0.8 \\times 180 \\times 4 = 576\\). Sufficient.\nAnswer: C.",
+  take: "Count × occupancy rate × capacity; each statement supplies one missing factor."
+},
+"di-ds-436-2#119": {
+  steps: "(1) \\(2 + k = 3\\) gives \\(k = 1\\); \\(2k = 3\\) is impossible for an integer. So \\(3 + 1 = 4\\). Sufficient.\n(2) Addition gives \\(k = 1\\), \\(3 + 1 = 4\\); multiplication gives \\(k = 0\\), \\(3 \\times 0 = 0\\). Not sufficient.\nAnswer: A.",
+  take: "Use the integer restriction to eliminate an operation."
+},
+"di-ds-436-2#120": {
+  steps: "(1) Different parity, so one is even and the product is even. Sufficient.\n(2) \\(r = 3, t = 1\\) gives an odd quotient and odd product; \\(r = 6, t = 2\\) gives quotient 3 and even product. Not sufficient.\nAnswer: A.",
+  take: "Parity of a quotient does not transfer to the numbers themselves."
+},
+"di-ds-436-2#121": {
+  steps: "(1) The overall rate equals the male rate, so the female rate is also \\(\\tfrac25\\); no count. Not sufficient.\n(2) 200 female business majors, rate unknown. Not sufficient.\nTogether \\(\\tfrac25 F = 200\\), \\(F = 500\\). Sufficient.\nAnswer: C.",
+  take: "A weighted average equal to one group's rate forces the other group to the same rate."
+},
+"di-ds-436-2#122": {
+  steps: "The question is whether \\(2y < x + z\\).\n(1) \\(2y < x + z\\) directly. Yes. Sufficient.\n(2) \\(2z - 2y > z - x\\) gives \\(z + x > 2y\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Clear fractions and collect terms; a statement may be the question in disguise."
+},
+"di-ds-436-2#123": {
+  steps: "(1) \\(t \\equiv 6\\): \\((t + 2)(t + 3) \\equiv 1 \\times 2 = 2\\). Sufficient.\n(2) \\(t^{2} \\equiv 1\\) allows \\(t \\equiv 1\\) (giving \\(3 \\times 4 = 12 \\equiv 5\\)) or \\(t \\equiv 6\\) (giving 2). Not sufficient.\nAnswer: A.",
+  take: "A remainder for \\(t^{2}\\) leaves two residues for t; check both."
+},
+"di-ds-436-2#124": {
+  steps: "(1) \\(20 - 10 = 10\\) odd. Sufficient.\n(2) The other 10 could be odd, or even non-multiples of 4. Not sufficient.\nAnswer: A.",
+  take: "\"Multiple of 4\" is a subset of even; the complement is not \"odd\"."
+},
+"di-ds-436-2#125": {
+  steps: "(1) \\(w = -5, x = 1, y = -2\\) says no; \\(w = 1, x = -2, y = -3\\) says yes. Not sufficient.\n(2) \\(y < w\\), so \\(w - y > 0\\). Yes. Sufficient.\nAnswer: B.",
+  take: "A chain of inequalities answers any comparison between its members."
+},
+"di-ds-436-2#126": {
+  steps: "(1) or (2) alone: one club only. Not sufficient.\nTogether: with no overlap, \\(25/36\\); if the 10 male musicians are all also in drama, the combined club has 26 members, 15 male. Not sufficient.\nAnswer: E.",
+  take: "\"Combined\" groups can overlap; without the overlap the union's size is unknown."
+},
+"di-ds-436-2#127": {
+  steps: "(1) Mean \\(= \\tfrac13(74.5) + \\tfrac23(70) = 71.5\\) inches, i.e. 5 feet \\(11\\tfrac12\\) inches. Sufficient.\n(2) A sum without \\(n\\). Not sufficient.\nAnswer: A.",
+  take: "Group fractions are enough for a weighted mean; a total is not enough without the count."
+},
+"di-ds-436-2#128": {
+  steps: "(1) \\(n\\) unknown. Not sufficient.\n(2) \\(m = n^{2} - n + 5 = n(n - 1) + 5\\); \\(n(n - 1)\\) is even, so \\(m\\) is odd. Yes. Sufficient.\nAnswer: B.",
+  take: "n(n − 1) is a product of consecutive integers, hence even."
+},
+"di-ds-436-2#129": {
+  steps: "(1) \\(P + Q + R + S = 1{,}553{,}000\\). Not sufficient.\n(2) \\(Q + R + S + T = 1{,}532{,}000\\). Not sufficient.\nTogether \\(P - T = 21{,}000\\). Sufficient.\nAnswer: C.",
+  take: "Overlapping averages: their difference isolates the non-shared terms."
+},
+"di-ds-436-2#130": {
+  steps: "The mean is \\((24 + x)/5\\); the median is 3, \\(x\\) or 8 depending on where \\(x\\) falls.\n(1) \\(x = 7\\): median 7, mean 6.2 (yes); \\(x = 20\\): median 8, mean 8.8 (no). Not sufficient.\n(2) \\(x > 8\\): \\(x = 9\\) yes, \\(x = 20\\) no. Not sufficient.\nTogether the same pair. Not sufficient.\nAnswer: E.",
+  take: "A large x drags the mean past the median; test a moderate and an extreme value."
+},
+"di-ds-436-2#131": {
+  steps: "(1) \\(x = y = 10\\) says no, \\(x = 10, y = 40\\) says yes. Not sufficient.\n(2) \\(x = 4, y = 25\\) says no, \\(x = 20, y = 100\\) says yes. Not sufficient.\nTogether \\(xy = 10 \\times 100 = 1{,}000 = 8 \\times 125\\). Yes. Sufficient.\nAnswer: C.",
+  take: "GCD times LCM is the product; that settles any divisibility question about xy."
+},
+"di-ds-436-2#132": {
+  steps: "The equation holds exactly when \\(x\\) lies between 0 and \\(z\\). Dividing the stem by \\(y\\): if \\(y > 0\\) then \\(z < x < 0\\); if \\(y < 0\\) then \\(z > x > 0\\). Either way \\(x\\) is between 0 and \\(z\\), so the answer is yes before any statement is used.\n(1) Sufficient. (2) Sufficient.\nAnswer: D.",
+  take: "When the stem alone answers the question, every statement is sufficient: D, not E."
+},
+"di-ds-436-2#133": {
+  steps: "J wraps 30 per minute.\n(1) K is slower than 12 per minute; no exact rate. Not sufficient.\n(2) Together 40 per minute, so K wraps 10 per minute and needs 12 minutes for 120. Sufficient.\nAnswer: B.",
+  take: "Rates add; a combined time plus one rate gives the other rate."
+},
+"di-ds-436-2#134": {
+  steps: "1995 output \\(= 1000\\left(1 + \\tfrac{x}{100}\\right)\\left(1 + \\tfrac{y}{100}\\right) = 1000 + 10\\left(x + y + \\tfrac{xy}{100}\\right)\\).\n(1) \\(xy = 20\\) leaves \\(x + y\\) open. Not sufficient.\n(2) The bracket is 9.2, so \\(1{,}092\\). Sufficient.\nAnswer: B.",
+  take: "Successive percent changes combine as x + y + xy/100."
+},
+"di-ds-436-2#135": {
+  steps: "(1) or (2) alone leaves two groups unknown. Not sufficient.\nTogether 6 used both: \\(12 + 10 = 22\\) of 40 tickets, 55%. Sufficient.\nAnswer: C.",
+  take: "With a fixed total, knowing two of three categories fixes the third."
+},
+"di-ds-436-2#136": {
+  steps: "(1) \\(s + 2d = 3.15\\). Not sufficient.\n(2) \\(3s + d = 5.70\\). Not sufficient.\nTogether \\(s = 1.65\\), \\(d = 0.75\\). Sufficient.\nAnswer: C.",
+  take: "Check the equations are not multiples of each other; then two unknowns need both."
+},
+"di-ds-436-2#137": {
+  steps: "(1) \\(250 \\le K \\le 349\\): hundreds digit 2 or 3. Not sufficient.\n(2) \\(K\\) ends in 45 to 54; hundreds digit free. Not sufficient.\nTogether 250 to 254 (2) or 345 to 349 (3). Not sufficient.\nAnswer: E.",
+  take: "Adding a constant can carry into the hundreds; translate each statement into a range of K."
+},
+"di-ds-436-2#138": {
+  steps: "(1) Vertical gap only. Not sufficient.\n(2) Horizontal gap only. Not sufficient.\nTogether \\(\\sqrt{3^{2} + 4^{2}} = 5\\). Sufficient.\nAnswer: C.",
+  take: "Distance is the square root of the sum of the squared horizontal and vertical gaps; each statement gives one gap."
+},
+"di-ds-436-2#139": {
+  steps: "(1) \\(a < b\\) and \\(b < c\\). Yes. Sufficient.\n(2) \\(b = c - 5\\) and \\(a = c - 8\\), so \\(a < b < c\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Translate each \"greater than by\" into an ordering."
+},
+"di-ds-436-2#140": {
+  steps: "(1) \\(5s < 2h\\) is an inequality with no amounts. Not sufficient.\n(2) \\(9h + 6s = 21\\) is three times the target combination: \\(3h + 2s = 7\\). Sufficient.\nAnswer: B.",
+  take: "Look for the target combination as a multiple of a given one."
+},
+"di-ds-436-2#141": {
+  steps: "(1) No amounts. Not sufficient.\n(2) \\(20c + 3p = 150\\): \\((c, p) = (6, 10), (3, 30), (0, 50)\\). Not sufficient.\nTogether all three have more than three printers. Not sufficient.\nAnswer: E.",
+  take: "List the integer solutions; a weak lower bound may not remove any."
+},
+"di-ds-436-2#142": {
+  steps: "(1) \\(6 > 15 + k\\) depends on \\(k\\). Not sufficient.\n(2) \\(6 > 3n - 10\\) depends on \\(n\\). Not sufficient.\nTogether \\(6 > 5\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Substitute the stem's numbers first; two unknowns remain."
+},
+"di-ds-436-2#143": {
+  steps: "Subtract \\(c\\) from both sides: the question asks whether \\(x = y\\).\n(1) \\(x = y\\). Yes. Sufficient.\n(2) \\(x = c\\) says nothing about \\(y\\): \\(y = c\\) gives yes, \\(y = c + 1\\) gives no. Not sufficient.\nAnswer: A.",
+  take: "Cancel identical terms from both sides before reading the statements."
+},
+"di-ds-436-2#144": {
+  steps: "(1) \\(\\tfrac23 \\times 6 = 4\\), so \\(n = 7\\) (or \\(-1\\), excluded). Sufficient.\n(2) \\(-3 + 10 = 7\\). Sufficient.\nAnswer: D.",
+  take: "Use the stem's range to discard the extra solution of a distance statement."
+},
+"di-ds-436-2#145": {
+  steps: "(1) The least possible set is 10, 20, 30, 40, 50 with mean exactly 30; any other set is larger. Yes. Sufficient.\n(2) Mean \\(= 160 / 5 = 32\\). Yes. Sufficient.\nAnswer: D.",
+  take: "\"Different\" plus \"multiples of 10\" gives a hard floor; compute the minimum case."
+},
+"di-ds-436-2#146": {
+  steps: "The question is whether \\(r > w\\).\n(1) \\(r(b + r) > w(b + w)\\) gives \\((r - w)(r + w + b) > 0\\), and the second factor is positive, so \\(r > w\\). Yes. Sufficient.\n(2) \\(b\\) large with \\(r = 1, w = 2\\) or \\(r = 2, w = 1\\). Not sufficient.\nAnswer: A.",
+  take: "Cross-multiplying positive quantities and factoring turns a ratio comparison into a sign."
+},
+"di-ds-436-2#147": {
+  steps: "(1) \\(\\dfrac{x}{50} + \\dfrac{530 - x}{60} = 10\\) gives \\(6x + 2650 - 5x = 3000\\), \\(x = 350\\), time 7 hours. Sufficient.\n(2) A difference of times with the total distance unknown. Not sufficient.\nAnswer: A.",
+  take: "Total time and total distance give one equation in x; a time difference alone has two unknowns."
+},
+"di-ds-436-2#148": {
+  steps: "(1) \\(30 + 60 = 90\\). Sufficient.\n(2) \\(\\dfrac{30 + 20n}{n} = 30\\) gives \\(30 = 10n\\), \\(n = 3\\), charge 90. Sufficient.\nAnswer: D.",
+  take: "An average per outlet is an equation in the outlet count."
+},
+"di-ds-436-2#149": {
+  steps: "\\(450 < x < 550\\) and \\(350 < y < 450\\), so \\(800 < x + y < 1000\\).\n(1) or (2) alone: still a wide range. Not sufficient.\nTogether \\(800 < x + y < 900\\): 810 is closest to 800, 880 to 900. Not sufficient.\nAnswer: E.",
+  take: "Rounding errors add; the sum's nearest hundred is not the sum of the nearest hundreds."
+},
+"di-ds-436-2#150": {
+  steps: "(1) Both of the two greatest exceed the median 70, so their average exceeds 70. Sufficient.\n(2) Sum 350. If the two greatest averaged 70 or less, the largest would be at most 70, and five different integers at most 70 sum to at most \\(70 + 69 + 68 + 67 + 66 = 340 < 350\\). So yes. Sufficient.\nAnswer: D.",
+  take: "Assume the opposite and push every value to its extreme; a sum contradiction settles it."
+},
+"di-ds-436-2#151": {
+  steps: "Profit \\(= 20(p - c)\\).\n(1) \\(20(2p - c) = 2400\\), one equation in two unknowns. Not sufficient.\n(2) \\(20(p + 2 - c) = 440\\) gives \\(20(p - c) = 400\\). Sufficient.\nAnswer: B.",
+  take: "A fixed change per unit shifts profit by a known amount; a proportional change does not."
+},
+"di-ds-436-2#152": {
+  steps: "(1) Beth's salary is unknown. Not sufficient.\n(2) Jim earned less than Beth, so the same percent gives Beth more dollars. Yes. Sufficient.\nAnswer: B.",
+  take: "Equal percent increases compare like the bases."
+},
+"di-ds-436-2#153": {
+  steps: "(1) Beginning \\(12k\\), new \\(k\\), end \\(13k\\): ratio \\(13 : 12\\). Sufficient.\n(2) No information about new clients. Not sufficient.\nAnswer: A.",
+  take: "A ratio between the parts gives the ratio of whole to part."
+},
+"di-ds-436-2#154": {
+  steps: "For slope \\(s\\) through \\((4, 3)\\): \\(y\\)-intercept \\(3 - 4s\\), \\(x\\)-intercept \\(\\dfrac{4s - 3}{s}\\).\n(1) Slopes \\(1, 2\\) give positive product; \\(1, -1\\)? \\(x\\)-intercepts 1 and 7, product positive, slope product negative. Not sufficient.\n(2) One slope above \\(\\tfrac34\\), one below; signs still open. Not sufficient.\nTogether: by (2) \\((4s_1 - 3)(4s_2 - 3) < 0\\); the product of \\(x\\)-intercepts is that negative number divided by \\(s_1 s_2\\), and it is positive, so \\(s_1 s_2 < 0\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Write both intercepts in terms of the slope; the sign conditions then combine algebraically."
+},
+"di-ds-436-2#155": {
+  steps: "(1) \\(n\\) odd: \\(n - 1\\) and \\(n + 1\\) are consecutive evens, one a multiple of 4, so the product is a multiple of 8: \\(r = 0\\). Sufficient.\n(2) \\(n = 2\\) gives 3, \\(n = 3\\) gives 0. Not sufficient.\nAnswer: A.",
+  take: "Odd squares are 1 mod 8."
+},
+"di-ds-436-2#156": {
+  steps: "(1) A ratio without a count. Not sufficient.\n(2) \\(0.3M = 240\\) and \\(0.4W = 280\\) give 800 men and 700 women, total 1,500. Sufficient.\nAnswer: B.",
+  take: "A count and its percentage give the whole for each group separately."
+},
+"di-ds-436-2#157": {
+  steps: "(1) \\(mv < pv\\) means \\((m - p)v < 0\\); with \\(m - p < 0\\), \\(v > 0\\). Sufficient.\n(2) \\(mv < 0\\) with \\(m < 0\\) forces \\(v > 0\\). Sufficient.\nAnswer: D.",
+  take: "A product's sign plus one factor's sign gives the other factor's sign."
+},
+"di-ds-436-2#158": {
+  steps: "(1) The midpoint of \\(x\\) and \\(y\\) is \\(\\dfrac{x + y}{2} = 6\\), so \\(x + y = 12\\). Sufficient.\n(2) \\(x + y = 3x\\), which depends on \\(x\\). Not sufficient.\nAnswer: A.",
+  take: "\"Halfway between\" is the midpoint formula, which is a sum."
+},
+"di-ds-436-2#159": {
+  steps: "\\(m = p^{a}t^{b}\\) with \\(a, b \\ge 1\\); the question is whether \\(a \\ge 2\\).\n(1) \\((a + 1)(b + 1) > 9\\): \\(a = 1, b = 4\\) (no) or \\(a = 4, b = 1\\) (yes). Not sufficient.\n(2) \\(a \\ge 3\\), so \\(a \\ge 2\\). Yes. Sufficient.\nAnswer: B.",
+  take: "A factor count bounds the exponents jointly, not one at a time."
+},
+"di-ds-436-2#160": {
+  steps: "(1) Says nothing about \\(Y\\). Not sufficient.\n(2) Says nothing about where \\(X\\) is. Not sufficient.\nTogether \\(PY \\ge XY - PX = 4.5 > 4\\), so \\(Y\\) is outside. Sufficient.\nAnswer: C.",
+  take: "Distances chain through the triangle inequality; a lower bound above the radius settles \"outside\"."
+},
+"di-ds-436-2#161": {
+  steps: "(1) Head count only. Not sufficient.\n(2) \\(0.72m + 0.80f = 0.75(m + f)\\) gives \\(0.05f = 0.03m\\), \\(m : f = 5 : 3\\), males \\(\\tfrac58\\). Sufficient.\nAnswer: B.",
+  take: "Alligation: the combined rate fixes the ratio of the groups."
+},
+"di-ds-436-2#162": {
+  steps: "(1) \\(G + R = 85\\), one equation in two unknowns. Not sufficient.\n(2) \\(G = R + 15\\), again one equation. Not sufficient.\nTogether \\(R + (R + 15) = 85\\), \\(R = 35\\). Sufficient.\nAnswer: C.",
+  take: "Sum plus difference is the standard two-equation pair."
+},
+"di-ds-436-2#163": {
+  steps: "(1) \\(z = 5, t = -1\\) says no; \\(z = 1, t = -4\\) says yes. Not sufficient.\n(2) \\(z = 5, t = -5\\) says no; \\(z = 1, t = -5\\) says yes. Not sufficient.\nTogether the same pairs fit. Not sufficient.\nAnswer: E.",
+  take: "A product bound with an unbounded factor rarely pins the other factor."
+},
+"di-ds-436-2#164": {
+  steps: "\\(35 \\le k \\le 44\\).\n(1) 36 to 44: tens digit 3 or 4. Not sufficient.\n(2) Units digit 6 to 9 means \\(k\\) is 36 to 39: tens digit 3. Sufficient.\nAnswer: B.",
+  take: "Translate the digit condition into a range, then filter."
+},
+"di-ds-436-2#165": {
+  steps: "(1) \\(|a| > |b|\\) says nothing about signs. Not sufficient.\n(2) \\(|a| + |b| > |a + b|\\) fails for same-sign numbers and holds for opposite signs, so 0 is between them. Yes. Sufficient.\nAnswer: B.",
+  take: "Strict triangle inequality means opposite signs."
+},
+"di-ds-436-2#166": {
+  steps: "(1) \\(k\\) passes through \\((1, 1)\\) and \\((1, -1)\\): vertical. \\(m\\) could be horizontal (yes) or slanted (no). Not sufficient.\n(2) \\(k\\) through \\((1, 1)\\) and \\((1, 0)\\): vertical again; same problem. Not sufficient.\nTogether still nothing about \\(m\\). Not sufficient.\nAnswer: E.",
+  take: "Two statements that both describe the same line add nothing about the other."
+},
+"di-ds-436-2#167": {
+  steps: "(1) Commission \\(= 1200 - 500 = 700\\), so \\(0.2(S - 1500) = 700\\), \\(S = 5{,}000\\). Sufficient.\n(2) The same equation. Sufficient.\nAnswer: D.",
+  take: "A fixed base plus a known total is the same information as the commission alone."
+},
+"di-ds-436-2#168": {
+  steps: "Oranges \\(o\\), apples \\(2o\\), pears \\(3o\\): total \\(6o + m + b\\).\n(1) or (2) alone leaves two unknowns. Not sufficient.\nTogether \\(6o + m = 13\\): \\(o = 2, m = 1\\) gives pears \\(6/18\\); \\(o = 1, m = 7\\) gives \\(3/18\\). Not sufficient.\nAnswer: E.",
+  take: "Write the total in one variable plus the free counts; check whether integers pin it."
+},
+"di-ds-436-2#169": {
+  steps: "(1) The combined rate needs B's customer count. Not sufficient.\n(2) B's customers without B's errors. Not sufficient.\nTogether \\(14{,}200 \\times 0.015 = 213\\) errors, so B had 127 over 9,350 customers, about 1.36 per 100. Sufficient.\nAnswer: C.",
+  take: "A combined rate plus both group sizes gives the other group's count."
+},
+"di-ds-436-2#170": {
+  steps: "(1) \\(y\\) odd makes \\(y + 5\\) even for any \\(x\\). Not sufficient.\n(2) \\(41y + 25\\) even means \\(y\\) odd; nothing about \\(x\\). Not sufficient.\nTogether \\(y\\) is odd, so (1) holds for every \\(x\\). Not sufficient.\nAnswer: E.",
+  take: "When one statement makes the other automatically true, the pair is no stronger than one."
+},
+"di-ds-436-2#171": {
+  steps: "(1) X contributed \\(48/80 = \\tfrac35\\). Sufficient.\n(2) Y contributed \\(48/120 = \\tfrac25\\), so X contributed \\(\\tfrac35\\). Sufficient.\nAnswer: D.",
+  take: "Shares of joint work are (joint time) ÷ (solo time); the two shares are complementary."
+},
+"di-ds-436-2#172": {
+  steps: "(1) Signs only. Not sufficient.\n(2) \\(v^{3} - k^{3} = (v - k)(v^{2} + vk + k^{2})\\), and the second factor varies. Not sufficient.\nTogether \\((7, 1)\\) gives 342 and \\((8, 2)\\) gives 504. Not sufficient.\nAnswer: E.",
+  take: "A difference of cubes is not determined by the difference of the numbers."
+},
+"di-ds-436-2#173": {
+  steps: "Packages \\(c\\) and \\(t\\): bars \\(2c\\) and \\(2t\\).\n(1) \\(c = t - 1\\). Not sufficient.\n(2) \\(\\tfrac23(2c) = \\tfrac35(2t)\\) gives \\(10c = 9t\\), so \\(c = 9k, t = 10k\\). Not sufficient.\nTogether \\(9k = 10k - 1\\), \\(k = 1\\), \\(c = 9\\). Sufficient.\nAnswer: C.",
+  take: "A ratio and a difference between the same two counts pin both."
+},
+"di-ds-436-2#174": {
+  steps: "(1) \\(|r| = 3|m|\\). Not sufficient.\n(2) \\(m + r = 24\\). Not sufficient.\nTogether \\(r = 3m\\) gives \\(m = 6, r = 18\\); \\(r = -3m\\) gives \\(m = -12, r = 36\\). Not sufficient.\nAnswer: E.",
+  take: "A distance ratio hides a sign choice; test both branches."
+},
+"di-ds-436-2#175": {
+  steps: "(1) Candidates 5, 7, 11, 13, 17, 19, 23, 25, 29; each is a prime or a prime power, so exactly one prime. Sufficient.\n(2) 7 has one prime, 21 has two. Not sufficient.\nAnswer: A.",
+  take: "Enumerate a small range; the smallest odd composite with two different primes is 15, then 21."
+},
+"di-ds-436-2#176": {
+  steps: "(1) 64 is a power of 2; \\(64 \\times 3\\) is not. Not sufficient.\n(2) Every prime factor of \\(k\\) is even, so it is 2, and \\(k\\) is a power of 2. Yes. Sufficient.\nAnswer: B.",
+  take: "\"Power of 2\" means no odd prime factor; divisibility by a power of 2 does not exclude odd factors."
+},
+"di-ds-436-2#177": {
+  steps: "German speakers also speak English, so \"only German\" is empty and \"all three\" is empty.\n(1) or (2) alone leaves a group unknown. Not sufficient.\nTogether \\(200 - 70 - 60 - 20 = 50\\) members speak exactly two languages. Sufficient.\nAnswer: C.",
+  take: "List every region of the three-set diagram; the stem empties two of them."
+},
+"di-ds-436-2#178": {
+  steps: "(1) One of \\(a, b, c\\) equals 7. Not sufficient.\n(2) Nothing about \\(a\\). Not sufficient.\nTogether \\(b\\) and \\(c\\) divide 18, so neither is 7; hence \\(a = 7\\). Sufficient.\nAnswer: C.",
+  take: "Eliminate the other factors of a zero product using the second statement."
+},
+"di-ds-436-2#179": {
+  steps: "(1) Cost only. Not sufficient.\n(2) A percent of an unknown price. Not sufficient.\nTogether \\(S - 340 = 0.15S\\), \\(S = 400\\). Sufficient.\nAnswer: C.",
+  take: "Profit as a percent of selling price: cost = 85% of selling price."
+},
+"di-ds-436-2#180": {
+  steps: "(1) \\(x = y = 1, z = 1.4\\): \\(2 > 1.96\\) but \\(2 < 3.84\\) (no); \\(x = 2, y = 0, z = 1\\) (yes). Not sufficient.\n(2) The same pairs. Not sufficient.\nTogether the same pairs still fit. Not sufficient.\nAnswer: E.",
+  take: "Inequalities do not survive squaring term by term."
+},
+"di-ds-436-2#181": {
+  steps: "(1) \\(b/a < 0\\): opposite signs, either could be positive. Not sufficient.\n(2) \\((-2, -1)\\) says no, \\((1, 2)\\) says yes. Not sufficient.\nTogether opposite signs with \\(a < b\\) means \\(a < 0 < b\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Slope sign plus an ordering of the coordinates fixes both signs."
+},
+"di-ds-436-2#182": {
+  steps: "(1) \\(q\\) could be 25 or 100. Not sufficient.\n(2) \\(q\\) is unrestricted. Not sufficient.\nTogether \\(q\\) is still free above \\(p\\). Not sufficient.\nAnswer: E.",
+  take: "Range needs both the minimum and the maximum pinned; check every unknown against both."
+},
+"di-ds-436-2#183": {
+  steps: "(1) \\(j\\) has at least the primes 2, 3, 5; \\(k\\) unknown. Not sufficient.\n(2) \\(k = 2^{3}5^{3}\\) has two primes; \\(j\\) unknown. Not sufficient.\nTogether at least 3 versus exactly 2. Yes. Sufficient.\nAnswer: C.",
+  take: "Count distinct primes, not factors or size."
+},
+"di-ds-436-2#184": {
+  steps: "(1) or (2) alone leaves signs open. Not sufficient.\nTogether: \\((x - y) - (x - 2y) = y > -2 - (-6) = 4\\), so \\(y > 4\\) and \\(x > y - 2 > 2\\). Both positive. Sufficient.\nAnswer: C.",
+  take: "Subtracting inequalities that face opposite ways (after flipping one) isolates a variable."
+},
+"di-ds-436-2#185": {
+  steps: "\\(x - y > x + y\\) is \\(y < 0\\).\n(1) \\(x = 8\\) and \\(x - y > 10\\) give \\(y < -2\\). Yes. Sufficient.\n(2) \\(y = -20 < 0\\). Yes. Sufficient.\nAnswer: D.",
+  take: "Simplify the question first; the stem's inequality then does the work with (1)."
+},
+"di-ds-436-2#186": {
+  steps: "(1) Remainder 1 or 3 mod 21 gives \\(r = 1\\) or 3. Not sufficient.\n(2) \\(n = 28q + 3\\): \\(r = 3\\). Sufficient.\nAnswer: B.",
+  take: "A remainder modulo a multiple of 7 determines the remainder modulo 7."
+},
+"di-ds-436-2#187": {
+  steps: "Let \\(w = ax\\), \\(y = bz\\); the question is whether \\(a + b\\) is odd.\n(1) \\(ax^{2} + bz^{2}\\) odd: \\(a = 1, x = 1, b = 1, z = 2\\) gives 5 (odd) with \\(a + b\\) even; \\(a = 1, x = 1, b = 2, z = 1\\) gives 3 with \\(a + b\\) odd. Not sufficient.\n(2) \\(wz + xy = xz(a + b)\\) odd forces \\(a + b\\) odd. Yes. Sufficient.\nAnswer: B.",
+  take: "Substitute the integer quotients as new variables; the products then factor."
+},
+"di-ds-436-2#188": {
+  steps: "(1) \\(m + g = 20\\), one equation. Not sufficient.\n(2) \\(4m + 8g = 92\\), i.e. \\(m + 2g = 23\\): several integer solutions. Not sufficient.\nTogether \\(4m + 8(20 - m) = 92\\), \\(m = 17\\). Sufficient.\nAnswer: C.",
+  take: "Head count plus money total is the classic pair; check (2) alone has several integer solutions."
+},
+"di-ds-436-2#189": {
+  steps: "(1) The remainder shares the GCD: \\(\\gcd(m, r) = \\gcd(m, p) = 2\\), so \\(r\\) is even and nonzero, hence \\(r \\ge 2\\). Yes. Sufficient.\n(2) \\((m, p) = (3, 10)\\) gives \\(r = 1\\); \\((6, 10)\\) gives \\(r = 4\\). Not sufficient.\nAnswer: A.",
+  take: "Euclid's step: the remainder inherits the GCD of the pair."
+},
+"di-ds-436-2#190": {
+  steps: "(1) \\(n + 0 = n\\) and \\(n - 0 = n\\): addition gives 3, subtraction gives \\(-1\\). Not sufficient.\n(2) \\(n - n = 0\\) only (\\(n \\div n = 1\\), \\(n + n = 2n\\), \\(n \\times n = n^{2}\\)): \\(1 - 2 = -1\\). Sufficient.\nAnswer: B.",
+  take: "Test each operation against the identity; keep only survivors."
+},
+"di-ds-436-2#191": {
+  steps: "(1) Quantity up 10%, price unknown. Not sufficient.\n(2) A $30 rise on an unknown price. Not sufficient.\nTogether revenue ratio \\(= 1.1 \\times \\dfrac{p + 30}{p}\\), which depends on \\(p\\). Not sufficient.\nAnswer: E.",
+  take: "Percent change of a product needs percent changes of both factors."
+},
+"di-ds-436-2#192": {
+  steps: "(1) \\(30!\\) contains \\(5^{7}\\) (and more than seven 2s), so \\(10^{d}\\) divides it for \\(d \\le 7\\). Not sufficient.\n(2) \\(d \\ge 7\\). Not sufficient.\nTogether \\(d = 7\\). Sufficient.\nAnswer: C.",
+  take: "Trailing zeros of n! come from the factors of 5: n/5 + n/25 + …."
+},
+"di-ds-436-2#193": {
+  steps: "(1) or (2) alone: one point. Not sufficient.\nTogether slope \\(= \\dfrac{3 - 0}{0 - 2} = -\\tfrac32\\). Sufficient.\nAnswer: C.",
+  take: "Both intercepts are two points on the line."
+},
+"di-ds-436-2#194": {
+  steps: "(1) \\(3.5 \\le x + y < 4.5\\). Not sufficient.\n(2) \\(0.5 \\le x - y < 1.5\\). Not sufficient.\nTogether \\(4 \\le 2x < 6\\), \\(2 \\le x < 3\\): \\(x = 2.3\\) rounds to 2, \\(x = 2.7\\) to 3. Not sufficient.\nAnswer: E.",
+  take: "Rounding ranges add up to a range wider than one integer."
+},
+"di-ds-436-2#195": {
+  steps: "(1) \\(0.4545 \\le x < 0.4555\\): rounds to 0.45 or 0.46. Not sufficient.\n(2) The hundredths digit is unknown. Not sufficient.\nTogether \\(0.455 \\le x < 0.4555\\), which rounds to 0.46. Sufficient.\nAnswer: C.",
+  take: "A rounded value is an interval; a digit condition can cut the interval."
+},
+"di-ds-436-2#196": {
+  steps: "(1) Thursday only. Not sufficient.\n(2) A speed ratio, no time. Not sufficient.\nTogether Friday's time \\(= 1.25 \\times 20 = 25\\) minutes. Sufficient.\nAnswer: C.",
+  take: "Over a fixed distance, time is inversely proportional to speed."
+},
+"di-ds-436-2#197": {
+  steps: "(1) Profit only. Not sufficient.\n(2) A ratio only. Not sufficient.\nTogether \\(0.5E = 4{,}100\\), \\(E = 8{,}200\\), \\(R = 12{,}300\\). Sufficient.\nAnswer: C.",
+  take: "Revenue, expenses and profit: one amount plus one ratio fixes all three."
+},
+"di-ds-436-2#198": {
+  steps: "(1) Equal increases of 781 on bases 15,600 and then 16,381: the first percent is larger. Yes. Sufficient.\n(2) The same numbers stated as totals. Yes. Sufficient.\nAnswer: D.",
+  take: "Compare percent changes by comparing the bases when the absolute changes are equal."
+},
+"di-ds-436-2#199": {
+  steps: "(1) Children : adults \\(= 3 : 2\\), so the average is \\(\\dfrac{3(2) + 2(5)}{5} = 3.20\\) dollars. Sufficient.\n(2) 80 adults with an unknown number of children; the average could be anything from 2 to 5. Not sufficient.\nAnswer: A.",
+  take: "Averages depend on proportions, not absolute counts."
+},
+"di-ds-436-2#200": {
+  steps: "Given \\(5x + 3y \\le 10\\); is \\(4x + 4y \\le 10\\)?\n(1) \\(x = 0.5, y = 2.5\\): \\(5x + 3y = 10\\) but \\(4x + 4y = 12\\) (no); \\(x = y = 1\\) (yes). Not sufficient.\n(2) \\(x \\le 10/11\\): the same pairs. Not sufficient.\nTogether the same pairs fit. Not sufficient.\nAnswer: E.",
+  take: "Swapping one notepad for one marker costs y − x; both statements bound x only."
+},
+"di-ds-436-2#201": {
+  steps: "(1) For every adult ticket there are two children's tickets: \\(\\dfrac{30 + 2(24)}{3} = 26\\) dollars. Sufficient.\n(2) Four children's tickets with an unknown number of adults' tickets. Not sufficient.\nAnswer: A.",
+  take: "A ratio of counts is enough for an average price."
+},
+"di-ds-436-2#202": {
+  steps: "Total \\(= 5p + 15s\\).\n(1) \\(2s = 1\\), \\(s = 0.50\\); \\(p\\) unknown. Not sufficient.\n(2) \\(15s = 7.50\\), the same fact. Not sufficient.\nTogether \\(p\\) is still unknown. Not sufficient.\nAnswer: E.",
+  take: "Two statements that determine the same variable leave the other one free."
+},
+"di-ds-436-2#203": {
+  steps: "(1) 20 women; men unknown. Not sufficient.\n(2) 40 in total; split unknown. Not sufficient.\nTogether \\(40 - 20 = 20\\) men. Sufficient.\nAnswer: C.",
+  take: "Total minus the known subgroup gives the other subgroup."
+},
+"di-ds-436-2#204": {
+  steps: "(1) \\(12a + 8c = 5040\\), many solutions. Not sufficient.\n(2) \\(c = 2a\\), no total. Not sufficient.\nTogether \\(28a = 5040\\), \\(a = 180\\), \\(c = 360\\). Sufficient.\nAnswer: C.",
+  take: "A fraction of the total is a ratio between the two counts."
+},
+"di-ds-436-2#205": {
+  steps: "(1) Robert and Pat share 70%, split unknown. Not sufficient.\n(2) A difference without a total. Not sufficient.\nTogether: total 100 gives 40 : 30; total 200 gives 75 : 65. Not sufficient.\nAnswer: E.",
+  take: "A percent share and an absolute difference need the total to combine."
+},
+"di-ds-436-2#206": {
+  steps: "(1) \\(25 = 5 + 20\\), so \\(C\\) is between. Yes. Sufficient.\n(2) \\(A = 0, C = 5, B = 25\\) says yes; \\(A = 0, C = -5, B = 15\\) says no. Not sufficient.\nAnswer: A.",
+  take: "Betweenness on a line is an equation in distances."
+},
+"di-ds-436-2#207": {
+  steps: "(1) Digits \\(\\{1, 5, 6\\}\\) or \\(\\{2, 3, 5\\}\\): 651 says no, 235 says yes. Not sufficient.\n(2) Many. Not sufficient.\nTogether only \\(\\{2, 3, 5\\}\\) fits; every arrangement is at most 532 < 550. Yes. Sufficient.\nAnswer: C.",
+  take: "Enumerate digit sets; a second condition can eliminate the troublesome set."
+},
+"di-ds-436-2#208": {
+  steps: "(1) Hundreds 3, 6 or 9 with tens free. Not sufficient.\n(2) Units free. Not sufficient.\nTogether 301 (sum 4) and 632 (sum 11). Not sufficient.\nAnswer: E.",
+  take: "Two digit relations for three digits still leave a free choice."
+},
+"di-ds-436-2#209": {
+  steps: "(1) Retail \\(320\\), difference \\(120\\). Sufficient.\n(2) Wholesale \\(320 / 1.6 = 200\\), difference \\(120\\). Sufficient.\nAnswer: D.",
+  take: "With a fixed ratio, one amount is as good as both."
+},
 "di-ds-qa1-arith#1": {
   steps: "(1) \\(1000[(1 + r/100)^{2} - 1] = 210\\), so \\((1 + r/100)^{2} = 1.21\\), \\(1 + r/100 = 1.1\\), \\(r = 10 > 8\\). Sufficient.\n(2) The same equation directly: \\(r = 10\\). Sufficient.\nAnswer: D.",
   take: "A statement that determines r uniquely is sufficient for any question about r, whatever the answer turns out to be."

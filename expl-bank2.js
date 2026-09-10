@@ -388,6 +388,121 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(B) 50% guesses from the centre lying on the diagonal.",
   take: "A chord at distance \\(r/\\sqrt{2}\\) from the centre spans a right angle; segment = quarter circle − right triangle."
 },
+"cr-guide-inference#1": {
+  fast: "More molecules held means more effective, so three beats one: (C).",
+  traps: "(A) is the most tempting: greater effectiveness is not a guarantee of success. (B) adds the word 'only', which the passage never supports.",
+  take: "Inference answers restate a comparison already in the text; anything with 'will', 'only' or 'each' needs explicit support."
+},
+"cr-guide-inference#2": {
+  fast: "Runoff gives phosphorus, phosphorus gives plankton, so runoff contributes to plankton: (E).",
+  traps: "(A) is the classic over-generalisation from one region to every body of water. (D) treats a doubled concentration as a doubled volume.",
+  take: "Chain two adjacent facts and keep the scope (this river, this region) exactly as given."
+},
+"cr-guide-inference#3": {
+  fast: "'Helps make more vulnerable' becomes 'depends at least in part': (B).",
+  traps: "(A) is the strength trap: 'helps' is not 'main factor'. (E) sounds like the last sentence but adds 'whenever' and 'are able', turning a tendency into a guarantee.",
+  take: "Match the strength of the answer to the strength of the text; hedged answers win inference questions."
+},
+"cr-guide-inference#4": {
+  fast: "Managers hire only very large firms, so small award-winners cannot dent Baxe's monopoly: (E).",
+  traps: "(D) invents a reason (unawareness) when the passage already supplies one (bankruptcy fears). (C) turns 'won awards' into 'superior for the most part'.",
+  take: "When the passage gives the mechanism, the inference is what that mechanism implies, not an alternative story."
+},
+"cr-guide-inference#5": {
+  fast: "(C) is the forbidden combination from the last sentence: prominent, science-devoted, no affection for animals.",
+  traps: "(A) sounds like a contradiction but 'greater love for science' still allows love for animals. (D) concerns motives at research centres, which the passage leaves open.",
+  take: "For CANNOT-be-true questions, find the one choice that directly negates a stated fact; the rest merely go beyond it."
+},
+"cr-guide-inference#6": {
+  fast: "Most lose their voices, and the cause is strain, so most strain their cords: (E).",
+  traps: "(B) quotes the explanation the author explicitly dismisses. (A) misreads 'most likely to ruin' as 'the only ones who ruin'.",
+  take: "When a passage rejects one explanation and offers another, inferences follow from the author's explanation, not the rejected one."
+},
+"cr-guide-inference#7": {
+  fast: "No intervention means not the full complement, so at least one species lost, for most forests: (A).",
+  traps: "(B) is tempting because endangered species are mentioned, but losing 'at least one species' is far weaker than 'many endangered species will not survive'.",
+  take: "'X requires Y' gives 'no Y, no X'; the inference is the contrapositive, applied only to the group the passage covers."
+},
+"cr-guide-inference#8": {
+  fast: "Incapable of emotion means no deep emotion expressed, so no great art: (D).",
+  traps: "(A) is the wording trap: capability is not actual experience. (C) is the necessary-versus-sufficient flip.",
+  take: "Chain two conditionals and then read the contrapositive; the correct answer is usually stated in that negative form."
+},
+"cr-guide-inference#9": {
+  fast: "Liberties done; add economic success and the rule fires: (C).",
+  traps: "(E) swaps in the environment, which the second sentence says is irrelevant to overall success. (B) assumes the missing condition fails.",
+  take: "With a two-part sufficient condition and one part satisfied, the valid inference is conditional on the other part."
+},
+"cr-guide-inference#10": {
+  fast: "Interest is irrelevant to most customers, so companies will not sell on rates: (B).",
+  traps: "(D) is close in topic but concerns the length of the grace period, about which nothing is said. (E) adds an idea (websites) foreign to the passage.",
+  take: "Complete-the-argument stems are inference questions: combine the two premises and stay inside their vocabulary."
+},
+"cr-guide-inference#11": {
+  fast: "A shift toward half-paying students lowers average revenue unless fees rose: (E).",
+  traps: "(C) is the number-versus-percentage trap: a smaller share can still be a larger number if total enrolment grew. (B) reads two facts placed side by side as cause and effect.",
+  take: "Percentage shifts between groups paying different amounts change the average; hold the average fixed and something else must move."
+},
+"cr-guide-inference#12": {
+  fast: "'Distinctively his' answers whether the works are derivative: (E), answered no.",
+  traps: "(C) is tempting because the passage sounds approving, but reputation is never mentioned. (D) confuses Glass reviving a practice with others following him.",
+  take: "A 'helps answer which question' item is an inference item: the passage must contain the answer, even if the answer is no."
+},
+"cr-guide-inference#13": {
+  fast: "Each child's 'rolling pin' was his own distinct pin, so no shared referent: (B).",
+  traps: "(E) says the opposite of what happened: the children distinguished their own pins perfectly. (D) generalises from rolling pins to every utensil.",
+  take: "Read the experimental result literally and state only what it shows about each subject."
+},
+"cr-guide-inference#14": {
+  fast: "Clues sufficient for the detective are in the story, so some stories give enough clues: (C).",
+  traps: "(A) is the 'often' to 'most' upgrade. (E) misassigns the diverting role: the companion's wrong inference diverts, not clues he uncovers.",
+  take: "'Often' supports 'some', never 'most'; pick the weakest claim the facts guarantee."
+},
+"cr-guide-inference#15": {
+  fast: "Three tiers above a floor of 12 put the top ten at 14 or more: (D).",
+  traps: "(A) is the number trap: only 30 of 200 students are described. (C) jumps from a study to all young adults.",
+  take: "With 'fewest', 'greatest' and a floor, count the tiers; must-be-true answers are often arithmetic."
+},
+"cr-guide-inference#16": {
+  fast: "130 is over 120, so a Topnotch graduate with 130 is possible: (D).",
+  traps: "(A) fails on the boundary (150 is not over 150) and on the missing application. (E) confuses being accepted with attending.",
+  take: "In threshold logic, 'over' excludes the boundary; 'possible' answers need only be consistent with the facts."
+},
+"cr-guide-inference#17": {
+  fast: "Obese is defined as the top 15 percent; a larger 15 percent means a larger whole and a larger 85 percent: (C).",
+  traps: "(B) supplies a plausible cause, but the passage gives none. (E) confuses change over 15 years with change as children age.",
+  take: "When a category is defined as a fixed percentile, a change in its count is really a change in the whole population."
+},
+"cr-guide-inference#18": {
+  fast: "Constant sales with a falling share means a bigger market, so rivals sold more, not less: (A) is impossible.",
+  traps: "(B) looks contradictory but describes the earlier period, when Marvel's share rose and others' share therefore fell.",
+  take: "Share = own sales ÷ total; hold own sales fixed and a falling share forces the total, hence the others, upward."
+},
+"cr-guide-inference#19": {
+  fast: "Different eras, radically different beliefs, unique meanings: the same interpretation across eras is impossible, (B).",
+  traps: "(D) may look like it conflicts, but the critic says different eras give different beliefs, not that the same era gives identical ones.",
+  take: "'Could be true EXCEPT' asks for the one choice that contradicts the statements; a shared interpretation across eras does."
+},
+"cr-guide-inference#20": {
+  fast: "9 percent more poultry over 6 percent more people means more poultry per head: (C).",
+  traps: "(B) misreads '9 percent versus 4.5 percent' as 'twice as much', but those are growth rates, not amounts. (A) guesses about the newcomers.",
+  take: "Only ratios of percentages are inferable from percentages; absolute comparisons need absolute numbers."
+},
+"cr-guide-inference#21": {
+  fast: "More money from fewer films gives a higher average per film: (D).",
+  traps: "(E) assumes revenue growth came from more viewers rather than higher prices. (A) treats a schedule as a revenue forecast.",
+  take: "Revenue and film counts determine averages; attendance and prices need separate data."
+},
+"cr-guide-inference#22": {
+  fast: "Faster growth than the total means a bigger share of the total: (C).",
+  traps: "(B) is the number trap: a 50 percent rise in a small component can fit within a 10 percent rise in the total without any other component falling.",
+  take: "A component growing faster than the whole gains share; whether other components shrank depends on the unknown starting split."
+},
+"cr-guide-inference#23": {
+  fast: "Share down, population up: some other region must have grown faster in percentage terms, (E).",
+  traps: "(C) over-claims: one fast-growing region is enough to shrink Korva's share. (D) confuses numerical increase with percentage growth.",
+  take: "A falling share of a growing total means someone else grew faster; 'at least one' is all the arithmetic guarantees."
+},
 "cr-live-infer#1": {
   fast: "Percentage fell, number concluded: the flaw is ignoring that the total base may have grown.",
   traps: "(A) attacks the data rather than the inference from it; the question accepts the percentage as given. (B), (C) and (E) are about complaints and customer beliefs, which the argument never uses as evidence for its numerical conclusion.",
@@ -2539,17 +2654,17 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   take: "'Only this factor' is bounded by the people outside the other sets; compute that region first."
 },
 "quant-guide-s1#2": {
-  fast: "New sales = 1.1/0.9 of old sales, about 122%.",
+  fast: "Profit up 10% and margin down 10% means sales are 1.1/0.9 of last year's, about 122%.",
   traps: "(B) 90% reads the margin change as a sales change. (C) 110% confuses profit growth with sales growth. (E) adds the two percentages.",
   take: "A ratio falling while its numerator rises means the denominator rose by more; divide the multipliers."
 },
 "quant-guide-s1#3": {
-  fast: "Profit 12.50 on a 15 sale is five sixths, about 83%.",
+  fast: "Each lamp costs 2.50 and sells for 15, so the 12.50 profit is five sixths of the selling price, about 83%.",
   traps: "(E) 500% is the profit as a percent of cost. (D) 100% would need the lamp to be free. (B) 50% is a guess from 15 versus 30 per dozen.",
   take: "Read which base the percent is taken on: selling price and cost price give very different numbers."
 },
 "quant-guide-s1#4": {
-  fast: "N: 50; W: 0.4 × 120 = 48, which is 4% below 50.",
+  fast: "With list price 100 at N, N sells at 50 and W sells at 0.4 × 120 = 48, which is 4% below 50.",
   traps: "(A) 10% less subtracts the discount percentages. (D) forgets the deeper discount at W and only sees the higher list price.",
   take: "Successive percentage changes multiply; plug in 100 and compute both endpoints."
 },
@@ -2579,7 +2694,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   take: "Difference of two reciprocals collapses to a single fraction; recognise 1089 as 33 squared."
 },
 "quant-guide-s1#10": {
-  fast: "x/4.5 + (500 − x)/3.5 = 120 gives x = 360.",
+  fast: "Set up gallons: x/4.5 + (500 − x)/3.5 = 120, multiply through by 31.5 and solve to get x = 360.",
   traps: "(A) 140 is the distance at 60 mph, the other part of the trip. (C) 250 assumes an even split, which uses 126.98 gallons, not 120.",
   take: "Fuel questions are rate questions with gallons as the 'time'; the speed figures only label the two rates."
 },

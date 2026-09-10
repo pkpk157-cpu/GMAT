@@ -375,6 +375,216 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(B) 50% guesses from the centre lying on the diagonal.",
   take: "A chord at distance \\(r/\\sqrt{2}\\) from the centre spans a right angle; segment = quarter circle − right triangle."
 },
+"cr-live-infer#1": {
+  fast: "Percentage fell, number concluded: the flaw is ignoring that the total base may have grown.",
+  traps: "(A) attacks the data rather than the inference from it; the question accepts the percentage as given. (B), (C) and (E) are about complaints and customer beliefs, which the argument never uses as evidence for its numerical conclusion.",
+  take: "Whenever a CR argument moves from a percent to a count, check the base before anything else."
+},
+"cr-live-infer#2": {
+  fast: "A rising share can come from a shrinking total; (D) shrinks the non-plastic waste.",
+  traps: "(A) moves plastic between landfill and incinerator, which changes nothing about the total plastic. (E) is about manufacturing, not about what reaches waste companies, and manufacturing could stay flat while discarded plastic rises. (B) and (C) do not touch the percentage-to-amount step.",
+  take: "To weaken a percent-to-number conclusion, show the denominator moved, not that the numerator is doubtful."
+},
+"cr-live-infer#3": {
+  fast: "Three points less of a much larger total can be more retirees, not fewer; (C) says the total grew.",
+  traps: "(A) says Florida still leads, but a leading share can still shrink in absolute terms, so it does not address the decline. (B) makes things worse for Florida. (D) and (E) are about distance and another state and leave the numbers untouched.",
+  take: "Percentage points down does not mean people down; ask what happened to the whole group."
+},
+"cr-live-infer#4": {
+  fast: "Constant fraction with a rising numerator forces a rising denominator, so total eating rises.",
+  traps: "(A) and (C) compare with groups the statements never mention. (E) is tempting as a health guess but weight is not the same as amount eaten, and more food would if anything suggest the reverse. (D) confuses more food with more kinds of food.",
+  take: "A percentage plus one absolute number lets you deduce the other absolute number."
+},
+"cr-live-infer#5": {
+  fast: "A 4.50 dollar card used under 45 copies earns more than 10 cents a copy, so revenue rises.",
+  traps: "(E) sounds like a revenue claim but if cards are fully used the library earns 9 cents a copy instead of 10, so revenue can fall. (A), (B) and (D) predict patron behaviour that nothing in the passage determines.",
+  take: "When a CR stem has prices and quantities, do the sums; the supported inference is the one the arithmetic forces."
+},
+"cr-live-infer#6": {
+  fast: "Two majorities of one population overlap, so some no-research investors profit.",
+  traps: "(A) upgrades some broker-followers and some hunch-players to most, which the passage never states. (B) and (D) claim all, far stronger than any premise. (C) quantifies a subgroup whose profit rate is unknown.",
+  take: "Most plus most on the same group yields some overlap; that is the strongest inference such premises allow."
+},
+"cr-live-infer#7": {
+  fast: "Refined gold was not Senegalese, and only Senegalese gold reached 92 percent, so it started lower.",
+  traps: "(D) contradicts the passage, since the refined coins were much purer than 92 percent. (E) reverses the facts: Senegalese gold was the gold minted unrefined. (B) and (C) are about weight and value, which are never discussed.",
+  take: "Chain the superlative (purest known) with the exclusion (never refined) and the inference falls out."
+},
+"cr-live-infer#8": {
+  fast: "Apartments lead to residents, congestion, new roads and then taxes: that is (B).",
+  traps: "(A) and (C) assume that if the first step is blocked nothing downstream can happen, but apartments or tax rises could arise another way. (D) and (E) are mistaken negations: no apartments does not mean no congestion or no taxes.",
+  take: "In a conditional chain, only forward travel and the contrapositive are valid; negating the front end proves nothing."
+},
+"cr-live-infer#9": {
+  fast: "The conclusion needs police to be the only possible enforcer of international law, which is (E).",
+  traps: "(B) is the mistaken reversal: police are necessary for effective law, not guaranteed to be sufficient. (A) is about obedience, not about laws being effective. (C) and (D) go far beyond what is claimed.",
+  take: "When an argument treats one missing item as fatal, it is assuming that item is the only way to satisfy the requirement."
+},
+"cr-live-infer#10": {
+  fast: "More reports, not more poisoning: banquet groups notice a shared illness and report it.",
+  traps: "(A) deepens the paradox, since more restaurant diners should mean more restaurant cases. (B) also makes caterers look safer and explains nothing about the reports. (C) and (D) remove side issues without touching the gap.",
+  take: "When the data are reported cases, a difference in reporting is the first explanation to test."
+},
+"cr-live-infer#11": {
+  fast: "Clients audit only when profit rises with cost, so fixed-profit jobs go unwatched and overrun.",
+  traps: "(E) is the classic trap: exaggerated estimates would make overruns less likely under fixed profit, the opposite of what needs explaining. (B) and (C) apply equally to both kinds of contract. (A) is about whether a contract is signed, not about overruns.",
+  take: "To resolve a paradox, find a factor that differs between the two cases and pushes in the observed direction."
+},
+"cr-live-infer#12": {
+  fast: "Past success proves nothing if patients are now sicker and the decisions harder, which is (B).",
+  traps: "(A) strengthens Quincy by saying nothing has changed. (C) and (E) are reasons to keep long shifts, so they help Quincy. (D) is about variation between specialties, not about whether past records still apply.",
+  take: "Against a precedent argument, look for the choice that says the present case differs in a relevant way."
+},
+"cr-live-infer#13": {
+  fast: "Knowing Mary likes violets does not force sending violets; (B) frees the sender to choose roses.",
+  traps: "(C) makes the stranger branch less likely and so supports the conclusion rather than weakening it. (D) is about the florist's record and is at best a mild point. (A) and (E) leave both conditionals intact.",
+  take: "A dilemma argument is weakened by showing one horn can be satisfied without the mistake it blames."
+},
+"cr-live-infer#14": {
+  fast: "If a few birds answer the toxin question, the industry has no reason to hand over the rest.",
+  traps: "(C) and (E) describe benefits of the program and do nothing to undermine the count. (A) and (D) concern which toxins are present and are irrelevant to how many birds get handed in.",
+  take: "Plan questions: ask whether the incentive offered is enough to produce all of the behaviour the plan needs."
+},
+"cr-live-infer#15": {
+  fast: "Out of context, the opening argument against oneself becomes a damaging sound bite, which is (A).",
+  traps: "(D) supports the recommendation. (B) and (C) say some voters are unmoved by character or by politicians' arguments, which limits the technique only slightly and applies to any technique. (E) is irrelevant to whether the technique works.",
+  take: "Check whether the setting in which a recommendation will be applied matches the setting in which the evidence was gathered."
+},
+"cr-live-infer#16": {
+  fast: "Older cohorts are mostly women, and women are less often left-handed, so the share falls with age.",
+  traps: "(B) removes one possible explanation (accidents) and so deepens the puzzle. (C) does not say ambidexterity increased or decreased over time. (D) is about how many were born, not about handedness, and (E) is a ceiling that explains no variation.",
+  take: "Age-band differences can come from who survives into each band, not only from how each generation was raised."
+},
+"cr-live-infer#17": {
+  fast: "Contamination would have aged the top sample too, and it dates to the present, so (A) refutes it.",
+  traps: "(D) confirms the internal consistency of the series, but uniform contamination could still leave the order intact, so it does not answer the skeptics. (B) and (E) help the skeptics. (C) is about people burning coal, which was never the skeptics' claim.",
+  take: "Attack a proposed mechanism by showing a case where it should have acted and demonstrably did not."
+},
+"cr-live-infer#18": {
+  fast: "If low birth weight itself triggers the 'inadequate care' label, the correlation is circular.",
+  traps: "(E) strengthens the argument by supplying a mechanism. (A) and (D) give a few exceptions, which a statistical claim tolerates. (C) is about premature classification and does not touch the care comparison.",
+  take: "Before accepting a correlation, ask how the categories were assigned; labels defined by the outcome prove nothing."
+},
+"cr-live-assume#1": {
+  fast: "Plausible parts do not make a plausible whole; that is the composition error in (D).",
+  traps: "(A) and (C) accuse the argument of attacking the critic, but the argument only addresses the incidents. (B) is about agreement, which nobody appeals to. (E) alleges circularity, yet the reason given is independent of the conclusion.",
+  take: "Watch for arguments that pass a property from every member to the group; parts and wholes can differ."
+},
+"cr-live-assume#2": {
+  fast: "Better feed means fewer cows are needed for the same meat, so total methane drops twice over.",
+  traps: "(A) is about whether farmers would adopt the diet, not about what happens if they do, which is what the conclusion states. (D) and (E) are chemistry and climate facts that leave the quantity of methane unchanged. (B) redistributes methane across cow types without reducing it.",
+  take: "For a 'total' conclusion, strengthen by attacking both factors of the product: amount per unit and number of units."
+},
+"cr-live-assume#3": {
+  fast: "If Homer's texts were available, non-translation can only mean no demand, which is (A).",
+  traps: "(E) weakens by suggesting Arabs had reason to be interested in the Poetics. (B) and (C) are about other literature and other languages. (D) is about modern poets and says nothing about medieval ones.",
+  take: "When an argument reads absence as lack of interest, strengthen it by ruling out lack of opportunity."
+},
+"cr-live-assume#4": {
+  fast: "The drug works, but the argument guesses which of its effects did the work: that is (B).",
+  traps: "(A) is about safety, not about what caused the benefit. (D) tells the arguer to study a different question instead of pointing out a flaw in this one. (C) and (E) describe things the argument did not do wrongly.",
+  take: "A treatment with several effects cannot be used to prove which effect produced the outcome."
+},
+"cr-live-assume#5": {
+  fast: "A was sufficient, not necessary; denying it proves nothing, which is the flaw in (B).",
+  traps: "(A) and (D) describe statements that would actually support the argument's conclusion, not flaws. (C) is about grading importance, which is irrelevant to the logic. (E) concerns students with A's, while Joan has none.",
+  take: "If X then Y never yields if not X then not Y; spot the negated conditional and the flaw is named."
+},
+"cr-live-assume#6": {
+  fast: "If all errors are false positives, no real case is missed and needless surgeries drop: (B).",
+  traps: "(C) says every positive is correct, which guarantees no unnecessary surgery but leaves open that real cases were missed, the opposite of what is needed. (A), (D) and (E) describe the patients rather than the direction of the errors.",
+  take: "For accuracy arguments, separate false positives from false negatives and ask which one the conclusion must exclude."
+},
+"cr-live-assume#7": {
+  fast: "Everybody uses phones tells us nothing about these patients; (D) adds no support.",
+  traps: "(B) can look irrelevant, but it eliminates alternative one-sided causes, which strengthens a causal claim. (C) and (E) are easy to dismiss as obvious, yet they show the dose-response pattern that supports causation.",
+  take: "In a strengthen-EXCEPT question, the odd one out is often a general fact with no link to the specific cases."
+},
+"cr-live-assume#8": {
+  fast: "Salt kills wheat but not barley, so salination explains the swap between the two crops: (B).",
+  traps: "(D) gives a competing explanation, blights, and so undermines the historians. (A) is about water, and irrigation was excessive rather than scarce. (C) and (E) restate the shift without explaining it.",
+  take: "The best strengthener for a causal story is a fact that makes the cause predict every part of the observed data."
+},
+"cr-live-assume#9": {
+  fast: "Phony signatures on minor works are exactly how misattributions arise, so (D) strengthens.",
+  traps: "(C) is the strongest trap: it explains the equal survival numbers without any misattribution, so it weakens. (A) makes imitation harder and weakens. (B) and (E) are neutral background.",
+  take: "Strengthen an inference-to-the-best-explanation by supplying the mechanism and by not offering a rival one."
+},
+"cr-live-assume#10": {
+  fast: "Non-viewers can learn who won from reports and shift their votes; the argument forgets them, which is (B).",
+  traps: "(E) is consistent with the argument and does not challenge it. (A) is about turnout, not about whom people vote for. (C) and (D) raise vagueness and unpredictability without showing that winning helps.",
+  take: "When premises describe one group and the conclusion covers a larger one, ask who was left out."
+},
+"cr-live-assume#11": {
+  fast: "If the site decays before the technology arrives, waiting loses everything, so ask (A).",
+  traps: "(B) is already given as a premise, so it is not open to question. (C) is about what the team does meanwhile, not about this site's knowledge. (D) and (E) do not bear on whether waiting beats studying now.",
+  take: "To evaluate a wait-and-see plan, test whether the thing being preserved will still be there at the end of the wait."
+},
+"cr-live-assume#12": {
+  fast: "Rising domestic supply cuts imports only if demand is not rising faster, so ask (D).",
+  traps: "(E) is about the timing of conversions and does not affect whether the trend leads to less reliance. (A) compares two domestic sources, which is irrelevant to imports. (B) and (C) are context, not a test of the reasoning.",
+  take: "Evaluate questions about self-sufficiency: check the demand side when the argument only cites supply."
+},
+"cr-live-assume#13": {
+  fast: "Hurt versus helped is decided by the share of farmers who are fair-trade, so ask (B).",
+  traps: "(A) and (E) ask about remedies, which do not tell us whether the harm described occurs. (C) is about other income and does not change who is hurt. (D) asks a value question the argument does not raise.",
+  take: "When a conclusion says a higher percentage, evaluate it by asking for the sizes of the two groups."
+},
+"cr-live-assume#14": {
+  fast: "If the damaging use is at home, classroom monitoring cannot cut injuries much; ask (C).",
+  traps: "(E) is tempting but a large share already using correct posture would only mean fewer children to correct, not that the plan fails. (A) and (B) are about other injuries and other causes. (D) is speculative and about the future curriculum.",
+  take: "Evaluate a plan by asking whether the plan's reach covers the cause it is meant to remove."
+},
+"cr-live-assume#15": {
+  fast: "Clean chicken that tastes wrong will not sell, so the taste question in (A) decides usefulness.",
+  traps: "(B) mixes up capsaicin eaten by people with capsaicin fed to chickens. (D) is about cooking contaminated chicken, but the feed produces uncontaminated chicken. (C) and (E) are background comparisons.",
+  take: "Read the stated goal exactly; a plan can meet its technical aim and still fail the commercial one."
+},
+"cr-live-assume#16": {
+  fast: "If the others were just following one fly, no memory is involved; the hypothesis needs (B).",
+  traps: "(A) contradicts the hypothesis, which relies on an alarm signal. (C) is compatible with the data but not required. (D) and (E) concern the odor's pleasantness and the shock's strength, neither of which the hypothesis depends on.",
+  take: "For a hypothesis assumption, negate the choice and see whether a simpler explanation of the same data survives."
+},
+"cr-live-assume#17": {
+  fast: "Merit explains the pattern only if the qualified pool was itself mostly acquaintances: (B).",
+  traps: "(E) is tempting but a policy of requiring surpassing the criteria does not address why acquaintances were preferred among those who surpass. (A) and (C) are about outcomes and volumes, not about bias. (D) says nothing about acquaintance.",
+  take: "When an argument explains a suspicious pattern by merit, it assumes merit was not equally present outside the favoured group."
+},
+"cr-live-assume#18": {
+  fast: "All-male schools cannot win; the comparison assumes District 2 is not full of them: (D).",
+  traps: "(C) is the strong trap, but larger District 2 schools would make reaching ten girls easier, so it would not explain the lower rate. (B) is about district population, which does not affect a percentage of schools. (A) and (E) are not required.",
+  take: "Before comparing success rates, check that every unit in each group was actually eligible to succeed."
+},
+"cr-live-assume#19": {
+  fast: "If bankruptcy just became easier, more filings prove nothing, so the argument needs (C).",
+  traps: "(A) and (B) are too strong: the argument need only claim its evidence outweighs the media's, not that their indicators are useless. (D) reverses the direction: more lawyers would not make the reported busyness meaningless. (E) is a generalisation about the media the argument does not rely on.",
+  take: "An indicator supports a conclusion only if the argument assumes no alternative cause moved the indicator."
+},
+"cr-live-assume#20": {
+  fast: "Fewer accidents per driver means safer only if the miles driven are comparable: (A).",
+  traps: "(C) would weaken the argument by giving another reason for fewer accidents, so it cannot be an assumption. (B) concerns the share of drivers, which does not affect a percentage within each group. (D) and (E) go beyond what is needed.",
+  take: "A rate per person supports a claim about behaviour only when exposure per person is assumed equal."
+},
+"cr-live-assume#21": {
+  fast: "Purchase history predicts the buyer's taste only if the buyer was not shopping for others: (C).",
+  traps: "(B) contradicts the argument, which relies on similarity appealing. (D) is about privacy and might matter for the plan's acceptability but not for whether the suggestions appeal. (A) and (E) are irrelevant.",
+  take: "Recommendation arguments assume that past behaviour reflects the person's own preferences."
+},
+"cr-live-assume#22": {
+  fast: "Same arrests can hide fewer crimes if monitoring catches more of them; the argument needs (C).",
+  traps: "(E) is about group sizes, which do not matter for percentages. (A) would introduce a confounder rather than being assumed. (B) and (D) are far stronger than anything the argument needs.",
+  take: "When the evidence is a detection statistic, assume equal detection before comparing underlying behaviour."
+},
+"cr-live-assume#23": {
+  fast: "A 10 percent share tops the list only if more than ten varieties divide the rest: (A).",
+  traps: "(B), (C), (D) and (E) all wander off to North America, other nurseries and gardeners, none of which the claim about Nursery X depends on.",
+  take: "A small percentage can be the largest share only when the number of competing categories is large enough."
+},
+"cr-live-assume#24": {
+  fast: "First: current practice the author opposes. Second: evidence for the author's remedy. That is (B).",
+  traps: "(C) calls the first a fact that contradicts the author, but a description of what manufacturers do is not a counter-argument, and the second is evidence rather than the position itself. (D) and (E) wrongly make the second boldface weigh against the author.",
+  take: "In boldface questions, locate the main conclusion, then classify each portion as for it, against it, or the thing it opposes."
+},
 "di-ds-basics-extra#1": {
   steps: "(1) Page size says nothing about the count. Not sufficient.\n(2) An average per page without a total. Not sufficient.\nTogether still no total word count. Not sufficient.\nAnswer: E.",
   take: "Average per unit needs a total to give the number of units."

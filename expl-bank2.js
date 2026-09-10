@@ -2644,7 +2644,7 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   take: "Mean and a couple of repeated values do not pin the median; build a skewed example before concluding."
 },
 "quant-guide-s2#3": {
-  fast: "Cheapest < median forces m > 830.8, so 1.25m exceeds 1,038.",
+  fast: "The cheapest model is below the median, which forces m > 830.8, so 1.25m exceeds 1,038.",
   traps: "(E) $1,125 assumes the median is exactly 900, but the median of three distinct numbers need not equal the mean. (D) gives up too early: an inequality is a conclusion.",
   take: "When values are ordered, express everything in one variable and use the ordering as an inequality."
 },

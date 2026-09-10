@@ -1,5 +1,265 @@
 /* GMAT Prep — explanation layer for sets-bank2.js. Keys are "setId#n". */
 window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+"quant-arith-class#1": {
+  fast: "Divide 126 by 0.7: \\(\\tfrac{126}{0.7} = 180\\), since the money left is the 70% that was not spent.",
+  traps: "(B) 168 adds 30% of 126 back, which is 30% of the wrong base. (E) 420 divides by 0.3, the part spent.",
+  take: "\"Has left\" is the complement percentage of the original."
+},
+"quant-arith-class#2": {
+  fast: "Multiply the factors 1.4 and 0.8 to get 1.12, a 12% rise; never add 40 and −20.",
+  traps: "(D) 20% adds the percentages. (E) 32% is 40 − 8, a wrong shortcut.",
+  take: "Successive percent changes multiply: (1 + a)(1 + b) − 1."
+},
+"quant-arith-class#3": {
+  fast: "\\(\\tfrac{441}{400}\\) is a perfect square ratio: \\(\\tfrac{21}{20}\\) per year, so 5%.",
+  traps: "(D) 10% is the total two-year growth, roughly, not the annual rate. (E) 10.25% is \\((1.05)^{2} - 1\\) misread as annual.",
+  take: "Two years of the same rate is a square; take the square root of the ratio."
+},
+"quant-arith-class#4": {
+  fast: "1.5 × 0.8 = 1.2, so the trader keeps a 20% margin after the discount.",
+  traps: "(C) 30% subtracts 20 from 50, ignoring that the discount is taken on the marked price.",
+  take: "Discounts apply to the marked price; profit is measured on cost."
+},
+"quant-arith-class#5": {
+  fast: "A 20% price cut buys \\(\\tfrac{1}{0.8} = 1.25\\) times as many, so 120 is a quarter of 480 apples; \\(\\tfrac{1440}{480} = 3\\).",
+  traps: "(B) 2.40 is the reduced price, not the original.",
+  take: "Fixed spending: quantity scales by the reciprocal of the price factor."
+},
+"quant-arith-class#6": {
+  fast: "Multiply the two factors: 1.25 × 1.2 = 1.5, so earnings rise by half.",
+  traps: "(A) 45% adds the percentages and forgets the cross term 0.25 × 0.2 = 0.05.",
+  take: "Percent changes in factors combine multiplicatively."
+},
+"quant-arith-class#7": {
+  fast: "\\(\\tfrac{119}{0.85} = 140\\) is the marked price, so the mark-up is 40% of the cost price.",
+  traps: "(A) 34% adds 15 and 19, ignoring that the discount is taken on the larger marked price.",
+  take: "Work backwards from the sale price: marked price = sale price ÷ (1 − discount)."
+},
+"quant-arith-class#8": {
+  fast: "\\(\\tfrac{160}{340} = \\tfrac{8}{17}\\), just under a half, so 47%.",
+  traps: "(A) 32% divides by the new value 500, which is the percent decrease going the other way.",
+  take: "Percent change is measured against the starting value."
+},
+"quant-arith-class#9": {
+  fast: "1.2 × 1.25 = 1.5 for each pair of years, and 1.5 × 1.5 = 2.25; then 160 × 2.25 = 360.",
+  traps: "(A) 312 adds the percentages (95%) to 160 as if they applied to the same base.",
+  take: "Chain the multipliers; each percent applies to the previous year's value."
+},
+"quant-arith-class#10": {
+  fast: "The four factors multiply to 0.99, so the start was \\(\\tfrac{990}{0.99} = 1{,}000\\).",
+  traps: "(C) 990 assumes the changes cancel exactly; they leave a 1% net drop.",
+  take: "Multiply all the factors first, then divide once."
+},
+"quant-arith-class#11": {
+  fast: "The reciprocal of \\(\\tfrac{3}{4}\\) is \\(\\tfrac{4}{3}\\), one third more.",
+  traps: "(B) 25% assumes the increase matches the decrease; equal percents do not cancel.",
+  take: "Fixed product: one factor's change is the reciprocal of the other's."
+},
+"quant-arith-class#12": {
+  fast: "Four thirds of the speed means three quarters of the time, so the saving is one quarter of the usual time.",
+  traps: "(D) repeats the speed percentage; the time change is the reciprocal.",
+  take: "Speed and time are inversely proportional over a fixed distance."
+},
+"quant-arith-class#13": {
+  fast: "Five quarters up means four fifths down, so consumption must fall by one fifth, which is 20%.",
+  traps: "(B) 25% mirrors the increase; the compensating decrease is always smaller.",
+  take: "To undo a rise of p%, drop by p/(100 + p) of the new value."
+},
+"quant-arith-class#14": {
+  fast: "Use 10 by 10 as the start: 6 by 13 gives 78, which is down 22 from 100, a 22% decrease.",
+  traps: "(A) 10% adds −40 and +30. (C) gets the size right but the direction wrong.",
+  take: "Assume 100 for the area and multiply the factors."
+},
+"quant-arith-class#15": {
+  fast: "Hardwood 60 = 50 (windows) + 0.25x, so x = 40 no-window units, 60 with windows; 50 of 60 is 83.33%.",
+  traps: "(D) 50% reads \"50% of all apartments\" as the answer; the question asks a percent of the windowed ones only.",
+  take: "\"Percent of the apartments with windows\" changes the denominator; fill the matrix first."
+},
+"quant-arith-class#16": {
+  fast: "77 − 6 − 59 = 12 counts the triple members twice, so 6 of them.",
+  traps: "(E) 12 forgets that the triple overlap is subtracted twice.",
+  take: "Three sets with no \"neither\": T = A + B + C − (exactly two) − 2(all three)."
+},
+"quant-arith-class#17": {
+  fast: "The cheaper tea is 3 away from 30 and the dearer is 5 away; the ratio dear : cheap is 3 : 5.",
+  traps: "(B) 5 : 3 reverses the alligation cross; the mixture price is nearer the cheap tea, so more of it.",
+  take: "The mixture sits closer to the ingredient used in greater quantity."
+},
+"quant-arith-class#18": {
+  fast: "Take 90 as the shared value of the three products: a = 15, b = 10, c = 9, so a : b : c = 15 : 10 : 9.",
+  traps: "(A) copies the coefficients; the variables are inversely related to them.",
+  take: "Equal products: the variables are in the ratio of the reciprocals of their coefficients."
+},
+"quant-arith-class#19": {
+  fast: "Cross-multiply the 20-years-ago ratio: 20x = 140, x = 7, A = 56.",
+  traps: "(A) 40 is 8 × 5, using the wrong multiplier.",
+  take: "Ratios of ages give a multiplier; a past or future condition fixes it."
+},
+"quant-arith-class#20": {
+  fast: "24 + x = 48 + 0.48x, so 0.52x = 24 and x is about 46; pick the closest option.",
+  traps: "(A) 24 doubles the tin but forgets that the total also grows.",
+  take: "Adding pure substance changes both numerator and denominator."
+},
+"quant-arith-class#21": {
+  fast: "Each block of 50 guests adds $300, so 300 guests cost 1600 + 300 = 1900.",
+  traps: "(D) 1,950 scales 1,300 by \\(\\tfrac{3}{2}\\), ignoring the fixed part.",
+  take: "Linear cost: slope from two points, then extend."
+},
+"quant-arith-class#22": {
+  fast: "The target is \\(\\tfrac{5}{16}\\) wheat, close to B's \\(\\tfrac{3}{10}\\), so almost all comes from B; x = 2 checks.",
+  traps: "(E) 14 is the amount from tin B.",
+  take: "Equate one ingredient across the mixtures; the other ingredient follows."
+},
+"quant-arith-class#23": {
+  fast: "Multiply through by 66: 48x + 55(35 − x) = 1848, so 7x = 77 and x = 11.",
+  traps: "(E) 24 is the amount from the second vessel.",
+  take: "Convert every ratio to a fraction of the whole before mixing."
+},
+"quant-arith-class#24": {
+  fast: "Value per set of 3 + 4 + 12 coins is $8, so 75 sets and 900 quarters.",
+  traps: "(A) 225 is the dollar value of the quarters, not their number.",
+  take: "Count ratio and value ratio differ; convert counts to value before using the total."
+},
+"quant-arith-class#25": {
+  fast: "Water doubled its share from 1 part to 2 parts, so the 5 litres added equal one part: milk is 5 parts, 25 L.",
+  traps: "(A) 5 litres is the water, not the milk.",
+  take: "Keep the unchanged ingredient fixed and let the added one move."
+},
+"quant-arith-class#26": {
+  fast: "Girls become 240, so boys must reach 360 to keep the 3 : 2 ratio, and 360 − 312 = 48 boys join.",
+  traps: "(A) 36 uses 234 girls instead of 240.",
+  take: "Compute the actual counts before adjusting a ratio."
+},
+"quant-arith-class#27": {
+  fast: "Cross-multiply the ratio of the numbers to get x = 5; the larger number is then 4x = 20.",
+  traps: "(B) 15 is the smaller number.",
+  take: "Subtracting the same amount lowers a ratio below 1 further; solve with a multiplier."
+},
+"quant-arith-class#28": {
+  fast: "B does half the joint rate, so A does the other half: 20 days as well.",
+  traps: "(A) 10 forgets to subtract B's rate.",
+  take: "Rates add; subtract the known rate from the joint rate."
+},
+"quant-arith-class#29": {
+  fast: "2.75 effective men instead of 4 means \\(\\tfrac{4}{2.75}\\) times as long: \\(11 \\times \\tfrac{16}{11} = 16\\) days.",
+  traps: "(E) 22 doubles the time as if half the men were missing entirely.",
+  take: "Convert part-time workers into fractions of a full worker and add."
+},
+"quant-arith-class#30": {
+  fast: "Blocks of 4 days contribute 80, 60, 40, 20 man-days, reaching 200 exactly at day 16.",
+  traps: "(A) 12 stops when 180 man-days are done, 20 short.",
+  take: "Track cumulative man-days block by block."
+},
+"quant-arith-class#31": {
+  fast: "Over 90: 9 + 6 − 10 = 5 parts per minute, so \\(\\tfrac{90}{5} = 18\\) minutes.",
+  traps: "(A) 6 adds all three rates, treating the drain as a filler.",
+  take: "A drain is a negative rate."
+},
+"quant-arith-class#32": {
+  fast: "\\(\\tfrac{3}{20}\\) per minute for 5 minutes is \\(\\tfrac{3}{4}\\); a quarter tank at C's rate is 7.5 minutes; 12.5 in all.",
+  traps: "(A) 10 forgets that C is much slower than the trio.",
+  take: "Split the job into phases with different active rates."
+},
+"quant-arith-class#33": {
+  fast: "Over 24: 14 + 12 − 21 = 5 twenty-fourths filled, so \\(\\tfrac{19}{24}\\) remains.",
+  traps: "(A) \\(\\tfrac{5}{24}\\) is the part filled, not the part unfilled.",
+  take: "Read the last line: filled or unfilled?"
+},
+"quant-arith-class#34": {
+  fast: "880 m/h closes 176 m in a fifth of an hour, which is 12 minutes.",
+  traps: "(A) 6 uses the sum of the speeds, which applies to approaching runners, not a chase.",
+  take: "Same direction: divide the gap by the difference of speeds."
+},
+"quant-arith-class#35": {
+  fast: "The two trips differ by one hour; at 4 and 5 km/h the times are 5 and 4 hours for 20 km.",
+  traps: "(D) 24 comes from a slip in solving 4t + 2 = 5t − 2.5.",
+  take: "Late-and-early problems: equate the distance at both speeds."
+},
+"quant-arith-class#36": {
+  fast: "Half the difference of the two speeds, 4.5 and 1.5, gives the stream speed of 1.5 km/h.",
+  traps: "(D) 3 is the still-water speed, half the sum.",
+  take: "Still water = average of the two speeds; stream = half their difference."
+},
+"quant-arith-class#37": {
+  fast: "The time difference is 16 minutes; 1.5 km takes 36 minutes at 2.5 km/h and 20 at 4.5 km/h.",
+  traps: "(D) 2 km gives times of 48 and 26.7 minutes, a 21-minute gap, too large.",
+  take: "Convert minutes to hours before writing the distance equation."
+},
+"quant-arith-class#38": {
+  fast: "The current adds 3 km/h, so upstream is 9 km/h and 4 km takes \\(\\tfrac{4}{9}\\) of an hour.",
+  traps: "(B) 24 subtracts 4 minutes as the current added 4; speeds, not times, are symmetric.",
+  take: "Work in speeds: upstream = still − current."
+},
+"quant-arith-class#39": {
+  fast: "The difference of squares of numbers 2 apart is twice their sum: sum 148, numbers 73 and 75.",
+  traps: "(C) 75 is the larger number. (E) 147 is the sum minus 1.",
+  take: "\\(a^{2} - b^{2} = (a - b)(a + b)\\); with a − b = 2 the sum is the difference divided by 2."
+},
+"quant-arith-class#40": {
+  fast: "Express everyone through D, add two years, and solve x + 36 = 6x + 26 for x = 2.",
+  traps: "(C) 34 is A's age relative to D without the solved value of x.",
+  take: "Age chains: name the youngest x and write everyone else from x."
+},
+"quant-arith-class#41": {
+  fast: "Test (A) directly: 432 − 234 = 198 = 22 × 9, and the digit sum 9 gives the divisibility.",
+  traps: "(B) to (E) all reverse to a difference of 198, but their digit sums are not 9.",
+  take: "Reversing a three-digit number changes it by 99 × (first digit − last digit)."
+},
+"quant-arith-class#42": {
+  fast: "Four times the time means a quarter of the speed: 5 − x = (5 + x)/4, so x = 3.",
+  traps: "(D) 4 makes the upstream speed 1 mph and downstream 9, a ratio of 9, not 4.",
+  take: "Time ratio inverts to speed ratio over the same distance."
+},
+"quant-arith-class#43": {
+  fast: "Expand both products, drop xy, and add the two linear equations: 2x = 56, so the length is 28.",
+  traps: "(E) 35 is the constant in the second equation, not x.",
+  take: "Products that stay equal to xy reduce to linear equations after expanding."
+},
+"quant-arith-class#44": {
+  fast: "Eliminate y: 27x − 12y = 600 and 28x − 12y = 800 give x = 200, income 1,800.",
+  traps: "(A) 1,400 is the second person's income.",
+  take: "Two ratios with a common absolute (savings) become two linear equations."
+},
+"quant-arith-class#45": {
+  fast: "Multiply by 30: 5(n + 2) − 3n = 870 with n the smaller, so n = 430 and the greater is 432.",
+  traps: "(A) 430 is the smaller number.",
+  take: "Clear denominators with the LCM before solving."
+},
+"quant-arith-class#46": {
+  fast: "The digits are in ratio 3 : 1 and sum to 12, so 9 and 3: the number is 93.",
+  traps: "(A) 39 reverses the digits.",
+  take: "Name the smaller digit and build the other from it."
+},
+"quant-arith-class#47": {
+  fast: "Add the linear equations to get 2x = 60, so x = 30, y = 24 and the distance is 720.",
+  traps: "(A) 600 uses y = 20, a slip in the second equation.",
+  take: "Speed-time products that stay constant give linear equations once expanded."
+},
+"quant-arith-class#48": {
+  fast: "Add the two linear equations: 2s = 10, so each got $5 and there were 24 people; $120.",
+  traps: "(E) 144 uses n = 24 with s = 6.",
+  take: "\"Six more people, one dollar less each\" is a product kept constant: expand and cancel."
+},
+"quant-arith-class#49": {
+  fast: "Two quarters at 2% each is roughly 4% of x, and 4% of x must exceed $100, so x is about $2,500.",
+  traps: "(C) 2,000 earns only about $81 in six months.",
+  take: "Short-period compounding is close to simple interest; approximate first."
+},
+"quant-arith-class#50": {
+  fast: "The hourly factor is the cube root of 125, which is 5, so 3 p.m. is 2,000 × 25.",
+  traps: "(B) 62,500 divides 250,000 by 4, assuming linear growth over the hours.",
+  take: "Constant-rate growth is geometric; count the number of periods."
+},
+"quant-arith-class#51": {
+  fast: "4,000 needs a factor of 62.5, so six doublings (64), each two hours: 12 hours.",
+  traps: "(B) 8 counts doublings from 1,000 but forgets to add the two hours per doubling correctly.",
+  take: "Doubling problems: list the population at each period from now."
+},
+"quant-arith-class#52": {
+  fast: "The population is 5,000 now and quadruples twice more in four hours: 5,000 × 16 = 80,000.",
+  traps: "(A) 20,000 applies only one quadrupling.",
+  take: "Find the current value first, then project forward by the same factor."
+},
 "di-ds-coord-recent#1": {
   steps: "The curve meets the \\(x\\)-axis at \\(x = p\\) and \\(x = q\\).\n(1) \\(pq = -8\\): \\((2, -4)\\) says yes, \\((1, -8)\\) says no. Not sufficient.\n(2) \\(p + q = -2\\): \\((2, -4)\\) yes, \\((0, -2)\\) no. Not sufficient.\nTogether \\(p\\) and \\(q\\) are the roots of \\(t^{2} + 2t - 8 = 0\\), i.e. \\(2\\) and \\(-4\\): one of them is 2. Sufficient.\nAnswer: C.",
   take: "A product and a sum together pin the pair as the roots of one quadratic."
@@ -114,6 +374,166 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "Each axis is a chord at 90°; the two segments outside total about 18%, so about 82% is inside.",
   traps: "(B) 50% guesses from the centre lying on the diagonal.",
   take: "A chord at distance \\(r/\\sqrt{2}\\) from the centre spans a right angle; segment = quarter circle − right triangle."
+},
+"di-ds-basics-extra#1": {
+  steps: "(1) Page size says nothing about the count. Not sufficient.\n(2) An average per page without a total. Not sufficient.\nTogether still no total word count. Not sufficient.\nAnswer: E.",
+  take: "Average per unit needs a total to give the number of units."
+},
+"di-ds-basics-extra#2": {
+  steps: "(1) \\(r = 4t\\), scale unknown. Not sufficient.\n(2) \\(r + t = 20\\). Not sufficient.\nTogether \\(5t = 20\\), \\(t = 4\\). Sufficient.\nAnswer: C.",
+  take: "A ratio and a total are the standard pair for two unknowns."
+},
+"di-ds-basics-extra#3": {
+  steps: "(1) \\(10a + 4 = 12\\), \\(a = 0.80\\). Sufficient.\n(2) \\(2a < g = 6 - 5a\\) gives \\(a < \\tfrac67\\), a range. Not sufficient.\nAnswer: A.",
+  take: "An inequality between the unknowns cannot replace a second equation."
+},
+"di-ds-basics-extra#4": {
+  steps: "(1) The median is the 15th salary, value unknown. Not sufficient.\n(2) Twelve equal salaries do not fix the middle one. Not sufficient.\nTogether: if the 12 are the lowest, the 15th is unknown and larger; if they sit in the middle, the median is 24,000. Not sufficient.\nAnswer: E.",
+  take: "A block of equal values fixes the median only if it is known to straddle the middle position."
+},
+"di-ds-basics-extra#5": {
+  steps: "(1) Divide by 25: \\(4X = 25Y\\), so \\(250Y\\) (ten times 25Y) equals \\(40X\\). Sufficient.\n(2) Divide by 50: \\(40X = 250Y\\) directly. Sufficient.\nAnswer: D.",
+  take: "Any pair of equivalent amounts fixes a proportional conversion."
+},
+"di-ds-basics-extra#6": {
+  steps: "(1) One equation with unknown printer prices. Not sufficient.\n(2) A ratio only. Not sufficient.\nTogether \\(12s + s = 1300\\), \\(s = 100\\). Sufficient.\nAnswer: C.",
+  take: "Ratio plus total."
+},
+"di-ds-basics-extra#7": {
+  steps: "(1) \\(g = 4b\\); purple free. Not sufficient.\n(2) \\(b + p = 64\\), split unknown. Not sufficient.\nTogether \\(b = 48\\), \\(p = 16\\), ratio 3 : 1. Sufficient.\nAnswer: C.",
+  take: "Three colours with a total need two more facts."
+},
+"di-ds-basics-extra#8": {
+  steps: "(1) 10 quarts of yellow are needed; supply unknown. Not sufficient.\n(2) 10 available; need unknown. Not sufficient.\nTogether exactly enough. Sufficient.\nAnswer: C.",
+  take: "\"Enough?\" needs both the requirement and the supply."
+},
+"di-ds-basics-extra#9": {
+  steps: "(1) Sizes only. Not sufficient.\n(2) One high B score and one low A score leave the averages open either way. Not sufficient.\nTogether still open. Not sufficient.\nAnswer: E.",
+  take: "A single maximum or minimum says little about a mean."
+},
+"di-ds-basics-extra#10": {
+  steps: "(1) Total without count. Not sufficient.\n(2) \\(c = s + 40\\), one equation. Not sufficient.\nTogether \\(s = 16\\), average 3.5. Sufficient.\nAnswer: C.",
+  take: "Average = total ÷ count; find both."
+},
+"di-ds-basics-extra#11": {
+  steps: "(1) \\(n = 29\\), values unknown. Not sufficient.\n(2) A sum. Not sufficient.\nTogether the 29 different salaries can sum to 913,500 with many different 15th values. Not sufficient.\nAnswer: E.",
+  take: "Sum and count give the mean, never the median."
+},
+"di-ds-basics-extra#12": {
+  steps: "(1) Blue unknown. Not sufficient.\n(2) No total. Not sufficient.\nTogether white 12, blue \\(24 - 8 - 12 = 4\\), probability \\(\\tfrac16\\). Sufficient.\nAnswer: C.",
+  take: "Probabilities of the complementary colours must be pinned to get the third."
+},
+"di-ds-basics-extra#13": {
+  steps: "(1) \\(7a + 5b = 85\\): \\((a, b) = (5, 10)\\) or \\((10, 3)\\). Not sufficient.\n(2) \\(b = 10\\), no link to \\(a\\). Not sufficient.\nTogether \\(a = 5\\). Sufficient.\nAnswer: C.",
+  take: "Check the integer solutions of a single equation before calling it sufficient."
+},
+"di-ds-basics-extra#14": {
+  steps: "(1) A ratio of times only. Not sufficient.\n(2) A joint time only. Not sufficient.\nTogether \\(\\tfrac1R + \\tfrac{4}{3R} = \\tfrac{1}{12}\\), \\(\\tfrac{7}{3R} = \\tfrac{1}{12}\\), \\(R = 28\\) minutes. Sufficient.\nAnswer: C.",
+  take: "Joint rate plus the ratio of the two rates fixes each rate."
+},
+"di-ds-basics-extra#15": {
+  steps: "(1) Ten wallets at $24; the extremes are unknown. Not sufficient.\n(2) \\(L = \\tfrac13 H\\), no values. Not sufficient.\nTogether \\(L = 8, H = 24\\) or \\(L = 24, H = 72\\) both fit. Not sufficient.\nAnswer: E.",
+  take: "A ratio between the extremes is not a range."
+},
+"di-ds-basics-extra#16": {
+  steps: "(1) At least one person owns neither; how many is open. Not sufficient.\n(2) The overlap alone. Not sufficient.\nTogether the \"only\" groups are still free. Not sufficient.\nAnswer: E.",
+  take: "Neither = total − (A or B); an inequality on (A or B) leaves it undetermined."
+},
+"di-ds-basics-extra#17": {
+  steps: "(1) \\(1.04A = 4160\\), \\(A = 4000\\); the difference is \\(0.04A(1.04^{2} - 1)\\), computable. Sufficient.\n(2) \\(1.04^{2}A = 4326.40\\), \\(A = 4000\\). Sufficient.\nAnswer: D.",
+  take: "With the rate known, any one balance fixes the whole compound-interest schedule."
+},
+"di-ds-basics-extra#18": {
+  steps: "(1) \\(0.06L = 9.60\\), \\(L = 160\\), total \\(1.06(50 + 160) = 222.60\\). Sufficient.\n(2) \\(0.06(50 + L) = 12.60\\) gives the same \\(L\\). Sufficient.\nAnswer: D.",
+  take: "Tax on a known rate reveals the base."
+},
+"di-ds-basics-extra#19": {
+  steps: "(1) \\(p = 0.5\\%\\); last year's profit unknown. Not sufficient.\n(2) Profit without the rate. Not sufficient.\nTogether \\(0.005 \\times 2{,}500{,}000 = 12{,}500 > 10{,}000\\). Yes. Sufficient.\nAnswer: C.",
+  take: "A constant rate learned from one year applies to another."
+},
+"di-ds-basics-extra#20": {
+  steps: "(1) \\(a + b + z + 2 = 32\\) gives \\(b = 12\\); \\(z\\) unknown. Not sufficient.\n(2) \\(b + 1 + z = 23\\), \\(b + z = 22\\). Not sufficient.\nTogether \\(z = 10\\). Sufficient.\nAnswer: C.",
+  take: "Name each segment of the line and write the two counts as equations."
+},
+"di-ds-basics-extra#21": {
+  steps: "(1) Both = 4, but the only-cat and only-dog groups still share an unknown total. Not sufficient.\n(2) Neither = 14, same problem. Not sufficient.\nTogether \\(50 - 4 - 14 = 32\\) households have exactly one kind of pet. Sufficient.\nAnswer: C.",
+  take: "The four regions of a two-set diagram sum to the total."
+},
+"di-ds-basics-extra#22": {
+  steps: "(1) \\(f/n = \\tfrac23\\). Not sufficient.\n(2) \\(x/f = \\tfrac12\\). Not sufficient.\nTogether \\((n, f, x) = (3, 2, 1)\\) or \\((6, 4, 2)\\). Not sufficient.\nAnswer: E.",
+  take: "Probabilities are ratios; without a count, n floats."
+},
+"di-ds-basics-extra#23": {
+  steps: "(1) One short job; the other could be 3 hours ($92) or 5 hours ($115). Not sufficient.\n(2) \\(138 = 23 \\times 6\\): a 6-hour job, leaving a 1-hour job at $92, total $230. Sufficient.\nAnswer: B.",
+  take: "A charge above the flat fee reveals the hours; the total time then fixes the other job."
+},
+"di-ds-basics-extra#24": {
+  steps: "\\(y(x + 1) > x(y + 1)\\) reduces to \\(y > x\\).\n(1) No relation to \\(y\\). Not sufficient.\n(2) \\(x < y\\). Yes. Sufficient.\nAnswer: B.",
+  take: "Adding 1 to numerator and denominator moves a fraction toward 1; it rises only if it was below 1."
+},
+"di-ds-basics-extra#25": {
+  steps: "(1) \\(v^{2} = \\tfrac{10800}{3} = 3600\\), \\(v = 60\\). Sufficient.\n(2) \\(\\tfrac{1}{12} + 900k = \\tfrac16\\) gives \\(k = \\tfrac{1}{10800}\\), then \\(v = 60\\). Sufficient.\nAnswer: D.",
+  take: "One data point determines the single unknown constant in the formula."
+},
+"di-ds-basics-extra#26": {
+  steps: "(1) 4,500 square metres of offices, sizes unknown. Not sufficient.\n(2) A ratio of sizes. Not sufficient.\nTogether the average size of the remaining offices is still free. Not sufficient.\nAnswer: E.",
+  take: "Area over count needs a per-office area."
+},
+"di-ds-basics-extra#27": {
+  steps: "(1) J returns \\(115/1000 = 11.5\\%\\) and K returns \\(300/2500 = 12\\%\\), so K's rate is greater. Sufficient.\n(2) K's rate alone, nothing about J. Not sufficient.\nAnswer: A.",
+  take: "Convert each return to a percent before comparing."
+},
+"di-ds-basics-extra#28": {
+  steps: "(1) \\(t_X = t_Y - 1\\), \\(t_Y\\) unknown. Not sufficient.\n(2) \\(t_Y = \\tfrac{0.5}{30}\\) hour \\(= 60\\) seconds; \\(t_X\\) unknown. Not sufficient.\nTogether \\(t_X = 59\\) seconds. Sufficient.\nAnswer: C.",
+  take: "Entry and exit offsets give a difference of crossing times."
+},
+"di-ds-basics-extra#29": {
+  steps: "Kept \\(= 76 - 4y - 3t \\ge 0\\).\n(1) \\(t = 2\\), \\(y \\in \\{15, 16, 17\\}\\): kept 10, 6 or 2. Not sufficient.\n(2) \\(y = 17\\), \\(t \\in \\{1, 2\\}\\): kept 5 or 2. Not sufficient.\nTogether \\(y = 17, t = 2\\): kept 2. Sufficient.\nAnswer: C.",
+  take: "The non-negativity of the remainder caps the variables; list the survivors."
+},
+"di-ds-basics-extra#30": {
+  steps: "(1) \\(0.9r + 0.8(21.5 - r) = 18.45\\) gives \\(0.1r = 1.25\\), \\(r = 12.50\\). Sufficient.\n(2) \\(r = d + 3.5\\), \\(2r = 25\\), \\(r = 12.50\\). Sufficient.\nAnswer: D.",
+  take: "Each statement is an independent second equation."
+},
+"di-ds-basics-extra#31": {
+  steps: "(1) Green is 1 part of 4 in the whole mixture: \\(\\tfrac14 \\times 12 = 3\\) quarts. Sufficient.\n(2) Yellow : green \\(= 3 : 2\\) leaves the white amount free, so green could be 2 or 4 quarts. Not sufficient.\nAnswer: A.",
+  take: "A part-to-rest ratio fixes the part's share of the whole."
+},
+"di-ds-basics-extra#32": {
+  steps: "The fraction of green toys that are large equals the fraction of all toys that are large.\n(1) 800 small toys; large unknown. Not sufficient.\n(2) Large is \\(\\tfrac13\\). Sufficient.\nAnswer: B.",
+  take: "Equal colour splits within each size make colour irrelevant."
+},
+"di-ds-basics-extra#33": {
+  steps: "(1) A lower bound only. Not sufficient.\n(2) \\(200 \\times 4 = 800\\) attendances; \\(800 / 8 = 100\\) per performance. Sufficient.\nAnswer: B.",
+  take: "Total attendances can be counted from either side (students or performances)."
+},
+"di-ds-basics-extra#34": {
+  steps: "(1) 750 wool jackets; cotton use unknown. Not sufficient.\n(2) 333 cotton jackets; wool use unknown. Not sufficient.\nTogether \\(750 + 333 > 1000\\). Yes. Sufficient.\nAnswer: C.",
+  take: "\"At least\" questions can be settled by exhibiting one feasible plan."
+},
+"di-ds-basics-extra#35": {
+  steps: "(1) \\(P = 1.25S\\), so \\(S = 0.8P\\): a 20% discount. Sufficient.\n(2) $60 off an unknown price. Not sufficient.\nAnswer: A.",
+  take: "A percent relation in either direction fixes the discount percent."
+},
+"di-ds-basics-extra#36": {
+  steps: "(1) Equal percents mean equal volumes: green 1 gallon. Sufficient.\n(2) \\(\\dfrac{3}{4 + g} = 0.6\\) gives \\(g = 1\\). Sufficient.\nAnswer: D.",
+  take: "Percent of the mixture converts to volume once two volumes are known."
+},
+"di-ds-basics-extra#37": {
+  steps: "(1) \\(F + 30M = 13755\\), two unknowns. Not sufficient.\n(2) 400 minutes is within the allowance, so \\(F = 13125\\). Sufficient.\nAnswer: B.",
+  take: "Read the plan: a month with no extra minutes reveals the base fee."
+},
+"di-ds-basics-extra#38": {
+  steps: "Profit \\(= 2p + 3.5q = 2(834) + 1.5q = 1668 + 1.5q\\); the question is whether \\(q > 221\\).\n(1) \\(q < 417\\): 100 says no, 300 says yes. Not sufficient.\n(2) \\(q \\ge 100\\): same examples. Not sufficient.\nTogether \\(100 \\le q < 417\\) still allows both. Not sufficient.\nAnswer: E.",
+  take: "Reduce the profit to one variable, then see whether the statements bound it past the threshold."
+},
+"di-ds-basics-extra#39": {
+  steps: "(1) or (2) alone: one of three parts. Not sufficient.\nTogether \\(P(\\text{both}) = 1 - 0.3 - 0.5 = 0.2\\). Sufficient.\nAnswer: C.",
+  take: "Partition the outcomes; the missing piece is 1 minus the others."
+},
+"di-ds-basics-extra#40": {
+  steps: "9,000 cm takes 75 seconds.\n(1) Under 72 seconds means under 8,640 cm: yes. Sufficient.\n(2) Over 66 seconds: 70 s (yes) or 80 s (no). Not sufficient.\nAnswer: A.",
+  take: "Convert the distance threshold into a time threshold, then compare bounds."
 },
 "di-ds-436-1#1": {
   steps: "Cost \\(= 14s + 9r\\).\n(1) \\(s = 2k, r = 3k\\): cost \\(= 55k\\), any \\(k\\). Not sufficient.\n(2) \\(s + r = 50\\) with the split unknown. Not sufficient.\nTogether \\(5k = 50\\), \\(k = 10\\): 20 shovels, 30 rakes, $550. Sufficient.\nAnswer: C.",
@@ -1766,6 +2186,708 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 "di-ds-436-2#209": {
   steps: "(1) Retail \\(320\\), difference \\(120\\). Sufficient.\n(2) Wholesale \\(320 / 1.6 = 200\\), difference \\(120\\). Sufficient.\nAnswer: D.",
   take: "With a fixed ratio, one amount is as good as both."
+},
+"di-ds-ineq-class#1": {
+  steps: "\\(x - y + 1 > x + y - 1\\) simplifies to \\(2 > 2y\\), i.e. \\(y < 1\\).\n(1) Nothing about \\(y\\). Not sufficient.\n(2) \\(y < 0 < 1\\). Yes. Sufficient.\nAnswer: B.",
+  take: "Addition and subtraction cancel freely across an inequality; simplify before judging."
+},
+"di-ds-ineq-class#2": {
+  steps: "(1) \\(x = 1, y = 5, z = 3\\) says yes; \\(x = 1, y = 3, z = 5\\) says no. Not sufficient.\n(2) With \\(y = z\\), the sorted list has \\(z\\) in the middle whatever \\(x\\) is. Yes. Sufficient.\nAnswer: B.",
+  take: "A repeated value in a three-element list is always the median."
+},
+"di-ds-ineq-class#3": {
+  steps: "(1) \\(2^{2} = 4\\) but \\(2^{-2} = \\tfrac14\\). Not sufficient.\n(2) \\(2^{1} = 2\\) but \\(\\left(\\tfrac12\\right)^{1} = \\tfrac12\\). Not sufficient.\nTogether \\(x > 1\\) and \\(n \\ge 1\\) give \\(x^{n} \\ge x > 1\\): definite no. Sufficient.\nAnswer: C.",
+  take: "Powers need both the base's size and the exponent's sign."
+},
+"di-ds-ineq-class#4": {
+  steps: "(1) \\(\\tfrac14 \\cdot 4^{x} < 4^{x} - 120\\) gives \\(\\tfrac34 \\cdot 4^{x} > 120\\), \\(4^{x} > 160\\), \\(x \\ge 4\\): \\(3^{4} = 81\\) (yes) or \\(3^{6} = 729\\) (no). Not sufficient.\n(2) \\(x = 6\\) gives 729 (no); \\(x = -6\\) gives a tiny fraction (yes). Not sufficient.\nTogether \\(x = 6\\): no. Sufficient.\nAnswer: C.",
+  take: "Rewrite 4 to the power x − 1 as one quarter of 4 to the power x, so the inequality becomes a bound on x."
+},
+"di-ds-ineq-class#5": {
+  steps: "\\(2^{34} = (2^{10})^{3} \\cdot 2^{4} > (10^{3})^{3} \\cdot 16 > 10^{10}\\).\n(1) \\(x > 2^{34} > 10^{10}\\). Yes. Sufficient.\n(2) \\(2^{35}\\) is larger still. Yes. Sufficient.\nAnswer: D.",
+  take: "Compare powers of 2 with powers of 10 through \\(2^{10} \\approx 10^{3}\\)."
+},
+"di-ds-ineq-class#6": {
+  steps: "(1) \\(y = x^{3}(x - 1)\\): \\(x = 2\\) gives \\(y = 8\\) (no); \\(x = -1\\) gives \\(y = 2\\) (yes). Not sufficient.\n(2) \\(y^{2}(x - 4)(x + 3) > 0\\) means \\(x > 4\\) or \\(x < -3\\); \\(y\\)'s sign is free. Not sufficient.\nTogether: \\(x = 5\\) gives \\(y = 500\\), \\(xy > 0\\); \\(x = -4\\) gives \\(y = 320\\), \\(xy < 0\\). Not sufficient.\nAnswer: E.",
+  take: "Factor a messy statement; a positive square factor can be dropped without changing the sign."
+},
+"di-ds-ineq-class#7": {
+  steps: "(1) Adding \\(r + s > 2t\\) and \\(t > s\\) gives \\(r + s + t > 2t + s\\), so \\(r > t\\). Sufficient.\n(2) \\(2r > r + s > 2t\\), so \\(r > t\\). Sufficient.\nAnswer: D.",
+  take: "Same-direction inequalities can be added; the unwanted variable cancels."
+},
+"di-ds-ineq-class#8": {
+  steps: "The question is whether \\(p(qr - 1) < 0\\).\n(1) or (2) alone leaves one of \\(q, r\\) unknown. Not sufficient.\nTogether \\(p < 0\\) and \\(q, r > 0\\), so the question is whether \\(qr > 1\\): \\(q = r = 2\\) yes, \\(q = r = \\tfrac12\\) no. Not sufficient.\nAnswer: E.",
+  take: "Signs alone do not decide a product against 1; magnitudes matter."
+},
+"di-ds-ineq-class#9": {
+  steps: "(1) \\(5^{-n} > 5^{2}\\) gives \\(-n > 2\\), \\(n < -2\\). Yes. Sufficient.\n(2) \\(n^{2}(n - 1) < 0\\) gives \\(n < 1\\), \\(n \\ne 0\\): \\(n = -1\\) says no, \\(n = -3\\) says yes. Not sufficient.\nAnswer: A.",
+  take: "Write every quantity as a power of the same base."
+},
+"di-ds-ineq-class#10": {
+  steps: "(1) \\(pq < 0\\): need \\(p - q < 0\\), unknown. Not sufficient.\n(2) \\(p < 0\\), \\(q\\) unknown. Not sufficient.\nTogether \\(p < 0 < q\\), so \\(pq < 0\\) and \\(p - q < 0\\): product positive. Yes. Sufficient.\nAnswer: C.",
+  take: "Move everything to one side and factor; then track the sign of each factor."
+},
+"di-ds-ineq-class#11": {
+  steps: "(1) \\(m - n < 2\\): could be 1 (yes) or \\(-1\\) (no). Not sufficient.\n(2) \\(n > m + 2\\), so \\(m < n\\): definite no. Sufficient.\nAnswer: B.",
+  take: "A definite no is sufficient."
+},
+"di-ds-ineq-class#12": {
+  steps: "(1) \\(2^{2p} = 4^{p}\\): for \\(p > 0\\), \\(3^{p} < 4^{p}\\); for \\(p < 0\\), \\(3^{p} > 4^{p}\\). Not sufficient.\n(2) \\(p\\) unknown. Not sufficient.\nTogether \\(p = q/2 > 0\\), so \\(3^{p} < 4^{p}\\): definite no. Sufficient.\nAnswer: C.",
+  take: "Match the bases \\((2^{2p} = 4^{p})\\) and then compare exponents with the sign in mind."
+},
+"di-ds-ineq-class#13": {
+  steps: "(1) \\(m = 3, p = 2\\) says yes; \\(m = 3, p = \\tfrac12\\) says no. Not sufficient.\n(2) \\(p < 1\\): \\(m = 3\\) says no, \\(m = -3\\) says yes. Not sufficient.\nTogether \\(m > 0\\) and \\(p - 1 < 0\\): \\(mp < m\\), definite no. Sufficient.\nAnswer: C.",
+  take: "Multiplying by a number below 1 shrinks a positive number and enlarges a negative one."
+},
+"di-ds-ineq-class#14": {
+  steps: "(1) \\((10, 10)\\) gives 10; \\((25, -5)\\) gives 15. Not sufficient.\n(2) The same pairs. Not sufficient.\nTogether the same pairs. Not sufficient.\nAnswer: E.",
+  take: "A sum of x and y says nothing about x and |y| once y may be negative."
+},
+"di-ds-ineq-class#15": {
+  steps: "(1) \\(x + 1 = 2(x - 1)\\) gives \\(x = 3\\); \\(x + 1 = -2(x - 1)\\) gives \\(x = \\tfrac13\\). Not sufficient.\n(2) \\(x \\ne 3\\). Not sufficient.\nTogether \\(x = \\tfrac13\\), so \\(|x| < 1\\). Sufficient.\nAnswer: C.",
+  take: "|a| = |b| means a = b or a = −b; a second statement may kill one root."
+},
+"di-ds-ineq-class#16": {
+  steps: "The question asks whether \\(a\\) and \\(b\\) have opposite signs.\n(1) Magnitudes only. Not sufficient.\n(2) \\(b < 0\\); \\(a\\) unknown. Not sufficient.\nTogether \\(b = -4\\) with \\(a = 5\\) (yes) or \\(a = -5\\) (no). Not sufficient.\nAnswer: E.",
+  take: "|a| + |b| > |a + b| is the same question as \"opposite signs?\"."
+},
+"di-ds-ineq-class#17": {
+  steps: "For \\(y \\ne 0\\) divide by \\(|y|\\): is \\(x > |y|\\)?\n(1) \\(x = 1, y = -5\\) says no; \\(x = 6, y = 5\\) says yes. Not sufficient.\n(2) \\(x\\) unknown. Not sufficient.\nTogether \\(y > 0\\) and \\(x > y = |y|\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Dividing by |y| is safe when y is nonzero; it turns the question into a plain comparison."
+},
+"di-ds-ineq-class#18": {
+  steps: "\\(\\left(\\left|\\tfrac{1}{xy}\\right|\\right)^{-1} = |xy|\\); \\(|xy| > xy\\) exactly when \\(xy < 0\\).\n(1) \\(xy > 1 > 0\\): definite no. Sufficient.\n(2) Magnitudes only. Not sufficient.\nAnswer: A.",
+  take: "|z| > z is just \"z is negative\"."
+},
+"di-ds-ineq-class#19": {
+  steps: "(1) Positive \\(x\\): \\(x > 1\\). Negative \\(x\\): \\(x > -1\\), so \\(-1 < x < 0\\). Both branches allowed. Not sufficient.\n(2) \\(x < 0\\), any size. Not sufficient.\nTogether \\(-1 < x < 0\\), so \\(|x| < 1\\). Sufficient.\nAnswer: C.",
+  take: "Split on the sign of x whenever x/|x| appears."
+},
+"di-ds-ineq-class#20": {
+  steps: "(1) \\(|n| > 4\\): definite no. Sufficient.\n(2) True for every negative \\(n\\), which could be \\(-1\\) or \\(-10\\). Not sufficient.\nAnswer: A.",
+  take: "A definite no is sufficient; do not skip a statement because it answers \"no\"."
+},
+"di-ds-ineq-class#21": {
+  steps: "(1) \\(x + 3 = 4x - 3\\) gives \\(x = 2\\) (valid); \\(-(x + 3) = 4x - 3\\) gives \\(x = 0\\), but then the right side is \\(-3 < 0\\), invalid. So \\(x = 2 > 0\\). Sufficient.\n(2) \\(x - 3 = 2x - 3\\) gives 0; \\(x - 3 = -(2x - 3)\\) gives 2. Both valid; 0 is not positive. Not sufficient.\nAnswer: A.",
+  take: "Always plug candidate roots back into the absolute-value equation; the right side must be non-negative."
+},
+"di-ds-ineq-class#22": {
+  steps: "(1) \\(x^{2} + 16 - 5 = 27\\) gives \\(x^{2} = 16\\), \\(x = \\pm 4\\), \\(|x| = 4\\). Sufficient.\n(2) \\((x - 4)^{2} = 0\\), \\(x = 4\\), \\(|x| = 4\\). Sufficient.\nAnswer: D.",
+  take: "The question asks for |x|; two roots of opposite sign still give one answer."
+},
+"di-ds-ineq-class#23": {
+  steps: "\\(r^{2} = |r|^{2}\\), so the expression equals \\(|r|\\).\n(1) \\(r = \\tfrac12\\) yes, \\(r = 10\\) no. Not sufficient.\n(2) \\(r = \\tfrac12\\) yes, \\(r = -10\\) no. Not sufficient.\nTogether \\(-1 < r < 1\\), \\(|r| < 1\\). Sufficient.\nAnswer: C.",
+  take: "Simplify \\(r^{2}/|r|\\) to |r| before reading the statements."
+},
+"di-ds-ineq-class#24": {
+  steps: "(1) \\(-7 < x < 1\\). Not sufficient.\n(2) \\(-1 < x < 7\\). Not sufficient.\nTogether \\(-1 < x < 1\\), still both signs. Not sufficient.\nAnswer: E.",
+  take: "Intersect the intervals; if the intersection crosses 0 the sign is undecided."
+},
+"di-ds-ineq-class#25": {
+  steps: "(1) \\(3x - 7 = 2x + 2\\) gives \\(x = 9\\) (\\(x/3 = 3\\), prime); \\(3x - 7 = -(2x + 2)\\) gives \\(x = 1\\) (\\(\\tfrac13\\), not prime). Not sufficient.\n(2) \\(x = 0\\) or \\(9\\): 0 is not prime, 3 is. Not sufficient.\nTogether \\(x = 9\\). Yes. Sufficient.\nAnswer: C.",
+  take: "Solve each statement completely, then intersect the solution sets."
+},
+"di-ds-ineq-class#26": {
+  steps: "(1) \\((a, b) = (2, 1)\\): \\(1 > 2\\)? No. \\((-2, 1)\\): \\(-\\tfrac13 > -2\\)? Yes. Not sufficient.\n(2) \\((-1, 1)\\) yes; \\((1, 2)\\): \\(-1 > 2\\)? No. Not sufficient.\nTogether \\((-3, 1)\\): \\(-\\tfrac14 > -3\\), yes; \\((-3, -1)\\): \\(-\\tfrac12 > 3\\), no. Not sufficient.\nAnswer: E.",
+  take: "Pick numbers that satisfy both statements with b of each sign."
+},
+"quant-ineq-class#1": {
+  fast: "Plug \\(x = \\tfrac{1}{2} (I\\) works), x = 0.9 (II works); III forces x > 2 where 1/x is smallest.",
+  traps: "(B) misses II because 0.9 is an unusual test value. (E) accepts III without checking that 1/x must then be the smallest.",
+  take: "\"Could be\" orderings: test the nine standard values (−2, −1, −0.9, \\(-\\tfrac{1}{2}\\), 0, \\(\\tfrac{1}{2}\\), 0.9, 1, 2)."
+},
+"quant-ineq-class#2": {
+  fast: "Large numbers give I; numbers between 0 and 1 give II; a negative y gives III.",
+  traps: "(A) assumes powers preserve order, which fails below 1 and for negatives.",
+  take: "Squares and fourth powers reorder numbers below 1 and hide signs; test all three zones."
+},
+"quant-ineq-class#3": {
+  fast: "Each bracket is negative for negative z, so flip all three: (5 − 4z) + (3 − 2z) − z = 8 − 7z.",
+  traps: "(B) 7z − 8 keeps the signs unflipped. (C) −8 forgets the z terms.",
+  take: "|expression| = −(expression) whenever the expression is negative."
+},
+"quant-ineq-class#4": {
+  fast: "Multiply through by 3 to get |x| > 3, which splits into the two rays x > 3 or x < −3.",
+  traps: "(A) and (E) each keep only one ray; neither is forced on its own.",
+  take: "|x| > a (a positive) means x > a or x < −a."
+},
+"quant-ineq-class#5": {
+  fast: "Try x = −5: the radicand is −(−5)(5) = 25 and its square root is 5, which equals −x.",
+  traps: "(D) x is negative, and a square root is never negative. (E) \\(\\sqrt{x}\\) is undefined for negative x.",
+  take: "A square root is non-negative; when x < 0 the positive quantity is −x."
+},
+"quant-ineq-class#6": {
+  fast: "\\((x - 4)^{2} = |x - 4|\\) gives x − 4 ∈ {−1, 0, 1}: sides 3, 4, 5.",
+  traps: "(D) is tempting if you find only two roots; the third root 4 completes 3-4-5.",
+  take: "\\(t^{2} = |t|\\) has exactly the solutions 0, 1 and −1."
+},
+"quant-ineq-class#7": {
+  fast: "Only (E) is a plain double inequality in x itself; every other choice has a power or an absolute value.",
+  traps: "(D) looks bounded but the absolute value splits it into two segments.",
+  take: "A bounded absolute value between two positive numbers is two intervals, not one."
+},
+"quant-ineq-class#8": {
+  fast: "|ab| > ab is exactly the statement that ab is negative; it says nothing about a or b alone.",
+  traps: "(D) and (E) pick a sign for one factor that the condition does not force.",
+  take: "|t| > t if and only if t < 0."
+},
+"quant-ineq-class#9": {
+  fast: "The equation forces |x| = −x and |y| = −y, so both are negative and their sum is negative.",
+  traps: "(C), (D), (E) compare x with y, which is not determined.",
+  take: "|t| = −t means t ≤ 0; with t ≠ 0, t is negative."
+},
+"quant-ineq-class#10": {
+  fast: "Write 625 as \\(5^{4}\\), \\(25^{2}\\), \\(625^{1}\\); the prime exponent 2 gives x = 25.",
+  traps: "(A) 5 pairs with k = −4, and 4 is not prime. (D) 625 pairs with k = −1, and 1 is not prime.",
+  take: "List every base-exponent form of the number, then apply the side conditions."
+},
+"quant-ineq-class#11": {
+  fast: "x = −2 fails (y would be −3); \\(x = -\\tfrac{1}{2}\\) survives.",
+  traps: "(A) \\(-\\tfrac{5}{2}\\) adds the rejected root −2.",
+  take: "Every root of an absolute-value equation must be checked against the sign of the other side."
+},
+"quant-ineq-class#12": {
+  fast: "x is an integer only when 12 − y is even, so count the even y from −12 to 12: 13 values.",
+  traps: "(A) 17 counts the odd y too, wrongly; the correct total of integers from −12 to 12 is 25 anyway.",
+  take: "An integer condition on x becomes a parity condition on y."
+},
+"di-ds-pnc-class#1": {
+  steps: "(1) One question gives 0.9 (yes); ten give \\(0.9^{10} \\approx 0.35\\) (no). Not sufficient.\n(2) No success rate. Not sufficient.\nTogether: 6 questions give \\(0.9^{6} \\approx 0.53\\) (yes), 7 give \\(0.9^{7} \\approx 0.48\\) (no). Not sufficient.\nAnswer: E.",
+  take: "Repeated independent trials: \\(p^{n}\\) falls fast; test the boundary values the statement allows."
+},
+"di-ds-pnc-class#2": {
+  steps: "The question asks whether \\(R > W\\).\n(1) \\(R(B + R) > W(B + W)\\) gives \\((R - W)(R + W + B) > 0\\); the second factor is positive, so \\(R > W\\). Yes. Sufficient.\n(2) \\(B\\) large with \\(R = 1, W = 2\\) or \\(R = 2, W = 1\\). Not sufficient.\nAnswer: A.",
+  take: "Cross-multiplying positive quantities and factoring turns a ratio comparison into a sign."
+},
+"di-ds-pnc-class#3": {
+  steps: "(1) The overlap is 0, so the answer is \\(P(W) + P(E)\\), unknown. Not sufficient.\n(2) A difference. Not sufficient.\nTogether \\(P(W) = 0.4, P(E) = 0.2\\) gives 0.6; \\(P(W) = 0.6, P(E) = 0.4\\) gives 1.0. Not sufficient.\nAnswer: E.",
+  take: "A difference of two probabilities does not fix their sum."
+},
+"di-ds-pnc-class#4": {
+  steps: "\\(p = \\dfrac{w(w - 1)}{90}\\), and \\(p > \\tfrac12\\) needs \\(w \\ge 8\\).\n(1) \\(w \\ge 6\\): 6 says no, 9 says yes. Not sufficient.\n(2) \\(\\dfrac{m(m - 1)}{90} < \\tfrac{1}{10}\\) gives \\(m \\le 3\\), so \\(w \\ge 7\\): 7 says no, 8 says yes. Not sufficient.\nTogether still \\(w \\ge 7\\). Not sufficient.\nAnswer: E.",
+  take: "Translate each statement into a bound on the count, then test the boundary."
+},
+"di-ds-pnc-class#5": {
+  steps: "(1) \\(\\dfrac{n(n - 1)}{90} = \\tfrac{1}{15}\\) gives \\(n(n - 1) = 6\\), \\(n = 3\\). Sufficient.\n(2) \\(\\dfrac{n(10 - n)}{45} = \\tfrac{7}{15}\\) gives \\(n(10 - n) = 21\\), \\(n = 3\\) or 7; \\(n < 5\\) leaves 3. Sufficient.\nAnswer: D.",
+  take: "Use the stem's restriction to discard the second root of a quadratic."
+},
+"di-ds-pnc-class#6": {
+  steps: "(1) 30 brown-haired, sex unknown. Not sufficient.\n(2) 20 males, hair unknown. Not sufficient.\nTogether the overlap could be anywhere from 0 to 20. Not sufficient.\nAnswer: E.",
+  take: "\"A and B\" needs the intersection; separate totals never fix it."
+},
+"di-ds-pnc-class#7": {
+  steps: "(1) \\(P(A \\text{ and } B) = 0.25 \\cdot P(B) \\le 0.25 < 0.3\\). Definite no. Sufficient.\n(2) \\(P(B) = 0.29\\), so the product is at most 0.29. Definite no. Sufficient.\nAnswer: D.",
+  take: "An upper bound below the threshold answers a \"greater than\" question with a definite no."
+},
+"di-ds-pnc-class#8": {
+  steps: "(1) 5 chips (1 green) gives 0; 10 chips (2 green) gives \\(\\tfrac{2}{10} \\cdot \\tfrac19\\). Not sufficient.\n(2) The same 4 : 1 information. Not sufficient.\nTogether nothing new. Not sufficient.\nAnswer: E.",
+  take: "Draws without replacement need absolute counts; a ratio is enough only with replacement."
+},
+"quant-pnc-class#1": {
+  fast: "Vowels: 4P3 = 24; consonants in the leftover four slots: 4! = 24; multiply to 576.",
+  traps: "(A) 288 halves the count by treating the vowels as unordered. (C) 5040 ignores the restriction entirely. (D) 48 places the vowels but forgets to arrange the consonants.",
+  take: "Place the restricted items first, then fill the rest; multiply."
+},
+"quant-pnc-class#2": {
+  fast: "20C16 = 20C4 = 4,845; the four rejected men define the batch.",
+  traps: "(A) 3,876 is 19C4, the number of batches containing one particular man. (D) 15,504 is 20C5. (C) and (E) are unrelated products.",
+  take: "nCr = nC(n − r); count whichever side is smaller."
+},
+"quant-pnc-class#3": {
+  fast: "Arrange all seven digits, 7!/(2! 3!) = 420, then drop the 60 arrangements that begin with 0.",
+  traps: "(C) 480 forgets to divide by the repeated 2s. (B) 240 subtracts too much. (D) and (E) are near misses with no counting basis.",
+  take: "With a 0 among the digits, subtract the arrangements that put 0 in front."
+},
+"quant-pnc-class#4": {
+  fast: "Each letter has 4 boxes, 4 × 4 × 4 = 64; remove the 4 ways that put all three in one box: 60.",
+  traps: "(D) 64 forgets the restriction. (B) 24 treats it as 4P3, which forbids sharing a box at all. (E) 81 uses \\(3^{4}\\).",
+  take: "Repetition allowed means a power; \"not all the same\" means subtract the few bad cases."
+},
+"quant-pnc-class#5": {
+  fast: "Take the complement: no 6 on either die is \\((\\tfrac{5}{6})(\\tfrac{5}{6}) = \\tfrac{25}{36}\\), so at least one 6 is \\(\\tfrac{11}{36}\\).",
+  traps: "(B) \\(\\tfrac{1}{3}\\) double counts the (6, 6) outcome by adding \\(\\tfrac{6}{36} + \\tfrac{6}{36}\\). (A) \\(\\tfrac{1}{6}\\) counts one die only. (D) \\(\\tfrac{5}{18}\\) is \\(\\tfrac{10}{36}\\), one short.",
+  take: "\"At least one\" is nearly always fastest through the complement."
+},
+"quant-pnc-class#6": {
+  fast: "Cube each colour's chance and add: \\((8 + 27 + 64)/729 = \\tfrac{99}{729}\\), which reduces to \\(\\tfrac{11}{81}\\).",
+  traps: "(A) \\(\\tfrac{1}{27}\\) is only the all-yellow case. (D) \\(\\tfrac{5}{84}\\) is the answer without replacement. (C) and (E) are arithmetic slips.",
+  take: "\"Same colour\" is an OR of the colours: add the separate probabilities."
+},
+"quant-pnc-class#7": {
+  fast: "Red cannot come up three times; yellow gives \\(\\tfrac{1}{84}\\) and blue \\(\\tfrac{4}{84}\\), so the total is \\(\\tfrac{5}{84}\\).",
+  traps: "(D) \\(\\tfrac{11}{81}\\) is the with-replacement answer. (A) \\(\\tfrac{1}{84}\\) is only the yellow case. (E) \\(\\tfrac{5}{21}\\) is the none-yellow probability.",
+  take: "Without replacement, shrink both numerator and denominator after every draw."
+},
+"quant-pnc-class#8": {
+  fast: "The book must move \\((\\tfrac{1}{8})\\) and then be the one picked from six \\((\\tfrac{1}{6})\\): \\(\\tfrac{1}{8} \\times \\tfrac{1}{6} = \\tfrac{1}{48}\\).",
+  traps: "(C) \\(\\tfrac{5}{48}\\) is the probability it is moved but not picked. (B) and (D) each stop after one stage.",
+  take: "Sequential events: multiply the conditional probabilities along the path."
+},
+"quant-pnc-class#9": {
+  fast: "Weight each class: \\((\\tfrac{2}{3})(\\tfrac{3}{4}) + (\\tfrac{1}{3})(\\tfrac{2}{7}) = \\tfrac{1}{2} + \\tfrac{2}{21} = \\tfrac{25}{42}\\) for a boy chairman.",
+  traps: "(A) \\(\\tfrac{1}{2}\\) forgets X-B. (B) \\(\\tfrac{2}{21}\\) forgets X-A. (E) \\(\\tfrac{3}{4}\\) uses X-A's ratio alone.",
+  take: "Total probability: weight each class's boy fraction by the chance of choosing that class."
+},
+"quant-pnc-class#10": {
+  fast: "At least one alive is 1 minus both dead: \\(1 - (\\tfrac{2}{5})(\\tfrac{1}{3}) = 1 - \\tfrac{2}{15} = \\tfrac{13}{15}\\).",
+  traps: "(E) \\(\\tfrac{19}{15}\\) adds the two probabilities, which exceeds 1. (A) \\(\\tfrac{2}{5}\\) is P(both alive). (B) \\(\\tfrac{2}{15}\\) is P(both dead).",
+  take: "Never add probabilities of events that can both happen; use 1 − P(neither)."
+},
+"quant-pnc-class#11": {
+  fast: "Millions of arrangements at 12 s each cannot be seconds; (E).",
+  traps: "(A) to (D) treat the count as 1 to 4 combinations. Estimate the size before looking at the choices.",
+  take: "\"At least 8 distinct digits\" is three cases (8, 9, 10) added together."
+},
+"quant-pnc-class#12": {
+  fast: "Manager 2, leader 3, consultants 7C4 − 5C2 = 25; multiply: 2 × 3 × 25 = 150 teams.",
+  traps: "(D) 200 comes from 2 × 3 × 35 with no restriction (210) rounded, or from miscounting the bad groups. (B) 120 uses 20 consultant groups.",
+  take: "\"Never together\" = total − (groups that include both)."
+},
+"quant-pnc-class#13": {
+  fast: "Four flavours times four topping states (none, cheese, mushrooms, both) gives 16 varieties.",
+  traps: "(A) 12 forgets the plain pizza. (C) 20 or (D) 24 add extra combinations that do not exist.",
+  take: "Each optional extra doubles the count; two extras give \\(2^{2} = 4\\) states."
+},
+"quant-pnc-class#14": {
+  fast: "A block of three tails slides through six slots: 6 − 3 + 1 = 4 possible positions.",
+  traps: "(D) 6 counts positions for a single tail. (C) 5 is a block of two.",
+  take: "A block of length k in n slots has n − k + 1 positions."
+},
+"quant-pnc-class#15": {
+  fast: "All 27 codes minus the single all-odd code 555 leaves 26 codes with an even product.",
+  traps: "(C) 27 forgets the restriction. (A) 25 removes two codes.",
+  take: "\"Product even\" = complement of \"all digits odd\"."
+},
+"quant-pnc-class#16": {
+  fast: "Michael's two partners come from five people; 4 of those 10 pairs include Anthony: 40%.",
+  traps: "(A) 20% is \\(\\tfrac{1}{5}\\), the chance a single named partner is Anthony. (D) 50% ignores the third member.",
+  take: "Fix the person mentioned and count only the remaining seats."
+},
+"quant-pnc-class#17": {
+  fast: "Woman moves: \\((\\tfrac{10}{13})(\\tfrac{4}{9}) = \\tfrac{40}{117}\\); man moves: \\((\\tfrac{3}{13})(\\tfrac{3}{9}) = \\tfrac{9}{117}\\); sum \\(\\tfrac{49}{117}\\).",
+  traps: "(E) \\(\\tfrac{40}{117}\\) is only the woman-moves branch. (D) \\(\\tfrac{5}{18}\\) is the man-moves branch alone. (A) \\(\\tfrac{13}{21}\\) mixes the room sizes.",
+  take: "Two-stage draws: split on the first stage and add the weighted second-stage probabilities."
+},
+"quant-pnc-class#18": {
+  fast: "Twenty-five equally likely endings and two distinct guesses: \\(\\tfrac{2}{25}\\) chance of success.",
+  traps: "(C) \\(\\tfrac{1}{25}\\) is one attempt only. (A) and (B) use 5 candidates instead of 25.",
+  take: "Sampling without replacement: k attempts among N equally likely keys succeed with probability k/N."
+},
+"quant-pnc-class#19": {
+  fast: "Pick the one correct letter (4 ways) and derange the other three (2 ways): 8 of \\(24 = \\tfrac{1}{3}\\).",
+  traps: "(B) \\(\\tfrac{2}{5}\\) and the rest do not have denominator dividing 24; a quick sanity check on the denominator kills them.",
+  take: "\"Exactly one correct\" = (choose it) × (derange the rest); three items have 2 derangements."
+},
+"quant-pnc-class#20": {
+  fast: "All committees 10C3 = 120 minus the 6C3 = 20 with no French teacher leaves 100.",
+  traps: "(D) 80 comes from 4 × 6C2 = 60 plus a partial count, or from 4 × 20. (A) 40 is 4 × 10.",
+  take: "\"At least one\" in counting: subtract the \"none\" case from the total."
+},
+"quant-pnc-class#21": {
+  fast: "From 000 to 999 each of the three places shows a 7 exactly 100 times: 300 sevens.",
+  traps: "(A) 280 drops the 7s that appear twice in numbers such as 77. (E) 360 double counts them.",
+  take: "Count digit appearances by position, not by number."
+},
+"quant-pnc-class#22": {
+  fast: "Choose 3 of the 4 couples (4 ways) and one spouse from each (2 × 2 × 2): 32 committees.",
+  traps: "(B) 24 is 4 × 3 × 2, arranging couples instead of selecting. (A) 16 forgets one factor of 2.",
+  take: "Couple restrictions: choose couples first, then a representative from each."
+},
+"quant-pnc-class#23": {
+  fast: "Each digit lands in each place 24 times: 24 × 15 × 11,111 is just under 4 million.",
+  traps: "(C) 3 million or (E) 5 million come from using 20 or 30 appearances per place.",
+  take: "Sum of all arrangements = (appearances per place) × (digit sum) × 111…1."
+},
+"quant-pnc-class#24": {
+  fast: "Three-dice sums are symmetric about 10.5, so beating 10 happens exactly half the time.",
+  traps: "(C) \\(\\tfrac{1}{3}\\) guesses at three equal outcomes (less, equal, more) that are not equally likely.",
+  take: "Dice sums are symmetric; a threshold at the centre splits the outcomes evenly."
+},
+"quant-pnc-class#25": {
+  fast: "26 + 676 + 17,576 = 18,278; the units digit 8 already singles out choice (E).",
+  traps: "(C) 15,600 is 26 × 25 × 24, which forbids repeats. (D) 16,302 uses \\(26^{3} - 26^{2}\\) − … arithmetic slips.",
+  take: "Codes of several lengths: add the counts for each length."
+},
+"quant-pnc-class#26": {
+  fast: "Per size: 4 single-colour packs plus 4C3 = 4 mixed packs; two sizes double it to 16.",
+  traps: "(E) 32 counts colour orders. (B) 8 forgets the two sizes.",
+  take: "Unordered colour sets are combinations; multiply by the independent size choice."
+},
+"quant-pnc-class#27": {
+  fast: "60 favourable pairs out of 1,000 × 800 = 800,000 possible pairs gives \\(\\tfrac{3}{40}{,}000\\).",
+  traps: "(D) \\(\\tfrac{1}{60}\\) inverts the count. (C) \\(\\tfrac{9}{2}{,}000\\) multiplies the two per-class chances \\((\\tfrac{60}{1000} \\times \\tfrac{60}{800})\\), which double counts pairs.",
+  take: "Favourable pairs over total pairs; do not multiply per-class fractions."
+},
+"quant-pnc-class#28": {
+  fast: "Numbers ending in 13 run from 324,713 to 458,513 in steps of 100: 1,338 + 1 = 1,339.",
+  traps: "(D) 1,352 and (C) 1,353 use the wrong endpoints (…700 and …600). (A) and (B) are the raw span divided by 10.",
+  take: "Arithmetic sequence count: (last − first)/step + 1, with the actual first and last terms."
+},
+"quant-pnc-class#29": {
+  fast: "Leo misses only if all three stations fail: 1 − 0.7 × 0.7 × 0.7 = 1 − 0.343 = 0.657.",
+  traps: "(E) 0.9 adds 0.3 three times. (A) 0.027 is \\(0.3^{3}\\), all three liked. (C) 0.417 is 0.3 + 0.7(0.3) − …, a partial sum.",
+  take: "\"Eventually succeeds\" = 1 − (fails every time)."
+},
+"quant-pnc-class#30": {
+  fast: "Four colours give 4 + 6 = 10 codes, one short; five colours give 5 + 10 = 15, enough.",
+  traps: "(A) 4 stops one short. (D) 12 assigns one colour per centre.",
+  take: "Test the smallest candidate against n + n(n − 1)/2."
+},
+"quant-pnc-class#31": {
+  fast: "Halving nine times gives \\(\\tfrac{1}{512}\\), still above \\(\\tfrac{1}{1000}\\); ten times gives \\(\\tfrac{1}{1024}\\), below it.",
+  traps: "(B) 9 gives \\(\\tfrac{1}{512}\\), still more than \\(\\tfrac{1}{1000}\\).",
+  take: "Know \\(2^{10} \\approx 1000\\)."
+},
+"quant-pnc-class#32": {
+  fast: "No fashion magazine means all three are sports: \\(\\tfrac{4}{56} = \\tfrac{1}{14}\\), so at least one is \\(\\tfrac{13}{14}\\).",
+  traps: "(C) \\(\\tfrac{32}{35}\\) comes from using 4 magazines. (A) \\(\\tfrac{1}{2}\\) is a guess based on equal halves.",
+  take: "\"At least one\" via the complement, with combinations for simultaneous draws."
+},
+"quant-pnc-class#33": {
+  fast: "The first digit is 1, so the middle must be 0 and the last 1: only 101 of the 100 numbers.",
+  traps: "(B) \\(\\tfrac{1}{111}\\) and (C) \\(\\tfrac{1}{110}\\) use a wrong count of integers from 100 to 199; there are 100.",
+  take: "Inclusive count: 199 − 100 + 1 = 100."
+},
+"quant-pnc-class#34": {
+  fast: "Add the two lengths and factor the smaller power: \\(26^{4} + 26^{5} = 26^{4} (1 + 26) = 27 \\times 26^{4}\\).",
+  traps: "(B) \\(26 \\times 26^{4}\\) is \\(26^{5}\\) alone. (E) \\(27 \\times 26^{5}\\) factors the wrong power.",
+  take: "Add the two lengths and factor the smaller power."
+},
+"quant-pnc-class#35": {
+  fast: "One of each gives 6 × 2 = 12 platters; two of each gives 6C2 × 1 = 15; total 27.",
+  traps: "(B) 12 and (C) 15 are the two cases alone. (D) 21 is 6 + 15.",
+  take: "\"Equal numbers\" splits into cases by how many of each; add the cases."
+},
+"quant-pnc-class#36": {
+  fast: "The three named riders take one of 3! = 6 relative orders, so 8!/6 = 6,720, near 7,000.",
+  traps: "(C) 6,000 is a careless rounding of 6,720 downward; the nearest thousand is 7,000.",
+  take: "A fixed relative order of k people divides the total by k!."
+},
+"quant-pnc-class#37": {
+  fast: "Exactly two of three: 3 ways × 0.3 × 0.3 × 0.7 = 0.189, which rounds to 0.2.",
+  traps: "(A) 0.1 forgets the factor 3 for which two visitors buy. (C) 0.3 is the single-visitor rate.",
+  take: "Exactly r successes in n independent trials: nCr times p to the r times (1 − p) to the n − r."
+},
+"quant-pnc-class#38": {
+  fast: "The five-letter words are the four-letter words with one of 6 unused letters added: 6 to 1.",
+  traps: "(A) 5 to 4 compares the lengths, not the counts.",
+  take: "Adding one more slot multiplies by the number of letters still unused."
+},
+"quant-pnc-class#39": {
+  fast: "Every even n works (48 values); odd n works only when n + 1 is a multiple of 8 (12 values).",
+  traps: "(C) \\(\\tfrac{1}{2}\\) counts only the even n. (E) \\(\\tfrac{3}{4}\\) overcounts the odd case.",
+  take: "Split by parity; consecutive evens carry a factor of 8."
+},
+"quant-pnc-class#40": {
+  fast: "The six colour patterns of RRWW are equally likely and only WRRW puts both reds in the middle.",
+  traps: "(A) \\(\\tfrac{1}{12}\\) treats the identical bushes as distinct in the numerator only. (E) \\(\\tfrac{1}{2}\\) guesses.",
+  take: "Probability with identical items: count colour patterns, which are equally likely."
+},
+"quant-pnc-class#41": {
+  fast: "No repeated digit means 8 × 7 × 6 = 336 codes; 336 − 330 leaves 6 unassigned.",
+  traps: "(D) 182 uses \\(8^{3} = 512\\) (repeats allowed). (B) 58 subtracts from 8C3 × 6 with an arithmetic slip.",
+  take: "\"No digit repeats\" makes it a permutation, 8P3."
+},
+"quant-pnc-class#42": {
+  fast: "Dry Saturday, dry Sunday, then rain on Monday: 0.8 × 0.8 × 0.2 = 0.128.",
+  traps: "(D) 0.512 is three dry days. (C) 0.488 is \"rains at least once\". (A) 0.008 is rain on all three days.",
+  take: "\"First occurrence on day k\" = failures before × success on day k."
+},
+"quant-pnc-class#43": {
+  fast: "The leading digit has 4 even options (not 0) and each other place has 5: 4 × 125 = 500.",
+  traps: "(A) 625 allows a leading 0. (E) 256 uses 4 choices in every place.",
+  take: "Leading digit restrictions come first."
+},
+"quant-pnc-class#44": {
+  fast: "The string works only if every bulb works, 0.94 to the tenth, so it fails with \\(1 - 0.94^{10}\\).",
+  traps: "(B) \\((0.06)^{10}\\) is all ten failing. (D) \\((0.94)^{10}\\) is the survival probability. (C) is the complement of the wrong event.",
+  take: "Series systems fail when any part fails: use 1 − P(all survive)."
+},
+"quant-pnc-class#45": {
+  fast: "Pick the repeated digit (9 ways), the odd digit (8 ways) and its position (3 ways): 216.",
+  traps: "(C) 72 forgets the 3 positions. (D) 144 uses 2 positions.",
+  take: "Pattern counting: choose the values, then the positions."
+},
+"quant-pnc-class#46": {
+  fast: "8 × 2 × 10 = 160 codes before the last rule; the 8 codes of the form _00 are removed: 152.",
+  traps: "(C) 160 skips the last constraint. (A) 144 subtracts 16, treating both 00 and 01 as forbidden.",
+  take: "Apply simple constraints by multiplication, then subtract the joint forbidden case."
+},
+"quant-pnc-class#47": {
+  fast: "Eighteen people each shake 15 hands; halve the double count: 18 × 15 / 2 = 135.",
+  traps: "(D) 270 forgets to halve. (C) 144 is 18C2 − 9, a wrong subtraction; the right one is 153 − 18.",
+  take: "Handshakes = (people × partners each)/2, or total pairs minus excluded pairs."
+},
+"quant-pnc-class#48": {
+  fast: "Twelve brother–sister–sister–brother blocks, then 6 units round a table in 5! ways: 1,440.",
+  traps: "(C) 1,200 uses 6 × 200; (A) to (D) are round numbers with no factorial structure.",
+  take: "Glue the constrained people into one unit, then use (n − 1)! for the circle."
+},
+"quant-pnc-class#49": {
+  fast: "Seat Anna; of Bill's 9 possible seats only 2 are beside her, so \\(\\tfrac{7}{9}\\) keeps them apart.",
+  traps: "(D) \\(\\tfrac{6}{9}\\) uses 3 forbidden seats. (A) \\(\\tfrac{3}{9}\\) inverts the question.",
+  take: "Circular adjacency: fix one person and count the other's seats."
+},
+"quant-pnc-class#50": {
+  fast: "Only three colours exist, so any four socks must repeat a colour: probability 1.",
+  traps: "(A) to (D) compute something; the event is certain.",
+  take: "Check for a pigeonhole certainty before computing."
+},
+"quant-pnc-class#51": {
+  fast: "Hundreds digit 8 ways, tens digit 9 ways, odd units digit avoiding 5 gives 4 ways: 288.",
+  traps: "(D) 300 forgets to remove 5 from the hundreds place. (E) 312 keeps 5 as a possible units digit.",
+  take: "Digit-by-digit counting with the excluded digit removed from every place."
+},
+"quant-pnc-class#52": {
+  fast: "Drop 0 (sum 15): 5! = 120; drop 3 (sum 12): 5! − 4! = 96 since 0 cannot lead; total 216.",
+  traps: "(E) 320 forgets that 0 cannot lead. (A) 120 counts one case only.",
+  take: "Divisibility by 3 is a digit-sum condition; choose the digit set first."
+},
+"quant-pnc-class#53": {
+  fast: "Hundreds 8 allows 5 odd units and 8 tens (40); hundreds 9 allows 4 odd units (32): 72.",
+  traps: "(B) 40 and (A) 32 are the two cases alone. (D) 90 ignores the distinct-digit rule.",
+  take: "Split on the hundreds digit when it interacts with the units restriction."
+},
+"quant-pnc-class#54": {
+  fast: "Three hundreds with distinct digits give 3 × 72 = 216; remove 701 to 710 (9 numbers): 207.",
+  traps: "(E) 216 forgets the lower bound. (C) 206 removes 710 twice or miscounts 707.",
+  take: "Count a clean range, then subtract the small edge case explicitly."
+},
+"quant-pnc-class#55": {
+  fast: "5C3 × 9 × 9 = 810 favourable passwords out of 100,000 is about 0.008, well under 0.1.",
+  traps: "(B) 0.1 treats the chance as 1 in 10.",
+  take: "Exactly k of n positions: nCk × (favourable per position) × (other per position)."
+},
+"quant-pnc-class#56": {
+  fast: "Digit sets {5,6}, {1,5,6}, {2,3,5}, {1,1,5,6}, {1,2,3,5} give 2 + 6 + 6 + 12 + 24 = 50.",
+  traps: "(C) 30 forgets the four-digit numbers with a repeated 1.",
+  take: "Factor the product into digit sets, then arrange each set with padding 1s."
+},
+"quant-pnc-class#57": {
+  fast: "Six letters with a repeated C give 6!/2! = 360; glue the Cs for 5! = 120; 360 − 120 = 240.",
+  traps: "(A) 120 is the together count. (B) 180 halves the total for no reason.",
+  take: "\"Not together\" = total − together; identical letters divide the total, not the block."
+},
+"di-ds-pnc-live#1": {
+  steps: "The question needs \\(x\\).\n(1) \\({}^{n}C_{5} = 126\\) has the single solution \\(n = 9\\), so \\(x = 7\\). Sufficient.\n(2) \\({}^{n}C_{3} = 56\\) gives \\(n = 8\\), \\(x = 7\\). Sufficient.\nAnswer: D.",
+  take: "nCr increases with n for fixed r, so a given value pins n; you need not compute it in the exam."
+},
+"di-ds-pnc-live#2": {
+  steps: "(1) Eight integers, unknown values. Not sufficient.\n(2) Any subset of 1 to 25. Not sufficient.\nTogether \\(T\\) could be \\(\\{1, \\dots, 8\\}\\) (probability \\(\\tfrac58\\)) or \\(\\{10, \\dots, 17\\}\\) (0). Not sufficient.\nAnswer: E.",
+  take: "A probability from a set needs the count of favourable members, not just the size and range."
+},
+"di-ds-pnc-live#3": {
+  steps: "(1) \\({}^{x - y - 2}C_{10} = 3003\\) has the single solution \\(x - y - 2 = 15\\), so \\(x - y = 17\\). Sufficient.\n(2) \\(x - y = 17\\) directly. Sufficient.\nAnswer: D.",
+  take: "Rephrase to the quantity that matters (remaining flavours); a combination count then pins it."
+},
+"di-ds-pnc-live#4": {
+  steps: "\\(3p^{2}(1 - p) + p^{3} > p\\) simplifies to \\((2p - 1)(p - 1) < 0\\), i.e. \\(\\tfrac12 < p < 1\\). Since \\(p < 1\\), the question is whether \\(p > \\tfrac12\\).\n(1) \\(p < 0.7\\): could be 0.4 or 0.6. Not sufficient.\n(2) \\(p > 0.6 > 0.5\\). Yes. Sufficient.\nAnswer: B.",
+  take: "Best-of-three helps the better-than-even shooter and hurts the worse one; find the threshold first."
+},
+"quant-pnc-live#1": {
+  fast: "Nest the smaller event inside the larger: neither can be at most 1 − 0.68 = 0.32.",
+  traps: "(A) 0.22 assumes independence, which is not stated and does not maximise \"neither\".",
+  take: "Max of P(neither) = 1 − max(P(A), P(B)) when the events can overlap fully."
+},
+"quant-pnc-live#2": {
+  fast: "Place the right-angle vertex P (110 spots), then R on P's row (9 ways) and Q on P's column (10 ways): 9,900.",
+  traps: "(E) 12,100 lets R and Q coincide with P. (B) 1,100 forgets one of the two legs.",
+  take: "Fix the vertex with the right angle first; the legs are then independent choices."
+},
+"quant-pnc-live#3": {
+  fast: "Pairs: 3 dove pairs + 1 rabbit pair out of 10 pairs = \\(\\tfrac{2}{5}\\).",
+  traps: "(B) \\(\\tfrac{3}{5}\\) is the complement, a mixed pair. (E) exceeds 1.",
+  take: "\"Matched pair\" is an OR of the colours; add the two cases."
+},
+"quant-pnc-live#4": {
+  fast: "Only the conjugate pair (x + y)(x − y) works, one of the 6 possible pairs: \\(\\tfrac{1}{6}\\).",
+  traps: "(B) \\(\\tfrac{1}{3}\\) also counts (x + 5y)(5x − y), whose product has an xy term.",
+  take: "A difference of squares needs conjugates a + b and a − b."
+},
+"quant-pnc-live#5": {
+  fast: "In every block of four consecutive integers exactly two values of n (n = 3 and n = 4 mod 4) work: \\(\\tfrac{1}{2}\\).",
+  traps: "(E) \\(\\tfrac{3}{4}\\) counts n ≡ 1 too, but 2 × 2 = 4 needs both factors even, impossible for consecutive integers.",
+  take: "For consecutive integers, a prime power must sit entirely in one factor."
+},
+"quant-pnc-live#6": {
+  fast: "6 ways to fill the front row, minus the one (4, 5) that puts a shorter person behind.",
+  traps: "(B) 6 forgets the failing pair. (E) 36 allows orderings within rows.",
+  take: "Once the members of each row are chosen, the increasing order fixes the positions."
+},
+"quant-pnc-live#7": {
+  fast: "9 × 10 × 10 = 900; the last two digits mirror the first two.",
+  traps: "(A) 720 forbids repeated digits, which palindromes require anyway.",
+  take: "Count only the independent positions."
+},
+"quant-pnc-live#8": {
+  fast: "Hundreds 7 gives 28, hundreds 8 gives 35, hundreds 9 gives 28: 28 + 35 + 28 = 91.",
+  traps: "(D) 105 gives every hundred 35, ignoring that 7 and 9 are odd.",
+  take: "When the leading digit can collide with the units restriction, split the cases."
+},
+"quant-pnc-live#9": {
+  fast: "299 numbers above 700, minus 216 with all digits distinct, minus 3 with all digits equal: 80.",
+  traps: "(B) 82 includes 700, which is not greater than 700 (and would count anyway as a two-equal number: 700 has two 0s, so check the bound).",
+  take: "Three digit patterns partition the range; count the easy two and subtract."
+},
+"quant-pnc-live#10": {
+  fast: "Sixteen prime-digit endings per hundred over 16 hundreds is 256; drop the four above 1570: 252.",
+  traps: "(C) 236 removes a whole block of 16 instead of the four beyond 1570.",
+  take: "Count per hundred, multiply, then trim the partial last block."
+},
+"quant-pnc-live#11": {
+  fast: "Third digit 3 ways, fourth digit 3 ways, fifth-and-sixth pair 3 ways: 3 × 3 × 3 = 27.",
+  traps: "(C) 72 lets the sixth digit vary freely after fixing the fifth.",
+  take: "A dependent pair of digits counts as one slot."
+},
+"quant-pnc-live#12": {
+  fast: "Choose 3 of the 5 couples and one spouse from each: 10 × 8 = 80 (or 120 total minus 40 with a couple).",
+  traps: "(E) 120 ignores the restriction. (B) 40 is the number of bad committees.",
+  take: "Couple problems: couples first, spouses second."
+},
+"quant-pnc-live#13": {
+  fast: "First digit 9 ways (no 0), second 9 ways (0 back, first digit gone), then 8 and 7: 4,536.",
+  traps: "(C) 5,040 allows a leading 0 (10P4). (A) 3,024 removes 0 entirely.",
+  take: "The zero returns as an option from the second digit on."
+},
+"quant-pnc-live#14": {
+  fast: "Each apple appears in 2 of the 5 possible partners' pairs, so the spoiled one is drawn with probability \\(\\tfrac{2}{5}\\).",
+  traps: "(A) \\(\\tfrac{1}{5}\\) is the chance for a single draw.",
+  take: "Picking k of n includes a given item with probability k/n."
+},
+"quant-pnc-live#15": {
+  fast: "Of the 720 orders, Frankie is behind Joey in exactly half by symmetry: 360.",
+  traps: "(C) 120 fixes Frankie directly behind Joey (5! with a block), a stronger condition.",
+  take: "\"Somewhere behind\" halves the total; \"immediately behind\" needs a block."
+},
+"quant-pnc-live#16": {
+  fast: "Five days, choose the 3 rainy ones: 10 patterns out of 2 to the fifth = 32, so \\(\\tfrac{5}{16}\\).",
+  traps: "(A) \\(\\tfrac{1}{32}\\) is one specific pattern. (B) uses 4 days.",
+  take: "Count the days inclusively; then binomial with \\(p = \\tfrac{1}{2}\\) is patterns over \\(2^{n}\\)."
+},
+"quant-pnc-live#17": {
+  fast: "Over a common denominator of 24 the crash cases weigh 1 + 3 + 2 + 1 = 7, so \\(\\tfrac{7}{24}\\).",
+  traps: "(E) \\(\\tfrac{17}{24}\\) is the survival probability.",
+  take: "\"At least two of three\" is four disjoint cases; list them."
+},
+"quant-pnc-live#18": {
+  fast: "Forty cars have AC and only one convertible lacks it, so 41 of the 50 cars qualify.",
+  traps: "(E) \\(\\tfrac{47}{50}\\) adds 40 and 15 minus a wrong overlap.",
+  take: "Inclusion-exclusion: |A or B| = |A| + |B| − |A and B|."
+},
+"quant-pnc-live#19": {
+  fast: "Thirty of the 64 ordered draws violate the triangle inequality, so the probability is \\(\\tfrac{15}{32}\\).",
+  traps: "(D) \\(\\tfrac{17}{32}\\) is the probability that a triangle can be formed.",
+  take: "Triangle test: the longest side must be less than the sum of the other two; count ordered outcomes."
+},
+"quant-pnc-live#20": {
+  fast: "Sums are even half the time, products three quarters of the time; average the two: \\(\\tfrac{5}{8}\\).",
+  traps: "(B) \\(\\tfrac{1}{2}\\) forgets that products are usually even.",
+  take: "Average the two operations' probabilities, each weighted \\(\\tfrac{1}{2}\\)."
+},
+"quant-pnc-live#21": {
+  fast: "Subtract the bad cases: three fail (0.008) plus exactly two fail (0.096) is about 0.1, leaving 0.9.",
+  traps: "(B) 80% is the chance a single investment survives.",
+  take: "\"No more than one third lost\" means at most one of three fails."
+},
+"quant-pnc-live#22": {
+  fast: "Four up days and one down day: the down day can be any of the 5 days, so 5 of 32 sequences.",
+  traps: "(E) \\(\\tfrac{3}{8}\\) is the chance of ending up exactly $1 (10 sequences of 32).",
+  take: "Translate the net change into a count of ups and downs first."
+},
+"quant-pnc-live#23": {
+  fast: "Three consonant slots give 27 choices and two vowel slots give 4; multiply to get 108 nouns.",
+  traps: "(B) 12 forbids repeats (3 · 2 · 1 · 1 · 2 is not even consistent).",
+  take: "Unless told otherwise, letters can repeat: multiply the options per slot."
+},
+"quant-pnc-live#24": {
+  fast: "Choose the two correct keys (6 ways); the other two must swap (1 way): 6 of \\(24 = \\tfrac{1}{4}\\).",
+  traps: "(D) \\(\\tfrac{3}{8}\\) is the chance of exactly one correct key \\((\\tfrac{8}{24})\\).",
+  take: "Exactly k fixed points: choose them, then derange the rest (2 items have 1 derangement)."
+},
+"quant-pnc-live#25": {
+  fast: "Whichever four leave first, only 1 of their 4! = 24 orders is increasing: \\(\\tfrac{1}{24}\\).",
+  traps: "(A) and (E) involve 99 or 4 in the wrong way; the roster size is irrelevant.",
+  take: "A random order of k distinct items is increasing with probability 1/k!."
+},
+"quant-pnc-live#26": {
+  fast: "Total 7! minus the block count 5! × 3! (men glued, then ordered inside the block).",
+  traps: "(B) 4!3! treats the block as replacing all three men without adding it back as a unit.",
+  take: "\"Not all together\" = total − (all together as one block)."
+},
+"quant-pnc-live#27": {
+  fast: "Place the first I; 2 of the 9 remaining slots are adjacent... averaged over positions this gives \\(\\tfrac{1}{5}\\).",
+  traps: "(A) \\(\\tfrac{1}{10}\\) forgets the factor 2! in the total count of distinct codes.",
+  take: "Adjacent-pair probability = (n − 1)!·2 / n! = 2/n for distinct letters; with identical letters, 2/n still after cancelling 2!."
+},
+"quant-pnc-live#28": {
+  fast: "9 gems fit the diamond probability; rubies: \\(\\tfrac{3}{9} \\times \\tfrac{2}{8} = \\tfrac{1}{12}\\).",
+  traps: "(A) \\(\\tfrac{5}{36}\\) squares the ruby fraction, ignoring \"without replacement\".",
+  take: "Without replacement, the count matters; find the count from the given probability."
+},
+"quant-pnc-live#29": {
+  fast: "q = (p − 5)(p − 8) is negative only for p = 6 and 7, two of the ten values: \\(\\tfrac{1}{5}\\).",
+  traps: "(C) \\(\\tfrac{2}{5}\\) includes the roots 5 and 8, where q = 0.",
+  take: "A quadratic is negative between its roots, not at them."
+},
+"quant-pnc-live#30": {
+  fast: "Snow 90%, closed 80%; the overlap is at most the smaller one, 80%.",
+  traps: "(D) 72% assumes independence, which minimises nothing and is not given.",
+  take: "Max of P(A and B) is min(P(A), P(B))."
+},
+"quant-pnc-live#31": {
+  fast: "\"Neither\" ranges from 0 (all non-blue-eyed have brown hair) to 30% (none do): a 0.3 spread.",
+  traps: "(A) 0.2 is (1 − 0.4 − 0.7) misread; percentages of overlapping groups do not subtract like that.",
+  take: "Use a 2 × 2 table and push the cell to its extremes."
+},
+"quant-pnc-live#32": {
+  fast: "60 is 80% of the dessert group, so dessert is 75% and no dessert 25%.",
+  traps: "(C) 40% subtracts 60 from 100 as if everyone else skipped dessert.",
+  take: "\"20% of those who order dessert\" is a percent of a subgroup, not of everyone."
+},
+"quant-pnc-live#33": {
+  fast: "210 has 16 factors and only 42 and 210 are multiples of 42: \\(\\tfrac{2}{16} = \\tfrac{1}{8}\\).",
+  traps: "(A) \\(\\tfrac{1}{16}\\) counts only 42 and forgets 210 itself.",
+  take: "Factors of n that are multiples of d correspond to factors of n/d."
+},
+"quant-pnc-live#34": {
+  fast: "The only failing jury is 7 men and all 5 women: 120 of 455, so \\(1 - \\tfrac{24}{91} = \\tfrac{67}{91}\\).",
+  traps: "(A) \\(\\tfrac{24}{91}\\) is the complement.",
+  take: "Identify the single failing composition and subtract it."
+},
+"quant-pnc-live#35": {
+  fast: "Parent driving gives 48 arrangements; the 16 with the daughters adjacent in the back are removed: 32.",
+  traps: "(C) 48 ignores the daughters' restriction.",
+  take: "Handle restrictions one at a time: multiply for the easy one, subtract for the \"not together\" one."
+},
+"quant-pnc-live#36": {
+  fast: "Two sibling pairs and one triple make 5 sibling pairs out of 21, so not siblings is \\(\\tfrac{16}{21}\\).",
+  traps: "(A) \\(\\tfrac{5}{21}\\) is the sibling probability.",
+  take: "Translate \"exactly k siblings\" into family groups, then count pairs within groups."
+},
+"quant-pnc-live#37": {
+  fast: "All 6 to the fourth (1,296) passwords minus the 6 × 5 × 4 × 3 = 360 with no repeated letter leaves 936.",
+  traps: "(E) 1,296 is the total. (A) 720 is 6!, a wrong count of the no-repeat case.",
+  take: "\"At least one repeat\" = total − all distinct."
+},
+"quant-pnc-live#38": {
+  fast: "Glue Jeong and Leila (240 arrangements), then remove the 96 in which Gita and Inge are also adjacent: 144.",
+  traps: "(B) 240 forgets the Gita-Inge restriction. (E) 96 is the subtracted count.",
+  take: "Combine a \"must be together\" block with a \"not together\" subtraction."
+},
+"quant-pnc-live#39": {
+  fast: "Day 22 is a Wednesday, so day 24 is Friday and Saturday runs out.",
+  traps: "(D) Friday is the last day with a new outfit, not the first without one.",
+  take: "Count combinations, then walk the calendar carefully from the first wearing day."
+},
+"quant-pnc-live#40": {
+  fast: "Prime sums 2, 3, 5, 7, 11 happen in 1 + 2 + 4 + 6 + 2 = 15 of the 36 rolls: \\(\\tfrac{5}{12}\\).",
+  traps: "(D) \\(\\tfrac{7}{18}\\) forgets the sum 11.",
+  take: "List target sums, then count ordered rolls for each."
+},
+"quant-pnc-live#41": {
+  fast: "Exactly three hits give \\(\\tfrac{16}{625}\\) and four hits give \\(\\tfrac{1}{625}\\); add them for \\(\\tfrac{17}{625}\\).",
+  traps: "(C) \\(\\tfrac{16}{625}\\) forgets the all-four case. (A) is that case alone.",
+  take: "\"At least 3 of 4\" = exactly 3 plus exactly 4."
 },
 "di-ds-qa1-arith#1": {
   steps: "(1) \\(1000[(1 + r/100)^{2} - 1] = 210\\), so \\((1 + r/100)^{2} = 1.21\\), \\(1 + r/100 = 1.1\\), \\(r = 10 > 8\\). Sufficient.\n(2) The same equation directly: \\(r = 10\\). Sufficient.\nAnswer: D.",

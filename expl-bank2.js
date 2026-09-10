@@ -1,5 +1,13 @@
 /* GMAT Prep — explanation layer for sets-bank2.js. Keys are "setId#n". */
 window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
+"di-ds-arith-class#1": {
+  steps: "If each member sold fewer than 2 tickets, each sold 0 or 1.\n(1) Three such numbers total at most 3, not 6, so at least one member sold 2 or more. Definite no. Sufficient.\n(2) Three distinct non-negative integers must include a number of at least 2. Definite no. Sufficient.\nAnswer: D.",
+  take: "A definite no answers a yes/no question just as well as a definite yes."
+},
+"di-ds-arith-class#2": {
+  steps: "(1) \\(b = \\tfrac{5a}{4}\\), so \\(a\\) is a multiple of 4: \\(a = 4\\) gives \\(b = 5\\), and \\(a = 8\\) gives \\(b = 10\\), which is not a single digit. So \\(b = 5\\). Sufficient.\n(2) Half of \\(b\\) is not an integer, so \\(b\\) is odd: 1, 3, 5, 7 or 9. Not sufficient.\nAnswer: A.",
+  take: "Digit restrictions in the stem can turn a percentage relation into a single case; check every candidate."
+},
 "quant-arith-class#1": {
   fast: "Divide 126 by 0.7: \\(\\tfrac{126}{0.7} = 180\\), since the money left is the 70% that was not spent.",
   traps: "(B) 168 adds 30% of 126 back, which is 30% of the wrong base. (E) 420 divides by 0.3, the part spent.",
@@ -259,6 +267,11 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "The population is 5,000 now and quadruples twice more in four hours: 5,000 × 16 = 80,000.",
   traps: "(A) 20,000 applies only one quadrupling.",
   take: "Find the current value first, then project forward by the same factor."
+},
+"quant-arith-class#53": {
+  fast: "Closing speed 15 km/h times one sixtieth of an hour gives a quarter of a kilometre.",
+  traps: "(B) uses only the 10 km/h boat and (A) only the 5 km/h boat; the gap closes at the sum of the two speeds.",
+  take: "Objects moving towards each other: work with the relative speed and ignore the starting distance."
 },
 "di-ds-coord-recent#1": {
   steps: "The curve meets the \\(x\\)-axis at \\(x = p\\) and \\(x = q\\).\n(1) \\(pq = -8\\): \\((2, -4)\\) says yes, \\((1, -8)\\) says no. Not sufficient.\n(2) \\(p + q = -2\\): \\((2, -4)\\) yes, \\((0, -2)\\) no. Not sufficient.\nTogether \\(p\\) and \\(q\\) are the roots of \\(t^{2} + 2t - 8 = 0\\), i.e. \\(2\\) and \\(-4\\): one of them is 2. Sufficient.\nAnswer: C.",
@@ -584,6 +597,113 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "First: current practice the author opposes. Second: evidence for the author's remedy. That is (B).",
   traps: "(C) calls the first a fact that contradicts the author, but a description of what manufacturers do is not a counter-argument, and the second is evidence rather than the position itself. (D) and (E) wrongly make the second boldface weigh against the author.",
   take: "In boldface questions, locate the main conclusion, then classify each portion as for it, against it, or the thing it opposes."
+},
+"cr-live-assume#25": {
+  fast: "Blocking one method per trial proves nothing if she can switch methods between trials: (A).",
+  traps: "(C) is the mirror image: needing two methods at once would make the trials more, not less, conclusive. (E) is far-fetched given three successes and does not describe a reasoning error. (D) is not a flaw at all.",
+  take: "Testing alternatives one at a time only works if the same explanation must hold across all the tests."
+},
+"cr-live-assume#26": {
+  fast: "Existing owners buying extra machines would raise the total; the argument assumes they will not, which is (C).",
+  traps: "(B) and (D) concern replacement purchases and competitors' prices, neither of which changes how many computers are in homes. (A) and (E) are background facts the conclusion does not depend on.",
+  take: "When the evidence covers one group and the conclusion covers a total, the assumption is about the group left out."
+},
+"cr-live-assume#27": {
+  fast: "The conclusion needs the found fossils to be the oldest that exist; (C) says no older ones are buried.",
+  traps: "(A) is about living descendants, irrelevant to ancestry of birds. (D) and (E) add detail about which species or features are involved, which the timing argument never uses. (B) concerns flightless dinosaurs and does not affect the age comparison.",
+  take: "Arguments from 'the record shows no X' assume the record is complete; absence of evidence is the usual gap."
+},
+"di-ds-basics-guide#1": {
+  steps: "(1) Expanding, \\(x^{2} + (m + n)x + mn = x^{2} + 5x + mn\\), so \\((m + n)x = 5x\\), and since \\(x \\ne 0\\), \\(m + n = 5\\). Sufficient.\n(2) \\(mn = 4\\) allows \\((1, 4)\\), \\((2, 2)\\), \\((-1, -4)\\), with sums 5, 4 and \\(-5\\). Not sufficient.\nAnswer: A.",
+  take: "A value question about a combination does not need the individual variables."
+},
+"di-ds-basics-guide#2": {
+  steps: "Cross-multiplying, \\(ab - b = ab + a\\), so the question asks whether \\(a + b = 0\\).\n(1) \\(b = 5\\), \\(a = 1\\) gives no; \\(b = 2\\), \\(a = -2\\) gives yes. Not sufficient.\n(2) \\(a = -b\\) is exactly \\(a + b = 0\\). Definite yes. Sufficient.\nAnswer: B.",
+  take: "Simplify the question stem to its bare condition before reading the statements."
+},
+"di-ds-basics-guide#3": {
+  steps: "(1) \\(30y = 900\\) gives \\(y = 30\\), but \\(x\\) is unknown. Not sufficient.\n(2) \\(35 \\cdot 90 = 3.5 \\cdot 30y\\) gives \\(y = 30\\), and \\(x = 90\\), so the total is \\(3150 + 900 = 4050\\). Sufficient.\nAnswer: B.",
+  take: "The statements never contradict: (2) must yield the same y as (1), and it does."
+},
+"di-ds-basics-guide#4": {
+  steps: "(1) $16, $16, $16 total 48, not less; $10, $9, $8 total 27. Not sufficient.\n(2) The most expensive book is unbounded. Not sufficient.\nTogether the most expensive is under 17, so the second is under 17 and the cheapest is under 14; the total is under 48. Definite yes. Sufficient.\nAnswer: C.",
+  take: "For bound questions, build a case at the boundary to test whether the inequality can fail."
+},
+"di-ds-basics-guide#5": {
+  steps: "(1) Units digit 4 times 1 gives 4 (no), times 2 gives 8 (yes). Not sufficient.\n(2) 7 times 1 gives 7 (yes), 7 times 0 gives 0 (no). Not sufficient.\nTogether \\(4 \\times 7 = 28\\), units digit 8, greater than 5. Sufficient.\nAnswer: C.",
+  take: "The units digit of a product depends only on the units digits of the factors."
+},
+"di-ds-basics-guide#6": {
+  steps: "\\(\\tfrac{5^{x+2}}{25} = 5^{x}\\), so the question is whether \\(5^{x} < 1\\), that is whether \\(x < 0\\).\n(1) States exactly that. Sufficient.\n(2) Negative \\(x\\) makes \\(5^{x}\\) a positive fraction below 1. Sufficient.\nAnswer: D.",
+  take: "Cancel constants in the stem; both statements may then read as the question itself."
+},
+"di-ds-basics-guide#7": {
+  steps: "(1) \\(n \\times k = 0\\) with \\(k \\ne 0\\) forces \\(n = 0\\). Sufficient.\n(2) \\(n + 0 = 0\\) gives \\(n = 0\\) directly. Sufficient.\nAnswer: D.",
+  take: "The zero-product rule is a sufficiency tool: a nonzero cofactor pins the other factor at zero."
+},
+"di-ds-basics-guide#8": {
+  steps: "Let the four cells be red spheres, green spheres, red cubes and green cubes.\n(1) Cubes total 6 and green objects total 5, but the overlap (green cubes) is unknown, so the total is not fixed. Not sufficient.\n(2) One cell only. Not sufficient.\nTogether red spheres 2, cubes 6, green 5: total is \\(2 + 6 + 5 - \\text{green cubes}\\), still open. Not sufficient.\nAnswer: E.",
+  take: "Two-set matrix: a total needs the overlap cell, not just the row and column totals."
+},
+"di-ds-basics-guide#9": {
+  steps: "(1) \\(z^{4} > 0\\), so \\(p < 0\\) and \\(z \\ne 0\\), but \\(z\\) can be positive (\\(zp < 0\\), yes) or negative (no). Not sufficient.\n(2) \\(z = 1\\), \\(p = 13\\) gives positive; \\(z = -4\\), \\(p = -2\\) gives positive too, but \\(z = 4\\), \\(p = -2\\) gives negative. Not sufficient.\nTogether \\(p < 0\\) and \\(z = \\pm 4\\) both fit, with opposite answers. Not sufficient.\nAnswer: E.",
+  take: "A statement with z squared or z to the fourth never tells you the sign of z."
+},
+"di-ds-basics-guide#10": {
+  steps: "(1) \\(x = 6\\) or \\(x = -6\\). Not sufficient.\n(2) Any negative number. Not sufficient.\nTogether \\(x = -6\\). Sufficient.\nAnswer: C.",
+  take: "Squares give two candidates; the A-trap is forgetting the negative root."
+},
+"di-ds-basics-guide#11": {
+  steps: "(1) Without the interest rate the year-end amount is unknown. Not sufficient.\n(2) Without the extra deposits the amount is unknown. Not sufficient.\nTogether the $4,000 could have arrived in January, earning nearly a full year of interest, or on December 31st, earning none, so the total differs. Not sufficient.\nAnswer: E.",
+  take: "Timing is a hidden variable in interest problems; two numbers do not make a value unique if a date is missing."
+},
+"di-ds-basics-guide#12": {
+  steps: "\\(M - J = 2(M - K)\\) gives \\(M + J = 2K\\), so the average \\(\\tfrac{M + J + K}{3} = \\tfrac{3K}{3} = K\\).\n(1) Jim's salary alone does not give \\(K\\). Not sufficient.\n(2) The average equals Kate's salary, $40,000. Sufficient.\nAnswer: B.",
+  take: "C-trap: simplify the stem relation first; one statement may already answer the question."
+},
+"di-ds-basics-guide#13": {
+  steps: "\\(a^{2} - b^{2} = (a - b)(a + b)\\).\n(1) \\(a - b\\) is unknown. Not sufficient.\n(2) \\(a - b = 0\\) makes the product 0 whatever \\(a + b\\) is. Sufficient.\nAnswer: B.",
+  take: "C-trap: when one factor is zero, the other factor does not matter."
+},
+"di-ds-basics-guide#14": {
+  steps: "(1) Consecutive odd integers with a negative product must straddle zero: \\(-1\\) and 1, sum 0. Sufficient.\n(2) The pair could be \\(-3, -1\\) (sum \\(-4\\)) or \\(-1, 1\\) (sum 0). Not sufficient.\nAnswer: A.",
+  take: "C-trap: a sign condition can pin integers completely when they are consecutive."
+},
+"di-ds-basics-guide#15": {
+  steps: "(1) One equation, two unknowns. Not sufficient.\n(2) Likewise. Not sufficient.\nTogether both simplify to \\(3a = 7b + 5\\), the same line, so \\(a\\) is still free. Not sufficient.\nAnswer: E.",
+  take: "Two equations in two unknowns are sufficient only if they are independent; check for a disguised repeat."
+},
+"di-ds-basics-guide#16": {
+  steps: "The prices total 45.\n(1) 13, 14, 18 has median 14; 12, 13, 20 has median 13. Not sufficient.\n(2) With one book at 15, the other two total 30, so one is at most 15 and the other at least 15: the 15 is always the middle value. Sufficient.\nAnswer: B.",
+  take: "A value equal to the mean of three numbers is automatically their median."
+},
+"di-ds-basics-guide#17": {
+  steps: "(1) One equation in two unknowns: \\(a = 11 - 2b\\), so \\(a - b = 11 - 3b\\) takes a different value for every \\(b\\). Not sufficient.\n(2) Collecting terms, \\(4a - 4b = 8\\), so \\(a - b = 2\\) without knowing either variable. Sufficient.\nAnswer: B.",
+  take: "The question asks for a combination; a single statement may deliver it after simplification."
+},
+"di-ds-basics-guide#18": {
+  steps: "The units digit of \\(n\\) is that of \\(3^{x} \\cdot 3^{y} = 3^{x+y}\\).\n(1) \\(3^{7}\\) ends in 7 whatever the split. Sufficient.\n(2) \\(y\\) unknown, so the exponent is unknown. Not sufficient.\nAnswer: A.",
+  take: "C-trap: the sum of the exponents was enough; individual values were never needed."
+},
+"di-ds-basics-guide#19": {
+  steps: "(1) A ratio gives no counts. Not sufficient.\n(2) One person could have received everything, or two people half each. Not sufficient.\nTogether the per-person amounts are \\(3k, 4k, 5k\\) with \\(3k \\cdot n = 24\\): \\(n = 8\\) (\\(k = 1\\)), \\(n = 4\\) (\\(k = 2\\)), \\(n = 2\\) or \\(n = 1\\). Not sufficient.\nAnswer: E.",
+  take: "A ratio and a total fix a product, not the number of people; watch for the C-trap."
+},
+"di-ds-basics-guide#20": {
+  steps: "(1) \\(7x = 2\\) gives \\(x = \\tfrac{2}{7}\\), not an integer; \\(x = 2\\) works too. Not sufficient.\n(2) Same problem with \\(5x = 2\\). Not sufficient.\nTogether \\(7x - 5x = 2x\\) is the difference of two even integers, so it is an even integer and \\(x\\) is an integer; then \\(7x\\) even forces \\(x\\) even. Sufficient.\nAnswer: C.",
+  take: "D-trap: parity facts about multiples of x do not make x an integer until they are combined."
+},
+"di-ds-basics-guide#21": {
+  steps: "Let the cost be \\(C\\); the asking price was \\(1.4C\\).\n(1) Sold at \\(0.9 \\cdot 1.4C = 1.26C\\) with profit 403: \\(0.26C = 403\\), \\(C = 1550\\). Sufficient.\n(2) The selling price of $1,953 is not tied to the asking price; the dealer may have discounted by any amount, so \\(C\\) is unknown. Not sufficient.\nAnswer: A.",
+  take: "D-trap: read 'initially offered' literally; the final sale need not be at the marked price."
+},
+"di-ds-basics-guide#22": {
+  steps: "(1) Rearranging: \\(b < a\\). Definite yes. Sufficient.\n(2) With \\(c = 2\\) it gives \\(a > b\\); with \\(c = -2\\) dividing flips the sign to \\(a < b\\). Not sufficient.\nAnswer: A.",
+  take: "D-trap: cancelling a variable of unknown sign from an inequality is not allowed."
+},
+"di-ds-basics-guide#23": {
+  steps: "(1) \\(a = 5.5\\) gives yes, \\(a = 3\\) gives no. Not sufficient.\n(2) Every value below 4 is below 5. Definite no. Sufficient.\nAnswer: B.",
+  take: "D-trap: unless told otherwise, variables can be fractions; test values between the integers."
 },
 "di-ds-basics-extra#1": {
   steps: "(1) Page size says nothing about the count. Not sufficient.\n(2) An average per page without a total. Not sufficient.\nTogether still no total word count. Not sufficient.\nAnswer: E.",
@@ -2397,6 +2517,85 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "(1) Retail \\(320\\), difference \\(120\\). Sufficient.\n(2) Wholesale \\(320 / 1.6 = 200\\), difference \\(120\\). Sufficient.\nAnswer: D.",
   take: "With a fixed ratio, one amount is as good as both."
 },
+"di-ds-ineq-batch#1": {
+  steps: "(1) For \\(y = 1\\), any \\(x\\) with \\(|x - 3| \\ge 1\\) works. Not sufficient.\n(2) \\(|x - 3|\\) is at least 0 and \\(-y\\) is at most 0, so both must be 0: \\(y = 0\\) and \\(x = 3\\). Sufficient.\nAnswer: B.",
+  take: "Squeezing a non-negative quantity below a non-positive one forces both to be zero."
+},
+"di-ds-ineq-batch#2": {
+  steps: "(1) The left side is at least 0, so \\(2 - y > 0\\) and the positive integer \\(y\\) is 1. Then \\(|x - 2| < 1\\) forces \\(x = 2\\), a prime. Sufficient.\n(2) If \\(y = 1\\): \\(x - 2 = 0\\), \\(x = 2\\). If \\(y \\ge 2\\): \\(x + y - 3 = y - 1\\), so \\(x = 2\\). Either way \\(x = 2\\). Sufficient.\nAnswer: D.",
+  take: "Use the non-negativity of an absolute value to bound the other side before solving."
+},
+"di-ds-ineq-batch#3": {
+  steps: "(1) Taking square roots: \\(|x - 1| \\le 1\\), which allows equality (\\(x = 2\\) gives no) or strict inequality (\\(x = 1.5\\) gives yes). Not sufficient.\n(2) \\(|x| > 1\\): \\(x = 1.5\\) yes, \\(x = 2\\) no. Not sufficient.\nTogether \\(x = 1.5\\) and \\(x = 2\\) both satisfy both statements with different answers. Not sufficient.\nAnswer: E.",
+  take: "Watch the boundary: a non-strict inequality in a statement cannot prove a strict inequality in the question."
+},
+"di-ds-ineq-batch#4": {
+  steps: "\\(|a| > a\\) exactly when \\(a\\) is negative.\n(1) \\(a^{2} < a\\) holds only for \\(0 < a < 1\\), so \\(a\\) is positive: definite no. Sufficient.\n(2) \\(a = 3\\) works (1.5 > 0.67) and \\(a = -1\\) works (−0.5 > −2), one positive and one negative. Not sufficient.\nAnswer: A.",
+  take: "Translate absolute-value questions into sign questions before touching the statements."
+},
+"di-ds-ineq-batch#5": {
+  steps: "(1) \\(\\tfrac{y}{|y|}\\) is 1 for positive \\(y\\) and \\(-1\\) for negative \\(y\\), so \\(|x| = 1\\). Sufficient.\n(2) \\(|x| = -x\\) only says \\(x \\le 0\\); \\(x = -1\\) gives yes, \\(x = -2\\) no. Not sufficient.\nAnswer: A.",
+  take: "y over |y| is a sign function: it can only be plus or minus one."
+},
+"di-ds-ineq-batch#6": {
+  steps: "\\(x^{3} < x^{2}\\) holds for every negative \\(x\\) and for \\(0 < x < 1\\); it fails at 0 and for \\(x \\ge 1\\).\n(1) \\(x = -1\\) or \\(x = \\tfrac{1}{2}\\) both fit. Not sufficient.\n(2) Integers above \\(-2\\) that are negative or strictly between 0 and 1: only \\(x = -1\\). Sufficient.\nAnswer: B.",
+  take: "Translate the stem inequality into a region of the number line first; then the statements become filters."
+},
+"di-ds-ineq-batch#7": {
+  steps: "(1) \\(x^{2} = 9 - y^{2} \\le 9\\), so \\(|x| \\le 3\\). Definite yes. Sufficient.\n(2) \\(x = 0\\), \\(y = 0\\) gives yes, but \\(x = 4\\), \\(y = -10\\) satisfies \\(16 - 10 \\le 9\\) and gives no. Not sufficient.\nAnswer: A.",
+  take: "A square bounded by a constant bounds the variable; a linear term with unknown sign does not."
+},
+"di-ds-ineq-batch#8": {
+  steps: "\\(|a| \\cdot b > 0\\) needs \\(a \\ne 0\\) and \\(b > 0\\).\n(1) \\(a\\) is nonzero, but \\(b\\) could be negative. Not sufficient.\n(2) \\(a \\ne 0\\), but with \\(|a| = 1\\) the power is 1 for any \\(b\\), including \\(b = -2\\) or \\(b = 0\\). Not sufficient.\nTogether \\(a = 1\\), \\(b = -2\\) satisfies both and gives no; \\(a = 2\\), \\(b = 1\\) gives yes. Not sufficient.\nAnswer: E.",
+  take: "When testing powers, always try a base of 1 or −1: they make exponents invisible."
+},
+"di-ds-ineq-batch#9": {
+  steps: "For \\(a \\ge 1\\) or \\(a = 0\\) a larger power is never smaller, so both statements force \\(a\\) negative.\n(1) Of \\(n - 1\\) and \\(n\\) one is even (positive power) and one odd (negative power). The larger side, \\(a^{n-1}\\), must be the positive one, so \\(n - 1\\) is even and \\(n\\) is odd. Sufficient.\n(2) \\(n\\) and \\(3n\\) share parity. If \\(n\\) were even both powers would be positive and \\(a^{3n}\\) larger; so \\(n\\) is odd, where both are negative and \\(a^{3n}\\) is further from zero. Sufficient.\nAnswer: D.",
+  take: "Powers of a negative base alternate in sign; comparisons between them are parity statements in disguise."
+},
+"di-ds-ineq-batch#10": {
+  steps: "(1) The sign chart gives \\(1 < x < 2\\) or \\(x > 3\\); \\(x = 1.5\\) says no, \\(x = 4\\) says yes. Not sufficient.\n(2) \\(x = 1.5\\) or \\(x = 4\\) again. Not sufficient.\nTogether both examples still satisfy both statements. Not sufficient.\nAnswer: E.",
+  take: "A cubic product changes sign at each root; list the intervals rather than assuming 'positive means large'."
+},
+"di-ds-ineq-batch#11": {
+  steps: "(1) \\(x(x - 9) = 0\\), so \\(x = 0\\) (no) or \\(x = 9\\) (yes). Not sufficient.\n(2) \\(|x| = -x\\) means \\(x \\le 0\\), so \\(x\\) is never positive. Definite no. Sufficient.\nAnswer: B.",
+  take: "Dividing both sides by a variable silently discards the root zero."
+},
+"di-ds-ineq-batch#12": {
+  steps: "(1) \\(p = 2\\), \\(j = 1\\) makes Paul the owner of more; \\(p = 3\\), \\(j = 4\\) (27 > 16) makes Joanie. Not sufficient.\n(2) Nothing about \\(p\\). Not sufficient.\nTogether \\(p^{3} > 9\\) forces \\(p \\ge 3\\), and \\(p \\ne 3\\), so \\(p \\ge 4 > 3\\): Paul. Sufficient.\nAnswer: C.",
+  take: "An inequality between different powers does not order the bases; pin one value and then compare."
+},
+"di-ds-ineq-batch#13": {
+  steps: "\\(\\tfrac{|x|}{x}\\) is \\(\\pm 1\\); \\(a^{6}\\) cannot be negative, so it equals 1 and \\(a = \\pm 1\\), \\(b^{3} = 1\\), \\(b = 1\\). The question is whether \\(a\\) is 1 or \\(-1\\).\n(1) \\(b^{7} > 0\\), so \\(a^{3} > 0\\) and \\(a = 1\\): \\(a - b = 0\\). Sufficient.\n(2) \\(a + 1 > 0\\) rules out \\(a = -1\\), so \\(a = 1\\) and \\(a - b = 0\\). Sufficient.\nAnswer: D.",
+  take: "Work the stem down to the few candidate values before reading the statements."
+},
+"di-ds-ineq-batch#14": {
+  steps: "(1) \\(x - y < -1\\), so \\(x < y\\). Sufficient.\n(2) \\(x - y < 1\\) allows \\(x = y + \\tfrac{1}{2}\\) (no) and \\(x = y - 1\\) (yes). Not sufficient.\nAnswer: A.",
+  take: "Isolate the same combination the question asks about; the direction of the bound is everything."
+},
+"di-ds-ineq-batch#15": {
+  steps: "(1) The sign of \\(v\\) is unknown, so cross-multiplying is illegal. \\(w = 2\\), \\(v = 3\\) gives yes; \\(w = -5\\), \\(v = 3\\) also satisfies the statement and gives no. Not sufficient.\n(2) \\(v^{2}\\) is positive, so \\(w^{2} < v^{2}\\), and taking positive square roots, \\(|w| < |v|\\). Sufficient.\nAnswer: B.",
+  take: "Squared denominators are safe to clear; plain variable denominators hide a sign."
+},
+"di-ds-ineq-batch#16": {
+  steps: "(1) \\(2^{2}\\), \\((-2)^{2}\\) and \\(4^{1}\\) give 4; only \\(x = -2\\), \\(y = 2\\) has \\(x < y\\), so \\(x + y = 0\\). Sufficient.\n(2) Equal absolute values with \\(x < y\\) means \\(x = -y\\) with \\(y\\) positive, so \\(x + y = 0\\). Sufficient.\nAnswer: D.",
+  take: "Constraints in the stem (x < y) often turn a many-solution statement into a single case."
+},
+"quant-ineq-batch#1": {
+  fast: "p(p + 1) is always even, so II holds; x = 2 kills I and x = 7 with odd y and p kills III.",
+  traps: "(D) accepts III, but x, y and p can all be odd at once. (C) keeps I even though x = 2 is a valid root of the absolute-value equation.",
+  take: "Products of consecutive integers are even; that single fact decides most parity 'must be true' statements."
+},
+"quant-ineq-batch#2": {
+  fast: "The expression is r(8 − r); plug even r: 0, 12, 16, 12, 0, −20 appear, 8 never does.",
+  traps: "(A) −20 looks impossible because squares are positive, but r = 10 gives 10 × (−2). (B) 0 comes from r = 0, where q is negative and s positive, still consecutive evens.",
+  take: "Parametrise consecutive integers around the middle one; the algebra collapses to one variable."
+},
+"quant-ineq-batch#3": {
+  fast: "Only |x + 2| = 16 survives; of x = 14 and x = −18, one is non-negative.",
+  traps: "(C) counts both roots of |x + 2| = 16 and ignores the non-negative condition. (E) also keeps the impossible branch |x + 2| = −4.",
+  take: "Nested absolute values: unwrap from the outside, discard negative right-hand sides, then apply the domain restriction."
+},
 "di-ds-ineq-class#1": {
   steps: "\\(x - y + 1 > x + y - 1\\) simplifies to \\(2 > 2y\\), i.e. \\(y < 1\\).\n(1) Nothing about \\(y\\). Not sufficient.\n(2) \\(y < 0 < 1\\). Yes. Sufficient.\nAnswer: B.",
   take: "Addition and subtraction cancel freely across an inequality; simplify before judging."
@@ -3220,5 +3419,77 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "60 − 36 = 24 = 7 + 8 + 9, exactly three more hours after 5 PM.",
   traps: "(B) 7:00 PM stops after 7 + 8 = 15 of the remaining 24.",
   take: "Measure work in worker-hours and add the changing crew hour by hour."
+},
+"di-ds-stats-class#1": {
+  steps: "The balance is $600 up to the withdrawal and $300 after it, so the monthly average depends only on the withdrawal day.\n(1) Twenty end-of-day balances of 600 and ten of 300: average \\(\\tfrac{20 \\cdot 600 + 10 \\cdot 300}{30} = 500\\). Sufficient.\n(2) If \\(x\\) of the first 25 days ended at 600 and \\(25 - x\\) at 300, then \\(600x + 300(25 - x) = 25 \\cdot 540\\), so \\(x = 20\\): the withdrawal was on day 21, the same situation as (1). Sufficient.\nAnswer: D.",
+  take: "A weighted-average statement about part of a period can fix the switch date just as well as the date itself."
+},
+"di-ds-stats-class#2": {
+  steps: "Each term is the previous term plus 3, so \\(R\\) is an arithmetic progression, and in an arithmetic progression the median equals the mean.\n(1) Knowing the first term without the number of terms leaves the median open. Not sufficient.\n(2) Mean 36 means median 36. Sufficient.\nAnswer: B.",
+  take: "Evenly spaced set: mean = median = average of the first and last terms; a mean statement is a median statement."
+},
+"di-ds-stats-class#3": {
+  steps: "The mean is \\(\\tfrac{24 + x}{5}\\).\n(1) \\(x = 7\\): median 7, mean 6.2, yes. \\(x = 100\\): median 8, mean 24.8, no. Not sufficient.\n(2) \\(x\\) above the median forces \\(x \\ge 9\\) and median 8; \\(x = 9\\) gives mean 6.6 (yes), \\(x = 100\\) gives no. Not sufficient.\nTogether (2) already implies (1), so the same pair of examples survives. Not sufficient.\nAnswer: E.",
+  take: "When one statement implies the other, combining them adds nothing; test the stronger one alone."
+},
+"di-ds-stats-class#4": {
+  steps: "By symmetry the share above \\(m + d\\) equals the share below \\(m - d\\).\n(1) The two tails together hold \\(100 - 68 = 32\\) percent, so each holds 16 percent. Sufficient.\n(2) The lower tail is 16 percent, so the upper tail is 16 percent. Sufficient.\nAnswer: D.",
+  take: "Symmetric distribution: one tail, the middle band, or the other tail each determine the rest."
+},
+"di-ds-stats-class#5": {
+  steps: "(1) alone says nothing about \\(b\\); (2) alone says nothing about \\(a\\). Each is insufficient.\nTogether \\(a - b = c^{3} - (c - 2)^{3} = 6c^{2} - 12c + 8\\). Since \\(6c^{2} - 12c\\) is a multiple of 6, the remainder is the remainder of 8, namely 2, for every integer \\(c\\). Sufficient.\nAnswer: C.",
+  take: "Two equations in three unknowns can still fix a combination such as a remainder; expand and look for the multiple."
+},
+"di-ds-stats-class#6": {
+  steps: "(1) \\(z = 2 \\times\\) (even integer), so \\(z\\) is an even integer. Sufficient.\n(2) \\(3z\\) even gives \\(z = \\tfrac{\\text{even}}{3}\\): \\(z = 2\\) is even, \\(z = \\tfrac{2}{3}\\) is not even an integer. Not sufficient.\nAnswer: A.",
+  take: "Even and odd rules apply to integers only; a statement about 3z does not make z an integer."
+},
+"di-ds-stats-class#7": {
+  steps: "(1) \\(m\\) has the parity of \\(p^{2}\\), so of \\(p\\); nothing about \\(n\\). Not sufficient.\n(2) \\(n = p^{2} + \\text{even} + 1\\) has the opposite parity to \\(p\\); nothing about \\(m\\). Not sufficient.\nTogether \\(m\\) matches \\(p\\) and \\(n\\) is opposite to \\(p\\), so one of them is odd and the other even, and \\(m + n\\) is odd. Sufficient.\nAnswer: C.",
+  take: "Parity questions: reduce every expression to 'same as p' or 'opposite to p' and the sum's parity follows."
+},
+"di-ds-stats-class#8": {
+  steps: "\\(5^{x}\\) ends in 5 for every positive \\(x\\), so only the exponent \\(y + 15\\) matters, through its remainder on division by 4.\n(1) \\(x = 8\\) gives \\(y = 1\\) and \\(7^{16}\\) ends in 1; \\(x = 9\\) gives \\(y = 3\\) and \\(7^{18}\\) ends in 9. Different units digits. Not sufficient.\n(2) \\(y = 1\\) or \\(y = 5\\), exponents 16 and 20, both multiples of 4, so \\(7^{y+15}\\) ends in 1 either way and \\(n\\) ends in 6. Sufficient.\nAnswer: B.",
+  take: "A statement can fail to fix a variable yet fix the units digit; test what the question actually asks."
+},
+"di-ds-stats-class#9": {
+  steps: "\\(64 = 2^{6}\\), so the greatest common factor is 1 if \\(n\\) is odd and at least 2 if \\(n\\) is even.\n(1) If \\(n\\) were even, its factors 1 and 2 would sum to the prime 3. So \\(n\\) is odd and the answer is 1. Sufficient.\n(2) \\(2310 = 2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 11\\) and the common factor \\(165 = 3 \\cdot 5 \\cdot 11\\) omits 2, so \\(n\\) is odd. Answer 1. Sufficient.\nAnswer: D.",
+  take: "Rephrase first: a GCF with a prime power only asks whether that prime divides n."
+},
+"di-ds-stats-class#10": {
+  steps: "The average of \\(n\\) consecutive integers starting at \\(f\\) is \\(f + \\tfrac{n - 1}{2}\\).\n(1) Odd \\(n\\) makes the average an integer, but 1, 2, 3 (average 2) and 2, 3, 4 (average 3) answer differently. Not sufficient.\n(2) This is exactly the statement that the average is an integer divisible by 3. Sufficient.\nAnswer: B.",
+  take: "Write the average of an evenly spaced set in closed form; a statement may simply restate the question."
+},
+"di-ds-stats-class#11": {
+  steps: "(1) \\(ab\\) contains 3, 7, 5 and 7, but \\(a = 21\\), \\(b = 35\\) gives 735, not a multiple of 30, while \\(a = 42\\), \\(b = 35\\) works. Not sufficient.\n(2) Evenness alone: \\(a = 2\\), \\(b = 1\\) fails, \\(a = 30\\), \\(b = 2\\) works. Not sufficient.\nTogether \\(ab\\) has factors 2, 3 and 5, so 30 divides \\(ab\\) and \\(x\\) is an integer. Sufficient.\nAnswer: C.",
+  take: "Divisibility by a composite: collect one prime at a time from the statements."
+},
+"di-ds-stats-class#12": {
+  steps: "(1) \\(n\\) is 2 more or 2 less than a multiple of 5, so its units digit is 2, 3, 7 or 8, and no perfect square ends that way. Definite no. Sufficient.\n(2) \\(n\\) is 2 away from a multiple of 7: \\(n = 5\\) is not a square but \\(n = 9\\) is. Not sufficient.\nAnswer: A.",
+  take: "Squares leave only 0, 1 or 4 as remainders on division by 5; a remainder test can settle a yes/no question."
+},
+"di-ds-stats-class#13": {
+  steps: "A fraction terminates when its lowest-terms denominator has only the primes 2 and 5.\n(1) \\(x = \\tfrac{1}{2}\\) terminates, \\(x = \\tfrac{1}{3}\\) does not, and both make \\(24x\\) an integer. Not sufficient.\n(2) \\(x = \\tfrac{1}{2}\\) versus \\(x = \\tfrac{1}{7}\\). Not sufficient.\nTogether \\(28x - 24x = 4x\\) is an integer, so \\(x\\) is a quarter, a half or three quarters, all terminating. Sufficient.\nAnswer: C.",
+  take: "Two 'kx is an integer' facts combine by subtraction to a smaller multiplier, which pins the denominator."
+},
+"quant-stats-class#1": {
+  fast: "Median of consecutive integers = (first + last)/2; chain the two given medians to express a in terms of c.",
+  traps: "(A) is \\(a\\) itself, not the median of \\(R\\). (E) is \\(b\\) in terms of \\(c\\), the median of nothing asked. (B) would be right only if \\(a\\) were 0.",
+  take: "Evenly spaced sets: median = mean = average of the extremes, which turns median questions into two-line algebra."
+},
+"quant-stats-class#2": {
+  fast: "Uniqueness forces a ≤ 7 and b ≤ 5, so the maximum is 35 + 35 = 70; verify 74 has two pairs.",
+  traps: "(E) 74 is the largest number with any solution, but it has two of them: (12, 2) and (5, 7). (C) 69 is smaller than 70 and the question asks for the largest such value.",
+  take: "For ax + by = k with coprime a, b, solutions come in families spaced by (b, −a); uniqueness caps how large x and y can be."
+},
+"quant-stats-class#3": {
+  fast: "Perfect squares have odd factor counts and all-even exponents; p itself can be a square (p = 4), killing III.",
+  traps: "(E) accepts III, but p can itself be a perfect square with an odd number of factors. (A) forgets that squaring doubles exponents, which is exactly what II says.",
+  take: "Odd number of factors is the fingerprint of a perfect square; a non-square always has an even count."
+},
+"quant-stats-class#4": {
+  fast: "x = 512 (length 9) and y = 128 (length 7) satisfy 512 + 384 < 1000, total 16.",
+  traps: "(C) 15 comes from maximising y first (256 and 128); the asymmetric constraint rewards putting the budget on x. (E) 18 would need 2 to the 9th and 2 to the 9th, which breaks the sum limit.",
+  take: "Length questions are about small primes: 2 gives the most factors per unit of size, so build from powers of 2 and compare both allocations."
 },
 });

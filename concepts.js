@@ -2684,5 +2684,195 @@ window.GMAT_CONCEPTS = [
         ]
       }
     ]
+  },
+  {
+    id: "course-rules",
+    section: "quant",
+    title: "Course Rule Sheets",
+    source: "Condensed from your Quant class-session guides (inequalities, absolute values, counting, statistics, numbers) and the GMAT Club Math Book",
+    parts: [
+      {
+        id: "rs-ineq",
+        title: "Inequalities Toolkit",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "Your inequalities session lists thirty rules. Most are one idea seen from different angles, so they are grouped here by that idea. The single rule behind all of them: an inequality survives every operation an equation does, <b>except</b> multiplying or dividing by a negative, which flips it, and multiplying or dividing by an unknown sign, which is not allowed at all." },
+          { t: "h", x: "Signs of products and quotients" },
+          { t: "ul", items: [
+            "\\(xy &gt; 0\\) or \\(\\tfrac{x}{y} &gt; 0\\): \\(x\\) and \\(y\\) have the <b>same</b> sign (and neither is 0). The two statements are interchangeable, because dividing \\(xy &gt; 0\\) by the positive \\(y^{2}\\) gives \\(\\tfrac{x}{y} &gt; 0\\).",
+            "\\(xy &lt; 0\\) or \\(\\tfrac{x}{y} &lt; 0\\): <b>opposite</b> signs.",
+            "\\(\\tfrac{1}{x} &gt; 0\\) means \\(x &gt; 0\\); \\(\\tfrac{1}{x} &lt; -x\\) forces \\(x\\) negative. When unsure, substitute a negative, zero and a positive and watch what survives.",
+            "Cross-multiplying \\(\\tfrac{a}{b} &gt; \\tfrac{c}{d}\\) to \\(ad &gt; bc\\) is legal only when every quantity is known to be positive."
+          ]},
+          { t: "h", x: "Where a variable can live" },
+          { t: "ul", items: [
+            "\\((x - a)(x - b) &lt; 0\\) with \\(a &lt; b\\): \\(x\\) lies <b>between</b> \\(a\\) and \\(b\\). \\((x - a)(x - b) &gt; 0\\): \\(x\\) lies <b>outside</b>, either below \\(a\\) or above \\(b\\). Write \\(x + 3\\) as \\(x - (-3)\\) to read the boundary off.",
+            "\\(x^{2} &gt; x\\): \\(x &gt; 1\\) or \\(x &lt; 0\\). \\(x^{2} &lt; x\\): \\(0 &lt; x &lt; 1\\). \\(x^{2} = x\\): \\(x\\) is 0 or 1.",
+            "\\(x^{3} &gt; x\\): \\(x &gt; 1\\) or \\(-1 &lt; x &lt; 0\\). \\(x^{3} &lt; x\\): \\(0 &lt; x &lt; 1\\) or \\(x &lt; -1\\). \\(x^{3} = x\\): \\(x\\) is 0, 1 or \\(-1\\).",
+            "Test the nine landmark values: \\(0\\), \\(1\\), \\(-1\\), a number above 1 (use 2), one between 0 and 1 (use one half), one between \\(-1\\) and 0 (use minus one half), and one below \\(-1\\) (use \\(-2\\)). Nearly every could-be-true trap is exposed by one of them."
+          ]},
+          { t: "h", x: "Powers do not preserve order" },
+          { t: "ul", items: [
+            "\\(x^{2} &gt; y^{2}\\) says nothing about whether \\(x &gt; y\\): \\(5^{2} &gt; 3^{2}\\) with \\(5 &gt; 3\\), but \\((-5)^{2} &gt; 3^{2}\\) with \\(-5 &lt; 3\\).",
+            "\\(x &gt; y^{2}\\) or \\(x &gt; y^{4}\\) leaves both \\(x &gt; y\\) and \\(x &lt; y\\) possible: \\(25 &gt; 3^{2}\\) with \\(25 &gt; 3\\), but one third exceeds one quarter while one third is below one half.",
+            "<b>Odd</b> powers and roots do preserve order: \\(x &gt; y\\) guarantees \\(x^{3} &gt; y^{3}\\). Even powers preserve it only for non-negative numbers.",
+            "Any square is at least 0. A statement that \\(x^{2} + y^{2} = 9\\) therefore bounds each of \\(x\\) and \\(y\\) between \\(-3\\) and 3."
+          ]},
+          { t: "h", x: "Combining inequalities" },
+          { t: "ul", items: [
+            "Two inequalities pointing the same way may be <b>added</b>: \\(a &gt; b\\) and \\(c &gt; d\\) give \\(a + c &gt; b + d\\).",
+            "To combine inequalities pointing opposite ways, multiply one by \\(-1\\) (which flips it) and then add. Never subtract inequalities directly.",
+            "Adding the same positive \\(k\\) to numerator and denominator pulls a fraction towards 1: \\(\\tfrac{a + k}{b + k} &gt; \\tfrac{a}{b}\\) when \\(a &lt; b\\), and \\(\\tfrac{a + k}{b + k} &lt; \\tfrac{a}{b}\\) when \\(a &gt; b\\)."
+          ]},
+          { t: "tip", x: "In Data Sufficiency, rephrase the question first (is \\(|a| &gt; a\\)? becomes is \\(a\\) negative?) and reduce each statement to a region of the number line. Sufficiency is then a matter of whether the region fits inside the answer." },
+          { t: "eg",
+            q: "If \\(x^{3} &lt; x^{2}\\), which of the following must be true?",
+            choices: ["\\(x &gt; 1\\)", "\\(x &lt; 1\\)", "\\(x &lt; 0\\)", "\\(0 &lt; x &lt; 1\\)", "\\(x &gt; 0\\)"],
+            ans: "B",
+            why: "\\(x^{3} &lt; x^{2}\\) means \\(x^{2}(x - 1) &lt; 0\\). Since \\(x^{2}\\) is positive whenever \\(x \\ne 0\\), the sign comes from \\(x - 1\\), so \\(x &lt; 1\\) (and \\(x \\ne 0\\)). Negative values such as \\(-2\\) and fractions such as one half both work, so (C), (D) and (E) each exclude valid values; only (B) holds for all of them."
+          }
+        ]
+      },
+      {
+        id: "rs-abs",
+        title: "Absolute Value in Inequalities",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "Read \\(|x|\\) as the distance of \\(x\\) from 0 and \\(|x - a|\\) as the distance of \\(x\\) from \\(a\\). Distance is never negative, so \\(|x| &lt; 0\\) is impossible and \\(|x| \\le -y\\) can only hold when both sides are 0." },
+          { t: "ul", items: [
+            "\\(|x| = x\\) when \\(x \\ge 0\\) and \\(|x| = -x\\) when \\(x &lt; 0\\). So \\(|x| = -x\\) is a statement that \\(x \\le 0\\), not a contradiction: \\(-x\\) is then the positive number.",
+            "\\(\\sqrt{x^{2}} = |x|\\). The radical sign means the non-negative root, which is why \\(\\sqrt{36}\\) is 6 only, while \\(x^{2} = 36\\) gives \\(|x| = 6\\) and hence \\(x = \\pm 6\\).",
+            "\\(|x| = a\\) gives \\(x = \\pm a\\). \\(|x| &lt; a\\) gives \\(-a &lt; x &lt; a\\). \\(|x| &gt; a\\) gives \\(x &gt; a\\) or \\(x &lt; -a\\). Replace \\(x\\) by \\(x - b\\) to shift the centre to \\(b\\).",
+            "\\(|a| = |b|\\) means \\(a = b\\) or \\(a = -b\\).",
+            "\\(|x - 3| &gt; 0\\) is true for every \\(x\\) except 3: a strict inequality against zero only excludes the centre.",
+            "\\(\\tfrac{x}{|x|}\\) is a sign switch: 1 for positive \\(x\\), \\(-1\\) for negative \\(x\\). Hence \\(x = \\tfrac{y}{|y|}\\) forces \\(|x| = 1\\).",
+            "\\(|x| &lt; x^{2}\\) means \\(|x| &gt; 1\\); \\(|x| \\cdot b &gt; 0\\) means \\(x \\ne 0\\) and \\(b &gt; 0\\)."
+          ]},
+          { t: "warn", x: "\\(x\\) has no sign of its own until the question gives it one. Do not assume \\(x\\) is positive and \\(-x\\) negative; if \\(z\\) is negative then \\(|4z - 5|\\) equals \\(5 - 4z\\), because that is the version that comes out positive." },
+          { t: "h", x: "Solving equations with absolute values" },
+          { t: "ol", items: [
+            "Isolate the absolute value, and reject the equation at once if the other side is negative.",
+            "Split into the positive and negative cases and solve each.",
+            "Check every root against the case it came from (or in the original equation). Roots that violate their case are extraneous: \\(|x| = 3x - 2\\) gives \\(x = 1\\) and \\(x = \\tfrac{1}{2}\\), but the second came from assuming \\(x &lt; 0\\) and must be discarded.",
+            "For nested values such as \\(|6 - |x + 2|| = 10\\), unwrap from the outside: \\(6 - |x + 2| = \\pm 10\\), drop the branch that makes the inner value negative, then solve the survivor."
+          ]},
+          { t: "eg",
+            q: "If \\(y \\ne 0\\), is \\(|x| = 1\\)?\n(1) \\(x = \\dfrac{y}{|y|}\\)\n(2) \\(|x| = -x\\)",
+            choices: ["Statement (1) alone is sufficient", "Statement (2) alone is sufficient", "Both together are sufficient", "Each alone is sufficient", "Together not sufficient"],
+            ans: "A",
+            why: "(1) \\(\\tfrac{y}{|y|}\\) is 1 or \\(-1\\), so \\(|x| = 1\\): sufficient. (2) \\(|x| = -x\\) only says \\(x \\le 0\\); \\(x = -1\\) answers yes and \\(x = -2\\) answers no: not sufficient. Answer (A)."
+          }
+        ]
+      },
+      {
+        id: "rs-counting",
+        title: "Counting & Probability Formulas",
+        mins: 5,
+        blocks: [
+          { t: "p", x: "The live session's rule of thumb: <b>arrangement</b> words (seating, sequence, order, schedule, ranking, itinerary, codes, alphabets) mean order matters; <b>selection</b> words (team, committee, handshakes, matches, picking balls) mean it does not. An arrangement is a selection followed by an ordering, which is the whole relationship between the two formulas." },
+          { t: "formula", x: "\\begin{gathered}{}^{n}P_{r} = \\frac{n!}{(n - r)!} = {}^{n}C_{r} \\cdot r! \\\\[4pt] {}^{n}C_{r} = \\frac{n!}{r!\\,(n - r)!}\\end{gathered}" },
+          { t: "table", head: ["Situation", "Count"], rows: [
+            ["Select \\(r\\) of \\(n\\) distinct items and arrange them", "\\({}^{n}P_{r}\\)"],
+            ["Fill \\(r\\) slots from \\(n\\) options with repetition allowed (three rings on four fingers)", "\\(n^{r}\\)"],
+            ["Arrange \\(n\\) items of which \\(p\\), \\(q\\), \\(r\\) are alike (BANANA)", "\\(\\dfrac{n!}{p!\\,q!\\,r!}\\)"],
+            ["Arrange \\(n\\) people with two of them together", "\\((n - 1)! \\times 2!\\)"],
+            ["Arrange \\(n\\) people with two of them apart", "\\(n! - (n - 1)! \\times 2!\\)"],
+            ["Seat \\(n\\) people around a circle", "\\((n - 1)!\\)"],
+            ["Choose 5 of 10 with A and B both included", "\\({}^{8}C_{3}\\)"],
+            ["Choose 5 of 10 with A and B both excluded", "\\({}^{8}C_{5}\\)"],
+            ["Choose 5 of 10 with A and B never together", "\\({}^{10}C_{5} - {}^{8}C_{3}\\)"]
+          ]},
+          { t: "ul", items: [
+            "<b>AND</b> multiplies, <b>OR</b> adds. A committee that must contain at least one French teacher is counted as all committees minus committees with none: \\({}^{10}C_{3} - {}^{6}C_{3} = 120 - 20 = 100\\).",
+            "\\({}^{n}C_{r} = {}^{n}C_{n-r}\\), and \\({}^{n}C_{r}\\) rises with \\(n\\) for fixed \\(r\\), so a value such as \\({}^{n}C_{5} = 126\\) pins \\(n\\) (here 9) without any search.",
+            "Some problems have no formula: draw the slots (a block diagram) and fill them."
+          ]},
+          { t: "h", x: "Probability" },
+          { t: "ul", items: [
+            "\\(P(\\text{not } E) = 1 - P(E)\\). 'At least one' is almost always \\(1 - P(\\text{none})\\): at least one six in two dice is \\(1 - \\tfrac{25}{36} = \\tfrac{11}{36}\\).",
+            "Independent events multiply: \\(P(E \\text{ and } F) = P(E) \\cdot P(F)\\). Drawing without replacement is not independent; drawing with replacement is.",
+            "Mutually exclusive events add; otherwise \\(P(E \\text{ or } F) = P(E) + P(F) - P(E \\text{ and } F)\\).",
+            "Exactly \\(r\\) successes in \\(n\\) independent trials with success probability \\(p\\): \\({}^{n}C_{r}\\,p^{r}(1 - p)^{n - r}\\).",
+            "A husband alive with probability three fifths and a wife with two thirds: at least one alive is \\(1 - \\tfrac{2}{5} \\cdot \\tfrac{1}{3} = \\tfrac{13}{15}\\)."
+          ]},
+          { t: "tip", x: "Four socks from three colours must contain a matching pair, so the probability is 1 and no formula is needed. Before computing, ask whether the pigeonhole principle or symmetry settles the question outright." }
+        ]
+      },
+      {
+        id: "rs-stats",
+        title: "Mean, Median, Deviation & Number Facts",
+        mins: 7,
+        blocks: [
+          { t: "h", x: "Averages" },
+          { t: "ul", items: [
+            "Combined mean of two groups of sizes \\(N_{1}\\), \\(N_{2}\\) with means \\(M_{1}\\), \\(M_{2}\\): \\(\\dfrac{N_{1}M_{1} + N_{2}M_{2}}{N_{1} + N_{2}}\\). Turned round, the group sizes are in the <b>inverse</b> ratio of their distances from the combined mean, which is the fact your session calls the most important result in averages.",
+            "Out at speed \\(x\\), back at speed \\(y\\) over the same route: average speed \\(\\dfrac{2xy}{x + y}\\), always a little below the plain average of the two speeds.",
+            "Evenly spaced numbers (consecutive integers, multiples, any arithmetic progression): mean = median = average of the first and last terms. The sum of the first \\(n\\) positive integers is \\(\\dfrac{n(n + 1)}{2}\\).",
+            "An odd count of consecutive integers has an integer average; an even count has an average that ends in a half. A set of consecutive integers averaging 0 therefore has an odd number of members.",
+            "If a set's mean equals its largest or its smallest member, every member is equal."
+          ]},
+          { t: "h", x: "Median, range, standard deviation" },
+          { t: "ul", items: [
+            "The median is the 50th percentile; with an even count it is the mean of the two middle values. A value equal to the mean of three numbers is automatically their median.",
+            "Range \\(= \\text{max} - \\text{min} \\ge 0\\); range 0 means all values equal. Standard deviation is 0 in the same case, and otherwise \\(\\text{SD} \\le \\dfrac{\\text{range}}{2}\\), so the range can never be smaller than the standard deviation.",
+            "Adding or subtracting a constant, or changing every sign, moves the mean and median but leaves the range and standard deviation unchanged; multiplying or dividing by \\(k\\) scales the range and standard deviation by \\(|k|\\).",
+            "The standard deviation of a set of consecutive integers depends only on how many there are, not where they sit.",
+            "Adding a value equal to the mean lowers the standard deviation; the value farthest from the mean raises it most. Two values at the mean are the only pair guaranteed to lower it."
+          ]},
+          { t: "h", x: "Number facts from the session" },
+          { t: "ul", items: [
+            "Number of factors of \\(N = a^{m} b^{n} c^{p}\\) (primes \\(a, b, c\\)): \\((m + 1)(n + 1)(p + 1)\\). For 90 that is \\(2 \\times 3 \\times 2 = 12\\).",
+            "\\(\\text{LCM} \\times \\text{HCF} = \\) product of the two numbers (two numbers only). If \\(k\\) divides \\(n\\), \\(k\\) cannot divide \\(n + 1\\).",
+            "Divisible by 11 when the alternating digit sums differ by 0 or a multiple of 11; by 4 or 8 when the last two or three digits are; by 3 or 9 when the digit sum is.",
+            "Power of a prime \\(p\\) in \\(n!\\): add \\(\\lfloor n/p \\rfloor + \\lfloor n/p^{2} \\rfloor + \\cdots\\). Trailing zeros of \\(n!\\) are the power of 5: \\(100!\\) ends in \\(20 + 4 = 24\\) zeros, \\(30!\\) in \\(6 + 1 = 7\\).",
+            "Units digits cycle with period 4 (2, 3, 7, 8), period 2 (4, 9) or stay fixed (0, 1, 5, 6). Divide the exponent by 4 and use the remainder; a remainder of 0 means the fourth power's digit.",
+            "A fraction in lowest terms terminates exactly when its denominator has no prime other than 2 and 5. A repeating block over as many nines: \\(0.234234\\ldots = \\tfrac{234}{999}\\).",
+            "Perfect squares have an odd number of factors, never end in 2, 3, 7 or 8, leave remainder 0 or 1 on division by 3 and by 4, and if they end in 9 the preceding digit is even."
+          ]},
+          { t: "eg",
+            q: "In a certain senior class, 72 percent of the male students and 80 percent of the female students have applied to college, and 75 percent of all students have applied. What fraction of the class is male?",
+            choices: ["\\(\\tfrac{3}{8}\\)", "\\(\\tfrac{1}{2}\\)", "\\(\\tfrac{5}{8}\\)", "\\(\\tfrac{2}{3}\\)", "\\(\\tfrac{3}{4}\\)"],
+            ans: "C",
+            why: "The combined rate 75 sits 3 from the male rate (72) and 5 from the female rate (80). Group sizes are in the inverse ratio of those distances, so males to females is 5 to 3 and males are five eighths of the class. Algebra agrees: \\(72m + 80f = 75(m + f)\\) gives \\(3m = 5f\\)."
+          }
+        ]
+      },
+      {
+        id: "rs-remainders",
+        title: "Remainders, Quadratics & Progressions",
+        mins: 5,
+        blocks: [
+          { t: "h", x: "Remainders" },
+          { t: "ul", items: [
+            "\\(y = xq + r\\) with \\(0 \\le r &lt; x\\): the remainder is never negative and always smaller than the divisor. A smaller number divided by a larger one has quotient 0 and remainder equal to itself.",
+            "Dividing by 10, 100 or 1000 leaves the last one, two or three digits as the remainder.",
+            "Remainders combine: the remainder of a product (or sum) is the remainder of the product (or sum) of the remainders. \\(15 \\times 17 \\times 19\\) divided by 7 behaves like \\(1 \\times 3 \\times 5 = 15\\), remainder 1.",
+            "Powers: write the base as (multiple of divisor) + small remainder and reduce. \\(9^{100}\\) divided by 7 behaves like \\(2^{100}\\), and since \\(2^{3} = 8\\) leaves remainder 1, \\(2^{100} = 2^{99} \\cdot 2\\) leaves remainder 2.",
+            "Remainder 7 on division by 18 means remainder 1 on division by 6: split \\(18q + 7\\) into a multiple of 6 plus 7, then reduce 7."
+          ]},
+          { t: "h", x: "Quadratics" },
+          { t: "ul", items: [
+            "\\(ax^{2} + bx + c = 0\\) has two real roots when \\(b^{2} &gt; 4ac\\), one when \\(b^{2} = 4ac\\), none when \\(b^{2} &lt; 4ac\\).",
+            "Sum of roots \\(-\\tfrac{b}{a}\\), product \\(\\tfrac{c}{a}\\). To factor \\(x^{2} + 11x + 30\\), look for two numbers with sum \\(-11\\) and product 30: \\(-5\\) and \\(-6\\).",
+            "Higher degrees: factor out a common \\(x\\) or substitute \\(y = x^{3}\\); an equation of degree \\(n\\) has at most \\(n\\) distinct solutions.",
+            "Identities worth reflexes: \\((x + y)^{2} - (x - y)^{2} = 4xy\\); \\(x^{3} \\pm y^{3} = (x \\pm y)(x^{2} \\mp xy + y^{2})\\); \\((x + y + z)^{2} = x^{2} + y^{2} + z^{2} + 2(xy + yz + zx)\\).",
+            "When roots are known to be integers, brute force is respectable: \\(a^{2} + b^{2} = 116\\) with \\(a &lt; b\\) yields only \\(4\\) and \\(10\\)."
+          ]},
+          { t: "h", x: "Progressions" },
+          { t: "formula", x: "\\begin{gathered}\\text{AP: } a_{n} = a_{1} + (n - 1)d \\\\[4pt] S_{n} = \\frac{n}{2}\\,(a_{1} + a_{n}) \\\\[4pt] \\text{GP: } a_{n} = a_{1} r^{\\,n-1} \\\\[4pt] S_{n} = a_{1}\\,\\frac{r^{n} - 1}{r - 1} \\\\[4pt] S_{\\infty} = \\frac{a_{1}}{1 - r} \\text{ for } |r| &lt; 1\\end{gathered}" },
+          { t: "ul", items: [
+            "In an arithmetic progression any three consecutive terms have the middle one as the mean of the other two; in a geometric progression it is the geometric mean. The middle term of an odd-length arithmetic progression is both its mean and its median.",
+            "The sum of an arithmetic progression is the number of terms times the average of the first and last terms; it is the same as the count times the middle term when the count is odd.",
+            "A run of consecutive terms taken from an arithmetic (or geometric) progression is again an arithmetic (or geometric) progression."
+          ]},
+          { t: "eg",
+            q: "If the remainder is 7 when the positive integer \\(n\\) is divided by 18, what is the remainder when \\(n\\) is divided by 6?",
+            choices: ["0", "1", "2", "3", "4"],
+            ans: "B",
+            why: "\\(n = 18q + 7\\). The first term is a multiple of 6, so only the 7 matters, and 7 divided by 6 leaves 1."
+          }
+        ]
+      }
+    ]
   }
 ];

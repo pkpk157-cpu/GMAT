@@ -2517,6 +2517,177 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "(1) Retail \\(320\\), difference \\(120\\). Sufficient.\n(2) Wholesale \\(320 / 1.6 = 200\\), difference \\(120\\). Sufficient.\nAnswer: D.",
   take: "With a fixed ratio, one amount is as good as both."
 },
+"di-ds-guide-s1#1": {
+  steps: "(1) \\(\\tfrac{15k}{100} - \\tfrac{15n}{100} = 0.30\\), so \\(k - n = 2\\). Sufficient.\n(2) \\(k = 1.4n\\) gives \\(k - n = 0.4n\\), which depends on \\(n\\). Not sufficient.\nAnswer: A.",
+  take: "A statement about a difference in dollars is a statement about the difference in rates."
+},
+"di-ds-guide-s1#2": {
+  steps: "Cows \\(c\\) and pigs \\(p\\) satisfy \\(c + p = 40\\).\n(1) \\(c > 2(40 - c)\\) gives \\(c > 26.7\\), so \\(c \\ge 27\\): many values. Not sufficient.\n(2) \\(p \\ge 13\\) gives \\(c \\le 27\\): many values. Not sufficient.\nTogether \\(c \\ge 27\\) and \\(c \\le 27\\), so \\(c = 27\\). Sufficient.\nAnswer: C.",
+  take: "Two inequalities on integers can pin a single value; check whether the bounds touch."
+},
+"di-ds-guide-s1#3": {
+  steps: "The question asks whether the speed exceeded \\(\\tfrac{6 \\times 5280}{1800} = 17.6\\) feet per second.\n(1) Speed above 16: could be 17 (no) or 18 (yes). Not sufficient.\n(2) Speed below 18: could be 17.8 (yes) or 15 (no). Not sufficient.\nTogether the speed is between 16 and 18, and 17.6 lies inside that range, so both answers remain possible. Not sufficient.\nAnswer: E.",
+  take: "Convert the question to the same units as the statements before judging the bounds."
+},
+"di-ds-guide-s1#4": {
+  steps: "(1) Joint time is 4.8 hours, so \\(\\tfrac{1}{a} + \\tfrac{1}{b} = \\tfrac{5}{24}\\). Equal rates would need \\(\\tfrac{2}{a} = \\tfrac{5}{24}\\), \\(a = 9.6\\), not an even integer. So the rates differ (for example \\(a = 8\\), \\(b = 12\\)). Definite no. Sufficient.\n(2) \\(a + b = 20\\): \\(a = b = 10\\) (yes) or \\(a = 8\\), \\(b = 12\\) (no). Not sufficient.\nAnswer: A.",
+  take: "A statement can settle a yes/no question by ruling out the 'yes' case entirely; you never need the actual values."
+},
+"quant-guide-s1#1": {
+  fast: "Neither of the first two: 100 − (56 + 48 − 30) = 26% of 1,200 = 312; that caps the answer.",
+  traps: "(E) 420 assumes bargain prices does not overlap the others at all, but only 26% of people are outside the first two circles. (C) and (D) are shares of 1,200 unrelated to the question.",
+  take: "'Only this factor' is bounded by the people outside the other sets; compute that region first."
+},
+"quant-guide-s1#2": {
+  fast: "New sales = 1.1/0.9 of old sales, about 122%.",
+  traps: "(B) 90% reads the margin change as a sales change. (C) 110% confuses profit growth with sales growth. (E) adds the two percentages.",
+  take: "A ratio falling while its numerator rises means the denominator rose by more; divide the multipliers."
+},
+"quant-guide-s1#3": {
+  fast: "Profit 12.50 on a 15 sale is five sixths, about 83%.",
+  traps: "(E) 500% is the profit as a percent of cost. (D) 100% would need the lamp to be free. (B) 50% is a guess from 15 versus 30 per dozen.",
+  take: "Read which base the percent is taken on: selling price and cost price give very different numbers."
+},
+"quant-guide-s1#4": {
+  fast: "N: 50; W: 0.4 × 120 = 48, which is 4% below 50.",
+  traps: "(A) 10% less subtracts the discount percentages. (D) forgets the deeper discount at W and only sees the higher list price.",
+  take: "Successive percentage changes multiply; plug in 100 and compute both endpoints."
+},
+"quant-guide-s1#5": {
+  fast: "Selling price 80 (since 60 is 75% of it); 80% of 80 is 64; profit 4.",
+  traps: "(A) $0 comes from marking up 25% of cost (75) and discounting 20% (60). (E) $15 is the markup itself, ignoring the discount.",
+  take: "Markup 'of the selling price' means cost is the remaining fraction of the selling price."
+},
+"quant-guide-s1#6": {
+  fast: "12 min + 20 min = 32 min for 4 miles: one eighth of a mile per minute.",
+  traps: "(B) \\(\\tfrac{2}{15}\\) mile per minute is 8 mph, the plain average of 10 and 6, which overweights the faster leg. (D) is the running rate alone in miles per minute.",
+  take: "Equal distances at different speeds: the average speed is the harmonic mean, always below the arithmetic mean."
+},
+"quant-guide-s1#7": {
+  fast: "Gap at restart: 20 − 10 = 10 miles; closing speed 3 mph; \\(\\tfrac{10}{3}\\) hours.",
+  traps: "(D) 4 hours comes from a 12-mile gap, forgetting John's 2-mile lead before the stop. (A) 3 uses a 9-mile gap.",
+  take: "Catch-up time = gap ÷ (difference of speeds); compute the gap at the moment the chase starts."
+},
+"quant-guide-s1#8": {
+  fast: "Gap 16 mph × 5 min, closed at 4 mph: 4 times as long, 20 minutes.",
+  traps: "(D) 25 counts the 5 minutes of riding as waiting too. (B) 15 uses the cyclist's full 20 mph for the gap without subtracting the hiker's progress.",
+  take: "The gap opens at the speed difference and closes at the hiker's speed; the ratio of those two gives the ratio of times."
+},
+"quant-guide-s1#9": {
+  fast: "\\(540/(v^{2} - 9) = \\tfrac{1}{2}\\) gives v = 33; 90 ÷ 36 = 2.5 hours.",
+  traps: "(E) 2.1 and (D) 2.2 come from guessing v = 40 or so; the equation forces \\(v^{2} = 1089\\) exactly. Testing choices also works: 2.5 h downstream means 36 mph, so upstream 30 mph takes 3 h, half an hour more.",
+  take: "Difference of two reciprocals collapses to a single fraction; recognise 1089 as 33 squared."
+},
+"quant-guide-s1#10": {
+  fast: "x/4.5 + (500 − x)/3.5 = 120 gives x = 360.",
+  traps: "(A) 140 is the distance at 60 mph, the other part of the trip. (C) 250 assumes an even split, which uses 126.98 gallons, not 120.",
+  take: "Fuel questions are rate questions with gallons as the 'time'; the speed figures only label the two rates."
+},
+"quant-guide-s1#11": {
+  fast: "Extra A-rate = \\(\\tfrac{1}{2} - \\tfrac{1}{3} = \\tfrac{1}{6}\\) widget per hour, so 6 hours.",
+  traps: "(C) 3 and (B) 2 are the combined times given in the stem, not A's own time. (D) 5 is the sum of the two given times.",
+  take: "Two combined-rate scenarios that differ by one machine's rate subtract to that machine's rate."
+},
+"quant-guide-s1#12": {
+  fast: "Sum of the pair rates is 2, so all three together run at 1 tank per hour.",
+  traps: "(B) \\(\\tfrac{1}{2}\\) is the combined rate divided by 2 by mistake, or the sum of pair rates read as a time. (A) \\(\\tfrac{1}{3}\\) comes from averaging the three times.",
+  take: "Symmetric pair data: add everything and halve; each rate appears exactly twice."
+},
+"di-ds-guide-s2#1": {
+  steps: "(1) Two averages with no sizes. Not sufficient.\n(2) The combined average without the parts. Not sufficient.\nTogether 26.6 is 0.9 from 25.7 and 2.7 from 29.3, so X is three times the size of Y and has more members. Sufficient.\nAnswer: C.",
+  take: "Weighted averages: the distances from the combined mean are in inverse ratio to the group sizes."
+},
+"di-ds-guide-s2#2": {
+  steps: "(1) A total alone gives no split. Not sufficient.\n(2) \\(72m + 80f = 75(m + f)\\) gives \\(3m = 5f\\), so \\(m : f = 5 : 3\\) and males are \\(\\tfrac{5}{8}\\) of the class. Sufficient.\nAnswer: B.",
+  take: "A combined rate between two group rates determines the mix without any headcount."
+},
+"di-ds-guide-s2#3": {
+  steps: "(1) The number of males without the number of females gives no ratio. Not sufficient.\n(2) \\(9.8m + 9.1f = 9.3(m + f)\\) gives \\(0.5m = 0.2f\\), so \\(m : f = 2 : 5\\). Sufficient.\nAnswer: B.",
+  take: "Combined average known: ratio of sizes = (distance of the other group) : (distance of this group)."
+},
+"di-ds-guide-s2#4": {
+  steps: "(1) The other two total 250,000: 120,000 and 130,000 give median 120,000, while 100,000 and 150,000 give median 110,000. Not sufficient.\n(2) Jane's price equals the mean, so the other two sum to 240,000, one at most 120,000 and the other at least 120,000; the median is 120,000. Sufficient.\nAnswer: B.",
+  take: "A value equal to the mean of three numbers is automatically the median."
+},
+"di-ds-guide-s2#5": {
+  steps: "(1) With \\(k\\) unknown, the terms could all stay above 10 or fall below it. Not sufficient.\n(2) \\(a_{8}\\) is the middle term. If \\(k > 0\\) the seven terms after it exceed 10; if \\(k < 0\\) the seven before it do. Either way exactly 7. Sufficient.\nAnswer: B.",
+  take: "In an arithmetic sequence the middle term splits the rest symmetrically, whatever the sign of the difference."
+},
+"di-ds-guide-s2#6": {
+  steps: "(1) 75 percent of projects have 3 or fewer employees, so the median is at most 3, but it could be 0, 1, 2 or 3. Not sufficient.\n(2) 65 percent have 3 or more, so the median is at least 3. Not sufficient.\nTogether the median is at most 3 and at least 3, so it is 3. Sufficient.\nAnswer: C.",
+  take: "A percentile statement is a one-sided bound on the median; two opposite bounds can meet."
+},
+"di-ds-guide-s2#7": {
+  steps: "(1) Twenty-one consecutive integers always have the same standard deviation, whatever the starting value. Sufficient.\n(2) The median says where the set sits, not how many members it has: 19, 20, 21 and 10 to 30 have different spreads. Not sufficient.\nAnswer: A.",
+  take: "For evenly spaced sets the standard deviation depends only on the count and the spacing."
+},
+"di-ds-guide-s2#8": {
+  steps: "(1) \\(y\\) odd gives \\(y^{2} \\equiv 1 \\pmod 8\\), so \\(x^{2} \\equiv 4 \\pmod 8\\), which happens only when \\(x\\) is 2 more than a multiple of 4. So \\(x\\) is not divisible by 4. Definite no. Sufficient.\n(2) \\(x = y + 3\\) is even: \\(y = 1\\) gives \\(x = 4\\) (yes), \\(y = 3\\) gives \\(x = 6\\) (no). Not sufficient.\nAnswer: A.",
+  take: "Squares mod 8 are 0, 1 or 4; the remainder of a sum of squares reveals the parity structure of each term."
+},
+"di-ds-guide-s2#9": {
+  steps: "\\(30!\\) contains \\(6 + 1 = 7\\) factors of 5 (and more than enough 2s), so it ends in exactly 7 zeros.\n(1) \\(10^{d}\\) divides \\(30!\\) for \\(d = 1, 2, \\dots, 7\\). Not sufficient.\n(2) Any integer above 6. Not sufficient.\nTogether \\(d = 7\\). Sufficient.\nAnswer: C.",
+  take: "Trailing zeros of n! come from the power of 5; a divisibility statement gives an upper bound, not a value."
+},
+"di-ds-guide-s2#10": {
+  steps: "Write \\(d = 0.abc\\ldots\\) with \\(b\\) the hundredths digit.\n(1) \\(10d = a.bc\\ldots\\), whose tenths digit is \\(b\\); so \\(b = 7 > 5\\). Sufficient.\n(2) \\(\\tfrac{d}{10} = 0.0abc\\ldots\\), whose thousandths digit is \\(b\\); again \\(b = 7\\). Sufficient.\nAnswer: D.",
+  take: "Scaling by powers of ten moves digits without changing them; track which place each digit lands in."
+},
+"quant-guide-s2#1": {
+  fast: "Extra 350 a day on average over 600 per training day means 140 training days; 240 − 140 = 100.",
+  traps: "(E) 140 is the number of weight-training days, not the cardio-only days the question asks for.",
+  take: "Weighted average: the excess over the base, divided by the extra per special day, counts the special days."
+},
+"quant-guide-s2#2": {
+  fast: "0, 0, 0, 50, 50, 200: adding 100 raises the median, adding −50 lowers it.",
+  traps: "(C) assumes the median is 50 because two entries are 50 and the mean is 50, which is not forced. (E) fails too: adding 40 to the example list also raises the median (to 40).",
+  take: "Mean and a couple of repeated values do not pin the median; build a skewed example before concluding."
+},
+"quant-guide-s2#3": {
+  fast: "Cheapest < median forces m > 830.8, so 1.25m exceeds 1,038.",
+  traps: "(E) $1,125 assumes the median is exactly 900, but the median of three distinct numbers need not equal the mean. (D) gives up too early: an inequality is a conclusion.",
+  take: "When values are ordered, express everything in one variable and use the ordering as an inequality."
+},
+"quant-guide-s2#4": {
+  fast: "16, 16, 16, 16 use 64; the remaining 44 split evenly gives 22.",
+  traps: "(B) 20 forgets that the fifth number cannot exceed the sixth. (C) 21 leaves the first numbers below 16, which pushes the largest up, not down.",
+  take: "Min-max with a fixed sum: raise everything else to its ceiling, then split what is left evenly."
+},
+"quant-guide-s2#5": {
+  fast: "Passers can all be 86 (median 86) or mostly 100 (median 100); averages do not fix a median.",
+  traps: "(B) and (C) each fit one construction only. (A) treats the two averages as if they pinned every score.",
+  take: "Averages of subgroups constrain sums, never the position of the middle value."
+},
+"quant-guide-s2#6": {
+  fast: "The median of five ordered values is the middle one, r, and changing t alone never moves it.",
+  traps: "(D) may look suspicious because r is the median, but any single decrease lowers the sum and hence the mean.",
+  take: "Range and mean respond to any endpoint change; the median responds only to the middle."
+},
+"quant-guide-s2#7": {
+  fast: "Shift keeps the spread (factor 1), multiplying scales it by 1.5, dividing by −4 scales it by one quarter: Y, X, Z.",
+  traps: "(E) treats the negative divisor as increasing spread; only the magnitude counts. (A) assumes a shift changes the spread.",
+  take: "SD ignores shifts and follows |k| under multiplication by k."
+},
+"quant-guide-s2#8": {
+  fast: "The value farthest from the mean of 4.5 stretches the spread most, and 14 is 9.5 away.",
+  traps: "(A) 1 is the farthest below the mean but only 3.5 away; distance, not direction, matters.",
+  take: "Adding an outlier raises SD in proportion to its distance from the mean."
+},
+"quant-guide-s2#9": {
+  fast: "Only values at the mean are guaranteed to shrink the spread: 6 and 6.",
+  traps: "(C) 0 and 6 shifts the mean and adds a deviation of about 6, which raises the standard deviation when d is tiny. (B) 0 and 0 likewise adds two large deviations.",
+  take: "'Must reduce SD' means values at the mean; anything else depends on the current spread."
+},
+"quant-guide-s2#10": {
+  fast: "The extra number is the mean; same spread over more items means a smaller SD for B.",
+  traps: "(E) describes an impossible exception: the fifth number always equals the mean here. (C) forgets that the count in the denominator changed.",
+  take: "Equal means before and after an insertion identify the inserted value as the mean, which always lowers SD."
+},
+"quant-guide-s2#11": {
+  fast: "Every prime ≤ 50 divides h(100), so none divides h(100) + 1; the smallest factor exceeds 50.",
+  traps: "(A) assumes a large even-looking number must have a small factor; the +1 breaks every small divisor.",
+  take: "N! + 1 style numbers: consecutive integers share no prime factor, so the small primes are all excluded."
+},
 "di-ds-ineq-batch#1": {
   steps: "(1) For \\(y = 1\\), any \\(x\\) with \\(|x - 3| \\ge 1\\) works. Not sufficient.\n(2) \\(|x - 3|\\) is at least 0 and \\(-y\\) is at most 0, so both must be 0: \\(y = 0\\) and \\(x = 3\\). Sufficient.\nAnswer: B.",
   take: "Squeezing a non-negative quantity below a non-positive one forces both to be zero."
@@ -2580,6 +2751,10 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
 "di-ds-ineq-batch#16": {
   steps: "(1) \\(2^{2}\\), \\((-2)^{2}\\) and \\(4^{1}\\) give 4; only \\(x = -2\\), \\(y = 2\\) has \\(x < y\\), so \\(x + y = 0\\). Sufficient.\n(2) Equal absolute values with \\(x < y\\) means \\(x = -y\\) with \\(y\\) positive, so \\(x + y = 0\\). Sufficient.\nAnswer: D.",
   take: "Constraints in the stem (x < y) often turn a many-solution statement into a single case."
+},
+"di-ds-ineq-batch#17": {
+  steps: "(1) The right side is the total distance from \\(q\\) to \\(s\\) and from \\(s\\) to \\(t\\); it equals \\(t - q\\) only if \\(t - q\\) is positive and \\(s\\) lies between \\(q\\) and \\(t\\). With all three distinct, that is exactly \\(q < s < t\\). Definite yes. Sufficient.\n(2) \\(t > q\\) says nothing about where \\(s\\) is. Not sufficient.\nAnswer: A. (Quant Class Sessions Guide, Session 3.)",
+  take: "A sum of two absolute distances equalling the end-to-end distance pins the middle point between the ends."
 },
 "quant-ineq-batch#1": {
   fast: "p(p + 1) is always even, so II holds; x = 2 kills I and x = 7 with odd y and p kills III.",

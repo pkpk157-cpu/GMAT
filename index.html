@@ -1123,6 +1123,7 @@
 <script src="sets-rc-700.js"></script>
 <script src="sets-di4.js"></script>
 <script src="sets-gaps.js"></script>
+<script src="sets-quant-700b.js"></script>
 <!-- Rewritten explanations: merged over the transcribed questions at load -->
 <script src="expl-quant-percent.js"></script>
 <script src="expl-rc-700d.js"></script>
@@ -1177,6 +1178,7 @@
 <script src="expl-quant-work.js"></script>
 <script src="expl-quant-profitloss.js"></script>
 <script src="expl-gaps.js"></script>
+<script src="expl-quant-700b.js"></script>
 <script src="ai-key.js"></script>
 <script src="concepts.js"></script>
 <script src="tricks.js"></script>
@@ -1266,7 +1268,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v113";
+  const APP_VERSION = "v114";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2271,6 +2273,10 @@
     });
     // Whole new sets (e.g. new RC passages in sets-rc.js) are appended as-is.
     (window.GMAT_SETS_NEW || []).forEach(s => { if (s && Array.isArray(s.questions) && s.questions.length && !base.some(b => b.id === s.id)) base.push(s); });
+    // A source question that repeats one already in the bank stays in its file
+    // (so the printed-key checks still line up) but carries dup:"setId#n" naming
+    // the copy that is served; it is not practised, scored or reviewed twice.
+    base.forEach(s => { s.questions = s.questions.filter(q => !q.dup); });
   })();
   /* ===== The explanation layer =====
      A transcribed question carries whatever explanation its source gave, which

@@ -2,7 +2,7 @@
 const fs = require("fs"), path = require("path");
 const ROOT = path.join(__dirname, "..");
 global.window = {};
-["sets.js","sets-extra.js","sets-rc.js","sets-di.js","sets-di2.js","sets-di3.js","sets-quant-live.js","sets-quant-live2.js","sets-quant-700.js","sets-cr-2person.js","sets-cr-700a.js","sets-cr-700b.js","sets-cr-700c.js","sets-cr-700d.js","sets-rc-700.js","sets-di4.js","sets-gaps.js"]
+["sets.js","sets-extra.js","sets-rc.js","sets-di.js","sets-di2.js","sets-di3.js","sets-quant-live.js","sets-quant-live2.js","sets-quant-700.js","sets-cr-2person.js","sets-cr-700a.js","sets-cr-700b.js","sets-cr-700c.js","sets-cr-700d.js","sets-rc-700.js","sets-di4.js","sets-gaps.js","sets-quant-700b.js"]
   .forEach(f => eval(fs.readFileSync(path.join(ROOT, f), "utf8")));
 const b = window.GMAT_SETS;
 (window.GMAT_SETS_EXTRA||[]).forEach(x=>{const s=b.find(y=>y.id===x.setId); if(s) {let nx=s.questions.reduce((m,q)=>Math.max(m,q.n||0),0); x.add.forEach(q=>s.questions.push(Object.assign({n:++nx},q)));}});
@@ -11,6 +11,8 @@ const LET = ["A","B","C","D","E"];
 const { CASES } = require("./answers.js");
 const { CASES_GAPS } = require("./answers-gaps.js");
 CASES.push(...CASES_GAPS);
+const { CASES_700B } = require("./answers-700b.js");
+CASES.push(...CASES_700B);
 
 /* Normalise a choice for comparison: strip LaTeX wrappers, commas, currency
    spacing and unit words, and turn \tfrac{a}{b} into a/b. */
@@ -20,6 +22,8 @@ function norm(s) {
              (ch) => " " + ({ "\u00bc": "1/4", "\u00bd": "1/2", "\u00be": "3/4", "\u2153": "1/3", "\u2154": "2/3",
                               "\u2155": "1/5", "\u2156": "2/5", "\u2157": "3/5", "\u2158": "4/5",
                               "\u2159": "1/6", "\u215a": "5/6", "\u215b": "1/8" }[ch]))
+    .replace(/[\u2212\u2013]/g, "-").replace(/\{,\}/g, "")
+    .replace(/-\s*\\[dt]?frac\{(\d+)\}\{(\d+)\}/g, " -$1/$2")
     .replace(/\\[dt]?frac\{(-?\d+)\}\{(-?\d+)\}/g, " $1/$2")
     .replace(/\\[dt]?frac(\d)\{(-?\d+)\}/g, " $1/$2")
     .replace(/\\[dt]?frac\{(-?\d+)\}(\d)/g, " $1/$2")

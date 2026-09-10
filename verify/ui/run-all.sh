@@ -24,6 +24,7 @@ step() {
 
 step 3 "data integrity"            node "$d/integrity.js"
 step 1 "answer keys"               node "$d/../run.js"
+step 1 "duplicate questions"       node "$d/../dupes.js"
 step 1 "printed source keys"       node "$d/../check-source-keys.js"
 step 1 "Data Insights derivations" python3 "$d/../di4-derive.py"
 step 3 "explanations"              node "$d/../explain.js"

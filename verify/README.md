@@ -15,7 +15,8 @@ sets, because that is the level at which a printed answer key exists.
 
 ## Runnable checks
 
-    node verify/run.js               # re-derives 407 answers independently
+    node verify/run.js               # re-derives 1,118 answers independently
+    node verify/dupes.js             # no question is served twice
     node verify/check-source-keys.js # answers vs the printed source keys
     python3 verify/di4-derive.py     # re-derives the non-DS Data Insights answers
     node verify/coverage.js          # what those checks do and do not cover
@@ -55,6 +56,20 @@ build. `ui/notation-render.js` then renders every stem, choice, hint, record
 and block inside the real page and fails if KaTeX marks an error or a delimiter,
 caret or LaTeX command reaches the reader as text.
 
+`dupes.js` guards against the same question being drilled twice. It keys every
+stem (whitespace- and markup-insensitive, and prefixed with its passage for RC
+and Data Insights, where "The primary purpose of the passage is to" repeats
+legitimately) and fails on an identical or near-identical stem with the same
+choices. A source question that repeats one already in the bank stays in its
+file so the printed-key checks still line up, but carries `dup:"setId#n"`
+naming the copy that is served; the app drops it at load, and the check
+confirms every such flag points at a question that is itself served.
+
+`answers-700b.js` is generated from the transcription workbook for the
+"700–800 Level" Quant book, where every stored answer was derived by a Python
+check (brute force for Data Sufficiency) before the record was accepted; the
+book's own printed keys were found to be misnumbered and were not trusted.
+
 `ui/deep.js` is the broad net: it opens every pane, clicks every control on it,
 and after each click scans what is on screen for the signatures of a broken
 template — `undefined`, `NaN`, `[object Object]`, an unexpanded `${`, escaped
@@ -88,9 +103,9 @@ filled in from memory.
 
 | Section | Questions | How verified |
 |---|---|---|
-| Quant + Data Insights | 707 | 407 re-derived by `answers.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
-| Critical Reasoning | 528 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
-| Reading Comprehension | 155 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
+| Quant + Data Insights | 1,399 | 1,118 re-derived by `answers.js`, `answers-gaps.js` and `answers-700b.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
+| Critical Reasoning | 542 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
+| Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
 
 `di4-derive.py` covers the four non-Data-Sufficiency Data Insights types. Those
 questions have no printed letter key — the real exam poses them as Yes/No

@@ -40,10 +40,10 @@
         "An absolute value is never negative. What does that force on the other side?",
         "(1) The left side is at least 0, so \\(2 - y > 0\\) and \\(y < 2\\). Since \\(y\\) is a positive integer, \\(y = 1\\). Then \\(|x-2| < 1\\) gives \\(1 < x < 3\\), so \\(x = 2\\) — prime. A definite YES. Sufficient.\n(2) \\(y\\) is a positive integer, so \\(1 - y \\le 0\\) and \\(|1-y| = y - 1\\). Then \\(x + y - 3 = y - 1\\), so \\(x = 2\\) — prime again. Sufficient.\nBoth statements pin \\(x\\) to the same value, which is what a well-formed question does.\nAnswer: D."),
 
-      Q(3, YN, "D",
+      Object.assign(Q(3, YN, "D",
         "If \\(y\\) is an integer and \\(y = x + |x|\\), is \\(y = 0\\)?\n(1) \\(x < 0\\)\n(2) \\(y < 1\\)",
         "Work out the range of \\(x + |x|\\) before reading either statement.",
-        "For \\(x \\le 0\\), \\(x + |x| = 0\\); for \\(x > 0\\) it is \\(2x > 0\\). So \\(y\\) is never negative.\n(1) \\(x < 0\\) gives \\(y = 0\\) directly. Sufficient.\n(2) \\(y\\) is a non-negative integer less than 1, so \\(y = 0\\). Sufficient.\nStatement (2) looks weaker than it is — the work done on the stem is what makes it decisive.\nAnswer: D."),
+        "For \\(x \\le 0\\), \\(x + |x| = 0\\); for \\(x > 0\\) it is \\(2x > 0\\). So \\(y\\) is never negative.\n(1) \\(x < 0\\) gives \\(y = 0\\) directly. Sufficient.\n(2) \\(y\\) is a non-negative integer less than 1, so \\(y = 0\\). Sufficient.\nStatement (2) looks weaker than it is — the work done on the stem is what makes it decisive.\nAnswer: D."), { dup: "di-ds-realexam#4" }),
 
       Q(4, YN, "A",
         "The integers \\(m\\) and \\(p\\) are such that \\(p > m > 2\\) and \\(m\\) is not a factor of \\(p\\). If \\(r\\) is the remainder when \\(p\\) is divided by \\(m\\), is \\(r > 1\\)?\n(1) The greatest common factor of \\(m\\) and \\(p\\) is 2.\n(2) The least common multiple of \\(m\\) and \\(p\\) is 30.",
@@ -75,15 +75,15 @@
         "Nothing says \\(n\\) is an integer. That is the whole question.",
         "(1) \\(\\tfrac{5n}{18} = k\\) gives \\(n = \\tfrac{18k}{5}\\). With \\(k = 5\\), \\(n = 18\\) and the answer is YES; with \\(k = 1\\), \\(n = 3.6\\) and the answer is NO. Not sufficient.\n(2) \\(\\tfrac{3n}{18} = \\tfrac{n}{6} = m\\) gives \\(n = 6m\\). With \\(m = 3\\), \\(n = 18\\), YES; with \\(m = 1\\), \\(n = 6\\), NO. Not sufficient.\n(1)+(2) From (2), \\(n = 6m\\). Substituting into (1), \\(\\tfrac{30m}{18} = \\tfrac{5m}{3}\\) is an integer, so \\(m\\) is a multiple of 3 and \\(n\\) is a multiple of 18 — a definite YES.\nAssuming \\(n\\) is an integer makes both statements look sufficient on their own.\nAnswer: C."),
 
-      Q(10, VAL, "E",
+      Object.assign(Q(10, VAL, "E",
         "The sum of \\(n\\) consecutive positive integers is 45. What is the value of \\(n\\)?\n(1) \\(n\\) is even.\n(2) \\(n < 9\\)",
         "List the runs that actually sum to 45 before touching the statements.",
-        "Two runs work: \\(22 + 23 = 45\\) with \\(n = 2\\), and \\(5+6+7+8+9+10 = 45\\) with \\(n = 6\\). There is also \\(n = 3\\) (14+15+16), \\(n = 5\\) (7+8+9+10+11) and \\(n = 9\\) (1 through 9).\n(1) Both 2 and 6 are even. Not sufficient.\n(2) Both 2 and 6 are under 9. Not sufficient.\n(1)+(2) Both survive the pair of conditions, so \\(n\\) is still not determined.\nAnswer: E."),
+        "Two runs work: \\(22 + 23 = 45\\) with \\(n = 2\\), and \\(5+6+7+8+9+10 = 45\\) with \\(n = 6\\). There is also \\(n = 3\\) (14+15+16), \\(n = 5\\) (7+8+9+10+11) and \\(n = 9\\) (1 through 9).\n(1) Both 2 and 6 are even. Not sufficient.\n(2) Both 2 and 6 are under 9. Not sufficient.\n(1)+(2) Both survive the pair of conditions, so \\(n\\) is still not determined.\nAnswer: E."), { dup: "di-ds-realexam#6" }),
 
-      Q(11, YN, "E",
+      Object.assign(Q(11, YN, "E",
         "Is \\(x\\) a negative number?\n(1) \\(x^{2}\\) is a positive number.\n(2) \\(x \\cdot |y|\\) is not a positive number.",
         "\"Not positive\" allows zero — and \\(|y|\\) can be zero.",
-        "(1) \\(x \\ne 0\\), but the sign is open. Not sufficient.\n(2) \\(x|y| \\le 0\\). If \\(y \\ne 0\\) then \\(x \\le 0\\); but if \\(y = 0\\) the product is 0 for [[any]] \\(x\\), including positive ones. Not sufficient.\n(1)+(2) Take \\(x = 5\\), \\(y = 0\\): \\(x^2 > 0\\) and \\(x|y| = 0\\), which is not positive — the answer is NO. Take \\(x = -5\\), \\(y = 2\\): both statements hold and the answer is YES.\nThe zero case in \\(|y|\\) is the whole trap.\nAnswer: E."),
+        "(1) \\(x \\ne 0\\), but the sign is open. Not sufficient.\n(2) \\(x|y| \\le 0\\). If \\(y \\ne 0\\) then \\(x \\le 0\\); but if \\(y = 0\\) the product is 0 for [[any]] \\(x\\), including positive ones. Not sufficient.\n(1)+(2) Take \\(x = 5\\), \\(y = 0\\): \\(x^2 > 0\\) and \\(x|y| = 0\\), which is not positive — the answer is NO. Take \\(x = -5\\), \\(y = 2\\): both statements hold and the answer is YES.\nThe zero case in \\(|y|\\) is the whole trap.\nAnswer: E."), { dup: "di-ds-realexam#8" }),
 
       Q(12, VAL, "B",
         "What is \\(x\\)?\n(1) \\(|x| < 2\\)\n(2) \\(|x| = 3x - 2\\)",
@@ -110,10 +110,10 @@
         "One equation in two integer unknowns sometimes has exactly one solution.",
         "(1) Six pencils split many ways — 0 through 6 of them at 23 cents. Not sufficient.\n(2) \\(21a + 23b = 130\\) with \\(a, b\\) non-negative integers. Testing \\(b = 0,1,2,3,4,5\\) leaves only \\(b = 2\\), \\(a = 4\\). A unique answer. Sufficient.\nThe instinct that one equation cannot fix two unknowns is wrong once the unknowns must be non-negative integers.\nAnswer: B."),
 
-      Q(17, VAL, "B",
+      Object.assign(Q(17, VAL, "B",
         "Joanna bought only $0.15 stamps and $0.29 stamps. How many $0.15 stamps did she buy?\n(1) She bought an equal number of $0.15 stamps and $0.29 stamps.\n(2) She bought $4.40 worth of stamps.",
         "Same shape as the pencils — check whether the integer solution is unique.",
-        "(1) Equal numbers could be 5 and 5, or 100 and 100; without a total there is nothing to pin down. Not sufficient.\n(2) \\(15a + 29b = 440\\). Working modulo 15, \\(29b \\equiv -b\\) and \\(440 \\equiv 5\\), so \\(b \\equiv 10 \\pmod{15}\\). The only value small enough is \\(b = 10\\), which gives \\(a = 10\\). Unique. Sufficient.\nNote how (1) becomes tempting once you know the answer is 10 and 10 — but it could not have told you that.\nAnswer: B."),
+        "(1) Equal numbers could be 5 and 5, or 100 and 100; without a total there is nothing to pin down. Not sufficient.\n(2) \\(15a + 29b = 440\\). Working modulo 15, \\(29b \\equiv -b\\) and \\(440 \\equiv 5\\), so \\(b \\equiv 10 \\pmod{15}\\). The only value small enough is \\(b = 10\\), which gives \\(a = 10\\). Unique. Sufficient.\nNote how (1) becomes tempting once you know the answer is 10 and 10 — but it could not have told you that.\nAnswer: B."), { dup: "di-datasufficiency-ex#21" }),
 
       Q(18, YN, "E",
         "If \\(x\\) is a non-negative integer, is \\(x! + x + 1\\) a prime number?\n(1) \\(x < 10\\)\n(2) \\(x\\) is even.",

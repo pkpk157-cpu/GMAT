@@ -3314,11 +3314,11 @@
         "DS",
         "Count the factors of 5 in 30!: that is how many trailing zeros it has.",
         "\\(30!\\) contains \\(6 + 1 = 7\\) factors of 5 (and more than enough 2s), so it ends in exactly 7 zeros.\n(1) \\(10^{d}\\) divides \\(30!\\) for \\(d = 1, 2, \\dots, 7\\). Not sufficient.\n(2) Any integer above 6. Not sufficient.\nTogether \\(d = 7\\). Sufficient.\nAnswer: C.", "hard"),
-      Q(10, "Yes / No questions", "D",
+      Object.assign(Q(10, "Yes / No questions", "D",
         "Is the hundredths digit of the decimal \\(d\\) greater than 5?\n(1) The tenths digit of \\(10d\\) is 7.\n(2) The thousandths digit of \\(\\tfrac{d}{10}\\) is 7.",
         "DS",
         "Multiplying by 10 shifts every digit one place to the left; dividing shifts it to the right.",
-        "Write \\(d = 0.abc\\ldots\\) with \\(b\\) the hundredths digit.\n(1) \\(10d = a.bc\\ldots\\), whose tenths digit is \\(b\\); so \\(b = 7 > 5\\). Sufficient.\n(2) \\(\\tfrac{d}{10} = 0.0abc\\ldots\\), whose thousandths digit is \\(b\\); again \\(b = 7\\). Sufficient.\nAnswer: D.", "hard"),
+        "Write \\(d = 0.abc\\ldots\\) with \\(b\\) the hundredths digit.\n(1) \\(10d = a.bc\\ldots\\), whose tenths digit is \\(b\\); so \\(b = 7 > 5\\). Sufficient.\n(2) \\(\\tfrac{d}{10} = 0.0abc\\ldots\\), whose thousandths digit is \\(b\\); again \\(b = 7\\). Sufficient.\nAnswer: D.", "hard"), { dup: "di-ds-436-2#47" }),
     ] });
   sets.push({ id: "quant-guide-s2", title: "Sessions Guide — Statistics & Numbers", section: "quant",
     source: "Quant Class Sessions Guide, Session 2 problems (printed key; every answer re-derived)",

@@ -18,7 +18,7 @@
     "Together still NOT sufficient"
   ];
   var Q = function (n, topic, correct, text, hint, expl, level) {
-    return { n: n, topic: topic, correct: correct, options: 5, level: level || "hard",
+    return { n: n, topic: topic, correct: correct, options: 5, level: level || "very-hard",
              text: text, choices: DS, hint: hint, expl: expl };
   };
   var VAL = "Value questions", YN = "Yes / No questions", TRAP = "Common traps & C-trap";

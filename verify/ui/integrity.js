@@ -1,7 +1,7 @@
 /* Static integrity audit of the question bank and set metadata. */
 global.window = {};
 ['./sets.js', './sets-extra.js', './sets-rc.js', './sets-di.js', './sets-di2.js', './sets-di3.js',
- './sets-quant-live.js', './sets-quant-live2.js', './sets-quant-700.js', './sets-cr-2person.js', './sets-cr-700a.js', './sets-cr-700b.js', './sets-cr-700c.js', './sets-cr-700d.js', './sets-rc-700.js', './sets-di4.js', './sets-gaps.js', './sets-quant-700b.js'].forEach(f => {
+ './sets-quant-live.js', './sets-quant-live2.js', './sets-quant-700.js', './sets-cr-2person.js', './sets-cr-700a.js', './sets-cr-700b.js', './sets-cr-700c.js', './sets-cr-700d.js', './sets-rc-700.js', './sets-di4.js', './sets-gaps.js', './sets-quant-700b.js', './sets-bank2.js'].forEach(f => {
   try { require(require('path').join(__dirname, '..', '..', f.slice(2))); } catch (e) { console.log('LOAD FAIL', f, e.message); }
 });
 
@@ -64,7 +64,7 @@ sets.forEach(s => {
     });
 
     if (!q.expl || !String(q.expl).trim()) bad(`${at}: no explanation`);
-    if (q.level && !['easy', 'medium', 'hard'].includes(q.level)) bad(`${at}: level="${q.level}"`);
+    if (q.level && !['easy', 'medium', 'hard', 'very-hard'].includes(q.level)) bad(`${at}: level="${q.level}"`);
     if (!q.topic || !String(q.topic).trim()) bad(`${at}: no topic`);
 
     // A stem repeated verbatim inside one set is a transcription slip.

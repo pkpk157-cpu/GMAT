@@ -24,7 +24,7 @@ global.window = {};
 
 const SET_FILES = ["sets.js", "sets-extra.js", "sets-rc.js", "sets-di.js", "sets-di2.js", "sets-di3.js",
   "sets-quant-live.js", "sets-quant-live2.js", "sets-quant-700.js", "sets-cr-2person.js",
-  "sets-cr-700a.js", "sets-cr-700b.js", "sets-cr-700c.js", "sets-cr-700d.js", "sets-rc-700.js", "sets-di4.js", "sets-gaps.js", "sets-quant-700b.js"];
+  "sets-cr-700a.js", "sets-cr-700b.js", "sets-cr-700c.js", "sets-cr-700d.js", "sets-rc-700.js", "sets-di4.js", "sets-gaps.js", "sets-quant-700b.js", "sets-bank2.js"];
 SET_FILES.forEach(f => eval(fs.readFileSync(path.join(ROOT, f), "utf8")));
 
 const base = window.GMAT_SETS;

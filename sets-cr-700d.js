@@ -20,7 +20,7 @@
              level: LV[n - 1], text: text, choices: choices, hint: hint, expl: expl };
   };
   var sets = [];
-  LV = ["hard", "medium", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "hard", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "medium", "easy", "medium"];
+  LV = ["very-hard", "medium", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "very-hard", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "medium", "easy", "medium"];
   sets.push({
       id: "cr-700-mixed3",
       title: "700–800 Level — Mixed Bag 3",
@@ -371,7 +371,7 @@
         "The plan copies a tactic that has worked for large department stores generally.\n(A) shows why it may backfire here: customers associate carts with low-quality discount stores, so introducing them would damage Jerrod's high-quality image — the thing its custom rests on.\n(B) Higher wages is an unrelated cost pressure.\n(C) Stores without carts closing supports the plan.\n(D) Carts being cheap but needing replacement is a minor cost.\n(E) Hiring cart retrievers is likewise a modest expense.")
       ]
   });
-  LV = ["medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "hard", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "easy"];
+  LV = ["medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "easy"];
   sets.push({
       id: "cr-700-mixed4",
       title: "700–800 Level — Mixed Bag 4",
@@ -722,7 +722,7 @@
         "Revenue is the rate times the base, the rate is unchanged and the base has fallen.\n(D) follows: property tax revenue has declined over the four years.\n(A) The share of total revenue from property taxes is not given.\n(B) Likewise, nothing tells us how other revenue moved.\n(C) Proposals and opposition are never mentioned.\n(E) Other tax rates are outside the passage.")
       ]
   });
-  LV = ["medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "hard", "hard", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "hard", "hard", "medium", "medium"];
+  LV = ["medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard", "very-hard", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "very-hard", "very-hard", "medium", "medium"];
   sets.push({
       id: "cr-700-mixed5",
       title: "700–800 Level — Mixed Bag 5",

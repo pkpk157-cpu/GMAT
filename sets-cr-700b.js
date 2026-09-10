@@ -8,7 +8,7 @@
    key AND was reasoned out independently before being accepted.
    Appends to window.GMAT_SETS_NEW, which index.html merges into GMAT_SETS. */
 (function () {
-  var LEVELS = ["medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "hard", "medium", "hard", "hard", "medium", "medium", "hard", "medium", "medium", "medium", "hard", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "easy", "medium"];
+  var LEVELS = ["medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "very-hard", "medium", "very-hard", "very-hard", "medium", "medium", "very-hard", "medium", "medium", "medium", "very-hard", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "easy", "medium"];
   var Q = function (n, topic, correct, text, choices, hint, expl) {
     return { n: n, topic: topic, correct: correct, options: choices.length,
              level: LEVELS[n - 1], text: text, choices: choices,

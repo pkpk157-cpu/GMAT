@@ -19,7 +19,8 @@
    Appends to window.GMAT_SETS_NEW, which index.html merges into GMAT_SETS. */
 (function () {
   var Q = function (n, topic, correct, text, choices, hint, expl) {
-    return { n: n, topic: topic, correct: correct, options: choices.length, level: "hard",
+    // A 700-800 source: a one-line solution is "hard", a multi-step one "very-hard".
+    return { n: n, topic: topic, correct: correct, options: choices.length, level: expl.length >= 250 ? "very-hard" : "hard",
              text: text, choices: choices, hint: hint, expl: expl };
   };
 

@@ -17,7 +17,7 @@
              level: LV[n - 1], text: text, choices: choices, hint: hint, expl: expl };
   };
   var sets = [];
-  LV = ["hard", "medium", "hard", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "hard"];
+  LV = ["very-hard", "medium", "very-hard", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "very-hard"];
   sets.push({
       id: "cr-700-assumption",
       title: "700–800 Level — Assumption",
@@ -278,7 +278,7 @@
         "The argument infers travelling artisans from motifs that recur across Roman cities.\n(E) is assumed: there was no common repertory of mosaic designs familiar to artisans everywhere. With a shared repertory, a local artisan could produce the same motifs without ever leaving Sepphoris.\n(A) The origin of the stones is a separate line of evidence the argument does not use.\n(B) Whether any one region holds all the species is not needed; the point is that the local region does not.\n(C) A motif unique to Sepphoris would not undo the ones that recur.\n(D) The identifiability of the animals is given in the premises.")
       ]
     });
-  LV = ["medium", "hard", "medium", "medium", "hard", "hard", "medium", "medium", "medium", "medium", "hard", "medium", "medium", "easy", "medium", "hard", "medium", "medium", "hard", "medium", "medium", "hard"];
+  LV = ["medium", "very-hard", "medium", "medium", "very-hard", "very-hard", "medium", "medium", "medium", "medium", "very-hard", "medium", "medium", "easy", "medium", "very-hard", "medium", "medium", "very-hard", "medium", "medium", "very-hard"];
   sets.push({
       id: "cr-700-boldface",
       title: "700–800 Level — Boldface & Method",
@@ -485,7 +485,7 @@
         "The first bolded portion is the doubled reporting rate, whose meaning the whole argument is about. The second is the commentators' intermediate step — spurious reports cannot be identified — used to reach the \"half are spurious\" conclusion the argument criticises.\n(C) states both roles.\n(A) The second supports the criticised conclusion, not the argument's own judgment.\n(B) The second does not challenge the finding's accuracy; the finding is accepted.\n(D) The argument does not dispute the reporting figures.\n(E) The argument rejects the conclusion the second was used to support.")
       ]
     });
-  LV = ["medium", "medium", "medium", "hard", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium"];
+  LV = ["medium", "medium", "medium", "very-hard", "medium", "easy", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium"];
   sets.push({
       id: "cr-700-evaluate",
       title: "700–800 Level — Evaluate the Argument",
@@ -629,7 +629,7 @@
         "The prediction extrapolates four months of sales to twelve.\n(D) is the pivot: if sales of similar cars are much higher in summer than at any other time, the strong start will not continue and the target is at risk.\n(A) Being the market leader does not tell us about this model's trajectory.\n(B) A price premium over competitors is already reflected in the sales so far.\n(C) A similar model launched last May is only useful if it reveals the seasonal pattern (D) asks about directly.\n(E) How much Fedora needs the sales does not affect whether they will happen.")
       ]
     });
-  LV = ["medium", "medium", "hard", "easy", "medium", "easy", "medium", "medium", "easy", "medium", "medium", "hard", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium"];
+  LV = ["medium", "medium", "very-hard", "easy", "medium", "easy", "medium", "medium", "easy", "medium", "medium", "very-hard", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium"];
   sets.push({
       id: "cr-700-misc",
       title: "700–800 Level — Mixed Types",

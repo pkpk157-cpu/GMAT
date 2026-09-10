@@ -155,7 +155,7 @@ const ROT = [
 
     // Every difficulty of the smallest topic, so the level filter is exercised
     // against real data rather than only the default "All".
-    for (const lvl of ['', 'easy', 'medium', 'hard']) {
+    for (const lvl of ['', 'easy', 'medium', 'hard', 'very-hard']) {
       step = `runner on ${label} :: ${lvl || 'all'}`;
       const opened = await page.evaluate(() => {
         const rows = [...document.querySelectorAll('#view .setrow')]

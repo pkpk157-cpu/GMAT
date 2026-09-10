@@ -70,6 +70,15 @@ confirms every such flag points at a question that is itself served.
 check (brute force for Data Sufficiency) before the record was accepted; the
 book's own printed keys were found to be misnumbered and were not trusted.
 
+`answers-bank2.js` is generated the same way from the workbook for the other
+course documents (live-session question sets, the coordinate-geometry
+"recent questions" file and the DS 436 collection). Every Data Sufficiency
+answer there was brute-forced over a grid of values before the record was
+accepted, and items whose extraction lost a figure or garbled a statement were
+left out rather than guessed. Questions that repeat one already in the bank
+carry the `dup` flag described above, so the served bank stays free of repeats
+while the workbook keeps the source's numbering.
+
 `ui/deep.js` is the broad net: it opens every pane, clicks every control on it,
 and after each click scans what is on screen for the signatures of a broken
 template — `undefined`, `NaN`, `[object Object]`, an unexpanded `${`, escaped
@@ -103,7 +112,7 @@ filled in from memory.
 
 | Section | Questions | How verified |
 |---|---|---|
-| Quant + Data Insights | 1,399 | 1,118 re-derived by `answers.js`, `answers-gaps.js` and `answers-700b.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
+| Quant + Data Insights | 1,546 | 1,374 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
 | Critical Reasoning | 542 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
 | Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
 

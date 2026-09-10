@@ -24,7 +24,7 @@
     --ink-soft:#2F3B52; --ink-faint:#55617A; --line:rgba(70,90,130,.16); --line-soft:rgba(70,90,130,.09);
     --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:rgba(37,99,235,.12);
     --gold:#0E7490; --gold-wash:rgba(14,116,137,.12);
-    --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B;
+    --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B; --vhard:#7A3E9D;
     --c-quant:#2563EB; --c-data:#0EA5E9; --c-overall:#1E3A8A; --c-verbal:#4F46E5; --c-cr:#6366F1;
     --glass-hi:rgba(255,255,255,.85); --bar:rgba(255,255,255,.74); --blur:saturate(185%) blur(22px);
     --radius:17px; --radius-s:11px;
@@ -38,7 +38,7 @@
       --ink-soft:#C2CBDC; --ink-faint:#939EB4; --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.055);
       --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:rgba(91,155,243,.16);
       --gold:#38BDF8; --gold-wash:rgba(56,189,248,.14);
-      --good:#5FC79E; --warn:#D8A64A; --bad:#E08869;
+      --good:#5FC79E; --warn:#D8A64A; --bad:#E08869; --vhard:#C79BE0;
       --c-quant:#5B9BF3; --c-data:#4FC3F7; --c-overall:#8AB0F5; --c-verbal:#8A93F0; --c-cr:#9BA6F7;
       --glass-hi:rgba(255,255,255,.16); --bar:rgba(11,18,33,.76);
       --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 38px -18px rgba(0,0,0,.72);
@@ -49,7 +49,7 @@
     --ink-soft:#2F3B52; --ink-faint:#55617A; --line:rgba(70,90,130,.16); --line-soft:rgba(70,90,130,.09);
     --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:rgba(37,99,235,.12);
     --gold:#0E7490; --gold-wash:rgba(14,116,137,.12);
-    --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B;
+    --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B; --vhard:#7A3E9D;
     --c-quant:#2563EB; --c-data:#0EA5E9; --c-overall:#1E3A8A; --c-verbal:#4F46E5; --c-cr:#6366F1;
     --glass-hi:rgba(255,255,255,.85); --bar:rgba(255,255,255,.74);
     --shadow:0 1px 1px rgba(20,25,40,.04),0 14px 34px -16px rgba(20,25,40,.22);
@@ -59,7 +59,7 @@
     --ink-soft:#C2CBDC; --ink-faint:#939EB4; --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.055);
     --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:rgba(91,155,243,.16);
     --gold:#38BDF8; --gold-wash:rgba(56,189,248,.14);
-    --good:#5FC79E; --warn:#D8A64A; --bad:#E08869;
+    --good:#5FC79E; --warn:#D8A64A; --bad:#E08869; --vhard:#C79BE0;
     --c-quant:#5B9BF3; --c-data:#4FC3F7; --c-overall:#8AB0F5; --c-verbal:#8A93F0; --c-cr:#9BA6F7;
     --glass-hi:rgba(255,255,255,.16); --bar:rgba(11,18,33,.76);
     --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 38px -18px rgba(0,0,0,.72);
@@ -575,6 +575,8 @@
   .lvlpick.lvl-easy.on i { color: var(--good); }
   .lvlpick.lvl-hard.on { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 13%, transparent); color: var(--bad); }
   .lvlpick.lvl-hard.on i { color: var(--bad); }
+  .lvlpick.lvl-very-hard.on { border-color: var(--vhard); background: color-mix(in srgb, var(--vhard) 13%, transparent); color: var(--vhard); }
+  .lvlpick.lvl-very-hard.on i { color: var(--vhard); }
   /* Subject heading between topic groups in the practice pane */
   .tsub { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 18px 0 8px; }
   .tsub:first-child { margin-top: 4px; }
@@ -595,6 +597,7 @@
   .lvl-easy { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
   .lvl-medium { color: var(--warn); background: color-mix(in srgb, var(--warn) 16%, transparent); }
   .lvl-hard { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+  .lvl-very-hard { color: var(--vhard); background: color-mix(in srgb, var(--vhard) 16%, transparent); }
   .diff-bar { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
   .sstatus { font-weight: 700; }
   .sstatus.good { color: var(--good); } .sstatus.mid { color: var(--warn); } .sstatus.low { color: var(--bad); } .sstatus.muted { color: var(--ink-faint); }
@@ -641,6 +644,7 @@
   .jchip.lvl-easy.on { background: var(--good); border-color: var(--good); color: #fff; }
   .jchip.lvl-medium.on { background: var(--warn); border-color: var(--warn); color: #fff; }
   .jchip.lvl-hard.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+  .jchip.lvl-very-hard.on { background: var(--vhard); border-color: var(--vhard); color: #fff; }
   .jchip.flag.on { background: var(--bad); border-color: var(--bad); color: #fff; }
   .jcell { position: relative; }
   .jcell.flag::after { content: "⚑"; position: absolute; top: 0; right: 3px; font-size: 12.5px; color: var(--bad); line-height: 1; }
@@ -1124,6 +1128,7 @@
 <script src="sets-di4.js"></script>
 <script src="sets-gaps.js"></script>
 <script src="sets-quant-700b.js"></script>
+<script src="sets-bank2.js"></script>
 <!-- Rewritten explanations: merged over the transcribed questions at load -->
 <script src="expl-quant-percent.js"></script>
 <script src="expl-rc-700d.js"></script>
@@ -1179,6 +1184,7 @@
 <script src="expl-quant-profitloss.js"></script>
 <script src="expl-gaps.js"></script>
 <script src="expl-quant-700b.js"></script>
+<script src="expl-bank2.js"></script>
 <script src="ai-key.js"></script>
 <script src="concepts.js"></script>
 <script src="tricks.js"></script>
@@ -1268,7 +1274,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v114";
+  const APP_VERSION = "v115";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1534,9 +1540,12 @@
 
      Deliberately conservative: it needs a real sample before it moves anything,
      it only ever shifts one band, and it never rewrites the stored data. */
-  const LEVEL_ORDER = ["easy", "medium", "hard"];
+  const LEVEL_ORDER = ["easy", "medium", "hard", "very-hard"];
   // Roughly what each band should feel like for the person it was written for.
-  const LEVEL_BASELINE = { easy: 0.85, medium: 0.70, hard: 0.55 };
+  const LEVEL_BASELINE = { easy: 0.85, medium: 0.70, hard: 0.55, "very-hard": 0.45 };
+  // Levels are stored as one token ("very-hard") so they work as CSS classes and
+  // storage keys; this is the only place the display form is decided.
+  const lvlLabel = (l) => String(l || "").replace("-", " ");
   const RECAL_MIN_SAMPLE = 6;     // fewer than this and a bucket says nothing
   const RECAL_MARGIN = 0.15;      // how far off baseline before the badge moves
   let recalCache = null;
@@ -1576,11 +1585,11 @@
     if (!b || b.n < RECAL_MIN_SAMPLE) return { level: lvl, shifted: 0, why: "" };
     const acc = b.c / b.n, base = LEVEL_BASELINE[lvl];
     const at = LEVEL_ORDER.indexOf(lvl);
-    const pctTxt = Math.round(acc * 100) + "% on " + b.n + " " + lvl + " " + home + " questions";
+    const pctTxt = Math.round(acc * 100) + "% on " + b.n + " " + lvlLabel(lvl) + " " + home + " questions";
     if (acc >= base + RECAL_MARGIN && at > 0)
-      return { level: LEVEL_ORDER[at - 1], shifted: -1, why: "Marked " + lvl + ", but you're at " + pctTxt + " — easier for you." };
+      return { level: LEVEL_ORDER[at - 1], shifted: -1, why: "Marked " + lvlLabel(lvl) + ", but you're at " + pctTxt + " — easier for you." };
     if (acc <= base - RECAL_MARGIN && at < LEVEL_ORDER.length - 1)
-      return { level: LEVEL_ORDER[at + 1], shifted: 1, why: "Marked " + lvl + ", but you're at " + pctTxt + " — harder for you." };
+      return { level: LEVEL_ORDER[at + 1], shifted: 1, why: "Marked " + lvlLabel(lvl) + ", but you're at " + pctTxt + " — harder for you." };
     return { level: lvl, shifted: 0, why: "" };
   }
   // The level badge, recalibrated against your own results where there is
@@ -1588,8 +1597,8 @@
   function levelBadge(section, q) {
     if (!q || !q.level) return "";
     const p = personalLevel(section, q);
-    if (!p.shifted) return `<span class="lvl lvl-${p.level}">${p.level}</span>`;
-    return `<span class="lvl lvl-${p.level} lvl-recal" title="${esc(p.why)}">${p.level}<i>· for you</i></span>`;
+    if (!p.shifted) return `<span class="lvl lvl-${p.level}">${lvlLabel(p.level)}</span>`;
+    return `<span class="lvl lvl-${p.level} lvl-recal" title="${esc(p.why)}">${lvlLabel(p.level)}<i>· for you</i></span>`;
   }
 
   function sectionHTML(sec) {
@@ -3248,7 +3257,7 @@
      the published scales so the number moves for the right reasons. It is a
      progress signal, not a predicted score, and the UI says so. */
   const SEC_MIN = 60, SEC_MAX = 90;
-  const LEVEL_WEIGHT = { easy: 0.7, medium: 1.0, hard: 1.45 };
+  const LEVEL_WEIGHT = { easy: 0.7, medium: 1.0, hard: 1.45, "very-hard": 1.9 };
   // Enough questions before a section score is worth showing at all.
   const SCORE_MIN_N = 25;
 
@@ -3655,13 +3664,13 @@
     const sec = secById(s.section), run = getRun(s.id), answered = Object.keys(run.ans).length;
     let status, cls;
     // A run can be narrowed to one difficulty, so say which slice the status is of.
-    const slice = run.lvl ? ` · ${run.lvl} only` : "";
+    const slice = run.lvl ? ` · ${lvlLabel(run.lvl)} only` : "";
     if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%${slice}`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
     else if (answered) { status = `${answered}/${s.questions.length} answered${slice}`; cls = ""; }
     else { status = "not started"; cls = "muted"; }
     const lc = levelCounts(s);
     const lvls = opts.levels === false ? "" :
-      ["easy", "medium", "hard"].filter(L => lc[L]).map(L => `<span class="lvl lvl-${L}">${lc[L]} ${L}</span>`).join("");
+      LEVELS.filter(L => lc[L]).map(L => `<span class="lvl lvl-${L}">${lc[L]} ${lvlLabel(L)}</span>`).join("");
     const hasProgress = run.submitted || answered > 0;
     return `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample ? ' <span style="color:var(--ink-faint);font-weight:600">· sample</span>' : ""}</div>
       <div class="sm">${opts.secBadge ? `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>` : ""}<span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id) ? `<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>` : ""}</div>
@@ -4018,6 +4027,7 @@
     if (lc.easy) h += `<button class="jchip lvl-easy ${jumperLevel==="easy"?"on":""}" data-levelfilter="easy">Easy ${lc.easy}</button>`;
     if (lc.medium) h += `<button class="jchip lvl-medium ${jumperLevel==="medium"?"on":""}" data-levelfilter="medium">Medium ${lc.medium}</button>`;
     if (lc.hard) h += `<button class="jchip lvl-hard ${jumperLevel==="hard"?"on":""}" data-levelfilter="hard">Hard ${lc.hard}</button>`;
+    if (lc["very-hard"]) h += `<button class="jchip lvl-very-hard ${jumperLevel==="very-hard"?"on":""}" data-levelfilter="very-hard">Very hard ${lc["very-hard"]}</button>`;
     if (fc > 0) h += `<button class="jchip flag ${jumperFlaggedOnly?"on":""}" data-flagfilter>⚑ Flagged ${fc}</button>`;
     h += `</div>`;
     let list = scope.map((q, i) => ({ q, i }));
@@ -4041,7 +4051,7 @@
   }
   function closeJumper() { document.getElementById("jumper").hidden = true; }
 
-  function levelCounts(set) { const c = { easy:0, medium:0, hard:0 }; set.questions.forEach(q => { if (c[q.level] != null) c[q.level]++; }); return c; }
+  function levelCounts(set) { const c = { easy:0, medium:0, hard:0, "very-hard":0 }; set.questions.forEach(q => { if (c[q.level] != null) c[q.level]++; }); return c; }
   /* The questions this run is actually working through. A topic holds every
      difficulty; picking one narrows the run without touching what has already
      been answered, so you can switch level and keep your progress. */
@@ -4062,11 +4072,11 @@
       : "";
     // "All" is the whole topic, including anything the source left untagged.
     const all = set.questions.length;
-    const picker = `<div class="lvlpick-row">${chip("", "All", all)}${chip("easy", "Easy", lc.easy)}${chip("medium", "Medium", lc.medium)}${chip("hard", "Hard", lc.hard)}</div>`;
+    const picker = `<div class="lvlpick-row">${chip("", "All", all)}${chip("easy", "Easy", lc.easy)}${chip("medium", "Medium", lc.medium)}${chip("hard", "Hard", lc.hard)}${chip("very-hard", "Very hard", lc["very-hard"])}</div>`;
     const answered = Object.keys(run.ans).length;
     const resume = answered > 0 ? `<p class="mode-note" style="margin:0 0 10px"><b>You've answered ${answered} of ${all}.</b> Pick a mode to pick up where you left off.</p>` : "";
-    const scope = cur ? `the ${total} ${cur} question${total === 1 ? "" : "s"}` : `all ${total} questions`;
-    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} question${total === 1 ? "" : "s"}${cur ? " · " + cur : ""}</div>
+    const scope = cur ? `the ${total} ${lvlLabel(cur)} question${total === 1 ? "" : "s"}` : `all ${total} questions`;
+    return `<div class="rn-meta"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span> ${total} question${total === 1 ? "" : "s"}${cur ? " · " + lvlLabel(cur) : ""}</div>
       <div class="qcard"><div class="mode-h">Which difficulty?</div>${picker}
       <div class="mode-h" style="margin-top:18px">How do you want to run ${scope}?</div>${resume}
       <button class="modebtn" data-mode="practice"><b>Practice mode</b><span>Tells you correct or incorrect right after each answer, with an explanation. Best for learning.</span></button>
@@ -4272,7 +4282,7 @@
   // A custom, GMAT-style session: pick how many questions, from which sets, and
   // an optional overall time limit. Questions are ordered by performance —
   // start at medium, get one right → the next is harder, get one wrong → easier.
-  const LEVELS = ["easy", "medium", "hard"];
+  const LEVELS = LEVEL_ORDER;
   const lvlIdx = (l) => { const i = LEVELS.indexOf(l); return i < 0 ? 1 : i; };   // unknown → medium
   let cfg = null;   // config: { sets:Set<id>, count, time(min) }
   let sess = null;  // live session
@@ -4535,7 +4545,7 @@
     const correct = sess.pending === q.correct, ms = Math.max(0, Date.now() - sess.qStart);
     sess.answers[sess.idx] = { chosen: sess.pending, correct, ms, level: cur.lvl };
     sess.pending = null;
-    sess.curLevel = LEVELS[Math.max(0, Math.min(2, lvlIdx(sess.curLevel) + (correct ? 1 : -1)))];
+    sess.curLevel = LEVELS[Math.max(0, Math.min(LEVELS.length - 1, lvlIdx(sess.curLevel) + (correct ? 1 : -1)))];
     if (sess.idx >= sess.count - 1) {
       if (sess.mock) { sess.reviewing = true; renderSession(); window.scrollTo({ top: 0 }); return; }
       finishSession(false); return;

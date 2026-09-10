@@ -46,6 +46,33 @@ window.GMAT_CONCEPTS = [
         ]
       },
       {
+        id: "cr-argtypes",
+        title: "Argument Types & the Therefore Test",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "Your CR Basics deck opens with a sorting exercise: before you read a single answer choice, decide what <b>shape</b> the stimulus has. The shape predicts the question type and tells you what to look for." },
+          { t: "table", head: ["Shape of the stimulus", "Usual question"], rows: [
+            ["Pure facts, no conclusion", "Inference (what must be true)"],
+            ["Seemingly contradictory facts, no conclusion", "Resolve the paradox"],
+            ["A few facts and one conclusion (about 80% of questions)", "Weaken, strengthen, assumption, evaluate, flaw"],
+            ["Facts, an intermediate conclusion, then a main conclusion", "Boldface and method"],
+            ["Two opposing viewpoints, each with its own support", "Boldface and method"],
+            ["Two paragraphs, one speaker answering another", "Point at issue, method, or any of the above"]
+          ]},
+          { t: "h", x: "Finding the conclusion" },
+          { t: "p", x: "A conclusion is the sentence that can be <b>challenged or supported</b>. Five signals mark it: the <b>future</b> (may, might, will, would, likely), a <b>feeling</b> (should, ought to, recommend, criticise, agree), <b>uncertainty</b> (hypothesis, claim), <b>debatability</b> (position, stance, view, belief) and a <b>judgment reached</b>. Facts, data, findings and observations about the past or present are premises, and a premise can never be challenged: its job is only to support." },
+          { t: "h", x: "The Therefore Test" },
+          { t: "p", x: "When two candidate sentences both look like conclusions, write them as <i>Because X, therefore Y</i> in both orders. Only one order makes sense. The X that makes sense is the premise or intermediate conclusion; the Y is the main conclusion." },
+          { t: "eg",
+            q: "Local authorities are considering an amendment that would raise the fine for littering in the picnic area to $1,000. Incremental increases have consistently reduced litter. However, raising the fine to $1,000 would actually increase the amount of litter, because picnic-area users would perceive the fine as unreasonable and unenforceable and would disregard the litter law altogether. Which sentence is the main conclusion?",
+            choices: ["Incremental increases in the fine have consistently reduced litter.", "Raising the fine to $1,000 would actually increase the amount of litter.", "Users would perceive the fine as unreasonable and unenforceable.", "Users would disregard the litter law altogether.", "Authorities are considering an amendment to the litter law."],
+            ans: "B",
+            why: "Test the two candidates. 'Because raising the fine would increase litter, therefore users would perceive it as unreasonable' makes no sense. 'Because users would perceive it as unreasonable and disregard the law, therefore raising the fine would increase litter' makes sense. So the perception sentence is the support and (B) is the main conclusion; (A) and (E) are background facts, and (C) and (D) are the reasons given for (B)."
+          },
+          { t: "tip", x: "In boldface questions this test is step one, always: label the main conclusion first, then decide whether each boldface portion is a fact (non-challengeable premise), a reason or judgment offered in support (challengeable premise), an intermediate conclusion, or the main conclusion." }
+        ]
+      },
+      {
         id: "cr-inference",
         title: "Inference (Must Be True)",
         mins: 4,
@@ -286,6 +313,32 @@ window.GMAT_CONCEPTS = [
           ] },
           { t: "warn", x: "A choice that repeats a premise in new words adds nothing, and a choice about a different population adds nothing. Strength has to reach the <b>link</b>, not the facts." },
           { t: "tip", x: "On plan questions, the best strengthener usually closes the most obvious objection — the thing you were about to say out loud when you finished reading the plan." }
+        ]
+      },
+      {
+        id: "cr-causal",
+        title: "Cause-and-Effect Reasoning",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "About one CR question in ten concludes that <b>A causes B</b> from evidence that A and B go together. Correlation is not causation, and the deck's three alternative explanations are the whole toolkit: every weakener, strengthener and assumption in a causal argument is one of them." },
+          { t: "table", head: ["Conclusion: A causes B", "Weakener", "Strengthener / assumption"], rows: [
+            ["Reverse cause", "B caused A", "B did not cause A"],
+            ["Alternative cause", "C caused B", "C did not cause B"],
+            ["Common cause", "C caused both A and B (hot weather raises both beer and ice-cream sales)", "C did not cause both"]
+          ]},
+          { t: "ul", items: [
+            "<b>Older antelope are more cautious, so ageing causes caution.</b> Reverse: cautious antelope survive to be old. Alternative: a drug or hard experience made the old ones cautious. Common cause: intelligence brings both longevity and caution.",
+            "<b>Children of divorced parents have 50% more behavioural problems, so divorce causes the problems.</b> Reverse: difficult children strain marriages. Alternative: parental conflict, not the divorce itself. Common cause: jobs with heavy travel that produce both.",
+            "<b>Low vitamin B6 is linked to disease Q, so raising B6 protects against Q.</b> The assumption is that Q does not cause the low B6, that is, that the causation does not run the other way."
+          ]},
+          { t: "p", x: "Assumptions in causal arguments come in two types: those that rule out an alternative cause, and those that fix the <b>direction</b> of the causation. A choice such as 'obesity and nervousness do not make people less able to handle stress' is the second type: negate it and the argument that stress causes obesity collapses." },
+          { t: "warn", x: "A choice that merely offers a remedy, another benefit, or a different variable does not touch the causal link. 'Good communication prevents divorce' says nothing about whether living together before marriage is one of the causes of divorce; the deck flags it as the classic wrong answer." },
+          { t: "eg",
+            q: "A study found that people with high emotional stress are significantly more obese and nervous than people without it. Therefore emotional stress causes obesity and nervousness. Which of the following is an assumption on which the argument rests?",
+            choices: ["Obesity and nervousness can lead to serious health problems.", "Emotionally stressed people are aware of the health problems attributed to stress.", "Equal numbers of high-stress and low-stress people were surveyed.", "Obesity and nervousness do not make individuals less capable of dealing with emotionally stressful situations.", "People surveyed immediately after a stressful event were more obese and nervous than others in the same group."],
+            ans: "D",
+            why: "The conclusion is A (stress) causes B (obesity and nervousness). (D) rules out B causing A: if being obese and nervous made people worse at handling stress, the correlation could run the other way. Negating (D) flips the direction and the argument fails, so it is the required assumption. (A), (B) and (C) never touch the causal link, and (E) compares subgroups the argument never mentions."
+          }
         ]
       },
       {
@@ -911,6 +964,27 @@ window.GMAT_CONCEPTS = [
         ]
       },
       {
+        id: "rc-structure",
+        title: "Passage Structure",
+        mins: 5,
+        blocks: [
+          { t: "p", x: "Structure questions ask how the passage is built: what each paragraph does and how the parts connect. Your RC guide's solutions answer them the same way every time, with a one-line job description per paragraph, written while reading and before looking at the choices." },
+          { t: "ul", items: [
+            "<b>Paragraph 1</b> usually states the topic and either the author's position or the position the author will attack: 'conventional theory is inaccurate', 'a traditional view is introduced'.",
+            "<b>Middle paragraphs</b> develop, illustrate, qualify or contrast: an example (minority communities and capital markets), a counter-case, a second theory, a piece of evidence.",
+            "<b>The last paragraph</b> often explains, evaluates or extends: the assumptions behind the failure, the author's own verdict, a recommendation, or an irony (if humans interfere the rhinos die; if they stop, the rhinos' food disappears)."
+          ]},
+          { t: "h", x: "Reading the choices" },
+          { t: "p", x: "Structure answers are written in abstract nouns: 'a theory is described, cases it omits are presented, the assumptions behind the omission are explained'. Match each abstract noun to a concrete paragraph. A choice fails the moment one of its nouns has no paragraph to point to: a 'proposed plan' or an 'alternative hypothesis' that the passage never contains, or a 'self-contradiction' when the passage merely disagrees with someone else." },
+          { t: "ul", items: [
+            "Watch the <b>connectors</b>: however, yet, nonetheless, but, in spite of. They mark where the passage turns, and a turn is what most structure questions are about.",
+            "Opinion words (merely, undermined, ignores, pays limited attention) tell you which paragraph carries the author's view and which carries the view being reported.",
+            "A structure choice can be wrong for its <b>order</b> alone: 'evidence then theory' is not 'theory then evidence'."
+          ]},
+          { t: "tip", x: "Annotating a skeleton of the whole passage is the advice your guide calls the worst possible; a five-word job description per paragraph, held in your head or scribbled once, is enough to answer every structure and function question." }
+        ]
+      },
+      {
         id: "rc-application",
         title: "Application & Extension",
         mins: 4,
@@ -1090,6 +1164,34 @@ window.GMAT_CONCEPTS = [
             why: "Statement (1) alone: \\(x\\) could be 4 or \\(-4\\). Two values, so not sufficient — cross out A and D. Statement (2) alone, judged with (1) covered up: \\(x\\) is any positive number whatsoever, so clearly not sufficient — cross out B. Together: \\(x\\) is 4 or \\(-4\\) and also positive, which leaves 4 alone. Unique, so the answer is C. Notice how little arithmetic there was: the work was entirely in checking how many possibilities survived."
           },
           { t: "note", x: "Data Sufficiency now sits in the Data Insights section rather than in Quant. The full treatment — the decision tree, the numbers to test, and the C-trap — is in the Data Insights guide." }
+        ]
+      },
+      {
+        id: "q-testcases",
+        title: "Testing Cases in Data Sufficiency",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "When a statement allows several starting values, try them. Your Quant Basics guide turns this into a three-step routine whose aim is not to find the answer but to <b>prove the statement insufficient</b> as fast as possible." },
+          { t: "ol", items: [
+            "<b>What cases are allowed?</b> Read the stem's restrictions first: a digit is one of 0 to 9, a positive integer, an odd number. Those limits apply to every case you test.",
+            "<b>Choose numbers that make the statement true.</b> A number that makes the statement false must be discarded, however tempting the outcome. This is the step people skip.",
+            "<b>Try to prove insufficiency.</b> Get one outcome, then deliberately hunt for a second case with a different outcome. Two outcomes: not sufficient, cross off the answers and move on. Several tries with the same outcome: probably sufficient, and ideally you can say why."
+          ]},
+          { t: "table", head: ["Question type", "Sufficient", "Not sufficient"], rows: [
+            ["Value", "one numerical answer", "two or more possible answers"],
+            ["Yes / No", "always yes, or always no", "sometimes yes, sometimes no"]
+          ]},
+          { t: "p", x: "For a yes/no question decide <b>before</b> testing what would settle it. If \\(a = 2.4d7\\) and the question is whether \\(d &gt; 4\\), a statement that pins \\(d\\) to 5 through 9 is sufficient without giving \\(d\\), and a statement that allows both 3 and 5 is not." },
+          { t: "ul", items: [
+            "The cases that most often flip an answer: zero, one, a negative, a fraction between 0 and 1, and, when the stem allows, a non-integer. Positives and negatives, odds and evens, integers and proper fractions all behave differently under the same operation.",
+            "Write each case down as a small table: value tested, statement true?, answer to the question. Discarding a case should be a visible cross, not a mental note."
+          ]},
+          { t: "eg",
+            q: "If x is a positive integer, what is the units digit of x?\n(1) The units digit of \\(x^{2}\\) is 6.\n(2) The tens digit of 10x is 5.",
+            choices: ["Statement (1) alone is sufficient", "Statement (2) alone is sufficient", "Both together are sufficient", "Each alone is sufficient", "Together not sufficient"],
+            ans: "B",
+            why: "(1) \\(x = 4\\) gives 16 and \\(x = 6\\) gives 36, both ending in 6, with different units digits for \\(x\\): not sufficient. (2) \\(x = 45\\) gives 450, units digit 5; \\(x = 46\\) gives 460, whose tens digit is 6, so that case is not allowed and must be discarded; \\(x = 65\\) gives 650, units digit 5 again. Multiplying by 10 moves the units digit into the tens place, so the units digit is always 5: sufficient. Answer (B)."
+          }
         ]
       },
       {

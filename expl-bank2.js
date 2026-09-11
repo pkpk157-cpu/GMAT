@@ -1095,6 +1095,16 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   steps: "9,000 cm takes 75 seconds.\n(1) Under 72 seconds means under 8,640 cm: yes. Sufficient.\n(2) Over 66 seconds: 70 s (yes) or 80 s (no). Not sufficient.\nAnswer: A.",
   take: "Convert the distance threshold into a time threshold, then compare bounds."
 },
+"di-ds-traps-extra#1": {
+  fast: "The question is just 'does r equal minus s', and only the two statements together pin that down.",
+  traps: "(B) is the trap: statement (2) looks decisive because the equation is symmetric, but \\(t\\) can be the midpoint of \\(r\\) and \\(-s\\) instead, and that is the case statement (1) rules out.",
+  take: "Translate 'zero is halfway between' into r = -s before touching the statements."
+},
+"di-ds-traps-extra#2": {
+  fast: "It factors to \\(y^{x}\\) times (y - 1), a product of consecutive integers' powers, so it is always even.",
+  traps: "(C) is the trap: testing values instead of factoring makes each statement look like half the story. The expression's parity never depends on either statement.",
+  take: "Consecutive integers always include an even one, so y(y-1) and its relatives are never odd."
+},
 "di-ds-436-1#1": {
   steps: "Cost \\(= 14s + 9r\\).\n(1) \\(s = 2k, r = 3k\\): cost \\(= 55k\\), any \\(k\\). Not sufficient.\n(2) \\(s + r = 50\\) with the split unknown. Not sufficient.\nTogether \\(5k = 50\\), \\(k = 10\\): 20 shovels, 30 rakes, $550. Sufficient.\nAnswer: C.",
   take: "Ratio plus total is the standard C pattern; check that neither alone pins the count."
@@ -3824,6 +3834,21 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   fast: "60 − 36 = 24 = 7 + 8 + 9, exactly three more hours after 5 PM.",
   traps: "(B) 7:00 PM stops after 7 + 8 = 15 of the remaining 24.",
   take: "Measure work in worker-hours and add the changing crew hour by hour."
+},
+"quant-intricacies#1": {
+  fast: "Only (E) survives parity: 3, 5 and 11 sum to the prime 19 and are all prime themselves.",
+  traps: "(D) is the tempting one because \\(a + b = c\\) looks unconstrained, but it makes the sum even. (C) tempts anyone who forgets that a prime divisible by 3 must be 3 itself.",
+  take: "A prime sum above 2 is odd, so start every one of these by counting odd terms."
+},
+"quant-intricacies#2": {
+  fast: "Push one passer down to 47 and level the rest: the fifth and sixth scores both reach 92.",
+  traps: "(D) is where you land by forgetting that a passer must outscore every failer, which lets the lowest passer sit at 46. Averaging the whole group instead of tracking the fifth and sixth scores gives 74 and no choice at all.",
+  take: "To maximise a median, push everything below it as low as the constraints allow and level everything above it."
+},
+"quant-intricacies#3": {
+  fast: "Small fractions give I, a value just under 1 gives II, and III needs x above 2 and below 1 at once.",
+  traps: "(A) is where a single test value lands you: pick 2 or 3 and I and II die alongside III. Each ordering needs its own region of x.",
+  take: "For orderings of \\(x^{2}\\), \\(2x\\) and \\(\\tfrac{1}{x}\\), split the positive line at \\(\\tfrac{1}{\\sqrt{2}}\\), 1 and 2 and test one value from each piece."
 },
 "di-ds-stats-class#1": {
   steps: "The balance is $600 up to the withdrawal and $300 after it, so the monthly average depends only on the withdrawal day.\n(1) Twenty end-of-day balances of 600 and ten of 300: average \\(\\tfrac{20 \\cdot 600 + 10 \\cdot 300}{30} = 500\\). Sufficient.\n(2) If \\(x\\) of the first 25 days ended at 600 and \\(25 - x\\) at 300, then \\(600x + 300(25 - x) = 25 \\cdot 540\\), so \\(x = 20\\): the withdrawal was on day 21, the same situation as (1). Sufficient.\nAnswer: D.",

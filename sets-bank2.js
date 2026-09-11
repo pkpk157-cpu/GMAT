@@ -1232,6 +1232,20 @@
         "90 metres at 120 cm/s takes 75 seconds; 1.2 minutes is 72 seconds.",
         "9,000 cm takes 75 seconds.\n(1) Under 72 seconds means under 8,640 cm: yes. Sufficient.\n(2) Over 66 seconds: 70 s (yes) or 80 s (no). Not sufficient.\nAnswer: A.", "medium"),
     ] });
+  sets.push({ id: "di-ds-traps-extra", title: "DS Traps & Orientation Session — the Missing Few", section: "data",
+    source: "DS Traps, Tricks and Techniques and the Quant Special Orientation Session (every answer re-derived)",
+    questions: [
+      Q(1, "Yes / No questions", "C",
+        "On the number line, the points \\(r\\), \\(s\\) and \\(t\\) appear in that order from left to right. Is zero halfway between \\(r\\) and \\(s\\)?\n(1) \\(s\\) is to the right of zero.\n(2) The distance between \\(t\\) and \\(r\\) is the same as the distance between \\(t\\) and \\(-s\\).",
+        "DS",
+        "Zero is halfway between r and s exactly when r equals minus s.",
+        "The question asks whether \\(r = -s\\).\n(1) With \\(s > 0\\), the line could read \\(r = -1\\), \\(s = 1\\), \\(t = 3\\) (yes) or \\(r = 1\\), \\(s = 2\\), \\(t = 3\\) (no). Not sufficient.\n(2) \\(|t - r| = |t + s|\\) holds when \\(r = -s\\), but also when \\(t\\) sits midway, as in \\(r = -4\\), \\(s = -2\\), \\(t = -1\\), where both distances are 3 and zero is not halfway. Not sufficient.\nTogether \\(s > 0\\) puts \\(-s\\) to the left of \\(t\\) along with \\(r\\), so the equal distances force \\(r = -s\\). Sufficient.\nAnswer: C.", "hard"),
+      Q(2, "Yes / No questions", "D",
+        "If \\(x\\) and \\(y\\) are both positive integers, is \\(y^{x+1} - y^{x}\\) odd?\n(1) \\(x\\) is odd.\n(2) \\(y\\) is even.",
+        "DS",
+        "Factor the expression before testing anything.",
+        "Factor: \\(y^{x+1} - y^{x} = y^{x}(y - 1)\\). One of \\(y\\) and \\(y - 1\\) is always even, so the product is always even and the answer is always no, whatever the statements say.\n(1) \\(x\\) odd: still even either way. Sufficient (a definite no).\n(2) \\(y\\) even makes \\(y^{x}\\) even. Sufficient (a definite no).\nAnswer: D.", "medium"),
+    ] });
   sets.push({ id: "di-ds-436-1", title: "DS Collection — Practice Test 1", section: "data",
     source: "DS 436 Questions (Practice Test 1; printed key, every answer independently re-derived)",
     questions: [
@@ -4515,6 +4529,25 @@
         ["6:40 PM", "7:00 PM", "7:20 PM", "8:00 PM", "8:15 PM"],
         "The job is 60 technician-hours; count what is done by 5 PM and then hour by hour.",
         "Total work \\(= 6 \\times 10 = 60\\) technician-hours. From 11 AM to 5 PM: \\(6 \\times 6 = 36\\), leaving 24. Then 7 technicians (5–6 PM), 8 (6–7 PM), 9 (7–8 PM) contribute \\(7 + 8 + 9 = 24\\): done at 8:00 PM.\nAnswer: D.", "medium"),
+    ] });
+  sets.push({ id: "quant-intricacies", title: "Orientation Session — Real-Exam Problem Solving", section: "quant",
+    source: "Quant Special Orientation Session, 20 questions asked in May 2023 (every answer derived and checked)",
+    questions: [
+      Q(1, "Prime numbers & factorization", "E",
+        "If \\(a\\), \\(b\\) and \\(c\\) are three different positive integers whose sum is prime, which of the following statements could be true?",
+        ["Each of \\(a + 3\\), \\(b + 3\\) and \\(c + 3\\) is prime.", "Each of \\(a + b\\), \\(a + c\\) and \\(b + c\\) is prime.", "The average (arithmetic mean) of \\(a\\), \\(b\\) and \\(c\\) is prime.", "\\(a + b = c\\)", "Each of \\(a\\), \\(b\\) and \\(c\\) is prime."],
+        "Three different positive integers sum to at least 6, so the prime sum is odd. What does that force about parity?",
+        "Step 1 — The smallest sum of three different positive integers is \\(1 + 2 + 3 = 6\\), so a prime sum is an odd prime. An odd sum needs one or three odd terms.\nStep 2 — (D) fails: \\(a + b = c\\) makes the sum \\(2c\\), which is even and larger than 2.\nStep 3 — (C) fails: if the mean is prime then \\(3\\) divides the prime sum, forcing the sum to be 3, which is below 6.\nStep 4 — (A) fails: with exactly one odd term that odd term plus 3 is even and at least 4; with three odd terms all three sums are even and at least 4.\nStep 5 — (B) fails: whichever parity split occurs, one of the pairwise sums is even and at least 6.\nStep 6 — (E) works: \\(3 + 5 + 11 = 19\\) is prime and all three are prime.\nAnswer: E.", "very-hard"),
+      Q(2, "Mean, median & mode", "E",
+        "A group of 10 students took an exam that was scored from 0 to 100 points, and each of the 10 scores was an integer. Seven students in the group passed the exam, and those students received an average score of 86. The average score on the exam for the entire group was 74. If \\(M\\) is the highest possible value of the median score for the entire group of 10 students, which of the following must be true?",
+        ["\\(83 < M < 85\\)", "\\(85 < M < 87\\)", "\\(87 < M < 89\\)", "\\(89 < M < 91\\)", "\\(M > 91\\)"],
+        "Work out the three failing scores first: their total is fixed, and it caps how low the lowest passing score can be.",
+        "Step 1 — All ten total \\(10 \\times 74 = 740\\) and the seven passers total \\(7 \\times 86 = 602\\), so the three who failed total \\(138\\).\nStep 2 — Three scores totalling 138 have a largest of at least 46, and every passer beat every failer, so the lowest passing score is at least 47.\nStep 3 — The median is the average of the fifth and sixth scores, which are the second and third lowest passers, \\(p_{2}\\) and \\(p_{3}\\).\nStep 4 — The four passers above them are each at least \\(p_{3}\\), so \\(47 + p_{2} + 5p_{3} \\le 602\\). With \\(p_{2} \\le p_{3}\\) this caps \\(p_{2} + p_{3}\\) at 184.\nStep 5 — That cap is reached: failers 46, 46, 46 and passers 47, 92, 92, 93, 93, 93, 93 total 602, and the median is 92.\nStep 6 — \\(M = 92\\), so \\(M > 91\\).\nAnswer: E.", "very-hard"),
+      Object.assign(Q(3, "Inequalities & absolute value", "D",
+        "If \\(x\\) is positive, which of the following could be a correct ordering of \\(\\tfrac{1}{x}\\), \\(2x\\) and \\(x^{2}\\)?\nI. \\(x^{2} < 2x < \\tfrac{1}{x}\\)\nII. \\(x^{2} < \\tfrac{1}{x} < 2x\\)\nIII. \\(2x < x^{2} < \\tfrac{1}{x}\\)",
+        ["None", "I only", "III only", "I and II only", "I, II and III"],
+        "Each inequality between two of the three expressions is really a statement about where x sits relative to 1.",
+        "Step 1 — I: take \\(x = \\tfrac{1}{2}\\), giving \\(x^{2} = 0.25\\), \\(2x = 1\\) and \\(\\tfrac{1}{x} = 2\\), so \\(0.25 < 1 < 2\\) works.\nStep 2 — II: \\(\\tfrac{1}{x} < 2x\\) needs \\(x^{2} > \\tfrac{1}{2}\\), and \\(x^{2} < \\tfrac{1}{x}\\) needs \\(x^{3} < 1\\), so \\(x\\) must lie between \\(\\tfrac{1}{\\sqrt{2}}\\) and 1. Take \\(x = 0.9\\): \\(0.81 < 1.11 < 1.8\\) works.\nStep 3 — III: \\(2x < x^{2}\\) needs \\(x > 2\\), while \\(x^{2} < \\tfrac{1}{x}\\) needs \\(x < 1\\). No value satisfies both.\nAnswer: D.", "hard"), { dup: "quant-ineq-class#1" }),
     ] });
   sets.push({ id: "di-ds-stats-class", title: "Class Session DS — Statistics & Number Properties", section: "data",
     source: "QA Session 2, Statistics + Numbers, 30 questions (printed key and solutions; every answer re-derived)",

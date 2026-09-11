@@ -558,6 +558,166 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(D) gives the birds more space, which was never the problem; the problem was food. (A) removes crabs and makes things worse. (C) and (E) are about tourist spending and migration routes, neither of which touches whether the birds will find eggs.",
   take: "To answer a density objection, change the numerator as well as the denominator."
 },
+"cr-club-conclusion#1": {
+  fast: "Four candidate causes were removed and the difference stayed, so the cause is something else.",
+  traps: "(C) is the popular answer but treats health outcomes as a direct measure of how well money is spent, which the passage never establishes. (B) reads a causal link into a bare correlation between spending and disease rates.",
+  take: "When a study controls for a list of factors and the effect persists, the safe inference is that the cause is off that list."
+},
+"cr-club-conclusion#2": {
+  fast: "Fifty-five percent female makes forty-five percent male, and nobody aged 18 to 70 is 75.",
+  traps: "(C) fails on the arithmetic: two-thirds support leaves a third of the votes, and a single rival could take all 33 percent of it, which exceeds 30. (A) fails too: if every male backed the incumbent, the female share of that two-thirds could fall below half of all women.",
+  take: "On must-be-true questions, the unexciting restatement often beats the interesting inference."
+},
+"cr-club-conclusion#3": {
+  fast: "Overhead is the leftover: 30 percent for Making Hits against 20 percent for Song Factory.",
+  traps: "(B) compares amounts of money from percentages of two unknown budgets, so a larger share of a smaller budget could be less. (E) asserts that marketing caused the sales difference, which two data points cannot establish.",
+  take: "Percentages of different totals compare only as percentages unless the totals are given."
+},
+"cr-club-conclusion#4": {
+  fast: "Proposing it as a profit measure commits them to the revenue exceeding the safety compliance cost.",
+  traps: "(B) confuses seeking approval with expecting it; a company can apply without being sure. (D) and (E) read a ranking of safety against revenue into a proposal that simply goes through the safety process.",
+  take: "A proposal made to raise profit commits its author to the benefit exceeding the cost, nothing more."
+},
+"cr-club-conclusion#5": {
+  fast: "The complaint that foreign words test phonetics implies spelling them requires knowing the language's sounds.",
+  traps: "(B) says foreign words are harder for all contestants, but the columnist objects to the kind of skill tested, not the difficulty. (C) is the reverse of the columnist's position, which is that language facility in general is beside the point.",
+  take: "An objection that something tests the wrong skill tells you what skill the speaker thinks it tests."
+},
+"cr-club-conclusion#6": {
+  fast: "An IQ of 130 clears the 120 bar, so nothing forbids this person from being a TopNotch graduate.",
+  traps: "(A) and (E) both hinge on an IQ of exactly 150, which is not 'over 150', so the 'all' rule never applies. (B) says such a person could not have been a <i>student</i>, but the premise covers only those who graduated.",
+  take: "A choice claiming mere possibility needs only to be consistent with the premises, so check it first."
+},
+"cr-club-conclusion#7": {
+  fast: "A third of 80 percent is 26.7 percent, which is less than the 33.3 percent with financial responsibilities.",
+  traps: "(D) reverses the definition: the passage lists those contributions as examples of significant responsibilities, not as a sufficient condition for having them. (A) is a recommendation, and recommendations never follow from statistics alone.",
+  take: "A percentage of a subgroup must be converted to a percentage of the whole before any comparison."
+},
+"cr-club-conclusion#8": {
+  fast: "'Rarely' concedes that the pairing happens sometimes, and those cases are what (B) describes.",
+  traps: "(A) and (C) convert 'rarely' into 'never', which is precisely the word the analyst avoided. (D) compares every non-creative worker with every creative one, where the analyst compared most creatives with an average.",
+  take: "Hedge words like rarely, often and most concede the other side; the inference usually lives in that concession."
+},
+"cr-club-conclusion#9": {
+  fast: "Those priced out of the accounts lose their vaccinations, which makes infection likelier.",
+  traps: "(A) is contradicted by the argument's logic: infectious disease spreading among the unvaccinated reaches the wealthy too. (C) is far stronger than the claim that serious illness will go undetected in many cases.",
+  take: "The safest inference is usually one short step from a sentence the argument already asserts."
+},
+"cr-club-conclusion#10": {
+  fast: "Missing melanin goes with more sun damage, so melanin protects against it.",
+  traps: "(B) overshoots badly: having plenty of melanin does not make sun damage something a person can ignore. (A) and (E) invent facts about compensating biology and sunscreen that the passage never mentions.",
+  take: "A deficiency causing harm licenses only the modest conclusion that the missing thing helps."
+},
+"cr-club-conclusion#11": {
+  fast: "Attacking a harmless protein as if it were a pathogen is a failure to recognise it.",
+  traps: "(C) reverses the symptom relationship: cramps, bloating and anemia have many other causes. (A) treats a list of symptoms the disease 'includes' as symptoms every sufferer must have.",
+  take: "Watch for 'as if', which flags a mistaken identification the passage is quietly asserting."
+},
+"cr-club-conclusion#12": {
+  fast: "Mayville is 6 higher overall and 5 lower without weather, so weather accounts for 11 more delays per 100.",
+  traps: "(B) jumps from more weather delays to worse weather, but an airport can be worse at coping with the same weather. (C) names mechanical problems specifically, where the data only cover non-weather delays as a whole.",
+  take: "When a total splits into two parts and you know the total and one part, the other part is forced."
+},
+"cr-club-conclusion#13": {
+  fast: "A ten percent discount that survives shipping means shipping is under ten percent of the local price.",
+  traps: "(D) measures the same fee against Isadore's price instead of Larry's; ten percent of the smaller figure is a different threshold, and the stimulus does not settle it. (A) and (E) are about production costs and efficiency, where the passage gives only prices.",
+  take: "Percentages need a stated base; the same fee can be above one threshold and below another."
+},
+"cr-club-conclusion#14": {
+  fast: "More total receipts from fewer than half as many films forces a higher average per film.",
+  traps: "(E) converts receipts into ticket buyers, which requires knowing the ticket price the passage never gives. (A) predicts the second half's takings, and nothing guarantees those films will earn anything.",
+  take: "Receipts are money, not people; converting between them needs a price you have not been given."
+},
+"cr-club-conclusion#15": {
+  fast: "Twenty-five plus ninety exceeds a hundred by fifteen, so at least that many are in both groups.",
+  traps: "(B) mishandles 'over 90 percent': the remainder is under 10 percent, and those people need not believe they are less productive, only not more. (E) declares the employees' beliefs false, which no evidence here establishes.",
+  take: "Two overlapping percentages force a minimum overlap of their sum minus one hundred."
+},
+"cr-club-conclusion#16": {
+  fast: "Cost is revenue minus profit, and both stands reported the same revenue and the same profit.",
+  traps: "(A) reverses the arithmetic: equal revenue at a lower price per cup means Daisy's sold <b>more</b> cups, not fewer. (B), (D) and (E) speculate about quality, preference and pricing strategy, none of which appear in the passage.",
+  take: "Whenever two of revenue, cost and profit are pinned down, the third is determined."
+},
+"cr-club-conclusion#17": {
+  fast: "Scientists left because of the restrictions, so their new employers must face lighter ones.",
+  traps: "(E) predicts that scientists will break long-term contracts, which the passage gives no reason to expect. (D) forecasts the loss of American leadership, a much larger claim than the facts support.",
+  take: "A move made to escape a constraint implies the destination is less constrained."
+},
+"cr-club-conclusion#18": {
+  fast: "More than 100,000 lives saved means more than 100,000 who would otherwise have died.",
+  traps: "(B) fails on the arithmetic: 98,000 deaths a year is about 147,000 over eighteen months, so saving 100,000 leaves many unsaved. (C) and (E) forecast the future, which no completed study can establish.",
+  take: "'Lives saved' translates directly into 'deaths that would otherwise have occurred' and no further."
+},
+"cr-club-conclusion#19": {
+  fast: "Revising a previous estimate of the divergence date means earlier analysis had already found the link.",
+  traps: "(C) promises exact characteristics from future research, well beyond a passage that offers only a startling hypothesis. (A) and (E) make claims about hybrids and DNA complexity that appear nowhere in the text.",
+  take: "When a passage revises a prior estimate, the existence and subject of that prior work is fair game."
+},
+"cr-club-conclusion#20": {
+  fast: "Eighty percent of ten billion wasted leaves about two billion that is not.",
+  traps: "(B) confuses wasting the most energy with spending the most on it; another industry could spend far more and waste less. (A) invents a 30 percent saving that no figure in the passage produces.",
+  take: "When a percentage of a stated total is described one way, the complement is always available."
+},
+"cr-club-conclusion#21": {
+  fast: "Self-monitoring plus a predicted increase is exactly 'the opposite of the intended consequence'.",
+  traps: "(A) sweeps in every chemical company, where the author carefully wrote 'certain polluters'. (D) turns a point about this proposal into a universal rule about all government proposals.",
+  take: "Restate the author's point in the author's own scope; watch for choices that widen 'certain' into 'all'."
+},
+"cr-club-conclusion#22": {
+  fast: "Honour the signed terms and set no precedent for reopening them is exactly 'don't change the rules mid-game'.",
+  traps: "(A) treats the windfall as a lucky break to be seized, which is the government's characterisation rather than the executives' stated reasoning. (C) concedes the gain comes at the public's expense, which no executive claims.",
+  take: "Match a proverb to the speaker's stated reasons, not to the outcome that happens to favour them."
+},
+"cr-club-conclusion#23": {
+  fast: "The conclusion is the claim about Amy, and (D) restates it using the same minimum the rule sets.",
+  traps: "(A) restates the premise, which is the rule the argument uses rather than the point it makes. (E) turns the conclusion into a counterfactual about the captaincy that the argument never draws.",
+  take: "The main point is the claim being supported, never the rule doing the supporting."
+},
+"cr-club-conclusion#24": {
+  fast: "One specialised service, one customer base, and a shock to that base forcing layoffs.",
+  traps: "(B) loses a single client from what is presumably a roster of them, so no over-reliance is shown. (C) and (E) describe firms diversifying, which is the opposite of the tension, and (D) is about labour costs entirely.",
+  take: "To complete a sentence about a tension, pick the case that displays both sides of it."
+},
+"cr-club-conclusion#25": {
+  fast: "Talking about those with the greatest percentage change presupposes the reductions varied above the 25 percent floor.",
+  traps: "(B) predicts longer lives from a six-month study of insulin and temperature, two steps beyond the evidence. (A) generalises the rodent results to humans, which the study was designed to test rather than assume.",
+  take: "A comparison among a group presupposes variation within it; that presupposition is often the inference."
+},
+"cr-club-conclusion#26": {
+  fast: "Spelling out that no other infraction is needed implies one used to be.",
+  traps: "(D) says the previous laws saved no lives, but the passage claims only that the new one will save <i>additional</i> lives. (B) and (C) assert a constitutional violation and results from other states, neither of which the passage mentions.",
+  take: "A newly stated exception tells you what the old rule required."
+},
+"cr-club-conclusion#27": {
+  fast: "Six years ago is outside the five-year window, so the course must be retaken.",
+  traps: "(D) reads naturally but says 'isn't 18 years old', which is literally true of a 40-year-old who can certainly hold a permit. (B) invents an exemption the passage never grants and adds a claim about drinking laws.",
+  take: "Prefer the choice whose wording survives a literal reading over the one that only works loosely."
+},
+"cr-club-conclusion#28": {
+  fast: "The protest brings the regulation that brings the prices the public then complains about.",
+  traps: "(A) is a recommendation, and the passage weighs costs on both sides without recommending anything. (E) turns the passage's 'leading to' into 'always', and (C) claims only unregulated services draw protest, which the passage contradicts.",
+  take: "When a passage traces a cycle, the safe inference describes the cycle rather than judging it."
+},
+"cr-club-conclusion#29": {
+  fast: "Incomplete binding is given as the reason effectiveness drops, so full effect needs proper binding.",
+  traps: "(A) is the mistaken negation of the stated timing: the passage covers the within-one-hour case and says nothing about later. (E) rules out future drug design, well beyond anything the researchers claim.",
+  take: "When a passage explains a failure by a mechanism, the inference is that the mechanism is needed for success."
+},
+"cr-club-conclusion#30": {
+  fast: "A latent talent in children who showed no early aptitude is a talent that was not yet visible.",
+  traps: "(B) and (E) push to 'everyone' and 'all children', where the educator writes only of children directed away from music. (A) recommends withdrawing attention from talented students, which the educator never proposes.",
+  take: "Words like 'latent', 'potential' and 'undeveloped' signal that something real is present but unobserved."
+},
+"cr-club-conclusion#31": {
+  fast: "Best equipment plus poor training still means high risk, so preparation can cancel the gear's benefit.",
+  traps: "(A) ranks training above equipment, but the passage says both matter without weighing them. (B) claims trained people are never injured, far stronger than a reduced risk.",
+  take: "'Even if' sentences establish that one factor can override another, not that it is the more important one."
+},
+"cr-club-conclusion#32": {
+  fast: "Treatment for harmless findings is unnecessary treatment, which is harm arriving indirectly.",
+  traps: "(B) tells patients not to worry, but the passage says only that some findings are harmless, not that all are. (D) and (E) rank the two procedures and compare their prices, neither of which the passage supports.",
+  take: "A test that produces false alarms harms patients through the treatment that follows, not through the test."
+},
 "cr-club-eval-paradox#1": {
   fast: "The study has no control group, so ask what the same programme achieves without the pill.",
   traps: "(B) asks about the best single result, which tells you nothing about the average or the cause. (A) and (D) fill in details of the study without separating the supplement from the exercise.",

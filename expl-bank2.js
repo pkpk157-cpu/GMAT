@@ -768,6 +768,26 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) is about living descendants, irrelevant to ancestry of birds. (D) and (E) add detail about which species or features are involved, which the timing argument never uses. (B) concerns flightless dinosaurs and does not affect the age comparison.",
   take: "Arguments from 'the record shows no X' assume the record is complete; absence of evidence is the usual gap."
 },
+"cr-tp100#1": {
+  fast: "She grants the premise and attacks the leap from enabling safe driving to getting safer driving.",
+  traps: "(A) and (D) have her disputing the clear view or its relevance, but she accepts both. (B) offers an alternative method, which she never does. (E) reverses her position: her evidence supports, rather than undermines, the idea that better visibility need not mean fewer accidents.",
+  take: "When an argument says a measure makes good behaviour possible, the assumption is always that people will behave that way."
+},
+"cr-tp100#2": {
+  fast: "Red in a copy made right after his death means red was the look at the end of his life.",
+  traps: "(E) overreaches: the critic addresses how the painting looked at Veronese's death, not what Veronese originally intended, and the tests still say the red went on after completion. (A) generalises from one detail of the copy to the whole copy. (B) and (D) are about restoration policy and artistic value, neither of which the exchange touches.",
+  take: "An inference from a rebuttal must stay inside the narrow fact the rebuttal establishes."
+},
+"cr-tp100#3": {
+  fast: "'Little' versus 'sufficient' leverage under the same ban: that is the disagreement.",
+  traps: "(B) and (D) are about how much leverage companies should have, a normative question neither speaker addresses. (A) puts a view about temporary replacements into David's mouth; he never mentions them. (E) states David's position, and Lin's remark suggests she would not call the ban unfair.",
+  take: "In a point-at-issue question, check that both speakers actually spoke to the issue the choice names."
+},
+"cr-tp100#4": {
+  fast: "He accepts the observation and relocates its cause: it is scepticism about clairvoyance, not a flaw in the definition.",
+  traps: "(B) and (C) both reverse him: he never claims clairvoyance yields knowledge as things stand, nor defends its reliability. (D) reframes the definition as personal taste, which would abandon the defence rather than make it. (E) has him rule clairvoyance out of the definition, but he says the opposite would follow if we believed in it.",
+  take: "One way to defend a definition is to explain a counterexample by a factor outside the definition."
+},
 "di-ds-basics-guide#1": {
   steps: "(1) Expanding, \\(x^{2} + (m + n)x + mn = x^{2} + 5x + mn\\), so \\((m + n)x = 5x\\), and since \\(x \\ne 0\\), \\(m + n = 5\\). Sufficient.\n(2) \\(mn = 4\\) allows \\((1, 4)\\), \\((2, 2)\\), \\((-1, -4)\\), with sums 5, 4 and \\(-5\\). Not sufficient.\nAnswer: A.",
   take: "A value question about a combination does not need the individual variables."

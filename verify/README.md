@@ -112,8 +112,8 @@ filled in from memory.
 
 | Section | Questions | How verified |
 |---|---|---|
-| Quant + Data Insights | 2,045 | 1,923 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
-| Critical Reasoning | 609 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
+| Quant + Data Insights | 2,049 | 1,928 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
+| Critical Reasoning | 657 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
 | Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
 
 `di4-derive.py` covers the four non-Data-Sufficiency Data Insights types. Those

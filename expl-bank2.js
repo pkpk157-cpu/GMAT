@@ -388,6 +388,136 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(B) 50% guesses from the centre lying on the diagonal.",
   take: "A chord at distance \\(r/\\sqrt{2}\\) from the centre spans a right angle; segment = quarter circle − right triangle."
 },
+"cr-assume-latest#1": {
+  fast: "They switched recently, which is after they won, so the club cannot be credited with the wins.",
+  traps: "(A) is the tempting pick because it sounds like the strongest claim in the advertisement, but 'add power to your swing and distance to your drives' states it plainly. The exception is the one claim the timing rules out.",
+  take: "In advertisement questions, the order of events in the endorsement is usually where the answer hides."
+},
+"cr-assume-latest#2": {
+  fast: "A predictable loss can be corrected for, so the argument needs the loss to be unpredictable.",
+  traps: "(C) tempts because it sounds like a precise mechanism, but how quickly a ring is lost does not matter; what matters is whether the count can be repaired. (B) compares the Brazilian ash with other species, which the conclusion never does.",
+  take: "A source of error only ruins a measurement when you cannot quantify and correct for it."
+},
+"cr-assume-latest#3": {
+  fast: "Calling something un-American needs a premise about what American tradition actually is.",
+  traps: "(B) and (A) are far more extreme than anything the author claims; the argument says other limits could <i>in time</i> become acceptable, not that a crackdown is imminent. (E) turns a specific objection into blanket opposition to all regulation.",
+  take: "When an argument leans on a loaded label, the assumption is usually the definition behind it."
+},
+"cr-assume-latest#4": {
+  fast: "The covers reveal the publisher's priorities only if the publisher actually chooses the covers.",
+  traps: "(E) looks like support because it explains why the change boosts sales, but it strengthens rather than being required, and the argument is about the publisher's intent, not the sales figures. (C) concerns what a magazine could do, not what this publisher chose to do.",
+  take: "When an argument attributes a motive to a person, check that the person controls the thing being cited."
+},
+"cr-assume-latest#5": {
+  fast: "Evidence about one product, conclusion about another: the bridge is that tastes carry over.",
+  traps: "(A) is the negation of the assumption, so it destroys the argument rather than supporting it. (D) is true of the world but harmless to the reasoning, and (B) and (C) describe subgroups the argument never uses.",
+  take: "When the evidence and the conclusion cover different things, the assumption is the bridge between them."
+},
+"cr-assume-latest#6": {
+  fast: "Two brushstrokes are dated, not the finish; only a short working period makes those the same thing.",
+  traps: "(A) is the tempting one: it seems to shore up the 1509 boundary. But the premise is about Michelangelo abandoning the pigment, which is a fact about his own practice, so whether stocks survived elsewhere changes nothing. (D) and (E) raise other dating methods and style, neither of which the argument uses.",
+  take: "Evidence that dates part of a work does not date the whole of it unless the work was made quickly."
+},
+"cr-assume-latest#7": {
+  fast: "Gas plants cost more and oil plants cost less, so the gas share has to be the larger one.",
+  traps: "(E) is the classic misread: a spike in oil prices would push costs <i>up</i>, which helps the conclusion rather than being required by it. (A) and (B) are about paying for the increase, not about whether it happens.",
+  take: "When only part of an operation is affected, the assumption is usually about how big that part is."
+},
+"cr-assume-latest#8": {
+  fast: "The promise of seeing rare species needs the reader to go where rare species are.",
+  traps: "(D) restates a premise rather than supplying one; the advertisement already says the price is comparable. (A) sharpens 'lightweight' into a comparison the argument never needs.",
+  take: "A claim that a product delivers a result assumes the other conditions for that result are already met."
+},
+"cr-assume-latest#9": {
+  fast: "The advice only works if the damp causes the mold rather than the mold causing the damp.",
+  traps: "(C) is far stronger than needed: the passage says mold is <i>almost always</i> found in damp places, so the argument survives mold growing in a dry spot occasionally. (D) and (E) address harmlessness and filtering, neither of which the recommendation relies on.",
+  take: "A recommendation built on a correlation assumes the causation runs the way the recommendation needs."
+},
+"cr-assume-latest#10": {
+  fast: "Reading opinion off the law requires the law to reflect opinion.",
+  traps: "(C) overstates the case: the argument needs a majority, and a majority can coexist with strong opposition. (E) compares sentencing standards, which has nothing to do with what the public believes.",
+  take: "Institutional facts do not automatically reveal popular opinion; the argument must assume they do."
+},
+"cr-assume-latest#11": {
+  fast: "The survey is a correlation; the conclusion is causal, so the reverse direction must be excluded.",
+  traps: "(A) is about the consequences of anxiety, which the argument never reaches. (C) attacks the study's design, and a lopsided sample would not by itself explain a difference in rates.",
+  take: "For a causal conclusion drawn from a correlation, the required assumption is usually that the causation does not run backwards."
+},
+"cr-assume-latest#12": {
+  fast: "Appreciation requires the good news to be news; the price must not already contain it.",
+  traps: "(C) is word-for-word a stated premise, not an assumption; the stimulus already says the growth is likely to persist. (E) compares Company X with its peers, which the conclusion never does.",
+  take: "Predicting a price rise from known good news assumes the price has not already absorbed it."
+},
+"cr-assume-latest#13": {
+  fast: "She borrows the adult benchmark, so children's use must be comparable to adults' use.",
+  traps: "(B) is a claim about what is always true, far stronger than Lucy's single comparison. (D) is about Antoine's honesty, which Lucy never questions, and (A) concerns how often norms are exceeded rather than whether the norm transfers.",
+  take: "When a speaker judges one group by another group's benchmark, the assumption is that the benchmark carries over."
+},
+"cr-assume-latest#14": {
+  fast: "The complaint needs the non-liberal-arts degrees to be the less rigorous ones.",
+  traps: "(D) ranks rigour against other goals, which the reader never does; the lament only needs rigour to be declining, not to be paramount. (B) is a recommendation rather than a premise the argument requires.",
+  take: "When a shift from A to B is called a decline, the assumption is that B is worse than A on the stated measure."
+},
+"cr-assume-latest#15": {
+  fast: "A 10 percent price rise gives 10 percent more revenue only if the volume sold does not fall.",
+  traps: "(D) is about cost, which affects profit rather than revenue, and the projection is a revenue projection. (B) makes the same slip from revenue to profit, and (C) concerns other business lines the projection excludes.",
+  take: "Any revenue projection from a price change assumes something about quantity; find that assumption first."
+},
+"cr-assume-latest#16": {
+  fast: "A false report can come from an honest bad method or an accurate method reported dishonestly.",
+  traps: "(A) looks necessary because someone must be right about the size, but the stimulus already treats the company's finding as what was actually there, and no third-party ruling is needed. (C) is about commercial viability, which the conclusion never touches.",
+  take: "Blaming a method for a wrong result assumes the result was reported in good faith."
+},
+"cr-assume-latest#17": {
+  fast: "The example only works if phones in school are a mere annoyance, not an important problem.",
+  traps: "(B) runs against the parent, who wants students to keep their phones until one actually disrupts a class. (E) ranks a leader's attributes, which the parent never does.",
+  take: "When an argument rests on an example, the assumption is usually that the example really is an instance of the claim."
+},
+"cr-assume-latest#18": {
+  fast: "Treating only existing sufferers is optimal only if earlier treatment would not have prevented the problem.",
+  traps: "(A) suggests other treatments also help, which does not bear on where chiropractic care should be aimed. (D) is about how the treatment is scheduled, and (B) and (E) are about insurance and lost workdays, none of which touch the goal of minimising the suffering population.",
+  take: "A policy aimed at treatment assumes prevention would not have done the job better."
+},
+"cr-assume-latest#19": {
+  fast: "Aid indicates need only if nobody is collecting aid they do not need.",
+  traps: "(C) compares raw numbers, but the argument is about proportions, and the stimulus says for-profits serve far fewer students. (D) and (E) concern educational quality and loan defaults, neither of which bears on who is financially disadvantaged.",
+  take: "When a proxy stands in for a fact, the assumption is that nothing corrupts the proxy."
+},
+"cr-assume-latest#20": {
+  fast: "Marriage causes the difference only if healthier, happier people are not simply the ones who marry.",
+  traps: "(C) is far too extreme; the conclusion needs an average benefit, not immunity from depression. (A) is about duration and (E) about harmony, neither of which the commentators' claim requires.",
+  take: "For 'X causes Y' drawn from a comparison of groups, rule out that Y-ish people were the ones who ended up in group X."
+},
+"cr-assume-latest#21": {
+  fast: "Building a factory to serve Country X assumes Country X will keep buying.",
+  traps: "(E) is a business advantage, not a requirement: the tariff saving alone can justify the move even if labour costs more. (D) concerns the home country's own tariffs, which do not affect goods sold in Country X.",
+  take: "A plan justified by long-term profit assumes the demand it depends on lasts that long."
+},
+"cr-assume-latest#22": {
+  fast: "Facts about consumer harm become advice to companies only through a duty to consumers.",
+  traps: "(A) would strengthen the claim that consumers have no alternative, but the argument already says the patent holder faces no direct competition. (E) trades price against quality, a comparison the argument never makes.",
+  take: "When evidence about one party's welfare produces advice to another, the bridge is an obligation."
+},
+"cr-assume-latest#23": {
+  fast: "A clean surface means a safe fruit only if nothing gets through the skin.",
+  traps: "(C) is tempting because mixed use would muddle the two categories, but the conclusion is already restricted to farms that use only organic pesticides. (B) reverses the timing: organic pesticide dissipates within hours, so a longer journey is safer, not riskier.",
+  take: "Watch for an argument that establishes something about a surface and concludes something about the whole object."
+},
+"cr-assume-latest#24": {
+  fast: "Flat savings accounts prove nothing unless other savings vehicles are flat as well.",
+  traps: "(E) concerns the people who lost their jobs, but the prediction was about people whose jobs were secure. (A), (C) and (D) describe the state of the economy, not where the unspent money went.",
+  take: "When one indicator stands in for a behaviour, the assumption is that no other outlet absorbed it."
+},
+"cr-assume-latest#25": {
+  fast: "Asking nurses to triage assumes nurses can judge how severe a case is.",
+  traps: "(D) overstates what is needed: the plan requires nurses to be available, not for every hospital to be fully staffed at all times. (B) attacks a rival plan, and refuting an alternative is not an assumption of this one.",
+  take: "A proposal that assigns a task always assumes the assignee can perform it."
+},
+"cr-assume-latest#26": {
+  fast: "Daytime camouflage forces a night discovery only if nothing else could reveal the butterfly by day.",
+  traps: "(D) sharpens the camouflage claim, but even perfect green foliage leaves non-visual methods open, so it does not rescue the conclusion. (A), (C) and (E) concern the species' relatives and range, none of which bear on when it was found.",
+  take: "'It could not be seen' is not 'it could not be found'; watch for arguments that treat them as the same."
+},
 "cr-boldface-addon#1": {
   fast: "The 'Thus' sentence supports the boldface one, not the other way round, so the boldface is the main conclusion.",
   traps: "(B) describes a premise that defends the argument from attack, which fits the second sentence. (C) describes a premise supporting a sub-conclusion, again the second sentence. (D) describes the last sentence, not the first.",

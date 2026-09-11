@@ -428,6 +428,61 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(D) gives the birds more space, which was never the problem; the problem was food. (A) removes crabs and makes things worse. (C) and (E) are about tourist spending and migration routes, neither of which touches whether the birds will find eggs.",
   take: "To answer a density objection, change the numerator as well as the denominator."
 },
+"cr-conditional-class#1": {
+  fast: "Heavy rain forces above-average height, and half of an above-average height beats half of the average.",
+  traps: "(B) is the mistaken reversal: a long taproot could come from other causes. (C) is the mistaken negation: rain is not the only thing that makes the plant grow. (A) and (D) both assume rainfall is the sole determinant of height, which the stimulus never says.",
+  take: "A fixed ratio between two quantities lets you transfer any conclusion from one to the other."
+},
+"cr-conditional-class#2": {
+  fast: "Socialist to influenced to not totalitarian is the whole chain, and (A) is its endpoint.",
+  traps: "(B) and (E) reverse the chain, treating 'did not advocate a totalitarian state' as the trigger rather than the result. (C) invents an exclusivity claim about who influenced whom. (D) invents a socialist-or-communist split among the influenced that the premises never establish.",
+  take: "Two conditionals that share a term chain in one direction only; the reverse is never guaranteed."
+},
+"cr-conditional-class#3": {
+  fast: "Popular with faculty forces unpopular with students, which forces the new policy.",
+  traps: "(D) swaps the two groups: popularity among students forces unpopularity with the faculty, which calls for modification, not a new policy. (B) and (C) add conditions about reducing popularity that nothing in the stimulus supports. (A) recommends an action the stimulus never mentions.",
+  take: "An 'A or B' premise is a conditional in disguise: not A gives B."
+},
+"cr-conditional-class#4": {
+  fast: "Contrapositive of 'financial problems block happiness' is 'happy means no financial problems'.",
+  traps: "(B) and (C) treat the absence of financial problems as enough for happiness, but the passage makes it only necessary. (D) reverses the conditional: plenty of other things can make people unhappy. (A) makes a sweeping claim about all unhappiness.",
+  take: "'Only if' marks a necessary condition; do not read it as a guarantee."
+},
+"cr-conditional-class#5": {
+  fast: "Reverse and negate the whole chain: writing essays implies using a computer implies some skills.",
+  traps: "(A) and (D) run the chain forwards from a negated term, which proves nothing: skills and computer access are necessary, not sufficient. (B) and (E) are mistaken reversals, treating the inability to word-process as evidence of the earlier failures.",
+  take: "Negative conditionals chain just like positive ones; take the contrapositive of the whole chain in one step."
+},
+"cr-conditional-class#6": {
+  fast: "The rule has two halves; the argument uses one, so the unused half is the inference.",
+  traps: "(B) is the mistaken negation: removing the scandal removes the guarantee of defeat, not the possibility of it. (C) reverses the rule, making scandal necessary for censure. (D) and (E) add facts about benefits and detection that the stimulus never supplies.",
+  take: "When a rule states two consequences, the one the argument ignores is usually the answer."
+},
+"cr-conditional-class#7": {
+  fast: "No police to no enforcement needs police to be the only possible enforcer.",
+  traps: "(B) is the mistaken negation turned into a promise, and an assumption need not make the conclusion reversible. (A) is far too broad, covering all commands and all obedience. (C) and (D) describe differences and purposes the argument never relies on.",
+  take: "When an argument rules out one means to an end, its assumption is that no other means exists."
+},
+"cr-conditional-class#8": {
+  fast: "Passing the test means knowing the city at least as well as she does.",
+  traps: "(A) turns increased enjoyment of a good novel into enjoyment of virtually anything. (B) and (D) reverse her conditional, treating knowing the city as necessary for trust rather than as the setting in which the test applies. (C) assumes the first novel shared the second one's setting, which the passage never says.",
+  take: "Read a stated criterion literally and the inference is usually just the criterion applied."
+},
+"cr-conditional-class#9": {
+  fast: "Inspired to good show to sophisticated listeners; contrapose and you have (A).",
+  traps: "(C) and (E) run the chain backwards, treating the necessary conditions as sufficient to produce inspired performances. (B) and (D) turn the understanding of musical roots into something that guarantees or blocks a good show, but it is only necessary for being a sophisticated listener.",
+  take: "Necessary conditions chain forward with the argument and only the contrapositive runs backward."
+},
+"cr-conditional-class#10": {
+  fast: "Consequent denied, so the antecedent fails: some Puerta segment does not back Quintana.",
+  traps: "(C), (D) and (E) are sweeping 'each segment' claims that neither speaker comes close to supporting. (A) concerns a segment backing neither man, which nothing in the exchange establishes.",
+  take: "When a speaker's data contradicts a conditional's consequent, the inference is the negated antecedent."
+},
+"cr-conditional-class#11": {
+  fast: "Having everything a garden needs is not the same as having everything it takes.",
+  traps: "(B) and (C) name causal errors, but the argument is purely conditional and asserts no correlation. (A) quibbles with a word that does no work in the flaw. (E) invokes sampling, though only one garden is discussed and no generalisation is drawn.",
+  take: "'Without X it will not happen' makes X necessary; concluding success from X alone is the classic flaw."
+},
 "cr-guide-inference#1": {
   fast: "More molecules held means more effective, so three beats one: (C).",
   traps: "(A) is the most tempting: greater effectiveness is not a guarantee of success. (B) adds the word 'only', which the passage never supports.",

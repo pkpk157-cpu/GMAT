@@ -74,7 +74,7 @@ function split(t) {
 const isFormula = x => x.field === "formula";
 
 const katex = require(path.join(ROOT, "katex", "katex.min.js"));
-const cats = { split: [], caret: [], subscript: [], rootword: [], latexOut: [], star: [], ascii: [], braces: [], inMath: [], uniMath: [], katexErr: [], fraction: [], uniSup: [] };
+const cats = { split: [], caret: [], subscript: [], rootword: [], latexOut: [], star: [], ascii: [], braces: [], inMath: [], uniMath: [], katexErr: [], fraction: [], uniSup: [], roman: [] };
 const ex = (arr, x, snippet) => arr.push(`${x.where} [${x.field}]: …${snippet.replace(/\s+/g, " ").slice(0, 90)}…`);
 const around = (s, i) => s.slice(Math.max(0, i - 35), i + 45);
 
@@ -106,6 +106,16 @@ texts.forEach(x => {
   });
 });
 
+/* A I / II / III statement list in a question stem gets one numeral per line.
+   Run together on a single line the three statements read as one sentence, which
+   is exactly the reading the question asks you not to make. Only stems are
+   checked: "quadrant II" in a choice is a label, not a list. */
+texts.filter(x => x.field === "text").forEach(x => {
+  const hasList = /(^|\n|\s)I[.)]\s/.test(x.t) && /(^|\n|\s)II[.)]\s/.test(x.t);
+  const perLine = /\n[ \t]*I[.)]\s/.test(x.t) && /\n[ \t]*II[.)]\s/.test(x.t);
+  if (hasList && !perLine) ex(cats.roman, x, x.t.slice(Math.max(0, x.t.search(/(^|\n|\s)I[.)]\s/))));
+});
+
 const ALL = process.argv.includes("--all");
 const labels = {
   split: "expression split across the math delimiters (\\(x^{2}\\) = 36)",
@@ -113,7 +123,8 @@ const labels = {
   star: "asterisk as a multiplication sign", ascii: "ASCII comparison (<=, >=, !=)", braces: "inside math: exponent/subscript needs braces (x^10, 10^-3)",
   inMath: "inside math: sqrt/frac/times missing its backslash", fraction: "plain numeric fraction in prose (3/4) -> \\(\\tfrac{3}{4}\\)",
   subscript: "underscore subscript outside math (a_n)", uniMath: "inside math: unicode √ ∛ or superscript digit (KaTeX prints it as plain text)",
-  katexErr: "inside math: KaTeX cannot parse it", uniSup: "unicode superscript in prose (x²) -> \\(x^{2}\\)"
+  katexErr: "inside math: KaTeX cannot parse it", uniSup: "unicode superscript in prose (x²) -> \\(x^{2}\\)",
+  roman: "I / II / III list run together in a stem -> one numeral per line"
 };
 let problems = 0;
 console.log(`scanned ${texts.length} text fields`);

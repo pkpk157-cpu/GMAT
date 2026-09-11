@@ -678,7 +678,10 @@
   .rc-passage .rc-toggle { width: 100%; border: none; border-top: 1px solid var(--line); background: var(--surface); color: var(--accent); font-weight: 700; font-size: 14px; padding: 9px; cursor: pointer; }
   .qtop { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; flex-wrap: wrap; }
   .qnum { font-size: 13px; font-weight: 800; color: var(--ink-faint); letter-spacing: .05em; text-transform: uppercase; margin-right: auto; }
-  .qtext { font-size: 17px; line-height: 1.5; font-weight: 500; text-wrap: pretty; }
+  /* pre-line so the line breaks written into a stem survive: a I / II / III list, the two
+     statements of a data sufficiency question, and the gap between a CR stimulus and its
+     question. Runs of spaces still collapse, so only deliberate newlines show. */
+  .qtext { font-size: 17px; line-height: 1.5; font-weight: 500; text-wrap: pretty; white-space: pre-line; }
   /* Boldface spans in CR "boldface" questions — the parts you must identify. */
   .bf { font-weight: 800; color: var(--ink); background: color-mix(in srgb, var(--accent) 12%, transparent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 3px; }
 
@@ -1274,7 +1277,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v120";
+  const APP_VERSION = "v121";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.

@@ -113,8 +113,17 @@ filled in from memory.
 | Section | Questions | How verified |
 |---|---|---|
 | Quant + Data Insights | 2,049 | 1,928 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
-| Critical Reasoning | 657 | against the printed key in the source AND re-derived by hand from the argument before the key was consulted |
+| Critical Reasoning | 855 | 636 against the printed key in the source AND re-derived by hand from the argument before the key was consulted; 219 have no printed key anywhere in the source and were derived from the argument alone (see below) |
 | Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
+
+The 219 critical reasoning questions with no printed key come from the 700-800
+Club practice file, which publishes questions without answers; the one answer
+file in the Drive keys a different book. Each answer there was worked out from
+the argument and each of the four wrong choices ruled out in writing, and any
+question where more than one choice survived that scrutiny was left out rather
+than guessed. The set ids are `cr-club-*`. Treat those answers as carefully
+reasoned rather than as sourced, and prefer the keyed sets when a topic is
+covered by both.
 
 `di4-derive.py` covers the four non-Data-Sufficiency Data Insights types. Those
 questions have no printed letter key — the real exam poses them as Yes/No

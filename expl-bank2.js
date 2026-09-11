@@ -928,6 +928,176 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(A) and (B) make Florida homes cheaper and easier to finance, which is about affordability rather than the size of the selection. (C) reports Texas construction growth, which if anything narrows Florida's advantage.",
   take: "A conclusion about counts drawn from percentages always needs the sizes of the two bases."
 },
+"cr-club-weaken#1": {
+  fast: "Bigger stadiums have closer walls, so the extra home runs are geometry rather than excitement.",
+  traps: "(A) and (C) cite single cases against a set of averages, which averages readily absorb. (B) has fans cheering against the team, which could still be the excitement the argument invokes.",
+  take: "When two things vary together, look for a third feature that varies with them for physical reasons."
+},
+"cr-club-weaken#2": {
+  fast: "Labour costs can push employment down no matter how large the capital reserves are.",
+  traps: "(D) describes a way to bring about the very condition the argument recommends, which helps rather than hurts. (E) compares the size of this year's drop with last year's, which bears on nothing in the reasoning.",
+  take: "A prediction that removing one cause prevents an outcome falls to any other cause of that outcome."
+},
+"cr-club-weaken#3": {
+  fast: "Canada and Russia would make up the shortfall, so world supply and the price stay put.",
+  traps: "(E) points to an unsubsidised crop that is cheaper still, which if anything suggests subsidies are not what keeps prices low, but it concerns sorghum rather than wheat. (A) and (B) describe uses and forecasting without touching the supply the price depends on.",
+  take: "A prediction about a global price must account for every producer, not only the one being changed."
+},
+"cr-club-weaken#4": {
+  fast: "Every choice but (D) gives studios a route to profit; (D) just confirms piracy is everywhere.",
+  traps: "(A) looks like a concession that the loss is real, but calling $500 million a very small fraction of profits is exactly what makes the conclusion unreasonable. (C) seems off-topic because it concerns cinemas, yet it names an export revenue stream piracy leaves alone.",
+  take: "In a weaken-EXCEPT, the answer often reinforces a premise rather than being merely irrelevant."
+},
+"cr-club-weaken#5": {
+  fast: "Flexible supporters help the non-supporting candidate, so (B) does not weaken.",
+  traps: "(E) is easy to misread as irrelevant, but if nearly 30 percent of residents cannot vote, the 60 percent measured among residents need not be 60 percent of the electorate. (D) is a precedent that directly contradicts the predicted outcome.",
+  take: "Poll-to-election arguments assume respondents can vote and that the issue decides their vote."
+},
+"cr-club-weaken#6": {
+  fast: "The $4,000 target covers the booth only, ignoring ingredients and labour.",
+  traps: "(E) describes a way to lower his break-even point, which improves rather than damages his chances. (C) restates what an average means without showing Adam's booth will fall on the low side.",
+  take: "Break-even calculations fail most often because a whole category of cost was left out."
+},
+"cr-club-weaken#7": {
+  fast: "Those provinces still served drinks from dinnertime; a total ban is a different proposition.",
+  traps: "(A) reports a short-term dip that the full-year figures already absorbed, so it does not survive the data. (C) describes a twenty-year decline in drinking, which suggests a ban would cost restaurants less, not more.",
+  take: "Before accepting a precedent, check that the precedent did the same thing being proposed."
+},
+"cr-club-weaken#8": {
+  fast: "Delays raise premiums far more than they raise what insurers pay doctors, so delays pay.",
+  traps: "(A) shows some delays are not caused by billing errors, but a delay with no cause identified is not yet a delay with a motive. (B) makes the two costs roughly equal, which leaves the argument's balance intact rather than tipping it.",
+  take: "To establish an incentive, weigh the gain against the cost; showing a cost alone proves nothing."
+},
+"cr-club-weaken#9": {
+  fast: "A ten percent smaller share of a much bigger pool can still be a bigger number of arrivals.",
+  traps: "(C) adds retirees leaving the state, which makes the predicted harm worse rather than better. (A) says SunState still leads every other state, which is consistent with its own numbers falling.",
+  take: "Whenever a conclusion about counts rests on a share, attack the size of the base."
+},
+"cr-club-weaken#10": {
+  fast: "Almost all buyers already know about tongue scrapers and keep buying mints anyway.",
+  traps: "(B) says scrapers have been available for years, which leaves open that buyers never noticed them, so it never establishes that awareness has spread. (E) gives other reasons to buy these products, but only for some people, which cannot prevent a significant decline.",
+  take: "A prediction driven by rising awareness dies if awareness is already high and nothing has changed."
+},
+"cr-club-weaken#11": {
+  fast: "The same firms also cut workplace injuries at the same time, which alone would lower absences.",
+  traps: "(B) describes preventive care that ESI companies provide, which is a mechanism by which the insurance would reduce absences, so it strengthens. (A) replicates the finding elsewhere, which also supports the causal reading.",
+  take: "A confounder is strongest when it arrives at the same firms at the same moment as the treatment."
+},
+"cr-club-weaken#12": {
+  fast: "Each gallon of ethanol swallows a gallon and a half of oil before it reaches the tank.",
+  traps: "(D) raises pollution, which is a real cost but a different objective from reducing oil dependence. (C) makes conversion expensive, which slows adoption without showing the policy fails at its stated aim.",
+  take: "Count the whole chain: a fuel that saves oil in the engine can consume more of it upstream."
+},
+"cr-club-weaken#13": {
+  fast: "A democracy without the protections that has never suppressed dissent refutes an 'any' claim.",
+  traps: "(E) describes democracies that do suppress dissent, which is consistent with the conclusion rather than against it. (C) adds wartime surveillance in democracies, which again fits the pattern the author predicts.",
+  take: "Against a universal claim, look for the single case that satisfies the condition but not the consequence."
+},
+"cr-club-weaken#14": {
+  fast: "If the job builds the personality, the personality cannot be evidence of who gets the job.",
+  traps: "(C) notes overlap between the groups, which a claim about being 'more likely' comfortably survives. (B) and (E) describe how executives behave outside work, which leaves the causal direction untouched.",
+  take: "When a trait is observed only in people who already hold a role, reverse causation is the first thing to test."
+},
+"cr-club-weaken#15": {
+  fast: "Shelf chocolate uses cocoa bought two years back, so this year's price spike arrives far later.",
+  traps: "(B) offers a cure for the fungus, but the harvest is already lost and the stimulus says wholesale prices will not fall soon. (A) describes how consumers react after a price rise, which presupposes the rise rather than preventing it.",
+  take: "When a prediction has a deadline, check the lag between the cause and the effect."
+},
+"cr-club-weaken#16": {
+  fast: "The magazine's readers are self-selected house hunters, not a sample of the market.",
+  traps: "(A) makes the sample large and broad by age, which addresses size rather than the self-selection that matters. (B) and (E) describe how the survey was distributed and rewarded without showing the readership is unrepresentative.",
+  take: "A large sample drawn from an interested population is still the wrong population."
+},
+"cr-club-weaken#17": {
+  fast: "People cannot be relying on protection they do not know they are getting.",
+  traps: "(E) says most Americans brush daily, but the dentists ask for brushing and flossing after every meal, so daily brushing is consistent with their complaint. (D) reports a low decay rate without saying what produced it.",
+  take: "When an argument runs through people's beliefs, showing they lack the belief destroys it."
+},
+"cr-club-weaken#18": {
+  fast: "Newcomers are buying existing condominiums, so a construction slump need not mean fewer arrivals.",
+  traps: "(A) adds housing supply, which does not bear on how many people are moving in. (E) reports steady sales of cars and boats, which tells us about the economy rather than about migration.",
+  take: "Evidence about one segment of a market cannot settle a claim about the market's customers."
+},
+"cr-club-weaken#19": {
+  fast: "Three times the tickets can mean the same speeders caught three times as often.",
+  traps: "(D) says County Y residents may be more law-abiding, which supports the conclusion instead of exposing a flaw. (A) raises different speed limits, but the conclusion is about exceeding each county's own limit.",
+  take: "When evidence counts events and the conclusion counts people, check whether one person can generate many events."
+},
+"cr-club-weaken#20": {
+  fast: "Finishing homework on topics the test does not cover cannot raise the test score.",
+  traps: "(B) reports another school's extension failing, but nothing says School Y used the hour as a maths study period. (C) and (D) are objections from the music faculty and parents, which concern the plan's popularity rather than whether it works.",
+  take: "Attack the weakest link in the chain, which is usually the one connecting the activity to the measured outcome."
+},
+"cr-club-weaken#21": {
+  fast: "Nearly 30 percent of public students choose farming, which accounts for the gap without the school mattering.",
+  traps: "(A) reports that private graduates score higher, which supports rather than weakens the recommendation. (C) shows public graduates get more financial aid, but aid for those who do go says nothing about the proportion who go.",
+  take: "A difference in outcomes between two groups is only about the treatment if the groups were comparable to begin with."
+},
+"cr-club-weaken#22": {
+  fast: "A single price jump cannot produce a steady decline, but recurring price wars can.",
+  traps: "(B) says the mines have not recovered, which supports looking elsewhere rather than casting doubt on it. (C) notes smaller alternative regions, a practical difficulty rather than a reason the decision misdiagnoses the problem.",
+  take: "Match the shape of the proposed cause to the shape of the observed effect: one-off against steady."
+},
+"cr-club-weaken#23": {
+  fast: "Overall access funding rises, so the access the argument worries about is not lost.",
+  traps: "(E) sounds similar but measures education spending as a share of the budget, which can rise while access programmes shrink. (D) says each grant is small, which if anything makes the cut matter less, but it does not preserve access.",
+  take: "When one programme is cut, check whether the function it served is funded elsewhere."
+},
+"cr-club-weaken#24": {
+  fast: "The top past performers are precisely the ones that cannot keep it up, so the selection rule backfires.",
+  traps: "(D) states that past winners keep winning, which endorses the advisor's method rather than exposing a flaw. (B) is true of mutual funds generally but the advisor already screens for the client's objectives.",
+  take: "When a method rests on one empirical claim, the flaw is evidence that the claim runs the other way."
+},
+"cr-club-weaken#25": {
+  fast: "Sally spoke about one flower and Joe answered about everyone, which is a different claim.",
+  traps: "(C) calls the difference between individual and collective results a self-contradiction, but that difference is a fact about the situation, not an inconsistency in Joe. (E) describes an attack on Sally's character that never occurs.",
+  take: "Watch for a reply that answers what would happen if everyone acted rather than what one act does."
+},
+"cr-club-weaken#26": {
+  fast: "An empty pan on the flame gets far hotter than cooking requires, crossing the threshold.",
+  traps: "(C) reports illness claims without connecting them to the temperature mechanism at issue. (E) says better coatings exist, which is an argument for a different product rather than against this one's safety claim.",
+  take: "A safety claim about normal use falls to a common misuse the claim never considered."
+},
+"cr-club-weaken#27": {
+  fast: "People who cannot afford healthy food or exercise cannot act on being told to use them.",
+  traps: "(B) says the information is available online, but availability is not the same as having reached people, which is what the campaign would do. (D) concerns funding the programme rather than whether a funded programme would work.",
+  take: "An information campaign fails when the audience lacks the means to act, not only when it lacks the information."
+},
+"cr-club-weaken#28": {
+  fast: "Eliminating two explanations proves the third only if the list was complete.",
+  traps: "(B) links poor conditions to pay deductions, which would help explain the pattern the argument describes rather than flaw it. (C) and (D) raise honesty and definitions, neither of which touches the elimination step.",
+  take: "An argument by elimination stands or falls on whether the list of alternatives was exhaustive."
+},
+"cr-club-weaken#29": {
+  fast: "(A) states a sensible premise; every other choice identifies something the official got wrong.",
+  traps: "(D) reads like a neutral description of good statistics, but its point is that only a tenth of those outcomes involve infectious disease, so the ranking cannot measure vulnerability to it. (E) similarly hides its criticism: surveying almost every nation is the problem when the comparison group should be industrialized ones.",
+  take: "In a flaws-EXCEPT question, read each choice for whether it actually accuses the argument of anything."
+},
+"cr-club-weaken#30": {
+  fast: "Undoused houses burned appreciably worse, so the dousing clearly did something.",
+  traps: "(D) praises continuous dousing by owners who stayed, which concerns a different and safer-sounding practice than the evacuation advice being judged. (B) notes variation in effort without saying whether the effort helped.",
+  take: "A precaution is judged against what would have happened without it, never against a perfect outcome."
+},
+"cr-club-weaken#31": {
+  fast: "Higher-spending districts score higher, so money is a route the author said did not exist.",
+  traps: "(A) is a subtle trap that helps the author's opponents in a different way, by suggesting new-approach schools succeed because of their intake; but it concerns why those schools look good, not whether money works. (C) points at family background, which undercuts both sides equally.",
+  take: "Against an 'only way' claim, evidence that a rival route works is the most direct weakener."
+},
+"cr-club-weaken#32": {
+  fast: "Winning on taste does not sell a drink priced at triple the market.",
+  traps: "(A) is fully consistent with an overwhelming preference, since overwhelming is not unanimous. (B) means Company X competes with itself, which affects which product profits rather than whether the drink can succeed.",
+  take: "A blind taste test controls for brand and price, so it cannot predict what happens when both are visible."
+},
+"cr-club-weaken#33": {
+  fast: "Students here match those from problem-solving countries, so the approach costs them nothing.",
+  traps: "(E) reports more students qualifying for calculus, which sounds encouraging but says nothing about how they compare with students taught differently. (A) is about music timetables, an analogy the author used rather than a claim he made.",
+  take: "To rebut 'this method is harmful', compare its results with the method being recommended."
+},
+"cr-club-weaken#34": {
+  fast: "The polyps block calcium absorption, so low calcium is their effect, not their cause.",
+  traps: "(E) offers an alternative way to raise calcium, which addresses how to follow the advice rather than whether it works. (A) and (D) are practical difficulties with two particular foods, leaving the rest of the diet available.",
+  take: "A recommendation built on a correlation dies if the causal arrow points the other way."
+},
 "cr-conditional-class#1": {
   fast: "Heavy rain forces above-average height, and half of an above-average height beats half of the average.",
   traps: "(B) is the mistaken reversal: a long taproot could come from other causes. (C) is the mistaken negation: rain is not the only thing that makes the plant grow. (A) and (D) both assume rainfall is the sole determinant of height, which the stimulus never says.",

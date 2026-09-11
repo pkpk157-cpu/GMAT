@@ -23,6 +23,9 @@ const norm = s => String(s || "").toLowerCase()
   .replace(/[{}$^_]/g, "").replace(/[−–—]/g, "-").replace(/[×·]/g, "*")
   .replace(/[^a-z0-9%+*/=<>.,()-]+/g, "").trim();
 const choicesKey = q => (q.choices || []).map(norm).join("|");
+/* Boldface questions reuse one stimulus with different portions marked [[...]]. Normalising strips the
+   markers, so key such a stem by what it bolds: same stimulus, different boldface is a different question. */
+const boldKey = t => (String(t || "").match(/\[\[[\s\S]*?\]\]/g) || []).map(b => norm(b).slice(0, 40)).join("|");
 
 /* A question flagged dup:"setId#n" is a source repeat the app does not serve;
    the flag must point at a question that exists and is itself served. */
@@ -34,7 +37,8 @@ SETS.forEach(s => (s.questions || []).forEach(q => {
   // RC and Data Insights stems repeat across passages ("The primary purpose of the passage is to"); key those by their passage
   const pas = q.passage ? q.passage.paras : s.passage ? s.passage.paras : null;
   const pk = pas ? norm(pas[0]).slice(0, 80) + "::" : "";
-  all.push({ set: s.id, section: s.section, n: q.n, text: q.text || "", stem: pk + norm(q.text), ch: choicesKey(q), correct: q.correct });
+  const bk = boldKey(q.text) ? boldKey(q.text) + "::" : "";
+  all.push({ set: s.id, section: s.section, n: q.n, text: q.text || "", stem: pk + bk + norm(q.text), ch: choicesKey(q), correct: q.correct });
 }));
 
 const problems = problems0, notes = [];

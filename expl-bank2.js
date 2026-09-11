@@ -388,6 +388,46 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(B) 50% guesses from the centre lying on the diagonal.",
   take: "A chord at distance \\(r/\\sqrt{2}\\) from the centre spans a right angle; segment = quarter circle − right triangle."
 },
+"cr-boldface-addon#1": {
+  fast: "The 'Thus' sentence supports the boldface one, not the other way round, so the boldface is the main conclusion.",
+  traps: "(B) describes a premise that defends the argument from attack, which fits the second sentence. (C) describes a premise supporting a sub-conclusion, again the second sentence. (D) describes the last sentence, not the first.",
+  take: "An argument can state its main conclusion first; use the therefore test rather than trusting 'thus' and 'clearly'."
+},
+"cr-boldface-addon#2": {
+  fast: "Supported by the evolution claim and supporting the final 'Thus' sentence: that is an intermediate conclusion.",
+  traps: "(A) names the wrong support: the backing is the evolution claim, not the chronic-illness observation. (B) says no justification is provided, but the 'Because' clause provides it. (E) reverses the direction of support between the boldface and the evolution claim.",
+  take: "Label every statement as premise, intermediate conclusion or main conclusion before reading a single choice."
+},
+"cr-boldface-addon#3": {
+  fast: "The timber facts explain why it must have been a major center, so the first boldface is the conclusion.",
+  traps: "(A) reverses the two roles. (C) makes the conclusion a premise. (E) says the conclusion is inferred and then the premise is inferred from it, which inverts the flow of support entirely.",
+  take: "A conclusion placed in the middle of a stimulus is still the conclusion; position tells you nothing."
+},
+"cr-boldface-addon#4": {
+  fast: "Two sources of jobs, one boldface against each, both feeding the same prediction.",
+  traps: "(A) and (B) call the first boldface a claim the argument challenges, but the argument accepts and uses it. (C) calls the second an objection, though nothing in the stimulus disputes the conclusion. (E) has both supporting an opposed position that does not exist here.",
+  take: "No contradiction word in the stimulus usually means no opposing position for a boldface to belong to."
+},
+"cr-boldface-addon#5": {
+  fast: "'So clearly' marks the main conclusion; the other boldface is the unargued framework it rests on.",
+  traps: "(D) and (E) say the argument seeks to establish the first statement, but no evidence anywhere is offered for it. (B) demotes the final sentence to an intermediate conclusion. (C) makes the conclusion a piece of evidence.",
+  take: "'Seeks to establish' is false whenever the stimulus offers no support at all for that statement."
+},
+"cr-boldface-addon#6": {
+  fast: "The second boldface is about what will happen and the argument endorses it, so it is supporting prediction, not conclusion.",
+  traps: "(C) misidentifies the main conclusion, which is the final 'So clearly' sentence. (B) and (D) treat the second boldface as opposed by the argument, but it is one of the argument's own reasons. (E) again claims the first statement is being established.",
+  take: "When several choices share a description of the first boldface, spend all your time on the second."
+},
+"cr-boldface-addon#7": {
+  fast: "A view attributed to others, then attacked as hasty because the evidence does not settle it.",
+  traps: "(D) calls the boldface evidence when it is a conclusion others drew. (E) makes it a needed premise for the author, the opposite of the author's stance. (B) reverses the author's position entirely, and (A) claims an unrelatedness the argument never asserts.",
+  take: "'Overly hasty' means the evidence is insufficient, not that the claim is false: choose the undermining language carefully."
+},
+"cr-boldface-addon#8": {
+  fast: "Double the area but also double the crabs and the density holds, which is what the birdwatcher assumed away.",
+  traps: "(D) gives the birds more space, which was never the problem; the problem was food. (A) removes crabs and makes things worse. (C) and (E) are about tourist spending and migration routes, neither of which touches whether the birds will find eggs.",
+  take: "To answer a density objection, change the numerator as well as the denominator."
+},
 "cr-guide-inference#1": {
   fast: "More molecules held means more effective, so three beats one: (C).",
   traps: "(A) is the most tempting: greater effectiveness is not a guarantee of success. (B) adds the word 'only', which the passage never supports.",

@@ -558,6 +558,216 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(D) gives the birds more space, which was never the problem; the problem was food. (A) removes crabs and makes things worse. (C) and (E) are about tourist spending and migration routes, neither of which touches whether the birds will find eggs.",
   take: "To answer a density objection, change the numerator as well as the denominator."
 },
+"cr-club-eval-paradox#1": {
+  fast: "The study has no control group, so ask what the same programme achieves without the pill.",
+  traps: "(B) asks about the best single result, which tells you nothing about the average or the cause. (A) and (D) fill in details of the study without separating the supplement from the exercise.",
+  take: "When a study applies two treatments together, the evaluating question is always what the other one does alone."
+},
+"cr-club-eval-paradox#2": {
+  fast: "A few prosecutions can still deter thousands, so ask whether the threat changes behaviour.",
+  traps: "(B) is about the number of downloads, but the conclusion is about the number of people downloading. (D) speeds up identification without addressing the stated limit, which is the resources to prosecute.",
+  take: "When an argument counts only those directly affected, the deterrent or ripple effect is the thing to evaluate."
+},
+"cr-club-eval-paradox#3": {
+  fast: "The claimed loss of cultural contact only bites if there is no other source of that contact.",
+  traps: "(C) measures how large the drop was, not whether the drop produces the consequences the author names. (A) and (E) are about fixing the problem, which the author already says is easy, rather than about its impact.",
+  take: "To evaluate a claimed harm, ask whether the thing supposedly lost is available elsewhere."
+},
+"cr-club-eval-paradox#4": {
+  fast: "If the rebound came from a special rescue effort, it cannot be generalised to species that get none.",
+  traps: "(C) attacks the zoologists' credentials rather than their claim, which is never how a GMAT argument is evaluated. (A) and (D) concern non-native species and migration, neither of which explains the recovery.",
+  take: "Before generalising from a success story, ask what made that particular case succeed."
+},
+"cr-club-eval-paradox#5": {
+  fast: "The bundle wins only if people still buy many channels; ask whether they would cut back sharply.",
+  traps: "(A) is about programming diversity, which is a different objective from the stated one of reducing consumer costs. (B) and (E) concern the companies' revenue and equipment rather than what subscribers pay.",
+  take: "Judge a policy against the goal actually stated, and check whether the opposing claim covers the relevant case."
+},
+"cr-club-eval-paradox#6": {
+  fast: "Check whether the counterweighting runs both ways or only against liberal hires.",
+  traps: "(C) is about where the new personality came from, which does not test the network's own practice. (D) reports one person's feeling, and (E) reports ratings, neither of which measures balance.",
+  take: "A claim of even-handedness is tested by looking for the mirror-image case."
+},
+"cr-club-eval-paradox#7": {
+  fast: "The measure is parent-judged, so the two groups may be judged by different yardsticks.",
+  traps: "(D) raises family income, but the recommendation still operates through the allowance itself, so a wealth difference does not break the link. (C) attacks the specialists' credentials rather than their finding.",
+  take: "When a study's key term is defined by the subjects themselves, check that everyone is using it the same way."
+},
+"cr-club-eval-paradox#8": {
+  fast: "A dearer input raises the retail price only if the other inputs have not got cheaper.",
+  traps: "(E) asks about eliminating the fungus, but the stimulus already says the wholesale price is not expected to fall, so that route is closed. (D) quantifies the damage without telling you what happens to the retail price.",
+  take: "When one input's price rises, check the other inputs before concluding the finished good gets dearer."
+},
+"cr-club-eval-paradox#9": {
+  fast: "A patent lets the firm charge ten times variable cost, well above the five times it needs.",
+  traps: "(D) and (E) both make profits less likely, deepening the puzzle instead of resolving it. (B) restates that development is expensive, which is the part of the stimulus we already accept.",
+  take: "A paradox about a price being too high is usually resolved by whatever lets the seller charge more."
+},
+"cr-club-eval-paradox#10": {
+  fast: "Renting specialists part-time gives the hospital high-margin work without the salary it cannot pay.",
+  traps: "(A) and (B) presuppose the specialty care the hospital does not yet have: better rates and advertising are worth nothing with no specialists to deliver the service. (D) informs the public without changing any of the hospital's economics.",
+  take: "To break a vicious circle, attack the link that the rest of the circle depends on, not its symptoms."
+},
+"cr-club-eval-paradox#11": {
+  fast: "Better weather sent far more people into the death-zone, so a lower risk each still meant more deaths.",
+  traps: "(C) makes the death-zone milder, which makes the record toll harder to explain rather than easier. (D) says equipment protects climbers in bad weather, which again predicts fewer deaths in a good year, not more.",
+  take: "When a total rises while the per-person risk falls, the resolution is almost always a larger exposed population."
+},
+"cr-club-eval-paradox#12": {
+  fast: "Services are consumed in Country X; goods must be imported home and taxed on the way.",
+  traps: "(B) explains a preference for newer stock but leaves the price gap unexplained, and the stimulus frames the puzzle in purely monetary terms, taking care to rule out sales taxes. (C) and (E) describe attitudes and third currencies that change nothing about what the shopper pays.",
+  take: "Goods and services behave differently across a border; a good has to be brought home."
+},
+"cr-club-eval-paradox#13": {
+  fast: "The new restaurant enlarges the town's pool of diners and overflows its own seating into Andrew's.",
+  traps: "(A) explains why Andrew's might hold its customers but not why it gained a significant number. (B) covers only Sundays, too narrow to lift the daily average significantly, and (C) and (E) compare profit and weekday patterns rather than volume.",
+  take: "A new entrant can grow the market; do not assume competitors only divide a fixed one."
+},
+"cr-club-eval-paradox#14": {
+  fast: "City Y families carry heavy private-school costs, an expense outside the housing figure.",
+  traps: "(B) would make City X cheaper still, widening rather than closing the gap, and the stimulus already says fuel and insurance are exorbitant in both. (C) is about the price of a house rather than the share of income spent, and (D) describes optional luxuries.",
+  take: "When one cost category contradicts an overall ranking, look for a large cost outside that category."
+},
+"cr-club-eval-paradox#15": {
+  fast: "They attack severity research and fund technology research, which are two different things.",
+  traps: "(C) explains their motive for opposing regulation but leaves the funding of climate science entirely unexplained. (E) says they see no benefit in any climate research, which contradicts the fact that they are paying for some.",
+  take: "When one actor seems to both attack and support a thing, check whether it is really the same thing."
+},
+"cr-club-eval-paradox#16": {
+  fast: "The power is generated and then sold abroad, so it never reaches the citizens.",
+  traps: "(B) describes demand, but the stimulus has already told us generation exceeds the country's needs, appliances included. (E) and (C) point to unused capacity, which only sharpens the puzzle of why the existing surplus is not reaching people.",
+  take: "When supply exceeds demand yet shortages occur, follow where the supply actually goes."
+},
+"cr-club-eval-paradox#17": {
+  fast: "Supply grew, but demand grew faster, so the price did not fall.",
+  traps: "(B) makes ostriches hard to breed, which contradicts the stated quadrupling of farms and flooded markets. (E) puts the meat in more shops, which increases availability and would push the price down further.",
+  take: "A price that will not move when supply jumps means demand moved too."
+},
+"cr-club-eval-paradox#18": {
+  fast: "Regular worship attendance builds community that spread-out housing otherwise would not.",
+  traps: "(D) makes exurbia safer, but feeling safe is not the same as feeling connected to a community. (A) and (C) concern cost of living and school spending, neither of which brings people into contact with one another.",
+  take: "Feeling connected comes from shared institutions and repeated contact, not from physical density."
+},
+"cr-club-eval-paradox#19": {
+  fast: "More people joining the workforce than leaving it would raise the number of employee returns, which is the one thing that stayed flat.",
+  traps: "(E) looks like a repeat of the stimulus, but higher pay per person raises revenue with the same number of filers, which is exactly an explanation. (B), (C) and (D) each route the extra revenue around employees entirely.",
+  take: "In an EXCEPT paradox, the answer often contradicts a stated fact instead of merely failing to explain it."
+},
+"cr-club-eval-paradox#20": {
+  fast: "A new shopping centre drawing outsiders enlarges the sales base the four percent is levied on.",
+  traps: "(E) brings weekend visitors, but a magazine listing is vague about volume where the shopping centre is concrete and local. (B) has residents leaving, which shrinks both tax bases, and (D) is about other towns' rates rather than Amtown's revenue.",
+  take: "To complete an argument, supply the fact that closes the specific numerical gap the stimulus states."
+},
+"cr-club-eval-paradox#21": {
+  fast: "The James Street riders all moved to Green Street, where the loading delay is now bigger than the stop that was cut.",
+  traps: "(D) describes congestion that existed before and after the change, so it cannot explain an increase. (E) reports the same outcome on another line without explaining either, and (B) moves only a small percentage away.",
+  take: "Removing a bottleneck often just relocates it; ask where the load went."
+},
+"cr-club-eval-paradox#22": {
+  fast: "Residents voted for the hotel; the survey asked prospective newcomers, a different group.",
+  traps: "(A) tries to resolve the conflict by ranking the two preferences, but that leaves the same people holding both views and does not explain the vote. (D) questions whether the revenue reaches the schools, which is about the controller's reasoning rather than the clash of opinions.",
+  take: "When two pieces of evidence about 'what people think' conflict, first check that they surveyed the same people."
+},
+"cr-club-eval-paradox#23": {
+  fast: "The patients were released but the outpatient treatment was never funded, so only half the plan happened.",
+  traps: "(C) says the budget merely kept pace with inflation, which is a much weaker claim than funding never arriving at all and does not account for a plight worse than ever. (A) and (E) add diagnoses and addiction histories without connecting them to the released patients' care.",
+  take: "When a two-part plan produces a bad outcome, check whether both parts were actually carried out."
+},
+"cr-club-strengthen#1": {
+  fast: "A second, different group wrongly classed as poor turns one anecdote into a systematic defect.",
+  traps: "(A) is the reverse: if cash income is nearly all of disposable income for 99% of those counted, the flaw is negligible and no change is needed. (C) reports that other methods give a different number, which says nothing about which method is correct.",
+  take: "To support 'the method must change', show the error is systematic, not that someone else got a different figure."
+},
+"cr-club-strengthen#2": {
+  fast: "The gatekeeper argument holds only if patients cannot pressure doctors into prescribing.",
+  traps: "(C) has physicians seeing the same advertisements, which makes the gatekeeper more susceptible to influence, not less. (B) limits how many consumers see the ads without addressing what happens when one of them asks.",
+  take: "When an argument relies on a gatekeeper, the support it needs is that the gatekeeper cannot be swayed."
+},
+"cr-club-strengthen#3": {
+  fast: "Incentives have already delivered conservation gains once, so recommending them again is grounded.",
+  traps: "(E) says the clean-technology market is small, which undercuts the promised commercial payoff rather than supporting the recommendation. (D) ranks the two problems against each other without touching whether incentives help with either.",
+  take: "When a conclusion recommends a particular means, a precedent for that means is the strongest support."
+},
+"cr-club-strengthen#4": {
+  fast: "Same number of overdue books and same number of overdue days means the higher rate really does collect more.",
+  traps: "(A) is the opposite: far fewer books borrowed means fewer books to become overdue, cutting the revenue base. (D) confirms the statistics are accurate without addressing the missing second factor.",
+  take: "When revenue is a rate times a quantity, a strengthener usually pins down the quantity the argument left open."
+},
+"cr-club-strengthen#5": {
+  fast: "Beach-front prices only transfer to old industrial docks if buyers will pay up in such districts.",
+  traps: "(E) says interior properties cost significantly more than waterfront ones, which argues against the waterfront being the profitable place to build. (C) confirms lots are available without saying anyone will buy the homes.",
+  take: "Check whether the evidence's setting matches the recommendation's setting before anything else."
+},
+"cr-club-strengthen#6": {
+  fast: "Charters can experiment, and experimenting with writing curricula raises writing scores.",
+  traps: "(C) gives charter schools more time on writing but never says more time produces better results. (B) concerns only the very top of the distribution, which says nothing about the average.",
+  take: "To support a claim about average performance, link the group's distinguishing feature to performance itself."
+},
+"cr-club-strengthen#7": {
+  fast: "A suspension permanently bars a player from the All-Star team that most of them are chasing.",
+  traps: "(D) points to another league with the policy and fewer fouls, but that is a correlation between two leagues that may differ in many ways, and it never shows the suspensions caused the difference. (A) and (C) establish that fouls are harmful and that parents approve, neither of which deters a player.",
+  take: "To show a penalty will work, show the penalty takes away something the target values."
+},
+"cr-club-strengthen#8": {
+  fast: "Their leap needs absolute safety to be the criterion, and (C) supplies that principle.",
+  traps: "(D) is fatal rather than helpful: if no appliance is ever completely safe, the advocates' standard disqualifies everything and becomes useless. (B) adds more injuries but leaves the leap from 'some risk' to 'not standard' unsupported.",
+  take: "When an argument applies an absolute standard, the strengthener is the principle that establishes that standard."
+},
+"cr-club-strengthen#9": {
+  fast: "The cherry trade buys trading relationships that deliver cheaper goods elsewhere.",
+  traps: "(B) and (E) offer diplomatic and cultural benefits, and the conclusion specifically claims an economic rationale. (D) says growers could charge a premium at home, which is a reason not to export at all.",
+  take: "Match the kind of justification the conclusion names: economic, political or moral."
+},
+"cr-club-strengthen#10": {
+  fast: "The rural evidence carries over only if cities pose no extra problems.",
+  traps: "(B) and (D) both say the opposite: wireless works best at low density and costs more among large buildings, which are urban conditions. (C) piles on more rural evidence, which is the kind the argument already has too much of.",
+  take: "When evidence and conclusion sit in different settings, the strengthener says the settings are comparable."
+},
+"cr-club-strengthen#11": {
+  fast: "Spoilage costs more than mini-bar sales bring in, so the mini-bar is losing money already.",
+  traps: "(E) shows the empty fridge is cheaper to maintain but ignores the sales revenue given up, so it cannot establish a net gain on its own. (C) notes that some guests buy nothing, which is consistent with the mini-bar still being profitable overall.",
+  take: "To support dropping a revenue-generating line, show the line costs more than it earns."
+},
+"cr-club-strengthen#12": {
+  fast: "Six in ten drivers make the same daily cross-county trip, exactly the traffic a commuter train absorbs.",
+  traps: "(E) is the opposite case: transcontinental trucks cannot use a commuter train and would stay on the freeway. (A) adds a large extra cost, undercutting the claim that the tunnel is the cheaper option.",
+  take: "Before backing a transport plan, check that the traffic it targets is the kind it can carry."
+},
+"cr-club-strengthen#13": {
+  fast: "Fast Fries grew faster than everything else on the menu, so the new oil did not hold them back.",
+  traps: "(D) is exactly the objection the argument needs to rule out: more than twenty percent more customers buying only ten percent more fries means each visitor bought fewer. (C) states a taste preference for the old oil, which supports the company's claim rather than the argument against it.",
+  take: "A growth figure supports a claim only once you know the baseline the rest of the business set."
+},
+"cr-club-strengthen#14": {
+  fast: "Every manatee swims within reach of boat propellers, which matches the claim that none is safe.",
+  traps: "(A) covers several animals and (E) an unknown number of unreported deaths, neither of which reaches every manatee. (D) speaks to the survival of the population rather than the safety of each individual.",
+  take: "Match the scope of the support to the scope of the conclusion; a universal claim needs universal evidence."
+},
+"cr-club-strengthen#15": {
+  fast: "Sports betting is gambling, and (D) forbids officers to gamble, which completes the syllogism.",
+  traps: "(A) says gambling is illegal in many places, which leaves open the many places where it is not and never reaches 'never'. (E) and (C) offer moral and financial misgivings that fall well short of an absolute prohibition.",
+  take: "When a premise sorts something into a category, the strengthener is the rule governing that category."
+},
+"cr-club-strengthen#16": {
+  fast: "Ethanol wins on carbon monoxide and (A) guarantees it loses on no other pollutant.",
+  traps: "(B) and (D) concern price and manufacturing capability, which bear on practicality rather than on which fuel is environmentally better. (C) addresses supply, which the claim never rests on.",
+  take: "When a comparison rests on one measure, the strengthener closes off the measures left unmentioned."
+},
+"cr-club-strengthen#17": {
+  fast: "Alex is calm when he gets the gesture he asked for, so the aggression tracks the meaning of his request.",
+  traps: "(B) is about gorillas, which are primates and therefore already covered by the conclusion rather than an exception to it. (A), (C) and (D) describe trainable or emotional behaviour in other animals without any use of language.",
+  take: "A single case becomes evidence once you know the behaviour disappears when the condition is removed."
+},
+"cr-club-strengthen#18": {
+  fast: "A limit on buildings is not a limit on residents when each building can be an apartment block.",
+  traps: "(A) reports mixed results elsewhere, which is too vague to show this plan will fail. (B) and (E) describe the town's existing schools and rubbish arrangements without bearing on whether the cap works.",
+  take: "When a policy regulates a proxy, attack it by showing the proxy and the real target can move apart."
+},
+"cr-club-strengthen#19": {
+  fast: "Three times the housing stock at more than twice the share means far more homes actually listed.",
+  traps: "(A) and (B) make Florida homes cheaper and easier to finance, which is about affordability rather than the size of the selection. (C) reports Texas construction growth, which if anything narrows Florida's advantage.",
+  take: "A conclusion about counts drawn from percentages always needs the sizes of the two bases."
+},
 "cr-conditional-class#1": {
   fast: "Heavy rain forces above-average height, and half of an above-average height beats half of the average.",
   traps: "(B) is the mistaken reversal: a long taproot could come from other causes. (C) is the mistaken negation: rain is not the only thing that makes the plant grow. (A) and (D) both assume rainfall is the sole determinant of height, which the stimulus never says.",

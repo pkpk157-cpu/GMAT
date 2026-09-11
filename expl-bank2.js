@@ -833,6 +833,456 @@ window.GMAT_EXPL = Object.assign(window.GMAT_EXPL || {}, {
   traps: "(C) says the budget merely kept pace with inflation, which is a much weaker claim than funding never arriving at all and does not account for a plight worse than ever. (A) and (E) add diagnoses and addiction histories without connecting them to the released patients' care.",
   take: "When a two-part plan produces a bad outcome, check whether both parts were actually carried out."
 },
+"cr-club-misc#1": {
+  fast: "Original is a valid contrapositive, and (A) is the only choice that denies the consequent.",
+  traps: "(B) and (E) affirm the consequent, concluding the cause from the effect. (C) and (D) deny the antecedent, concluding the effect fails because the cause did.",
+  take: "Sort parallel-reasoning choices first by validity; the invalid ones can be discarded in one pass."
+},
+"cr-club-misc#2": {
+  fast: "Small repeated shocks weaken the system until a small one does outsized damage.",
+  traps: "(A) relates a long-term habit to susceptibility but has no cumulative priming and no disproportionate trigger. (E) is about the odds of being caught, which involves no change in the system at all.",
+  take: "For an analogy question, name the mechanism in the abstract first, then match it."
+},
+"cr-club-misc#3": {
+  fast: "The westbound passengers are moving away from the horn, so the pitch drops.",
+  traps: "(E) is true but useless: passengers on the eastbound train ride with the horn and hear no change, which illustrates the absence of the effect rather than the effect. (B) has the pitch rising as the trains separate, which reverses the physics.",
+  take: "An illustration of a phenomenon has to display it, not display the case where it does not occur."
+},
+"cr-club-misc#4": {
+  fast: "Mary attacks the proposal's feasibility and leaves every one of Jim's premises standing.",
+  traps: "(A) is easy to overlook as an assumption, but her claim that all prices would round up is exactly that, since prices could round to the nearest dime in either direction. (C) describes her whole reply, which makes it something she plainly does.",
+  take: "Attacking a proposal's feasibility is not the same as attacking the premises that motivate it."
+},
+"cr-club-misc#5": {
+  fast: "He adds figures showing the current crowd is already raising revenue, the owner's own goal.",
+  traps: "(D) says profitable, but the manager gives spending figures, and spending is revenue rather than profit. (A) and (E) have him disputing the owner's facts, which he accepts without a word of challenge.",
+  take: "A reply can accept every fact offered and still show the proposed action is unnecessary."
+},
+"cr-club-misc#6": {
+  fast: "A city-wide rule plus the fact that this week meets its condition gives the Thursday conclusion.",
+  traps: "(E) accuses the argument of overstating, but it says 'probably will not be collected', which keeps the hedge. (B) describes elimination of alternatives, and no alternative is ever ruled out here.",
+  take: "Method questions reward naming the moving parts: a rule, a triggering fact, and the case at hand."
+},
+"cr-club-misc#7": {
+  fast: "A hole causes eye damage only if damaging wavelengths get through where the layer is missing.",
+  traps: "(A) says all damaging wavelengths are blocked by an intact layer, far stronger than needed and not supported. (C) and (D) make claims about which species and how many wavelengths that the passage never addresses.",
+  take: "When a gap in a barrier causes harm, infer that the barrier was blocking the harmful thing."
+},
+"cr-club-misc#8": {
+  fast: "The method sometimes fails, and when it does the event cannot be reliably dated.",
+  traps: "(D) turns 'on occasion unsuccessfully' into a verdict that the method is ineffective, when the same phrase implies it usually works. (A) converts that occasional failure into most events.",
+  take: "A passage's hedge ('sometimes', 'on occasion') is usually the seed of the correct inference."
+},
+"cr-club-misc#9": {
+  fast: "Usually one author per hospital, and several hospitals, gives most such reports multiple authors.",
+  traps: "(A) turns 'usually' into 'never' for the exceptions. (D) reverses the physics statement, inferring the experiment's structure from the authorship rather than the other way round.",
+  take: "'Usually' supports 'most' and never supports 'always' or 'never'."
+},
+"cr-club-misc#10": {
+  fast: "Intrinsic value is a non-economic ground, and many environmentalists invoke it.",
+  traps: "(D) adds 'only', but nothing says these environmentalists offer no economic reasons alongside. (E) endorses the justification as sound, where the passage merely reports that people make it.",
+  take: "Reported claims support what people argue, never that their argument is correct."
+},
+"cr-club-misc#11": {
+  fast: "Courts have made exceptions on the basis of people's beliefs, which is application taking beliefs into account.",
+  traps: "(C) turns occasional exceptions into a tendency to protect such actions. (B) says the law is devoid of moral aims, but the passage says its primary function holds regardless of further moral aims, which concedes they may exist.",
+  take: "'On occasion' supports 'sometimes' and stops well short of 'tend to'."
+},
+"cr-club-misc#12": {
+  fast: "The best-substantiated theory in history was surpassed, so substantiation guarantees nothing.",
+  traps: "(C) generalises one case into a law about every theory, and (A) into a pattern across the history of physics. One example supports the denial of a guarantee, not a universal rule.",
+  take: "A single counterexample proves that something is not guaranteed; it never proves a general pattern."
+},
+"cr-club-misc#13": {
+  fast: "Two inches of movement per twenty-four blows means the pilings were still sinking when work stopped.",
+  traps: "(A) and (B) declare the bridge or the standard unsafe, where the passage records an inquiry without any verdict. (C) compares Da Ponte with other builders, though the passage says he met the contemporary standard.",
+  take: "A threshold defined by 'no more than' concedes that some of the quantity was still occurring."
+},
+"cr-club-misc#14": {
+  fast: "Most people reject the ideal of every such theory, so their conception matches none.",
+  traps: "(A) has people wanting something better than a good life, but they are denying that these lives are good at all. (E) declares an accurate theory impossible, where the passage only reports what has been developed so far.",
+  take: "'Any one of these' in a rejection means the rejection covers all of them."
+},
+"cr-club-misc#15": {
+  fast: "He inspired the generation that created modernism, which is helping to develop it.",
+  traps: "(D) and (E) repeat Cachin's view, which the passage attributes to a small minority rather than endorsing. (A) calls the work highly controversial when only a small few dissent.",
+  take: "Separate what a passage asserts from what it merely reports someone as claiming."
+},
+"cr-club-misc#16": {
+  fast: "Hotter surroundings give a hotter retina, more molecular motion and therefore more error.",
+  traps: "(A) reverses the direction, making light determine temperature where the passage relates temperature to motion. (C) and (D) introduce reaction speed and retinal surface area, neither of which the passage mentions.",
+  take: "Two linked proportionalities chain into a conclusion about the endpoints."
+},
+"cr-club-misc#17": {
+  fast: "The apple flavonoid is an antioxidant, and antioxidants help prevent heart disease.",
+  traps: "(B) makes flavonoids essential, but being a factor in prevention is not being necessary for it. (C) promises prevention from a daily apple, which no single dietary item is said to guarantee.",
+  take: "'A factor in' supports 'helps' and never supports 'essential' or 'will prevent'."
+},
+"cr-club-misc#18": {
+  fast: "'Greater than any other' rules out ties, and (A) proposes a tie.",
+  traps: "(D) looks as though it clashes with the shark finding, but the passage says only that no response was <i>more</i> positive, which allows many other therapies to have worked dramatically. (E) is safe because efficient immune systems and cancer resistance are not the same measure.",
+  take: "'Greater than any other' is strict; 'no more than any other' permits equality."
+},
+"cr-club-misc#19": {
+  fast: "Every good student must derive that pleasure, so 'most do not' is impossible.",
+  traps: "(A) and (E) run the conditionals backwards, and running them backwards is always permitted: the capacity is necessary for the pleasure, not sufficient. (C) similarly describes people who meet the condition without being good students, which the chain allows.",
+  take: "A necessary condition forbids only its own absence; everything on the other side of the arrow is free."
+},
+"cr-club-misc#20": {
+  fast: "All immoral actions come with guilt, so private immoral actions without guilt cannot exist.",
+  traps: "(C) is consistent: those actions need not be immoral at all, so neither property binds them. (E) is not entailed, but nothing forbids it either, and the question asks what must be false rather than what must be true.",
+  take: "Read which properties are conditional and which are unconditional; only the unconditional ones bind every case."
+},
+"cr-club-misc#21": {
+  fast: "'For this reason' points at the recommendation to curtail government power over information.",
+  traps: "(E) and (D) restate premises rather than the point they support. (B) states the value that motivates the argument, which is background rather than the claim being urged.",
+  take: "Conclusion indicators like 'for this reason' and 'thus' point forward to the claim, not back to the support."
+},
+"cr-club-misc#22": {
+  fast: "The speaker states the point outright: the actions should not be wholly condemned.",
+  traps: "(A) is stronger than the conclusion, which asks for partial rather than total exculpation. (D) and (E) restate the supporting fact and one of the concessions.",
+  take: "In a concession-heavy argument, the conclusion is what the speaker asks you to concur with."
+},
+"cr-club-misc#23": {
+  fast: "The catalogue of shared features exists to support one claim: this is not coincidence.",
+  traps: "(B) names ErgoTech as the copier, but the argument never says which company copied which. (A) restates the evidence rather than the point it establishes.",
+  take: "The main point is what the evidence is marshalled to prove, stated no more strongly than the author does."
+},
+"cr-club-misc#24": {
+  fast: "The mistake identified is mathematising social phenomena, so that is what should not be done.",
+  traps: "(A) and (B) compare the two kinds of science, which is background the argument uses rather than what it argues. (C) reports the social scientists' desire, which the author neither endorses nor concludes.",
+  take: "When an argument says a course of action is a mistake, its conclusion is that the action should not be taken."
+},
+"cr-club-misc#25": {
+  fast: "Both factors are established, so the live question is their relative weight.",
+  traps: "(B) asks whether innate mechanisms contribute, which the psychologist has just said is clear. (C) and (D) each ask about one factor alone, a possibility the passage has already closed off.",
+  take: "A completion must be the question still open after the passage's own conclusions."
+},
+"cr-club-misc#26": {
+  fast: "Two gene versions point to an engulfed nucleus inside the chlorarachniophyte, which is endosymbiosis.",
+  traps: "(C) reverses which organism did the engulfing. (B) claims the nucleomorph holds all of another organism's genetic material, where the evidence covers one gene.",
+  take: "'You would expect X unless Y' plus 'not X' gives you Y."
+},
+"cr-club-misc#27": {
+  fast: "No Moon means no stable tilt, and no stable tilt means no life.",
+  traps: "(A) and (C) treat a stable tilt as sufficient for life, but the passage makes it only necessary. (E) invents a rule about multiple moons that nothing in the passage touches.",
+  take: "'Only by X' makes X necessary; removing it removes the result, but supplying it guarantees nothing."
+},
+"cr-club-misc#28": {
+  fast: "Of the two permitted responses, re-education is almost always ruled out, leaving jail.",
+  traps: "(E) and (D) discuss drivers without a serious conviction, a group the editorialist's rules never cover. (B) praises re-education as the best chance, which the last sentence flatly contradicts.",
+  take: "When a disjunction offers two options and one is eliminated, the other follows."
+},
+"cr-club-misc#29": {
+  fast: "'A requirement for becoming a champion' means no champion lacks it, which is (C).",
+  traps: "(A) reverses the conditional, making mastery something only champions have. (D) and (E) restate premises rather than the conclusion they support.",
+  take: "A requirement is a necessary condition; 'only champions have it' is the reversal, not the restatement."
+},
+"cr-club-misc#30": {
+  fast: "Escape happens exactly when capacity is exceeded, so no escape means capacity was not exceeded.",
+  traps: "(D) sounds like it follows from 'not all plants can handle it', but nothing says any leachate is actually routed to one of those plants. (B) drops the capacity condition entirely.",
+  take: "'If and only if' licenses inferences in both directions, so take the contrapositive of whichever one you need."
+},
+"cr-club-misc#31": {
+  fast: "Most such drugs cause gain and some of it is unpreventable, so some patients gain from the drug.",
+  traps: "(D) blames the gain on failing to diet, which the passage contradicts by saying some gain is unpreventable. (A), (B) and (E) are prescriptions, and facts about side effects do not by themselves yield advice.",
+  take: "Statistical facts support other statistical facts, never recommendations about what someone should do."
+},
+"cr-club-misc#32": {
+  fast: "Beating a four-time winner is possible only with hard training, so Maria trained hard.",
+  traps: "(B) reverses the conditional, making training sufficient for winning rather than necessary, which lets an untrained Maria win. (A) compares the two women's training without establishing that Maria's was hard.",
+  take: "For a sufficient assumption, write premise then conclusion and supply the arrow that joins them."
+},
+"cr-club-misc#33": {
+  fast: "Feed 'many forgone pleasures' into the rule's antecedent and the conclusion drops out.",
+  traps: "(B) talks about pleasures that were not desired, but the conclusion concerns things that were desired. (E) runs the rule backwards from the consequent to the category of pleasures.",
+  take: "A sufficient assumption usually places the conclusion's subject inside the premise's antecedent."
+},
+"cr-club-misc#34": {
+  fast: "The rule covers visceral emotions, so anger must be one for the conclusion to follow.",
+  traps: "(D) and (E) reverse the relationship, making visceral a consequence of being healthy to express. (A) says anger is expressible, which is not what the premise's category requires.",
+  take: "When a general rule is applied to a particular case, the assumption is that the case falls under the rule."
+},
+"cr-club-misc#35": {
+  fast: "Struggle gives perspective; (B) takes perspective to not taking success for granted.",
+  traps: "(C) and (E) run the needed links backwards, which proves nothing about Anderson. (D) makes struggle necessary rather than the perspective sufficient.",
+  take: "Build the chain from the premise's endpoint to the conclusion, always in that direction."
+},
+"cr-club-misc#36": {
+  fast: "Almost anyone can be an expert only if almost anyone can do the convincing that makes one.",
+  traps: "(D) states what every expert has done, which is the premise's consequent rather than what almost anyone can do. (E) covers only some people and is therefore too weak for a claim about almost anyone.",
+  take: "Match the quantifier in the assumption to the quantifier in the conclusion."
+},
+"cr-club-misc#37": {
+  fast: "Certainty is necessary for security, so no certainty means no security.",
+  traps: "(C) makes certainty sufficient rather than necessary, which says nothing about what happens without it. (B) hedges with 'might not', too weak to support 'cannot'.",
+  take: "To move from 'X is absent' to 'Y is absent', X must be necessary for Y."
+},
+"cr-club-misc#38": {
+  fast: "Recommending public money for shocking art assumes public money should fund art in the first place.",
+  traps: "(E) reverses the relationship, treating anything shocking as art, which the argument never needs. (A) overstates the premise from 'often' to 'most'.",
+  take: "When evidence is descriptive and the conclusion is a spending recommendation, the assumption is usually the underlying policy."
+},
+"cr-club-misc#39": {
+  fast: "The savings assume the technology stays affordable enough to keep being installed.",
+  traps: "(D) restates the conclusion in different words rather than supporting it. (C) has buildings becoming less important energy consumers, which would shrink the savings rather than secure them.",
+  take: "A long-range projection assumes the conditions that produced the trend continue to hold."
+},
+"cr-club-misc#40": {
+  fast: "'The only effective way' must rule out simply reducing how much people drive.",
+  traps: "(B) rules out other clean fuels, but the argument offers methanol only as an example, so other clean fuels are consistent with its conclusion. (D) ranks threats, which the argument never does.",
+  take: "An 'only way' conclusion assumes every rival method is less effective."
+},
+"cr-club-misc#41": {
+  fast: "If the tinting depressed the wearer, the glasses would be the cause and not the symptom.",
+  traps: "(A) and (C) discuss other causes of depression, which are compatible with tinted-glasses wearers being depressed. (B) and (D) speculate about what wearers think the glasses do.",
+  take: "A conclusion that names one thing as the reason for another assumes the reverse causation does not hold."
+},
+"cr-club-misc#42": {
+  fast: "Media reliance harms democracy only if it reduces participation in groups outside the family.",
+  traps: "(A) is far stronger than needed, claiming that anyone who watches media cannot form a trusting bond at all. (B) concerns how organisations use media rather than how entertainment affects joining them.",
+  take: "Pick the bridging assumption at the weakest strength that still connects the two halves."
+},
+"cr-club-misc#43": {
+  fast: "The complaint about complexity bites only if these two employees are actually inexperienced.",
+  traps: "(B) posits a causal link between their duties and their pay, which Barnes never needs; he treats the two complaints separately. (E) compares the salaries with other companies, a comparison Barnes never makes.",
+  take: "When a premise describes a category, check that the argument's subject really belongs to it."
+},
+"cr-club-misc#44": {
+  fast: "The dilemma holds only if we cannot keep substituting one nonrenewable resource for another forever.",
+  traps: "(A) is far stronger than required; the argument allows doing without where no replacement exists. (E) contradicts the argument, which explicitly offers doing without as an option.",
+  take: "An argument that presents a choice between two options assumes no third option survives."
+},
+"cr-club-misc#45": {
+  fast: "The chemistry stops at serotonin, so serotonin must actually produce the calm mood.",
+  traps: "(A) is the reverse, making serotonin necessary for good mood rather than sufficient to promote it, which the argument does not need. (B) and (E) turn the claim into one about what happens without sugar or with protein.",
+  take: "Where a causal chain stops, the assumption is the link from its last step to the conclusion."
+},
+"cr-club-misc#46": {
+  fast: "Campaigns work for large mammals, so the biggest problems must involve something else.",
+  traps: "(E) makes affecting ecosystems or agriculture necessary for environmental significance, a far broader claim than the argument needs. (B) speculates about microorganisms' capacity for feeling rather than our capacity to sympathise.",
+  take: "When an argument concedes a method works in one case, its assumption is that the important cases are elsewhere."
+},
+"cr-club-misc#47": {
+  fast: "Closing off Newton's letter leaves every other source open, and independence needs those closed too.",
+  traps: "(B) concerns a third person discovering calculus, which would not make Newton and Leibniz any less independent of each other. (D) is about what each knew of the other, not about where the ideas came from.",
+  take: "'Independent discovery' requires ruling out every channel of transmission, not only the one under discussion."
+},
+"cr-club-misc#48": {
+  fast: "The gap could widen with Country A falling if the Community fell faster, and (D) rules that out.",
+  traps: "(B) says the Community's standard of living fell, which is one way the gap could widen but not something the argument needs. (A) and (E) concern population growth and rankings within the Community.",
+  take: "A growing difference tells you nothing about either figure until you pin one of them down."
+},
+"cr-club-misc#49": {
+  fast: "Carl gets only the cases others have already failed to solve, so his rate is not comparable.",
+  traps: "(D) reports a similarly low rate elsewhere, which reinforces rather than weakens the charge. (C) gives all detectives the same resources, which makes the comparison look fairer, not less fair.",
+  take: "Before comparing success rates, check that the tasks being counted were equally difficult."
+},
+"cr-club-misc#50": {
+  fast: "The old rings already in the environment keep suffocating animals after the switchover.",
+  traps: "(E) introduces a different harm entirely, poisoning by ingestion, where the conclusion is specifically about suffocation. (A) only delays the completion date rather than denying the outcome.",
+  take: "A claim that a hazard will be eliminated must account for the stock already released, not only new production."
+},
+"cr-club-misc#51": {
+  fast: "The law turns on what society thinks, and public relations can manufacture that impression.",
+  traps: "(E) reports responsible firms losing power, which shows responsibility is not sufficient, whereas the conclusion claims it is necessary. (C) varies the speed of erosion without questioning whether it happens.",
+  take: "When a rule is stated in terms of perception, look for a way to change the perception without changing the fact."
+},
+"cr-club-misc#52": {
+  fast: "(E) picks between two causes the politician already allows for, leaving every link intact.",
+  traps: "(A) looks like a technical quibble about a number, but the politician's whole recommendation is the 30 percent figure, so moving the threshold to 45 guts it. (D) attacks the final step, which is easy to forget once the earlier links look secure.",
+  take: "In a long causal chain, catalogue the links first; the EXCEPT answer is the choice that cuts none of them."
+},
+"cr-club-misc#53": {
+  fast: "People who know intellectual stimulation and still prefer physical pleasures are the counterexample.",
+  traps: "(D) has athletes calling themselves happy, but nothing says they are aware of their cognitive faculties or that their happiness comes only from sport. (A) concerns animals' abilities, which the view's first clause mentions only in passing.",
+  take: "A counterexample must satisfy the claim's stated condition before it can contradict the claim."
+},
+"cr-club-misc#54": {
+  fast: "The same match holds for Atlantic turtles, so it cannot single out a Japanese origin.",
+  traps: "(A) offers nearer nesting sites, which suggests an alternative but leaves the Japanese match unexplained. (C) compares population trends rather than the genetic evidence the argument rests on.",
+  take: "Evidence of shared origin works only if the shared feature is not equally shared with everyone else."
+},
+"cr-club-misc#55": {
+  fast: "The excluded experts are the most likely to be prejudiced, so excluding them serves fairness.",
+  traps: "(A) reinforces the argument by making lay jurors less able to follow the evidence. (C) attacks arbitration, but showing another method is also unfair does nothing to rescue juries.",
+  take: "When an argument calls a practice a defect, the strongest weakener shows the practice serves the very goal at stake."
+},
+"cr-club-misc#56": {
+  fast: "If their words are systematically unreliable, their reports say nothing about their senses.",
+  traps: "(C) says the overlaps follow a definite pattern, which makes the phenomenon look more real, not less. (E) shows the experiences can be suppressed by drugs, which presupposes they are genuine.",
+  take: "When evidence consists entirely of self-reports, attack the reliability of the reporting."
+},
+"cr-club-misc#57": {
+  fast: "Unlike anything in Eurasia means it points to no Eurasian origin, near or far.",
+  traps: "(D) finds other artefacts matching distant Eurasia, which supports the conclusion rather than weakening it. (C) puts a similar projectile in a bear, which adds a second specimen of the same unexplained type.",
+  take: "'Not from A, therefore from B' fails when the evidence rules out B as well."
+},
+"cr-club-misc#58": {
+  fast: "Diseased lobsters make people ill, so the proposal has a point the argument ignored.",
+  traps: "(A) adds other harmful contaminants, which makes the sewage removal look even less decisive. (B) and (C) concern lifespan in the open ocean and breeding, neither of which gives the proposal a purpose.",
+  take: "To rescue a proposal called pointless, find a benefit outside the one the argument measured."
+},
+"cr-club-misc#59": {
+  fast: "Nervousness and hypertension merely go together; the argument declares one the cause.",
+  traps: "(A) and (C) complain about definition and labelling, which are cosmetic beside the causal leap. (E) asks for more traits, but adding traits would not fix the inference from correlation to cause.",
+  take: "When a flaw question offers 'takes a correlation as proof of causation', check it first."
+},
+"cr-club-misc#60": {
+  fast: "With no jobs to leave for, students stay in school whatever the morale programme did.",
+  traps: "(E) targets the programme at the worst schools, which if anything makes a real effect more plausible. (D) helps graduates find work, which concerns students who finished rather than those who left.",
+  take: "If a stimulus gives the motive for a behaviour, removing the object of that motive is the cleanest alternative explanation."
+},
+"cr-club-misc#61": {
+  fast: "The problem started before the device was ever tested, so the device cannot be its cause.",
+  traps: "(B) is the mirror image and strengthens the argument by putting the device first. (E) restricts the problem to large airports, which is consistent with the device being at fault since large airports have more equipped aircraft.",
+  take: "Check the timeline: an effect that predates its alleged cause refutes the causal claim outright."
+},
+"cr-club-misc#62": {
+  fast: "Premature mothers are filed as 'inadequate care' by default, so that group is loaded with low-weight births.",
+  traps: "(E) is a real relationship, but it supports the value of prenatal care rather than undermining it. (C) is a classification artefact in the other direction, affecting the premature-to-low-weight link the argument simply reports.",
+  take: "When two variables are coded from the same records, check whether one coding rule creates the association."
+},
+"cr-club-misc#63": {
+  fast: "Theta waves merely accompany the disorders, so raising theta waves need not raise the risk.",
+  traps: "(E) describes the reverse inference, which the researcher does not make. (A) and (B) complain about terminology rather than the inference itself.",
+  take: "Chaining two correlations does not produce a causal link at either end."
+},
+"cr-club-misc#64": {
+  fast: "Coverage got more comprehensive, so more stories need not mean more crime.",
+  traps: "(B) confirms that crime is out of control, which supports the conclusion. (C) would push people to stay away from home rather than to stay in it, but it addresses the advice rather than the inference about crime rates.",
+  take: "Media volume measures media behaviour, not the frequency of what is reported."
+},
+"cr-club-misc#65": {
+  fast: "Shares always sum to 100 percent, so shifting shares reveals nothing about total revenue.",
+  traps: "(C) asks for explanations, but the argument's problem is not that the changes are unexplained. (E) raises profits, which is a different quantity from the revenues under discussion.",
+  take: "Shares of a whole are silent about the size of the whole."
+},
+"cr-club-misc#66": {
+  fast: "Five hand-picked prices cannot refute an average taken across all consumer goods.",
+  traps: "(A) picks up the jab about not shopping recently, but that line is an aside and the argument's substance is the list of prices. (C) describes an appeal to ignorance that never occurs here.",
+  take: "An average is rebutted by a representative sample, never by a handful of memorable cases."
+},
+"cr-club-misc#67": {
+  fast: "The advice is dismissed on the adviser's criminal past, not on its economic merits.",
+  traps: "(E) alleges circularity, but the editorial does offer a reason, a bad one, rather than assuming its conclusion. (D) describes an appeal to ignorance, and the editorial cites a fact about the adviser rather than a lack of evidence.",
+  take: "An attack on who said something, rather than on what was said, is the classic source-based fallacy."
+},
+"cr-club-misc#68": {
+  fast: "The superior articles count as evidence only because the conclusion is assumed true already.",
+  traps: "(A) says the argument ignores counterevidence, but it does worse: it converts the counterevidence into support by assuming its own conclusion. (E) describes inferring limits from lapses, whereas here the evidence is outstanding work.",
+  take: "When counterevidence is explained away using the conclusion, the argument is circular."
+},
+"cr-club-misc#69": {
+  fast: "Flawed studies leave safety unproven, which is not the same as proving the food unsafe.",
+  traps: "(D) raises the animal-to-human gap, which would undercut the studies further and so help the activist's premise rather than exposing the flaw. (E) asks about the panel's credentials, which the argument takes as given.",
+  take: "Refuting the evidence for a claim returns you to not knowing, not to the claim's denial."
+},
+"cr-club-misc#70": {
+  fast: "Individuals pursuing their own careers does not make the community pursue the community's status.",
+  traps: "(A) accuses the argument of turning 'most' into 'all', but the conclusion says 'largely', which keeps the hedge. (C) attributes a claim about career enhancement never serving truth that the philosopher never makes.",
+  take: "What holds of every member need not hold of the group, especially when each member pursues something different."
+},
+"cr-club-misc#71": {
+  fast: "A movie-industry guild's heavy viewers are the last group whose tastes match the public's.",
+  traps: "(E) also concerns sampling, but of the movies watched rather than of the people asked, and the flaw lies in who was surveyed. (A) alleges an attack on credibility, where the argument does offer evidence, just bad evidence.",
+  take: "Check the sample against the population the conclusion describes, not against its size."
+},
+"cr-club-misc#72": {
+  fast: "Hot days may split into smoggy ones and windy ones with no day in both groups.",
+  traps: "(E) diagnoses a causal error, but the argument draws no causal conclusion at all. (A) describes confusing sometimes with necessarily, where the error is about overlapping sets.",
+  take: "Two 'some' statements sharing a middle term never combine into a third 'some' statement."
+},
+"cr-club-misc#73": {
+  fast: "Nobody disproving the thesis leaves it unproven, not proven.",
+  traps: "(A) charges an attack on the opponents, but the astronomer criticises their evidence rather than them. (C) asks about alternative explanations of the cratering, which is a separate matter from how the thesis is being defended.",
+  take: "The absence of a refutation is never a proof."
+},
+"cr-club-misc#74": {
+  fast: "Certification cures the conflict of interest only if an independent party writes it.",
+  traps: "(B) makes the certifiers experienced, but an experienced seller appraising his own stock has the same incentive to inflate. (A) says rivals certify too, which removes Gem World's advantage.",
+  take: "A safeguard against a conflict of interest must be independent of the interested party."
+},
+"cr-club-misc#75": {
+  fast: "Caring about social issues too leaves the finances-versus-politics ranking untouched.",
+  traps: "(D) looks like a bland restatement, but it supplies the principle that turns the statistician's two observations into a reason for scepticism. (C) is the one choice that directly contradicts the magazine's finding.",
+  take: "In a strengthen-EXCEPT, the answer is usually consistent with the conclusion rather than opposed to it."
+},
+"cr-club-misc#76": {
+  fast: "(E) notes that two things became common at the same time, which is coincidence, not evidence.",
+  traps: "(B) seems too general to help, but supplying a plausible mechanism is genuine support for a causal claim. (C) is an absence of evidence, yet an absence in the control case is exactly what a causal claim needs.",
+  take: "Simultaneous arrival of two developments is the weakest possible support for a causal claim."
+},
+"cr-club-misc#77": {
+  fast: "Naming UV-B as the only gene-damaging blocked radiation does not connect ozone loss to the decline.",
+  traps: "(D) reads like an unrelated fact about habitat, but ruling out habitat loss removes the leading alternative cause, which is strong support. (E) looks like a restatement of the premise, yet matching the 50-year timeline is real corroboration.",
+  take: "In a strengthen-EXCEPT on a causal claim, ask whether each choice ties the cause to the effect."
+},
+"cr-club-misc#78": {
+  fast: "A rare ancient rock band matching across both coasts is a formation split by the break-up.",
+  traps: "(B) and (D) cite human genetics and languages, which are thousands of years old against a hypothesis about prehistoric geology and are far better explained by later contact. (C) notes similar climates, which follow from similar latitudes.",
+  take: "Evidence for an ancient event must itself date from that era; recent similarities have recent explanations."
+},
+"cr-club-misc#79": {
+  fast: "Flexible scheduling helps only if it actually gets employees more sleep.",
+  traps: "(E) ties deprivation to the length of the workday, which argues for shorter hours rather than more flexible ones. (A) names overwork as the cause, again pointing at hours worked instead of when they are worked.",
+  take: "When a conclusion prescribes a specific remedy, the strongest support shows that remedy produces the effect."
+},
+"cr-club-misc#80": {
+  fast: "(B) establishes that the symptoms are worth worrying about, not that MBTE is what brings them on.",
+  traps: "(A) is easy to dismiss as a statement about people who are irrelevant, but workers without MBTE exposure are exactly the control group the survey needs. (E) sounds like methodology boilerplate, yet representativeness is what lets the worker findings extend to the public.",
+  take: "Evidence that an outcome is serious is not evidence that the outcome will occur."
+},
+"cr-club-misc#81": {
+  fast: "The galanin was already high before any fatty food was offered, so it cannot be the result.",
+  traps: "(E) offers a third factor, inefficient fat metabolism, that could raise galanin and explain the preference, which weakens rather than supports. (A) loosens the tie between craving and choice, undercutting the experiment's measure.",
+  take: "To support a causal claim from a comparison, show the supposed cause was present first."
+},
+"cr-club-misc#82": {
+  fast: "The chefs' base salaries are higher, so their bigger percentage lands on a bigger number.",
+  traps: "(A) gives the chefs more members, which changes the total cost but not the average raise per person. (B) concerns which union will get what it asked for, and the conclusion is about what was requested.",
+  take: "To convert a comparison of percentages into a comparison of amounts, you need the two bases."
+},
+"cr-club-misc#83": {
+  fast: "Tested is not passed, so the results are what the conclusion actually depends on.",
+  traps: "(B) asks how much buyers value safety, which bears on whether they should care rather than on whether the trimmer is safe. (E) compares trimming quality, a different attribute entirely.",
+  take: "Watch for advertisements that report a test was conducted while carefully omitting its outcome."
+},
+"cr-club-misc#84": {
+  fast: "Knowing how many chose other books tells you how many chose 1984, which is what 'a great number' needs.",
+  traps: "(E) questions whether respondents read their choices, but naming a book as the most influential on one's life already implies having read it. (A) counts books read, which does not bear on how many picked 1984.",
+  take: "A ranking is not a quantity; second place can be a large number or a tiny one."
+},
+"cr-club-misc#85": {
+  fast: "If bird anatomy was crucial to aircraft that do not resemble birds, ignoring structure is wrong.",
+  traps: "(E) reports other failed flying machines, which says nothing about whether studying structure helps. (C) compares development time, a matter of patience rather than of method.",
+  take: "When an analogy is used to justify ignoring something, check what the analogy's own case actually did with it."
+},
+"cr-club-misc#86": {
+  fast: "Strict-rule regions have far more dangerous roads to begin with, so a lower rate than otherwise is still a high rate.",
+  traps: "(B) has inspections breeding overconfidence, which supports the idea that the requirements do not help and so deepens the conflict. (E) gives those regions more kilometres of road, but the statistic is already per kilometre driven.",
+  take: "When a treated group looks worse, check whether it was worse before the treatment."
+},
+"cr-club-misc#87": {
+  fast: "The surplus calories leave the body as heat rather than being stored as fat.",
+  traps: "(A) has them cutting calories elsewhere so as not to exceed maintenance, which flatly contradicts the stimulus. (D) describes heavier drinkers, a different group from the one in the puzzle.",
+  take: "A resolution must accept every stated fact; a choice that denies one of them is disqualified."
+},
+"cr-club-misc#88": {
+  fast: "Absorption caps out at what one weak pack delivers, and everyone smokes a full pack.",
+  traps: "(B) has low-nicotine smokers smoking more cigarettes, but the study fixes everyone at one pack a day, so that route is closed. (E) describes what happens after smoking stops, which the study does not measure.",
+  take: "Check the study's stated conditions before accepting an explanation that quietly violates one."
+},
+"cr-club-misc#89": {
+  fast: "Caramelised sugar stops counting as calories, which shrinks the denominator and raises iron per calorie.",
+  traps: "(A) compares the two by weight, which is exactly the confusion the stimulus has already set aside by measuring per calorie. (C), (D) and (E) concern absorption, availability and what raisins are eaten with, none of which changes the ratio in the food.",
+  take: "For a per-unit puzzle, ask which of the two quantities in the ratio can move."
+},
+"cr-club-misc#90": {
+  fast: "The two dangers demand opposite escapes, so the calls must tell them apart.",
+  traps: "(C) guarantees that the categories never overlap, which makes the distinction possible without explaining why it is useful. (B) and (E) rank predators by deaths caused and diet, neither of which affects how a monkey should react.",
+  take: "A signalling distinction is explained by a difference in the response it triggers."
+},
 "cr-club-strengthen#1": {
   fast: "A second, different group wrongly classed as poor turns one anecdote into a systematic defect.",
   traps: "(A) is the reverse: if cash income is nearly all of disposable income for 99% of those counted, the flaw is negligible and no change is needed. (C) reports that other methods give a different number, which says nothing about which method is correct.",

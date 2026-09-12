@@ -583,6 +583,18 @@
   .tsub h4 { margin: 0; font-size: 14.5px; font-weight: 850; letter-spacing: .01em; }
   .tsub span { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); white-space: nowrap; }
   .sm.slvl { margin-top: 4px; gap: 5px; }
+  /* Difficulty mix: one proportional bar, so it cannot wrap however many levels a topic has. */
+  .slvbar { display: flex; height: 4px; margin-top: 7px; border-radius: 2px; overflow: hidden; background: var(--line-soft); max-width: 150px; opacity: .6; }
+  .slvbar .lvb { display: block; min-width: 3px; }
+  .slvbar .lvb-easy { background: var(--good); }
+  .slvbar .lvb-medium { background: var(--warn); }
+  .slvbar .lvb-hard { background: var(--bad); }
+  .slvbar .lvb-very-hard { background: var(--vhard); }
+  .lvlegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-faint); font-weight: 650; margin: 0 0 10px; }
+  .lvlegend span { display: inline-flex; align-items: center; gap: 5px; }
+  .lvlegend i { width: 14px; height: 4px; border-radius: 2px; display: block; opacity: .6; }
+  .lvlegend .lvb-easy { background: var(--good); } .lvlegend .lvb-medium { background: var(--warn); }
+  .lvlegend .lvb-hard { background: var(--bad); } .lvlegend .lvb-very-hard { background: var(--vhard); }
   .q-reset { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 14px; text-decoration: underline; }
   .q-reset:hover { color: var(--bad); }
   /* "Explain my mistake" — a second opinion on the choice the user actually made */
@@ -1277,7 +1289,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v121";
+  const APP_VERSION = "v122";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -3667,17 +3679,31 @@
     const sec = secById(s.section), run = getRun(s.id), answered = Object.keys(run.ans).length;
     let status, cls;
     // A run can be narrowed to one difficulty, so say which slice the status is of.
-    const slice = run.lvl ? ` · ${lvlLabel(run.lvl)} only` : "";
-    if (run.submitted) { const pct = Math.round((run.score / run.total) * 100); status = `${run.score}/${run.total} · ${pct}%${slice}`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low"; }
-    else if (answered) { status = `${answered}/${s.questions.length} answered${slice}`; cls = ""; }
-    else { status = "not started"; cls = "muted"; }
+    const slice = run.lvl ? ` · ${lvlLabel(run.lvl).toLowerCase()} only` : "";
+    // Always name the number: "answered" and "correct" are different counts and
+    // a bare "12/34" reads as either. Total is the run's own total when the run
+    // was narrowed to one difficulty, not the whole topic.
+    const nCorrect = Object.keys(run.ans).filter(n => { const q = s.questions.find(x => String(x.n) === String(n)); return q && run.ans[n] === q.correct; }).length;
+    if (run.submitted) {
+      const tot = run.total || answered || s.questions.length, sc = run.score != null ? run.score : nCorrect;
+      const pct = tot ? Math.round((sc / tot) * 100) : 0;
+      status = `${sc} of ${tot} correct · ${pct}%${slice}`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low";
+    } else if (answered) {
+      status = `${answered} of ${s.questions.length} answered · ${nCorrect} correct${slice}`; cls = "";
+    } else { status = `${s.questions.length} Qs · not started`; cls = "muted"; }
+    // The difficulty mix as one proportional bar rather than four wrapping chips:
+    // the exact counts are on the level picker that opens next, where the choice
+    // is actually made, and a row of chips per topic swamped the list.
     const lc = levelCounts(s);
-    const lvls = opts.levels === false ? "" :
-      LEVELS.filter(L => lc[L]).map(L => `<span class="lvl lvl-${L}">${lc[L]} ${lvlLabel(L)}</span>`).join("");
+    const lvTot = LEVELS.reduce((a, L) => a + (lc[L] || 0), 0);
+    const mix = LEVELS.filter(L => lc[L]).map(L => `${lc[L]} ${lvlLabel(L).toLowerCase()}`).join(" · ");
+    const lvls = (opts.levels === false || !lvTot) ? "" :
+      `<div class="slvbar" title="${esc(mix)}" aria-label="Difficulty mix: ${esc(mix)}">` +
+      LEVELS.filter(L => lc[L]).map(L => `<i class="lvb lvb-${L}" style="flex:${lc[L]}"></i>`).join("") + `</div>`;
     const hasProgress = run.submitted || answered > 0;
     return `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample ? ' <span style="color:var(--ink-faint);font-weight:600">· sample</span>' : ""}</div>
-      <div class="sm">${opts.secBadge ? `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>` : ""}<span>${s.questions.length} Qs</span><span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id) ? `<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>` : ""}</div>
-      ${lvls ? `<div class="sm slvl">${lvls}</div>` : ""}</div>
+      <div class="sm">${opts.secBadge ? `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>` : ""}<span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id) ? `<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>` : ""}</div>
+      ${lvls}</div>
       <div class="setbtns">${opts.del ? `<button class="reset-set" data-gendel="${esc(s.id)}" title="Delete this generated set">🗑</button>` : hasProgress ? `<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this topic">↺</button>` : ""}<button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(s.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
   }
 
@@ -3690,6 +3716,8 @@
       "Every question in the bank, filed under the topic it tests. Pick a topic, then a difficulty.",
       `${list.length} topic${list.length === 1 ? "" : "s"} · ${qs} Qs`, key);
     let h = `<section class="panel tabsec ${tsecCollapsed(key) ? "collapsed" : ""}" id="tab-practice" style="--secc:${sec.color}">${head}<div class="tabsec-body">`;
+    // One legend for the whole list, so each row's difficulty bar needs no labels of its own.
+    if (list.length) h += `<div class="lvlegend">${LEVELS.map(L => `<span><i class="lvb-${L}"></i>${lvlLabel(L)}</span>`).join("")}</div>`;
     if (!list.length && !gen.length) {
       return h + `<p class="footnote" style="margin:0;text-align:left">No questions here yet. Send your question documents in the chat — I'll tag every question into its topic and they'll appear here, ready to score.</p></div></section>`;
     }

@@ -151,9 +151,15 @@ const KEY = 'gmat_tracker_v2';
     // A topic that holds more than one difficulty, so the filter has something
     // to do.
     const opened = await page.evaluate(() => {
+      // The row shows its difficulty mix as one proportional bar whose title
+      // carries the counts: "2 easy · 15 medium · 15 hard · 1 very hard".
+      const mix = r => (r.querySelector('.slvbar')?.getAttribute('title') || '').split('·')
+        .map(s => /^\s*(\d+)\s+(.+?)\s*$/.exec(s)).filter(Boolean)
+        .map(m => ({ n: +m[1], v: m[2].toLowerCase().replace(/\s+/g, '-') }));
       const rows = [...document.querySelectorAll('#view .setrow')]
-        .filter(r => r.querySelectorAll('.slvl .lvl').length >= 2)
-        .map(r => ({ btn: r.querySelector('[data-runset]'), n: parseInt(r.querySelector('.sm span')?.textContent || '999', 10) || 999 }))
+        .map(r => ({ btn: r.querySelector('[data-runset]'), lv: mix(r) }))
+        .filter(x => x.btn && x.lv.length >= 2)
+        .map(x => ({ btn: x.btn, n: x.lv.reduce((a, l) => a + l.n, 0) }))
         .sort((a, b) => a.n - b.n);
       if (!rows.length) return null;
       rows[0].btn.click();
@@ -237,8 +243,12 @@ const KEY = 'gmat_tracker_v2';
       // exactly one — the case where the chooser used to disappear for good.
       const found = await page.evaluate(() => {
         const rows = [...document.querySelectorAll('#view .setrow')].map(r => {
-          const n = parseInt(r.querySelector('.sm span')?.textContent || '0', 10) || 0;
-          const lv = [...r.querySelectorAll('.slvl .lvl')].map(x => ({ n: parseInt(x.textContent, 10) || 0, label: x.textContent.replace(/[\d\s]/g, '') }));
+          // Counts come from the difficulty bar's title, in the same wording the
+          // level picker uses: "2 easy · 15 medium · 15 hard · 1 very hard".
+          const lv = (r.querySelector('.slvbar')?.getAttribute('title') || '').split('·')
+            .map(s => /^\s*(\d+)\s+(.+?)\s*$/.exec(s)).filter(Boolean)
+            .map(m => ({ n: +m[1], label: m[2].toLowerCase().replace(/\s+/g, '-') }));
+          const n = lv.reduce((a, x) => a + x.n, 0);
           return { btn: r.querySelector('[data-runset]'), n, one: lv.find(x => x.n === 1) };
         }).filter(x => x.btn && x.n > 1 && x.one);
         if (!rows.length) return null;

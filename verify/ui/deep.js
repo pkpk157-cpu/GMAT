@@ -240,8 +240,11 @@ const ROT = [
       const cut = all.findIndex(e => e.classList.contains('tsub') && /generated on this device/i.test(e.textContent));
       const rows = (cut < 0 ? all : all.slice(0, cut)).filter(e => e.classList.contains('setrow')).map(r => ({
         title: r.querySelector('.st')?.textContent.trim() || '',
-        n: parseInt(r.querySelector('.sm span')?.textContent || '0', 10) || 0,
-        lvls: [...r.querySelectorAll('.slvl .lvl')].map(x => parseInt(x.textContent, 10) || 0).reduce((a, b) => a + b, 0),
+        n: +(/(\d+)\s*Qs/.exec(r.querySelector('.sstatus')?.textContent || '') || [0, 0])[1],
+        // The difficulty mix is one bar; its title spells out the counts,
+        // "2 easy · 15 medium · 15 hard · 1 very hard".
+        lvls: ((r.querySelector('.slvbar')?.getAttribute('title') || '').match(/\d+/g) || [])
+          .reduce((a, b) => a + +b, 0),
       }));
       const head = /(\d+)\s+topics?\s+·\s+(\d+)\s+Qs/.exec(document.querySelector('#tab-practice .tabsec-head')?.textContent
         || document.querySelector('#tab-practice')?.textContent || '');

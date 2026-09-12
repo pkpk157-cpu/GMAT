@@ -593,6 +593,15 @@
   .lvlegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-faint); font-weight: 650; margin: 0 0 10px; }
   .lvlegend span { display: inline-flex; align-items: center; gap: 5px; }
   .lvlegend i { width: 14px; height: 4px; border-radius: 2px; display: block; opacity: .6; }
+  /* Percent correct as a doughnut. --rc is the one colour the ring and its
+     number share, so the score reads at a glance before the digits do. */
+  .sring { width: 34px; height: 34px; flex: none; overflow: visible; }
+  .sring.good { --rc: var(--good); } .sring.mid { --rc: var(--warn); } .sring.low { --rc: var(--bad); }
+  .sring circle { fill: none; stroke-width: 3.4; }
+  .sring .rt { stroke: var(--line); }
+  .sring .rv { stroke: var(--rc); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; }
+  .sring text { font-size: 11.5px; font-weight: 800; fill: var(--rc); text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+  .sring .pc { font-size: 7.5px; font-weight: 700; }
   .lvlegend .lvb-easy { background: var(--good); } .lvlegend .lvb-medium { background: var(--warn); }
   .lvlegend .lvb-hard { background: var(--bad); } .lvlegend .lvb-very-hard { background: var(--vhard); }
   .q-reset { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink-faint); font-size: 14px; text-decoration: underline; }
@@ -1289,7 +1298,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v122";
+  const APP_VERSION = "v123";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -3684,12 +3693,18 @@
     // a bare "12/34" reads as either. Total is the run's own total when the run
     // was narrowed to one difficulty, not the whole topic.
     const nCorrect = Object.keys(run.ans).filter(n => { const q = s.questions.find(x => String(x.n) === String(n)); return q && run.ans[n] === q.correct; }).length;
+    // How well it went is a percentage, and a percentage reads faster as a
+    // filled circle than as a number in a sentence — so the text says how far
+    // through the topic you are and the ring beside it says how much of what
+    // you have answered is right.
+    let ring = "";
     if (run.submitted) {
       const tot = run.total || answered || s.questions.length, sc = run.score != null ? run.score : nCorrect;
-      const pct = tot ? Math.round((sc / tot) * 100) : 0;
-      status = `${sc} of ${tot} correct · ${pct}%${slice}`; cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low";
+      status = `${sc} of ${tot} correct${slice}`; cls = "";
+      ring = ringHTML(sc, tot, "correct");
     } else if (answered) {
-      status = `${answered} of ${s.questions.length} answered · ${nCorrect} correct${slice}`; cls = "";
+      status = `${answered} of ${s.questions.length} answered${slice}`; cls = "";
+      ring = ringHTML(nCorrect, answered, "correct so far");
     } else { status = `${s.questions.length} Qs · not started`; cls = "muted"; }
     // The difficulty mix as one proportional bar rather than four wrapping chips:
     // the exact counts are on the level picker that opens next, where the choice
@@ -3701,7 +3716,12 @@
       `<div class="slvbar" title="${esc(mix)}" aria-label="Difficulty mix: ${esc(mix)}">` +
       LEVELS.filter(L => lc[L]).map(L => `<i class="lvb lvb-${L}" style="flex:${lc[L]}"></i>`).join("") + `</div>`;
     const hasProgress = run.submitted || answered > 0;
-    return `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}${s.sample ? ' <span style="color:var(--ink-faint);font-weight:600">· sample</span>' : ""}</div>
+    // The ring stands where the topic icon does. Putting it on the right instead
+    // took 36px off the title, which then wrapped; and once you have started a
+    // topic, how you are doing in it identifies the row better than an icon
+    // half the list shares.
+    const lead = ring || `<span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span>`;
+    return `<div class="setrow">${lead}<div class="si"><div class="st">${esc(s.title)}${s.sample ? ' <span style="color:var(--ink-faint);font-weight:600">· sample</span>' : ""}</div>
       <div class="sm">${opts.secBadge ? `<span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span>` : ""}<span class="sstatus ${cls}">${status}</span>${flaggedCount(s.id) ? `<span style="color:var(--bad);font-weight:700">⚑ ${flaggedCount(s.id)}</span>` : ""}</div>
       ${lvls}</div>
       <div class="setbtns">${opts.del ? `<button class="reset-set" data-gendel="${esc(s.id)}" title="Delete this generated set">🗑</button>` : hasProgress ? `<button class="reset-set" data-resetset="${esc(s.id)}" title="Reset this topic">↺</button>` : ""}<button class="go ${run.submitted ? "done" : ""}" data-runset="${esc(s.id)}">${run.submitted ? "Review" : answered ? "Resume" : "Start"}</button></div></div>`;
@@ -4083,6 +4103,21 @@
   function closeJumper() { document.getElementById("jumper").hidden = true; }
 
   function levelCounts(set) { const c = { easy:0, medium:0, hard:0, "very-hard":0 }; set.questions.forEach(q => { if (c[q.level] != null) c[q.level]++; }); return c; }
+  /* A percentage as a doughnut. The circle is drawn with r chosen so its
+     circumference is exactly 100 user units, which lets the dash array be the
+     percentage itself. A stroked ring rather than a filled disc with a hole
+     punched in it: the panel behind is translucent, so a "hole" of any solid
+     colour would show as a disc of the wrong shade. */
+  function ringHTML(part, whole, what) {
+    if (!whole) return "";
+    const pct = Math.round((part / whole) * 100);
+    const cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low";
+    const label = `${pct}% ${what} — ${part} of ${whole}`;
+    return `<svg class="sring ${cls}" viewBox="0 0 36 36" role="img" aria-label="${esc(label)}"><title>${esc(label)}</title>
+      <circle class="rt" cx="18" cy="18" r="15.9155"></circle>
+      ${pct ? `<circle class="rv" cx="18" cy="18" r="15.9155" stroke-dasharray="${pct} 100"></circle>` : ""}
+      <text x="18" y="18">${pct}<tspan class="pc">%</tspan></text></svg>`;
+  }
   /* The questions this run is actually working through. A topic holds every
      difficulty; picking one narrows the run without touching what has already
      been answered, so you can switch level and keep your progress. */

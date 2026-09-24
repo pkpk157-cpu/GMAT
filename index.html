@@ -24,6 +24,7 @@
     --ink-soft:#2F3B52; --ink-faint:#55617A; --line:rgba(70,90,130,.16); --line-soft:rgba(70,90,130,.09);
     --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:rgba(37,99,235,.12);
     --gold:#0E7490; --gold-wash:rgba(14,116,137,.12);
+    --flame-1:#FFD400; --flame-2:#FF9600; --flame-3:#FF4B4B;
     --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B; --vhard:#7A3E9D;
     --c-quant:#2563EB; --c-data:#0EA5E9; --c-overall:#1E3A8A; --c-verbal:#4F46E5; --c-cr:#6366F1;
     --glass-hi:rgba(255,255,255,.85); --bar:rgba(255,255,255,.74); --blur:saturate(185%) blur(22px);
@@ -38,6 +39,7 @@
       --ink-soft:#C2CBDC; --ink-faint:#939EB4; --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.055);
       --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:rgba(91,155,243,.16);
       --gold:#38BDF8; --gold-wash:rgba(56,189,248,.14);
+      --flame-1:#FFD400; --flame-2:#FF9600; --flame-3:#FF5B4B;
       --good:#5FC79E; --warn:#D8A64A; --bad:#E08869; --vhard:#C79BE0;
       --c-quant:#5B9BF3; --c-data:#4FC3F7; --c-overall:#8AB0F5; --c-verbal:#8A93F0; --c-cr:#9BA6F7;
       --glass-hi:rgba(255,255,255,.16); --bar:rgba(11,18,33,.76);
@@ -49,6 +51,7 @@
     --ink-soft:#2F3B52; --ink-faint:#55617A; --line:rgba(70,90,130,.16); --line-soft:rgba(70,90,130,.09);
     --accent:#2563EB; --accent-ink:#1D4ED8; --accent-wash:rgba(37,99,235,.12);
     --gold:#0E7490; --gold-wash:rgba(14,116,137,.12);
+    --flame-1:#FFD400; --flame-2:#FF9600; --flame-3:#FF4B4B;
     --good:#2F8F6B; --warn:#B0791E; --bad:#C1553B; --vhard:#7A3E9D;
     --c-quant:#2563EB; --c-data:#0EA5E9; --c-overall:#1E3A8A; --c-verbal:#4F46E5; --c-cr:#6366F1;
     --glass-hi:rgba(255,255,255,.85); --bar:rgba(255,255,255,.74);
@@ -59,6 +62,7 @@
     --ink-soft:#C2CBDC; --ink-faint:#939EB4; --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.055);
     --accent:#5B9BF3; --accent-ink:#93BEFA; --accent-wash:rgba(91,155,243,.16);
     --gold:#38BDF8; --gold-wash:rgba(56,189,248,.14);
+    --flame-1:#FFD400; --flame-2:#FF9600; --flame-3:#FF5B4B;
     --good:#5FC79E; --warn:#D8A64A; --bad:#E08869; --vhard:#C79BE0;
     --c-quant:#5B9BF3; --c-data:#4FC3F7; --c-overall:#8AB0F5; --c-verbal:#8A93F0; --c-cr:#9BA6F7;
     --glass-hi:rgba(255,255,255,.16); --bar:rgba(11,18,33,.76);
@@ -119,6 +123,13 @@
   .tb-trophy.alldone .dot { display: none; }
   /* topbar layout: trophy sits right before the avatar */
   .tb-inner .tb-trophy + .avatar { margin-left: 8px; }
+  /* Streak flame in the top bar. Lit only while today is already logged, so a
+     glance at it answers "have I practised yet?" without opening anything. */
+  .tb-streak { display: flex; align-items: center; gap: 3px; flex: none; background: none; border: none; padding: 4px 2px; cursor: pointer; }
+  .tb-streak svg { width: 23px; height: 27px; display: block; }
+  .tb-streak b { font-size: 16.5px; font-weight: 900; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  .tb-streak.lit b { color: var(--flame-2); }
+  .tb-streak:hover { filter: brightness(.97); }
 
   /* Achievements page */
   .av-hero { text-align: center; padding: 6px 0 18px; }
@@ -130,6 +141,36 @@
   .av-chips { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
   .av-chip { font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
   .av-panel { margin-top: 14px; }
+  /* ---- Streak screen ---- */
+  .sk-hero { display: flex; flex-direction: column; align-items: center; padding: 26px 0 8px; }
+  .sk-flame { width: 128px; height: 150px; display: block; }
+  /* A glow under the flame, not a solid ellipse: on a dark ground a flat wash
+     of flame colour reads as a murky blob rather than as light. */
+  .sk-shadow { width: 104px; height: 20px; margin-top: -14px; background: radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--flame-2) 42%, transparent), transparent 70%); }
+  .sk-cold .sk-shadow { background: radial-gradient(50% 50% at 50% 50%, var(--line), transparent 70%); }
+  .sk-n { font-size: 78px; line-height: 1; font-weight: 900; letter-spacing: -.03em; margin-top: 20px; font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, var(--flame-2), var(--flame-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sk-cold .sk-n { background: none; color: var(--ink-faint); -webkit-text-fill-color: currentColor; }
+  .sk-lbl { font-size: 25px; font-weight: 900; letter-spacing: -.01em; margin-top: 4px; color: var(--flame-3); }
+  .sk-cold .sk-lbl { color: var(--ink-faint); }
+  /* The week: one grid so a run of practised days joins into a single capsule
+     across the gaps, the way a streak reads on paper. */
+  .sk-week { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 9px; margin: 26px 0 14px; }
+  .sk-wl { text-align: center; font-size: 13px; font-weight: 800; color: var(--ink-faint); }
+  .sk-wl.today { color: var(--flame-3); }
+  .sk-wc { height: 42px; display: grid; place-items: center; }
+  .sk-wc.on { background: linear-gradient(180deg, var(--flame-2), var(--flame-3)); }
+  .sk-wc.rs { border-radius: 21px 0 0 21px; } .sk-wc.re { border-radius: 0 21px 21px 0; }
+  .sk-wc i { width: 27px; height: 27px; border-radius: 50%; display: grid; place-items: center; background: var(--line-soft); color: transparent; font-size: 14px; font-weight: 900; font-style: normal; }
+  .sk-wc.on i { background: none; color: #fff; }
+  .sk-goal { text-align: center; font-size: 15.5px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 4px; }
+  .sk-goal b { color: var(--flame-3); }
+  .sk-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+  .sk-stat { text-align: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 6px; }
+  .sk-stat .v { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; }
+  .sk-stat .k { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); margin-top: 2px; }
+  .stat[data-openstreak] { cursor: pointer; }
+  .stat[data-openstreak]:hover { border-color: color-mix(in srgb, var(--flame-2) 55%, var(--line)); }
   .av-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .av-head h3 { margin: 0; }
   .av-count { margin-left: auto; font-weight: 800; font-size: 14.5px; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 999px; }
@@ -982,6 +1023,7 @@
       <span class="tb-days tnum" id="tb-days">—</span>
       <span class="tb-meta"><span class="l" id="tb-label">days to exam</span><span class="d" id="tb-date">set your date</span></span>
     </button>
+    <button class="tb-streak" id="btn-streak" title="Your practice streak"><span id="tb-flame"></span><b id="tb-streak-n">0</b></button>
     <button class="tb-trophy" id="btn-achv" title="Achievements, daily &amp; weekly goals">🏆<span class="dot"></span></button>
     <button class="avatar" id="btn-profile" title="Profile, targets, accuracy & activity">P</button>
   </div>
@@ -1086,6 +1128,12 @@
 <div class="profile" id="achv" hidden>
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Achievements</h2><button class="pf-close" id="av-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="av-body"></div>
+</div>
+
+<!-- Streak -->
+<div class="profile" id="streak" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Streak</h2><button class="pf-close" id="sk-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="sk-body"></div>
 </div>
 
 <!-- Review queue (spaced repetition) -->
@@ -1298,7 +1346,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v123";
+  const APP_VERSION = "v124";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1381,6 +1429,90 @@
   function todayTotal(){ return state.daily[dkey()]||0; }
   function streak(){ let n=0,cur=new Date(); if(!(state.daily[dkey(cur)]>0)) cur.setDate(cur.getDate()-1); while(state.daily[dkey(cur)]>0){ n++; cur.setDate(cur.getDate()-1); } return n; }
   function heatLevel(count){ if(count<=0) return 0; const t=state.targets.daily||20, r=count/t; if(r<0.34) return 1; if(r<0.67) return 2; if(r<1) return 3; return 4; }
+
+  /* ===================== Streak ===================== */
+  /* A day counts for the streak exactly when a question was logged on it —
+     the same test streak() uses, so the flame, the number and the week strip
+     can never tell three different stories. */
+  const dayLogged = (d) => (state.daily[dkey(d)] || 0) > 0;
+  const loggedDays = () => Object.keys(state.daily || {}).filter(k => state.daily[k] > 0).sort();
+  /* Longest run ever. Day keys are midnight-local, so a DST change makes a
+     "day" 23 or 25 hours; round the difference rather than testing for exactly
+     86,400,000 ms, which would silently break the run twice a year. */
+  function longestStreak() {
+    let best = 0, run = 0, prev = null;
+    loggedDays().forEach(k => {
+      const d = new Date(k + "T00:00:00");
+      run = (prev && Math.round((d - prev) / 86400000) === 1) ? run + 1 : 1;
+      prev = d; if (run > best) best = run;
+    });
+    return best;
+  }
+  // This calendar week, Monday first, with each day marked done / today / still to come.
+  function streakWeek() {
+    const WD = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], s = startOfWeek(new Date()), tk = dkey(), out = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(s); d.setDate(s.getDate() + i);
+      const k = dkey(d);
+      out.push({ label: WD[i], key: k, on: (state.daily[k] || 0) > 0, today: k === tk, ahead: k > tk });
+    }
+    return out;
+  }
+  /* The flame itself: an outer teardrop, an inner one, and the pale core, which
+     together read as fire at 23px in the top bar and at 128px on the streak
+     screen. `cold` is the same shape in greys — today is not logged yet. */
+  function flameSVG(cold, cls) {
+    const id = "fl" + (cold ? "c" : "h") + (flameSVG.n = (flameSVG.n || 0) + 1);
+    const o1 = cold ? "color-mix(in srgb, var(--ink-faint) 17%, transparent)" : "var(--flame-1)";
+    const o2 = cold ? "color-mix(in srgb, var(--ink-faint) 26%, transparent)" : "var(--flame-2)";
+    const i1 = cold ? "color-mix(in srgb, var(--ink-faint) 30%, transparent)" : "var(--flame-2)";
+    const i2 = cold ? "color-mix(in srgb, var(--ink-faint) 38%, transparent)" : "var(--flame-3)";
+    return `<svg class="${cls}" viewBox="0 0 100 118" aria-hidden="true" focusable="false">
+      <defs><linearGradient id="${id}o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${o1}"/><stop offset="1" stop-color="${o2}"/></linearGradient>
+      <linearGradient id="${id}i" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${i1}"/><stop offset="1" stop-color="${i2}"/></linearGradient></defs>
+      <path fill="url(#${id}o)" d="M54 2c-2 14-9 24-18 32C24 44 14 58 14 74a36 36 0 0 0 72 0c0-14-7-26-17-35-4 5-9 8-13 9 4-12 3-31-2-46Z"/>
+      <path fill="url(#${id}i)" d="M53 44c-1 8-5 13-10 17-6 5-11 12-11 21a18 18 0 0 0 36 0c0-8-4-15-10-20-2 3-4 4-6 5 2-7 2-16 1-23Z"/>
+      <ellipse cx="50" cy="85" rx="11" ry="12" fill="${cold ? "var(--surface)" : "#FFF7E8"}"/>
+    </svg>`;
+  }
+  function streakBodyHTML() {
+    const st = streak(), today = dayLogged(new Date()), wk = streakWeek();
+    // Two different misses: days of this week already gone without practice,
+    // and days from today on that are still open. Only the second can be fixed.
+    const missedPast = wk.filter(d => !d.on && !d.ahead && !d.today).length;
+    const missing = wk.filter(d => !d.on && (d.ahead || d.today)).length;
+    const cold = !today;
+    let goal;
+    if (missing === 0) goal = missedPast === 0 ? `A perfect week — every day of it practised. 🎉` : `Every day left this week is done.`;
+    else if (missedPast === 0) goal = `Practise <b>${missing} more day${missing === 1 ? "" : "s"}</b> in a row for a perfect week.`;
+    else goal = `Practise <b>${missing} more day${missing === 1 ? "" : "s"}</b> to finish the week strong.`;
+    const cells = wk.map((d, i) => {
+      const prevOn = i > 0 && wk[i - 1].on, nextOn = i < 6 && wk[i + 1].on;
+      const cls = [d.on ? "on" : "", d.on && !prevOn ? "rs" : "", d.on && !nextOn ? "re" : ""].filter(Boolean).join(" ");
+      return `<span class="sk-wc ${cls}"><i>${d.on ? "✓" : ""}</i></span>`;
+    }).join("");
+    const labels = wk.map(d => `<span class="sk-wl ${d.today ? "today" : ""}">${d.label.slice(0, 2)}</span>`).join("");
+    const best = longestStreak(), active = loggedDays().length;
+    return `<section class="panel ${cold ? "sk-cold" : ""}">
+      <div class="sk-hero">${flameSVG(cold, "sk-flame")}<div class="sk-shadow"></div>
+        <div class="sk-n">${st}</div><div class="sk-lbl">day streak</div></div>
+      <div class="sk-week">${labels}${cells}</div>
+      <p class="sk-goal">${goal}</p>
+      <p class="sk-goal" style="color:var(--ink-faint);font-size:14px">${today
+        ? `Today is logged — the streak is safe.`
+        : (st > 0 ? `Nothing logged today yet. Answer one question to keep the ${st}-day run alive.`
+                  : `Answer one question today to start a streak.`)}</p>
+      <div class="sk-stats">
+        <div class="sk-stat"><div class="v">${best}</div><div class="k">Longest streak</div></div>
+        <div class="sk-stat"><div class="v">${active}</div><div class="k">Days practised</div></div>
+        <div class="sk-stat"><div class="v">${weekTotal()}</div><div class="k">Qs this week</div></div>
+      </div>
+    </section>`;
+  }
+  function renderStreak(){ document.getElementById("sk-body").innerHTML = streakBodyHTML(); }
+  function openStreak(){ renderStreak(); document.getElementById("streak").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("streak-open"); }
+  function closeStreak(){ document.getElementById("streak").hidden = true; document.body.style.overflow = ""; render(); }
+
 
   /* ===================== Achievements / gamification ===================== */
   // Record that the user did something today (login, concept, flash, session, set).
@@ -1485,6 +1617,12 @@
     document.getElementById("btn-profile").innerHTML = state.name ? esc(state.name.trim()[0].toUpperCase()) : ICON.person;
     // Trophy indicator: gold glow when every daily task is done, else a nudge dot.
     document.getElementById("btn-achv").classList.toggle("alldone", dailyTasks().every(t => t.done));
+    // Streak flame: lit only once today is logged.
+    const lit = dayLogged(new Date()), sb = document.getElementById("btn-streak");
+    document.getElementById("tb-flame").innerHTML = flameSVG(!lit, "");
+    document.getElementById("tb-streak-n").textContent = streak();
+    sb.classList.toggle("lit", lit);
+    sb.title = lit ? "Practised today — your streak is safe" : "Nothing logged today yet";
     if (d === null) { days.textContent="—"; lbl.textContent="days to exam"; dt.textContent="set your date"; return; }
     const nice = new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined,{ month:"short", day:"numeric", year:"numeric" });
     if (d>0){ days.textContent=d; lbl.textContent="days to exam"; dt.textContent=nice; }
@@ -1750,7 +1888,7 @@
     h += `<div class="grid-stats">
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
       <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
-      <div class="stat"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
+      <div class="stat" data-openstreak role="button" tabindex="0" title="See your streak"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
       <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice"}</div></div>
       <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
@@ -2184,6 +2322,7 @@
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
+    if (e.target.closest("[data-openstreak]")) { openStreak(); return; }
     const pg = e.target.closest("[data-progtoggle]"); if (pg) { state.progOpen = !state.progOpen; save(); renderView(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this topic added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
@@ -2209,6 +2348,7 @@
   // Keyboard: Enter / Space toggles a section header (it has role="button").
   document.getElementById("view").addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
+    if (e.target.closest("[data-openstreak]")) { e.preventDefault(); openStreak(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (!ts) return;
     e.preventDefault();
     const k = ts.getAttribute("data-tabsec"); state.collapsed[k] = !state.collapsed[k]; save(); renderView();
@@ -2282,6 +2422,8 @@
   document.getElementById("btn-profile").onclick = openProfile;
   document.getElementById("btn-achv").onclick = openAchv;
   document.getElementById("av-close").onclick = closeAchv;
+  document.getElementById("btn-streak").onclick = openStreak;
+  document.getElementById("sk-close").onclick = closeStreak;
   document.getElementById("tb-count").onclick = openProfile;
   document.getElementById("pf-close").onclick = closeProfile;
   document.getElementById("ob-save").onclick = () => { state.name=document.getElementById("ob-name").value.trim(); state.examDate=document.getElementById("ob-date").value||""; save(); document.getElementById("onboard").hidden=true; render(); };

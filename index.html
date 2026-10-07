@@ -141,6 +141,13 @@
   .av-chips { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
   .av-chip { font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
   .av-panel { margin-top: 14px; }
+  /* ---- Sync setup steps ---- */
+  .sync-steps { margin: 0 0 12px; padding-left: 20px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+  .sync-steps li { margin-bottom: 9px; }
+  .sync-copy { display: block; width: 100%; margin: 7px 0 4px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 12.5px; text-align: left; word-break: break-all; cursor: pointer; }
+  .sync-copy span { float: right; margin-left: 8px; font-weight: 800; color: var(--accent); text-transform: uppercase; font-size: 11px; letter-spacing: .04em; }
+  .sync-copy.copied { border-color: var(--good); } .sync-copy.copied span { color: var(--good); }
+  .sync-copy.copied span::before { content: "✓ "; }
   /* ---- Streak screen ---- */
   .sk-hero { display: flex; flex-direction: column; align-items: center; padding: 26px 0 8px; }
   .sk-flame { width: 128px; height: 150px; display: block; }
@@ -1386,7 +1393,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v126";
+  const APP_VERSION = "v127";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1995,11 +2002,23 @@
   }
 
   /* Profile */
+  /* The plain token list, not a /tokens/new deep link with prefilled scopes.
+     The deep link saves two taps when it works and dumps you on a 500 when it
+     does not — it needs an authenticated session, and the sign-in redirect that
+     creates one is exactly what breaks inside an in-app browser. */
+  const TOKEN_URL = "https://github.com/settings/tokens";
   function syncPanelInner() {
     let h = `<h3>Sync across devices</h3>`;
     if (!syncLinked()) {
-      h += `<p class="sub">Keep one set of progress across every device you study on — laptop, phone, tablet. It's stored in a private GitHub Gist that only you can see — create a token with <b>gist</b> scope, paste it below, then link your other devices with the same token.</p>
-      <p class="footnote" style="text-align:left;margin:0 0 12px"><a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=GMAT%20Prep%20sync" target="_blank" rel="noopener">Create a token on GitHub →</a> &nbsp;(tick only the <b>gist</b> scope)</p>
+      h += `<p class="sub">Keep one set of progress across every device you study on — laptop, phone, tablet. It's stored in a private GitHub Gist that only you can see.</p>
+      <ol class="sync-steps">
+        <li><b>Sign in to github.com first</b>, in your normal browser. A link out of this app opens in a cut-down in-app browser, and GitHub's sign-in often fails there with a 500 — if that is what you are seeing, that is why.</li>
+        <li>Go to <b>Settings → Developer settings → Personal access tokens → Tokens (classic)</b> and generate one. Tick only the <b>gist</b> scope. Copy the URL below if you would rather paste it straight in:
+          <button class="sync-copy" data-sync-copy="${esc(TOKEN_URL)}" title="Copy this address">${esc(TOKEN_URL)} <span>copy</span></button>
+          <a href="${esc(TOKEN_URL)}" target="_blank" rel="noopener">or open it from here →</a></li>
+        <li>Paste the token below, then do the same on your other devices with the <b>same token</b>.</li>
+      </ol>
+      <p class="footnote" style="text-align:left;margin:0 0 12px">A fine-grained token works too — give it the <b>Gists: read and write</b> account permission instead of the gist scope. No GitHub account at all? <b>Back up data</b> above writes a file you can restore on the other device; it is a manual copy rather than live sync, but it loses nothing.</p>
       <div class="field"><label for="sync-token">GitHub token</label><input id="sync-token" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off" spellcheck="false"></div>
       <button class="btn-primary" style="width:100%"${syncBusy ? " disabled" : ""} data-sync-link="1">${syncBusy ? "Linking…" : "Link this device"}</button>`;
     } else {
@@ -2453,6 +2472,16 @@
       window.GMAT_GEN.ai.setKey(""); renderAiPanel(); renderView();
       const st = document.getElementById("ai-status");
       if (st) { st.textContent = "Key removed."; st.className = "ai-status"; }
+      return;
+    }
+    const sc = e.target.closest("[data-sync-copy]");
+    if (sc) {
+      const url = sc.getAttribute("data-sync-copy");
+      // navigator.clipboard is unavailable over plain http and in some in-app
+      // browsers, which is the very situation this button exists for.
+      const done = () => { sc.classList.add("copied"); setTimeout(() => sc.classList.remove("copied"), 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => prompt("Copy this address:", url));
+      else prompt("Copy this address:", url);
       return;
     }
     if (e.target.closest("[data-backup]")) { backup(); return; }

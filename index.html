@@ -140,6 +140,17 @@
   .av-xpsub { font-size: 13.5px; color: var(--ink-faint); }
   .av-chips { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
   .av-chip { font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+  /* Grouped actions. Inside a group the cards lose their own outer margins and
+     the group's heading carries the structure, so three ways to practise read
+     as one block rather than three competing cards. */
+  .actgrp { padding-bottom: 15px; }
+  .actgrp > h3 { margin: 0 0 10px; }
+  .actgrp .cta-session, .actgrp .cta-review { margin-bottom: 9px; box-shadow: none; }
+  .actgrp .cta-review { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .actgrp .tools { margin: 0; }
+  .actgrp .mocks-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .actgrp .mocks-note { margin: 9px 0 0; }
+  .actgrp-sub { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin: 14px 0 8px; }
   /* Secondary tools: one tap, a third of the height of the cards they replace. */
   .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 14px; }
   .tool { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 11px 6px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; transition: .12s; }
@@ -358,7 +369,8 @@
   .qd-n { font-family: var(--serif); font-size: 25px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
   .qd-l { font-size: 13px; font-weight: 700; margin-top: 4px; }
   .qd-p { font-size: 12px; color: var(--ink-faint); }
-  .qd-a { font-size: 12.5px; color: var(--ink-soft); margin-top: 7px; line-height: 1.45; }
+  .quad-advice { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; margin: 12px 0 0; }
+  .quad-advice b { color: var(--ink); }
 
   /* Score estimate */
   .scorebig { display: flex; align-items: baseline; gap: 10px; margin: 14px 0 4px; }
@@ -1404,7 +1416,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v128";
+  const APP_VERSION = "v129";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1881,6 +1893,11 @@
     return topicsPanelHTML(sec, ICON.practice);
   }
 
+  /* The ring is progress towards a target, so past the target it is simply full.
+     Printing the raw ratio there gave "440%" inside a circle already drawn
+     complete — three digits and a sign overflowing a 64px ring, saying the
+     opposite of the arc behind it. The real figure is on the line underneath. */
+  const ringPct = (p) => Math.min(100, Math.round(p * 100));
   function ring(pct, color) {
     const r=26, c=2*Math.PI*r, off=c*(1-Math.max(0,Math.min(1,pct)));
     return `<svg viewBox="0 0 64 64" class="ring"><circle class="ring-bg" cx="32" cy="32" r="${r}"/><circle class="ring-fg" cx="32" cy="32" r="${r}" style="stroke:${color};stroke-dasharray:${c.toFixed(1)};stroke-dashoffset:${off.toFixed(1)}"/></svg>`;
@@ -1894,36 +1911,11 @@
 
     let h = `<div class="sec-head" style="--secc:var(--c-overall)"><h2><span class="bar"></span>Overall Progress</h2><p>${esc(SECTIONS.find(s=>s.dashboard).blurb)}</p></div>`;
 
-    // adaptive practice session entry
-    h += `<button class="cta-session" data-session-open="1"><span class="ico">🎯</span><div><div class="t">Start a practice session</div><div class="s">Pick topics, length &amp; a timer — questions get harder as you get them right, just like the real test.</div></div></button>`;
-
-    // spaced-repetition review entry
-    const due = reviewDueCount();
-    if (due > 0) {
-      h += `<button class="cta-review" data-review-open="1"><span class="ico">↻</span><div><div class="t">Review ${due} question${due===1?"":"s"}</div><div class="s">Your missed &amp; flagged questions, resurfaced on a spaced schedule. Clear them to lock in what you learn.</div></div><span class="cta-badge">${due}</span></button>`;
-    }
-
-    // exam-shaped section mocks
-    h += `<div class="mocks"><div class="mocks-h">Section mock — real conditions</div><div class="mocks-row">` +
-      Object.keys(MOCK).map(k => `<button class="mockbtn" data-mock="${k}"><b>${esc(MOCK[k].label.split(" ")[0])}</b><span>${MOCK[k].count} Qs · ${MOCK[k].mins} min</span></button>`).join("") +
-      `</div><p class="mocks-note">The exam's own count and clock, with the Focus rule: bookmark freely, change at most ${MOCK_EDITS} answers at the end.</p></div>`;
-
-    /* The three side tools used to be full-width cards stacked under the two
-       things you actually came here to do, which made five cards of identical
-       weight and no answer to "what now?". Three small tiles instead: still one
-       tap, a third of the height, and plainly secondary. */
-    const hn = (state.history || []).length, mb = mmBest(), ft = focusTodayCount();
-    h += `<div class="tools">
-      <button class="tool" data-openhistory="1"><span class="ico">🗂</span><b>History</b><span>${hn ? `${hn} session${hn === 1 ? "" : "s"}` : "by date"}</span></button>
-      <button class="tool" data-mm-open="1"><span class="ico">🧮</span><b>Mental math</b><span>${mb ? `best ${mb}` : "60-second drill"}</span></button>
-      <button class="tool" data-focus-open="1"><span class="ico">🍅</span><b>Focus timer</b><span>${ft > 0 ? `${ft} today` : "deep-work blocks"}</span></button>
-    </div>`;
-
-    // goals
+    // goals — today and this week, before anything you could do about them
     if (dT>0 || wT>0) {
       h += `<div class="goals">`;
-      if (dT>0){ const p=today/dT; h += `<div class="goal"><div class="ring-wrap">${ring(p,"var(--accent)")}<span class="ring-pct">${Math.round(p*100)}%</span></div><div class="gt"><div class="gk">Today</div><div class="gv">${today} / ${dT}</div><div class="gs">${today>=dT?"target hit 🎯":(dT-today)+" to go"}</div></div></div>`; }
-      if (wT>0){ const p=week/wT; h += `<div class="goal"><div class="ring-wrap">${ring(p,"var(--gold)")}<span class="ring-pct">${Math.round(p*100)}%</span></div><div class="gt"><div class="gk">This week</div><div class="gv">${week} / ${wT}</div><div class="gs">${week>=wT?"weekly goal met ✨":(wT-week)+" to go"}</div></div></div>`; }
+      if (dT>0){ const p=today/dT; h += `<div class="goal"><div class="ring-wrap">${ring(p,"var(--accent)")}<span class="ring-pct">${ringPct(p)}%</span></div><div class="gt"><div class="gk">Today</div><div class="gv">${today} / ${dT}</div><div class="gs">${today>=dT?"target hit 🎯":(dT-today)+" to go"}</div></div></div>`; }
+      if (wT>0){ const p=week/wT; h += `<div class="goal"><div class="ring-wrap">${ring(p,"var(--gold)")}<span class="ring-pct">${ringPct(p)}%</span></div><div class="gt"><div class="gk">This week</div><div class="gv">${week} / ${wT}</div><div class="gs">${week>=wT?"weekly goal met ✨":(wT-week)+" to go"}</div></div></div>`; }
       h += `</div>`;
     } else {
       h += `<div class="goals"><div class="goal goal-empty"><span class="gs">Set a <button class="link" data-open-profile="1">daily & weekly target</button> to track your pace.</span></div></div>`;
@@ -1940,7 +1932,7 @@
                    || Object.keys(b.run.ans).length - Object.keys(a.run.ans).length)
       .slice(0, 3);
     if (wip.length) {
-      h += `<div class="panel"><h3>Jump back in</h3><p class="sub">Topics you have started but not finished.</p><div class="setlist">`;
+      h += `<div class="panel"><h3>Continue</h3><p class="sub">Topics you have started but not finished.</p><div class="setlist">`;
       wip.forEach(({ s, run }) => {
         const sec = secById(s.section), answered = Object.keys(run.ans).length;
         h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">${topicIcon(s.title, s.section)}</span><div class="si"><div class="st">${esc(s.title)}</div>
@@ -1949,6 +1941,28 @@
       });
       h += `</div></div>`;
     }
+
+    /* Everything you can start, in one block instead of four separately-shaped
+       cards stacked down the page. The old layout gave a gradient card, an
+       outlined card, a bordered panel and a tile grid equal billing and no
+       grouping, which read as scattered however few of them there were. */
+    const due = reviewDueCount();
+    h += `<section class="panel actgrp"><h3>Practice</h3>`;
+    h += `<button class="cta-session" data-session-open="1"><span class="ico">🎯</span><div><div class="t">Start a practice session</div><div class="s">Pick topics, length &amp; a timer — questions get harder as you get them right, just like the real test.</div></div></button>`;
+    if (due > 0) {
+      h += `<button class="cta-review" data-review-open="1"><span class="ico">↻</span><div><div class="t">Review ${due} question${due===1?"":"s"}</div><div class="s">Your missed &amp; flagged questions, resurfaced on a spaced schedule.</div></div><span class="cta-badge">${due}</span></button>`;
+    }
+    h += `<div class="actgrp-sub">Section mock — real conditions</div><div class="mocks-row">` +
+      Object.keys(MOCK).map(k => `<button class="mockbtn" data-mock="${k}"><b>${esc(MOCK[k].label.split(" ")[0])}</b><span>${MOCK[k].count} Qs · ${MOCK[k].mins} min</span></button>`).join("") +
+      `</div><p class="mocks-note">The exam's own count and clock, with the Focus rule: bookmark freely, change at most ${MOCK_EDITS} answers at the end.</p></section>`;
+
+    // Everything that is not answering questions, kept apart from everything that is.
+    const hn = (state.history || []).length, mb = mmBest(), ft = focusTodayCount();
+    h += `<section class="panel actgrp"><h3>Tools</h3><div class="tools">
+      <button class="tool" data-openhistory="1"><span class="ico">🗂</span><b>History</b><span>${hn ? `${hn} session${hn === 1 ? "" : "s"}` : "by date"}</span></button>
+      <button class="tool" data-mm-open="1"><span class="ico">🧮</span><b>Mental math</b><span>${mb ? `best ${mb}` : "60-second drill"}</span></button>
+      <button class="tool" data-focus-open="1"><span class="ico">🍅</span><b>Focus timer</b><span>${ft > 0 ? `${ft} today` : "deep-work blocks"}</span></button>
+    </div></section>`;
 
     // Everything below is reference rather than action, so it sits behind one
     // toggle instead of adding four dashboards to the first screen.
@@ -2444,7 +2458,15 @@
   /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
     const ov = e.target.closest("[data-ovtab]");
-    if (ov) { state.ovtab = ov.getAttribute("data-ovtab"); save(); renderView(); return; }
+    if (ov) {
+      // The tab strip sits below the whole action block, so re-rendering in
+      // place leaves you looking at the same actions you were already past.
+      // Put the strip at the top of the screen instead.
+      const y = ov.getBoundingClientRect().top + window.scrollY - 8;
+      state.ovtab = ov.getAttribute("data-ovtab"); save(); renderView();
+      window.scrollTo({ top: Math.max(0, y) });
+      return;
+    }
     const sn = e.target.closest("[data-subtab]");
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
@@ -3808,14 +3830,18 @@
     if (!total) {
       return emptyPanel("Time vs. accuracy", "Answer some timed questions and they sort into the four cases here.");
     }
-    h += `<p class="sub">Every timed question you have answered, against the pace target for its section. Each quadrant calls for something different.</p><div class="quad">`;
+    h += `<p class="sub">Every timed question you have answered, against the pace target for its section.</p><div class="quad">`;
+    /* The advice used to be printed inside all four cells, so the panel carried
+       four paragraphs of it and you read past three to reach the one about you.
+       The cells are the counts; the advice appears once, for the bucket you are
+       actually losing marks in. */
     ["fastRight", "slowRight", "fastWrong", "slowWrong"].forEach(k => {
       const m = QUAD_META[k], n = q[k].length, pct = Math.round(n / total * 100);
-      h += `<div class="qd qd-${m.cls}"><div class="qd-n">${n}</div><div class="qd-l">${esc(m.label)}</div><div class="qd-p">${pct}%</div><div class="qd-a">${esc(m.advice)}</div></div>`;
+      h += `<div class="qd qd-${m.cls}" title="${esc(m.advice)}"><div class="qd-n">${n}</div><div class="qd-l">${esc(m.label)}</div><div class="qd-p">${pct}%</div></div>`;
     });
     h += `</div>`;
     const worst = q.slowWrong.length >= q.fastWrong.length ? "slowWrong" : "fastWrong";
-    if (q[worst].length) h += `<p class="sub" style="margin:12px 0 0">Biggest bucket among your misses: <b style="color:var(--ink)">${esc(QUAD_META[worst].label.toLowerCase())}</b>.</p>`;
+    if (q[worst].length) h += `<p class="quad-advice"><b>Most of your misses are ${esc(QUAD_META[worst].label.toLowerCase())}.</b> ${esc(QUAD_META[worst].advice)}</p>`;
     return h + `</div>`;
   }
 
@@ -3866,7 +3892,7 @@
     Object.values(bySet).forEach(({ set, ns }) => {
       const sec = secById(set.section);
       h += `<div class="setrow"><span class="set-ic" style="--secc:${sec.color}">⚑</span><div class="si"><div class="st">${esc(set.title)}</div>
-        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${ns.length} flagged</span><span class="sstatus muted">Q ${ns.sort((a,b)=>a-b).join(", ")}</span></div></div>
+        <div class="sm"><span class="badge" style="--sc:${sec.color}">${esc(sec.nav)}</span><span>${ns.length} flagged</span></div></div>
         <div class="setbtns"><button class="go" data-runset="${esc(set.id)}">Open</button></div></div>`;
     });
     return h + `</div></div>`;

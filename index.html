@@ -170,6 +170,17 @@
   .sk-stat .v { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; }
   .sk-stat .k { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); margin-top: 2px; }
   .stat[data-openstreak] { cursor: pointer; }
+  /* ---- History ---- */
+  .hi-dhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+  .hi-dhead h3 { margin: 0; }
+  .hi-dhead span { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); white-space: nowrap; }
+  .hi-row { display: flex; align-items: center; gap: 11px; width: 100%; padding: 11px 0; border: none; border-top: 1px solid var(--line-soft); background: none; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+  .hi-row:hover .hi-t { text-decoration: underline; }
+  .hi-ic { flex: none; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font-size: 17px; background: var(--surface-2); }
+  .hi-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .hi-t { font-weight: 650; font-size: 14px; }
+  .hi-s { font-size: 12.5px; color: var(--ink-faint); }
+  .hi-row .cn-chev { flex: none; color: var(--ink-faint); }
   .stat[data-openstreak]:hover { border-color: color-mix(in srgb, var(--flame-2) 55%, var(--line)); }
   .av-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .av-head h3 { margin: 0; }
@@ -273,6 +284,10 @@
   .mocks-note { font-size: 12.5px; color: var(--ink-faint); margin: 10px 0 0; line-height: 1.45; }
   .bookmark { display: block; width: 100%; margin-top: 14px; padding: 11px; border: 1px dashed var(--line); border-radius: 11px; background: transparent; color: var(--ink-faint); font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
   .bookmark.on { border-style: solid; border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, var(--surface)); color: var(--ink); }
+  /* Bookmark and "mark as guess" sit side by side; they stack on a narrow screen. */
+  .qmarks { display: flex; gap: 8px; flex-wrap: wrap; }
+  .qmarks .bookmark { flex: 1 1 190px; margin-top: 14px; }
+  .bookmark.guess.on { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 13%, var(--surface)); }
 
   /* End-of-section review with the three-edit budget */
   .mockrev-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
@@ -282,7 +297,9 @@
   .mr-budget.spent { background: color-mix(in srgb, var(--bad) 14%, var(--surface)); color: var(--bad); }
   .mr-group { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin: 16px 0 8px; }
   .mr-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
-  .mr-q { flex: 1; min-width: 0; display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-soft); }
+  .mr-q { flex: 1; min-width: 0; display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-soft); background: none; border: none; padding: 4px 0; font-family: inherit; text-align: left; cursor: pointer; }
+  .mr-q:hover .mr-t { text-decoration: underline; }
+  .mr-q .cn-chev { flex: none; color: var(--ink-faint); }
   .mr-q .qn { flex: none; font-weight: 700; color: var(--ink); }
   .mr-star { flex: none; color: var(--gold); }
   .mr-t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -722,6 +739,19 @@
   .rev-mark { font-weight: 800; font-size: 15px; margin-left: 8px; width: 18px; text-align: center; }
   .rev-mark.ok { color: var(--good); } .rev-mark.no { color: var(--bad); }
   .rev-tag { font-size: 13px; color: var(--ink-soft); margin-top: 4px; padding-left: 44px; }
+  .rev-guess { color: var(--warn); font-weight: 700; }
+  /* Full answer list on a results page: every choice, with yours and the right
+     one both named rather than left to be inferred from two coloured letters. */
+  .revans { margin: 8px 0 2px; padding-left: 44px; display: flex; flex-direction: column; gap: 5px; }
+  .ra { display: flex; align-items: flex-start; gap: 9px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; font-size: 14px; line-height: 1.4; background: var(--surface); }
+  .ra .cl { font-weight: 800; flex: none; width: 15px; color: var(--ink-faint); }
+  .ra .ct { flex: 1; min-width: 0; }
+  .ra-tag { flex: none; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; align-self: center; }
+  .ra-correct { border-color: var(--good); background: color-mix(in srgb, var(--good) 10%, var(--surface)); }
+  .ra-correct .cl, .ra-correct .ra-tag { color: var(--good); }
+  .ra-wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, var(--surface)); }
+  .ra-wrong .cl, .ra-wrong .ra-tag { color: var(--bad); }
+  @media (max-width: 520px) { .revans { padding-left: 0; } .ra { flex-wrap: wrap; } .ra-tag { width: 100%; padding-left: 24px; } }
   .rev-q { font-size: 14px; color: var(--ink-soft); margin-top: 5px; padding-left: 44px; line-height: 1.4; }
 
   /* Slide player */
@@ -951,6 +981,10 @@
   .ss-trace i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
   .ss-trace i.easy { background: var(--good); } .ss-trace i.medium { background: var(--gold); } .ss-trace i.hard { background: var(--bad); }
   .ss-trace i.ok { outline: 2px solid color-mix(in srgb, var(--good) 60%, transparent); } .ss-trace i.no { opacity: .4; }
+  /* Mid-test trace: how far through, and nothing else. */
+  .ss-trace i.ss-done { background: var(--ink-faint); }
+  .ss-trace i.ss-now { background: var(--accent); outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+  .ss-trace i.ss-todo { background: var(--line); }
 
   /* Flash cards */
   .fc-deckrow { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); margin-bottom: 9px; cursor: pointer; transition: .12s; }
@@ -1134,6 +1168,12 @@
 <div class="profile" id="streak" hidden>
   <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Streak</h2><button class="pf-close" id="sk-close" title="Close">✕</button></div></div>
   <div class="pf-body" id="sk-body"></div>
+</div>
+
+<!-- History -->
+<div class="profile" id="history" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title" id="hi-title">History</h2><button class="pf-close" id="hi-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="hi-body"></div>
 </div>
 
 <!-- Review queue (spaced repetition) -->
@@ -1346,7 +1386,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v125";
+  const APP_VERSION = "v126";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1362,7 +1402,12 @@
 
   /* State */
   const KEY = "gmat_tracker_v2";
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], readProg:{} };
+  /* Every finished practice run, adaptive session and section mock is kept so
+     its result page can be opened again from History. Entries hold the answer,
+     not the question — the question is looked up from the bank at render time,
+     so the record stays small enough to sync through the gist. */
+  const HISTORY_CAP = 150;
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], readProg:{}, history:[] };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
 
@@ -1387,6 +1432,9 @@
     // genSets entries drive the same render path as real sets, so drop any that
     // could not be run.
     out.genSets = out.genSets.filter(g => g && typeof g === "object" && g.id && Array.isArray(g.questions) && g.questions.length);
+    // A history entry without an id cannot be merged across devices, and one
+    // without its questions cannot re-render its result page.
+    out.history = out.history.filter(h => h && typeof h === "object" && h.id && Array.isArray(h.qs)).slice(-HISTORY_CAP);
     if (!SECTIONS.some(s => s.id === out.active)) out.active = defaults.active;
     return out;
   }
@@ -1838,6 +1886,10 @@
     // mental-math drill — Focus Quant gives you no calculator
     h += `<button class="cta-focus" data-mm-open="1"><span class="ico">🧮</span><div><div class="t">Mental-math drill</div><div class="s">60 seconds of the arithmetic Focus Quant expects without a calculator${mmBest() ? ` · best ${mmBest()}` : ""}</div></div><span class="cn-chev">›</span></button>`;
 
+    // History: everything finished, newest first, with its result page intact.
+    const hn = (state.history || []).length;
+    h += `<button class="cta-focus" data-openhistory="1"><span class="ico">🗂</span><div><div class="t">History</div><div class="s">${hn ? `${hn} finished session${hn === 1 ? "" : "s"} by date — reopen any result page` : "Everything you finish is kept here by date, with its result page"}</div></div><span class="cn-chev">›</span></button>`;
+
     // focus timer entry
     h += `<button class="cta-focus" data-focus-open="1"><span class="ico">🍅</span><div><div class="t">Focus timer</div><div class="s">Pomodoro deep-work blocks with a break reminder${focusTodayCount()>0?` · ${focusTodayCount()} today`:""}</div></div><span class="cn-chev">›</span></button>`;
 
@@ -2189,6 +2241,14 @@
   }
   // Session answers are events, not counters: union them by id, keeping the
   // most recent ones if the two sides together exceed the cap.
+  function mergeHistory(a, b) {
+    const out = [], seen = {};
+    (Array.isArray(a) ? a : []).concat(Array.isArray(b) ? b : []).forEach(x => {
+      if (!x || !x.id || seen[x.id]) return; seen[x.id] = 1; out.push(x);
+    });
+    out.sort((p, q) => (p.ts || 0) - (q.ts || 0));
+    return out.slice(-HISTORY_CAP);
+  }
   function mergeAnswers(a, b) {
     const out = [], seen = {};
     (Array.isArray(a) ? a : []).concat(Array.isArray(b) ? b : []).forEach(x => {
@@ -2217,6 +2277,10 @@
                    daily:   mergeMaxNum((local.extra||{}).daily,  (cloud.extra||{}).daily),
                    answers: mergeAnswers((local.extra||{}).answers, (cloud.extra||{}).answers) };
     m.fcsrs    = mergeSrs(local.fcsrs, cloud.fcsrs, cloudNewer);
+    // History entries are events with stable ids: union them, newest kept if the
+    // two sides together overflow the cap. Taking one side wholesale would lose
+    // every session done on the other device.
+    m.history  = mergeHistory(local.history, cloud.history);
     m.celebrated = Object.assign({}, local.celebrated, cloud.celebrated);   // union: never re-congratulate
     m.name     = lww("name", "");
     m.examDate = lww("examDate", "");
@@ -2325,6 +2389,7 @@
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
     if (e.target.closest("[data-openstreak]")) { openStreak(); return; }
+    if (e.target.closest("[data-openhistory]")) { openHistory(); return; }
     const pg = e.target.closest("[data-progtoggle]"); if (pg) { state.progOpen = !state.progOpen; save(); renderView(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this topic added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
@@ -2351,6 +2416,7 @@
   document.getElementById("view").addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     if (e.target.closest("[data-openstreak]")) { e.preventDefault(); openStreak(); return; }
+    if (e.target.closest("[data-openhistory]")) { e.preventDefault(); openHistory(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (!ts) return;
     e.preventDefault();
     const k = ts.getAttribute("data-tabsec"); state.collapsed[k] = !state.collapsed[k]; save(); renderView();
@@ -2426,6 +2492,17 @@
   document.getElementById("av-close").onclick = closeAchv;
   document.getElementById("btn-streak").onclick = openStreak;
   document.getElementById("sk-close").onclick = closeStreak;
+  document.getElementById("hi-close").onclick = () => { if (histOpenId) { histOpenId = null; renderHistory(); window.scrollTo({ top:0 }); } else closeHistory(); };
+  document.getElementById("hi-body").addEventListener("click", (e) => {
+    const o = e.target.closest("[data-histopen]");
+    if (o) { histOpenId = o.getAttribute("data-histopen"); renderHistory(); window.scrollTo({ top:0 }); return; }
+    if (e.target.closest("[data-histback]")) { histOpenId = null; renderHistory(); window.scrollTo({ top:0 }); return; }
+    // The error-log chips on a stored result page edit the live log, so a miss
+    // tagged weeks later lands in exactly the same place as one tagged on the day.
+    const hm = e.target.closest("[data-miss]");
+    if (hm) { const [sid, n, r] = hm.getAttribute("data-miss").split("|"); setMissReason(sid, +n, r); renderHistory(); return; }
+    const ai = e.target.closest("[data-aiexplain]"); if (ai) { aiExplainRun(ai); return; }
+  });
   document.getElementById("tb-count").onclick = openProfile;
   document.getElementById("pf-close").onclick = closeProfile;
   document.getElementById("ob-save").onclick = () => { state.name=document.getElementById("ob-name").value.trim(); state.examDate=document.getElementById("ob-date").value||""; save(); document.getElementById("onboard").hidden=true; render(); };
@@ -3046,14 +3123,19 @@
     const home = topicHome(secId, name);
     return home.subject === OTHER_SUBJECT ? null : topicId(secId, home.subject, home.topic);
   }
-  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, lvl: r.lvl || null, logged: r.logged || {}, times: r.times || {}, elim: r.elim || {} } : { ans: {}, submitted: false, idx: 0, mode: null, lvl: null, logged: {}, times: {}, elim: {} }; }
+  function getRun(id) { const r = state.runs[id]; return r ? { ans: r.ans || {}, submitted: !!r.submitted, score: r.score, total: r.total, idx: r.idx || 0, mode: r.mode || null, lvl: r.lvl || null, logged: r.logged || {}, times: r.times || {}, elim: r.elim || {}, guess: r.guess || {} } : { ans: {}, submitted: false, idx: 0, mode: null, lvl: null, logged: {}, times: {}, elim: {}, guess: {} }; }
   // Flagged-for-review questions, kept per set (persist across resets).
   function flagsFor(id) { if (!state.flags) state.flags = {}; if (!state.flags[id]) state.flags[id] = {}; return state.flags[id]; }
   function isFlagged(id, n) { return !!(state.flags && state.flags[id] && state.flags[id][n]); }
   function toggleFlag(id, n) { const f = flagsFor(id); if (f[n]) delete f[n]; else f[n] = true; save(); }
   function flaggedCount(id) { return (state.flags && state.flags[id]) ? Object.keys(state.flags[id]).length : 0; }
+  /* "I guessed this" lives on the run beside the answer, because that is what it
+     qualifies: a lucky guess and a question you knew score the same and mean
+     entirely different things when you come back to revise. */
+  function isGuess(id, n) { const r = state.runs[id]; return !!(r && r.guess && r.guess[n]); }
+  function toggleGuess(id, n) { const r = ensureRun(id); if (r.guess[n]) delete r.guess[n]; else r.guess[n] = true; save(); }
   function setRun(id, run) { state.runs[id] = run; save(); }
-  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, lvl:null, logged:{}, times:{}, elim:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; r.elim = r.elim || {}; state.runs[id] = r; return r; }
+  function ensureRun(id) { const r = state.runs[id] || { ans:{}, submitted:false, idx:0, mode:null, lvl:null, logged:{}, times:{}, elim:{}, guess:{} }; r.ans = r.ans || {}; r.logged = r.logged || {}; r.times = r.times || {}; r.elim = r.elim || {}; r.guess = r.guess || {}; state.runs[id] = r; return r; }
   // Log a single answered question into its topic + today's count (once per run).
   // Topic count and daily count move together — never bump one without the other.
   /* ===== Spaced-repetition review queue (Leitner) ===== */
@@ -3787,6 +3869,134 @@
     list.forEach(q => { const your = run.ans[q.n] || null, ok = !!your && your === q.correct; if (ok) score++; per.push({ n:q.n, your, correct:q.correct, ok, topic:q.topic, flag:!!q.flag, options:q.options||5 }); });
     return { score, total: list.length, per };
   }
+  /* ===================== History =====================
+     One record per finished practice run, adaptive session or section mock, so
+     the result page can be opened again weeks later. Keys are short on purpose:
+     the whole array travels through the gist on every sync, and a 21-question
+     mock written out longhand is several times the size of one written like
+     this. Questions are stored as a (set, number) reference and looked up from
+     the bank when the entry is rendered — the question text never duplicated. */
+  function histAdd(entry) {
+    if (!Array.isArray(state.history)) state.history = [];
+    entry.id = "h" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    entry.ts = Date.now(); entry.day = dkey();
+    state.history.push(entry);
+    if (state.history.length > HISTORY_CAP) state.history = state.history.slice(-HISTORY_CAP);
+    save();
+  }
+  // A history row carries ids, not objects; this turns one back into something
+  // renderable, and says so when the question is no longer in the bank.
+  function histQ(r) {
+    const set = SETS.find(s => s.id === r.s);
+    const q = set && set.questions.find(x => String(x.n) === String(r.n));
+    return { set, q };
+  }
+  function histEntries() { return (Array.isArray(state.history) ? state.history : []).slice().sort((a, b) => b.ts - a.ts); }
+  const HIST_KIND = {
+    mock:    { icon:"📝", label:"Section mock" },
+    session: { icon:"🎯", label:"Practice session" },
+    run:     { icon:"📚", label:"Topic practice" }
+  };
+  function histLogSession() {
+    const qs = [];
+    let correct = 0, ms = 0;
+    sess.order.forEach((o, i) => {
+      const a = sess.answers[i]; if (!a) return;
+      if (a.correct) correct++; ms += a.ms || 0;
+      qs.push({ s:o.set.id, n:o.q.n, a:a.chosen, c:o.q.correct, ok:a.correct?1:0, ms:a.ms||0, l:o.lvl, g:a.guess?1:0, e:a.edited?1:0, m:sess.marks[i]?1:0 });
+    });
+    if (!qs.length) return;
+    const secs = Array.from(new Set(sess.order.map(o => o.set.section)));
+    histAdd({ kind: sess.mock ? "mock" : "session",
+              label: sess.mock ? MOCK[sess.mock].label : "Adaptive practice session",
+              section: secs.length === 1 ? secs[0] : null,
+              count: sess.count, answered: qs.length, correct, ms,
+              timeUp: !!sess.timeUp, mock: sess.mock || null, qs });
+  }
+  function histLogRun(set, run, scope, res) {
+    const qs = scope.filter(q => run.ans[q.n]).map(q => ({
+      s:set.id, n:q.n, a:run.ans[q.n], c:q.correct, ok:(run.ans[q.n] === q.correct)?1:0,
+      ms:run.times[q.n]||0, l:q.level||null, g:isGuess(set.id,q.n)?1:0, e:0, m:isFlagged(set.id,q.n)?1:0 }));
+    if (!qs.length) return;
+    histAdd({ kind:"run", label: set.title, section: set.section, setId: set.id, lvl: run.lvl || null,
+              count: res.total, answered: qs.length, correct: res.score,
+              ms: qs.reduce((a, r) => a + r.ms, 0), timeUp:false, qs });
+  }
+
+  /* ---- the History screen ---- */
+  let histOpenId = null;
+  function histDayLabel(day) {
+    const t = dkey(), y = addDaysKey(-1);
+    if (day === t) return "Today";
+    if (day === y) return "Yesterday";
+    const d = new Date(day + "T00:00:00");
+    return d.toLocaleDateString(undefined, { weekday:"long", day:"numeric", month:"long", year: d.getFullYear() === new Date().getFullYear() ? undefined : "numeric" });
+  }
+  function histListHTML() {
+    const all = histEntries();
+    if (!all.length) {
+      return `<section class="panel"><h3>Nothing here yet</h3><p class="sub">Finish a topic, a practice session or a section mock and it lands here — grouped by the day you did it, with its full result page one tap away.</p></section>`;
+    }
+    // Group by day, newest day first; entries within a day newest first too.
+    const days = [];
+    all.forEach(e => { const g = days.find(x => x.day === e.day); (g || days[days.push({ day:e.day, items:[] }) - 1]).items.push(e); });
+    const totQ = all.reduce((a, e) => a + e.answered, 0), totC = all.reduce((a, e) => a + e.correct, 0);
+    let h = `<section class="panel"><h3>History</h3><p class="sub">${all.length} session${all.length === 1 ? "" : "s"} · ${totQ} questions · ${totQ ? Math.round(totC / totQ * 100) : 0}% overall. Tap any one to reopen its result page.</p></section>`;
+    days.forEach(g => {
+      const dq = g.items.reduce((a, e) => a + e.answered, 0), dc = g.items.reduce((a, e) => a + e.correct, 0);
+      h += `<section class="panel hi-day"><div class="hi-dhead"><h3>${esc(histDayLabel(g.day))}</h3><span>${g.items.length} · ${dq} Qs · ${dq ? Math.round(dc / dq * 100) : 0}%</span></div>`;
+      g.items.forEach(e => {
+        const k = HIST_KIND[e.kind] || HIST_KIND.run, pct = e.answered ? Math.round(e.correct / e.answered * 100) : 0;
+        const t = new Date(e.ts).toLocaleTimeString(undefined, { hour:"numeric", minute:"2-digit" });
+        h += `<button class="hi-row" data-histopen="${esc(e.id)}"><span class="hi-ic">${k.icon}</span><span class="hi-meta"><span class="hi-t">${esc(e.label)}</span><span class="hi-s">${esc(k.label)} · ${e.answered} of ${e.count} answered · ${t}${e.timeUp ? " · ran out of time" : ""}</span></span>${ringHTML(e.correct, e.answered, "correct")}<span class="cn-chev">›</span></button>`;
+      });
+      h += `</section>`;
+    });
+    return h;
+  }
+  /* The stored result page. Everything comes from the entry plus a lookup of the
+     question in today's bank, so it reads exactly like the page you saw when you
+     finished — including the error-log chips, which still edit the live log. */
+  function histResultHTML(e) {
+    const pct = e.answered ? Math.round(e.correct / e.answered * 100) : 0, ac = accClass(pct);
+    const avg = e.answered ? e.ms / e.answered : 0;
+    const k = HIST_KIND[e.kind] || HIST_KIND.run;
+    let h = `<button class="btn-soft" style="width:100%;margin-bottom:12px" data-histback="1">‹ All history</button>`;
+    h += `<section class="panel"><h3>${esc(e.label)}</h3><p class="sub">${esc(k.label)} · ${esc(histDayLabel(e.day))} at ${new Date(e.ts).toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"})}${e.lvl ? ` · ${esc(lvlLabel(e.lvl))} only` : ""}</p></section>`;
+    h += `<div class="rn-score panel" style="margin-top:12px"><div class="rs-num ${ac}">${e.correct}<span class="rs-tot">/ ${e.answered}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div>${e.answered < e.count ? `<div class="rs-log">${e.count - e.answered} not answered</div>` : `<div class="rs-log">every question answered</div>`}${avg ? `<div class="rs-time">⏱ ${fmtClock(avg)} avg / question</div>` : ""}</div></div>`;
+    if (e.timeUp) h += `<div class="qnote" style="margin-top:12px">⏱ This one ended on the clock, not by choice.</div>`;
+    const gRows = e.qs.filter(r => r.g);
+    if (gRows.length) {
+      const gRight = gRows.filter(r => r.ok).length, solid = e.correct - gRight;
+      h += `<div class="panel" style="margin-top:14px"><h3>What you guessed</h3><p class="sub">You marked <b>${gRows.length}</b> of ${e.answered} as a guess and ${gRight} of those landed. Counting only what you knew: <b>${solid} of ${e.answered - gRows.length}</b>.</p></div>`;
+    }
+    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Exactly as it was when you finished. Tagging a miss here still updates your error log.</p><div class="qlist">`;
+    e.qs.forEach((r, i) => {
+      const { set, q } = histQ(r);
+      if (!q) { h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${i + 1}</span><span class="rev-mark ${r.ok ? "ok" : "no"}">${r.ok ? "✓" : "✗"}</span></div><div class="rev-q">This question is no longer in the bank. You answered ${esc(r.a)}; the answer was ${esc(r.c)}.</div></div>`; return; }
+      const nOpt = q.options || 5;
+      h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${i + 1}</span><div class="rev-opts">` +
+        LET.slice(0, nOpt).map(L => { let c = ""; if (L === r.c) c = "correct"; else if (L === r.a && !r.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
+        `</div>${r.ms ? `<span class="rev-time">⏱ ${fmtClock(r.ms)}</span>` : ""}<span class="rev-mark ${r.ok ? "ok" : "no"}">${r.ok ? "✓" : "✗"}</span></div>` +
+        (q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
+        answerListHTML(q, r.a, nOpt) +
+        (r.ok ? "" : missReasonHTML(set.id, q.n)) +
+        explBlocksHTML(q, true) +
+        `<div class="rev-tag">${esc(q.topic)}${r.l ? ` · <span class="lvl lvl-${r.l}">${esc(lvlLabel(r.l))}</span>` : ""}${r.g ? ' · <span class="rev-guess">🎲 guessed</span>' : ""}${r.m ? " · ★ bookmarked" : ""}${r.e ? ' · <span style="color:var(--ink-faint)">changed in review</span>' : ""}</div></div>`;
+    });
+    h += `</div></div>`;
+    return h;
+  }
+  function renderHistory() {
+    const e = histOpenId ? histEntries().find(x => x.id === histOpenId) : null;
+    document.getElementById("hi-title").textContent = e ? "Result" : "History";
+    const body = document.getElementById("hi-body");
+    body.innerHTML = e ? histResultHTML(e) : histListHTML();
+    typeset(body);
+  }
+  function openHistory(id) { histOpenId = id || null; renderHistory(); document.getElementById("history").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("history-open"); }
+  function closeHistory() { document.getElementById("history").hidden = true; histOpenId = null; document.body.style.overflow = ""; render(); }
+
   /* Work done outside a practice run — adaptive sessions and review-queue reps
      — has no run to rebuild from, so it is mirrored here as well. Without this
      ledger "Rebuild stats" silently deleted every session and every review rep
@@ -4218,11 +4428,14 @@
     const fc = scope.filter(q => isFlagged(set.id, q.n)).length;
     let h = `<div class="ls-eyebrow">Jump to question</div><div class="ls-title" style="font-size:18px;margin-bottom:10px">${scope.length} questions${practice?" · green = right, red = wrong":""}</div>`;
     h += `<div class="jfilters">`;
+    // Filtering by level in test mode would tell you each question's difficulty
+    // before you answer it — the thing the question header deliberately hides.
+    const showLvl = practice || run.submitted;
     h += `<button class="jchip ${jumperLevel===null?"on":""}" data-levelfilter="all">All</button>`;
-    if (lc.easy) h += `<button class="jchip lvl-easy ${jumperLevel==="easy"?"on":""}" data-levelfilter="easy">Easy ${lc.easy}</button>`;
-    if (lc.medium) h += `<button class="jchip lvl-medium ${jumperLevel==="medium"?"on":""}" data-levelfilter="medium">Medium ${lc.medium}</button>`;
-    if (lc.hard) h += `<button class="jchip lvl-hard ${jumperLevel==="hard"?"on":""}" data-levelfilter="hard">Hard ${lc.hard}</button>`;
-    if (lc["very-hard"]) h += `<button class="jchip lvl-very-hard ${jumperLevel==="very-hard"?"on":""}" data-levelfilter="very-hard">Very hard ${lc["very-hard"]}</button>`;
+    if (showLvl && lc.easy) h += `<button class="jchip lvl-easy ${jumperLevel==="easy"?"on":""}" data-levelfilter="easy">Easy ${lc.easy}</button>`;
+    if (showLvl && lc.medium) h += `<button class="jchip lvl-medium ${jumperLevel==="medium"?"on":""}" data-levelfilter="medium">Medium ${lc.medium}</button>`;
+    if (showLvl && lc.hard) h += `<button class="jchip lvl-hard ${jumperLevel==="hard"?"on":""}" data-levelfilter="hard">Hard ${lc.hard}</button>`;
+    if (showLvl && lc["very-hard"]) h += `<button class="jchip lvl-very-hard ${jumperLevel==="very-hard"?"on":""}" data-levelfilter="very-hard">Very hard ${lc["very-hard"]}</button>`;
     if (fc > 0) h += `<button class="jchip flag ${jumperFlaggedOnly?"on":""}" data-flagfilter>⚑ Flagged ${fc}</button>`;
     h += `</div>`;
     let list = scope.map((q, i) => ({ q, i }));
@@ -4309,7 +4522,11 @@
     const flagged = isFlagged(set.id, q.n);
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
     let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
-    h += `<div class="qcard" id="qcard">${passageHTML(set, q)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(set.section, q)}</div>
+    /* Test mode withholds the result until the whole run is scored, so it has to
+       withhold the hints too: the topic names the method and the level tells you
+       how hard to look. Both are back the moment the run is submitted. */
+    const tags = (practice || run.submitted) ? `<span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span>${levelBadge(set.section, q)}` : "";
+    h += `<div class="qcard" id="qcard">${passageHTML(set, q)}<div class="qtop">${flagHTML}<span class="qnum">Question ${runIndex+1} of ${total}</span>${timerHTML}${tags}</div>
       <div class="qtext">${rich(q.text || ("Question "+q.n))}</div>${qTableHTML(q)}${q.note?`<div class="qnote">⚠ ${esc(q.note)}</div>`:""}
       <div class="choices">`;
     const elim = (run.elim && run.elim[q.n]) ? run.elim[q.n] : {};
@@ -4337,6 +4554,10 @@
       // Two-step: pick highlights, Confirm commits (prevents misclicks).
       const canConfirm = pendingL != null && pendingL !== committed;
       const label = committed ? `Confirm change to ${pendingL || committed}` : (pendingL ? `Confirm answer ${pendingL}` : "Confirm answer");
+      // Marking a guess is useful in both modes, and it has to be available
+      // before you commit — afterwards you remember the answer, not the doubt.
+      const gOn = isGuess(set.id, q.n);
+      h += `<div class="qmarks"><button class="bookmark guess${gOn ? " on" : ""}" data-guess="${q.n}" aria-pressed="${gOn}">${gOn ? "🎲 Marked as a guess" : "🎲 Mark as a guess"}</button></div>`;
       h += `<button class="btn-primary" style="margin-top:16px" data-confirm ${canConfirm?"":"disabled"}>${esc(label)}</button>`;
       h += `<p class="mode-note" style="text-align:center">${pendingL ? "Tap Confirm to lock it in." : (committed ? "Answered — pick another option to change it." : "Pick an option, then Confirm.")}</p>`;
     }
@@ -4361,6 +4582,20 @@
     return h;
   }
 
+  /* Every choice, in full, with the right one and your one both named. A row of
+     bare letters tells you that D was right and you said B; it does not tell you
+     what B said, which is the whole of what there is to learn from a miss. */
+  function answerListHTML(q, chosen, nOpt) {
+    if (!q || !q.choices || !q.choices.length) return "";
+    const n = nOpt || q.options || 5;
+    return `<div class="revans">` + LET.slice(0, n).map((L, i) => {
+      const ct = q.choices[i] != null ? q.choices[i] : "";
+      const isC = L === q.correct, isY = L === chosen;
+      const tag = isC && isY ? "Your answer · correct" : isC ? "Correct answer" : isY ? "Your answer" : "";
+      return `<div class="ra${isC ? " ra-correct" : ""}${isY && !isC ? " ra-wrong" : ""}"><span class="cl">${L}</span><span class="ct">${rich(ct)}</span>${tag ? `<span class="ra-tag">${tag}</span>` : ""}</div>`;
+    }).join("") + `</div>`;
+  }
+
   function resultsHTML(set, run, sec, qs) {
     const res = scoreRun(set, run, qs), pct = Math.round(res.score / res.total * 100), ac = accClass(pct);
     const byN = {}; qs.forEach(q => byN[q.n] = q);
@@ -4376,8 +4611,10 @@
         LET.slice(0, n).map(L => { let c = ""; if (L === p.correct) c = "correct"; else if (L === p.your && !p.ok) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div>${tm?`<span class="rev-time ${slow?"slow":""}">⏱ ${fmtClock(tm)}</span>`:""}<span class="rev-mark ${p.ok?"ok":"no"}">${p.ok?"✓":"✗"}</span></div>` +
         (q && q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
+        answerListHTML(q, p.your, n) +
+        (p.ok ? "" : missReasonHTML(set.id, p.n)) +
         explBlocksHTML(q, true) +
-        `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · ${levelBadge(set.section, q)}`:""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
+        `<div class="rev-tag">${esc(p.topic)}${q&&q.level?` · ${levelBadge(set.section, q)}`:""}${isGuess(set.id,p.n)?' · <span class="rev-guess">🎲 guessed</span>':""}${!p.your?' · <span style="color:var(--ink-faint)">skipped</span>':""}</div></div>`;
     });
     h += `</div></div>`;
     h += `<div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-retake="1">Retake</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-close-runner="1">Done</button></div>`;
@@ -4461,6 +4698,8 @@
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
     if (e.target.closest("[data-openjump]")) { jumperFlaggedOnly = false; jumperLevel = null; openJumper(); return; }
+    const gb = e.target.closest("[data-guess]");
+    if (gb) { toggleGuess(set.id, gb.getAttribute("data-guess")); renderRunner(); return; }
     const mr = e.target.closest("[data-miss]");
     if (mr) { const [sid, n, r] = mr.getAttribute("data-miss").split("|"); setMissReason(sid, +n, r); renderRunner(); return; }
     const aib = e.target.closest("[data-aiexplain]"); if (aib) { aiExplainRun(aib); return; }
@@ -4473,7 +4712,7 @@
       if (run.mode !== "practice" && answered < scope.length && !confirm(`You've answered ${answered} of ${scope.length}. Submit anyway? Unanswered questions won't be logged.`)) return;
       scope.forEach(q => { const your = run.ans[q.n]; if (!your) return; logOne(set, q, your === q.correct, run.times[q.n] || 0); });
       const res = scoreRun(set, run, scope); run.submitted = true; run.score = res.score; run.total = res.total; save();
-      markActivity("set");
+      markActivity("set"); histLogRun(set, run, scope, res);
       renderRunner(); window.scrollTo({ top:0 }); return;
     }
     if (e.target.closest("[data-retake]")) { resetRun(set, false); renderRunner(); return; }
@@ -4663,9 +4902,11 @@
     if (!pool.length) return;
     const count = Math.min(cfg.count, pool.length);
     sess = { pool, count, order: [], idx: 0, answers: {}, elim: {}, pending: null, curLevel: "medium", used: new Set(), timeMs: cfg.time * 60000, endsAt: cfg.time ? Date.now() + cfg.time * 60000 : 0, timer: null, qStart: 0, submitted: false, logged: false, timeUp: false,
-             mock: mockKey || null, marks: {}, editsLeft: mockKey ? MOCK_EDITS : 0, reviewing: false };
+             mock: mockKey || null, marks: {}, guesses: {}, editsLeft: mockKey ? MOCK_EDITS : 0, reviewing: false, reviewOpen: null };
     const first = sessPick(); if (first) { sess.order.push(first); sess.used.add(first.key); }
     closeSessionConfig();
+    // A 45-minute section mock is not "a practice session" — name what it is.
+    document.getElementById("ss-title").textContent = mockKey ? MOCK[mockKey].label : "Practice session";
     document.getElementById("session").hidden = false;
     document.body.style.overflow = "hidden";
     sess.qStart = Date.now();
@@ -4680,26 +4921,31 @@
     const rem = Math.max(0, sess.endsAt - Date.now());
     const el = document.getElementById("ss-timer");
     if (el) { el.textContent = "⏱ " + fmtClock(rem); el.className = "ss-timer" + (rem <= 60000 ? " low" : ""); }
-    if (rem <= 0 && !sess.submitted) { sess.reviewing = false; finishSession(true); }
+    if (rem <= 0 && !sess.submitted) { sess.reviewing = false; sess.reviewOpen = null; finishSession(true); }
   }
 
   function renderSession() {
     if (!sess) return;
     const body = document.getElementById("ss-body");
     if (sess.submitted) { body.innerHTML = sessResultsHTML(); typeset(body); return; }
-    if (sess.reviewing) { body.innerHTML = sessReviewHTML(); typeset(body); return; }
+    if (sess.reviewing) { body.innerHTML = sess.reviewOpen != null ? sessReviewOneHTML() : sessReviewHTML(); typeset(body); return; }
     const cur = sess.order[sess.idx], q = cur.q, sec = secById(cur.set.section), nOpt = q.options || 5;
     let h = `<div class="ss-top"><span class="ss-prog">Question ${sess.idx + 1} of ${sess.count}</span>`;
     if (sess.timeMs) h += `<span class="ss-timer" id="ss-timer">⏱ ${fmtClock(Math.max(0, sess.endsAt - Date.now()))}</span>`;
     h += `</div><div class="ss-trace">`;
+    /* Position only, never performance. A coloured square per answered question
+       told you mid-section how you were doing and what level the exam thought
+       you were at — neither of which the real test shows, and both of which
+       change how you answer the rest. The full journey is on the results page,
+       where it informs instead of distracts. */
     for (let i = 0; i < sess.count; i++) {
-      if (i < sess.idx) { const o = sess.order[i], a = sess.answers[i]; h += `<i class="${o.lvl} ${a && a.correct ? "ok" : "no"}"></i>`; }
-      else if (i === sess.idx) h += `<i class="${cur.lvl}" style="outline:2px solid var(--accent)"></i>`;
-      else h += `<i style="background:var(--line)"></i>`;
+      if (i < sess.idx) h += `<i class="ss-done"></i>`;
+      else if (i === sess.idx) h += `<i class="ss-now"></i>`;
+      else h += `<i class="ss-todo"></i>`;
     }
     h += `</div>`;
     const elim = sess.elim[sess.idx] || {}, pend = sess.pending;
-    h += `<div class="qcard">${passageHTML(cur.set, q)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span><span class="badge" style="--sc:${sec.color}">${esc(q.topic)}</span><span class="lvl lvl-${cur.lvl}">${cur.lvl}</span></div>`;
+    h += `<div class="qcard">${passageHTML(cur.set, q)}<div class="qtop"><span class="qnum">${esc(sec.title)}</span></div>`;
     h += `<div class="qtext">${rich(q.text || ("Question " + q.n))}</div>${qTableHTML(q)}${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
     LET.slice(0, nOpt).forEach((L, i) => {
       const ct = (q.choices && q.choices[i] != null) ? q.choices[i] : "";
@@ -4708,27 +4954,39 @@
     });
     h += `</div>`;
     const last = sess.idx === sess.count - 1;
+    /* "I guessed" is the one thing the score cannot tell you afterwards: a
+       guess that happens to land looks identical to a question you knew. It is
+       recorded with the answer so the results page can separate the two. */
+    const gOn = !!sess.guesses[sess.idx];
+    h += `<div class="qmarks">`;
     if (sess.mock) {
       const on = !!sess.marks[sess.idx];
       h += `<button class="bookmark${on ? " on" : ""}" data-sessmark="1">${on ? "★ Bookmarked" : "☆ Bookmark for review"}</button>`;
     }
+    h += `<button class="bookmark guess${gOn ? " on" : ""}" data-sessguess="1" aria-pressed="${gOn}">${gOn ? "🎲 Marked as a guess" : "🎲 Mark as a guess"}</button></div>`;
     h += `<button class="btn-primary" style="margin-top:16px" data-sessnext ${pend ? "" : "disabled"}>${last ? (sess.mock ? "Go to review" : "Finish session") : "Next question ›"}</button>`;
     h += `<p class="mode-note" style="text-align:center">${pend ? "Locked in — tap to continue." : (sess.mock ? "Pick an option to continue. Bookmark anything you want to come back to." : "Pick an option to continue. No going back — just like the real test.")}</p></div>`;
     body.innerHTML = h; typeset(body);
   }
 
-  /* The end-of-section review: bookmarked questions first, three edits allowed. */
+  /* The end-of-section review: bookmarked questions first, three edits allowed,
+     and the clock still running — on the real exam the review time comes out of
+     the section's 45 minutes, so running out of it here is part of the drill.
+     A row opens the whole question, because a 70-character stub is not enough to
+     decide a change on. */
   function sessReviewHTML() {
     const marked = [], rest = [];
     sess.order.forEach((o, i) => (sess.marks[i] ? marked : rest).push({ o, i }));
-    let h = `<div class="qcard"><div class="mockrev-top"><div><div class="mr-h">Review &amp; edit</div><div class="mr-s">${esc(MOCK[sess.mock].label)} · ${sess.count} questions answered</div></div><div class="mr-budget ${sess.editsLeft ? "" : "spent"}">${sess.editsLeft} edit${sess.editsLeft === 1 ? "" : "s"} left</div></div>`;
-    h += `<p class="mode-note" style="text-align:left;margin:0 0 14px">On the real exam you may change at most ${MOCK_EDITS} answers per section, and the clock is still running. Change one by tapping a different letter.</p>`;
+    let h = `<div class="qcard"><div class="mockrev-top"><div><div class="mr-h">Review &amp; edit</div><div class="mr-s">${esc(MOCK[sess.mock].label)} · ${sess.count} questions answered</div></div>` +
+      (sess.timeMs ? `<span class="ss-timer" id="ss-timer">⏱ ${fmtClock(Math.max(0, sess.endsAt - Date.now()))}</span>` : "") +
+      `<div class="mr-budget ${sess.editsLeft ? "" : "spent"}">${sess.editsLeft} edit${sess.editsLeft === 1 ? "" : "s"} left</div></div>`;
+    h += `<p class="mode-note" style="text-align:left;margin:0 0 14px">On the real exam you may change at most ${MOCK_EDITS} answers per section, and the clock is still running — when it reaches zero the section is submitted as it stands. Tap a question to open it in full, or change one straight from this list.</p>`;
     const rows = (list, title) => {
       if (!list.length) return "";
       let r = `<div class="mr-group">${esc(title)}</div>`;
       list.forEach(({ o, i }) => {
         const a = sess.answers[i], nOpt = o.q.options || 5;
-        r += `<div class="mr-row"><div class="mr-q"><span class="qn">Q${i + 1}</span>${sess.marks[i] ? `<span class="mr-star">★</span>` : ""}<span class="mr-t">${esc(String(o.q.text || "").replace(/\s+/g, " ").slice(0, 70))}…</span></div><div class="mr-opts">` +
+        r += `<div class="mr-row"><button class="mr-q" data-sessopen="${i}" title="Open this question in full"><span class="qn">Q${i + 1}</span>${sess.marks[i] ? `<span class="mr-star">★</span>` : ""}${a && a.guess ? `<span class="mr-star" style="color:var(--warn)">🎲</span>` : ""}<span class="mr-t">${esc(String(o.q.text || "").replace(/\s+/g, " ").slice(0, 70))}…</span><span class="cn-chev">›</span></button><div class="mr-opts">` +
           LET.slice(0, nOpt).map(L =>
             `<button class="mr-o${a && a.chosen === L ? " on" : ""}" data-sessedit="${i}|${L}"${(!sess.editsLeft && (!a || a.chosen !== L)) ? " disabled" : ""}>${L}</button>`
           ).join("") + `</div></div>`;
@@ -4740,10 +4998,36 @@
     h += `<button class="btn-primary" style="margin-top:18px" data-sessdone="1">Submit section</button></div>`;
     return h;
   }
+  /* One question, opened from the review list: the whole stem, passage and every
+     choice — still with no indication of whether it is right, because the section
+     has not been submitted. */
+  function sessReviewOneHTML() {
+    const i = sess.reviewOpen, cur = sess.order[i], q = cur.q, a = sess.answers[i], nOpt = q.options || 5;
+    let h = `<div class="ss-top"><button class="navbtn" data-sessback="1">‹ Back to review</button>` +
+      (sess.timeMs ? `<span class="ss-timer" id="ss-timer">⏱ ${fmtClock(Math.max(0, sess.endsAt - Date.now()))}</span>` : "") + `</div>`;
+    h += `<div class="qcard">${passageHTML(cur.set, q)}<div class="qtop"><span class="qnum">Question ${i + 1} of ${sess.count}</span>${sess.marks[i] ? `<span class="mr-star">★ bookmarked</span>` : ""}${a && a.guess ? `<span class="mr-star" style="color:var(--warn)">🎲 guessed</span>` : ""}</div>`;
+    h += `<div class="qtext">${rich(q.text || ("Question " + q.n))}</div>${qTableHTML(q)}${q.note ? `<div class="qnote">⚠ ${esc(q.note)}</div>` : ""}<div class="choices">`;
+    LET.slice(0, nOpt).forEach((L, j) => {
+      const ct = (q.choices && q.choices[j] != null) ? q.choices[j] : "";
+      const mine = a && a.chosen === L;
+      const locked = !sess.editsLeft && !mine;
+      h += `<div class="choice-wrap"><button class="choice ${mine ? "sel" : ""}" data-sessedit="${i}|${L}"${locked ? " disabled" : ""}><span class="cl">${L}</span><span class="ct">${esc(ct)}</span></button></div>`;
+    });
+    h += `</div><p class="mode-note" style="text-align:center">${
+      sess.editsLeft
+        ? `Your answer is <b>${a ? a.chosen : "—"}</b>. Tapping a different letter asks you to confirm, then spends one of your ${sess.editsLeft} remaining edit${sess.editsLeft === 1 ? "" : "s"}.`
+        : `Your answer is <b>${a ? a.chosen : "—"}</b>. No edits left — all ${MOCK_EDITS} are spent.`}</p>`;
+    h += `<button class="btn-soft" style="width:100%;margin-top:14px" data-sessback="1">Back to review</button></div>`;
+    return h;
+  }
   function sessEdit(i, L) {
     if (!sess || !sess.reviewing) return;
     const a = sess.answers[i];
     if (!a || a.chosen === L || !sess.editsLeft) return;
+    // Edits are scarce and irreversible — three per section, and spending one on
+    // a mis-tap is exactly the mistake this screen exists to rehearse away.
+    const after = sess.editsLeft - 1;
+    if (!confirm(`Change Q${i + 1} from ${a.chosen} to ${L}?\n\nThis spends one of your ${sess.editsLeft} remaining edit${sess.editsLeft === 1 ? "" : "s"}, leaving ${after}. It cannot be undone.`)) return;
     a.chosen = L; a.correct = (L === sess.order[i].q.correct); a.edited = true;
     sess.editsLeft--;
     renderSession();
@@ -4753,7 +5037,7 @@
     if (!sess || sess.pending == null) return;
     const cur = sess.order[sess.idx], q = cur.q;
     const correct = sess.pending === q.correct, ms = Math.max(0, Date.now() - sess.qStart);
-    sess.answers[sess.idx] = { chosen: sess.pending, correct, ms, level: cur.lvl };
+    sess.answers[sess.idx] = { chosen: sess.pending, correct, ms, level: cur.lvl, guess: !!sess.guesses[sess.idx] };
     sess.pending = null;
     sess.curLevel = LEVELS[Math.max(0, Math.min(LEVELS.length - 1, lvlIdx(sess.curLevel) + (correct ? 1 : -1)))];
     if (sess.idx >= sess.count - 1) {
@@ -4768,7 +5052,7 @@
   function finishSession(timeUp) {
     if (!sess) return;
     stopSessTimer(); sess.submitted = true; sess.timeUp = !!timeUp;
-    if (!sess.logged) { sessLog(); markActivity("session"); sess.logged = true; }
+    if (!sess.logged) { sessLog(); markActivity("session"); histLogSession(); sess.logged = true; }
     renderSession(); window.scrollTo({ top: 0 });
   }
   function sessLog() {
@@ -4792,18 +5076,27 @@
     const done = rows.length, pct = done ? Math.round(correct / done * 100) : 0, ac = accClass(pct), avg = done ? tms / done : 0;
     let h = `<div class="rn-score panel"><div class="rs-num ${ac}">${correct}<span class="rs-tot">/ ${done}</span></div><div class="rs-side"><div class="rs-pct ${ac}">${pct}%</div><div class="rs-log">✓ logged to your progress</div>${avg ? `<div class="rs-time">⏱ ${fmtClock(avg)} avg / question</div>` : ""}</div></div>`;
     if (sess.timeUp) h += `<div class="qnote" style="margin-top:12px">⏱ Time's up — the session ended at your time limit. ${done} of ${sess.count} answered.</div>`;
+    /* A guess that lands scores the same as a question you knew, and means
+       something entirely different. Separating them is the point of the mark. */
+    const gRows = rows.filter(r => r.a.guess), gRight = gRows.filter(r => r.a.correct).length;
+    if (gRows.length) {
+      const solid = correct - gRight;
+      h += `<div class="panel" style="margin-top:14px"><h3>What you guessed</h3><p class="sub">You marked <b>${gRows.length}</b> of ${done} as a guess and ${gRight} of those happened to land. Counting only what you actually knew, the score is <b>${solid} of ${done - gRows.length}</b> — that is the number to revise against.</p></div>`;
+    }
     h += `<div class="panel" style="margin-top:14px"><h3>Difficulty journey</h3><p class="sub">Each answer set the next question's level. Green = right, red = wrong — a rising green streak means the questions were getting harder.</p><div class="ss-trace">`;
     rows.forEach(({ o, a }) => h += `<i class="${o.lvl} ${a.correct ? "ok" : "no"}" title="${o.lvl} · ${a.correct ? "correct" : "wrong"}"></i>`);
     h += `</div></div>`;
-    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Correct answer in green. Tap a question for the explanation.</p><div class="qlist">`;
+    h += `<div class="panel" style="margin-top:14px"><h3>Review &amp; solutions</h3><p class="sub">Every choice is shown, with the correct one and yours both named. Tag anything you got wrong so it lands in your error log.</p><div class="qlist">`;
     rows.forEach(({ o, a }, i) => {
       const q = o.q, nOpt = q.options || 5;
       h += `<div class="revitem"><div class="qrow rev"><span class="qn">Q${i + 1}</span><div class="rev-opts">` +
         LET.slice(0, nOpt).map(L => { let c = ""; if (L === q.correct) c = "correct"; else if (L === a.chosen && !a.correct) c = "wrong"; return `<span class="opt ${c}">${L}</span>`; }).join("") +
         `</div><span class="rev-time">⏱ ${fmtClock(a.ms)}</span><span class="rev-mark ${a.correct ? "ok" : "no"}">${a.correct ? "✓" : "✗"}</span></div>` +
         (q.text ? `<div class="rev-q">${rich(q.text)}${qTableHTML(q)}</div>` : "") +
+        answerListHTML(q, a.chosen, nOpt) +
+        (a.correct ? "" : missReasonHTML(o.set.id, q.n)) +
         explBlocksHTML(q, true) +
-        `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}</div></div>`;
+        `<div class="rev-tag">${esc(q.topic)} · <span class="lvl lvl-${o.lvl}">${o.lvl}</span> · ${esc(secById(o.set.section).nav)}${a.guess ? ' · <span class="rev-guess">🎲 guessed</span>' : ""}${a.edited ? ' · <span style="color:var(--ink-faint)">changed in review</span>' : ""}</div></div>`;
     });
     h += `</div></div><div class="rn-foot"><button class="btn-soft" style="flex:none;padding:11px 20px" data-sessagain="1">New session</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-sessclose="1">Done</button></div>`;
     return h;
@@ -4828,10 +5121,19 @@
   document.getElementById("session").addEventListener("click", (e) => {
     if (e.target.closest("[data-sessclose]")) { closeSession(true); return; }
     if (e.target.closest("[data-sessmark]")) { sess.marks[sess.idx] = !sess.marks[sess.idx]; renderSession(); return; }
+    if (e.target.closest("[data-sessguess]")) { sess.guesses[sess.idx] = !sess.guesses[sess.idx]; renderSession(); return; }
+    const so = e.target.closest("[data-sessopen]");
+    if (so) { sess.reviewOpen = +so.getAttribute("data-sessopen"); passageOpen = false; renderSession(); window.scrollTo({ top:0 }); return; }
+    if (e.target.closest("[data-sessback]")) { sess.reviewOpen = null; renderSession(); window.scrollTo({ top:0 }); return; }
+    if (sess && sess.reviewing && e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderSession(); return; }
     const se = e.target.closest("[data-sessedit]");
     if (se) { const [i, L] = se.getAttribute("data-sessedit").split("|"); sessEdit(+i, L); return; }
-    if (e.target.closest("[data-sessdone]")) { sess.reviewing = false; finishSession(false); return; }
+    if (e.target.closest("[data-sessdone]")) { sess.reviewing = false; sess.reviewOpen = null; finishSession(false); return; }
     if (e.target.closest("[data-sessagain]")) { closeSession(true); openSessionConfig(); return; }
+    // Tagging a miss works on the results page, where the session is submitted,
+    // so it sits above the guard that stops play once a session is over.
+    const smr = e.target.closest("[data-miss]");
+    if (smr) { const [sid, n, r] = smr.getAttribute("data-miss").split("|"); setMissReason(sid, +n, r); renderSession(); return; }
     if (!sess || sess.submitted) return;
     if (e.target.closest("[data-passtoggle]")) { passageOpen = !passageOpen; renderSession(); return; }
     const el = e.target.closest("[data-sesselim]"); if (el) { const L = el.getAttribute("data-sesselim"), k = sess.idx; sess.elim[k] = sess.elim[k] || {}; if (sess.elim[k][L]) delete sess.elim[k][L]; else sess.elim[k][L] = 1; renderSession(); return; }

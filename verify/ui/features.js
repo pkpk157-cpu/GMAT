@@ -89,19 +89,46 @@ const problems = [];
   await page.waitForTimeout(400);
   await page.evaluate(() => document.querySelector('[data-progtoggle]')?.click());
   await page.waitForTimeout(500);
-  const m = await page.evaluate(() => {
+  // Score estimate is on the Score sub-tab; the quadrant, error log and flagged
+  // panels moved onto Weak spots, so each has to be opened to be read.
+  const grabNames = await page.evaluate(() => {
+    const out = {};
+    const read = () => {
+      const txt = (h) => { const el = [...document.querySelectorAll('#view .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
+      ['Score estimate', 'Time vs. accuracy', 'Why you are missing them', 'Flagged questions'].forEach(h => { if (out[h] == null) out[h] = txt(h); });
+      out.quadCells = Math.max(out.quadCells || 0, document.querySelectorAll('#view .qd').length);
+      out.mlogRows = Math.max(out.mlogRows || 0, document.querySelectorAll('#view .mlog-row').length);
+    };
+    read();
+    return out;
+  });
+  for (const t of ['weak', 'activity', 'score']) {
+    const btn = await page.$(`[data-ovtab="${t}"]`);
+    if (!btn) continue;
+    await btn.click(); await page.waitForTimeout(350);
+    const more = await page.evaluate(() => {
+      const txt = (h) => { const el = [...document.querySelectorAll('#view .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
+      return { 'Score estimate': txt('Score estimate'), 'Time vs. accuracy': txt('Time vs. accuracy'),
+               'Why you are missing them': txt('Why you are missing them'), 'Flagged questions': txt('Flagged questions'),
+               quadCells: document.querySelectorAll('#view .qd').length, mlogRows: document.querySelectorAll('#view .mlog-row').length };
+    });
+    Object.keys(more).forEach(k => {
+      if (k === 'quadCells' || k === 'mlogRows') grabNames[k] = Math.max(grabNames[k] || 0, more[k]);
+      else if (grabNames[k] == null) grabNames[k] = more[k];
+    });
+  }
+  const m = await page.evaluate((g) => {
     const txt = document.getElementById('view').textContent;
-    const grab = (h) => { const el = [...document.querySelectorAll('#view .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
     return {
-      score: grab('Score estimate'),
-      quad: grab('Time vs. accuracy'),
-      errlog: grab('Why you are missing them'),
-      flags: grab('Flagged questions'),
-      quadCells: document.querySelectorAll('#view .qd').length,
-      mlogRows: document.querySelectorAll('#view .mlog-row').length,
+      score: g['Score estimate'],
+      quad: g['Time vs. accuracy'],
+      errlog: g['Why you are missing them'],
+      flags: g['Flagged questions'],
+      quadCells: g.quadCells,
+      mlogRows: g.mlogRows,
       scoreBig: document.querySelector('#view .scorebig .sv')?.textContent || null,
     };
-  });
+  }, grabNames);
   console.log('target score set to:', targetShown);
   console.log('score panel   :', m.score);
   console.log('  big number  :', m.scoreBig);

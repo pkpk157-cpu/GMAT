@@ -140,6 +140,17 @@
   .av-xpsub { font-size: 13.5px; color: var(--ink-faint); }
   .av-chips { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
   .av-chip { font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+  /* Secondary tools: one tap, a third of the height of the cards they replace. */
+  .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 14px; }
+  .tool { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 11px 6px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; transition: .12s; }
+  .tool:hover { border-color: var(--c-overall); }
+  .tool .ico { font-size: 19px; line-height: 1.1; }
+  .tool b { font-size: 13px; font-weight: 700; text-align: center; }
+  .tool span:last-child { font-size: 11.5px; color: var(--ink-faint); text-align: center; }
+  /* A panel with no data yet: one line, not a full card. */
+  .panel-empty { padding: 13px 16px; background: var(--surface-2); box-shadow: none; }
+  .panel-empty h3 { margin: 0 0 3px; font-size: 14.5px; color: var(--ink-soft); }
+  .panel-empty p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--ink-faint); }
   .av-panel { margin-top: 14px; }
   /* ---- Sync setup steps ---- */
   .sync-steps { margin: 0 0 12px; padding-left: 20px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
@@ -1393,7 +1404,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v127";
+  const APP_VERSION = "v128";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1414,7 +1425,7 @@
      not the question — the question is looked up from the bank at render time,
      so the record stays small enough to sync through the gist. */
   const HISTORY_CAP = 150;
-  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], readProg:{}, history:[] };
+  const defaults = { name:"", examDate:"", counts:{}, daily:{}, collapsed:{}, active:"overall", subtab:{}, progOpen:false, topicsV1:false, wake:true, extra:{ counts:{}, daily:{} }, miss:{}, mmBest:0, scoreHist:[], targets:{ daily:20, weekly:120, score:0 }, runs:{}, flags:{}, read:{}, fcMode:"flip", activity:{}, srs:{}, fcsrs:{}, reminder:{ on:false, time:"19:00", nudged:"" }, genSets:[], readProg:{}, history:[], ovtab:"score" };
   let state = load();
   let calCursor = new Date(); calCursor.setDate(1);
 
@@ -1839,6 +1850,13 @@
     { id:"tricks",   label:"Tricks" },
     { id:"cards",    label:"Cards" }
   ];
+  /* The Overall tab's own sub-tabs: where you are, what you have been doing,
+     what is going wrong. */
+  const OV_TABS = [
+    { id:"score",    label:"Score" },
+    { id:"activity", label:"Activity" },
+    { id:"weak",     label:"Weak spots" }
+  ];
   function subtabOf(secId) {
     const v = state.subtab && state.subtab[secId];
     return PANES.some(p => p.id === v) ? v : "practice";
@@ -1888,17 +1906,18 @@
     // exam-shaped section mocks
     h += `<div class="mocks"><div class="mocks-h">Section mock — real conditions</div><div class="mocks-row">` +
       Object.keys(MOCK).map(k => `<button class="mockbtn" data-mock="${k}"><b>${esc(MOCK[k].label.split(" ")[0])}</b><span>${MOCK[k].count} Qs · ${MOCK[k].mins} min</span></button>`).join("") +
-      `</div><p class="mocks-note">The exam's own question count and clock, with the Focus rule: bookmark anything, then change at most ${MOCK_EDITS} answers at the end.</p></div>`;
+      `</div><p class="mocks-note">The exam's own count and clock, with the Focus rule: bookmark freely, change at most ${MOCK_EDITS} answers at the end.</p></div>`;
 
-    // mental-math drill — Focus Quant gives you no calculator
-    h += `<button class="cta-focus" data-mm-open="1"><span class="ico">🧮</span><div><div class="t">Mental-math drill</div><div class="s">60 seconds of the arithmetic Focus Quant expects without a calculator${mmBest() ? ` · best ${mmBest()}` : ""}</div></div><span class="cn-chev">›</span></button>`;
-
-    // History: everything finished, newest first, with its result page intact.
-    const hn = (state.history || []).length;
-    h += `<button class="cta-focus" data-openhistory="1"><span class="ico">🗂</span><div><div class="t">History</div><div class="s">${hn ? `${hn} finished session${hn === 1 ? "" : "s"} by date — reopen any result page` : "Everything you finish is kept here by date, with its result page"}</div></div><span class="cn-chev">›</span></button>`;
-
-    // focus timer entry
-    h += `<button class="cta-focus" data-focus-open="1"><span class="ico">🍅</span><div><div class="t">Focus timer</div><div class="s">Pomodoro deep-work blocks with a break reminder${focusTodayCount()>0?` · ${focusTodayCount()} today`:""}</div></div><span class="cn-chev">›</span></button>`;
+    /* The three side tools used to be full-width cards stacked under the two
+       things you actually came here to do, which made five cards of identical
+       weight and no answer to "what now?". Three small tiles instead: still one
+       tap, a third of the height, and plainly secondary. */
+    const hn = (state.history || []).length, mb = mmBest(), ft = focusTodayCount();
+    h += `<div class="tools">
+      <button class="tool" data-openhistory="1"><span class="ico">🗂</span><b>History</b><span>${hn ? `${hn} session${hn === 1 ? "" : "s"}` : "by date"}</span></button>
+      <button class="tool" data-mm-open="1"><span class="ico">🧮</span><b>Mental math</b><span>${mb ? `best ${mb}` : "60-second drill"}</span></button>
+      <button class="tool" data-focus-open="1"><span class="ico">🍅</span><b>Focus timer</b><span>${ft > 0 ? `${ft} today` : "deep-work blocks"}</span></button>
+    </div>`;
 
     // goals
     if (dT>0 || wT>0) {
@@ -1938,10 +1957,17 @@
     if (!po) { h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`; return h; }
 
     snapshotScore();
+    /* Nine panels in one scroll answered three different questions at once —
+       where am I, how much am I doing, what is going wrong — so you read past
+       two of them to reach the one you opened this for. One sub-tab each, the
+       same pattern the subject tabs already use. */
+    const ot = OV_TABS.some(t => t.id === state.ovtab) ? state.ovtab : "score";
+    h += `<div class="subnav" style="--secc:var(--c-overall)" role="tablist">` +
+      OV_TABS.map(t => `<button class="subnav-b${t.id === ot ? " on" : ""}" data-ovtab="${t.id}" aria-current="${t.id === ot ? "page" : "false"}">${esc(t.label)}</button>`).join("") +
+      `</div>`;
+
+    if (ot === "score") {
     h += scorePanelHTML();
-    h += quadrantPanelHTML();
-    h += errorLogPanelHTML();
-    h += flaggedPanelHTML();
 
     // tiles
     h += `<div class="grid-stats">
@@ -1949,30 +1975,46 @@
       <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
       <div class="stat" data-openstreak role="button" tabindex="0" title="See your streak"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
       <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice"}</div></div>
-      <div class="stat"><div class="k">${dl===null?"Exam":"Countdown"}</div><div class="v">${dl===null?"—":Math.abs(dl)}</div><div class="s">${dl===null?"set your date":dl>0?"days remaining":dl===0?"today — good luck!":"days ago"}</div></div>
     </div>`;
+    if (dl!==null && dl>0) {
+      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go. ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions${gAcc!==null?` at <b style="color:var(--ink)">${gAcc}%</b> accuracy`:""}` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
+    }
+    }
 
-    // focus areas (weak spots)
+    if (ot === "weak") {
     const cand = [];
     bySub.forEach(s => s.subjects.forEach(su => su.topics.forEach(t => {
       const id = topicId(s.id, su.name, t), r = getRec(id);
       if (r.d >= 5) cand.push({ sec:s, name:t, d:r.d, c:r.c, p:accPct(r.c,r.d) });
     })));
     cand.sort((a,b)=> a.p - b.p || b.d - a.d);
-    h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
+    /* All four of these fill up from practice, so before any practice they are
+       all empty at once. Four cards each explaining their own emptiness is the
+       worst version of this page; one line covering the lot is the honest one. */
+    const qd = quadrantData(), anyQuad = qd.fastRight.length + qd.slowRight.length + qd.fastWrong.length + qd.slowWrong.length;
+    if (!anyQuad && !missTally(null).total && !flaggedAll().length && !cand.length) {
+      h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>This is where practice turns into a plan: your weakest topics, whether you are missing from haste or from not knowing, the reasons you tag on wrong answers, and anything you flag. Answer some questions and all four fill themselves in.</p></div>`;
+      h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
+      return h;
+    }
+    h += quadrantPanelHTML();
+    h += errorLogPanelHTML();
+    h += flaggedPanelHTML();
     if (cand.length === 0) {
-      h += `<p class="footnote" style="margin:2px 0 0;text-align:left">Log at least <b>5 questions</b> in a topic (with ✓ / ✗) and your weak spots will surface here automatically.</p>`;
+      h += emptyPanel("Focus areas", "Answer 5 questions in a topic and your weakest surface here.");
     } else {
+      h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
       h += `<div class="focus">`;
       cand.slice(0,5).forEach(f => {
         h += `<div class="focus-row"><div class="fn">${esc(f.name)}<span class="fq">${f.c} / ${f.d} correct</span></div>
           <span class="fchip" style="--fc:${f.sec.color}">${esc(f.sec.nav)}</span>
           <span class="facc ${accClass(f.p)}">${f.p}%</span></div>`;
       });
-      h += `</div>`;
+      h += `</div></div>`;
     }
-    h += `</div>`;
+    }
 
+    if (ot === "activity") {
     // breakdown
     const secs = bySub.map(s => ({ s, a: sectionAgg(s) }));
     const max = Math.max(1, ...secs.map(x => x.a.d));
@@ -1993,10 +2035,8 @@
     const dmax = Math.max(1, ...arr.map(a=>a.n));
     arr.forEach(a => { const hp = a.n===0?3:Math.max(8,Math.round(a.n/dmax*100)); h += `<div class="bcol ${a.n>0?"has":""} ${a.today?"today":""}"><span class="bn">${a.n||""}</span><div class="b" style="height:${hp}%"></div><span class="bd">${a.label}</span></div>`; });
     h += `</div></div>`;
-
-    if (dl!==null && dl>0) {
-      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go. ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions${gAcc!==null?` at <b style="color:var(--ink)">${gAcc}%</b> accuracy`:""}` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
     }
+
     h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
     return h;
   }
@@ -2403,6 +2443,8 @@
 
   /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
+    const ov = e.target.closest("[data-ovtab]");
+    if (ov) { state.ovtab = ov.getAttribute("data-ovtab"); save(); renderView(); return; }
     const sn = e.target.closest("[data-subtab]");
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
@@ -3753,13 +3795,18 @@
     return `<p class="sub" style="margin:8px 0 0">With <b style="color:var(--ink)">${dl} day${dl === 1 ? "" : "s"}</b> left that is about <b style="color:var(--ink)">${perWeek} points a week</b>.${trend}</p>`;
   }
 
+  /* A panel with nothing in it yet is a promise, not a report. Rendered full
+     size it takes as much of the screen as a panel full of data and says only
+     "do something and I will fill up" — four of those were most of why this
+     page felt crowded. One muted line instead. */
+  const emptyPanel = (title, line) => `<div class="panel panel-empty"><h3>${esc(title)}</h3><p>${line}</p></div>`;
+
   function quadrantPanelHTML() {
     const q = quadrantData();
     const total = q.fastRight.length + q.slowRight.length + q.fastWrong.length + q.slowWrong.length;
     let h = `<div class="panel"><h3>Time vs. accuracy</h3>`;
     if (!total) {
-      h += `<p class="sub">Answer some questions with the timer running and they will be sorted here into the four cases, each of which needs a different fix.</p>`;
-      return h + `</div>`;
+      return emptyPanel("Time vs. accuracy", "Answer some timed questions and they sort into the four cases here.");
     }
     h += `<p class="sub">Every timed question you have answered, against the pace target for its section. Each quadrant calls for something different.</p><div class="quad">`;
     ["fastRight", "slowRight", "fastWrong", "slowWrong"].forEach(k => {
@@ -3776,8 +3823,7 @@
     const all = missTally(null), wk = missTally(7);
     let h = `<div class="panel"><h3>Why you are missing them</h3>`;
     if (!all.total) {
-      h += `<p class="sub">After a wrong answer, tap one of the reason chips. Once a few are logged, the pattern shows up here — and "40% of your misses were careless" is a different instruction from "62% in Percentages".</p>`;
-      return h + `</div>`;
+      return emptyPanel("Why you are missing them", "Tag a wrong answer with a reason and the pattern builds here.");
     }
     h += `<p class="sub">${all.total} miss${all.total === 1 ? "" : "es"} tagged${wk.total ? ` · ${wk.total} in the last 7 days` : ""}.</p><div class="mlog">`;
     MISS_REASONS.slice().sort((a, b) => all.counts[b.id] - all.counts[a.id]).forEach(r => {
@@ -3812,8 +3858,7 @@
     const all = flaggedAll();
     let h = `<div class="panel"><h3>Flagged questions</h3>`;
     if (!all.length) {
-      h += `<p class="sub">Flag a question while you practise (the ⚑ in the runner) and every flag across every topic collects here.</p>`;
-      return h + `</div>`;
+      return emptyPanel("Flagged questions", "Flag a question with ⚑ while you practise and it collects here.");
     }
     h += `<p class="sub">${all.length} flagged across ${new Set(all.map(x => x.set.id)).size} topic${new Set(all.map(x => x.set.id)).size === 1 ? "" : "s"}. They also feed the review queue.</p><div class="setlist">`;
     const bySet = {};

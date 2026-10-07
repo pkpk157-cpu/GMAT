@@ -89,8 +89,8 @@ const problems = [];
   await page.waitForTimeout(400);
   await page.evaluate(() => document.querySelector('[data-progtoggle]')?.click());
   await page.waitForTimeout(500);
-  // Score estimate is on the Score sub-tab; the quadrant, error log and flagged
-  // panels moved onto Weak spots, so each has to be opened to be read.
+  // The Overall tab's panels are split across four sub-tabs — Score, Activity,
+  // Mistakes, Revisit — so each has to be opened before its panel can be read.
   const grabNames = await page.evaluate(() => {
     const out = {};
     const read = () => {
@@ -102,7 +102,7 @@ const problems = [];
     read();
     return out;
   });
-  for (const t of ['weak', 'activity', 'score']) {
+  for (const t of ['mistakes', 'revisit', 'activity', 'score']) {
     const btn = await page.$(`[data-ovtab="${t}"]`);
     if (!btn) continue;
     await btn.click(); await page.waitForTimeout(350);

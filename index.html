@@ -1416,7 +1416,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v129";
+  const APP_VERSION = "v130";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1867,7 +1867,8 @@
   const OV_TABS = [
     { id:"score",    label:"Score" },
     { id:"activity", label:"Activity" },
-    { id:"weak",     label:"Weak spots" }
+    { id:"mistakes", label:"Mistakes" },
+    { id:"revisit",  label:"Revisit" }
   ];
   function subtabOf(secId) {
     const v = state.subtab && state.subtab[secId];
@@ -1995,37 +1996,46 @@
     }
     }
 
-    if (ot === "weak") {
-    const cand = [];
-    bySub.forEach(s => s.subjects.forEach(su => su.topics.forEach(t => {
-      const id = topicId(s.id, su.name, t), r = getRec(id);
-      if (r.d >= 5) cand.push({ sec:s, name:t, d:r.d, c:r.c, p:accPct(r.c,r.d) });
-    })));
-    cand.sort((a,b)=> a.p - b.p || b.d - a.d);
-    /* All four of these fill up from practice, so before any practice they are
-       all empty at once. Four cards each explaining their own emptiness is the
-       worst version of this page; one line covering the lot is the honest one. */
-    const qd = quadrantData(), anyQuad = qd.fastRight.length + qd.slowRight.length + qd.fastWrong.length + qd.slowWrong.length;
-    if (!anyQuad && !missTally(null).total && !flaggedAll().length && !cand.length) {
-      h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>This is where practice turns into a plan: your weakest topics, whether you are missing from haste or from not knowing, the reasons you tag on wrong answers, and anything you flag. Answer some questions and all four fill themselves in.</p></div>`;
-      h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
-      return h;
+    /* How you are losing marks: whether it is pace or knowledge, and the reasons
+       you tagged yourself. Both are read the same way and neither is a worklist,
+       so they belong together and apart from what to do about them. */
+    if (ot === "mistakes") {
+      const qd = quadrantData(), anyQuad = qd.fastRight.length + qd.slowRight.length + qd.fastWrong.length + qd.slowWrong.length;
+      if (!anyQuad && !missTally(null).total) {
+        h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>Answer some questions with the timer running, and tag a wrong answer with a reason, and this becomes the difference between missing from haste and missing from not knowing.</p></div>`;
+      } else {
+        h += quadrantPanelHTML();
+        h += errorLogPanelHTML();
+      }
     }
-    h += quadrantPanelHTML();
-    h += errorLogPanelHTML();
-    h += flaggedPanelHTML();
-    if (cand.length === 0) {
-      h += emptyPanel("Focus areas", "Answer 5 questions in a topic and your weakest surface here.");
-    } else {
-      h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
-      h += `<div class="focus">`;
-      cand.slice(0,5).forEach(f => {
-        h += `<div class="focus-row"><div class="fn">${esc(f.name)}<span class="fq">${f.c} / ${f.d} correct</span></div>
-          <span class="fchip" style="--fc:${f.sec.color}">${esc(f.sec.nav)}</span>
-          <span class="facc ${accClass(f.p)}">${f.p}%</span></div>`;
-      });
-      h += `</div></div>`;
-    }
+
+    /* What to go back to: the topics you are weakest in and the questions you
+       flagged. Both are lists you work down, which is what separates them from
+       the diagnosis on the Mistakes tab. */
+    if (ot === "revisit") {
+      const cand = [];
+      bySub.forEach(s => s.subjects.forEach(su => su.topics.forEach(t => {
+        const id = topicId(s.id, su.name, t), r = getRec(id);
+        if (r.d >= 5) cand.push({ sec:s, name:t, d:r.d, c:r.c, p:accPct(r.c,r.d) });
+      })));
+      cand.sort((a,b)=> a.p - b.p || b.d - a.d);
+      if (!cand.length && !flaggedAll().length) {
+        h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>Answer 5 questions in a topic and your weakest ones surface here, and anything you flag with ⚑ while you practise collects alongside them.</p></div>`;
+      } else {
+        if (cand.length === 0) {
+          h += emptyPanel("Focus areas", "Answer 5 questions in a topic and your weakest surface here.");
+        } else {
+          h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
+          h += `<div class="focus">`;
+          cand.slice(0,5).forEach(f => {
+            h += `<div class="focus-row"><div class="fn">${esc(f.name)}<span class="fq">${f.c} / ${f.d} correct</span></div>
+              <span class="fchip" style="--fc:${f.sec.color}">${esc(f.sec.nav)}</span>
+              <span class="facc ${accClass(f.p)}">${f.p}%</span></div>`;
+          });
+          h += `</div></div>`;
+        }
+        h += flaggedPanelHTML();
+      }
     }
 
     if (ot === "activity") {

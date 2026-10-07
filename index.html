@@ -162,6 +162,16 @@
   .panel-empty { padding: 13px 16px; background: var(--surface-2); box-shadow: none; }
   .panel-empty h3 { margin: 0 0 3px; font-size: 14.5px; color: var(--ink-soft); }
   .panel-empty p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--ink-faint); }
+  /* Inside Achievements the streak is a section, not a whole screen, so the
+     flame and the number come down a size — enough to lead the page without
+     pushing the daily tasks off the bottom of it. */
+  .av-streak .sk-flame { width: 92px; height: 108px; }
+  .av-streak .sk-shadow { width: 76px; height: 15px; margin-top: -10px; }
+  .av-streak .sk-hero { padding: 14px 0 4px; }
+  .av-streak .sk-n { font-size: 54px; margin-top: 12px; }
+  .av-streak .sk-lbl { font-size: 19px; }
+  .av-streak .sk-week { margin: 18px 0 12px; }
+  .av-lvlbar { text-align: center; margin-top: 14px; }
   .av-panel { margin-top: 14px; }
   /* ---- Sync setup steps ---- */
   .sync-steps { margin: 0 0 12px; padding-left: 20px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
@@ -198,7 +208,6 @@
   .sk-stat { text-align: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 6px; }
   .sk-stat .v { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; }
   .sk-stat .k { font-size: 12.5px; font-weight: 700; color: var(--ink-faint); margin-top: 2px; }
-  .stat[data-openstreak] { cursor: pointer; }
   /* ---- History ---- */
   .hi-dhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
   .hi-dhead h3 { margin: 0; }
@@ -210,7 +219,6 @@
   .hi-t { font-weight: 650; font-size: 14px; }
   .hi-s { font-size: 12.5px; color: var(--ink-faint); }
   .hi-row .cn-chev { flex: none; color: var(--ink-faint); }
-  .stat[data-openstreak]:hover { border-color: color-mix(in srgb, var(--flame-2) 55%, var(--line)); }
   .av-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .av-head h3 { margin: 0; }
   .av-count { margin-left: auto; font-weight: 800; font-size: 14.5px; color: var(--ink-soft); background: var(--surface-2); padding: 3px 10px; border-radius: 999px; }
@@ -1416,7 +1424,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v131";
+  const APP_VERSION = "v132";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1597,8 +1605,7 @@
     { id:"score",    label:"Score" },
     { id:"activity", label:"Activity" },
     { id:"mistakes", label:"Mistakes" },
-    { id:"revisit",  label:"Revisit" },
-    { id:"streak",   label:"Streak" }
+    { id:"revisit",  label:"Revisit" }
   ];
   function progressBodyHTML() {
     const g = grandAgg(), gt = g.d, gAcc = accPct(g.c, g.d);
@@ -1609,7 +1616,6 @@
     h += `<div class="subnav prog-subnav" style="--secc:var(--c-overall)" role="tablist">` +
       PROG_TABS.map(t => `<button class="subnav-b${t.id === ot ? " on" : ""}" data-ovtab="${t.id}" aria-current="${t.id === ot ? "page" : "false"}">${esc(t.label)}</button>`).join("") +
       `</div>`;
-    if (ot === "streak") return h + streakBodyHTML();
     snapshotScore();
 
     if (ot === "score") {
@@ -1619,7 +1625,7 @@
     h += `<div class="grid-stats">
       <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
       <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
-      <div class="stat" data-openstreak role="button" tabindex="0" title="See your streak"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
+      <div class="stat"><div class="k">Syllabus covered</div><div class="v">${Math.round(touched/totalTopics*100)}%</div><div class="s">${touched} of ${totalTopics} topics touched</div></div>
       <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice"}</div></div>
     </div>`;
     if (dl!==null && dl>0) {
@@ -2085,7 +2091,7 @@
        was reachable from one tab only and sat under 1,300px of actions. It is
        its own screen now, shared with the streak and the activity calendar that
        used to have screens of their own. */
-    h += `<button class="prog-toggle" data-openprogress="score"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""}${st>0?` · ${st}-day streak`:""}</span><span class="chev">›</span></button>`;
+    h += `<button class="prog-toggle" data-openprogress="score"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""} · ${Math.round(topicsTouched()/topicCountTotal()*100)}% of the syllabus</span><span class="chev">›</span></button>`;
     h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
     return h;
   }
@@ -2225,9 +2231,16 @@
     const dt=dailyTasks(), wt=weeklyTasks(), bg=badgeList();
     const dDone=dt.filter(t=>t.done).length, wDone=wt.filter(t=>t.done).length, gotB=bg.filter(b=>b.got).length;
     const st=streak(), xp=xpTotal(), lvl=Math.floor(xp/100)+1, into=xp%100;
-    let h = `<div class="av-hero"><div class="av-trophy">🏆</div><div class="av-lvl">Level ${lvl}</div>
+    /* The streak is a reward, not a measurement: it belongs with the badges and
+       the daily tasks it feeds, not among score estimates and accuracy. It leads
+       the screen, because days-in-a-row is the number you came to look at; Level
+       and XP follow as a compact strip rather than a second full hero competing
+       with it. The chip that used to carry the streak is gone — the hero says it
+       properly. */
+    let h = `<div class="av-streak">${streakBodyHTML()}</div>`;
+    h += `<div class="av-lvlbar"><div class="av-lvl">Level ${lvl}</div>
       <div class="av-xpbar"><i style="width:${into}%"></i></div><div class="av-xpsub">${into} / 100 XP to level ${lvl+1}</div>
-      <div class="av-chips"><span class="av-chip">🔥 ${st}-day streak</span><span class="av-chip">🏅 ${gotB}/${bg.length} badges</span><span class="av-chip">⭐ ${xp} XP</span></div></div>`;
+      <div class="av-chips"><span class="av-chip">🏅 ${gotB}/${bg.length} badges</span><span class="av-chip">⭐ ${xp} XP</span></div></div>`;
     h += `<section class="panel av-panel"><div class="av-head"><h3>Daily tasks</h3><span class="av-count ${dDone===dt.length?"all":""}">${dDone}/${dt.length}</span></div>
       <div class="av-prog"><i style="width:${Math.round(dDone/dt.length*100)}%"></i></div>${dDone===dt.length?`<div class="av-done-note">All done — perfect day! ✨</div>`:""}
       <div class="tasks">${dt.map(taskRow).join("")}</div><p class="av-reset">Daily tasks reset at midnight</p></section>`;
@@ -2495,7 +2508,6 @@
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
-    if (e.target.closest("[data-openstreak]")) { openProgress("streak"); return; }
     const opg = e.target.closest("[data-openprogress]");
     if (opg) { openProgress(opg.getAttribute("data-openprogress")); return; }
     if (e.target.closest("[data-openhistory]")) { openHistory(); return; }
@@ -2523,7 +2535,6 @@
   // Keyboard: Enter / Space toggles a section header (it has role="button").
   document.getElementById("view").addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
-    if (e.target.closest("[data-openstreak]")) { e.preventDefault(); openProgress("streak"); return; }
     if (e.target.closest("[data-openhistory]")) { e.preventDefault(); openHistory(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (!ts) return;
     e.preventDefault();
@@ -2608,8 +2619,9 @@
   document.getElementById("btn-profile").onclick = openProfile;
   document.getElementById("btn-achv").onclick = openAchv;
   document.getElementById("av-close").onclick = closeAchv;
-  // The flame still means "streak", so it opens Progress on that tab.
-  document.getElementById("btn-streak").onclick = () => openProgress("streak");
+  // The flame and the trophy are two readings of the same screen — how many days
+  // in a row, and what that has earned you — so both open it.
+  document.getElementById("btn-streak").onclick = openAchv;
   document.getElementById("pg-close").onclick = closeProgress;
   document.getElementById("pg-body").addEventListener("click", (ev) => {
     const ov = ev.target.closest("[data-ovtab]");

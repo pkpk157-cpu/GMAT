@@ -1195,9 +1195,9 @@
 </div>
 
 <!-- Streak -->
-<div class="profile" id="streak" hidden>
-  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Streak</h2><button class="pf-close" id="sk-close" title="Close">✕</button></div></div>
-  <div class="pf-body" id="sk-body"></div>
+<div class="profile" id="progress" hidden>
+  <div class="pf-head"><div class="pf-head-in"><h2 class="pf-title">Progress</h2><button class="pf-close" id="pg-close" title="Close">✕</button></div></div>
+  <div class="pf-body" id="pg-body"></div>
 </div>
 
 <!-- History -->
@@ -1416,7 +1416,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v130";
+  const APP_VERSION = "v131";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1587,9 +1587,131 @@
       </div>
     </section>`;
   }
-  function renderStreak(){ document.getElementById("sk-body").innerHTML = streakBodyHTML(); }
-  function openStreak(){ renderStreak(); document.getElementById("streak").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("streak-open"); }
-  function closeStreak(){ document.getElementById("streak").hidden = true; document.body.style.overflow = ""; render(); }
+  /* ===================== Progress =====================
+     One screen for "how am I doing". It used to be four: this panel set behind
+     a toggle on the Overall tab, a Streak screen on the flame, an activity
+     calendar inside Profile, and accuracy chips in two of those. Your streak
+     was on three of them. They are tabs of one screen now, and Profile keeps
+     only the things you change rather than the things you read. */
+  const PROG_TABS = [
+    { id:"score",    label:"Score" },
+    { id:"activity", label:"Activity" },
+    { id:"mistakes", label:"Mistakes" },
+    { id:"revisit",  label:"Revisit" },
+    { id:"streak",   label:"Streak" }
+  ];
+  function progressBodyHTML() {
+    const g = grandAgg(), gt = g.d, gAcc = accPct(g.c, g.d);
+    const touched = topicsTouched(), totalTopics = topicCountTotal();
+    const dl = daysLeft(), st = streak();
+    let h = "";
+    const ot = PROG_TABS.some(t => t.id === state.ovtab) ? state.ovtab : "score";
+    h += `<div class="subnav prog-subnav" style="--secc:var(--c-overall)" role="tablist">` +
+      PROG_TABS.map(t => `<button class="subnav-b${t.id === ot ? " on" : ""}" data-ovtab="${t.id}" aria-current="${t.id === ot ? "page" : "false"}">${esc(t.label)}</button>`).join("") +
+      `</div>`;
+    if (ot === "streak") return h + streakBodyHTML();
+    snapshotScore();
+
+    if (ot === "score") {
+    h += scorePanelHTML();
+
+    // tiles
+    h += `<div class="grid-stats">
+      <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
+      <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
+      <div class="stat" data-openstreak role="button" tabindex="0" title="See your streak"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
+      <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice"}</div></div>
+    </div>`;
+    if (dl!==null && dl>0) {
+      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go. ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions${gAcc!==null?` at <b style="color:var(--ink)">${gAcc}%</b> accuracy`:""}` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
+    }
+    }
+
+    /* How you are losing marks: whether it is pace or knowledge, and the reasons
+       you tagged yourself. Both are read the same way and neither is a worklist,
+       so they belong together and apart from what to do about them. */
+    if (ot === "mistakes") {
+      const qd = quadrantData(), anyQuad = qd.fastRight.length + qd.slowRight.length + qd.fastWrong.length + qd.slowWrong.length;
+      if (!anyQuad && !missTally(null).total) {
+        h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>Answer some questions with the timer running, and tag a wrong answer with a reason, and this becomes the difference between missing from haste and missing from not knowing.</p></div>`;
+      } else {
+        h += quadrantPanelHTML();
+        h += errorLogPanelHTML();
+      }
+    }
+
+    /* What to go back to: the topics you are weakest in and the questions you
+       flagged. Both are lists you work down, which is what separates them from
+       the diagnosis on the Mistakes tab. */
+    if (ot === "revisit") {
+      const cand = [];
+      bySub.forEach(s => s.subjects.forEach(su => su.topics.forEach(t => {
+        const id = topicId(s.id, su.name, t), r = getRec(id);
+        if (r.d >= 5) cand.push({ sec:s, name:t, d:r.d, c:r.c, p:accPct(r.c,r.d) });
+      })));
+      cand.sort((a,b)=> a.p - b.p || b.d - a.d);
+      if (!cand.length && !flaggedAll().length) {
+        h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>Answer 5 questions in a topic and your weakest ones surface here, and anything you flag with ⚑ while you practise collects alongside them.</p></div>`;
+      } else {
+        if (cand.length === 0) {
+          h += emptyPanel("Focus areas", "Answer 5 questions in a topic and your weakest surface here.");
+        } else {
+          h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
+          h += `<div class="focus">`;
+          cand.slice(0,5).forEach(f => {
+            h += `<div class="focus-row"><div class="fn">${esc(f.name)}<span class="fq">${f.c} / ${f.d} correct</span></div>
+              <span class="fchip" style="--fc:${f.sec.color}">${esc(f.sec.nav)}</span>
+              <span class="facc ${accClass(f.p)}">${f.p}%</span></div>`;
+          });
+          h += `</div></div>`;
+        }
+        h += flaggedPanelHTML();
+      }
+    }
+
+    if (ot === "activity") {
+    // breakdown
+    const secs = bySub.map(s => ({ s, a: sectionAgg(s) }));
+    const max = Math.max(1, ...secs.map(x => x.a.d));
+    h += `<div class="panel"><h3>Effort by area</h3><p class="sub">Questions practised · accuracy. Keep all four areas moving. Syllabus covered: ${Math.round(touched/totalTopics*100)}% (${touched}/${totalTopics} topics).</p><div class="breakdown">`;
+    secs.forEach(({ s, a }) => {
+      const pct = a.d===0 ? 2 : Math.round(a.d/max*100), ap = accPct(a.c, a.d);
+      h += `<div class="bd-row" style="--rc:${s.color}"><span class="bl"><span class="d"></span>${esc(s.title)}</span>
+        <span class="track"><i style="width:${pct}%"></i></span>
+        <span class="bv">${a.d} ${ap!==null?`<span class="ac ${accClass(ap)}">· ${ap}%</span>`:`<span class="ac" style="color:var(--ink-faint)">· —</span>`}</span></div>`;
+    });
+    h += `</div></div>`;
+
+    // The calendar used to sit in Profile, a screen away from the sparkline
+    // answering the same question at a different zoom.
+    h += `<section class="panel"><h3>Activity calendar</h3><p class="sub">Every day you log questions, coloured by how close you got to your daily target.</p>${calendarHTML()}</section>`;
+
+    // 7-day
+    h += `<div class="panel"><h3>Last 7 days</h3><p class="sub">Questions logged each day.</p><div class="spark">`;
+    const now = new Date(); now.setHours(0,0,0,0);
+    const wd = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], arr = [];
+    for (let i=6;i>=0;i--){ const dd=new Date(now); dd.setDate(now.getDate()-i); arr.push({ label:i===0?"Today":wd[dd.getDay()], n:state.daily[dkey(dd)]||0, today:i===0 }); }
+    const dmax = Math.max(1, ...arr.map(a=>a.n));
+    arr.forEach(a => { const hp = a.n===0?3:Math.max(8,Math.round(a.n/dmax*100)); h += `<div class="bcol ${a.n>0?"has":""} ${a.today?"today":""}"><span class="bn">${a.n||""}</span><div class="b" style="height:${hp}%"></div><span class="bd">${a.label}</span></div>`; });
+    h += `</div></div>`;
+    }
+    return h;
+  }
+  function renderProgress() {
+    const body = document.getElementById("pg-body");
+    body.innerHTML = progressBodyHTML();
+    typeset(body);
+  }
+  function openProgress(tab) {
+    calCursor = new Date(); calCursor.setDate(1);   // the calendar always opens on this month
+    if (tab && PROG_TABS.some(t => t.id === tab)) { state.ovtab = tab; save(); }
+    renderProgress();
+    document.getElementById("progress").hidden = false;
+    document.body.style.overflow = "hidden"; window.scrollTo({ top:0 });
+    if (window.gtrack) gtrack("progress-open");
+  }
+  function closeProgress() { document.getElementById("progress").hidden = true; document.body.style.overflow = ""; render(); }
+
 
 
   /* ===================== Achievements / gamification ===================== */
@@ -1864,12 +1986,6 @@
   ];
   /* The Overall tab's own sub-tabs: where you are, what you have been doing,
      what is going wrong. */
-  const OV_TABS = [
-    { id:"score",    label:"Score" },
-    { id:"activity", label:"Activity" },
-    { id:"mistakes", label:"Mistakes" },
-    { id:"revisit",  label:"Revisit" }
-  ];
   function subtabOf(secId) {
     const v = state.subtab && state.subtab[secId];
     return PANES.some(p => p.id === v) ? v : "practice";
@@ -1965,102 +2081,11 @@
       <button class="tool" data-focus-open="1"><span class="ico">🍅</span><b>Focus timer</b><span>${ft > 0 ? `${ft} today` : "deep-work blocks"}</span></button>
     </div></section>`;
 
-    // Everything below is reference rather than action, so it sits behind one
-    // toggle instead of adding four dashboards to the first screen.
-    const po = !!state.progOpen;
-    h += `<button class="prog-toggle ${po ? "on" : ""}" data-progtoggle="1" aria-expanded="${po}"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""}${st>0?` · ${st}-day streak`:""}</span><span class="chev">▾</span></button>`;
-    if (!po) { h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`; return h; }
-
-    snapshotScore();
-    /* Nine panels in one scroll answered three different questions at once —
-       where am I, how much am I doing, what is going wrong — so you read past
-       two of them to reach the one you opened this for. One sub-tab each, the
-       same pattern the subject tabs already use. */
-    const ot = OV_TABS.some(t => t.id === state.ovtab) ? state.ovtab : "score";
-    h += `<div class="subnav" style="--secc:var(--c-overall)" role="tablist">` +
-      OV_TABS.map(t => `<button class="subnav-b${t.id === ot ? " on" : ""}" data-ovtab="${t.id}" aria-current="${t.id === ot ? "page" : "false"}">${esc(t.label)}</button>`).join("") +
-      `</div>`;
-
-    if (ot === "score") {
-    h += scorePanelHTML();
-
-    // tiles
-    h += `<div class="grid-stats">
-      <div class="stat"><div class="k">Total logged</div><div class="v">${gt}</div><div class="s">questions, all areas</div></div>
-      <div class="stat"><div class="k">Accuracy</div><div class="v ${gAcc!==null?accClass(gAcc):""}">${gAcc===null?"—":gAcc+"%"}</div><div class="s">${gAcc===null?"log correct vs. attempted":g.c+" of "+g.d+" correct"}</div></div>
-      <div class="stat" data-openstreak role="button" tabindex="0" title="See your streak"><div class="k">Day streak</div><div class="v" style="color:var(--gold)">${st}</div><div class="s">${st>0?"consecutive active days":"log today to start one"}</div></div>
-      <div class="stat"><div class="k">Avg / question</div><div class="v">${g.ms>0?fmtDur(g.ms/g.d):"—"}</div><div class="s">${g.ms>0?"across timed questions":"time your practice"}</div></div>
-    </div>`;
-    if (dl!==null && dl>0) {
-      h += `<div class="panel"><h3>Pacing</h3><p class="sub" style="margin:0">You have <b style="color:var(--ink)">${dl} day${dl===1?"":"s"}</b> to go. ${gt>0?`You've logged <b style="color:var(--ink)">${gt}</b> questions${gAcc!==null?` at <b style="color:var(--ink)">${gAcc}%</b> accuracy`:""}` : `A common benchmark is 1,500–2,000 practice questions before test day`} — steady daily reps across all four areas keep every topic warm.</p></div>`;
-    }
-    }
-
-    /* How you are losing marks: whether it is pace or knowledge, and the reasons
-       you tagged yourself. Both are read the same way and neither is a worklist,
-       so they belong together and apart from what to do about them. */
-    if (ot === "mistakes") {
-      const qd = quadrantData(), anyQuad = qd.fastRight.length + qd.slowRight.length + qd.fastWrong.length + qd.slowWrong.length;
-      if (!anyQuad && !missTally(null).total) {
-        h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>Answer some questions with the timer running, and tag a wrong answer with a reason, and this becomes the difference between missing from haste and missing from not knowing.</p></div>`;
-      } else {
-        h += quadrantPanelHTML();
-        h += errorLogPanelHTML();
-      }
-    }
-
-    /* What to go back to: the topics you are weakest in and the questions you
-       flagged. Both are lists you work down, which is what separates them from
-       the diagnosis on the Mistakes tab. */
-    if (ot === "revisit") {
-      const cand = [];
-      bySub.forEach(s => s.subjects.forEach(su => su.topics.forEach(t => {
-        const id = topicId(s.id, su.name, t), r = getRec(id);
-        if (r.d >= 5) cand.push({ sec:s, name:t, d:r.d, c:r.c, p:accPct(r.c,r.d) });
-      })));
-      cand.sort((a,b)=> a.p - b.p || b.d - a.d);
-      if (!cand.length && !flaggedAll().length) {
-        h += `<div class="panel panel-empty"><h3>Nothing to show yet</h3><p>Answer 5 questions in a topic and your weakest ones surface here, and anything you flag with ⚑ while you practise collects alongside them.</p></div>`;
-      } else {
-        if (cand.length === 0) {
-          h += emptyPanel("Focus areas", "Answer 5 questions in a topic and your weakest surface here.");
-        } else {
-          h += `<div class="panel"><h3>Focus areas</h3><p class="sub">Your lowest-accuracy topics so far — where extra practice pays off most.</p>`;
-          h += `<div class="focus">`;
-          cand.slice(0,5).forEach(f => {
-            h += `<div class="focus-row"><div class="fn">${esc(f.name)}<span class="fq">${f.c} / ${f.d} correct</span></div>
-              <span class="fchip" style="--fc:${f.sec.color}">${esc(f.sec.nav)}</span>
-              <span class="facc ${accClass(f.p)}">${f.p}%</span></div>`;
-          });
-          h += `</div></div>`;
-        }
-        h += flaggedPanelHTML();
-      }
-    }
-
-    if (ot === "activity") {
-    // breakdown
-    const secs = bySub.map(s => ({ s, a: sectionAgg(s) }));
-    const max = Math.max(1, ...secs.map(x => x.a.d));
-    h += `<div class="panel"><h3>Effort by area</h3><p class="sub">Questions practised · accuracy. Keep all four areas moving. Syllabus covered: ${Math.round(touched/totalTopics*100)}% (${touched}/${totalTopics} topics).</p><div class="breakdown">`;
-    secs.forEach(({ s, a }) => {
-      const pct = a.d===0 ? 2 : Math.round(a.d/max*100), ap = accPct(a.c, a.d);
-      h += `<div class="bd-row" style="--rc:${s.color}"><span class="bl"><span class="d"></span>${esc(s.title)}</span>
-        <span class="track"><i style="width:${pct}%"></i></span>
-        <span class="bv">${a.d} ${ap!==null?`<span class="ac ${accClass(ap)}">· ${ap}%</span>`:`<span class="ac" style="color:var(--ink-faint)">· —</span>`}</span></div>`;
-    });
-    h += `</div></div>`;
-
-    // 7-day
-    h += `<div class="panel"><h3>Last 7 days</h3><p class="sub">Questions logged each day.</p><div class="spark">`;
-    const now = new Date(); now.setHours(0,0,0,0);
-    const wd = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], arr = [];
-    for (let i=6;i>=0;i--){ const dd=new Date(now); dd.setDate(now.getDate()-i); arr.push({ label:i===0?"Today":wd[dd.getDay()], n:state.daily[dkey(dd)]||0, today:i===0 }); }
-    const dmax = Math.max(1, ...arr.map(a=>a.n));
-    arr.forEach(a => { const hp = a.n===0?3:Math.max(8,Math.round(a.n/dmax*100)); h += `<div class="bcol ${a.n>0?"has":""} ${a.today?"today":""}"><span class="bn">${a.n||""}</span><div class="b" style="height:${hp}%"></div><span class="bd">${a.label}</span></div>`; });
-    h += `</div></div>`;
-    }
-
+    /* Progress used to live inline under this, behind a toggle, which meant it
+       was reachable from one tab only and sat under 1,300px of actions. It is
+       its own screen now, shared with the streak and the activity calendar that
+       used to have screens of their own. */
+    h += `<button class="prog-toggle" data-openprogress="score"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""}${st>0?` · ${st}-day streak`:""}</span><span class="chev">›</span></button>`;
     h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
     return h;
   }
@@ -2122,7 +2147,6 @@
       <div class="tgt-row"><div class="tgt-info"><div class="tgt-k">Target score</div><div class="tgt-s">205–805, in steps of 10</div></div>
         <div class="stepper"><button class="step minus" data-tgt="score" data-d="-10">−</button><span class="tgt-val">${state.targets.score || "—"}</span><button class="step" data-tgt="score" data-d="10">+</button></div></div></section>`;
 
-    h += `<section class="panel"><h3>Activity calendar</h3><p class="sub">Every day you log questions, coloured by how close you got to your daily target.</p>${calendarHTML()}</section>`;
 
     h += `<section class="panel"><h3>Backup &amp; restore</h3><p class="sub">${syncLinked()
       ? "Your progress is synced across your devices. A downloaded backup is still worth keeping — it is the copy that survives losing the token or the gist."
@@ -2467,23 +2491,14 @@
 
   /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
-    const ov = e.target.closest("[data-ovtab]");
-    if (ov) {
-      // The tab strip sits below the whole action block, so re-rendering in
-      // place leaves you looking at the same actions you were already past.
-      // Put the strip at the top of the screen instead.
-      const y = ov.getBoundingClientRect().top + window.scrollY - 8;
-      state.ovtab = ov.getAttribute("data-ovtab"); save(); renderView();
-      window.scrollTo({ top: Math.max(0, y) });
-      return;
-    }
     const sn = e.target.closest("[data-subtab]");
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
-    if (e.target.closest("[data-openstreak]")) { openStreak(); return; }
+    if (e.target.closest("[data-openstreak]")) { openProgress("streak"); return; }
+    const opg = e.target.closest("[data-openprogress]");
+    if (opg) { openProgress(opg.getAttribute("data-openprogress")); return; }
     if (e.target.closest("[data-openhistory]")) { openHistory(); return; }
-    const pg = e.target.closest("[data-progtoggle]"); if (pg) { state.progOpen = !state.progOpen; save(); renderView(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this topic added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }
     const rs = e.target.closest("[data-runset]"); if (rs) { openRunner(rs.getAttribute("data-runset")); return; }
@@ -2508,7 +2523,7 @@
   // Keyboard: Enter / Space toggles a section header (it has role="button").
   document.getElementById("view").addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
-    if (e.target.closest("[data-openstreak]")) { e.preventDefault(); openStreak(); return; }
+    if (e.target.closest("[data-openstreak]")) { e.preventDefault(); openProgress("streak"); return; }
     if (e.target.closest("[data-openhistory]")) { e.preventDefault(); openHistory(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (!ts) return;
     e.preventDefault();
@@ -2593,8 +2608,20 @@
   document.getElementById("btn-profile").onclick = openProfile;
   document.getElementById("btn-achv").onclick = openAchv;
   document.getElementById("av-close").onclick = closeAchv;
-  document.getElementById("btn-streak").onclick = openStreak;
-  document.getElementById("sk-close").onclick = closeStreak;
+  // The flame still means "streak", so it opens Progress on that tab.
+  document.getElementById("btn-streak").onclick = () => openProgress("streak");
+  document.getElementById("pg-close").onclick = closeProgress;
+  document.getElementById("pg-body").addEventListener("click", (ev) => {
+    const ov = ev.target.closest("[data-ovtab]");
+    if (ov) { state.ovtab = ov.getAttribute("data-ovtab"); save(); renderProgress(); window.scrollTo({ top:0 }); return; }
+    const mr = ev.target.closest("[data-miss]");
+    if (mr) { const [sid, n, r] = mr.getAttribute("data-miss").split("|"); setMissReason(sid, +n, r); renderProgress(); return; }
+    // Opening a topic from Focus areas or Flagged leaves the progress screen.
+    const rs = ev.target.closest("[data-runset]");
+    if (rs) { closeProgress(); openRunner(rs.getAttribute("data-runset")); return; }
+    const cal = ev.target.closest("[data-cal]");
+    if (cal) { calCursor.setMonth(calCursor.getMonth() + parseInt(cal.getAttribute("data-cal"), 10)); renderProgress(); return; }
+  });
   document.getElementById("hi-close").onclick = () => { if (histOpenId) { histOpenId = null; renderHistory(); window.scrollTo({ top:0 }); } else closeHistory(); };
   document.getElementById("hi-body").addEventListener("click", (e) => {
     const o = e.target.closest("[data-histopen]");

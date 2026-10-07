@@ -33,9 +33,9 @@ const server=http.createServer((q,r)=>{let p=q.url.split('?')[0];if(p==='/')p='/
  }
  await p.evaluate(()=>{const r=document.getElementById('runner');if(r){r.hidden=true;document.body.style.overflow='';}});
  await p.evaluate(()=>document.querySelectorAll('#botnav .bn')[2].click()); await p.waitForTimeout(400);
- await p.evaluate(()=>document.querySelector('[data-progtoggle]')?.click()); await p.waitForTimeout(500);
+ await p.evaluate(()=>document.querySelector('[data-openprogress]')?.click()); await p.waitForTimeout(500);
  const out=await p.evaluate(()=>{
-   const el=[...document.querySelectorAll('#view .panel h3')].find(x=>x.textContent.trim()==='Score estimate');
+   const el=[...document.querySelectorAll('#pg-body .panel h3')].find(x=>x.textContent.trim()==='Score estimate');
    return el?el.parentElement.textContent.replace(/\s+/g,' ').trim():null;});
  console.log(out ? out.slice(-330) : 'NO SCORE PANEL');
  console.log('errors:', errs.length?errs.join(' | '):'none');

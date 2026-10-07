@@ -358,13 +358,19 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
     await wait(200);
   });
 
-  /* ---- overall: progress toggle ---- */
-  await run('overall: progress toggle', async () => {
+  /* ---- overall: the progress screen ---- */
+  await run('overall: progress screen', async () => {
     await tab(2);
-    await click('[data-progtoggle]');
-    if (!(await $('#view .stat'))) note('MISSING', 'stats did not appear when expanded');
-    await click('[data-progtoggle]');
-    if (await $('#view .stat')) note('SHAPE', 'stats still present when collapsed');
+    await click('[data-openprogress]');
+    if (!(await $('#pg-body .stat'))) note('MISSING', 'stats did not appear on the progress screen');
+    if (!(await $('#pg-body [data-ovtab]'))) note('MISSING', 'progress screen has no sub-tabs');
+    await click('#pg-body [data-ovtab="activity"]', { optional: true });
+    if (!(await $('#pg-body .cal-grid'))) note('MISSING', 'activity calendar did not render on the Activity tab');
+    await click('#pg-body [data-cal]', { optional: true });
+    await click('#pg-close');
+    // The overlay is hidden, not emptied — like the runner and history screens —
+    // so ask whether it is on screen rather than whether its markup still exists.
+    if (await page.evaluate(() => !document.getElementById('progress').hidden)) note('SHAPE', 'progress screen still open after close');
   });
 
   /* ---- profile ---- */
@@ -375,6 +381,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
     await click('#profile [data-tgt]', { optional: true });
     await click('#profile [data-save-details]', { optional: true });
     await click('#profile [data-rem-test]', { optional: true });
+    // The activity calendar moved onto the progress screen's Activity tab.
     await click('#profile [data-cal]', { optional: true });
     await click('#profile [data-backup]', { optional: true });
     await click('#profile [data-sync-link]', { optional: true, wait: 500 });
@@ -430,4 +437,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
 
   await browser.close();
   server.close();
+  // Printing a problem and exiting 0 let the sweep report itself clean over the
+  // top of a real finding, which is the one thing a sweep must never do.
+  process.exit(problems.length ? 1 : 0);
 })();

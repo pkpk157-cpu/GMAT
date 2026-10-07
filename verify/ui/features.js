@@ -87,30 +87,30 @@ const problems = [];
   // Overall -> expand progress and inspect the new panels.
   await page.evaluate(() => document.querySelectorAll('#botnav .bn')[2].click());
   await page.waitForTimeout(400);
-  await page.evaluate(() => document.querySelector('[data-progtoggle]')?.click());
+  await page.evaluate(() => document.querySelector('[data-openprogress]')?.click());
   await page.waitForTimeout(500);
   // The Overall tab's panels are split across four sub-tabs — Score, Activity,
   // Mistakes, Revisit — so each has to be opened before its panel can be read.
   const grabNames = await page.evaluate(() => {
     const out = {};
     const read = () => {
-      const txt = (h) => { const el = [...document.querySelectorAll('#view .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
+      const txt = (h) => { const el = [...document.querySelectorAll('#pg-body .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
       ['Score estimate', 'Time vs. accuracy', 'Why you are missing them', 'Flagged questions'].forEach(h => { if (out[h] == null) out[h] = txt(h); });
-      out.quadCells = Math.max(out.quadCells || 0, document.querySelectorAll('#view .qd').length);
-      out.mlogRows = Math.max(out.mlogRows || 0, document.querySelectorAll('#view .mlog-row').length);
+      out.quadCells = Math.max(out.quadCells || 0, document.querySelectorAll('#pg-body .qd').length);
+      out.mlogRows = Math.max(out.mlogRows || 0, document.querySelectorAll('#pg-body .mlog-row').length);
     };
     read();
     return out;
   });
   for (const t of ['mistakes', 'revisit', 'activity', 'score']) {
-    const btn = await page.$(`[data-ovtab="${t}"]`);
+    const btn = await page.$(`#pg-body [data-ovtab="${t}"]`);
     if (!btn) continue;
     await btn.click(); await page.waitForTimeout(350);
     const more = await page.evaluate(() => {
-      const txt = (h) => { const el = [...document.querySelectorAll('#view .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
+      const txt = (h) => { const el = [...document.querySelectorAll('#pg-body .panel h3')].find(x => x.textContent.trim() === h); return el ? el.parentElement.textContent.replace(/\s+/g, ' ').trim().slice(0, 190) : null; };
       return { 'Score estimate': txt('Score estimate'), 'Time vs. accuracy': txt('Time vs. accuracy'),
                'Why you are missing them': txt('Why you are missing them'), 'Flagged questions': txt('Flagged questions'),
-               quadCells: document.querySelectorAll('#view .qd').length, mlogRows: document.querySelectorAll('#view .mlog-row').length };
+               quadCells: document.querySelectorAll('#pg-body .qd').length, mlogRows: document.querySelectorAll('#pg-body .mlog-row').length };
     });
     Object.keys(more).forEach(k => {
       if (k === 'quadCells' || k === 'mlogRows') grabNames[k] = Math.max(grabNames[k] || 0, more[k]);
@@ -118,7 +118,7 @@ const problems = [];
     });
   }
   const m = await page.evaluate((g) => {
-    const txt = document.getElementById('view').textContent;
+    const txt = document.getElementById('pg-body').textContent;
     return {
       score: g['Score estimate'],
       quad: g['Time vs. accuracy'],
@@ -126,7 +126,7 @@ const problems = [];
       flags: g['Flagged questions'],
       quadCells: g.quadCells,
       mlogRows: g.mlogRows,
-      scoreBig: document.querySelector('#view .scorebig .sv')?.textContent || null,
+      scoreBig: document.querySelector('#pg-body .scorebig .sv')?.textContent || null,
     };
   }, grabNames);
   console.log('target score set to:', targetShown);

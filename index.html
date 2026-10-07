@@ -1346,7 +1346,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v124";
+  const APP_VERSION = "v125";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1946,7 +1946,7 @@
   function syncPanelInner() {
     let h = `<h3>Sync across devices</h3>`;
     if (!syncLinked()) {
-      h += `<p class="sub">Keep your progress in step between your phone and iPad. It's stored in a private GitHub Gist that only you can see — create a token with <b>gist</b> scope, paste it below, then link your other devices with the same token.</p>
+      h += `<p class="sub">Keep one set of progress across every device you study on — laptop, phone, tablet. It's stored in a private GitHub Gist that only you can see — create a token with <b>gist</b> scope, paste it below, then link your other devices with the same token.</p>
       <p class="footnote" style="text-align:left;margin:0 0 12px"><a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=GMAT%20Prep%20sync" target="_blank" rel="noopener">Create a token on GitHub →</a> &nbsp;(tick only the <b>gist</b> scope)</p>
       <div class="field"><label for="sync-token">GitHub token</label><input id="sync-token" type="password" placeholder="ghp_… or github_pat_…" autocomplete="off" spellcheck="false"></div>
       <button class="btn-primary" style="width:100%"${syncBusy ? " disabled" : ""} data-sync-link="1">${syncBusy ? "Linking…" : "Link this device"}</button>`;
@@ -1989,7 +1989,9 @@
 
     h += `<section class="panel"><h3>Activity calendar</h3><p class="sub">Every day you log questions, coloured by how close you got to your daily target.</p>${calendarHTML()}</section>`;
 
-    h += `<section class="panel"><h3>Backup & restore</h3><p class="sub">Your data lives on this device only. Download a backup so you never lose it — then restore it on a new phone or after reinstalling.</p>
+    h += `<section class="panel"><h3>Backup &amp; restore</h3><p class="sub">${syncLinked()
+      ? "Your progress is synced across your devices. A downloaded backup is still worth keeping — it is the copy that survives losing the token or the gist."
+      : "Your data lives on this device only. Download a backup so you never lose it — then restore it on a new phone or after reinstalling. To keep several devices in step instead, set up sync below."}</p>
       <div class="pf-actions"><button class="btn-soft" data-backup="1">⬇ Back up data</button><button class="btn-soft" data-restore="1">⬆ Restore</button></div>
       ${installable?`<button class="btn-primary" style="margin-top:12px" data-install="1">Install app on this device</button>`:""}</section>`;
 

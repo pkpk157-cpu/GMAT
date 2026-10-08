@@ -123,13 +123,6 @@
   .tb-trophy.alldone .dot { display: none; }
   /* topbar layout: trophy sits right before the avatar */
   .tb-inner .tb-trophy + .avatar { margin-left: 8px; }
-  /* Streak flame in the top bar. Lit only while today is already logged, so a
-     glance at it answers "have I practised yet?" without opening anything. */
-  .tb-streak { display: flex; align-items: center; gap: 3px; flex: none; background: none; border: none; padding: 4px 2px; cursor: pointer; }
-  .tb-streak svg { width: 23px; height: 27px; display: block; }
-  .tb-streak b { font-size: 16.5px; font-weight: 900; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
-  .tb-streak.lit b { color: var(--flame-2); }
-  .tb-streak:hover { filter: brightness(.97); }
 
   /* Achievements page */
   .av-hero { text-align: center; padding: 6px 0 18px; }
@@ -1095,7 +1088,6 @@
       <span class="tb-days tnum" id="tb-days">—</span>
       <span class="tb-meta"><span class="l" id="tb-label">days to exam</span><span class="d" id="tb-date">set your date</span></span>
     </button>
-    <button class="tb-streak" id="btn-streak" title="Your practice streak"><span id="tb-flame"></span><b id="tb-streak-n">0</b></button>
     <button class="tb-trophy" id="btn-achv" title="Achievements, daily &amp; weekly goals">🏆<span class="dot"></span></button>
     <button class="avatar" id="btn-profile" title="Profile, targets, accuracy & activity">P</button>
   </div>
@@ -1424,7 +1416,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v132";
+  const APP_VERSION = "v133";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1823,12 +1815,10 @@
     document.getElementById("btn-profile").innerHTML = state.name ? esc(state.name.trim()[0].toUpperCase()) : ICON.person;
     // Trophy indicator: gold glow when every daily task is done, else a nudge dot.
     document.getElementById("btn-achv").classList.toggle("alldone", dailyTasks().every(t => t.done));
-    // Streak flame: lit only once today is logged.
-    const lit = dayLogged(new Date()), sb = document.getElementById("btn-streak");
-    document.getElementById("tb-flame").innerHTML = flameSVG(!lit, "");
-    document.getElementById("tb-streak-n").textContent = streak();
-    sb.classList.toggle("lit", lit);
-    sb.title = lit ? "Practised today — your streak is safe" : "Nothing logged today yet";
+    /* The streak used to have its own flame here as well as leading the
+       Achievements screen. Two places for one number, and the trophy beside it
+       already carries the same signal — it glows gold once the day's tasks are
+       done and shows a nudge dot until then. */
     if (d === null) { days.textContent="—"; lbl.textContent="days to exam"; dt.textContent="set your date"; return; }
     const nice = new Date(state.examDate+"T00:00:00").toLocaleDateString(undefined,{ month:"short", day:"numeric", year:"numeric" });
     if (d>0){ days.textContent=d; lbl.textContent="days to exam"; dt.textContent=nice; }
@@ -2619,9 +2609,6 @@
   document.getElementById("btn-profile").onclick = openProfile;
   document.getElementById("btn-achv").onclick = openAchv;
   document.getElementById("av-close").onclick = closeAchv;
-  // The flame and the trophy are two readings of the same screen — how many days
-  // in a row, and what that has earned you — so both open it.
-  document.getElementById("btn-streak").onclick = openAchv;
   document.getElementById("pg-close").onclick = closeProgress;
   document.getElementById("pg-body").addEventListener("click", (ev) => {
     const ov = ev.target.closest("[data-ovtab]");

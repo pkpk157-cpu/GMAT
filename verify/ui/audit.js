@@ -361,7 +361,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
   /* ---- overall: the progress screen ---- */
   await run('overall: progress screen', async () => {
     await tab(2);
-    await click('[data-openprogress]');
+    await click('#btn-prog');
     if (!(await $('#pg-body .stat'))) note('MISSING', 'stats did not appear on the progress screen');
     if (!(await $('#pg-body [data-ovtab]'))) note('MISSING', 'progress screen has no sub-tabs');
     await click('#pg-body [data-ovtab="activity"]', { optional: true });

@@ -87,7 +87,7 @@ const problems = [];
   // Overall -> expand progress and inspect the new panels.
   await page.evaluate(() => document.querySelectorAll('#botnav .bn')[2].click());
   await page.waitForTimeout(400);
-  await page.evaluate(() => document.querySelector('[data-openprogress]')?.click());
+  await page.evaluate(() => document.getElementById('btn-prog')?.click());
   await page.waitForTimeout(500);
   // The Overall tab's panels are split across four sub-tabs — Score, Activity,
   // Mistakes, Revisit — so each has to be opened before its panel can be read.

@@ -312,7 +312,7 @@ const KEY = 'gmat_tracker_v2';
     if (!readiness.answers) note('READINESS', 'an adaptive session recorded no answers for the score estimate');
     await page.evaluate(() => document.querySelectorAll('#botnav .bn')[2].click());
     await page.waitForTimeout(350);
-    await page.evaluate(() => document.querySelector('[data-openprogress]')?.click());
+    await page.evaluate(() => document.getElementById('btn-prog')?.click());
     await page.waitForTimeout(450);
     const logged = await page.evaluate(() => {
       const el = [...document.querySelectorAll('#pg-body .panel h3')].find(x => x.textContent.trim() === 'Score estimate');

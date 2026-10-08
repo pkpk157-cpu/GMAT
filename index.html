@@ -399,13 +399,6 @@
   .sc-need { grid-column: 2 / -1; font-size: 12.5px; color: var(--ink-faint); }
 
   /* Progress & stats: one toggle instead of four dashboards on first load. */
-  .prog-toggle { display: flex; align-items: center; gap: 10px; width: 100%; margin: 0 0 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
-  .prog-toggle:hover { border-color: color-mix(in srgb, var(--c-overall) 40%, var(--line)); }
-  .prog-toggle .t { font-weight: 700; font-size: 15px; }
-  .prog-toggle .s { flex: 1; color: var(--ink-faint); font-size: 13px; }
-  .prog-toggle .chev { flex: none; color: var(--ink-faint); transition: transform .2s; }
-  .prog-toggle.on .chev { transform: rotate(180deg); }
-  .prog-toggle:focus-visible { outline: 2px solid var(--c-overall); outline-offset: 1px; }
 
   /* Sub-nav: one pane of a subject tab at a time. */
   /* Wraps rather than scrolls: five labels do not fit one row on a 320px phone,
@@ -1430,7 +1423,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v135";
+  const APP_VERSION = "v136";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2091,11 +2084,8 @@
       <button class="tool" data-focus-open="1"><span class="ico">🍅</span><b>Focus timer</b><span>${ft > 0 ? `${ft} today` : "deep-work blocks"}</span></button>
     </div></section>`;
 
-    /* Progress used to live inline under this, behind a toggle, which meant it
-       was reachable from one tab only and sat under 1,300px of actions. It is
-       its own screen now, shared with the streak and the activity calendar that
-       used to have screens of their own. */
-    h += `<button class="prog-toggle" data-openprogress="score"><span class="t">Progress &amp; stats</span><span class="s">${gt} logged${gAcc!==null?` · ${gAcc}% accuracy`:""} · ${Math.round(topicsTouched()/topicCountTotal()*100)}% of the syllabus</span><span class="chev">›</span></button>`;
+    /* No link to Progress here: it is in the top bar, reachable from every tab
+       rather than only this one. This tab is what to do next, and nothing else. */
     h += `<p class="footnote">Progress saves on this device · GMAT Focus Edition · ${APP_VERSION}</p>`;
     return h;
   }
@@ -2512,8 +2502,6 @@
     if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
-    const opg = e.target.closest("[data-openprogress]");
-    if (opg) { openProgress(opg.getAttribute("data-openprogress")); return; }
     if (e.target.closest("[data-openhistory]")) { openHistory(); return; }
     const ts = e.target.closest("[data-tabsec]"); if (ts) { const k=ts.getAttribute("data-tabsec"); state.collapsed[k]=!state.collapsed[k]; save(); renderView(); return; }
     const rset = e.target.closest("[data-resetset]"); if (rset) { const set = SETS.find(s => s.id === rset.getAttribute("data-resetset")); if (set && confirm(`Reset "${set.title}"?\n\nThis clears your answers and removes what this topic added to your accuracy and today's count.`)) { resetRun(set, false); render(); } return; }

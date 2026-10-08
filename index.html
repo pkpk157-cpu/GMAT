@@ -121,6 +121,19 @@
   .tb-trophy .dot { position: absolute; top: -1px; right: -1px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
   .tb-trophy.alldone { background: linear-gradient(135deg, #FFD65A, #F5A623); border-color: #E9A00E; box-shadow: 0 0 0 3px color-mix(in srgb, #F5A623 22%, transparent); }
   .tb-trophy.alldone .dot { display: none; }
+  /* The progress button carries a drawn icon rather than an emoji, so it needs
+     the stroke treatment the bottom nav gives its icons. */
+  .tb-prog svg { width: 21px; height: 21px; stroke: var(--ink-soft); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .tb-prog:hover svg { stroke: var(--c-overall); }
+  /* On a 320px screen a third round button pushed "DAYS TO EXAM" onto its own
+     line. Tightening the gap and the buttons gives the countdown its two lines
+     back without dropping the date. */
+  @media (max-width: 359px) {
+    .tb-inner { gap: 8px; padding-left: 14px; padding-right: 14px; }
+    .tb-trophy, .tb-inner .avatar { width: 34px; height: 34px; font-size: 16px; }
+    .tb-prog svg { width: 18px; height: 18px; }
+    .tb-inner .tb-trophy + .avatar { margin-left: 4px; }
+  }
   /* topbar layout: trophy sits right before the avatar */
   .tb-inner .tb-trophy + .avatar { margin-left: 8px; }
 
@@ -1088,6 +1101,7 @@
       <span class="tb-days tnum" id="tb-days">—</span>
       <span class="tb-meta"><span class="l" id="tb-label">days to exam</span><span class="d" id="tb-date">set your date</span></span>
     </button>
+    <button class="tb-trophy tb-prog" id="btn-prog" title="Progress &amp; stats"><svg viewBox="0 0 24 24"><path d="M5 20V13"/><path d="M12 20V5"/><path d="M19 20V10"/><line x1="3" y1="20" x2="21" y2="20"/></svg></button>
     <button class="tb-trophy" id="btn-achv" title="Achievements, daily &amp; weekly goals">🏆<span class="dot"></span></button>
     <button class="avatar" id="btn-profile" title="Profile, targets, accuracy & activity">P</button>
   </div>
@@ -1416,7 +1430,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v134";
+  const APP_VERSION = "v135";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2609,6 +2623,7 @@
   document.getElementById("btn-profile").onclick = openProfile;
   document.getElementById("btn-achv").onclick = openAchv;
   document.getElementById("av-close").onclick = closeAchv;
+  document.getElementById("btn-prog").onclick = () => openProgress();
   document.getElementById("pg-close").onclick = closeProgress;
   document.getElementById("pg-body").addEventListener("click", (ev) => {
     const ov = ev.target.closest("[data-ovtab]");

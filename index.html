@@ -1416,7 +1416,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v133";
+  const APP_VERSION = "v134";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -3053,7 +3053,12 @@
      several sittings. The same clock decides when reading counts as today's
      "study a concept guide" activity. */
   let cnTimer = null, cnTimerAt = null, cnSession = 0, cnCredited = false;
-  const readNeedSec = (p) => Math.max(60, ((p && p.mins) || 2) * 60);
+  /* Half the section's own reading estimate, not all of it. The estimate is how
+     long the section takes to read; requiring every minute of it before it would
+     count meant sitting on a finished page waiting for a clock — 7.4 hours of it
+     across the 81 sections. Half is long enough that opening and closing a
+     section still marks nothing, which is the only thing this has to prevent. */
+  const readNeedSec = (p) => Math.max(30, ((p && p.mins) || 2) * 30);
   function readProgress(gid, pid) { return (state.readProg && state.readProg[gid] && state.readProg[gid][pid]) || 0; }
   function setReadProgress(gid, pid, sec) { if (!state.readProg) state.readProg = {}; if (!state.readProg[gid]) state.readProg[gid] = {}; state.readProg[gid][pid] = sec; }
   function readTimerStop() { if (cnTimer) { clearInterval(cnTimer); cnTimer = null; } cnTimerAt = null; }

@@ -355,6 +355,16 @@
   .mm-top { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 700; }
   .mm-score { color: var(--ink-faint); }
   .mm-clock { font-variant-numeric: tabular-nums; color: var(--c-overall); }
+  /* The correction from the answer you just got wrong, held until the next one. */
+  .mm-miss { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 9px; margin: 0 0 12px; padding: 9px 12px; border-radius: 11px; font-size: 14.5px; color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--bad) 35%, var(--line)); }
+  .mm-miss b { color: var(--bad); font-weight: 800; }
+  .mm-miss span { color: var(--ink-faint); font-size: 13px; }
+  .mm-list { display: flex; flex-direction: column; }
+  .mm-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 9px 0; border-top: 1px solid var(--line-soft); font-size: 14.5px; }
+  .mm-row:first-child { border-top: none; }
+  .mm-rq { flex: 1; min-width: 0; }
+  .mm-ra { font-weight: 800; color: var(--good); font-variant-numeric: tabular-nums; }
+  .mm-ry { width: 100%; font-size: 12.5px; color: var(--ink-faint); }
   .mm-q { font-family: var(--serif); font-size: 30px; font-weight: 600; text-align: center; margin: 26px 0; line-height: 1.3; }
   .mm-in { width: 100%; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); font: inherit; font-size: 20px; text-align: center; font-variant-numeric: tabular-nums; }
   .mm-in:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -1427,7 +1437,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v137";
+  const APP_VERSION = "v138";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -4990,6 +5000,8 @@
   let mm = null;
   const MM_SECONDS = 60;
   function mmBest() { return (state.mmBest || 0) || null; }
+  // Answers are whole numbers except the fraction-to-percent ones (12.5, 33.3).
+  const mmFmt = (n) => Number.isInteger(n) ? String(n) : String(Math.round(n * 10) / 10);
   function mmMake() {
     const r = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
     const kinds = ["pct", "frac", "sq", "ratio", "incdec"];
@@ -5014,7 +5026,7 @@
     return { q: `${base} ${up ? "increased" : "decreased"} by ${chg}%`, a: up ? base * (1 + chg / 100) : base * (1 - chg / 100) };
   }
   function openMM() {
-    mm = { cur: mmMake(), score: 0, wrong: 0, endsAt: Date.now() + MM_SECONDS * 1000, timer: null, over: false, entry: "" };
+    mm = { cur: mmMake(), score: 0, wrong: 0, endsAt: Date.now() + MM_SECONDS * 1000, timer: null, over: false, entry: "", misses: [], last: null };
     document.getElementById("mm").hidden = false;
     document.body.style.overflow = "hidden";
     renderMM();
@@ -5044,7 +5056,16 @@
     const v = parseFloat(mm.entry);
     if (isNaN(v)) return;
     const tol = mm.cur.tol || 0.001;
-    if (Math.abs(v - mm.cur.a) <= tol) mm.score++; else mm.wrong++;
+    if (Math.abs(v - mm.cur.a) <= tol) { mm.score++; mm.last = null; }
+    else {
+      /* A drill that only says "wrong" teaches the stopwatch, not the
+         arithmetic. The correction stays on screen until the next answer —
+         long enough to read, and never blocking, because the 60 seconds are
+         the point. The full list is on the end screen, where there is time. */
+      mm.wrong++;
+      mm.last = { q: mm.cur.q, a: mm.cur.a, your: v };
+      if (mm.misses.length < 40) mm.misses.push(mm.last);
+    }
     mm.cur = mmMake(); mm.entry = "";
     renderMM();
   }
@@ -5055,11 +5076,18 @@
       const best = state.mmBest || 0;
       body.innerHTML = `<div class="qcard" style="text-align:center"><div class="mm-final">${mm.score}</div>` +
         `<div class="mm-final-l">correct in ${MM_SECONDS} seconds${mm.wrong ? ` · ${mm.wrong} missed` : ""}</div>` +
-        `<p class="sub" style="margin:14px 0 0">${mm.score >= best && mm.score > 0 ? "That is your best yet." : `Your best is ${best}.`} On the exam this arithmetic sits underneath every Quant question — the faster it is, the more of your two minutes goes on the actual reasoning.</p>` +
-        `<div class="rn-foot" style="justify-content:center"><button class="btn-soft" style="flex:none;padding:11px 20px" data-mm-again="1">Go again</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-mm-close="1">Done</button></div></div>`;
+        `<p class="sub" style="margin:14px 0 0">${mm.score >= best && mm.score > 0 ? "That is your best yet." : `Your best is ${best}.`} On the exam this arithmetic sits underneath every Quant question — the faster it is, the more of your two minutes goes on the actual reasoning.</p></div>` +
+        // The misses come before "Go again", because reading them is the reason
+        // to go again rather than something to scroll past afterwards.
+        (mm.misses.length ? `<div class="panel" style="margin-top:14px"><h3>What you missed</h3><p class="sub">The ones to run again until they are automatic.</p><div class="mm-list">` +
+          mm.misses.map(x => `<div class="mm-row"><span class="mm-rq">${x.q}</span><span class="mm-ra">${mmFmt(x.a)}</span><span class="mm-ry">you said ${mmFmt(x.your)}</span></div>`).join("") +
+          `</div></div>` : "") +
+        `<div class="rn-foot" style="justify-content:center"><button class="btn-soft" style="flex:none;padding:11px 20px" data-mm-again="1">Go again</button><button class="btn-primary" style="width:auto;padding:12px 22px" data-mm-close="1">Done</button></div>`;
+      typeset(body);
       return;
     }
     body.innerHTML = `<div class="qcard"><div class="mm-top"><span class="mm-score">${mm.score} correct</span><span class="mm-clock" id="mm-clock">${Math.ceil((mm.endsAt - Date.now()) / 1000)}s</span></div>` +
+      (mm.last ? `<div class="mm-miss">✗ ${mm.last.q} = <b>${mmFmt(mm.last.a)}</b><span>you said ${mmFmt(mm.last.your)}</span></div>` : "") +
       `<div class="mm-q">${mm.cur.q}</div>` +
       `<input class="mm-in" id="mm-in" inputmode="decimal" autocomplete="off" value="${esc(mm.entry)}" placeholder="answer" />` +
       `<button class="btn-primary" style="margin-top:14px" data-mm-go="1">Enter</button>` +

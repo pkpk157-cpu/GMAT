@@ -50,27 +50,29 @@ window.GMAT_CONCEPTS = [
         title: "How the Exam Itself Classifies CR",
         mins: 5,
         blocks: [
-          { t: "p", x: "Every other section of this guide sorts Critical Reasoning by what the question <i>asks you to do</i> — strengthen, weaken, assume, explain. That is how you practise, and it is the right way round for drilling. But it is not how the exam writers think about these questions, and knowing their frame is worth five minutes." },
-          { t: "p", x: "The Official Guide tags each of its Critical Reasoning explanations with one of exactly <b>three</b> labels. They sort by what you are reasoning <i>about</i>, not by the verb in the stem:" },
-          { t: "table", head: ["Official label", "What is on the table", "Stems that land here"], rows: [
-            ["Argument Construction", "How the argument is <b>assembled</b> — what each part is doing, what it rests on, what would complete it", "Explain the paradox, boldface and role, assumption, complete the argument"],
-            ["Argument Evaluation", "Whether a finished argument <b>holds up</b>", "Strengthen, weaken, identify the flaw, evaluate"],
-            ["Evaluation of a Plan", "Whether a proposed <b>course of action or prediction</b> will work", "Strengthen or weaken, but aimed at a plan rather than a claim"]
+          { t: "p", x: "Everywhere else this guide sorts Critical Reasoning by what the question <i>asks you to do</i> — strengthen, weaken, assume, explain. That is how you practise, and it is the right way round for drilling. The exam writers use a coarser frame, and knowing it is worth five minutes because it explains why two questions with near-identical wording want different work." },
+          { t: "p", x: "The Official Guide names <b>four</b> Critical Reasoning subtypes. They sort by what you are reasoning <i>about</i>, not by the verb in the stem:" },
+          { t: "table", head: ["Official subtype", "What it asks", "Our topics that land here"], rows: [
+            ["Analysis", "What role a statement plays, what method an argument uses, what unstated point it rests on", "Boldface &amp; method of reasoning, point at issue"],
+            ["Construction", "How to <b>complete</b> a partial argument or explanation", "Assumption, complete the argument, explain the paradox, inference"],
+            ["Critique", "Whether reasoning <b>holds up</b>, and what evidence would shift it", "Strengthen, weaken, identify the flaw, evaluate"],
+            ["Plan", "Whether a proposed <b>course of action</b> will work", "Strengthen and weaken, aimed at a proposal rather than a claim"]
           ] },
-          { t: "tip", x: "The third one is the reason this matters. \u201cWhich of the following most supports\u2026\u201d is doing different work depending on whether the passage ends in a <i>claim</i> or a <i>proposal</i>. Against a claim you are looking for evidence that the reasoning is sound. Against a plan you are looking for evidence that it will actually produce the intended result — which usually means ruling out a reason it might not." },
-          { t: "warn", x: "Plan questions are where strong candidates lose marks on stems they thought they knew. The giveaway is a verb of intent in the conclusion: the company <i>plans to</i>, the council <i>will introduce</i>, the measure <i>is expected to</i>. The moment you see one, stop asking \u201cis this argument valid?\u201d and start asking \u201cwill this actually work, and what would stop it?\u201d" },
+          { t: "tip", x: "Plan is the one that earns its keep. \u201cWhich of the following most supports\u2026\u201d does different work against a claim than against a proposal. Against a claim you want evidence that the reasoning is sound; against a plan you want evidence it will actually produce the intended result, which usually means ruling out a reason it might not." },
+          { t: "warn", x: "The tell for a Plan question is a verb of intent in the conclusion: the company <i>plans to</i>, the council <i>will introduce</i>, the measure <i>is expected to</i>. The moment you see one, stop asking \u201cis this argument valid?\u201d and start asking \u201cwill this work, and what would stop it?\u201d" },
+          { t: "note", x: "The Official Guide's answer explanations use a slightly different, older set of three labels — Argument Construction, Argument Evaluation and Evaluation of a Plan. They map onto the four above: Analysis and Construction both sit under Argument Construction, Critique under Argument Evaluation, Plan under Evaluation of a Plan. If you read the official explanations you will meet both schemes." },
           { t: "h", x: "Situation, then Reasoning" },
-          { t: "p", x: "The official explanations are all written to the same two-step shape, and it is a good habit to copy:" },
+          { t: "p", x: "Every official explanation is written to the same two-step shape, and it is a good habit to copy:" },
           { t: "ol", items: [
             "<b>Situation</b> — restate what is going on, in plain words, without judging it. Who is doing what, and what has been observed.",
-            "<b>Reasoning</b> — state what the question is actually asking for, as a question you could answer out loud, before you look at a single choice."
+            "<b>Reasoning</b> — state what the question is actually asking for, as a question you could answer aloud, before you look at a single choice."
           ] },
-          { t: "note", x: "Forcing yourself to say the Reasoning step aloud is the cheapest fix for the most expensive CR error: reading five choices before you know what you are looking for, and letting the choices tell you what the question was." },
+          { t: "note", x: "Saying the Reasoning step aloud is the cheapest fix for the most expensive CR error: reading five choices before you know what you are looking for, and letting the choices tell you what the question was." },
           { t: "eg",
             q: "A town council plans to reduce traffic in the centre by raising parking charges there. Which of the following, if true, most strongly suggests the plan will NOT succeed?",
             choices: ["Parking charges in the town centre have not risen for ten years.", "Most vehicles in the town centre at peak times are passing through rather than parking.", "Nearby towns have lower parking charges.", "The council expects the higher charges to raise revenue.", "Some shopkeepers in the centre oppose the increase."],
             ans: "B",
-            why: "This is Evaluation of a Plan, not Argument Evaluation — the conclusion is a proposal with an intended result, so the job is to ask whether the mechanism connects to the goal. The plan works only if the traffic is there <i>to park</i>. (B) severs that link: charge what you like, traffic that never parks is untouched. (C) is tempting but points the other way — it would drive parkers out of the centre, which is the stated aim. (A), (D) and (E) are background, revenue and opinion, none of which bear on whether traffic falls."
+            why: "This is a Plan question, not a Critique — the conclusion is a proposal with an intended result, so the job is to ask whether the mechanism connects to the goal. The plan works only if the traffic is there <i>to park</i>. (B) severs that link: charge what you like, traffic that never parks is untouched. (C) is tempting but points the other way — it would drive parkers out of the centre, which is the stated aim. (A), (D) and (E) are background, revenue and opinion, none of which bear on whether traffic falls."
           }
         ]
       },
@@ -682,6 +684,33 @@ window.GMAT_CONCEPTS = [
           { t: "p", x: "You should finish with a four-line map of the passage and almost no memorised detail. That map answers the main-idea and structure questions outright, and tells you where to look for everything else." },
           { t: "tip", x: "Budget roughly <b>2 minutes reading</b> and about <b>1½ minutes a question</b>. Reading faster to save time is a false economy — a bad map costs more on every question than it saved once." },
           { t: "warn", x: "Never re-read the whole passage for a question. If you cannot say which paragraph an answer lives in, your map is the problem, not your memory." }
+        ]
+      },
+      {
+        id: "rc-official-types",
+        title: "How the Exam Itself Classifies RC",
+        mins: 5,
+        blocks: [
+          { t: "p", x: "The Official Guide names <b>five</b> Reading Comprehension subtypes. They are never labelled on the test — the question tells you what to do — but knowing the five explains why some questions reward rereading the passage and others reward reasoning past it." },
+          { t: "table", head: ["Official subtype", "What it asks", "Our topics"], rows: [
+            ["Main Idea", "The passage's central point, overall purpose, or best title", "Main idea / primary purpose"],
+            ["Supporting Idea", "Anything the passage <b>states</b> except the main point — a premise, an objection, an example, what a phrase means here", "Supporting detail"],
+            ["Inference", "What the passage <b>suggests or supports</b> but does not state", "Inference"],
+            ["Application", "How the passage's ideas relate to situations it never mentions", "Application / extension"],
+            ["Evaluation", "The passage's <b>organisation and logic</b> — why a detail is there, how a paragraph functions, what attitude drives an opinion", "Function of a detail, passage structure, author's tone"]
+          ] },
+          { t: "note", x: "Our seven RC topics are a finer cut of the same five: Function, Passage structure and Tone all sit inside the official Evaluation subtype. Nothing is missing on either side — the split is just sharper for drilling." },
+          { t: "h", x: "Two of these are worth separating carefully" },
+          { t: "warn", x: "<b>Supporting Idea is not a quotation hunt.</b> The Official Guide is explicit that answers \u201calmost never directly quote the passage\u201d — they rephrase or describe abstractly. Scanning for matching words is exactly how the wrong answer gets picked, because the trap choices are the ones that reuse the passage's vocabulary." },
+          { t: "warn", x: "<b>Application answers are often about things the passage never mentions.</b> That is the point of the subtype, so do not eliminate a choice merely because its subject is foreign to the passage. An analogy question about a water-treatment process may have a correct answer about book publishing." },
+          { t: "tip", x: "Evaluation questions have abstract answer choices — \u201cit rejects a theory presented in the preceding paragraph and offers criteria an alternative would need to meet\u201d. If the choices stop naming the passage's subject matter and start describing moves, you are in an Evaluation question, and the job is to track what each part of the passage <i>does</i> rather than what it says." },
+          { t: "note", x: "The Official Guide notes that Evaluation questions \u201care often similar to Critical Reasoning questions\u201d. They are the overlap between the two halves of the Verbal section, and the CR habits — find the conclusion, find what supports it — work directly on them." },
+          { t: "eg",
+            q: "A passage argues that a drug's benefit in trials was overstated, then devotes its final paragraph to describing how the trials recruited participants. A question asks: the author discusses the recruitment process primarily in order to",
+            choices: ["suggest a reason the trial results may be unrepresentative", "propose an improved method for conducting future trials", "concede a point raised by the drug's supporters", "summarise the main argument of the passage", "introduce a topic the passage then abandons"],
+            ans: "A",
+            why: "This is an Evaluation question: it asks what a part of the passage is <i>doing</i>, not what it says. The choices describe moves — suggest, propose, concede, summarise, introduce — which is the signature. The final paragraph follows a claim that the benefit was overstated, so the recruitment detail is there to supply a reason why — (A). (C) and (D) misread the structure; (B) and (E) describe moves the passage does not make. Notice you could answer this without knowing anything about the drug."
+          }
         ]
       },
       {

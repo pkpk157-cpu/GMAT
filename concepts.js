@@ -46,6 +46,35 @@ window.GMAT_CONCEPTS = [
         ]
       },
       {
+        id: "cr-official-types",
+        title: "How the Exam Itself Classifies CR",
+        mins: 5,
+        blocks: [
+          { t: "p", x: "Every other section of this guide sorts Critical Reasoning by what the question <i>asks you to do</i> — strengthen, weaken, assume, explain. That is how you practise, and it is the right way round for drilling. But it is not how the exam writers think about these questions, and knowing their frame is worth five minutes." },
+          { t: "p", x: "The Official Guide tags each of its Critical Reasoning explanations with one of exactly <b>three</b> labels. They sort by what you are reasoning <i>about</i>, not by the verb in the stem:" },
+          { t: "table", head: ["Official label", "What is on the table", "Stems that land here"], rows: [
+            ["Argument Construction", "How the argument is <b>assembled</b> — what each part is doing, what it rests on, what would complete it", "Explain the paradox, boldface and role, assumption, complete the argument"],
+            ["Argument Evaluation", "Whether a finished argument <b>holds up</b>", "Strengthen, weaken, identify the flaw, evaluate"],
+            ["Evaluation of a Plan", "Whether a proposed <b>course of action or prediction</b> will work", "Strengthen or weaken, but aimed at a plan rather than a claim"]
+          ] },
+          { t: "tip", x: "The third one is the reason this matters. \u201cWhich of the following most supports\u2026\u201d is doing different work depending on whether the passage ends in a <i>claim</i> or a <i>proposal</i>. Against a claim you are looking for evidence that the reasoning is sound. Against a plan you are looking for evidence that it will actually produce the intended result — which usually means ruling out a reason it might not." },
+          { t: "warn", x: "Plan questions are where strong candidates lose marks on stems they thought they knew. The giveaway is a verb of intent in the conclusion: the company <i>plans to</i>, the council <i>will introduce</i>, the measure <i>is expected to</i>. The moment you see one, stop asking \u201cis this argument valid?\u201d and start asking \u201cwill this actually work, and what would stop it?\u201d" },
+          { t: "h", x: "Situation, then Reasoning" },
+          { t: "p", x: "The official explanations are all written to the same two-step shape, and it is a good habit to copy:" },
+          { t: "ol", items: [
+            "<b>Situation</b> — restate what is going on, in plain words, without judging it. Who is doing what, and what has been observed.",
+            "<b>Reasoning</b> — state what the question is actually asking for, as a question you could answer out loud, before you look at a single choice."
+          ] },
+          { t: "note", x: "Forcing yourself to say the Reasoning step aloud is the cheapest fix for the most expensive CR error: reading five choices before you know what you are looking for, and letting the choices tell you what the question was." },
+          { t: "eg",
+            q: "A town council plans to reduce traffic in the centre by raising parking charges there. Which of the following, if true, most strongly suggests the plan will NOT succeed?",
+            choices: ["Parking charges in the town centre have not risen for ten years.", "Most vehicles in the town centre at peak times are passing through rather than parking.", "Nearby towns have lower parking charges.", "The council expects the higher charges to raise revenue.", "Some shopkeepers in the centre oppose the increase."],
+            ans: "B",
+            why: "This is Evaluation of a Plan, not Argument Evaluation — the conclusion is a proposal with an intended result, so the job is to ask whether the mechanism connects to the goal. The plan works only if the traffic is there <i>to park</i>. (B) severs that link: charge what you like, traffic that never parks is untouched. (C) is tempting but points the other way — it would drive parkers out of the centre, which is the stated aim. (A), (D) and (E) are background, revenue and opinion, none of which bear on whether traffic falls."
+          }
+        ]
+      },
+      {
         id: "cr-argtypes",
         title: "Argument Types & the Therefore Test",
         mins: 6,

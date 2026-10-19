@@ -640,6 +640,328 @@ window.GMAT_CONCEPTS = [
   },
 
   {
+    id: "cr-logic-foundations",
+    section: "cr",
+    title: "Argument Logic (the formal layer)",
+    source: "Adapted from the official Verbal Review chapter on analysing passages and on inductive and deductive reasoning",
+    parts: [
+      {
+        id: "vl-passage-kinds",
+        title: "Arguments, Explanations, Plans &amp; Narratives",
+        mins: 8,
+        blocks: [
+          { t: "p", x: "Before you hunt for a conclusion, ask a prior question: <b>is this passage even an argument?</b> Four shapes turn up in Critical Reasoning, they look alike on the page, and only one of them has a conclusion you can weaken." },
+          { t: "table", head: ["Shape", "What the author is doing", "Has a conclusion?"], rows: [
+            ["<b>Argument</b>", "Giving reasons to accept a claim", "Yes"],
+            ["<b>Causal explanation</b>", "Saying what caused what, taking the effect as already known", "No — it explains, it does not persuade"],
+            ["<b>Plan</b>", "Setting out actions meant to reach a goal", "No — a goal is not a conclusion"],
+            ["<b>Narrative</b>", "Telling what happened, in order", "No"],
+            ["<b>Plain report</b>", "Describing a view, a finding, a place, a device", "No"]
+          ] },
+          { t: "h", x: "The same facts, two shapes" },
+          { t: "ul", items: [
+            "“Julia just hiked fifteen kilometres, <b>thereby</b> burning a lot of calories. <b>That's why</b> she's hungry now.” — an <b>explanation</b>. It takes her hunger as a given and says what produced it.",
+            "“Julia just hiked fifteen kilometres, <b>so</b> she must have burned a lot of calories. <b>Surely</b> she's hungry now.” — an <b>argument</b>. It is trying to convince you she is hungry."
+          ] },
+          { t: "p", x: "Notice that the second version has an <b>intermediate conclusion</b> (she burned a lot of calories) which then supports the main conclusion (she is hungry). Explanations have the same layering: a factor causes an intermediate effect, which causes the final effect." },
+          { t: "table", head: ["Marks a cause", "Marks narrative sequence"], rows: [
+            ["due to, results in, leads to, causes", "after, before, during, while"],
+            ["produces, thereby, that's why", "then, later, afterwards, subsequently"],
+            ["responsible for, contributes to", "previously, beforehand, until, when"]
+          ] },
+          { t: "warn", x: "Several of these words also mark premises and conclusions, so the word alone will not settle it. The test is the author's <b>intent</b>: if they are saying what caused an effect without trying to convince you the effect is real, it is an explanation, not an argument." },
+          { t: "h", x: "Observation, hypothesis, plan" },
+          { t: "ul", items: [
+            "An <b>observation</b> is a claim that something was seen or is otherwise directly known. It is the sort of statement a question will not let you doubt.",
+            "A <b>hypothesis</b> is a tentative idea, neither known nor assumed to be true. Causal explanations are very often hypotheses, and a passage may lay out two <b>competing hypotheses</b> for one observation without endorsing either.",
+            "A <b>plan</b> may have intermediate goals feeding main goals, and it has necessary and sufficient assumptions exactly as an argument does — the conditions it relies on to work."
+          ] },
+          { t: "tip", x: "When a passage offers two rival explanations for the same fact, nothing in it is the conclusion. Expect a question that asks which piece of evidence would favour one hypothesis over the other, not one that asks you to weaken “the argument”." },
+          { t: "h", x: "Statements that are neither premise nor conclusion" },
+          { t: "p", x: "Not every sentence has a job in the logic. A statement may instead give <b>background</b> so the rest makes sense, <b>describe a detail</b> of the thing under discussion, express the <b>author's attitude</b>, <b>illustrate</b> a general claim with an example, or <b>summarise the view being argued against</b>." },
+          { t: "warn", x: "That last one is the trap in boldface and method questions: the passage states a position in order to attack it. Treat it as the author's own premise and every answer you pick will be backwards." },
+          { t: "eg",
+            q: "Our new filtration unit was installed in March. Water complaints from residents fell sharply in April and stayed low through the summer. The unit removes the compounds responsible for the taste residents had complained about. Which of the following best describes the passage?",
+            choices: [
+              "An argument whose conclusion is that the filtration unit should be installed in other districts.",
+              "A causal explanation of an observed change, with no conclusion being argued for.",
+              "A narrative of unrelated events with no causal claim.",
+              "A plan for reducing water complaints, with its goal stated last.",
+              "An argument that uses the fall in complaints as a premise for the claim that the unit works."
+            ],
+            ans: "B",
+            why: "The fall in complaints is reported as a known fact, not as something the author is trying to convince you of, and the phrase “responsible for” marks a cause. So the passage explains an observed change rather than arguing for it. (E) is the tempting near-miss: it has the right pieces but the wrong direction, treating the explanation as support for a conclusion the passage never states. (A) and (D) invent a recommendation and a goal; (C) ignores “responsible for.”"
+          }
+        ]
+      },
+      {
+        id: "vl-valid-sound",
+        title: "Valid, Sound &amp; the Two Kinds of Assumption",
+        mins: 8,
+        blocks: [
+          { t: "p", x: "Two words that sound interchangeable are not, and the difference is the whole reason you are told to treat every premise as true." },
+          { t: "table", head: ["Term", "Means", "Can it have a false premise?"], rows: [
+            ["<b>Valid</b>", "The conclusion <i>follows from</i> the premises — if they were true, it would have to be true", "Yes"],
+            ["<b>Sound</b>", "Valid <b>and</b> the premises are actually true, so the conclusion must be true", "No"]
+          ] },
+          { t: "p", x: "“Everyone who tries fried aubergine is guaranteed to love it. So you'd love it too.” The premise is false, so the argument is not sound — but it is perfectly <b>valid</b>: <i>if</i> the premise held, the conclusion would follow. Flip it: “Some people dislike fried aubergine, so you'd probably dislike it too.” True premise, <b>invalid</b> reasoning, not sound either." },
+          { t: "tip", x: "The exam hands you the premises and asks about the <b>link</b>. That is why an absurd-sounding answer choice is still to be taken as true: you are being tested on validity, never on truth." },
+          { t: "h", x: "Necessary versus sufficient assumptions" },
+          { t: "p", x: "An <b>assumption</b> is anything taken for granted — a premise, a claim about a cause, a condition a plan rests on. A conclusion is never an assumption, because the argument gives reasons for it rather than taking it as given. Unstated assumptions fill the gaps between the sentences, and implausible ones are where the argument is vulnerable." },
+          { t: "table", head: ["", "Necessary assumption", "Sufficient assumption"], rows: [
+            ["Definition", "Must be true for the premises to be good enough reason for the conclusion", "If true, it makes the conclusion follow from the premises"],
+            ["Test", "Negate it — does the argument collapse?", "Add it — is the conclusion now proved?"],
+            ["Typical size", "Modest; often just rules out one spoiler", "Large; often a sweeping principle"],
+            ["Stem wording", "“relies on”, “depends on”, “required”", "“if assumed, allows the conclusion to be properly drawn”"]
+          ] },
+          { t: "p", x: "“Poetry has no practical use. So the study of poetry is entirely without value.” A <b>sufficient</b> assumption is: studying anything with no practical use is entirely without value. Add that and the conclusion is proved. But it is not <b>necessary</b> — a narrower claim about literature specifically would do the job just as well, so the argument does not require this sweeping version." },
+          { t: "p", x: "Going the other way: “Mario's flight is scheduled to land at five, which should get him here by half past six, so we'll be at dinner by seven.” <b>Necessary</b> assumptions include that Mario actually caught the flight and that it is not badly delayed. Neither on its own proves the conclusion, but deny either and the argument is finished." },
+          { t: "warn", x: "Neither kind implies the other. An answer choice that would prove the conclusion is not automatically the assumption the argument <i>needs</i>, and the most-chosen wrong answer on necessary-assumption questions is a sufficient assumption that goes too far." },
+          { t: "h", x: "What kind of conclusion is it?" },
+          { t: "p", x: "Arguments are also sorted by the <i>kind</i> of claim they end on, and the kind tells you what would count as an attack." },
+          { t: "table", head: ["Class", "Conclusion is about", "So a weakener shows"], rows: [
+            ["<b>Prescriptive</b>", "What should or should not be done", "The action would not help, or would cost more than it gains"],
+            ["<b>Evaluative</b>", "Something being good or bad, without recommending action", "The qualities praised are absent, or outweighed"],
+            ["<b>Interpretive</b>", "What something means or signifies", "A different reading fits the same evidence"],
+            ["<b>Causal</b>", "One factor contributing to an effect", "Another cause, a reversed direction, or the effect without the cause"],
+            ["<b>Basic factual</b>", "A plain matter of fact", "The facts given do not settle it"]
+          ] },
+          { t: "eg",
+            q: "The council's new recycling depot has cut landfill waste in the district by a fifth. So the council should open a second depot next year. The argument depends on assuming which of the following?",
+            choices: [
+              "Any measure that reduces landfill waste is worth its cost.",
+              "A second depot would not merely divert users away from the first one.",
+              "The first depot was built for less than the council had budgeted.",
+              "Landfill waste in neighbouring districts has not fallen.",
+              "Most residents of the district support the opening of a second depot."
+            ],
+            ans: "B",
+            why: "Negate each candidate. If a second depot only pulls users off the first, total waste barely moves and the recommendation loses its support — so (B) is required. (A) would <i>prove</i> the conclusion and then some: it is a sufficient assumption, far more than the argument needs, and it is the classic trap on a stem that says “depends on.” (C) is cost history, (D) is a comparison the argument never makes, and (E) is popularity, which a prescriptive argument about waste does not rest on."
+          }
+        ]
+      },
+      {
+        id: "vl-generalization",
+        title: "Generalizations, Samples &amp; Predictions",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "An <b>inductive</b> argument's premises are meant to make the conclusion <i>probable</i>, not to prove it. Most Critical Reasoning is inductive, which is why strengthen and weaken questions exist at all: there is always room left for the conclusion to be false." },
+          { t: "p", x: "The commonest inductive shape is the <b>generalization</b>, and it comes in three directions:" },
+          { t: "table", head: ["From", "To", "Example"], rows: [
+            ["A sample", "The whole population", "Six of the eight flats up for lease are studios, so about three quarters of the flats in the building are studios"],
+            ["A population", "A part of it", "About three quarters of the building's flats are studios, so about three quarters of the second floor's flats are"],
+            ["The sample so far", "The next part (a <b>prediction</b>)", "Six of the eight flats I've seen were studios, so about six of the next eight will be"]
+          ] },
+          { t: "h", x: "Three ways a generalization breaks" },
+          { t: "table", head: ["Flaw", "What went wrong", "The tell"], rows: [
+            ["<b>Biased sample</b>", "The sample was chosen in a way that makes it unlike the population", "How the sample was gathered is described, and the method itself selects for the trait being measured"],
+            ["<b>Hasty generalization</b>", "The sample is too small to carry the conclusion", "A specific, small count in the premises"],
+            ["<b>Fallacy of specificity</b>", "The conclusion is more precise than the evidence can support", "The conclusion repeats an exact figure taken from the sample"]
+          ] },
+          { t: "ul", items: [
+            "<b>Biased:</b> “In a telephone survey, four in five respondents said they usually answer the phone when it rings. So four in five residents do.” People who answer the phone are the people a phone survey reaches. The method built the result in.",
+            "<b>Hasty:</b> “A coin came up heads five times in eight flips, so it is weighted towards heads.” The sample is not biased — anyone's flips are as good as Beth's — it is simply far too small. A fair coin in eight flips rarely lands on exactly four heads.",
+            "<b>Too precise:</b> “Fifty frogs from the lake averaged 32.86 grams, so the lake's frogs average 32.86 grams.” Even a clean sample will not match the population to two decimal places. Concluding “between 25 and 40 grams” from the same evidence would have been sound."
+          ] },
+          { t: "tip", x: "Precision and strength trade off. <b>Given the same premises, a vaguer conclusion is a stronger argument.</b> If two answer choices say the same thing and one hedges, the hedged one is usually the inference that must be true." },
+          { t: "h", x: "The four levers" },
+          { t: "p", x: "Every strengthener and weakener aimed at a generalization pulls one of four levers: the sample's <b>representativeness</b>, its <b>size</b>, the conclusion's <b>precision</b>, or a <b>rival explanation</b> for the pattern in the sample. Naming the lever before you read the choices is faster than testing five choices one at a time." },
+          { t: "eg",
+            q: "A university surveyed students leaving its main library on a Tuesday evening and found that 70 percent reported studying more than twenty hours a week. The university concluded that 70 percent of its students study more than twenty hours a week. Which of the following, if true, most weakens the conclusion?",
+            choices: [
+              "The survey reached 400 students, out of a student body of 18,000.",
+              "Students who study long hours are far more likely than others to be in the library on a weekday evening.",
+              "Some students who were surveyed may have overstated their study hours.",
+              "The university conducted a similar survey two years ago with a similar result.",
+              "Twenty hours a week is below the average for universities of comparable size."
+            ],
+            ans: "B",
+            why: "(B) names the bias directly: the place and time of the survey select for exactly the students the conclusion is about, so the sample is unlike the population by construction. (A) is about size, and 400 is a perfectly serviceable sample for a population of 18,000 — size is the weaker objection here. (C) is a generic doubt that could be raised against any survey and does not say the overstatement was large or one-sided. (D) supports rather than weakens, and (E) compares the threshold with other universities, which the conclusion never mentions."
+          }
+        ]
+      },
+      {
+        id: "vl-analogy",
+        title: "Arguments by Analogy",
+        mins: 4,
+        blocks: [
+          { t: "p", x: "An <b>argument by analogy</b> has a fixed three-part shape: two things are alike in certain ways; something is true of the first; therefore something similar is true of the second." },
+          { t: "p", x: "“Laotian and Thai cooking use many of the same ingredients and techniques. Ahmed enjoys Thai food. So he'd probably enjoy Laotian food.” That works, and it works for one reason only: ingredients and technique are <b>relevant</b> to whether a particular person enjoys a cuisine." },
+          { t: "warn", x: "“Laos and Latvia both have English names beginning with L. Ahmed enjoys Latvian food, so he'd enjoy Laotian food.” Same shape, same confidence, absurd conclusion. The stated similarity is real and entirely beside the point." },
+          { t: "p", x: "So there is only one question to ask of any analogy: <b>is the noted similarity relevant to the claim being carried across?</b> Nothing else about the comparison matters, and no amount of additional irrelevant similarity will rescue it." },
+          { t: "h", x: "Strengthening and weakening" },
+          { t: "ul", items: [
+            "<b>Strengthen</b> — add another <i>relevant</i> similarity between the two things.",
+            "<b>Weaken</b> — point out a <i>relevant</i> dissimilarity.",
+            "<b>Neither</b> — add a similarity or difference that has no bearing on the claim. This is the most common wrong answer: true, on topic, and inert."
+          ] },
+          { t: "p", x: "“Beth and Alan are children living on the same block in one school district. Beth attends Hazelfern Primary, so Alan probably does too.” Learning they are in the same year group <b>strengthens</b> it — same year makes the same school likelier. Learning Beth is eight years older <b>weakens</b> it — Alan may be too young for that school at all." },
+          { t: "tip", x: "An analogy can also be used <i>against</i> an argument. When a choice offers a parallel case where the same reasoning gives a plainly wrong answer, that is a flaw answer: it shows the form itself does not hold." },
+          { t: "eg",
+            q: "The city of Ardmore cut bus fares by a third and ridership rose sharply. Brindle is a city of similar size with a similar road network. So if Brindle cuts bus fares by a third, its ridership will rise sharply too. Which of the following, if true, most weakens the argument?",
+            choices: [
+              "Brindle's bus fleet is newer than Ardmore's was at the time of the fare cut.",
+              "Ardmore's fare cut was announced several months before it took effect.",
+              "Almost all of Brindle's residents own cars, whereas few of Ardmore's did.",
+              "Brindle's city council has debated fare reductions before without adopting one.",
+              "Ardmore's ridership has continued to rise in the years since the fare cut."
+            ],
+            ans: "C",
+            why: "The analogy carries a claim about how people respond to cheaper buses, so the relevant similarities are the ones bearing on that response. Car ownership bears on it directly and points the wrong way: residents with cars have an alternative Ardmore's did not, so the dissimilarity is both relevant and damaging. (A) is a difference, but a newer fleet would if anything help ridership. (B), (D) and (E) are true-sounding details about timing, politics and the later trend, none of which touch whether Brindle's residents would behave like Ardmore's."
+          }
+        ]
+      },
+      {
+        id: "vl-andornot",
+        title: "And, Or, Not",
+        mins: 7,
+        blocks: [
+          { t: "p", x: "Conditional reasoning has its own section in this guide. This one covers the three operators that sit around conditionals and generate just as many wrong answers: <b>negation</b>, <b>and</b>, and <b>or</b>." },
+          { t: "h", x: "Negation is context-bound" },
+          { t: "p", x: "“The cat is not on the mat” negates “The cat is on the mat” only if it is the same cat, the same mat, the same moment and the same sense. If a statement is only partly true, its negation is false to exactly the same degree — which is why the negation test on a vague assumption has to keep the vagueness rather than sharpen it." },
+          { t: "h", x: "Two families of <i>and</i>" },
+          { t: "p", x: "A conjunction of two statements is true when both are. But the <i>marker</i> tells you what the author thinks of the pairing, and that is information you are meant to use." },
+          { t: "table", head: ["Markers", "Signal"], rows: [
+            ["and, furthermore, moreover, not only... but also", "The two statements point the same way — often both premises for one conclusion"],
+            ["but, although, however, whereas, even though", "Tension — it is surprising both hold, or they support conflicting conclusions"]
+          ] },
+          { t: "p", x: "“Raul has worked here a long time <b>and</b> he's job-hunting” reads as unremarkable. “<b>Although</b> Raul has worked here a long time, he's job-hunting” reads as a puzzle — and in a paradox question, that single word is where the question lives." },
+          { t: "h", x: "Inclusive or exclusive <i>or</i>" },
+          { t: "ul", items: [
+            "<b>Inclusive</b> “or” is true when at least one holds, and also when both do. “A or B or both” says this explicitly.",
+            "<b>Exclusive</b> “or” is true when exactly one holds. “A or B but not both” says this explicitly.",
+            "Plain English “or” is usually neither clearly, so do not assume it rules out both.",
+            "“A unless B” is a disjunction: at least one of A and B. “It will rain tomorrow unless it snows” says at least one of rain and snow, and leaves both open."
+          ] },
+          { t: "h", x: "Pushing a <i>not</i> through" },
+          { t: "table", head: ["Statement", "Is equivalent to"], rows: [
+            ["not (A and B)", "not-A <b>or</b> not-B"],
+            ["not (A or B)", "not-A <b>and</b> not-B"],
+            ["if A then (B or C)", "(if A then B) or (if A then C)"],
+            ["if (A or B) then C", "(if A then C) and (if B then C)"]
+          ] },
+          { t: "warn", x: "The first row is the one that gets missed. “Ashley and Tim don't <i>both</i> live here” means at least one of them doesn't — <b>not</b> that neither does. Negating an <i>and</i> gives you an <i>or</i>, and the answer choice that says “neither” is too strong." },
+          { t: "h", x: "Valid and invalid in one place" },
+          { t: "table", head: ["Valid", "Invalid lookalike"], rows: [
+            ["A and B, so A", "—"],
+            ["A, so A or B", "—"],
+            ["not-A and not-B, so not (A and B)", "not (A and B), so not-A and not-B"],
+            ["not (A or B), so not-A and not-B", "not-A or not-B, so not (A or B)"],
+            ["if A then B; A; so B", "if A then B; B; so A"],
+            ["if A then B; not-B; so not-A", "if A then B; not-A; so not-B"]
+          ] },
+          { t: "eg",
+            q: "If the permit is approved, construction will begin in spring. Construction did not begin in spring. Which of the following must be true?",
+            choices: [
+              "The permit was not approved.",
+              "The permit was approved but construction was delayed.",
+              "Construction will begin in summer instead.",
+              "The permit application was never filed.",
+              "If the permit had been approved, construction would have begun in winter."
+            ],
+            ans: "A",
+            why: "This is the fourth valid form above, the contrapositive: given <i>if permit then spring</i>, and not-spring, it follows that not-permit. (B) contradicts it. (C) invents a timetable. (D) goes further than the logic allows — an application could have been filed and refused. (E) rewrites the original conditional."
+          }
+        ]
+      },
+      {
+        id: "vl-modal",
+        title: "Must, Probably, Possibly",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "Inference questions are decided by one word more often than by anything else: the word that says <b>how strongly</b> the claim is being made. Three levels, and the exam keeps them strictly apart." },
+          { t: "table", head: ["Necessity (100 percent)", "Probability (a good chance)", "Possibility (better than zero)"], rows: [
+            ["certainly, definitely", "probably, likely", "can, could"],
+            ["must, necessarily", "more likely than not", "possibly, may"],
+            ["clearly, surely", "in all likelihood", "might, it is conceivable"]
+          ] },
+          { t: "note", x: "Saying something is <i>possibly</i> or <i>probably</i> true usually carries the implication that it is <b>not</b> necessarily true. So a passage that says a hypothesis is likely has not said it is certain, and an answer choice that upgrades “likely” to “must” is wrong on that ground alone." },
+          { t: "h", x: "Combining them" },
+          { t: "table", head: ["Valid", "Invalid lookalike"], rows: [
+            ["Possibly (A and B), so possibly A and possibly B", "Possibly A and possibly B, so possibly (A and B)"],
+            ["Necessarily A, so probably A, so possibly A", "Possibly A, so probably A"],
+            ["Necessarily A and necessarily B, so necessarily (A and B)", "Probably A and probably B, so probably (A and B)"],
+            ["Probably A or probably B, so probably (A or B)", "Probably (A or B), so probably A or probably B"],
+            ["Necessarily A or necessarily B, so necessarily (A or B)", "Necessarily (A or B), so necessarily A or necessarily B"]
+          ] },
+          { t: "p", x: "Row one is worth walking through. “Possibly Tim and Ashley both live in this house” does give you “possibly Tim does, and possibly Ashley does.” Swap premise and conclusion and it fails: suppose you know exactly one person lives there but not who. Then each of them possibly lives there, while it is flatly impossible that both do." },
+          { t: "warn", x: "Row three is the quiet one. Two things can each be likely while their conjunction is not: if two independent events each have a 60 percent chance, both happening has well under a half. Any choice that stacks two probable claims into one probable claim is suspect." },
+          { t: "tip", x: "On must-be-true questions, read the modal word of each choice <b>first</b>. A choice whose content is right but whose strength exceeds the passage is the single most common wrong answer in Critical Reasoning." },
+          { t: "eg",
+            q: "The regional survey found that it is likely the reservoir will fall below half capacity this summer, and likely that the town will impose restrictions if it does. Which of the following is best supported?",
+            choices: [
+              "The town will probably impose restrictions this summer.",
+              "It is possible that the reservoir will fall below half capacity this summer.",
+              "The reservoir will certainly fall below half capacity this summer.",
+              "The town will impose restrictions only if the reservoir falls below half capacity.",
+              "It is unlikely that the reservoir will stay above half capacity."
+            ],
+            ans: "B",
+            why: "Necessity implies probability implies possibility, so “likely” safely yields “possible” — (B) is the only choice the passage guarantees. (A) chains two likelihoods into one and is exactly the invalid third row: each step is probable, the pair is not. (C) upgrades likely to certain. (D) adds an “only if” the passage never claims. (E) sounds like a restatement but “unlikely to stay above” is stronger than “likely to fall below” once you allow the reservoir to sit exactly at half."
+          }
+        ]
+      },
+      {
+        id: "vl-quantifiers",
+        title: "Quantifiers &amp; Syllogisms",
+        mins: 7,
+        blocks: [
+          { t: "p", x: "A <b>quantifier</b> is a word for a proportion, number or amount. Four are basic — <b>all, most, some, none</b> — and most of the difficulty is that English uses them loosely while the exam uses them exactly." },
+          { t: "table", head: ["Quantifier", "Means", "Watch for"], rows: [
+            ["<b>all</b>", "Every individual in the category, or the whole of an amount", "Also: always, every, each, both, generally"],
+            ["<b>most</b>", "More than half", "Usually implies <i>not all</i>, but not always — “most or all” removes the doubt"],
+            ["<b>some</b>", "One or more; part of a whole", "Usually implies <i>not all</i>. <b>only some</b> definitely does; <b>at least some</b> definitely does not"],
+            ["<b>none</b>", "Denied of every individual in the category", "Also: no, not one, never, nowhere"],
+            ["<b>a few</b>", "Vaguely, a small number more than two", "The ceiling is context-dependent: a few Europeans is thousands, a few residents of a small building is three"]
+          ] },
+          { t: "ul", items: [
+            "<b>Plural versus singular.</b> “Some dogs” usually means more than one dog; “some dog” usually means exactly one; “some dog or dogs” means at least one.",
+            "<b>“Any” is ambiguous.</b> It can behave like <i>all</i> — “any of the students would prefer chocolate” means each of them would — or like <i>some</i>: “I don't know if any of the students would prefer chocolate” means not even one is established.",
+            "<b>Time and place quantifiers count too.</b> <i>whenever</i> is every time, <i>usually</i> is most times, <i>never</i> is at no time. Rewriting them this way turns a sentence about days into a sentence about categories, which you can then test as a syllogism."
+          ] },
+          { t: "h", x: "Does the category exist?" },
+          { t: "p", x: "A quantifier used with a category normally implies the category is <b>not empty</b> — but that implication lapses in hypotheticals, in conditionals, and with “any”. “All life forms native to other planets <b>are</b> carbon-based” claims such life forms exist. “<b>Any</b> life forms native to other planets <b>would be</b> carbon-based” carefully claims nothing of the kind." },
+          { t: "h", x: "Word order changes the claim" },
+          { t: "ul", items: [
+            "“<b>Some beverage</b> must be the favourite of <b>every student</b> in the class” — one single drink that they all name.",
+            "“<b>Each student</b> in the class must have <b>some favourite</b> beverage” — true even if no two of them agree."
+          ] },
+          { t: "warn", x: "These two sentences use the same words in nearly the same order and make utterly different claims. Whenever a statement carries two quantifiers, work out which one is on the outside before you do anything else." },
+          { t: "h", x: "What you may flip" },
+          { t: "table", head: ["Statement", "Equivalent?"], rows: [
+            ["Some A are B / Some B are A", "Equivalent"],
+            ["No A are B / No B are A", "Equivalent"],
+            ["All A are B / All B are A", "<b>Not</b> equivalent — all ostriches are birds, not all birds are ostriches"],
+            ["Some A are not B / Some B are not A", "<b>Not</b> equivalent — some birds are not ostriches is true, some ostriches are not birds is false"]
+          ] },
+          { t: "h", x: "Syllogisms" },
+          { t: "p", x: "A <b>syllogism</b> is a two-premise argument with one quantifier in each premise and one in the conclusion. Three forms are valid; each has a near-twin that is not." },
+          { t: "table", head: ["Valid", "Invalid lookalike"], rows: [
+            ["All A are B. All B are C. So all A are C.", "All A are B. All B are C. So all C are A."],
+            ["Some A are B. All B are C. So some A are C.", "All A are B. Some B are C. So some A are C."],
+            ["All A are B. No B are C. So no A are C.", "No A are B. All B are C. So no A are C."]
+          ] },
+          { t: "p", x: "Three more invalid forms worth recognising on sight: <i>All A are B. All C are B. So all A are C</i> (both feed into B, which says nothing about each other). <i>Some A are B. Some B are C. So some A are C</i> (two overlaps need not be the same overlap). <i>No A are B. No B are C. So all A are C</i> (two exclusions prove no inclusion)." },
+          { t: "p", x: "A worked rewrite: “Max never goes running when the pavements are icy. The pavements are usually icy on January mornings, so Max does not go running on most January mornings.” Recast it as <i>No A are B. Most C are B. So most C are not A</i>, with A as occasions Max runs, B as icy occasions and C as January mornings. The form is valid, so the argument is." },
+          { t: "tip", x: "When a stem's statements are full of <i>all</i>, <i>most</i>, <i>some</i> and <i>no</i>, stop reasoning in the passage's own words and relabel everything A, B, C. The valid forms are few enough to recognise, and the lookalikes stop being tempting the moment the subject matter is gone." },
+          { t: "eg",
+            q: "All of the firm's partners studied economics. Some of the firm's analysts studied economics. Which of the following must be true?",
+            choices: [
+              "Some of the firm's analysts are partners.",
+              "Some of the firm's partners are analysts.",
+              "Some people who studied economics work at the firm.",
+              "All of the firm's analysts who studied economics are partners.",
+              "No analyst at the firm is a partner."
+            ],
+            ans: "C",
+            why: "Both premises place people who studied economics at the firm, so (C) follows immediately. (A) and (B) are the second invalid lookalike in the table — <i>all partners are economists</i> plus <i>some analysts are economists</i> does not put any analyst among the partners, because the two groups may meet economics at different points and never meet each other. (D) reverses an <i>all</i>. (E) asserts a separation the premises never establish; they leave the overlap open rather than ruling it out."
+          }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "rc-octaave",
     section: "rc",
     title: "Reading Comprehension",

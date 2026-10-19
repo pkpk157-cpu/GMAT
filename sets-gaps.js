@@ -1474,6 +1474,80 @@
   });
 /* __SETS__ */
 
+  /* Unit conversion and formulas. The Official Guide's own Math Review lists
+     "Formulas and Measurement Conversion" (3.2.7) as a Quantitative Reasoning
+     topic, and an audit against it found the bank had no coverage at all — no
+     questions, no concept section, nothing. These are written from scratch; the
+     distractors are the three conversion errors the official examples warn
+     about: converting at the wrong step, multiplying where you must divide, and
+     answering in the unit the question did not ask for. Every key is
+     re-derived in verify/answers-gaps.js. */
+  NEW.push({
+    id: "quant-units", title: "Unit conversion & formulas", section: "quant",
+    questions: [
+      { n: 1, topic: "Unit conversion & formulas", level: "easy", correct: "C", options: 5,
+        text: "A train travels at a constant 25 metres per second. How many kilometres does it travel in 5 minutes? (1 kilometre = 1,000 metres)",
+        choices: ["1.5", "4.5", "7.5", "75", "750"],
+        hint: "Get to metres first, then divide by 1,000 once at the end.",
+        expl: "Five minutes is \\(5 \\times 60 = 300\\) seconds, so the train covers \\(25 \\times 300 = 7{,}500\\) metres. Since 1 kilometre is 1,000 metres, that is \\(7{,}500 \\div 1000 = 7.5\\) kilometres.\nThe trap choices come from converting at the wrong moment: (D) divides the seconds by 1,000 instead of the metres, and (E) forgets to divide at all." },
+      { n: 2, topic: "Unit conversion & formulas", level: "easy", correct: "C", options: 5,
+        text: "A car's speed is 72 kilometres per hour. What is its speed in metres per second?",
+        choices: ["0.02", "1.2", "20", "200", "1,200"],
+        hint: "One km/h is \\(\\tfrac{1000}{3600}\\) m/s.",
+        expl: "Multiply by 1,000 to turn kilometres into metres and divide by 3,600 to turn hours into seconds: \\(72 \\times \\tfrac{1000}{3600} = 72 \\times \\tfrac{5}{18} = 20\\) metres per second.\nThe shortcut worth memorising is that dividing km/h by 3.6 gives m/s. (B) divides by 60 once instead of 3,600, and (E) multiplies by 1,000 without dividing at all." },
+      { n: 3, topic: "Unit conversion & formulas", level: "easy", correct: "C", options: 5,
+        text: "A machine prints 1,800 pages per hour. How many pages does it print per minute?",
+        choices: ["3", "18", "30", "108", "300"],
+        hint: "Per hour to per minute is a division by 60, not a multiplication.",
+        expl: "There are 60 minutes in an hour, so \\(1{,}800 \\div 60 = 30\\) pages per minute.\n(D) multiplies by 60 instead of dividing \u2014 always ask whether the answer should be smaller than what you started with, and here a minute's output must be far less than an hour's." },
+      { n: 4, topic: "Unit conversion & formulas", level: "medium", correct: "B", options: 5,
+        text: "A pipe delivers water at 15 litres per minute. How many cubic metres does it deliver in one hour? (1 cubic metre = 1,000 litres)",
+        choices: ["0.09", "0.9", "9", "90", "900"],
+        hint: "Work out the litres for the hour first, then convert once.",
+        expl: "In an hour the pipe delivers \\(15 \\times 60 = 900\\) litres. Since 1 cubic metre is 1,000 litres, that is \\(900 \\div 1000 = 0.9\\) cubic metres.\n(E) stops at litres and never converts; (C) divides by 100 rather than 1,000." },
+      { n: 5, topic: "Unit conversion & formulas", level: "medium", correct: "B", options: 5,
+        text: "A rectangular sheet measures 3 metres by 40 centimetres. What is its area in square metres?",
+        choices: ["0.12", "1.2", "12", "120", "1,200"],
+        hint: "Put both sides in the same unit before multiplying.",
+        expl: "Convert the 40 centimetres to \\(0.4\\) metres, then multiply: \\(3 \\times 0.4 = 1.2\\) square metres.\nThe common error is multiplying \\(3 \\times 40 = 120\\) and calling it square metres \u2014 (D). Those are in metre-centimetres, which is not a unit of anything." },
+      { n: 6, topic: "Unit conversion & formulas", level: "medium", correct: "D", options: 5,
+        text: "At a constant rate, 250 grams of flour makes 6 biscuits. How many grams of flour are needed for 15 biscuits?",
+        choices: ["100", "375", "600", "625", "750"],
+        hint: "Set up the proportion rather than scaling by eye.",
+        expl: "Flour per biscuit is \\(\\tfrac{250}{6}\\) grams, so 15 biscuits need \\(\\tfrac{250}{6} \\times 15 = \\tfrac{3750}{6} = 625\\) grams.\nEquivalently, 15 is \\(2.5\\) times 6, and \\(250 \\times 2.5 = 625\\). (E) scales by 3 instead of 2.5." },
+      { n: 7, topic: "Unit conversion & formulas", level: "medium", correct: "C", options: 5,
+        text: "A shop sells rice at \\$0.45 per 100 grams. What is the cost of 2.4 kilograms of rice?",
+        choices: ["\\$1.08", "\\$4.32", "\\$10.80", "\\$43.20", "\\$108.00"],
+        hint: "How many 100-gram units are there in 2.4 kilograms?",
+        expl: "2.4 kilograms is 2,400 grams, which is \\(2400 \\div 100 = 24\\) units of 100 grams. The cost is \\(24 \\times 0.45 = \\$10.80\\).\n(B) treats the price as per kilogram and multiplies \\(0.45 \\times 2.4\\) directly, which is the error the \"per 100 grams\" wording is there to catch." },
+      { n: 8, topic: "Unit conversion & formulas", level: "medium", correct: "A", options: 5,
+        text: "The temperatures \\(C\\) in degrees Celsius and \\(F\\) in degrees Fahrenheit are related by \\(C = \\tfrac{5}{9}(F - 32)\\). What is 95 degrees Fahrenheit in degrees Celsius?",
+        choices: ["35", "52.8", "63", "171", "203"],
+        hint: "Subtract before you multiply \u2014 the formula says so.",
+        expl: "Substitute \\(F = 95\\): \\(C = \\tfrac{5}{9}(95 - 32) = \\tfrac{5}{9}(63) = 35\\).\n(B) multiplies by \\(\\tfrac{5}{9}\\) first and subtracts afterwards. (E) runs the formula backwards, converting Celsius to Fahrenheit instead. Reading a given formula literally, in its own order, is the whole skill here." },
+      { n: 9, topic: "Unit conversion & formulas", level: "hard", correct: "C", options: 5,
+        text: "A metal block has a volume of 2,500 cubic centimetres and a density of 0.8 grams per cubic centimetre. Given that mass = volume \\(\\times\\) density, what is its mass in kilograms? (1 kilogram = 1,000 grams)",
+        choices: ["0.2", "0.32", "2", "20", "3,125"],
+        hint: "Use the formula in grams first, then convert once at the end.",
+        expl: "Mass is \\(2{,}500 \\times 0.8 = 2{,}000\\) grams, which is \\(2{,}000 \\div 1000 = 2\\) kilograms.\n(E) divides by the density instead of multiplying. The exam supplies any formula like this one, so the work is substituting correctly and converting once \u2014 not recalling physics." },
+      { n: 10, topic: "Unit conversion & formulas", level: "hard", correct: "B", options: 5,
+        text: "A runner keeps a steady pace of 5 minutes per kilometre. How many hours does the runner take to cover 12 kilometres?",
+        choices: ["0.6", "1", "1.2", "2.4", "60"],
+        hint: "Minutes per kilometre is a rate; multiply it by the kilometres.",
+        expl: "At 5 minutes per kilometre, 12 kilometres take \\(5 \\times 12 = 60\\) minutes, which is exactly 1 hour.\n(E) gives the answer in minutes when the question asked for hours \u2014 on a question built around units, reading what unit the answer wants is half the work." },
+      { n: 11, topic: "Unit conversion & formulas", level: "hard", correct: "C", options: 5,
+        text: "A tap fills a 1.8-litre bottle in 24 seconds. At that rate, how many litres does it deliver in 10 minutes?",
+        choices: ["4.5", "7.5", "45", "75", "450"],
+        hint: "Find the rate per second or per minute, then scale.",
+        expl: "The tap delivers \\(\\tfrac{1.8}{24} = 0.075\\) litres per second. Ten minutes is 600 seconds, so it delivers \\(0.075 \\times 600 = 45\\) litres.\nWorking per minute is just as quick: \\(1.8\\) litres per 24 seconds is \\(1.8 \\times \\tfrac{60}{24} = 4.5\\) litres per minute, and \\(4.5 \\times 10 = 45\\).\n(A) stops after one minute." },
+      { n: 12, topic: "Unit conversion & formulas", level: "hard", correct: "D", options: 5,
+        text: "A printer uses ink at a constant rate of 3 millilitres per 50 pages. A cartridge holds 72 millilitres of ink. How many pages can one cartridge print?",
+        choices: ["120", "216", "1,080", "1,200", "3,600"],
+        hint: "Pages per millilitre, then multiply by the cartridge size.",
+        expl: "Each millilitre prints \\(\\tfrac{50}{3}\\) pages, so 72 millilitres print \\(\\tfrac{50}{3} \\times 72 = 50 \\times 24 = 1{,}200\\) pages.\n(B) multiplies \\(3 \\times 72\\) \u2014 the ink, not the pages. When a rate is given as \"A per B\", decide which way round you need it before you touch the numbers." }
+    ]
+  });
+
   window.GMAT_SETS_NEW = (window.GMAT_SETS_NEW || []).concat(NEW);
 
   /* ---- questions added to existing RC passages ---- */

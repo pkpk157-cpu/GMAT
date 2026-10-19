@@ -208,5 +208,19 @@ const CASES_GAPS = [
 ["di-twopart-tradeoffs", 6, () => { const perms = (a) => a.length <= 1 ? [a] : a.flatMap((x, i) => perms([...a.slice(0, i), ...a.slice(i + 1)]).map(p => [x, ...p])); const ok = perms(["P", "Q", "R", "S"]).filter(o => o.indexOf("Q") < o.indexOf("R") && o.indexOf("S") === o.indexOf("Q") + 1 && o[0] !== "P" && o.indexOf("P") < o.indexOf("R")); return ok.length === 1 ? `(${ok[0][0]}, ${ok[0][3]})` : "?"; }],
 ["di-twopart-tradeoffs", 7, () => "(Every engineer has worked at the firm for at least a year, Every employee with more than a year's service is certified)"],
 /* __CASES__ */
+// Unit conversion & formulas — official Math Review 3.2.7.
+["quant-units", 1,  () => 25 * 300 / 1000],
+["quant-units", 2,  () => 72 * 1000 / 3600],
+["quant-units", 3,  () => 1800 / 60],
+["quant-units", 4,  () => 15 * 60 / 1000],
+["quant-units", 5,  () => 3 * 4 / 10],
+["quant-units", 6,  () => 250 * 15 / 6],
+["quant-units", 7,  () => 24 * 45 / 100],
+["quant-units", 8,  () => 5 * (95 - 32) / 9],
+["quant-units", 9,  () => 2500 * 8 / 10 / 1000],
+["quant-units", 10, () => 5 * 12 / 60],
+["quant-units", 11, () => 18 / 10 / 24 * 600],
+["quant-units", 12, () => 50 / 3 * 72],
+
 ];
 module.exports = { CASES_GAPS };

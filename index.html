@@ -1408,7 +1408,7 @@
         { name:"Percentages, Ratios & Proportions", topics:["Percentages & percent change","Ratios & proportions","Profit, loss & discount","Simple & compound interest"] },
         { name:"Powers, Roots & Exponents", topics:["Exponent rules","Roots & radicals","Scientific notation & estimation"] },
         { name:"Algebra", topics:["Linear equations","Systems of equations","Quadratic equations","Inequalities & absolute value","Min / max & must-be-true","Functions & custom symbols","Expressions & factoring","Sequences & series","Coordinate geometry"] },
-        { name:"Word Problems", topics:["Speed, distance & time","Work & rate","Mixtures & solutions","Overlapping sets (Venn)","Age & number problems"] },
+        { name:"Word Problems", topics:["Speed, distance & time","Work & rate","Mixtures & solutions","Overlapping sets (Venn)","Age & number problems","Unit conversion & formulas"] },
         { name:"Statistics, Counting & Probability", topics:["Mean, median & mode","Range & standard deviation","Weighted averages","Permutations & combinations","Probability"] }
       ]},
     { id:"data", nav:"Data", color:"var(--c-data)", icon:ICON.data,
@@ -1437,7 +1437,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v138";
+  const APP_VERSION = "v139";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2738,7 +2738,10 @@
       "Statistics": "Mean, median & mode",
       "Sets & overlapping groups": "Overlapping sets (Venn)",
       "Algebra & word problems": "Linear equations",
-      "Mixtures & concentration": "Mixtures & solutions"
+      "Mixtures & concentration": "Mixtures & solutions",
+      "Unit conversion": "Unit conversion & formulas",
+      "Measurement conversion": "Unit conversion & formulas",
+      "Formulas & conversion": "Unit conversion & formulas"
     },
     rc: {
       "Function / purpose of detail": "Function of a detail or paragraph",

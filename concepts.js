@@ -1555,6 +1555,41 @@ window.GMAT_CONCEPTS = [
           },
           { t: "note", x: "That completes the arithmetic and word-problem layer. Number properties, algebra, and statistics &amp; probability each have their own guide — see the list of guides on the Quant tab." }
         ]
+      },
+      {
+        id: "qt-units",
+        title: "Units, Conversion & Given Formulas",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "This is the only topic on the Quant syllabus that is almost never about the mathematics. The Official Guide lists it as <b>Formulas and Measurement Conversion</b>, and the arithmetic in these questions is usually a single multiplication. What is being tested is whether you can hold the units steady while you do it." },
+          { t: "p", x: "Three errors account for nearly every miss, and all three are about <i>when</i> and <i>which way</i>, not about <i>how</i>:" },
+          { t: "ol", items: [
+            "<b>Converting at the wrong moment.</b> Convert once, at the end. A conversion in the middle of a calculation is a factor of 1,000 waiting to land on the wrong quantity.",
+            "<b>Multiplying where you must divide.</b> Before touching the numbers, ask whether the answer should come out <i>bigger</i> or <i>smaller</i> than what you started with. Minutes from hours is smaller; metres from kilometres is bigger.",
+            "<b>Answering in the wrong unit.</b> The question's last few words name the unit it wants. A question that asks for hours will reliably offer the right number of minutes as a choice."
+          ] },
+          { t: "h", x: "Rates: the only conversion worth memorising" },
+          { t: "p", x: "Speed questions convert constantly, and one factor covers almost all of them. A kilometre per hour is \(\tfrac{1000}{3600} = \tfrac{5}{18}\) metres per second, so:" },
+          { t: "formula", x: "\\begin{gathered}\\text{m/s} = \\dfrac{\\text{km/h}}{3.6}\\\\[6pt]\\text{km/h} = 3.6 \\times \\text{m/s}\\end{gathered}" },
+          { t: "tip", x: "Check it against something you know: 36 km/h is a brisk cycle, and \(36 \div 3.6 = 10\) m/s. If your conversion turns a cyclist into a bullet, you multiplied when you should have divided." },
+          { t: "h", x: "Areas and volumes square and cube the factor" },
+          { t: "warn", x: "A metre is 100 centimetres, but a square metre is <b>10,000</b> square centimetres and a cubic metre is <b>1,000,000</b> cubic centimetres. Convert the lengths first and multiply afterwards — never multiply two lengths that are in different units and then try to fix the label." },
+          { t: "h", x: "Formulas you are given" },
+          { t: "p", x: "The exam supplies any formula it expects you to use — \(F = ma\), \(C = \tfrac{5}{9}(F-32)\), mass = volume × density. You are not being tested on whether you knew it. You are being tested on whether you substitute into it literally, in the order it is written, and in the units it was handed to you in." },
+          { t: "note", x: "Substitute in the units given, finish the arithmetic, and convert the answer at the very end. Converting the inputs first is how a correct formula produces a wrong number." },
+          { t: "eg",
+            q: "A car travels at a constant 90 kilometres per hour. How many metres does it travel in 12 seconds?",
+            choices: ["150", "300", "750", "1,080", "1,800"],
+            ans: "B",
+            why: "Convert the speed once: \(90 \div 3.6 = 25\) metres per second. Then \(25 \times 12 = 300\) metres. The alternative route — 90 km in 3,600 seconds, so \(\tfrac{90}{3600} \times 12 = 0.3\) km — gives the same 300 m, but notice it needs the conversion at the end rather than the start. Either is fine; doing one at each end is not. (D) 1,080 is \(90 \times 12\), the raw numbers multiplied with no conversion at all."
+          },
+          { t: "eg",
+            q: "A fabric costs \$6.40 per square metre. What is the cost of a piece measuring 50 centimetres by 80 centimetres?",
+            choices: ["\$0.26", "\$2.56", "\$25.60", "\$256.00", "\$2,560.00"],
+            ans: "B",
+            why: "Convert the sides to metres first: \(0.5 \times 0.8 = 0.4\) square metres. The cost is \(0.4 \times 6.40 = \$2.56\). The trap is to multiply \(50 \times 80 = 4{,}000\) square centimetres and then divide by 100 instead of by 10,000 — which gives (C) \$25.60, ten times too much. Square units scale by the square of the factor."
+          }
+        ]
       }
     ]
   },
@@ -2783,6 +2818,41 @@ window.GMAT_CONCEPTS = [
           ] },
           { t: "tip", x: "Read the footnotes. On Multi-Source questions they are not decoration — they are usually the reason a plausible-looking statement is false." },
           { t: "note", x: "That completes the Data Insights concept layer — every Data Insights format now has a section behind it, and every practice topic in the app has a concept guide." }
+        ]
+      },
+      {
+        id: "di-distributions",
+        title: "Distributions, Trends & Correlation",
+        mins: 6,
+        blocks: [
+          { t: "p", x: "The Official Guide's Data Insights review spends a whole section on <b>data patterns</b> — the shape of a distribution, and what trends and correlations do and do not let you conclude. It is the part of the section that looks like reading a chart and is actually reasoning about one." },
+          { t: "h", x: "Shape tells you where the mean sits" },
+          { t: "p", x: "A distribution is <b>uniform</b> when every value occurs about equally often; <b>normal</b> when one central value is commonest and the frequencies fall away symmetrically on both sides; and <b>skewed</b> when one tail is longer than the other." },
+          { t: "ul", items: [
+            "In a perfectly <b>normal</b> distribution the mean, median and mode are all the same value.",
+            "In a <b>skewed</b> distribution the mean is dragged out along the longer tail, further than the median is. The mode stays at the hump.",
+            "So for a right-skewed (long tail to the right) distribution: <b>mode &lt; median &lt; mean</b>. Left-skewed reverses it."
+          ] },
+          { t: "tip", x: "That ordering is the single most testable fact here. Shown a histogram with a long right tail and asked to compare mean and median, you can answer without computing either: the mean is the larger." },
+          { t: "warn", x: "The mean is pulled by outliers and the median is not. When a question contrasts \u201caverage\u201d with \u201ctypical\u201d, or asks which measure a long tail distorts, it is asking exactly this." },
+          { t: "h", x: "Spread" },
+          { t: "p", x: "The more tightly the values cluster around the centre, the taller and narrower the hump and the smaller the standard deviation. Two distributions can share a mean and look nothing alike — comparing centres alone answers almost nothing." },
+          { t: "h", x: "Trends and correlation" },
+          { t: "p", x: "A <b>correlation</b> says two variables move together: positive if they rise together, negative if one rises as the other falls. The strength is how closely the points hug a line, not how steep the line is." },
+          { t: "warn", x: "Correlation is not causation, and the exam tests this relentlessly. Two variables can move together because one causes the other, because the second causes the first, because a third factor drives both, or by coincidence in a small sample. A Data Insights question that offers a causal conclusion from a scatter plot is usually offering the wrong answer." },
+          { t: "note", x: "A steep line is not a strong correlation. Steepness is the size of the effect; tightness around the line is the strength of the relationship. A nearly flat line through tightly packed points is a strong correlation with a small effect." },
+          { t: "eg",
+            q: "A histogram of household incomes in a town has its tallest bar at \$40,000 and a long tail stretching to \$500,000, with no corresponding tail below. Which of the following must be true?",
+            choices: ["The mean is less than the median.", "The mean is greater than the median.", "The mean equals the median.", "The median is less than the mode.", "The distribution is normal."],
+            ans: "B",
+            why: "The long tail is on the right, so the distribution is right-skewed. The handful of very high incomes pull the mean upward much more than they move the median, which only cares about the middle household. So the mean exceeds the median — (B). (A) describes a left skew. (E) is ruled out by the asymmetry: a normal distribution has matching tails. This is the standard shape of income data, and the reason reports quote median income rather than mean."
+          },
+          { t: "eg",
+            q: "A scatter plot shows that in a sample of towns, the number of ice-cream vans correlates strongly and positively with the number of drownings. Which of the following is best supported?",
+            choices: ["Ice-cream vans cause drownings.", "Drownings cause ice-cream vans to appear.", "Some third factor plausibly influences both.", "The correlation must be a coincidence of the sample.", "Reducing ice-cream vans would reduce drownings."],
+            ans: "C",
+            why: "Hot weather raises both: more people buy ice cream and more people swim. The data support a shared cause, not a direct one — (C). (A) and (E) assume causation from correlation, the error this question type exists to catch. (B) is absurd in direction. (D) overreaches the other way: a strong correlation in a decent sample is evidence of <i>something</i>, just not of what caused what."
+          }
         ]
       }
     ]

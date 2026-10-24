@@ -248,7 +248,7 @@
         "A group of students took an exam scored from 0 to 100. 70 percent of the group passed with an average score of 86, and the average for the entire group was 74. The median score for the entire group must be:",
         ["a unique value", "less than 92", "greater than 92", "exactly 86", "nothing can be conclusively said"],
         "Where does the median sit when 70% of the group is in the upper band?",
-        "Step 1 \u2014 The failing 30% averaged \\(\\tfrac{74 - 0.7(86)}{0.3} = 46\\).\nStep 2 \u2014 The median falls inside the passing group, but the individual passing scores can be spread in many ways around their average of 86.\nStep 3 \u2014 So no single conclusion about the median follows.\nAnswer: D.", "hard"),
+        "Step 1 \u2014 The failing 30% averaged \\(\\tfrac{74 - 0.7(86)}{0.3} = 46\\).\nStep 2 \u2014 The median falls inside the passing group, but the individual passing scores can be spread in many ways around their average of 86.\nStep 3 \u2014 So no single conclusion about the median follows.\nAnswer: E.", "hard"),
       P(15, "Range & standard deviation", "D",
         "A set of 15 different integers has a range of 25 and a median of 25. What is the greatest possible integer that could be in this set?",
         ["32", "37", "40", "43", "50"],

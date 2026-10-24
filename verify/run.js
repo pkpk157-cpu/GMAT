@@ -15,6 +15,8 @@ const { CASES_700B } = require("./answers-700b.js");
 CASES.push(...CASES_700B);
 const { CASES_BANK2 } = require("./answers-bank2.js");
 CASES.push(...CASES_BANK2);
+const { CASES_UNCOVERED } = require("./answers-uncovered.js");
+CASES.push(...CASES_UNCOVERED);
 
 /* Normalise a choice for comparison: strip LaTeX wrappers, commas, currency
    spacing and unit words, and turn \tfrac{a}{b} into a/b. */

@@ -14,11 +14,14 @@ const { CASES_700B } = require("./answers-700b.js");
 CASES.push(...CASES_700B);
 const { CASES_BANK2 } = require("./answers-bank2.js");
 CASES.push(...CASES_BANK2);
+const { CASES_UNCOVERED } = require("./answers-uncovered.js");
+CASES.push(...CASES_UNCOVERED);
 const have = new Set(CASES.map(c => c[0] + "#" + c[1]));
 // The non-Data-Sufficiency Data Insights sets are re-derived from their own
-// source data by verify/di4-derive.py rather than by answers.js, so count them
-// as covered here instead of reporting them as gaps.
-const DERIVED_ELSEWHERE = new Set(["di-700-enrolment", "di-700-nutrition", "di-700-twopart",
+// source data by verify/di4-derive.py, and the DS traps set by
+// verify/ds-traps-derive.py, rather than by answers.js, so count them as
+// covered here instead of reporting them as gaps.
+const DERIVED_ELSEWHERE = new Set(["di-ds-traps", "di-700-enrolment", "di-700-nutrition", "di-700-twopart",
                                    "di-700-msr-gold", "di-700-noncash", "di-700-commute"]);
 
 let tot = 0, cov = 0; const gaps = {};
@@ -26,10 +29,11 @@ b.forEach(s => s.questions.forEach(q => {
   tot++;
   const computational = s.section === "quant" || s.section === "data";
   if (!computational) return;
+  if (q.dup) return; // a flagged repeat is not served, and its copy is checked under its own id
   if (have.has(s.id + "#" + q.n) || DERIVED_ELSEWHERE.has(s.id)) cov++;
   else (gaps[s.id] = gaps[s.id] || []).push(q.n);
 }));
-const compTotal = b.filter(s => s.section==="quant"||s.section==="data").reduce((a,s)=>a+s.questions.length,0);
+const compTotal = b.filter(s => s.section==="quant"||s.section==="data").reduce((a,s)=>a+s.questions.filter(q=>!q.dup).length,0);
 console.log("bank total:", tot, "| quant+data:", compTotal, "| covered by verify/:", cov, "| uncovered:", compTotal - cov);
 console.log("\nuncovered:");
 Object.keys(gaps).forEach(k => console.log("  " + k.padEnd(26) + gaps[k].length + "  " + (gaps[k].length > 14 ? gaps[k].slice(0,14).join(",")+"…" : gaps[k].join(","))));

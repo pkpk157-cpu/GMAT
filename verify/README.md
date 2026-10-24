@@ -15,7 +15,7 @@ sets, because that is the level at which a printed answer key exists.
 
 ## Runnable checks
 
-    node verify/run.js               # re-derives 1,118 answers independently
+    node verify/run.js               # re-derives 2,215 answers independently
     node verify/dupes.js             # no question is served twice
     node verify/check-source-keys.js # answers vs the printed source keys
     python3 verify/di4-derive.py     # re-derives the non-DS Data Insights answers
@@ -103,6 +103,18 @@ rather than a restatement. A disagreement means either the bank or this file
 is wrong, and both times that happened during the original sweep it was worth
 knowing.
 
+`answers-uncovered.js` closes the gap the coverage check used to report: the
+eight live-session Quant sets, the 700-level arithmetic and rates sets, and the
+two Data Sufficiency sets that had been accepted on their printed keys alone.
+Each entry was written from the question text without looking at the stored
+key. Five of them disagreed with the key on the first run, and every one of the
+five turned out to be the derivation's mistake, not the bank's — a misread
+count, an assumption that a variable was an integer when the question never
+said so, a total that lived in a statement rather than the stem. That is the
+check doing its job in both directions: the reconciled entries now document
+exactly why the key is right. With it, `coverage.js` reports every served
+Quant and Data Insights question as re-derived.
+
 `source-keys.js` records the answer keys exactly as printed in the source
 documents, for the sets transcribed from handouts that publish one. Sets whose
 printed key is not available to check against are marked `null` rather than
@@ -112,11 +124,11 @@ filled in from memory.
 
 | Section | Questions | How verified |
 |---|---|---|
-| Quant + Data Insights | 2,049 | 1,928 re-derived by `answers.js`, `answers-gaps.js`, `answers-700b.js` and `answers-bank2.js`, 26 by `di4-derive.py`, the rest against printed source keys or by the derivation recorded in the question's own explanation |
-| Critical Reasoning | 855 | 636 against the printed key in the source AND re-derived by hand from the argument before the key was consulted; 219 have no printed key anywhere in the source and were derived from the argument alone (see below) |
-| Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted |
+| Quant + Data Insights | 2,061 served | every one re-derived: 2,215 entries across `answers.js`, `answers-gaps.js`, `answers-700b.js`, `answers-bank2.js` and `answers-uncovered.js` (the surplus covers flagged repeats), plus `di4-derive.py` and `ds-traps-derive.py` for the sets whose answers are computed from their own source data |
+| Critical Reasoning | 857 | 659 against the printed key in the source AND re-derived by hand from the argument before the key was consulted; 198 have no printed key anywhere in the source and were derived from the argument alone, then blind-answered a second time (see below) |
+| Reading Comprehension | 179 | against the source's marked answer AND re-derived by hand from the passage before that answer was consulted, then blind-answered a second time (see below) |
 
-The 219 critical reasoning questions with no printed key come from the 700-800
+The 198 critical reasoning questions with no printed key come from the 700-800
 Club practice file, which publishes questions without answers; the one answer
 file in the Drive keys a different book. Each answer there was worked out from
 the argument and each of the four wrong choices ruled out in writing, and any
@@ -124,6 +136,17 @@ question where more than one choice survived that scrutiny was left out rather
 than guessed. The set ids are `cr-club-*`. Treat those answers as carefully
 reasoned rather than as sourced, and prefer the keyed sets when a topic is
 covered by both.
+
+Because those 198 rest on reasoning alone, they were later answered a second
+time, blind: every stem and its choices were printed without the key, answered
+in batches, and only then compared. 191 matched outright. The seven that did
+not were each re-examined, and in every case the stored key held and the blind
+answer was the weaker reading — a missed constraint in the stem ("smokers who
+smoke one pack a day" rules out "they smoke more cigarettes"), a choice whose
+wording was subtly off ("isn't 18" is not "under 18"), or a sufficient
+assumption mistaken for the necessary one. The same blind pass over all 179
+Reading Comprehension questions matched the key on 175; the four
+disagreements likewise resolved to the key on inspection.
 
 `di4-derive.py` covers the four non-Data-Sufficiency Data Insights types. Those
 questions have no printed letter key — the real exam poses them as Yes/No
@@ -150,3 +173,11 @@ and `cr-weaken` #3.
 Damaged text: four CR explanations truncated mid-word, three that argued the
 right answer without ever naming it, and one answer choice that ended with a
 slab of instructional boilerplate from the source document.
+
+Found by the later full sweep: 121 choice-E strings across the four 700-level
+CR files ended in a stray ` | |`, a table-cell delimiter that survived the
+transcription and was being shown to the reader; and `quant-live-3` #14, whose
+explanation reasoned correctly to "nothing can be concluded about the median"
+and then announced the wrong letter. A bank-wide check that every explanation
+announces its own key, and (for the 726 questions with a plain numeric key)
+states the key's value somewhere in its working, found nothing else.

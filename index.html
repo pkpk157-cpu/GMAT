@@ -1153,9 +1153,10 @@
   @keyframes hub-glow { 0%, 100% { box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--c-overall) 70%, transparent); } 50% { box-shadow: 0 8px 22px -6px color-mix(in srgb, var(--c-overall) 92%, transparent), 0 0 0 5px color-mix(in srgb, var(--c-overall) 14%, transparent); } }
 
   /* Sub-nav: the highlight pill slides between tabs instead of blinking. */
-  .subnav-b { position: relative; z-index: 0; }
-  .subnav-b.on { background: transparent; box-shadow: none; }
-  .subnav-b.on::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 9px; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.09); transform-origin: left center; transform: translate(var(--pill-dx, 0px), var(--pill-dy, 0px)) scaleX(var(--pill-sx, 1)); transition: transform 320ms cubic-bezier(.4,0,.2,1); }
+  .subnav { position: relative; }
+  .subnav-b { position: relative; z-index: 1; }
+  .subnav:has(.subnav-pill) .subnav-b.on { background: transparent; box-shadow: none; }
+  .subnav-pill { position: absolute; z-index: 0; border-radius: 9px; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.09); pointer-events: none; transform-origin: left center; }
 
   /* Answer choices: a pick nudges, a correct answer blooms, a wrong one shakes. */
   .choice { transition: transform var(--d-fast) var(--ease-out), border-color .15s, background .15s, box-shadow .2s; }
@@ -1533,7 +1534,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v144";
+  const APP_VERSION = "v145";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -2012,12 +2013,25 @@
     }
   }
 
+  // The sub-nav's highlight is its own element, laid under the active tab after
+  // each render so a sub-tab change can glide it from the old tab to the new.
+  function placePill(view) {
+    const nav = view.querySelector(".subnav"), on = nav && nav.querySelector(".subnav-b.on");
+    if (!nav || !on) return null;
+    let pill = nav.querySelector(".subnav-pill");
+    if (!pill) { pill = document.createElement("span"); pill.className = "subnav-pill"; nav.insertBefore(pill, nav.firstChild); }
+    pill.style.left = on.offsetLeft + "px"; pill.style.top = on.offsetTop + "px";
+    pill.style.width = on.offsetWidth + "px"; pill.style.height = on.offsetHeight + "px";
+    return pill;
+  }
+  window.addEventListener("resize", () => placePill(document.getElementById("view")));
   let lastViewKey = null;
   function renderView() {
     const view = document.getElementById("view");
     const sec = secById(state.active) || SECTIONS.find(s=>s.dashboard);
     view.innerHTML = sec.dashboard ? overallHTML() : sectionHTML(sec);
     typeset(view);
+    placePill(view);
     // Blocks rise in when you arrive somewhere new, not on every incidental
     // re-render (closing an overlay re-renders the view underneath it).
     const key = state.active + "/" + ((state.subtab || {})[state.active] || "");
@@ -2674,13 +2688,10 @@
       const r0 = was && was !== sn ? was.getBoundingClientRect() : null, r1 = r0 ? sn.getBoundingClientRect() : null;
       state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 });
       // The highlight starts where the old tab's pill was and glides to the new one.
-      const nb = r0 && motionOk() ? view.querySelector(".subnav-b.on") : null;
-      if (nb) {
-        nb.style.setProperty("--pill-dx", (r0.left - r1.left) + "px"); nb.style.setProperty("--pill-dy", (r0.top - r1.top) + "px");
-        nb.style.setProperty("--pill-sx", String(r0.width / Math.max(1, r1.width)));
-        // A pseudo-element only transitions from a style that reached a frame,
-        // so the start position has to be painted once before it is released.
-        requestAnimationFrame(() => requestAnimationFrame(() => { nb.style.setProperty("--pill-dx", "0px"); nb.style.setProperty("--pill-dy", "0px"); nb.style.setProperty("--pill-sx", "1"); }));
+      const pill = r0 && motionOk() ? view.querySelector(".subnav-pill") : null;
+      if (pill && pill.animate) {
+        const from = `translate(${r0.left - r1.left}px, ${r0.top - r1.top}px) scaleX(${r0.width / Math.max(1, r1.width)})`;
+        pill.animate([{ transform: from }, { transform: "none" }], { duration: 320, easing: "cubic-bezier(.4,0,.2,1)" });
       }
       return;
     }

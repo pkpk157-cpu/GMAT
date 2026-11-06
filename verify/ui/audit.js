@@ -54,7 +54,9 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
   };
   const text = sel => P.evaluate(s => document.querySelector(s)?.textContent?.trim() || null, sel);
   const count = sel => P.evaluate(s => document.querySelectorAll(s).length, sel);
-  const visible = id => P.evaluate(i => { const el = document.getElementById(i); return !!el && !el.hidden; }, id);
+  // An overlay playing its exit animation has been dismissed; only one still
+  // open after that counts as stuck.
+  const visible = id => P.evaluate(i => { const el = document.getElementById(i); return !!el && !el.hidden && !el.classList.contains('ov-out'); }, id);
 
   const run = async (name, fn) => { step = name; try { await fn(); } catch (e) { note('THREW', e.message); } };
 
@@ -370,7 +372,7 @@ const note = (kind, msg) => problems.push(`[${kind}] during "${step}": ${msg}`);
     await click('#pg-close');
     // The overlay is hidden, not emptied — like the runner and history screens —
     // so ask whether it is on screen rather than whether its markup still exists.
-    if (await page.evaluate(() => !document.getElementById('progress').hidden)) note('SHAPE', 'progress screen still open after close');
+    if (await page.evaluate(() => { const e = document.getElementById('progress'); return !e.hidden && !e.classList.contains('ov-out'); })) note('SHAPE', 'progress screen still open after close');
   });
 
   /* ---- profile ---- */

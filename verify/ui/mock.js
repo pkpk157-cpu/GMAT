@@ -154,7 +154,7 @@ const problems = [];
   if (!mmState.clock) problems.push('drill rendered no clock');
   await page.evaluate(() => document.getElementById('mm-close').click());
   await page.waitForTimeout(300);
-  if (await page.evaluate(() => !document.getElementById('mm').hidden)) problems.push('drill did not close');
+  if (await page.evaluate(() => { const e = document.getElementById('mm'); return !e.hidden && !e.classList.contains('ov-out'); })) problems.push('drill did not close');
 
   console.log('\nproblems:', problems.length ? problems.join(' | ') : 'none');
   process.exitCode = problems.length ? 1 : 0;

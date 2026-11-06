@@ -1097,6 +1097,102 @@
     .goals { grid-template-columns: 1fr; }
     .ring-wrap { width: 56px; height: 56px; }
   }
+
+  /* ---------- Motion system ----------
+     One set of easings and durations for the whole app. Everything below
+     animates only transform, opacity, box-shadow or stroke offsets, so it
+     stays off the layout thread; the global reduced-motion rule at the end of
+     this sheet switches all of it off for people who have asked for that. */
+  :root { --ease-out: cubic-bezier(.22,1,.36,1); --ease-in: cubic-bezier(.45,0,1,1); --ease-spring: cubic-bezier(.34,1.45,.64,1); --d-fast: 140ms; --d-base: 240ms; --d-slow: 380ms; }
+
+  /* Tactile controls: every button presses in, and keyboard focus is visible. */
+  button { transition: transform var(--d-fast) var(--ease-out), background .15s, color .15s, border-color .15s, box-shadow .2s, opacity .15s; }
+  button:not(:disabled):active { transform: scale(.96); }
+  button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .tb-trophy:not(:disabled):active, .avatar:not(:disabled):active, .tb-prog:not(:disabled):active { transform: scale(.92); }
+
+  /* Full-screen surfaces rise in and settle; modals spring in over a fading scrim. */
+  .profile { overflow-x: hidden; }
+  .profile:not([hidden]) { animation: ov-in var(--d-slow) var(--ease-out) both; }
+  .profile.ov-out { animation: ov-out 220ms var(--ease-in) both; pointer-events: none; }
+  @keyframes ov-in { from { opacity: 0; transform: translateY(22px) scale(.984); } to { opacity: 1; transform: none; } }
+  @keyframes ov-out { to { opacity: 0; transform: translateY(16px) scale(.984); } }
+  .scrim:not([hidden]) { animation: fade-in var(--d-base) var(--ease-out) both; }
+  .scrim:not([hidden]) > .modal { animation: modal-in var(--d-slow) var(--ease-spring) both; }
+  .scrim.ov-out { animation: fade-out var(--d-fast) var(--ease-in) both; pointer-events: none; }
+  .scrim.ov-out > .modal { animation: modal-out var(--d-fast) var(--ease-in) both; }
+  @keyframes fade-in { from { opacity: 0; } } @keyframes fade-out { to { opacity: 0; } }
+  @keyframes modal-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+  @keyframes modal-out { to { opacity: 0; transform: translateY(8px) scale(.97); } }
+
+  /* A newly opened tab or sub-tab rises in, its blocks and rows staggered. */
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .v-in > * { animation: rise var(--d-slow) var(--ease-out) both; }
+  .v-in > :nth-child(2) { animation-delay: 45ms; } .v-in > :nth-child(3) { animation-delay: 90ms; }
+  .v-in > :nth-child(4) { animation-delay: 135ms; } .v-in > :nth-child(5) { animation-delay: 180ms; }
+  .v-in > :nth-child(n+6) { animation-delay: 220ms; }
+  .v-in-sub > .subnav ~ * { animation: rise var(--d-slow) var(--ease-out) both; }
+  .v-in .setrow, .v-in-sub .setrow { animation: rise var(--d-base) var(--ease-out) both; animation-delay: 260ms; }
+  .v-in .setrow:nth-child(1), .v-in-sub .setrow:nth-child(1) { animation-delay: 80ms; } .v-in .setrow:nth-child(2), .v-in-sub .setrow:nth-child(2) { animation-delay: 110ms; }
+  .v-in .setrow:nth-child(3), .v-in-sub .setrow:nth-child(3) { animation-delay: 140ms; } .v-in .setrow:nth-child(4), .v-in-sub .setrow:nth-child(4) { animation-delay: 170ms; }
+  .v-in .setrow:nth-child(5), .v-in-sub .setrow:nth-child(5) { animation-delay: 200ms; } .v-in .setrow:nth-child(6), .v-in-sub .setrow:nth-child(6) { animation-delay: 230ms; }
+  .v-in .sring .rv, .v-in-sub .sring .rv { animation: ring-draw .9s var(--ease-out) both; animation-delay: 160ms; }
+  @keyframes ring-draw { from { stroke-dashoffset: var(--pct, 0); } to { stroke-dashoffset: 0; } }
+  .v-in .ring-fg, .v-in-sub .ring-fg { animation: ring-fill .9s var(--ease-out) both; animation-delay: 120ms; }
+  @keyframes ring-fill { from { stroke-dashoffset: var(--circ, 0); } }
+
+  /* Bottom nav: a bar glides to the active tab and the icon pops once. */
+  .botnav-inner { position: relative; }
+  .botnav-inner::before { content: ""; position: absolute; top: 0; left: calc((var(--nav-i, 2) + .5) * 20%); width: 28px; height: 3px; transform: translateX(-50%); background: var(--nav-c, var(--accent)); border-radius: 0 0 3px 3px; opacity: var(--nav-show, 1); transition: left var(--d-slow) var(--ease-spring), opacity .2s, background-color .2s; }
+  .bn svg { transition: transform var(--d-fast) var(--ease-out); }
+  .bn:not(.center).just svg { animation: bn-pop .42s var(--ease-spring); }
+  @keyframes bn-pop { 0% { transform: scale(.82); } 55% { transform: scale(1.14); } 100% { transform: scale(1); } }
+  .bn.center.active .hub { animation: hub-glow 3.4s ease-in-out infinite; }
+  .bn.center.just .hub { animation: hub-pop .46s var(--ease-spring), hub-glow 3.4s ease-in-out .46s infinite; }
+  @keyframes hub-pop { 0% { transform: translateY(-2px) scale(.86); } 55% { transform: translateY(-2px) scale(1.1); } 100% { transform: translateY(-2px) scale(1); } }
+  @keyframes hub-glow { 0%, 100% { box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--c-overall) 70%, transparent); } 50% { box-shadow: 0 8px 22px -6px color-mix(in srgb, var(--c-overall) 92%, transparent), 0 0 0 5px color-mix(in srgb, var(--c-overall) 14%, transparent); } }
+
+  /* Sub-nav: the highlight pill slides between tabs instead of blinking. */
+  .subnav-b { position: relative; z-index: 0; }
+  .subnav-b.on { background: transparent; box-shadow: none; }
+  .subnav-b.on::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 9px; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.09); transform-origin: left center; transform: translate(var(--pill-dx, 0px), var(--pill-dy, 0px)) scaleX(var(--pill-sx, 1)); transition: transform 320ms cubic-bezier(.4,0,.2,1); }
+
+  /* Answer choices: a pick nudges, a correct answer blooms, a wrong one shakes. */
+  .choice { transition: transform var(--d-fast) var(--ease-out), border-color .15s, background .15s, box-shadow .2s; }
+  .choice:not(:disabled):active { transform: scale(.985); }
+  .choice .cl { transition: transform var(--d-fast) var(--ease-spring), background .15s, color .15s; }
+  .choice.sel { animation: pick .26s var(--ease-spring); }
+  .choice.sel .cl { transform: scale(1.08); }
+  @keyframes pick { 0% { transform: scale(.985); } 60% { transform: scale(1.012); } 100% { transform: scale(1); } }
+  .qcard.just .choice.correct { animation: ok-pop .6s var(--ease-spring); }
+  .qcard.just .choice.correct .cl { animation: ok-badge .5s var(--ease-spring); }
+  .qcard.just .choice.wrong { animation: shake .45s var(--ease-out); }
+  .qcard.just.ok { animation: card-ok .8s var(--ease-out); }
+  .qcard.just.bad { animation: card-bad .8s var(--ease-out); }
+  @keyframes ok-pop { 0% { transform: scale(1); } 35% { transform: scale(1.025); box-shadow: 0 0 0 6px color-mix(in srgb, var(--good) 22%, transparent); } 100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; } }
+  @keyframes ok-badge { 0% { transform: scale(.7) rotate(-12deg); } 60% { transform: scale(1.18) rotate(4deg); } 100% { transform: none; } }
+  @keyframes shake { 10%, 90% { transform: translateX(-2px); } 20%, 80% { transform: translateX(3px); } 30%, 50%, 70% { transform: translateX(-5px); } 40%, 60% { transform: translateX(5px); } }
+  @keyframes card-ok { 0% { box-shadow: var(--shadow), 0 0 0 0 color-mix(in srgb, var(--good) 45%, transparent); } 100% { box-shadow: var(--shadow), 0 0 0 22px transparent; } }
+  @keyframes card-bad { 0% { box-shadow: var(--shadow), 0 0 0 0 color-mix(in srgb, var(--bad) 40%, transparent); } 100% { box-shadow: var(--shadow), 0 0 0 22px transparent; } }
+
+  /* Moving between questions slides the card in from the side you came from. */
+  .qcard.q-next { animation: q-next var(--d-slow) var(--ease-out) both; }
+  .qcard.q-prev { animation: q-prev var(--d-slow) var(--ease-out) both; }
+  @keyframes q-next { from { opacity: 0; transform: translateX(26px); } to { opacity: 1; transform: none; } }
+  @keyframes q-prev { from { opacity: 0; transform: translateX(-26px); } to { opacity: 1; transform: none; } }
+  .rn-prog > i[style*="--from"] { animation: bar-grow .55s var(--ease-out) both; }
+  @keyframes bar-grow { from { width: var(--from); } }
+
+  /* Clocks pulse when time is short; the trophy's new-badge dot pings. */
+  .ss-timer.low, .qtimer.over { animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 50% { transform: scale(1.06); filter: brightness(1.08); } }
+  .tb-trophy .dot::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--accent); animation: ping 1.8s var(--ease-out) infinite; }
+  @keyframes ping { 0% { transform: scale(.6); opacity: .9; } 80%, 100% { transform: scale(2.2); opacity: 0; } }
+
+  /* Disclosures unfold rather than snap. */
+  details.expl > summary { transition: color .15s; }
+  details.expl[open] > .ex { animation: rise var(--d-base) var(--ease-out) both; }
+  details.expl > summary::marker, details.expl > summary::-webkit-details-marker { transition: transform .2s; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
@@ -1437,7 +1533,7 @@
         { name:"Question Types", topics:["Assumption","Strengthen","Weaken","Evaluate the argument","Inference / must be true","Explain the paradox","Identify the flaw","Boldface & method of reasoning","Complete the argument","EXCEPT & LEAST questions","Point at issue (two speakers)"] }
       ]}
   ];
-  const APP_VERSION = "v143";
+  const APP_VERSION = "v144";
   const bySub = SECTIONS.filter(s => s.subjects);
   const secById = (id) => SECTIONS.find(s => s.id === id);
   // Target seconds per question (GMAT pacing benchmarks) — drives timer colour & slow flags.
@@ -1716,20 +1812,62 @@
     }
     return h;
   }
+  /* ---------- Motion helpers ----------
+     Overlays are toggled with the hidden attribute, which cannot animate on its
+     own: showing one lets its CSS entrance play, and hiding one adds an exit
+     class and waits for that animation to finish before the attribute is set.
+     Both are no-ops for anyone who has asked for reduced motion. */
+  const motionOk = () => !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  // "Open" for anything that reasons about what is on screen — the wake lock,
+  // the deferred update — means not hidden and not already on its way out.
+  function ovOpen(id) { const el = document.getElementById(id); return !!el && !el.hidden && !el.classList.contains("ov-out"); }
+  function showOv(id) { const el = document.getElementById(id); if (!el) return; clearTimeout(el._ovT); el.classList.remove("ov-out"); el.hidden = false; }
+  function hideOv(id) {
+    const el = document.getElementById(id); if (!el || el.hidden) return;
+    if (!motionOk()) { el.hidden = true; return; }
+    el.classList.add("ov-out");
+    const fin = (e) => {
+      if (e && e.target !== el) return;   // a child's animation ending is not ours
+      clearTimeout(el._ovT); el.removeEventListener("animationend", fin);
+      if (el.classList.contains("ov-out")) { el.classList.remove("ov-out"); el.hidden = true; }
+    };
+    el.addEventListener("animationend", fin);
+    el._ovT = setTimeout(fin, 300);
+  }
+  // Marks a freshly rendered surface so its blocks rise in once.
+  function enterAnim(el) { if (!el) return; el.classList.remove("v-in"); void el.offsetWidth; el.classList.add("v-in"); }
+  // Counts a number up from zero in place, keeping any text around it.
+  function countUp(el, ms) {
+    if (!el || !motionOk()) return;
+    const m = el.textContent.trim().match(/^(\D*)(\d[\d,]*)(.*)$/); if (!m) return;
+    const to = parseInt(m[2].replace(/,/g, ""), 10); if (!isFinite(to) || to <= 0) return;
+    const grouped = m[2].indexOf(",") >= 0, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - p, 3), n = Math.round(to * e);
+      el.textContent = m[1] + (grouped ? n.toLocaleString("en-US") : String(n)) + m[3];
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
   function renderProgress() {
     const body = document.getElementById("pg-body");
     body.innerHTML = progressBodyHTML();
     typeset(body);
+    // Rise in on opening and on switching its tabs; not on a calendar month flip.
+    const key = String(state.ovtab || "");
+    if (renderProgress.key !== key) { renderProgress.key = key; enterAnim(body); body.querySelectorAll(".scorebig .sv").forEach(el => countUp(el, 650)); }
+    else body.classList.remove("v-in");
   }
   function openProgress(tab) {
     calCursor = new Date(); calCursor.setDate(1);   // the calendar always opens on this month
     if (tab && PROG_TABS.some(t => t.id === tab)) { state.ovtab = tab; save(); }
     renderProgress();
-    document.getElementById("progress").hidden = false;
+    showOv("progress");
     document.body.style.overflow = "hidden"; window.scrollTo({ top:0 });
     if (window.gtrack) gtrack("progress-open");
   }
-  function closeProgress() { document.getElementById("progress").hidden = true; document.body.style.overflow = ""; render(); }
+  function closeProgress() { hideOv("progress"); document.body.style.overflow = ""; render(); }
 
 
 
@@ -1858,6 +1996,12 @@
       b.onclick = () => { state.active = sec.id; save(); render(); window.scrollTo({ top:0 }); };
       nav.appendChild(b);
     });
+    // The indicator bar glides to the active tab; the icon pops only on a change.
+    const i = SECTIONS.findIndex(s => s.id === state.active), act = SECTIONS[i];
+    nav.style.setProperty("--nav-i", String(i < 0 ? 2 : i));
+    nav.style.setProperty("--nav-c", act ? act.color : "var(--accent)");
+    nav.style.setProperty("--nav-show", act && act.dashboard ? "0" : "1");
+    if (renderBotnav.last !== state.active) { renderBotnav.last = state.active; const ab = nav.querySelector(".bn.active"); if (ab) ab.classList.add("just"); }
   }
 
   /* Views */
@@ -1868,11 +2012,23 @@
     }
   }
 
+  let lastViewKey = null;
   function renderView() {
     const view = document.getElementById("view");
     const sec = secById(state.active) || SECTIONS.find(s=>s.dashboard);
     view.innerHTML = sec.dashboard ? overallHTML() : sectionHTML(sec);
     typeset(view);
+    // Blocks rise in when you arrive somewhere new, not on every incidental
+    // re-render (closing an overlay re-renders the view underneath it).
+    const key = state.active + "/" + ((state.subtab || {})[state.active] || "");
+    if (key !== lastViewKey) {
+      // Same tab, different sub-tab: only the pane below the sub-nav rises, so
+      // the header holds still and the sub-nav pill can be seen gliding.
+      const subOnly = lastViewKey !== null && lastViewKey.split("/")[0] === state.active;
+      lastViewKey = key; view.classList.toggle("v-in-sub", subOnly);
+      if (subOnly) view.classList.remove("v-in"); else enterAnim(view);
+      view.querySelectorAll(".ring-pct, .scorebig .sv").forEach(el => countUp(el, 650));
+    } else view.classList.remove("v-in", "v-in-sub");
   }
 
   function accBadge(c, d, extra) {
@@ -2034,7 +2190,7 @@
   const ringPct = (p) => Math.min(100, Math.round(p * 100));
   function ring(pct, color) {
     const r=26, c=2*Math.PI*r, off=c*(1-Math.max(0,Math.min(1,pct)));
-    return `<svg viewBox="0 0 64 64" class="ring"><circle class="ring-bg" cx="32" cy="32" r="${r}"/><circle class="ring-fg" cx="32" cy="32" r="${r}" style="stroke:${color};stroke-dasharray:${c.toFixed(1)};stroke-dashoffset:${off.toFixed(1)}"/></svg>`;
+    return `<svg viewBox="0 0 64 64" class="ring"><circle class="ring-bg" cx="32" cy="32" r="${r}"/><circle class="ring-fg" cx="32" cy="32" r="${r}" style="stroke:${color};stroke-dasharray:${c.toFixed(1)};stroke-dashoffset:${off.toFixed(1)};--circ:${c.toFixed(1)}"/></svg>`;
   }
 
   function overallHTML() {
@@ -2224,8 +2380,8 @@
   }
 
   function renderProfile() { document.getElementById("pf-body").innerHTML = profileHTML(); }
-  function openProfile() { calCursor = new Date(); calCursor.setDate(1); renderProfile(); document.getElementById("profile").hidden = false; document.body.style.overflow = "hidden"; }
-  function closeProfile() { document.getElementById("profile").hidden = true; document.body.style.overflow = ""; render(); }
+  function openProfile() { calCursor = new Date(); calCursor.setDate(1); renderProfile(); showOv("profile"); document.body.style.overflow = "hidden"; }
+  function closeProfile() { hideOv("profile"); document.body.style.overflow = ""; render(); }
 
   /* Achievements page */
   function taskRow(t){
@@ -2261,8 +2417,8 @@
     return h;
   }
   function renderAchv(){ document.getElementById("av-body").innerHTML = achievementsHTML(); }
-  function openAchv(){ renderAchv(); document.getElementById("achv").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("achievements-open"); }
-  function closeAchv(){ document.getElementById("achv").hidden = true; document.body.style.overflow = ""; render(); }
+  function openAchv(){ renderAchv(); showOv("achv"); document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("achievements-open"); }
+  function closeAchv(){ hideOv("achv"); document.body.style.overflow = ""; render(); }
 
   /* Backup / restore */
   function backup() {
@@ -2513,7 +2669,21 @@
   /* Events — view */
   document.getElementById("view").addEventListener("click", (e) => {
     const sn = e.target.closest("[data-subtab]");
-    if (sn) { state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 }); return; }
+    if (sn) {
+      const view = document.getElementById("view"), was = view.querySelector(".subnav-b.on");
+      const r0 = was && was !== sn ? was.getBoundingClientRect() : null, r1 = r0 ? sn.getBoundingClientRect() : null;
+      state.subtab[state.active] = sn.getAttribute("data-subtab"); save(); renderView(); window.scrollTo({ top:0 });
+      // The highlight starts where the old tab's pill was and glides to the new one.
+      const nb = r0 && motionOk() ? view.querySelector(".subnav-b.on") : null;
+      if (nb) {
+        nb.style.setProperty("--pill-dx", (r0.left - r1.left) + "px"); nb.style.setProperty("--pill-dy", (r0.top - r1.top) + "px");
+        nb.style.setProperty("--pill-sx", String(r0.width / Math.max(1, r1.width)));
+        // A pseudo-element only transitions from a style that reached a frame,
+        // so the start position has to be painted once before it is released.
+        requestAnimationFrame(() => requestAnimationFrame(() => { nb.style.setProperty("--pill-dx", "0px"); nb.style.setProperty("--pill-dy", "0px"); nb.style.setProperty("--pill-sx", "1"); }));
+      }
+      return;
+    }
     const mkb = e.target.closest("[data-mock]"); if (mkb) { startMock(mkb.getAttribute("data-mock")); return; }
     if (e.target.closest("[data-mm-open]")) { openMM(); return; }
     if (e.target.closest("[data-openhistory]")) { openHistory(); return; }
@@ -2995,12 +3165,12 @@
     const sec = secById(secId);
     document.getElementById("flash").style.setProperty("--secc", sec ? sec.color : "var(--accent)");
     renderFlash();
-    document.getElementById("flash").hidden = false;
+    showOv("flash");
     document.body.style.overflow = "hidden"; window.scrollTo({ top: 0 });
     markActivity("flash");
     if (window.gtrack) gtrack("flashcards-open");
   }
-  function closeFlash() { document.getElementById("flash").hidden = true; fcDeck = null; document.body.style.overflow = ""; render(); }
+  function closeFlash() { hideOv("flash"); fcDeck = null; document.body.style.overflow = ""; render(); }
   function fcModeCur() { return state.fcMode === "both" ? "both" : "flip"; }
   function renderFlash() {
     if (!fcDeck) return;
@@ -3204,8 +3374,8 @@
   }
 
   let cnGuideId = null, cnPartIdx = -1; // -1 = table of contents
-  function openConcept(id, partIdx) { cnGuideId = id; cnPartIdx = (typeof partIdx === "number") ? partIdx : -1; renderConcept(); document.getElementById("concept").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("concept-open"); }
-  function closeConcept() { readTimerStop(); saveRaw(); document.getElementById("concept").hidden = true; cnGuideId = null; document.body.style.overflow = ""; render(); }
+  function openConcept(id, partIdx) { cnGuideId = id; cnPartIdx = (typeof partIdx === "number") ? partIdx : -1; renderConcept(); showOv("concept"); document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("concept-open"); }
+  function closeConcept() { readTimerStop(); saveRaw(); hideOv("concept"); cnGuideId = null; document.body.style.overflow = ""; render(); }
 
   function blockHTML(b) {
     switch (b.t) {
@@ -3460,7 +3630,7 @@
   let wakeLock = null, wakeBusy = false, wakeAgain = false;
   function wakeWanted() {
     if (!wakeSetting() || document.visibilityState !== "visible") return false;
-    return WAKE_SURFACES.some(id => { const el = document.getElementById(id); return el && !el.hidden; });
+    return WAKE_SURFACES.some(ovOpen);
   }
   async function syncWakeLock() {
     if (!wakeSupported()) return;
@@ -3531,8 +3701,8 @@
   const FOCUS_PRESETS = [15, 25, 50];
   let foc = { phase:"focus", focusMin:25, remain:25*60, running:false, endsAt:0, timer:null };
   function focusTodayCount() { const a = actToday(); return a.focus || 0; }
-  function openFocus() { renderFocus(); document.getElementById("focus").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("focus-open"); }
-  function closeFocus() { document.getElementById("focus").hidden = true; document.body.style.overflow = ""; render(); }  // timer keeps running in the background
+  function openFocus() { renderFocus(); showOv("focus"); document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("focus-open"); }
+  function closeFocus() { hideOv("focus"); document.body.style.overflow = ""; render(); }  // timer keeps running in the background
   function focusPhaseTotal() { return foc.phase === "focus" ? foc.focusMin * 60 : 5 * 60; }
   function focusStart() {
     if (foc.running) return;
@@ -3593,11 +3763,11 @@
     for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
     rev = { pool, idx:0, answered:{}, elim:{}, pending:null, correct:0, graduated:0 };
     passageOpen = false;
-    document.getElementById("review").hidden = false; document.body.style.overflow = "hidden";
+    showOv("review"); document.body.style.overflow = "hidden";
     renderReview(); window.scrollTo({ top:0 }); syncWakeLock();
     if (window.gtrack) gtrack("review-open");
   }
-  function closeReview() { rev = null; document.getElementById("review").hidden = true; syncWakeLock(); document.body.style.overflow = ""; render(); }
+  function closeReview() { rev = null; hideOv("review"); syncWakeLock(); document.body.style.overflow = ""; render(); }
   function renderReview() {
     if (!rev) return;
     const body = document.getElementById("rv-body"), n = rev.pool.length;
@@ -4158,8 +4328,8 @@
     body.innerHTML = e ? histResultHTML(e) : histListHTML();
     typeset(body);
   }
-  function openHistory(id) { histOpenId = id || null; renderHistory(); document.getElementById("history").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("history-open"); }
-  function closeHistory() { document.getElementById("history").hidden = true; histOpenId = null; document.body.style.overflow = ""; render(); }
+  function openHistory(id) { histOpenId = id || null; renderHistory(); showOv("history"); document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); if (window.gtrack) gtrack("history-open"); }
+  function closeHistory() { hideOv("history"); histOpenId = null; document.body.style.overflow = ""; render(); }
 
   /* Work done outside a practice run — adaptive sessions and review-queue reps
      — has no run to rebuild from, so it is mirrored here as well. Without this
@@ -4400,8 +4570,8 @@
   // submitted, in which case we go straight to the results). Answers and
   // position are preserved, so re-choosing simply resumes where you left off.
   let modePrompt = false;
-  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); document.getElementById("runner").hidden = false; document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); syncWakeLock(); if (window.gtrack) gtrack("practice-set-open"); }
-  function closeRunner() { stopTimer(); document.getElementById("runner").hidden = true; syncWakeLock(); runSetId = null; pendingL = null; document.body.style.overflow = ""; document.body.classList.remove("nico-stay"); render(); }
+  function openRunner(id) { runSetId = id; runIndex = getRun(id).idx || 0; pendingL = null; timedFor = null; passageOpen = false; modePrompt = !getRun(id).submitted; renderRunner(); showOv("runner"); document.body.style.overflow = "hidden"; window.scrollTo({ top:0 }); syncWakeLock(); if (window.gtrack) gtrack("practice-set-open"); }
+  function closeRunner() { stopTimer(); hideOv("runner"); syncWakeLock(); runSetId = null; pendingL = null; document.body.style.overflow = ""; document.body.classList.remove("nico-stay"); render(); }
 
   // Nico reacts to a graded answer: nod + happy hop when right, head-shake when wrong.
   const NICO_MOVES = ["jump", "flip", "spin", "bounce", "wiggle", "nod"];
@@ -4583,7 +4753,12 @@
     document.addEventListener("scroll", onScroll, { passive: true, capture: true });
   })();
   function saveIdx() { const set = SETS.find(s => s.id === runSetId); if (!set) return; const run = getRun(set.id); run.idx = runIndex; setRun(set.id, run); }
-  function goto(i, set) { const total = runQs(set).length; runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner(); window.scrollTo({ top:0 }); }
+  function goto(i, set) {
+    const total = runQs(set).length, dir = i > runIndex ? "q-next" : (i < runIndex ? "q-prev" : "");
+    runIndex = Math.max(0, Math.min(total-1, i)); pendingL = null; passageOpen = false; saveIdx(); renderRunner();
+    if (dir) { const c = document.querySelector("#runner .qcard"); if (c) c.classList.add(dir); }
+    window.scrollTo({ top:0 });
+  }
 
   let jumperFlaggedOnly = false, jumperLevel = null;
   function openJumper() {
@@ -4622,9 +4797,9 @@
     }
     h += `<button class="btn-soft" style="width:100%;margin-top:16px" data-closejump>Close</button>`;
     document.getElementById("jumper-card").innerHTML = h;
-    document.getElementById("jumper").hidden = false;
+    showOv("jumper");
   }
-  function closeJumper() { document.getElementById("jumper").hidden = true; }
+  function closeJumper() { hideOv("jumper"); }
 
   function levelCounts(set) { const c = { easy:0, medium:0, hard:0, "very-hard":0 }; set.questions.forEach(q => { if (c[q.level] != null) c[q.level]++; }); return c; }
   /* A percentage as a doughnut. The circle is drawn with r chosen so its
@@ -4637,7 +4812,7 @@
     const pct = Math.round((part / whole) * 100);
     const cls = pct >= 80 ? "good" : pct >= 65 ? "mid" : "low";
     const label = `${pct}% ${what} — ${part} of ${whole}`;
-    return `<svg class="sring ${cls}" viewBox="0 0 36 36" role="img" aria-label="${esc(label)}"><title>${esc(label)}</title>
+    return `<svg class="sring ${cls}" viewBox="0 0 36 36" role="img" aria-label="${esc(label)}" style="--pct:${pct}"><title>${esc(label)}</title>
       <circle class="rt" cx="18" cy="18" r="15.9155"></circle>
       ${pct ? `<circle class="rv" cx="18" cy="18" r="15.9155" stroke-dasharray="${pct} 100"></circle>` : ""}
       <text x="18" y="18">${pct}<tspan class="pc">%</tspan></text></svg>`;
@@ -4688,7 +4863,9 @@
       : `<span class="qtimer-wrap"><button class="qtimer live" id="qtimer" data-live="1" data-target="${tgt}" data-toggle-timer title="Tap to pause / resume">0:00</button><button class="qtimer-reset" data-reset-timer title="Reset timer">↺</button></span>`;
     const flagged = isFlagged(set.id, q.n);
     const flagHTML = `<button class="qflag ${flagged?"on":""}" data-flag="${q.n}" title="${flagged?"Unflag":"Flag to revisit later"}">⚑</button>`;
-    let h = `<div class="rn-prog"><i style="width:${Math.round(answered/total*100)}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
+    const barPct = Math.round(answered/total*100), barFrom = (questionHTML.bar && questionHTML.bar.set === set.id) ? questionHTML.bar.pct : barPct;
+    questionHTML.bar = { set: set.id, pct: barPct };
+    let h = `<div class="rn-prog"><i style="width:${barPct}%;--from:${barFrom}%"></i></div><div class="rn-sub">${answered} of ${total} answered · ${practice?"Practice":"Test"} mode</div>`;
     /* Test mode withholds the result until the whole run is scored, so it has to
        withhold the hints too: the topic names the method and the level tells you
        how hard to look. Both are back the moment the run is submitted. */
@@ -4867,7 +5044,9 @@
       if (run.mode === "practice") {
         logOne(set, q, chosen === q.correct, run.times[q.n] || 0);
         nicoReact(chosen === q.correct);
-        renderRunner(); window.scrollTo({ top:0 }); return;
+        renderRunner();
+        { const c = document.querySelector("#runner .qcard"); if (c) c.classList.add("just", chosen === q.correct ? "ok" : "bad"); }
+        window.scrollTo({ top:0 }); return;
       }
       if (runIndex < runQs(set).length - 1) { runIndex++; saveIdx(); } // advance in test mode
       renderRunner(); window.scrollTo({ top:0 }); return;
@@ -4918,11 +5097,11 @@
     cfg.sets = new Set([...cfg.sets].filter(id => SETS.some(s => s.id === id)));
     if (!cfg.sets.size) SETS.forEach(s => cfg.sets.add(s.id));
     renderSessionConfig();
-    document.getElementById("sess-config").hidden = false;
+    showOv("sess-config");
     document.body.style.overflow = "hidden";
   }
   function closeSessionConfig() {
-    document.getElementById("sess-config").hidden = true;
+    hideOv("sess-config");
     if (document.getElementById("session").hidden) document.body.style.overflow = "";
   }
   function renderSessionConfig() {
@@ -5030,7 +5209,7 @@
   }
   function openMM() {
     mm = { cur: mmMake(), score: 0, wrong: 0, endsAt: Date.now() + MM_SECONDS * 1000, timer: null, over: false, entry: "", misses: [], last: null };
-    document.getElementById("mm").hidden = false;
+    showOv("mm");
     document.body.style.overflow = "hidden";
     renderMM();
     mm.timer = setInterval(() => {
@@ -5050,7 +5229,7 @@
   function closeMM() {
     if (mm && mm.timer) clearInterval(mm.timer);
     mm = null;
-    document.getElementById("mm").hidden = true;
+    hideOv("mm");
     document.body.style.overflow = "";
     renderView();
   }
@@ -5151,7 +5330,7 @@
     closeSessionConfig();
     // A 45-minute section mock is not "a practice session" — name what it is.
     document.getElementById("ss-title").textContent = mockKey ? MOCK[mockKey].label : "Practice session";
-    document.getElementById("session").hidden = false;
+    showOv("session");
     document.body.style.overflow = "hidden";
     sess.qStart = Date.now();
     renderSession(); startSessTimer(); window.scrollTo({ top: 0 }); syncWakeLock();
@@ -5351,7 +5530,7 @@
   function closeSession(force) {
     if (sess && !sess.submitted && !force && !confirm("End this practice session? Answers so far won't be saved to your stats.")) return false;
     stopSessTimer(); sess = null;
-    document.getElementById("session").hidden = true; syncWakeLock();
+    hideOv("session"); syncWakeLock();
     document.body.style.overflow = "";
     render(); return true;
   }
@@ -5479,7 +5658,7 @@
     else { if (pushTimer) { clearTimeout(pushTimer); pushTimer = null; } push().catch(() => {}); }
   });
   window.addEventListener("focus", () => { if (syncLinked()) pull(true).catch(() => {}); });
-  if (!state.examDate && !state.name) document.getElementById("onboard").hidden = false;
+  if (!state.examDate && !state.name) showOv("onboard");
   // KaTeX scripts are deferred, so typeset again once they've loaded.
   window.addEventListener("load", () => { typeset(document.getElementById("view")); typeset(document.getElementById("rn-body")); });
 })();
@@ -5501,7 +5680,8 @@
   function busy() {
     for (var i = 0; i < OVERLAYS.length; i++) {
       var el = document.getElementById(OVERLAYS[i]);
-      if (el && !el.hidden) return true;
+      // An overlay playing its exit animation has been dismissed.
+      if (el && !el.hidden && !el.classList.contains("ov-out")) return true;
     }
     return false;
   }
